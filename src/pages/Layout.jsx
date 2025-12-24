@@ -82,17 +82,27 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Desktop Navigation - Full Menu */}
             <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center">
-              {navLinks.map((link) => (
-                <Link key={link.page} to={createPageUrl(link.page)}>
-                  <Button
-                    variant={currentPageName === link.page ? "default" : "ghost"}
-                    className={currentPageName === link.page ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 text-sm font-semibold" : "text-gray-700 hover:text-blue-900 hover:bg-blue-50 text-sm font-medium"}
-                    size="sm"
-                  >
-                    {link.name}
-                  </Button>
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                // Si c'est Dashboard et pas connecté, rediriger vers login
+                const handleClick = (e) => {
+                  if (link.page === "Dashboard" && !isAuthenticated) {
+                    e.preventDefault();
+                    redirectToLogin('/Dashboard');
+                  }
+                };
+                
+                return (
+                  <Link key={link.page} to={createPageUrl(link.page)} onClick={handleClick}>
+                    <Button
+                      variant={currentPageName === link.page ? "default" : "ghost"}
+                      className={currentPageName === link.page ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 text-sm font-semibold" : "text-gray-700 hover:text-blue-900 hover:bg-blue-50 text-sm font-medium"}
+                      size="sm"
+                    >
+                      {link.name}
+                    </Button>
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Tablet Navigation - Simplified */}

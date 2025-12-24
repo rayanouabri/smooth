@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { me as getCurrentUser } from "@/api/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { me as getCurrentUser, isAuthenticated } from "@/api/auth";
 import { UserProfile, Enrollment, Course } from "@/api/entities";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -34,6 +34,7 @@ import { motion } from "framer-motion";
 export default function Dashboard() {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadUser();
@@ -41,14 +42,19 @@ export default function Dashboard() {
 
   const loadUser = async () => {
     try {
-      const userData = await getCurrentUser();
-      if (!userData) {
-        // Pas d'utilisateur connecté, rediriger vers Home après un court délai
-        setTimeout(() => {
-          window.location.href = '/Home';
-        }, 1000);
+      const authenticated = await isAuthenticated();
+      if (!authenticated) {
+        // Rediriger vers login, puis vers Dashboard après connexion
+        navigate('/login?redirect=/Dashboard');
         return;
       }
+
+      const userData = await getCurrentUser();
+      if (!userData) {
+        navigate('/login?redirect=/Dashboard');
+        return;
+      }
+      
       setUser(userData);
       
       if (userData && userData.email) {
@@ -63,17 +69,17 @@ export default function Dashboard() {
       }
     } catch (error) {
       console.error("Erreur lors du chargement de l'utilisateur:", error);
-      // Rediriger vers Home en cas d'erreur
-      setTimeout(() => {
-        window.location.href = '/Home';
-      }, 1000);
+      navigate('/login?redirect=/Dashboard');
     }
   };
 
   const { data: enrollments = [] } = useQuery({
     queryKey: ['enrollments', user?.email],
-    queryFn: () => Enrollment.filter({ user_email: user.email }, '-last_accessed'),
-    enabled: !!user,
+    queryFn: () => {
+      if (!user?.email) return [];
+      return Enrollment.filter({ user_email: user.email }, '-last_accessed');
+    },
+    enabled: !!user && !!user.email,
   });
 
   const { data: courses = [] } = useQuery({
@@ -119,16 +125,12 @@ export default function Dashboard() {
 
   const plan = profile?.subscription_plan || 'gratuit';
 
-  // Si l'utilisateur n'est pas connecté, rediriger vers la page d'accueil
-  // Ne pas bloquer indéfiniment
   if (!user) {
-    // Attendre un peu pour voir si l'utilisateur se charge
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mb-4"></div>
           <p className="text-gray-600">Chargement...</p>
-          <p className="text-sm text-gray-500 mt-2">Si cela persiste, <a href="/Home" className="text-blue-600 underline">retournez à l'accueil</a></p>
         </div>
       </div>
     );
@@ -156,7 +158,7 @@ export default function Dashboard() {
                   {plan === 'premium' ? '⭐ Premium' : '🎓 Gratuit'}
                 </Badge>
                 <h1 className="text-4xl font-bold mb-2">
-                  Bienvenue, {user.full_name || user.email.split('@')[0]} ! 👋
+                  Bienvenue, {user.full_name || user.email?.split('@')[0]} ! 👋
                 </h1>
                 <p className="text-blue-100 text-lg">
                   Continuez votre parcours vers la réussite
@@ -338,10 +340,10 @@ export default function Dashboard() {
                                   <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
                                     <span>Progression</span>
                                     <span className="font-semibold text-lg text-blue-600">
-                                      {Math.round(enrollment.progress_percentage)}%
+                                      {Math.round(enrollment.progress_percentage || 0)}%
                                     </span>
                                   </div>
-                                  <Progress value={enrollment.progress_percentage} className="h-3" />
+                                  <Progress value={enrollment.progress_percentage || 0} className="h-3" />
                                 </div>
                                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                                   <div className="text-sm text-gray-500 flex items-center">
