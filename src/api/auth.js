@@ -1,0 +1,106 @@
+import { supabase } from './supabaseClient';
+
+/**
+ * Service d'authentification utilisant Supabase
+ * Remplace base44.auth
+ */
+
+// Vérifier si l'utilisateur est authentifié
+export const isAuthenticated = async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  return !!session;
+};
+
+// Obtenir l'utilisateur actuel
+export const getCurrentUser = async () => {
+  const { data: { user }, error } = await supabase.auth.getUser();
+  if (error) throw error;
+  return user;
+};
+
+// Obtenir les informations complètes de l'utilisateur (compatibilité avec base44.auth.me())
+export const me = async () => {
+  const user = await getCurrentUser();
+  // Récupérer le profil utilisateur depuis la table user_profiles
+  const { data: profile } = await supabase
+    .from('user_profiles')
+    .select('*')
+    .eq('user_id', user.id)
+    .single();
+  
+  return {
+    id: user.id,
+    email: user.email,
+    full_name: profile?.full_name || user.user_metadata?.full_name || user.email?.split('@')[0],
+    ...profile,
+    ...user,
+  };
+};
+
+// Déconnexion
+export const logout = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) throw error;
+  window.location.reload();
+};
+
+// Rediriger vers la page de connexion (pour compatibilité)
+export const redirectToLogin = (redirectUrl = window.location.href) => {
+  window.location.href = `/login?redirect=${encodeURIComponent(redirectUrl)}`;
+};
+
+// Connexion avec email/password
+export const signInWithEmail = async (email, password) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+  if (error) throw error;
+  return data;
+};
+
+// Inscription avec email/password
+export const signUpWithEmail = async (email, password, metadata = {}) => {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: metadata,
+    },
+  });
+  if (error) throw error;
+  return data;
+};
+
+// Connexion avec OAuth (Google, GitHub, etc.)
+export const signInWithOAuth = async (provider, redirectUrl = window.location.origin) => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider,
+    options: {
+      redirectTo: `${redirectUrl}/auth/callback`,
+    },
+  });
+  if (error) throw error;
+  return data;
+};
+
+// Réinitialiser le mot de passe
+export const resetPassword = async (email) => {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/reset-password`,
+  });
+  if (error) throw error;
+};
+
+export default {
+  isAuthenticated,
+  me,
+  logout,
+  redirectToLogin,
+  signInWithEmail,
+  signUpWithEmail,
+  signInWithOAuth,
+  resetPassword,
+  getCurrentUser,
+};
+
