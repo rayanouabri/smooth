@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { createPageUrl } from "./utils";
+import { createPageUrl } from "../utils";
 import { isAuthenticated as checkAuthStatus, me as getCurrentUser, logout, redirectToLogin } from "@/api/auth";
 import { Button } from "@/components/ui/button";
 import { Menu, X, GraduationCap, ChevronDown } from "lucide-react";

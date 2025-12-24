@@ -569,7 +569,7 @@ Be thorough, balanced, and provide specific reasoning for your analysis."
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{type.name}</h3>
                   <p className="text-gray-600 mb-4">{type.desc}</p>
-                  <Badge className={type.color}>{type.time} minutes}</Badge>
+                  <Badge className={type.color}>{type.time} minutes</Badge>
                 </div>
                 <Button
                   onClick={() => startTest(type.id)}
