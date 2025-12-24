@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { me as getCurrentUser } from "@/api/auth";
 import { Assessment } from "@/api/entities";
+import { InvokeLLM } from "@/api/integrations";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -128,7 +129,7 @@ export default function ProblemSolving() {
 
       Make problems realistic and relevant to Indian context.`;
 
-      const response = await base44.integrations.Core.InvokeLLM({
+      const response = await InvokeLLM({
         prompt,
         response_json_schema: {
           type: "object",
@@ -191,7 +192,7 @@ export default function ProblemSolving() {
       const evaluationPromises = problems.map(async (problem, index) => {
         if (!finalSolutions[index]) return { score: 0, feedback: "No solution provided" };
 
-        const response = await base44.integrations.Core.InvokeLLM({
+        const response = await InvokeLLM({
           prompt: `Evaluate this problem-solving response:
 
           Problem: ${problem.problem_statement}
@@ -230,7 +231,7 @@ export default function ProblemSolving() {
 
       const timeTaken = Math.round((testTypes.find(t => t.id === testType)?.time * 60 - timeLeft) / 60);
 
-      await base44.entities.Assessment.create({
+      await Assessment.create({
         user_email: user.email,
         assessment_type: "problem_solving",
         score: avgScore,
@@ -241,7 +242,7 @@ export default function ProblemSolving() {
         completed_date: new Date().toISOString()
       });
 
-      const assessments = await base44.entities.Assessment.filter({
+      const assessments = await Assessment.filter({
         user_email: user.email,
         assessment_type: "problem_solving"
       });
