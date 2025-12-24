@@ -44,9 +44,12 @@ export const logout = async () => {
   window.location.reload();
 };
 
-// Rediriger vers la page de connexion (pour compatibilité)
+// Rediriger vers la page de connexion
 export const redirectToLogin = (redirectUrl = window.location.href) => {
-  window.location.href = `/login?redirect=${encodeURIComponent(redirectUrl)}`;
+  // Utiliser window.location pour forcer un rechargement complet
+  const url = new URL('/login', window.location.origin);
+  url.searchParams.set('redirect', redirectUrl);
+  window.location.href = url.toString();
 };
 
 // Connexion avec email/password
@@ -84,6 +87,18 @@ export const signInWithOAuth = async (provider, redirectUrl = window.location.or
   return data;
 };
 
+// Fonction pour la connexion Google (spécifique)
+export const signInWithGoogle = async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.origin // Redirige l'utilisateur sur votre site après connexion
+    }
+  });
+  if (error) throw error;
+  return data;
+};
+
 // Réinitialiser le mot de passe
 export const resetPassword = async (email) => {
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
@@ -100,6 +115,7 @@ export default {
   signInWithEmail,
   signUpWithEmail,
   signInWithOAuth,
+  signInWithGoogle,
   resetPassword,
   getCurrentUser,
 };

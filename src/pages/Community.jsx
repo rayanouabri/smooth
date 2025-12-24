@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { isAuthenticated as checkAuthStatus, me as getCurrentUser } from "@/api/auth";
+import { isAuthenticated as checkAuthStatus, me as getCurrentUser, redirectToLogin } from "@/api/auth";
 import { ForumPost, ForumReply } from "@/api/entities";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -490,7 +490,7 @@ export default function Community() {
                   <p className="text-gray-600 mb-4">
                     Connectez-vous pour participer à la discussion
                   </p>
-                  <Button onClick={() => base44.auth.redirectToLogin(window.location.href)}>
+                  <Button onClick={() => redirectToLogin(window.location.href)}>
                     Se connecter
                   </Button>
                 </CardContent>

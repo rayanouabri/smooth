@@ -252,7 +252,7 @@ export default function Layout({ children, currentPageName }) {
                     className="bg-blue-900 hover:bg-blue-800"
                     onClick={() => {
                       setMobileMenuOpen(false);
-                      base44.auth.redirectToLogin(window.location.href);
+                      redirectToLogin(window.location.href);
                     }}
                   >
                     Commencer gratuitement

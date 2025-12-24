@@ -633,7 +633,7 @@ export default function Home() {
             <Button
               size="lg"
               className="bg-white text-pink-600 hover:bg-gray-100 font-bold px-8 py-4 text-lg shadow-2xl"
-              onClick={() => base44.auth.redirectToLogin(window.location.href)}
+              onClick={() => redirectToLogin(window.location.href)}
             >
               🚀 Explorer les cours
               <ArrowRight className="ml-2 w-5 h-5" />

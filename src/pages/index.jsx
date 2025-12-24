@@ -50,6 +50,9 @@ import PaymentSuccess from "./PaymentSuccess";
 
 import AdminCourses from "./AdminCourses";
 
+import Login from "./Login";
+import AuthCallback from "./AuthCallback";
+
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
@@ -180,6 +183,10 @@ function PagesContent() {
                 <Route path="/PaymentSuccess" element={<PaymentSuccess />} />
                 
                 <Route path="/AdminCourses" element={<AdminCourses />} />
+                
+                <Route path="/login" element={<Login />} />
+                
+                <Route path="/auth/callback" element={<AuthCallback />} />
                 
             </Routes>
         </Layout>
