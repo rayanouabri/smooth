@@ -23,7 +23,15 @@ export default function Courses() {
 
   const { data: courses = [], isLoading } = useQuery({
     queryKey: ['courses'],
-    queryFn: () => Course.filter({ is_published: true }, '-created_date'),
+    queryFn: async () => {
+      try {
+        const result = await Course.filter({ is_published: true }, '-created_date');
+        return result || [];
+      } catch (error) {
+        console.error("Erreur lors du chargement des cours:", error);
+        return [];
+      }
+    },
   });
 
   const categoryLabels = {

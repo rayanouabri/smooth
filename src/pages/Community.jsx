@@ -59,11 +59,16 @@ export default function Community() {
 
   const { data: posts = [] } = useQuery({
     queryKey: ['forum-posts', categoryFilter],
-    queryFn: () => {
-      if (categoryFilter === "all") {
-        return ForumPost.all('-created_date');
+    queryFn: async () => {
+      try {
+        if (categoryFilter === "all") {
+          return await ForumPost.all('-created_date');
+        }
+        return await ForumPost.filter({ category: categoryFilter }, '-created_date');
+      } catch (error) {
+        console.error("Erreur lors du chargement des posts:", error);
+        return [];
       }
-      return ForumPost.filter({ category: categoryFilter }, '-created_date');
     },
   });
 

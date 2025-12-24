@@ -60,8 +60,13 @@ export default function Dashboard() {
     queryFn: async () => {
       const courseIds = enrollments.map(e => e.course_id);
       if (courseIds.length === 0) return [];
-      const allCourses = await Course.all();
-      return allCourses.filter(c => courseIds.includes(c.id));
+      try {
+        const allCourses = await Course.all();
+        return allCourses.filter(c => courseIds.includes(c.id));
+      } catch (error) {
+        console.error("Erreur lors du chargement des cours:", error);
+        return [];
+      }
     },
     enabled: enrollments.length > 0,
     staleTime: 60000,
@@ -69,7 +74,14 @@ export default function Dashboard() {
 
   const { data: allCourses = [] } = useQuery({
     queryKey: ['all-courses'],
-    queryFn: () => Course.filter({ is_published: true }),
+    queryFn: async () => {
+      try {
+        return await Course.filter({ is_published: true });
+      } catch (error) {
+        console.error("Erreur lors du chargement de tous les cours:", error);
+        return [];
+      }
+    },
     staleTime: 120000,
   });
 
@@ -86,12 +98,16 @@ export default function Dashboard() {
 
   const plan = profile?.subscription_plan || 'gratuit';
 
+  // Si l'utilisateur n'est pas connecté, rediriger vers la page d'accueil
+  // Ne pas bloquer indéfiniment
   if (!user) {
+    // Attendre un peu pour voir si l'utilisateur se charge
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mb-4"></div>
           <p className="text-gray-600">Chargement...</p>
+          <p className="text-sm text-gray-500 mt-2">Si cela persiste, <a href="/Home" className="text-blue-600 underline">retournez à l'accueil</a></p>
         </div>
       </div>
     );

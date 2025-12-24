@@ -13,14 +13,31 @@ export const isAuthenticated = async () => {
 
 // Obtenir l'utilisateur actuel
 export const getCurrentUser = async () => {
-  const { data: { user }, error } = await supabase.auth.getUser();
-  if (error) throw error;
-  return user;
+  try {
+    const { data: { user }, error } = await supabase.auth.getUser();
+    if (error) {
+      // Si l'utilisateur n'est pas authentifié, retourner null au lieu de throw
+      if (error.message.includes('not authenticated') || error.message.includes('session')) {
+        return null;
+      }
+      throw error;
+    }
+    return user;
+  } catch (error) {
+    console.error("Error getting current user:", error);
+    return null;
+  }
 };
 
 // Obtenir les informations complètes de l'utilisateur (compatibilité avec base44.auth.me())
 export const me = async () => {
   const user = await getCurrentUser();
+  
+  // Si pas d'utilisateur, retourner null
+  if (!user) {
+    return null;
+  }
+  
   // Récupérer le profil utilisateur depuis la table user_profiles (par user_id ou user_email)
   const { data: profile, error } = await supabase
     .from('user_profiles')
@@ -28,17 +45,14 @@ export const me = async () => {
     .or(`user_id.eq.${user.id},user_email.eq.${user.email}`)
     .maybeSingle();
   
-  // Si le profil n'existe pas, créer un profil par défaut (pour compatibilité)
-  if (!profile && !error) {
-    // Ne pas créer automatiquement ici, laisser le trigger Supabase s'en charger
-    // ou créer le profil dans AuthCallback
-  }
+  // Si le profil n'existe pas, retourner juste les données de base de l'utilisateur
+  // Le trigger ou AuthCallback créera le profil plus tard
   
   return {
     id: user.id,
     email: user.email,
     full_name: profile?.full_name || user.user_metadata?.full_name || user.email?.split('@')[0],
-    ...profile,
+    ...(profile || {}),
     ...user,
   };
 };
