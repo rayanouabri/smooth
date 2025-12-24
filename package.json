@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "import:csv": "node import-csv-simple.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
@@ -64,6 +65,7 @@
     "vaul": "^1.1.2",
     "zod": "^3.24.2"
   },
+  "type": "module",
   "devDependencies": {
     "@eslint/js": "^9.19.0",
     "@flydotio/dockerfile": "^0.7.8",
