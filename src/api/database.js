@@ -13,6 +13,49 @@ import { supabase } from './supabaseClient';
 export const createEntityService = (tableName) => {
   return {
     /**
+     * Lister toutes les entités (remplace base44.entities.EntityName.list)
+     * @param {string} orderBy - Champ de tri (préfixé par '-' pour ordre décroissant)
+     * @param {boolean} ascending - Ordre croissant ou décroissant
+     * @returns {Promise<Array>} Liste des entités
+     */
+    all: async (orderBy = null, ascending = false) => {
+      let query = supabase.from(tableName).select('*');
+      
+      if (orderBy) {
+        const isDescending = orderBy.startsWith('-');
+        const field = isDescending ? orderBy.slice(1) : orderBy;
+        query = query.order(field, { ascending: !isDescending && ascending });
+      }
+      
+      const { data, error } = await query;
+      if (error) {
+        console.error(`Error listing ${tableName}:`, error);
+        throw error;
+      }
+      return data || [];
+    },
+
+    /**
+     * Alias pour all() (compatibilité avec base44)
+     */
+    list: async (orderBy = null, ascending = false) => {
+      let query = supabase.from(tableName).select('*');
+      
+      if (orderBy) {
+        const isDescending = orderBy.startsWith('-');
+        const field = isDescending ? orderBy.slice(1) : orderBy;
+        query = query.order(field, { ascending: !isDescending && ascending });
+      }
+      
+      const { data, error } = await query;
+      if (error) {
+        console.error(`Error listing ${tableName}:`, error);
+        throw error;
+      }
+      return data || [];
+    },
+
+    /**
      * Filtrer les entités (remplace base44.entities.EntityName.filter)
      * @param {Object} filters - Filtres à appliquer { field: value }
      * @param {string} orderBy - Champ de tri (préfixé par '-' pour ordre décroissant)

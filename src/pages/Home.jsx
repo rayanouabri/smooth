@@ -113,7 +113,7 @@ export default function Home() {
     {
       icon: Users,
       title: "Communauté Active",
-      description: "Forum d'entraide avec des milliers d'étudiants internationaux",
+      description: "Forum d'entraide avec une communauté active d'étudiants internationaux",
       color: "from-green-500 to-emerald-500"
     }
   ];
@@ -137,7 +137,7 @@ export default function Home() {
             >
               <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-pink-400 text-white text-base px-6 py-2 border-0 shadow-xl">
                 <Sparkles className="w-4 h-4 mr-2 inline" />
-                15,000+ étudiants nous font confiance
+              Rejoignez notre communauté
               </Badge>
 
               <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
@@ -305,7 +305,7 @@ export default function Home() {
               Vous n'êtes pas seul face à ces défis
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Des milliers d'étudiants rencontrent les mêmes difficultés. Nous sommes là pour vous aider à les surmonter.
+              De nombreux étudiants rencontrent les mêmes difficultés. Nous sommes là pour vous aider à les surmonter.
             </p>
           </div>
 
@@ -619,7 +619,7 @@ export default function Home() {
           </h2>
           
           <p className="text-lg md:text-xl text-white/90 mb-6 max-w-2xl mx-auto">
-            Rejoignez <span className="font-bold underline decoration-wavy">15,000+ étudiants</span> qui ont déjà transformé leur vie
+            Rejoignez notre communauté qui transforme des vies chaque jour
           </p>
 
           {isAuthenticated ? (

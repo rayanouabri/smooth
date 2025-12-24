@@ -84,10 +84,13 @@ export default function Layout({ children, currentPageName }) {
             <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center">
               {navLinks.map((link) => {
                 // Si c'est Dashboard et pas connecté, rediriger vers login
-                const handleClick = (e) => {
-                  if (link.page === "Dashboard" && !isAuthenticated) {
-                    e.preventDefault();
-                    redirectToLogin('/Dashboard');
+                const handleClick = async (e) => {
+                  if (link.page === "Dashboard") {
+                    const authenticated = await checkAuthStatus();
+                    if (!authenticated) {
+                      e.preventDefault();
+                      redirectToLogin('/Dashboard');
+                    }
                   }
                 };
                 
