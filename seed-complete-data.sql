@@ -1,7 +1,7 @@
 -- =====================================================
 -- SCRIPT COMPLET DE DONNÉES POUR FRANCEPREP ACADEMY
 -- 80 cours complets + 25 posts forum avec commentaires
--- Généré le 2025-12-25 00:44:39
+-- Généré le 2025-12-25 00:53:58
 -- =====================================================
 
 -- Désactiver temporairement les contraintes
@@ -24,8 +24,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=1',
-  ["Comprendre caf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre caf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.1,
   51
@@ -84,8 +84,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=2',
-  ["Comprendre sécurité sociale", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre sécurité sociale", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.2,
   52
@@ -154,8 +154,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=3',
-  ["Comprendre titre de séjour", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre titre de séjour", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.3,
   53
@@ -204,8 +204,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=4',
-  ["Comprendre logement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre logement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.4,
   54
@@ -264,8 +264,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=5',
-  ["Comprendre banque", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre banque", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.5,
   55
@@ -334,8 +334,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=6',
-  ["Comprendre assurance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre assurance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.6,
   56
@@ -384,8 +384,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=7',
-  ["Comprendre impôts", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre impôts", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.7,
   57
@@ -444,8 +444,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=8',
-  ["Comprendre démarches préfecture", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre démarches préfecture", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.8,
   58
@@ -514,8 +514,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=9',
-  ["Comprendre visa", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre visa", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.9,
   59
@@ -564,8 +564,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=10',
-  ["Comprendre carte vitale", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre carte vitale", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.0,
   60
@@ -624,8 +624,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=11',
-  ["Comprendre mutuelle", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre mutuelle", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.1,
   61
@@ -694,8 +694,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=12',
-  ["Comprendre cpam", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre cpam", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.2,
   62
@@ -744,8 +744,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=13',
-  ["Comprendre rsi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre rsi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.3,
   63
@@ -804,8 +804,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=14',
-  ["Comprendre urssaf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre urssaf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.4,
   64
@@ -874,8 +874,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=15',
-  ["Comprendre pôle emploi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre pôle emploi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.5,
   65
@@ -924,8 +924,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=16',
-  ["Comprendre passeport", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre passeport", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.6,
   66
@@ -984,8 +984,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=17',
-  ["Comprendre carte didentité", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre carte didentité", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.7,
   67
@@ -1054,8 +1054,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=18',
-  ["Comprendre permis de séjour", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre permis de séjour", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.8,
   68
@@ -1104,8 +1104,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=19',
-  ["Comprendre renouvellement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre renouvellement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.9,
   69
@@ -1164,8 +1164,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=20',
-  ["Comprendre naturalisation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre naturalisation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.0,
   70
@@ -1234,8 +1234,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=21',
-  ["Comprendre français a1", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre français a1", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.1,
   71
@@ -1284,8 +1284,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=22',
-  ["Comprendre français a2", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre français a2", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.2,
   72
@@ -1344,8 +1344,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=23',
-  ["Comprendre français b1", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre français b1", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.3,
   73
@@ -1414,8 +1414,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=24',
-  ["Comprendre français b2", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre français b2", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.4,
   74
@@ -1464,8 +1464,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=25',
-  ["Comprendre delf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre delf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.5,
   75
@@ -1524,8 +1524,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=26',
-  ["Comprendre dalf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre dalf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.6,
   76
@@ -1594,8 +1594,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=27',
-  ["Comprendre système éducatif", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre système éducatif", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.7,
   77
@@ -1644,8 +1644,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=28',
-  ["Comprendre inscription université", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre inscription université", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.8,
   78
@@ -1704,8 +1704,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=29',
-  ["Comprendre lmd", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre lmd", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.9,
   79
@@ -1774,8 +1774,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=30',
-  ["Comprendre bourses", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre bourses", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.0,
   80
@@ -1824,8 +1824,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=31',
-  ["Comprendre équivalences", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre équivalences", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.1,
   81
@@ -1884,8 +1884,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=32',
-  ["Comprendre mémoire", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre mémoire", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.2,
   82
@@ -1954,8 +1954,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=33',
-  ["Comprendre thèse", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre thèse", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.3,
   83
@@ -2004,8 +2004,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=34',
-  ["Comprendre recherche", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre recherche", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.4,
   84
@@ -2064,8 +2064,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=35',
-  ["Comprendre bibliographie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre bibliographie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.5,
   85
@@ -2134,8 +2134,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=36',
-  ["Comprendre présentations", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre présentations", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.6,
   86
@@ -2184,8 +2184,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=37',
-  ["Comprendre examens", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre examens", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.7,
   87
@@ -2244,8 +2244,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=38',
-  ["Comprendre méthodologie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre méthodologie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.8,
   88
@@ -2314,8 +2314,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=39',
-  ["Comprendre prise de notes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre prise de notes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.9,
   89
@@ -2364,8 +2364,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=40',
-  ["Comprendre apprentissage", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre apprentissage", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.0,
   90
@@ -2424,8 +2424,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=41',
-  ["Comprendre codes sociaux", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre codes sociaux", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.1,
   91
@@ -2494,8 +2494,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=42',
-  ["Comprendre politesse", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre politesse", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.2,
   92
@@ -2544,8 +2544,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=43',
-  ["Comprendre tutoiement/vouvoiement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre tutoiement/vouvoiement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.3,
   93
@@ -2604,8 +2604,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=44',
-  ["Comprendre repas", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre repas", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.4,
   94
@@ -2674,8 +2674,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=45',
-  ["Comprendre cadeaux", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre cadeaux", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.5,
   95
@@ -2724,8 +2724,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=46',
-  ["Comprendre transport paris", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre transport paris", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.6,
   96
@@ -2784,8 +2784,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=47',
-  ["Comprendre carte navigo", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre carte navigo", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.7,
   97
@@ -2854,8 +2854,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=48',
-  ["Comprendre événements", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre événements", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.8,
   98
@@ -2904,8 +2904,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=49',
-  ["Comprendre fêtes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre fêtes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.9,
   99
@@ -2964,8 +2964,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=50',
-  ["Comprendre traditions", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre traditions", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.0,
   100
@@ -3034,8 +3034,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=51',
-  ["Comprendre histoire france", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre histoire france", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.1,
   101
@@ -3084,8 +3084,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=52',
-  ["Comprendre géographie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre géographie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.2,
   102
@@ -3144,8 +3144,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=53',
-  ["Comprendre régions", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre régions", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.3,
   103
@@ -3214,8 +3214,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=54',
-  ["Comprendre patrimoine", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre patrimoine", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.4,
   104
@@ -3264,8 +3264,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=55',
-  ["Comprendre art", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre art", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.5,
   105
@@ -3324,8 +3324,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=56',
-  ["Comprendre cv français", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre cv français", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.6,
   106
@@ -3394,8 +3394,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=57',
-  ["Comprendre lettre motivation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre lettre motivation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.7,
   107
@@ -3444,8 +3444,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=58',
-  ["Comprendre entretien", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre entretien", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.8,
   108
@@ -3504,8 +3504,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=59',
-  ["Comprendre linkedin", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre linkedin", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.9,
   109
@@ -3574,8 +3574,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=60',
-  ["Comprendre réseau", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre réseau", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.0,
   110
@@ -3624,8 +3624,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=61',
-  ["Comprendre stage", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre stage", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.1,
   111
@@ -3684,8 +3684,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=62',
-  ["Comprendre alternance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre alternance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.2,
   112
@@ -3754,8 +3754,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=63',
-  ["Comprendre cdd", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre cdd", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.3,
   113
@@ -3804,8 +3804,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=64',
-  ["Comprendre cdi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre cdi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.4,
   114
@@ -3864,8 +3864,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=65',
-  ["Comprendre freelance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre freelance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.5,
   115
@@ -3934,8 +3934,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=66',
-  ["Comprendre salaire", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre salaire", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.6,
   116
@@ -3984,8 +3984,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=67',
-  ["Comprendre négociation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre négociation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.7,
   117
@@ -4044,8 +4044,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=68',
-  ["Comprendre droits travail", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre droits travail", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.8,
   118
@@ -4114,8 +4114,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=69',
-  ["Comprendre congés", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre congés", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.9,
   119
@@ -4164,8 +4164,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=70',
-  ["Comprendre télétravail", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre télétravail", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.0,
   120
@@ -4224,8 +4224,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=71',
-  ["Comprendre concours administratifs", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre concours administratifs", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.1,
   121
@@ -4294,8 +4294,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=72',
-  ["Comprendre ifsi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre ifsi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.2,
   122
@@ -4344,8 +4344,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=73',
-  ["Comprendre gendarmerie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre gendarmerie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.3,
   123
@@ -4404,8 +4404,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=74',
-  ["Comprendre police", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre police", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.4,
   124
@@ -4474,8 +4474,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=75',
-  ["Comprendre douanes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre douanes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.5,
   125
@@ -4524,8 +4524,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=76',
-  ["Comprendre pompier", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre pompier", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.6,
   126
@@ -4584,8 +4584,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=77',
-  ["Comprendre sapeur", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre sapeur", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.7,
   127
@@ -4654,8 +4654,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=78',
-  ["Comprendre magistrat", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre magistrat", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.8,
   128
@@ -4704,8 +4704,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   1,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=79',
-  ["Comprendre avocat", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre avocat", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.9,
   129
@@ -4764,8 +4764,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   2,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=80',
-  ["Comprendre professeur", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]::jsonb,
-  []::jsonb,
+  '["Comprendre professeur", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
+  '[]'::jsonb,
   TRUE,
   4.0,
   130
@@ -4837,7 +4837,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   50,
   TRUE,
   TRUE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -4874,7 +4874,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   60,
   TRUE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -4922,7 +4922,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   70,
   TRUE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -4981,7 +4981,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   80,
   FALSE,
   TRUE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5018,7 +5018,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   90,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5066,7 +5066,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   100,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5125,7 +5125,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   110,
   FALSE,
   TRUE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5162,7 +5162,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   120,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5210,7 +5210,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   130,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5269,7 +5269,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   140,
   FALSE,
   TRUE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5306,7 +5306,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   150,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5354,7 +5354,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   160,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5413,7 +5413,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   170,
   FALSE,
   TRUE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5450,7 +5450,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   180,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5498,7 +5498,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   190,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5557,7 +5557,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   200,
   FALSE,
   TRUE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5594,7 +5594,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   210,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5642,7 +5642,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   220,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5701,7 +5701,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   230,
   FALSE,
   TRUE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5738,7 +5738,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   240,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5786,7 +5786,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   250,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5845,7 +5845,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   260,
   FALSE,
   TRUE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5882,7 +5882,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   270,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5930,7 +5930,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   280,
   FALSE,
   FALSE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
@@ -5989,7 +5989,7 @@ INSERT INTO forum_posts (id, title, content, category, author_email, author_name
   290,
   FALSE,
   TRUE,
-  []::jsonb
+  '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES

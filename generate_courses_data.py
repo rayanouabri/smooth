@@ -487,8 +487,11 @@ def main():
         sql_lines.append(f"  {course['duration_hours']},\n")
         sql_lines.append(f"  {course['price']},\n")
         sql_lines.append(f"  {repr(course['thumbnail_url'])},\n")
-        sql_lines.append(f"  {json.dumps(course['objectives'], ensure_ascii=False)}::jsonb,\n")
-        sql_lines.append(f"  {json.dumps(course['prerequisites'], ensure_ascii=False)}::jsonb,\n")
+        # Convertir JSON en chaîne SQL correctement échappée
+        objectives_json = json.dumps(course['objectives'], ensure_ascii=False).replace("'", "''")
+        prerequisites_json = json.dumps(course['prerequisites'], ensure_ascii=False).replace("'", "''")
+        sql_lines.append(f"  '{objectives_json}'::jsonb,\n")
+        sql_lines.append(f"  '{prerequisites_json}'::jsonb,\n")
         sql_lines.append(f"  {str(course['is_published']).upper()},\n")
         sql_lines.append(f"  {course['rating']},\n")
         sql_lines.append(f"  {course['reviews_count']}\n")
@@ -527,7 +530,8 @@ def main():
         sql_lines.append(f"  {post['views_count']},\n")
         sql_lines.append(f"  {str(post['is_pinned']).upper()},\n")
         sql_lines.append(f"  {str(post['is_solved']).upper()},\n")
-        sql_lines.append(f"  {json.dumps(post['tags'], ensure_ascii=False)}::jsonb\n")
+        tags_json = json.dumps(post['tags'], ensure_ascii=False).replace("'", "''")
+        sql_lines.append(f"  '{tags_json}'::jsonb\n")
         sql_lines.append(") ON CONFLICT (id) DO NOTHING;\n\n")
         
         # Insérer les réponses
