@@ -1,7 +1,7 @@
 -- =====================================================
 -- SCRIPT COMPLET DE DONNÉES POUR FRANCEPREP ACADEMY
 -- 80 cours complets + 25 posts forum avec commentaires
--- Généré le 2025-12-25 00:53:58
+-- Généré le 2025-12-25 00:57:05
 -- =====================================================
 
 -- Désactiver temporairement les contraintes

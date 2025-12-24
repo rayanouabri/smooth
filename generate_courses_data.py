@@ -499,7 +499,7 @@ def main():
         
         # Insérer les leçons
         for lesson in course['lessons']:
-            sql_lines.append(f"INSERT INTO lessons (id, course_id, title, content, \"order\", duration_minutes) VALUES\n")
+            sql_lines.append(f'INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES\n')
             sql_lines.append("(\n")
             sql_lines.append(f"  '{lesson['id']}',\n")
             sql_lines.append(f"  '{lesson['course_id']}',\n")
