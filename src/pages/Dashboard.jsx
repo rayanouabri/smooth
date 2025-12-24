@@ -40,12 +40,33 @@ export default function Dashboard() {
   }, []);
 
   const loadUser = async () => {
-    const userData = await getCurrentUser();
-    setUser(userData);
-    
-    const profiles = await UserProfile.filter({ user_email: userData.email });
-    if (profiles.length > 0) {
-      setProfile(profiles[0]);
+    try {
+      const userData = await getCurrentUser();
+      if (!userData) {
+        // Pas d'utilisateur connecté, rediriger vers Home après un court délai
+        setTimeout(() => {
+          window.location.href = '/Home';
+        }, 1000);
+        return;
+      }
+      setUser(userData);
+      
+      if (userData && userData.email) {
+        try {
+          const profiles = await UserProfile.filter({ user_email: userData.email });
+          if (profiles.length > 0) {
+            setProfile(profiles[0]);
+          }
+        } catch (profileError) {
+          console.error("Erreur lors du chargement du profil:", profileError);
+        }
+      }
+    } catch (error) {
+      console.error("Erreur lors du chargement de l'utilisateur:", error);
+      // Rediriger vers Home en cas d'erreur
+      setTimeout(() => {
+        window.location.href = '/Home';
+      }, 1000);
     }
   };
 
