@@ -21,12 +21,18 @@ export const getCurrentUser = async () => {
 // Obtenir les informations complètes de l'utilisateur (compatibilité avec base44.auth.me())
 export const me = async () => {
   const user = await getCurrentUser();
-  // Récupérer le profil utilisateur depuis la table user_profiles
-  const { data: profile } = await supabase
+  // Récupérer le profil utilisateur depuis la table user_profiles (par user_id ou user_email)
+  const { data: profile, error } = await supabase
     .from('user_profiles')
     .select('*')
-    .eq('user_id', user.id)
-    .single();
+    .or(`user_id.eq.${user.id},user_email.eq.${user.email}`)
+    .maybeSingle();
+  
+  // Si le profil n'existe pas, créer un profil par défaut (pour compatibilité)
+  if (!profile && !error) {
+    // Ne pas créer automatiquement ici, laisser le trigger Supabase s'en charger
+    // ou créer le profil dans AuthCallback
+  }
   
   return {
     id: user.id,
@@ -92,7 +98,7 @@ export const signInWithGoogle = async () => {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: window.location.origin // Redirige l'utilisateur sur votre site après connexion
+      redirectTo: `${window.location.origin}/auth/callback` // Redirige vers le callback après connexion
     }
   });
   if (error) throw error;
