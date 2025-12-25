@@ -70,19 +70,56 @@ export default async function handler(req, res) {
     };
 
     console.log('[Gemini] Making request to Gemini API, prompt length:', prompt.length);
+    console.log('[Gemini] Using URL:', url.replace(apiKey, 'API_KEY_HIDDEN'));
     
     let upstream;
+    let lastError;
+    
+    // Essayer d'abord avec v1
     try {
       upstream = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
+      
+      // Si v1 échoue avec 404, essayer v1beta
+      if (upstream.status === 404) {
+        console.log('[Gemini] v1 returned 404, trying v1beta...');
+        const v1betaUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        upstream = await fetch(v1betaUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      }
     } catch (fetchError) {
       console.error('[Gemini] Fetch error:', fetchError.message);
+      lastError = fetchError;
+      
+      // Essayer v1beta en fallback si v1 échoue complètement
+      try {
+        console.log('[Gemini] Trying v1beta as fallback...');
+        const v1betaUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        upstream = await fetch(v1betaUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        lastError = null; // Reset error si v1beta fonctionne
+      } catch (v1betaError) {
+        console.error('[Gemini] Both v1 and v1beta failed:', v1betaError.message);
+        return res.status(500).json({ 
+          error: 'Network error connecting to Gemini API',
+          message: `v1: ${fetchError.message}, v1beta: ${v1betaError.message}`
+        });
+      }
+    }
+    
+    if (lastError && !upstream) {
       return res.status(500).json({ 
         error: 'Network error connecting to Gemini API',
-        message: fetchError.message 
+        message: lastError.message 
       });
     }
 
