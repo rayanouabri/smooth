@@ -1,26 +1,41 @@
 export default async function handler(req, res) {
+  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  
+  // Handle preflight
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    // Try multiple env var names for the API key
-    const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+    // Get API key from environment
+    const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
     
-    console.log('Gemini proxy - checking for API key...');
-    console.log('Available env vars:', Object.keys(process.env).filter(k => k.includes('GEMINI') || k.includes('GOOGLE')).slice(0, 5));
+    console.log('[Gemini Proxy] Starting request...');
+    console.log('[Gemini Proxy] API Key present:', !!apiKey);
     
     if (!apiKey) {
-      console.error('GEMINI_API_KEY not found in:', { GEMINI_API_KEY: !!process.env.GEMINI_API_KEY, VITE_GEMINI_API_KEY: !!process.env.VITE_GEMINI_API_KEY, GOOGLE_API_KEY: !!process.env.GOOGLE_API_KEY });
-      return res.status(500).json({ error: 'GEMINI_API_KEY not configured on server' });
+      console.error('[Gemini Proxy] ❌ No API key found');
+      console.error('[Gemini Proxy] Available vars:', {
+        GEMINI_API_KEY: !!process.env.GEMINI_API_KEY,
+        VITE_GEMINI_API_KEY: !!process.env.VITE_GEMINI_API_KEY
+      });
+      return res.status(500).json({ 
+        error: 'GEMINI_API_KEY not configured',
+        fix: 'Add GEMINI_API_KEY to Vercel environment variables'
+      });
     }
 
     const body = req.body || {};
     const prompt = body.prompt;
-    if (!prompt) return res.status(400).json({ error: 'Missing prompt' });
+    if (!prompt) {
+      console.error('[Gemini Proxy] ❌ Missing prompt in request body');
+      return res.status(400).json({ error: 'Missing prompt' });
+    }
 
+    console.log('[Gemini Proxy] Sending request to Gemini API...');
+    
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
     const payload = {
       contents: [{ parts: [{ text: prompt }] }],
@@ -38,7 +53,6 @@ export default async function handler(req, res) {
       ]
     };
 
-    console.log('Gemini proxy - calling API with key:', apiKey.substring(0, 10) + '...');
     const upstream = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -46,20 +60,44 @@ export default async function handler(req, res) {
     });
 
     const json = await upstream.json();
+    
+    // Handle error responses
     if (!upstream.ok) {
-      console.error('Gemini upstream error:', json);
-      return res.status(upstream.status).json({ error: json.error?.message || 'Gemini API error' });
+      console.error('[Gemini Proxy] ❌ API Error:', json?.error);
+      const errorMsg = json?.error?.message || JSON.stringify(json?.error) || 'Unknown error';
+      
+      // Check for leaked key error
+      if (errorMsg.includes('leaked') || errorMsg.includes('Leaked')) {
+        console.error('[Gemini Proxy] 🚨 API KEY WAS REPORTED AS LEAKED');
+        return res.status(401).json({ 
+          error: 'API key compromised',
+          message: 'Your API key was reported as leaked. Please generate a new one at https://aistudio.google.com/apikey',
+          details: errorMsg
+        });
+      }
+      
+      return res.status(upstream.status).json({ 
+        error: errorMsg,
+        status: upstream.status
+      });
     }
 
+    // Extract content from response
     const content = json.candidates?.[0]?.content?.parts?.[0]?.text || json.content || '';
+    
     if (!content) {
-      console.error('Gemini no content in response:', json);
-      return res.status(500).json({ error: 'No content returned from Gemini', debug: json });
+      console.error('[Gemini Proxy] ❌ No content in response:', json);
+      return res.status(500).json({ 
+        error: 'No content returned from Gemini',
+        debug: json 
+      });
     }
-    console.log('Gemini proxy - success, content length:', content.length);
-    return res.status(200).json({ content, raw: json });
+
+    console.log('[Gemini Proxy] ✅ Success, content length:', content.length);
+    return res.status(200).json({ content });
   } catch (err) {
-    console.error('Gemini proxy error:', err);
-    return res.status(500).json({ error: err.message || 'Server error' });
-  }
-}
+    console.error('[Gemini Proxy] ❌ Exception:', err.message);
+    return res.status(500).json({ 
+      error: err.message || 'Server error',
+      type: err.name
+    });
