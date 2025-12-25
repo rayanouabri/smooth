@@ -31,10 +31,13 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
         const json = await response.json();
         if (!response.ok) {
           console.error('❌ Erreur Gemini API:', json);
-          throw new Error(json.error || 'Erreur Gemini API');
+          throw new Error(json.error?.message || json.error || 'Erreur Gemini API');
         }
 
+        // Support pour les deux formats de réponse
         const content = json.content || json.candidates?.[0]?.content?.parts?.[0]?.text || '';
+        console.log('🤖 Gemini raw response:', json);
+        console.log('🤖 Extracted content:', content?.substring?.(0, 100));
         if (!content) {
           console.error('❌ Pas de contenu dans la réponse Gemini:', json);
           throw new Error('Réponse vide de Gemini');

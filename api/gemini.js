@@ -51,8 +51,12 @@ export default async function handler(req, res) {
       return res.status(upstream.status).json({ error: json.error?.message || 'Gemini API error' });
     }
 
-    const content = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    console.log('Gemini proxy - success');
+    const content = json.candidates?.[0]?.content?.parts?.[0]?.text || json.content || '';
+    if (!content) {
+      console.error('Gemini no content in response:', json);
+      return res.status(500).json({ error: 'No content returned from Gemini', debug: json });
+    }
+    console.log('Gemini proxy - success, content length:', content.length);
     return res.status(200).json({ content, raw: json });
   } catch (err) {
     console.error('Gemini proxy error:', err);
