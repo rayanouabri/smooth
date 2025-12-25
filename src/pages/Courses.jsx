@@ -113,11 +113,6 @@ export default function Courses() {
               <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 flex items-center gap-2">
                 <Star className="w-5 h-5 fill-yellow-300 text-yellow-300" />
                 <span className="font-bold">4.8/5</span>
-                <span className="text-blue-100">• {courses.reduce((sum, c) => sum + (c.reviews_count || 0), 0)} avis</span>
-              </div>
-              <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-green-300" />
-                <span className="text-blue-100">étudiants</span>
               </div>
             </div>
           </motion.div>
