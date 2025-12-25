@@ -31,8 +31,8 @@ export default function Pricing() {
 
   // Price IDs Stripe - Remplacez par vos vrais Price IDs
   const STRIPE_PRICES = {
-    monthly: 'price_VOTRE_PRICE_ID_MENSUEL', // À remplacer par votre Price ID Stripe
-    annual: 'price_VOTRE_PRICE_ID_ANNUEL',   // À remplacer par votre Price ID Stripe
+    monthly: 'price_1ShgKyEKmsqeO7fH3eOB1TV5', // Exemple: price_12345...
+    annual: 'price_1SiEWLEKmsqeO7fH2UqWhy0L',   // Exemple: price_67890...
   };
 
   const plans = [
@@ -239,6 +239,11 @@ export default function Pricing() {
                         setIsProcessing(true);
                         try {
                           const priceId = billingCycle === 'monthly' ? STRIPE_PRICES.monthly : STRIPE_PRICES.annual;
+
+                          // Validation locale du Price ID
+                          if (!priceId || !String(priceId).startsWith('price_')) {
+                            throw new Error('Price ID non configuré. Allez sur Stripe → Products → Pricing, copiez le "Price ID" (price_...) et mettez-le dans STRIPE_PRICES.');
+                          }
                           
                           const response = await createCheckout({
                             priceId: priceId,
@@ -254,7 +259,7 @@ export default function Pricing() {
                           }
                         } catch (error) {
                           console.error('Erreur paiement:', error);
-                          alert('❌ Erreur : ' + (error.message || 'Veuillez configurer Stripe. Consultez CONFIGURATION_STRIPE.md'));
+                          alert('❌ ' + (error.message || 'Erreur inconnue. Consultez CONFIGURATION_STRIPE.md'));
                         } finally {
                           setIsProcessing(false);
                         }

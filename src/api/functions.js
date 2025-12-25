@@ -9,6 +9,11 @@ import { supabase } from './supabaseClient';
  * Créer une session de checkout Stripe
  */
 export const createCheckout = async ({ priceId, userId, userEmail, successUrl, cancelUrl }) => {
+  // Validation basique du Price ID
+  if (!priceId || typeof priceId !== 'string' || !priceId.startsWith('price_')) {
+    throw new Error('Price ID invalide. Utilisez un identifiant Stripe commençant par "price_".');
+  }
+
   // Si vous avez une Edge Function Supabase configurée
   try {
     const { data, error } = await supabase.functions.invoke('create-checkout-session', {
@@ -21,11 +26,20 @@ export const createCheckout = async ({ priceId, userId, userEmail, successUrl, c
       },
     });
 
-    if (error) throw error;
+    if (error) {
+      // Remonter l'erreur détaillée de la fonction Edge
+      const message = error?.message || error?.error || 'Erreur inconnue côté Edge Function';
+      throw new Error(message);
+    }
     return data;
   } catch (error) {
-    console.error('Edge Function non disponible:', error);
-    throw new Error('Veuillez configurer la Edge Function create-checkout-session sur Supabase. Consultez CONFIGURATION_STRIPE.md');
+    console.error('Erreur createCheckout:', error);
+    // Si la fonction n'existe pas ou n'est pas déployée
+    if (String(error?.message || '').toLowerCase().includes('not found')) {
+      throw new Error('Edge Function "create-checkout-session" introuvable. Déployez-la dans Supabase.');
+    }
+    // Propager le vrai message d'erreur si disponible
+    throw new Error(error?.message || 'Erreur lors de la création de la session Stripe');
   }
 };
 
