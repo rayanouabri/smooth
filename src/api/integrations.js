@@ -28,19 +28,31 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
       });
 
       console.log('🤖 [InvokeLLM] Proxy response status:', response.status);
+      console.log('🤖 [InvokeLLM] Response content-type:', response.headers.get('content-type'));
       
-      const json = await response.json();
+      // Get response text first to debug
+      const text = await response.text();
+      console.log('🤖 [InvokeLLM] Raw response (first 300 chars):', text.substring(0, 300));
+      
+      let json;
+      try {
+        json = JSON.parse(text);
+      } catch (parseErr) {
+        console.error('❌ [InvokeLLM] Failed to parse JSON:', parseErr.message);
+        console.error('❌ [InvokeLLM] Raw text was:', text);
+        throw new Error(`Invalid JSON response: ${text.substring(0, 100)}...`);
+      }
       
       if (!response.ok) {
         console.error('❌ [InvokeLLM] Proxy error:', json);
         
         // Check if it's a leaked key issue
-        if (json.error?.includes('leaked') || json.message?.includes('leaked')) {
+        if (json.error?.includes?.('leaked') || json.message?.includes?.('leaked')) {
           console.error('🚨 [InvokeLLM] API KEY WAS COMPROMISED!');
           throw new Error('API key compromised - need to generate a new one');
         }
         
-        throw new Error(json.error || 'Proxy error');
+        throw new Error(json.error || `Server error ${response.status}`);
       }
 
       const content = json.content || '';

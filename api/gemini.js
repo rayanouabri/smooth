@@ -95,7 +95,9 @@ export default async function handler(req, res) {
     return res.status(200).json({ content });
   } catch (err) {
     console.error('[Gemini Proxy] ❌ Exception:', err.message);
+    console.error('[Gemini Proxy] Stack:', err.stack);
     return res.status(500).json({ 
       error: err.message || 'Server error',
-      type: err.name
+      type: err.name,
+      timestamp: new Date().toISOString()
     });
