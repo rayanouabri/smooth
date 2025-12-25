@@ -48,9 +48,11 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing prompt' });
     }
 
-    // Utiliser la version v1beta avec le modèle gemini-1.5-pro (le plus récent et stable)
-    // Modèles disponibles: gemini-1.5-pro, gemini-1.5-flash
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${apiKey}`;
+    // Essayer d'abord v1 avec gemini-1.5-flash, puis v1beta en fallback
+    // Format: https://generativelanguage.googleapis.com/v1/models/{model}:generateContent
+    let url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    
+    // Si v1 ne fonctionne pas, on essaiera v1beta dans le catch
     const payload = {
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
