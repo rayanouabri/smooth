@@ -1,7 +1,7 @@
 -- =====================================================
 -- SCRIPT COMPLET DE DONNÉES POUR FRANCEPREP ACADEMY
 -- 80 cours complets + 25 posts forum avec commentaires
--- Généré le 2025-12-25 01:01:02
+-- Généré le 2025-12-25 01:06:19
 -- =====================================================
 
 -- Désactiver temporairement les contraintes
@@ -11,7 +11,7 @@ SET session_replication_role = replica;
 -- COURS
 -- =====================================================
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c5e9e1aa-441d-56e4-a7eb-ef5148374409',
   'CAF - Guide Complet',
@@ -27,8 +27,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre caf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.1,
-  51
+  4.1
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -149,7 +148,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'acac3731-c5a1-52f9-9e1d-04e3bf8d3a29',
   'Sécurité Sociale - Guide Complet',
@@ -165,8 +164,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre sécurité sociale", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.2,
-  52
+  4.2
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -317,7 +315,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '4d85f8d0-1041-52f6-a9cc-155e2de26d10',
   'Titre de Séjour - Guide Complet',
@@ -333,8 +331,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre titre de séjour", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.3,
-  53
+  4.3
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -425,7 +422,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '23a0f201-625d-54d9-b747-cb601a8ba343',
   'Logement - Guide Complet',
@@ -441,8 +438,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre logement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.4,
-  54
+  4.4
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -563,7 +559,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c69480f5-97cc-5102-98d8-d8e572b1d5dd',
   'Banque - Guide Complet',
@@ -579,8 +575,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre banque", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  55
+  4.5
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -731,7 +726,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'b82b701b-37d4-5e91-a5fa-4f6994cae081',
   'Assurance - Guide Complet',
@@ -747,8 +742,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre assurance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.6,
-  56
+  4.6
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -839,7 +833,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd68ff61a-54d2-56b6-ad6a-cf7014910b62',
   'Impôts - Guide Complet',
@@ -855,8 +849,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre impôts", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.7,
-  57
+  4.7
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -977,7 +970,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd8d862d7-df06-5a2c-b7a4-67537c51649b',
   'Démarches Préfecture - Guide Complet',
@@ -993,8 +986,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre démarches préfecture", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.8,
-  58
+  4.8
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -1145,7 +1137,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '82cba879-2b17-5895-8579-aec5efcf0fdc',
   'Visa - Guide Complet',
@@ -1161,8 +1153,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre visa", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.9,
-  59
+  4.9
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -1253,7 +1244,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd697c2e4-eb12-570b-ae6d-daab49751174',
   'Carte Vitale - Guide Complet',
@@ -1269,8 +1260,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre carte vitale", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.0,
-  60
+  4.0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -1391,7 +1381,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'f092d096-326b-5fa2-b522-fc7aeedd0fa3',
   'Mutuelle - Guide Complet',
@@ -1407,8 +1397,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre mutuelle", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.1,
-  61
+  4.1
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -1559,7 +1548,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '0fb13029-81be-51b4-9c61-973c61ebe40f',
   'CPAM - Guide Complet',
@@ -1575,8 +1564,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre cpam", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.2,
-  62
+  4.2
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -1667,7 +1655,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd9542a60-0ac2-5038-9510-a1f1f86f7aec',
   'RSI - Guide Complet',
@@ -1683,8 +1671,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre rsi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.3,
-  63
+  4.3
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -1805,7 +1792,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '750b1c7f-7e8a-5fc6-a0f2-af39e0321857',
   'Urssaf - Guide Complet',
@@ -1821,8 +1808,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre urssaf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.4,
-  64
+  4.4
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -1973,7 +1959,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '4cf88925-1e27-5a21-8d84-e06df3377022',
   'Pôle Emploi - Guide Complet',
@@ -1989,8 +1975,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre pôle emploi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  65
+  4.5
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -2081,7 +2066,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'b0b71099-9d60-556a-846d-e927b0341804',
   'Passeport - Guide Complet',
@@ -2097,8 +2082,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre passeport", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.6,
-  66
+  4.6
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -2219,7 +2203,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '0c8c0a70-6c1a-5ece-968a-3a7b5df35a41',
   'Carte dIdentité - Guide Complet',
@@ -2235,8 +2219,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre carte didentité", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.7,
-  67
+  4.7
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -2387,7 +2370,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '06da14aa-a677-5e59-9771-b7322cc537ad',
   'Permis de Séjour - Guide Complet',
@@ -2403,8 +2386,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre permis de séjour", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.8,
-  68
+  4.8
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -2495,7 +2477,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'f89def1f-0546-516e-ae29-0abfd3f6fa5e',
   'Renouvellement - Guide Complet',
@@ -2511,8 +2493,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre renouvellement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.9,
-  69
+  4.9
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -2633,7 +2614,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd5e062c5-eb8b-5dd6-9160-8fc136a7e9d4',
   'Naturalisation - Guide Complet',
@@ -2649,8 +2630,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre naturalisation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.0,
-  70
+  4.0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -2801,7 +2781,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'f814b538-a57b-5b46-a0a5-5f2cdf951b79',
   'Français A1 - Guide Complet',
@@ -2817,8 +2797,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre français a1", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.1,
-  71
+  4.1
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -2909,7 +2888,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '0e666326-377f-5bb1-8293-ec7d9cc6bb99',
   'Français A2 - Guide Complet',
@@ -2925,8 +2904,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre français a2", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.2,
-  72
+  4.2
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -3047,7 +3025,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'ad63ebd0-935d-55e7-8604-f61e36be828a',
   'Français B1 - Guide Complet',
@@ -3063,8 +3041,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre français b1", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.3,
-  73
+  4.3
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -3215,7 +3192,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '2e8f5923-62aa-5009-b1aa-ad1e6818fd21',
   'Français B2 - Guide Complet',
@@ -3231,8 +3208,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre français b2", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.4,
-  74
+  4.4
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -3323,7 +3299,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '28a75f3b-57c7-58f2-878f-649893bb8bda',
   'DELF - Guide Complet',
@@ -3339,8 +3315,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre delf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  75
+  4.5
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -3461,7 +3436,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '67f19067-6596-54e8-a5ad-fb28223de216',
   'DALF - Guide Complet',
@@ -3477,8 +3452,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre dalf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.6,
-  76
+  4.6
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -3629,7 +3603,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '1c11bd6d-d0e0-59cd-84d4-4e467fa3713d',
   'Système Éducatif - Guide Complet',
@@ -3645,8 +3619,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre système éducatif", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.7,
-  77
+  4.7
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -3737,7 +3710,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '016fc562-ead6-5ed2-a991-256e9b644cd3',
   'Inscription Université - Guide Complet',
@@ -3753,8 +3726,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre inscription université", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.8,
-  78
+  4.8
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -3875,7 +3847,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '3496137e-cd83-5814-91f9-197b223acad3',
   'LMD - Guide Complet',
@@ -3891,8 +3863,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre lmd", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.9,
-  79
+  4.9
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -4043,7 +4014,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '8be331f7-fd12-5a02-82ab-eb840bc2bbae',
   'Bourses - Guide Complet',
@@ -4059,8 +4030,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre bourses", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.0,
-  80
+  4.0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -4151,7 +4121,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c7ffb411-530e-5017-8a79-2f6428977ad6',
   'Équivalences - Guide Complet',
@@ -4167,8 +4137,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre équivalences", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.1,
-  81
+  4.1
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -4289,7 +4258,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c52da179-2c0e-59d1-863b-b2d1827d6614',
   'Mémoire - Guide Complet',
@@ -4305,8 +4274,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre mémoire", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.2,
-  82
+  4.2
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -4457,7 +4425,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '6d4e876d-3843-5429-8d50-725c741023c8',
   'Thèse - Guide Complet',
@@ -4473,8 +4441,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre thèse", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.3,
-  83
+  4.3
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -4565,7 +4532,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '7fe7066b-abbe-5914-9f89-93157bf0d2a7',
   'Recherche - Guide Complet',
@@ -4581,8 +4548,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre recherche", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.4,
-  84
+  4.4
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -4703,7 +4669,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c32ca30f-e40d-5168-a14d-0111b23ce4bf',
   'Bibliographie - Guide Complet',
@@ -4719,8 +4685,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre bibliographie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  85
+  4.5
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -4871,7 +4836,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '4a3a4dbc-365e-5c5f-9b62-4ea83ea9718f',
   'Présentations - Guide Complet',
@@ -4887,8 +4852,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre présentations", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.6,
-  86
+  4.6
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -4979,7 +4943,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '38833e90-ca82-5318-b714-5b8889cb3ced',
   'Examens - Guide Complet',
@@ -4995,8 +4959,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre examens", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.7,
-  87
+  4.7
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -5117,7 +5080,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'da88c66a-4d61-5a5e-a178-0f3f198bbc0f',
   'Méthodologie - Guide Complet',
@@ -5133,8 +5096,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre méthodologie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.8,
-  88
+  4.8
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -5285,7 +5247,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '60aefcc7-9ad3-54b0-92f6-14c5efee11c3',
   'Prise de Notes - Guide Complet',
@@ -5301,8 +5263,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre prise de notes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.9,
-  89
+  4.9
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -5393,7 +5354,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'e13aa66a-d08a-52c2-9e8d-d0a367f450ff',
   'Apprentissage - Guide Complet',
@@ -5409,8 +5370,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre apprentissage", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.0,
-  90
+  4.0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -5531,7 +5491,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '037be095-d748-512e-8ed8-f1e0743d4738',
   'Codes Sociaux - Guide Complet',
@@ -5547,8 +5507,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre codes sociaux", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.1,
-  91
+  4.1
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -5699,7 +5658,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'b300742e-de87-5f11-a7d4-571dafede82b',
   'Politesse - Guide Complet',
@@ -5715,8 +5674,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre politesse", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.2,
-  92
+  4.2
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -5807,7 +5765,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '69f5b33d-ba22-5f30-8b47-7dbe66ca6b2b',
   'Tutoiement/Vouvoiement - Guide Complet',
@@ -5823,8 +5781,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre tutoiement/vouvoiement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.3,
-  93
+  4.3
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -5945,7 +5902,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'db1656ff-edc5-5041-a460-b30f83037cc6',
   'Repas - Guide Complet',
@@ -5961,8 +5918,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre repas", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.4,
-  94
+  4.4
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -6113,7 +6069,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'a74489af-2d5f-5fc5-ac8b-d707a69567cf',
   'Cadeaux - Guide Complet',
@@ -6129,8 +6085,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre cadeaux", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  95
+  4.5
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -6221,7 +6176,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'bed05488-270c-57d4-97df-df677303b328',
   'Transport Paris - Guide Complet',
@@ -6237,8 +6192,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre transport paris", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.6,
-  96
+  4.6
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -6359,7 +6313,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'ec9e8d76-9a23-52c8-826b-4a8fe67a2eb7',
   'Carte Navigo - Guide Complet',
@@ -6375,8 +6329,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre carte navigo", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.7,
-  97
+  4.7
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -6527,7 +6480,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '71f5186e-c87a-5677-af21-9dee20c73dd4',
   'Événements - Guide Complet',
@@ -6543,8 +6496,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre événements", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.8,
-  98
+  4.8
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -6635,7 +6587,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '024a2d17-ae36-5bef-be64-298a5e6f130b',
   'Fêtes - Guide Complet',
@@ -6651,8 +6603,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre fêtes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.9,
-  99
+  4.9
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -6773,7 +6724,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '97584e36-6e66-599f-a073-86d260b64b13',
   'Traditions - Guide Complet',
@@ -6789,8 +6740,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre traditions", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.0,
-  100
+  4.0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -6941,7 +6891,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c8740d55-3f25-5cc4-8807-6a1a5c9cca48',
   'Histoire France - Guide Complet',
@@ -6957,8 +6907,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre histoire france", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.1,
-  101
+  4.1
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -7049,7 +6998,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '8d075147-3d4c-533a-9ce4-52cb42c678ce',
   'Géographie - Guide Complet',
@@ -7065,8 +7014,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre géographie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.2,
-  102
+  4.2
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -7187,7 +7135,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '0dc01311-ce32-5306-bcec-343272734361',
   'Régions - Guide Complet',
@@ -7203,8 +7151,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre régions", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.3,
-  103
+  4.3
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -7355,7 +7302,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'ccec44b2-962f-55b3-b8c6-c5c615497718',
   'Patrimoine - Guide Complet',
@@ -7371,8 +7318,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre patrimoine", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.4,
-  104
+  4.4
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -7463,7 +7409,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'e6cfbd6e-34ca-5d4a-8960-cfae74361ad1',
   'Art - Guide Complet',
@@ -7479,8 +7425,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre art", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  105
+  4.5
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -7601,7 +7546,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '4b7a2635-af6f-5f51-8a25-c05a67490caa',
   'CV Français - Guide Complet',
@@ -7617,8 +7562,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre cv français", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.6,
-  106
+  4.6
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -7769,7 +7713,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '8e12ddbb-112e-585d-b9c6-3e788c6c7092',
   'Lettre Motivation - Guide Complet',
@@ -7785,8 +7729,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre lettre motivation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.7,
-  107
+  4.7
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -7877,7 +7820,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '393674c5-fb47-5c89-9769-63f523f7db83',
   'Entretien - Guide Complet',
@@ -7893,8 +7836,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre entretien", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.8,
-  108
+  4.8
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -8015,7 +7957,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '30874e2f-2f80-54d9-b3b7-978c1556c4f4',
   'LinkedIn - Guide Complet',
@@ -8031,8 +7973,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre linkedin", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.9,
-  109
+  4.9
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -8183,7 +8124,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'efa2d432-d51b-54ba-88c0-794c252488f0',
   'Réseau - Guide Complet',
@@ -8199,8 +8140,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre réseau", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.0,
-  110
+  4.0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -8291,7 +8231,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c7ef3fd4-af73-5414-8191-90ea2b46bd8b',
   'Stage - Guide Complet',
@@ -8307,8 +8247,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre stage", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.1,
-  111
+  4.1
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -8429,7 +8368,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '3b980880-fdf0-5868-956c-877291bd547b',
   'Alternance - Guide Complet',
@@ -8445,8 +8384,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre alternance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.2,
-  112
+  4.2
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -8597,7 +8535,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '9216c13d-7986-5cd9-acf4-64708d4e4de8',
   'CDD - Guide Complet',
@@ -8613,8 +8551,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre cdd", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.3,
-  113
+  4.3
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -8705,7 +8642,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd03c8d50-df4d-5b4f-98f9-98ecf09dfe08',
   'CDI - Guide Complet',
@@ -8721,8 +8658,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre cdi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.4,
-  114
+  4.4
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -8843,7 +8779,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '9d552d35-dfd6-5108-a9e2-17d9ea545eb3',
   'Freelance - Guide Complet',
@@ -8859,8 +8795,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre freelance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  115
+  4.5
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -9011,7 +8946,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'ca164036-fe9d-511c-92dd-199bf18cbb53',
   'Salaire - Guide Complet',
@@ -9027,8 +8962,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre salaire", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.6,
-  116
+  4.6
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -9119,7 +9053,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'bb04d730-b42d-5df9-bc28-3e6ef5a07d34',
   'Négociation - Guide Complet',
@@ -9135,8 +9069,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre négociation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.7,
-  117
+  4.7
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -9257,7 +9190,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '98f496f7-8ee5-5cc2-9518-ca08b474bed9',
   'Droits Travail - Guide Complet',
@@ -9273,8 +9206,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre droits travail", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.8,
-  118
+  4.8
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -9425,7 +9357,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '356db2e0-9f67-58fb-8a2e-6f71f6dbeb0b',
   'Congés - Guide Complet',
@@ -9441,8 +9373,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre congés", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.9,
-  119
+  4.9
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -9533,7 +9464,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '253337de-db98-5e5d-bdbb-78a80040cbbb',
   'Télétravail - Guide Complet',
@@ -9549,8 +9480,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre télétravail", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.0,
-  120
+  4.0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -9671,7 +9601,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'db213c5d-b726-501d-94a3-8729e04bcb1e',
   'Concours Administratifs - Guide Complet',
@@ -9687,8 +9617,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre concours administratifs", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.1,
-  121
+  4.1
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -9839,7 +9768,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '31b91a8b-8235-504e-9e9d-b70d6ab86f9e',
   'IFSI - Guide Complet',
@@ -9855,8 +9784,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre ifsi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.2,
-  122
+  4.2
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -9947,7 +9875,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '6b4abb06-3175-53b0-97a4-858e5774101e',
   'Gendarmerie - Guide Complet',
@@ -9963,8 +9891,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre gendarmerie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.3,
-  123
+  4.3
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -10085,7 +10012,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '3891b2b0-553e-53a8-b223-698d5816409b',
   'Police - Guide Complet',
@@ -10101,8 +10028,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre police", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.4,
-  124
+  4.4
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -10253,7 +10179,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '8ea16789-207e-588d-9004-6c7d398c4d98',
   'Douanes - Guide Complet',
@@ -10269,8 +10195,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre douanes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  125
+  4.5
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -10361,7 +10286,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'b03eddf2-162b-5bd5-a5df-d4fccc0d038c',
   'Pompier - Guide Complet',
@@ -10377,8 +10302,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre pompier", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.6,
-  126
+  4.6
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -10499,7 +10423,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '8e9e8ecc-ba25-5d72-9927-e8bc02bbccce',
   'Sapeur - Guide Complet',
@@ -10515,8 +10439,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre sapeur", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.7,
-  127
+  4.7
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -10667,7 +10590,7 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'f58bb291-260b-51f2-88f6-d84f64095520',
   'Magistrat - Guide Complet',
@@ -10683,8 +10606,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre magistrat", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.8,
-  128
+  4.8
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -10775,7 +10697,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'e73c1cd6-4086-5df9-8d38-117834200998',
   'Avocat - Guide Complet',
@@ -10791,8 +10713,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre avocat", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.9,
-  129
+  4.9
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
@@ -10913,7 +10834,7 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES
+INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '780224dd-7001-59cc-9261-8212529e5f7d',
   'Professeur - Guide Complet',
@@ -10929,8 +10850,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre professeur", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.0,
-  130
+  4.0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES

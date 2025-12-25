@@ -62,7 +62,8 @@ export default function Community() {
     queryFn: async () => {
       try {
         if (categoryFilter === "all") {
-          return await ForumPost.all('-created_date');
+          // Utiliser filter avec un objet vide pour obtenir tous les posts
+          return await ForumPost.filter({}, '-created_date');
         }
         return await ForumPost.filter({ category: categoryFilter }, '-created_date');
       } catch (error) {

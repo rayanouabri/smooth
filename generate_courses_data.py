@@ -474,7 +474,7 @@ def main():
     sql_lines.append("-- =====================================================\n\n")
     
     for course in courses:
-        sql_lines.append(f"INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count) VALUES\n")
+        sql_lines.append(f"INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES\n")
         sql_lines.append("(\n")
         sql_lines.append(f"  '{course['id']}',\n")
         sql_lines.append(f"  {repr(course['title'])},\n")
@@ -493,8 +493,7 @@ def main():
         sql_lines.append(f"  '{objectives_json}'::jsonb,\n")
         sql_lines.append(f"  '{prerequisites_json}'::jsonb,\n")
         sql_lines.append(f"  {str(course['is_published']).upper()},\n")
-        sql_lines.append(f"  {course['rating']},\n")
-        sql_lines.append(f"  {course['reviews_count']}\n")
+        sql_lines.append(f"  {course['rating']}\n")
         sql_lines.append(") ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;\n\n")
         
         # Insérer les leçons
