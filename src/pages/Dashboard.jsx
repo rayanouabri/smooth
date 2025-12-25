@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { me as getCurrentUser, isAuthenticated } from "@/api/auth";
+import { me, isAuthenticated } from "@/api/auth";
+import { supabase } from "@/api/supabaseClient";
 import { UserProfile, Enrollment, Course } from "@/api/entities";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -55,7 +56,8 @@ export default function Dashboard() {
         return;
       }
 
-      const userData = await getCurrentUser();
+      // Utiliser me() pour obtenir le profil avec is_premium
+      const userData = await me();
       if (!userData) {
         navigate('/login?redirect=/Dashboard');
         return;
@@ -63,14 +65,26 @@ export default function Dashboard() {
       
       setUser(userData);
       
-      if (userData && userData.email) {
+      // Charger le profil depuis la base de données pour être sûr
+      if (userData?.id) {
         try {
-          const profiles = await UserProfile.filter({ user_email: userData.email });
-          if (profiles.length > 0) {
-            setProfile(profiles[0]);
+          const { data: profileData } = await supabase
+            .from('user_profiles')
+            .select('*')
+            .eq('id', userData.id)
+            .single();
+          
+          if (profileData) {
+            setProfile(profileData);
+            console.log('Dashboard - Profile loaded, is_premium:', profileData.is_premium);
+          } else {
+            // Fallback: utiliser les données de me()
+            setProfile(userData);
           }
         } catch (profileError) {
           console.error("Erreur lors du chargement du profil:", profileError);
+          // Fallback: utiliser les données de me()
+          setProfile(userData);
         }
       }
     } catch (error) {
@@ -129,7 +143,9 @@ export default function Dashboard() {
     return courses.find(c => c.id === enrollment.course_id);
   };
 
-  const plan = profile?.subscription_plan || 'gratuit';
+  // Utiliser is_premium au lieu de subscription_plan
+  const isPremium = profile?.is_premium === true || profile?.subscription_status === 'active';
+  const plan = isPremium ? 'premium' : 'gratuit';
 
   if (!user) {
     return (

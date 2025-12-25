@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
-import { me as getCurrentUser } from "@/api/auth";
+import { me } from "@/api/auth";
+import { supabase } from "@/api/supabaseClient";
 import { UserProfile, Enrollment } from "@/api/entities";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -31,19 +32,34 @@ export default function DashboardSidebar({ currentPage }) {
   }, []);
 
   const loadData = async () => {
-    const userData = await getCurrentUser();
+    // Utiliser me() pour obtenir le profil avec is_premium
+    const userData = await me();
     setUser(userData);
     
-    const profiles = await UserProfile.filter({ user_email: userData.email });
-    if (profiles.length > 0) {
-      setProfile(profiles[0]);
+    // Charger le profil depuis la base de données pour être sûr
+    if (userData?.id) {
+      const { data: profileData } = await supabase
+        .from('user_profiles')
+        .select('*')
+        .eq('id', userData.id)
+        .single();
+      
+      if (profileData) {
+        setProfile(profileData);
+        console.log('DashboardSidebar - Profile loaded, is_premium:', profileData.is_premium);
+      } else {
+        // Fallback: utiliser les données de me()
+        setProfile(userData);
+      }
     }
 
     const userEnrollments = await Enrollment.filter({ user_email: userData.email });
     setEnrollments(userEnrollments);
   };
 
-  const plan = profile?.subscription_plan || 'gratuit';
+  // Utiliser is_premium au lieu de subscription_plan
+  const isPremium = profile?.is_premium === true || profile?.subscription_status === 'active';
+  const plan = isPremium ? 'premium' : 'gratuit';
   const avgProgress = enrollments.length > 0 
     ? enrollments.reduce((sum, e) => sum + e.progress_percentage, 0) / enrollments.length 
     : 0;
