@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import ReactMarkdown from "react-markdown";
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -13,9 +14,14 @@ import {
   Play,
   FileText,
   BookOpen,
-  Award
+  Award,
+  Clock,
+  ArrowLeft,
+  ExternalLink,
+  Download,
+  Video as VideoIcon
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createPageUrl } from "../utils";
 
 export default function Learn() {
@@ -23,6 +29,7 @@ export default function Learn() {
   const [userProfile, setUserProfile] = useState(null);
   const [enrollment, setEnrollment] = useState(null);
   const [canAccess, setCanAccess] = useState(false);
+  const navigate = useNavigate();
   
   const urlParams = new URLSearchParams(window.location.search);
   const courseId = urlParams.get('courseId');
@@ -34,21 +41,25 @@ export default function Learn() {
   }, [courseId]);
 
   const loadUserAndEnrollment = async () => {
-    const userData = await getCurrentUser();
-    setUser(userData);
-    
-    // Load profile
-    const profiles = await UserProfile.filter({ user_email: userData.email });
-    if (profiles.length > 0) {
-      setUserProfile(profiles[0]);
-    }
-    
-    const enrollments = await Enrollment.filter({
-      user_email: userData.email,
-      course_id: courseId
-    });
-    if (enrollments.length > 0) {
-      setEnrollment(enrollments[0]);
+    try {
+      const userData = await getCurrentUser();
+      setUser(userData);
+      
+      // Load profile
+      const profiles = await UserProfile.filter({ user_email: userData.email });
+      if (profiles.length > 0) {
+        setUserProfile(profiles[0]);
+      }
+      
+      const enrollments = await Enrollment.filter({
+        user_email: userData.email,
+        course_id: courseId
+      });
+      if (enrollments.length > 0) {
+        setEnrollment(enrollments[0]);
+      }
+    } catch (error) {
+      console.error("Error loading user:", error);
     }
   };
 
@@ -66,7 +77,6 @@ export default function Learn() {
     if (course && userProfile !== null) {
       checkAccess();
     } else if (course && !userProfile) {
-      // If no profile exists, create default one
       if (course.price === 0) {
         setCanAccess(true);
       } else {
@@ -101,9 +111,7 @@ export default function Learn() {
     queryKey: ['lessons', courseId],
     queryFn: async () => {
       try {
-        // Utiliser filter directement au lieu de all() puis filter
         const filteredLessons = await Lesson.filter({ course_id: courseId }, 'order');
-        // S'assurer que les leçons sont triées par order
         return filteredLessons.sort((a, b) => {
           const orderA = a.order || 0;
           const orderB = b.order || 0;
@@ -120,8 +128,13 @@ export default function Learn() {
   const { data: currentLesson, isLoading: lessonLoading } = useQuery({
     queryKey: ['lesson', lessonId],
     queryFn: async () => {
-      const lessonData = await Lesson.filter({ id: lessonId });
-      return lessonData[0];
+      try {
+        const lessonData = await Lesson.filter({ id: lessonId });
+        return lessonData[0];
+      } catch (error) {
+        console.error("Error loading lesson:", error);
+        return null;
+      }
     },
     enabled: !!lessonId,
   });
@@ -152,6 +165,7 @@ export default function Learn() {
   const nextLesson = lessons[currentIndex + 1];
   const prevLesson = lessons[currentIndex - 1];
   const isCompleted = enrollment?.completed_lessons?.includes(lessonId);
+  const progressPercentage = enrollment?.progress_percentage || 0;
 
   const lessonsByModule = lessons.reduce((acc, lesson) => {
     const module = lesson.module_number || 1;
@@ -162,14 +176,18 @@ export default function Learn() {
 
   const handleNext = () => {
     if (nextLesson) {
-      window.location.href = createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${nextLesson.id}`;
+      navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${nextLesson.id}`);
     }
   };
 
   const handlePrev = () => {
     if (prevLesson) {
-      window.location.href = createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${prevLesson.id}`;
+      navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${prevLesson.id}`);
     }
+  };
+
+  const handleLessonClick = (lessonId) => {
+    navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lessonId}`);
   };
 
   if (courseLoading || lessonsLoading) {
@@ -241,7 +259,6 @@ export default function Learn() {
     );
   }
 
-  // Access denied
   if (!canAccess) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -272,65 +289,86 @@ export default function Learn() {
     );
   }
 
+  // Get lesson content - support multiple formats
+  const lessonContent = currentLesson.content_text || currentLesson.content || '';
+  const hasContent = lessonContent.trim().length > 0 || currentLesson.content_url;
+
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
-      <div className="w-80 bg-white border-r border-gray-200 overflow-y-auto hidden lg:block">
-        <div className="p-6 border-b border-gray-200">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 flex">
+      {/* Sidebar - Modern Design */}
+      <div className="w-80 bg-white border-r border-gray-200 overflow-y-auto hidden lg:block shadow-lg">
+        <div className="p-6 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
           <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`}>
-            <h2 className="text-lg font-bold text-gray-900 hover:text-blue-900 line-clamp-2">
+            <h2 className="text-lg font-bold hover:underline line-clamp-2 mb-4">
               {course.title}
             </h2>
           </Link>
           <div className="mt-4">
-            <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-              <span>Progression</span>
-              <span className="font-semibold">{Math.round(enrollment.progress_percentage)}%</span>
+            <div className="flex items-center justify-between text-sm mb-2">
+              <span className="text-blue-100">Progression globale</span>
+              <span className="font-bold text-lg">{Math.round(progressPercentage)}%</span>
             </div>
-            <Progress value={enrollment.progress_percentage} className="h-2" />
+            <Progress value={progressPercentage} className="h-2.5 bg-white/20" />
+            <p className="text-xs text-blue-100 mt-2">
+              {enrollment.completed_lessons?.length || 0} / {lessons.length} leçons complétées
+            </p>
           </div>
         </div>
 
         <div className="p-4">
-          {Object.entries(lessonsByModule).map(([moduleNum, moduleLessons]) => (
+          {Object.entries(lessonsByModule).sort(([a], [b]) => Number(a) - Number(b)).map(([moduleNum, moduleLessons]) => (
             <div key={moduleNum} className="mb-6">
-              <div className="font-semibold text-gray-900 mb-2 flex items-center space-x-2">
-                <BookOpen className="w-4 h-4" />
+              <div className="font-bold text-gray-900 mb-3 flex items-center space-x-2 text-sm uppercase tracking-wide">
+                <BookOpen className="w-4 h-4 text-blue-600" />
                 <span>Module {moduleNum}</span>
               </div>
-              <div className="space-y-1">
-                {moduleLessons.map((lesson) => {
+              <div className="space-y-2">
+                {moduleLessons.map((lesson, idx) => {
                   const isCurrentLesson = lesson.id === lessonId;
                   const isLessonCompleted = enrollment.completed_lessons?.includes(lesson.id);
                   
                   return (
                     <button
                       key={lesson.id}
-                      onClick={() => {
-                        window.location.href = createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lesson.id}`;
-                      }}
-                      className={`w-full text-left p-3 rounded-lg transition-colors ${
+                      onClick={() => handleLessonClick(lesson.id)}
+                      className={`w-full text-left p-3 rounded-xl transition-all ${
                         isCurrentLesson 
-                          ? 'bg-blue-50 border-2 border-blue-900' 
-                          : 'hover:bg-gray-50 border-2 border-transparent'
+                          ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform scale-[1.02]' 
+                          : isLessonCompleted
+                          ? 'bg-green-50 hover:bg-green-100 border-2 border-green-200'
+                          : 'bg-gray-50 hover:bg-gray-100 border-2 border-transparent hover:border-blue-200'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2 flex-1">
-                          {lesson.content_type === "video" && <Play className="w-4 h-4 text-gray-400 flex-shrink-0" />}
-                          {lesson.content_type === "text" && <FileText className="w-4 h-4 text-gray-400 flex-shrink-0" />}
-                          {lesson.content_type === "quiz" && <CheckCircle className="w-4 h-4 text-gray-400 flex-shrink-0" />}
-                          <span className={`text-sm ${isCurrentLesson ? 'font-semibold text-blue-900' : 'text-gray-700'}`}>
-                            {lesson.title}
+                        <div className="flex items-center space-x-3 flex-1 min-w-0">
+                          <div className={`flex-shrink-0 ${
+                            isCurrentLesson ? 'text-white' : 
+                            isLessonCompleted ? 'text-green-600' : 'text-gray-400'
+                          }`}>
+                            {lesson.content_type === "video" && <VideoIcon className="w-4 h-4" />}
+                            {lesson.content_type === "text" && <FileText className="w-4 h-4" />}
+                            {lesson.content_type === "quiz" && <CheckCircle className="w-4 h-4" />}
+                            {!lesson.content_type && <BookOpen className="w-4 h-4" />}
+                          </div>
+                          <span className={`text-sm font-medium truncate ${
+                            isCurrentLesson ? 'text-white' : 
+                            isLessonCompleted ? 'text-gray-900' : 'text-gray-700'
+                          }`}>
+                            {lesson.title || `Leçon ${idx + 1}`}
                           </span>
                         </div>
-                        {isLessonCompleted && (
-                          <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        {isLessonCompleted && !isCurrentLesson && (
+                          <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
                         )}
                       </div>
-                      <div className="text-xs text-gray-500 mt-1 ml-6">
-                        {lesson.duration_minutes} min
-                      </div>
+                      {lesson.duration_minutes && (
+                        <div className={`text-xs mt-2 ml-7 flex items-center gap-1 ${
+                          isCurrentLesson ? 'text-blue-100' : 'text-gray-500'
+                        }`}>
+                          <Clock className="w-3 h-3" />
+                          {lesson.duration_minutes} min
+                        </div>
+                      )}
                     </button>
                   );
                 })}
@@ -340,128 +378,195 @@ export default function Learn() {
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Main Content - Modern Design */}
       <div className="flex-1 overflow-y-auto">
-        <div className="max-w-4xl mx-auto p-6">
-          {/* Progress Bar */}
-          <div className="mb-6 bg-white rounded-xl p-4 shadow-lg border-2 border-blue-200">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-3">
-                <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-xl">
-                  <BookOpen className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900">Progression du cours</h3>
-                  <p className="text-sm text-gray-600">{Math.round(enrollment.progress_percentage)}% complété</p>
-                </div>
-              </div>
-              <div className="text-3xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
-                {Math.round(enrollment.progress_percentage)}%
-              </div>
-            </div>
-            <Progress value={enrollment.progress_percentage} className="h-3" />
-            <p className="text-xs text-gray-500 mt-2">
-              {enrollment.completed_lessons?.length || 0} / {lessons.length} leçons terminées
-            </p>
-          </div>
+        <div className="max-w-5xl mx-auto p-6 lg:p-10">
+          {/* Back Button */}
+          <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`}>
+            <Button variant="ghost" className="mb-4 -ml-2">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Retour au cours
+            </Button>
+          </Link>
 
-          {/* Header */}
+          {/* Progress Card - Enhanced */}
+          <Card className="mb-6 border-2 shadow-xl bg-gradient-to-r from-blue-50 to-purple-50">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-4">
+                  <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 rounded-2xl shadow-lg">
+                    <BookOpen className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900 text-lg">Progression du cours</h3>
+                    <p className="text-sm text-gray-600">{Math.round(progressPercentage)}% complété</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-4xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
+                    {Math.round(progressPercentage)}%
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {enrollment.completed_lessons?.length || 0} / {lessons.length} leçons
+                  </p>
+                </div>
+              </div>
+              <Progress value={progressPercentage} className="h-4 bg-white shadow-inner" />
+            </CardContent>
+          </Card>
+
+          {/* Lesson Header */}
           <div className="mb-6">
-            <div className="flex items-center justify-between mb-4">
-              <Badge className="text-base px-4 py-2">
-                📚 Module {currentLesson.module_number} - Leçon {currentLesson.lesson_number}
+            <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
+              <Badge className="text-base px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0">
+                <BookOpen className="w-4 h-4 mr-2" />
+                Module {currentLesson.module_number || 1} - Leçon {currentLesson.lesson_number || currentIndex + 1}
               </Badge>
               {isCompleted && (
-                <Badge className="bg-green-500 text-base px-4 py-2">
-                  <CheckCircle className="w-4 h-4 mr-1" />
-                  ✓ Complété
+                <Badge className="bg-green-500 text-white text-base px-4 py-2 border-0">
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Complété
                 </Badge>
               )}
             </div>
-            <h1 className="text-4xl font-bold text-gray-900">
-              {currentLesson.title}
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3 leading-tight">
+              {currentLesson.title || 'Leçon sans titre'}
             </h1>
+            {currentLesson.description && (
+              <p className="text-xl text-gray-600 mt-2">
+                {currentLesson.description}
+              </p>
+            )}
           </div>
 
-          {/* Content */}
-          <Card className="mb-6">
+          {/* Lesson Content */}
+          <Card className="mb-6 border-2 shadow-2xl">
             <CardContent className="p-0">
-              {currentLesson.content_type === "video" && (
-                <div className="aspect-video bg-gray-900 flex items-center justify-center">
-                  {currentLesson.content_url ? (
-                    <iframe
-                      src={currentLesson.content_url}
-                      className="w-full h-full"
-                      allowFullScreen
-                    />
-                  ) : (
-                    <div className="text-white text-center">
-                      <Play className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                      <p>Vidéo de démonstration</p>
-                    </div>
-                  )}
+              {/* Video Content */}
+              {currentLesson.content_type === "video" && currentLesson.content_url && (
+                <div className="aspect-video bg-gray-900 relative">
+                  <iframe
+                    src={currentLesson.content_url}
+                    className="w-full h-full rounded-t-lg"
+                    allowFullScreen
+                    title={currentLesson.title}
+                  />
                 </div>
               )}
-              
-              {currentLesson.content_text && (
-                <div className="p-8">
-                  <div className="prose max-w-none">
-                    <div dangerouslySetInnerHTML={{ __html: currentLesson.content_text.replace(/\n/g, '<br/>') }} />
+
+              {/* Text/Markdown Content */}
+              {hasContent && (
+                <div className="p-8 md:p-12 bg-white">
+                  <div className="prose prose-lg max-w-none">
+                    {lessonContent.trim() ? (
+                      <ReactMarkdown
+                        components={{
+                          h1: ({node, ...props}) => <h1 className="text-3xl font-bold mb-4 text-gray-900" {...props} />,
+                          h2: ({node, ...props}) => <h2 className="text-2xl font-bold mb-3 mt-6 text-gray-900" {...props} />,
+                          h3: ({node, ...props}) => <h3 className="text-xl font-bold mb-2 mt-4 text-gray-900" {...props} />,
+                          p: ({node, ...props}) => <p className="mb-4 text-gray-700 leading-relaxed" {...props} />,
+                          ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-4 space-y-2" {...props} />,
+                          ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-4 space-y-2" {...props} />,
+                          li: ({node, ...props}) => <li className="text-gray-700" {...props} />,
+                          strong: ({node, ...props}) => <strong className="font-bold text-gray-900" {...props} />,
+                          code: ({node, ...props}) => <code className="bg-gray-100 px-2 py-1 rounded text-sm font-mono text-blue-600" {...props} />,
+                          blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-blue-500 pl-4 italic my-4 text-gray-600" {...props} />,
+                          a: ({node, ...props}) => <a className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                        }}
+                      >
+                        {lessonContent}
+                      </ReactMarkdown>
+                    ) : (
+                      <div className="text-center py-12">
+                        <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                        <p className="text-gray-500">Le contenu de cette leçon sera bientôt disponible.</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
 
+              {/* PDF Content */}
               {currentLesson.content_type === "pdf" && currentLesson.content_url && (
-                <div className="p-8 text-center">
-                  <FileText className="w-16 h-16 text-blue-900 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-4">Document PDF</h3>
+                <div className="p-12 text-center bg-gray-50">
+                  <FileText className="w-20 h-20 text-blue-600 mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold mb-2 text-gray-900">Document PDF</h3>
+                  <p className="text-gray-600 mb-6">Téléchargez le document pour consulter cette leçon</p>
                   <a href={currentLesson.content_url} target="_blank" rel="noopener noreferrer">
-                    <Button>Télécharger le document</Button>
+                    <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                      <Download className="w-5 h-5 mr-2" />
+                      Télécharger le document
+                    </Button>
                   </a>
+                </div>
+              )}
+
+              {/* No Content Fallback */}
+              {!hasContent && currentLesson.content_type !== "video" && currentLesson.content_type !== "pdf" && (
+                <div className="p-12 text-center bg-gradient-to-br from-blue-50 to-purple-50">
+                  <BookOpen className="w-20 h-20 text-blue-400 mx-auto mb-4 opacity-50" />
+                  <h3 className="text-2xl font-bold mb-2 text-gray-700">Contenu en préparation</h3>
+                  <p className="text-gray-600 max-w-md mx-auto">
+                    Le contenu détaillé de cette leçon sera bientôt disponible. 
+                    En attendant, vous pouvez consulter les autres leçons du cours.
+                  </p>
                 </div>
               )}
             </CardContent>
           </Card>
 
-          {/* Actions */}
-          <div className="flex items-center justify-between mb-6">
+          {/* Navigation Buttons */}
+          <div className="flex items-center justify-between mb-6 gap-4">
             <Button
               variant="outline"
               onClick={handlePrev}
               disabled={!prevLesson}
+              size="lg"
+              className="flex-1 max-w-xs"
             >
-              <ChevronLeft className="w-4 h-4 mr-2" />
-              Précédent
+              <ChevronLeft className="w-5 h-5 mr-2" />
+              Leçon précédente
             </Button>
 
             {!isCompleted && (
               <Button
                 onClick={() => markCompleteMutation.mutate()}
-                className="bg-green-600 hover:bg-green-700"
+                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold"
+                size="lg"
                 disabled={markCompleteMutation.isPending}
               >
-                <CheckCircle className="w-4 h-4 mr-2" />
-                Marquer comme complété
+                {markCompleteMutation.isPending ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                    Enregistrement...
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle className="w-5 h-5 mr-2" />
+                    Marquer comme complété
+                  </>
+                )}
               </Button>
             )}
 
             <Button
               onClick={handleNext}
               disabled={!nextLesson}
-              className="bg-blue-900 hover:bg-blue-800"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold flex-1 max-w-xs"
+              size="lg"
             >
-              Suivant
-              <ChevronRight className="w-4 h-4 ml-2" />
+              Leçon suivante
+              <ChevronRight className="w-5 h-5 ml-2" />
             </Button>
           </div>
 
-          {/* Certificate with Confetti */}
-          {enrollment.progress_percentage === 100 && !enrollment.certificate_issued && (
-            <Card className="bg-gradient-to-r from-yellow-50 via-orange-50 to-pink-50 border-4 border-yellow-300 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-10">
+          {/* Completion Certificate */}
+          {progressPercentage === 100 && !enrollment.certificate_issued && (
+            <Card className="bg-gradient-to-r from-yellow-50 via-orange-50 to-pink-50 border-4 border-yellow-400 shadow-2xl relative overflow-hidden">
+              <div className="absolute inset-0 opacity-5">
                 <div className="text-9xl">🎉🎊🎉🎊🎉🎊🎉🎊🎉</div>
               </div>
-              <CardContent className="p-10 text-center relative">
+              <CardContent className="p-12 text-center relative">
                 <div className="mb-6">
                   <Award className="w-24 h-24 text-yellow-500 mx-auto animate-bounce" />
                 </div>
@@ -471,7 +576,7 @@ export default function Learn() {
                 <p className="text-xl text-gray-700 mb-3">
                   Vous avez terminé ce cours avec succès !
                 </p>
-                <p className="text-lg text-gray-600 mb-6">
+                <p className="text-lg text-gray-600 mb-8">
                   Vous pouvez maintenant télécharger votre certificat de complétion
                 </p>
                 <Button size="lg" className="bg-gradient-to-r from-yellow-500 via-orange-500 to-pink-500 hover:shadow-2xl text-white font-bold text-lg px-8 py-6">
