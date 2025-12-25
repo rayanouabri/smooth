@@ -34,14 +34,21 @@ export default function Login() {
         // Redirection après connexion réussie
         window.location.href = redirectUrl;
       } else {
-        await signUpWithEmail(email, password, { full_name: fullName });
-        // Afficher message de confirmation au lieu de redirection
+        // Inscription
+        const result = await signUpWithEmail(email, password, { full_name: fullName });
+        console.log('Signup result:', result);
+        
+        // Afficher message de confirmation
         setSuccessMessage(
           "Inscription réussie ! Un email de confirmation vous a été envoyé. Veuillez vérifier votre boîte mail pour valider votre compte."
         );
         setEmail("");
         setPassword("");
         setFullName("");
+        
+        // Réinitialiser le loading immédiatement après succès
+        setIsLoading(false);
+        
         // Auto-redirection après 5 secondes
         setTimeout(() => {
           setIsLogin(true);
@@ -49,9 +56,9 @@ export default function Login() {
         }, 5000);
       }
     } catch (err) {
+      console.error('Auth error:', err);
       setError(err.message || "Une erreur s'est produite lors de la connexion");
-    } finally {
-      setIsLoading(false);
+      setIsLoading(false); // S'assurer que le loading est désactivé en cas d'erreur
     }
   };
 

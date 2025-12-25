@@ -1,3 +1,4 @@
+import React from "react";
 import Layout from "./Layout.jsx";
 
 import Dashboard from "./Dashboard";
@@ -123,14 +124,38 @@ function _getCurrentPage(url) {
         urlLastPart = urlLastPart.split('?')[0];
     }
 
+    // Si l'URL est vide ou "/", retourner "Home" par défaut
+    if (!urlLastPart || urlLastPart === '' || urlLastPart === '/') {
+        return 'Home';
+    }
+
     const pageName = Object.keys(PAGES).find(page => page.toLowerCase() === urlLastPart.toLowerCase());
-    return pageName || Object.keys(PAGES)[0];
+    return pageName || 'Home'; // Retourner "Home" par défaut au lieu de Dashboard
 }
 
 // Create a wrapper component that uses useLocation inside the Router context
 function PagesContent() {
     const location = useLocation();
+    const [isReady, setIsReady] = React.useState(false);
+    
+    React.useEffect(() => {
+        // S'assurer que le composant est prêt avant de rendre
+        setIsReady(true);
+    }, []);
+    
     const currentPage = _getCurrentPage(location.pathname);
+    
+    // Afficher un loader pendant le chargement initial pour éviter les pages blanches
+    if (!isReady) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-cyan-50">
+                <div className="text-center">
+                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+                    <p className="text-gray-600">Chargement...</p>
+                </div>
+            </div>
+        );
+    }
     
     return (
         <Layout currentPageName={currentPage}>
