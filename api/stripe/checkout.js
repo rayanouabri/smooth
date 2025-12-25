@@ -16,16 +16,26 @@ export default async function handler(req, res) {
     const { priceId, userEmail, successUrl, cancelUrl } = req.body;
 
     console.log('Stripe checkout request:', { priceId, userEmail });
+    console.log('Available env vars:', Object.keys(process.env).filter(k => k.includes('STRIPE')));
 
     if (!priceId || !userEmail) {
       return res.status(400).json({ error: 'Missing priceId or userEmail' });
     }
 
-    const stripeKey = process.env.STRIPE_SECRET_KEY;
+    // Try multiple possible env var names
+    const stripeKey = process.env.STRIPE_SECRET_KEY || 
+                      process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY ||
+                      process.env.VITE_STRIPE_SECRET_KEY;
+
     if (!stripeKey) {
-      console.error('STRIPE_SECRET_KEY not configured');
-      return res.status(500).json({ error: 'STRIPE_SECRET_KEY not configured' });
+      console.error('STRIPE_SECRET_KEY not found in any env vars');
+      return res.status(500).json({ 
+        error: 'STRIPE_SECRET_KEY not configured in Vercel',
+        debug: 'Configure it in Vercel Dashboard → Settings → Environment Variables'
+      });
     }
+
+    console.log('Using STRIPE_SECRET_KEY:', stripeKey.substring(0, 10) + '...');
 
     // Build Stripe checkout session
     const body = new URLSearchParams({
