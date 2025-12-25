@@ -380,20 +380,44 @@ def generate_forum_post(post_index):
     num_comments = 2 + (post_index % 3)
     replies = []
     
-    reply_contents = [
-        "Merci pour cette question ! J'étais dans la même situation il y a quelques mois. Voici ce qui a fonctionné pour moi...",
-        "Excellente question ! Je recommande de vérifier d'abord si tous tes documents sont bien en ligne dans ton espace personnel.",
-        "J'ai eu le même problème. La solution c'est de les appeler directement et de demander un rendez-vous physique si possible.",
-        "Pour ma part, j'ai utilisé cette méthode et ça a très bien fonctionné. Bon courage !",
-        "Attention, il y a quelques pièges à éviter. Fais attention à bien vérifier que...",
-        "Je confirme ce qui a été dit. J'ajouterais juste que...",
-        "Super conseil ! J'ai testé et ça marche vraiment bien. Merci !",
-        "Pour compléter, n'oublie pas de...",
-        "Merci beaucoup pour ces informations, ça m'aide énormément !",
-        "Très bonne réponse. Je voulais juste ajouter que...",
-        "Je recommande aussi de consulter ce site : [lien]. C'est très utile.",
-        "D'accord avec toi ! J'ai fait exactement pareil et tout s'est bien passé."
-    ]
+    # Réponses plus humaines et pertinentes selon le type de question
+    reply_templates = {
+        'caf': [
+            "Salut ! J'ai eu exactement le même problème l'année dernière. En fait, ce qui a fonctionné pour moi c'est de remplir le dossier en ligne ET d'envoyer les pièces justificatives par courrier recommandé en même temps. Ça accélère vraiment le traitement !",
+            "Bonjour ! Attention, un conseil important : vérifie bien que ton RIB est un compte français. J'avais mis mon compte de mon pays d'origine et ça a tout retardé de 2 mois. Une fois corrigé, j'ai reçu l'APL rétroactivement, donc pas de perte, mais ça vaut le coup de vérifier !",
+            "Hello ! Pour accélérer, je conseille vraiment de prendre rendez-vous dans l'agence CAF près de chez toi. C'est un peu long à obtenir (2-3 semaines) mais une fois là-bas avec tous tes documents, ils valident ton dossier en direct. Ça m'a évité des mois d'attente !"
+        ],
+        'logement': [
+            "Coucou ! J'étais dans la même galère il y a 6 mois. Mon conseil : cherche sur les groupes Facebook de ta ville (ex: 'Étudiants Paris', 'Colocation Lyon'). J'ai trouvé mon studio comme ça en 2 semaines, sans garant ! Beaucoup de proprios comprennent la situation des étudiants étrangers.",
+            "Salut ! Pour le garant, tu peux essayer Visale (c'est gratuit et ça fonctionne bien). Sinon, certaines banques proposent des garanties locatives pour étudiants. J'ai utilisé celle de la BNP et ça m'a sauvé !",
+            "Hey ! Un truc qui m'a beaucoup aidé : prépare un dossier COMPLET dès le premier contact. Photo de ta pièce d'identité, 3 fiches de paie (ou attestation de bourse), RIB, et même une petite lettre de motivation. Les proprios adorent ça et ça te démarque vraiment !"
+        ],
+        'securite_sociale': [
+            "Bonjour ! J'ai fait ma demande il y a 3 mois. Le délai normal c'est environ 3 semaines, mais ça peut prendre jusqu'à 2 mois selon les périodes. Le plus important c'est de créer ton compte ameli.fr dès que tu as ton numéro étudiant, comme ça tu peux suivre l'avancement en temps réel !",
+            "Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive automatiquement par courrier sous 2-3 semaines. Si elle n'arrive pas après 1 mois, appelle le 3646 (numéro gratuit) pour la réclamer. Ils te la renvoient rapidement !",
+            "Hello ! Conseil important : prends une mutuelle étudiante (LMDE ou SMEREP) dès que possible. Elle coûte que 20-30€/mois et ça te rembourse à 100% au lieu de 70%. Pour les soins dentaires et optiques c'est vraiment utile !"
+        ],
+        'francais': [
+            "Salut ! Pour progresser en français, ce qui m'a le plus aidé c'est de regarder des séries françaises sur Netflix avec les sous-titres en français (pas dans ta langue !). Au début c'est dur mais après 2-3 semaines tu comprends déjà beaucoup mieux.",
+            "Bonjour ! Je te conseille vraiment de rejoindre des groupes de conversation. Il y en a partout (Meetup, Facebook, ou même à l'université). Parler avec des natifs même 1h par semaine, ça fait une ÉNORME différence !",
+            "Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te fait gagner beaucoup de points. Il y a plein d'annales gratuites sur internet !"
+        ],
+        'titre_sejour': [
+            "Salut ! J'ai renouvelé mon titre de séjour il y a 3 mois. Le truc important c'est de prendre le RDV en ligne DÈS que possible (les créneaux partent très vite). Ensuite, prépare TOUS tes documents 2 semaines avant pour éviter le stress.",
+            "Bonjour ! Un conseil qui m'a sauvé : fais des photos/scan de TOUS tes documents avant de les déposer à la préfecture. Comme ça si jamais il manque quelque chose, tu peux les imprimer rapidement sans refaire tout le dossier.",
+            "Hello ! Pour le rendez-vous préfecture, c'est vraiment la galère je sais. Essaye de te connecter tôt le matin (vers 8h-9h) ou très tard le soir. Les créneaux s'ouvrent souvent à ces heures-là. Persévère, tu vas y arriver !"
+        ],
+        'general': [
+            "Merci pour cette question ! J'étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c'est de...",
+            "Excellente question ! Je te conseille vraiment de...",
+            "Salut ! J'ai eu le même problème. Voici ce que j'ai fait et ça a marché...",
+            "Bon conseil ! J'ajouterais juste que...",
+            "D'accord avec toi ! J'ai testé cette méthode et ça marche super bien.",
+            "Pour compléter, n'oublie pas aussi de...",
+            "Merci beaucoup ! Ces infos m'aident vraiment.",
+            "Super ! Je voulais juste ajouter un petit détail important..."
+        ]
+    }
     
     reply_authors = [
         ('Sophie L.', 'sophie.l@example.com'),
@@ -404,17 +428,61 @@ def generate_forum_post(post_index):
         ('Antoine C.', 'antoine.c@example.com')
     ]
     
+    # Déterminer le type de question pour des réponses pertinentes
+    question_type = 'general'
+    title_lower = titles[post_index].lower() if post_index < len(titles) else ''
+    if 'caf' in title_lower or 'allocation' in title_lower:
+        question_type = 'caf'
+    elif 'logement' in title_lower or 'appartement' in title_lower or 'studio' in title_lower or 'garant' in title_lower:
+        question_type = 'logement'
+    elif 'sécurité' in title_lower or 'sante' in title_lower or 'mutuelle' in title_lower or 'vitale' in title_lower or 'cpam' in title_lower:
+        question_type = 'securite_sociale'
+    elif 'français' in title_lower or 'delf' in title_lower or 'francais' in title_lower:
+        question_type = 'francais'
+    elif 'titre' in title_lower or 'visa' in title_lower or 'séjour' in title_lower or 'prefecture' in title_lower:
+        question_type = 'titre_sejour'
+    
+    # Sélectionner les réponses appropriées
+    available_replies = reply_templates.get(question_type, reply_templates['general'])
+    
     for i in range(num_comments):
         reply_id = str(uuid.uuid5(uuid.UUID('6ba7b813-9dad-11d1-80b4-00c04fd430c8'), f'{post_id}-reply-{i}'))
         reply_author_name, reply_author_email = reply_authors[i % len(reply_authors)]
+        
+        # Varier les réponses pour qu'elles soient plus naturelles
+        if i == 0:
+            # Première réponse : détaillée et utile
+            reply_content = available_replies[i % len(available_replies)]
+        elif i == 1:
+            # Deuxième réponse : complémentaire ou alternative
+            if len(available_replies) > 1:
+                reply_content = available_replies[1 % len(available_replies)]
+            else:
+                reply_content = f"D'accord avec la réponse ci-dessus ! J'ajouterais que j'ai aussi rencontré ce problème. {available_replies[0][:100]}..."
+        else:
+            # Autres réponses : plus courtes, plus conversationnelles
+            if len(available_replies) > 2:
+                base_reply = available_replies[min(i, len(available_replies)-1)]
+            else:
+                base_reply = available_replies[i % len(available_replies)]
+            
+            # Ajouter des variantes conversationnelles
+            variants = [
+                base_reply,
+                f"Merci pour cette réponse ! {base_reply[:150]}...",
+                f"Super conseil ! Je confirme, {base_reply[:120]}...",
+                f"Oui exactement ! {base_reply[:130]}..."
+            ]
+            reply_content = variants[i % len(variants)]
+        
         replies.append({
             'id': reply_id,
             'post_id': post_id,
-            'content': reply_contents[(post_index * num_comments + i) % len(reply_contents)],
+            'content': reply_content,
             'author_email': reply_author_email,
             'author_name': reply_author_name,
-            'is_solution': i == 0 and post_index % 3 == 0,  # Un tiers des premiers commentaires sont marqués solution
-            'likes_count': i * 2
+            'is_solution': i == 0 and post_index % 4 == 0,  # 25% des premières réponses marquées solution
+            'likes_count': (num_comments - i) * 3 + (i % 2)  # Plus de likes pour les premières réponses
         })
     
     post = {

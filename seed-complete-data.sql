@@ -1,7 +1,7 @@
 -- =====================================================
 -- SCRIPT COMPLET DE DONNÉES POUR FRANCEPREP ACADEMY
 -- 80 cours complets + 25 posts forum avec commentaires
--- Généré le 2025-12-25 01:06:19
+-- Généré le 2025-12-25 01:18:58
 -- =====================================================
 
 -- Désactiver temporairement les contraintes
@@ -11024,22 +11024,22 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '1b09ccc2-ebef-5b62-9fae-d2a6aedda06d',
   '0d473c42-cbf6-57f5-88fc-ce7e6cb227b9',
-  'Merci pour cette question ! J''étais dans la même situation il y a quelques mois. Voici ce qui a fonctionné pour moi...',
+  'Salut ! J''ai renouvelé mon titre de séjour il y a 3 mois. Le truc important c''est de prendre le RDV en ligne DÈS que possible (les créneaux partent très vite). Ensuite, prépare TOUS tes documents 2 semaines avant pour éviter le stress.',
   'sophie.l@example.com',
   'Sophie L.',
   TRUE,
-  0
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '5af630b3-81d8-5cbf-a887-5269cbf9d0ff',
   '0d473c42-cbf6-57f5-88fc-ce7e6cb227b9',
-  'Excellente question ! Je recommande de vérifier d''abord si tous tes documents sont bien en ligne dans ton espace personnel.',
+  'Bonjour ! Un conseil qui m''a sauvé : fais des photos/scan de TOUS tes documents avant de les déposer à la préfecture. Comme ça si jamais il manque quelque chose, tu peux les imprimer rapidement sans refaire tout le dossier.',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11061,33 +11061,33 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'd5aa9de3-e439-58b1-a8a3-9e6a0392575e',
   '9b8b1299-dc2f-5b8e-ae3a-de77531b68c5',
-  'Pour ma part, j''ai utilisé cette méthode et ça a très bien fonctionné. Bon courage !',
+  'Salut ! J''ai eu exactement le même problème l''année dernière. En fait, ce qui a fonctionné pour moi c''est de remplir le dossier en ligne ET d''envoyer les pièces justificatives par courrier recommandé en même temps. Ça accélère vraiment le traitement !',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  9
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '5669bc21-473b-5f0c-bec5-105ceccf9d78',
   '9b8b1299-dc2f-5b8e-ae3a-de77531b68c5',
-  'Attention, il y a quelques pièges à éviter. Fais attention à bien vérifier que...',
+  'Bonjour ! Attention, un conseil important : vérifie bien que ton RIB est un compte français. J''avais mis mon compte de mon pays d''origine et ça a tout retardé de 2 mois. Une fois corrigé, j''ai reçu l''APL rétroactivement, donc pas de perte, mais ça vaut le coup de vérifier !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  7
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '0567fd61-a9df-5f73-bf5d-02f47d453adc',
   '9b8b1299-dc2f-5b8e-ae3a-de77531b68c5',
-  'Je confirme ce qui a été dit. J''ajouterais juste que...',
+  'Super conseil ! Je confirme, Hello ! Pour accélérer, je conseille vraiment de prendre rendez-vous dans l''agence CAF près de chez toi. C''est un peu lo...',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  3
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11109,44 +11109,44 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'eab47266-25ee-580f-8e9f-10f328095033',
   '173cb5ba-c871-55c8-8bc8-76a24bd9562f',
-  'Merci beaucoup pour ces informations, ça m''aide énormément !',
+  'Bonjour ! J''ai fait ma demande il y a 3 mois. Le délai normal c''est environ 3 semaines, mais ça peut prendre jusqu''à 2 mois selon les périodes. Le plus important c''est de créer ton compte ameli.fr dès que tu as ton numéro étudiant, comme ça tu peux suivre l''avancement en temps réel !',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  12
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'de8f45c5-2298-5cd7-87a0-2c59c178d04c',
   '173cb5ba-c871-55c8-8bc8-76a24bd9562f',
-  'Très bonne réponse. Je voulais juste ajouter que...',
+  'Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive automatiquement par courrier sous 2-3 semaines. Si elle n''arrive pas après 1 mois, appelle le 3646 (numéro gratuit) pour la réclamer. Ils te la renvoient rapidement !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  10
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'e3a1a217-4b77-5917-a4f0-2a3c16aeefba',
   '173cb5ba-c871-55c8-8bc8-76a24bd9562f',
-  'Je recommande aussi de consulter ce site : [lien]. C''est très utile.',
+  'Super conseil ! Je confirme, Hello ! Conseil important : prends une mutuelle étudiante (LMDE ou SMEREP) dès que possible. Elle coûte que 20-30€/mois ...',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'cf0de055-f603-59d6-ae82-8185b8744b40',
   '173cb5ba-c871-55c8-8bc8-76a24bd9562f',
-  'D''accord avec toi ! J''ai fait exactement pareil et tout s''est bien passé.',
+  'Oui exactement ! Hello ! Conseil important : prends une mutuelle étudiante (LMDE ou SMEREP) dès que possible. Elle coûte que 20-30€/mois et ça te r...',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
-  6
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11168,22 +11168,22 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '25878249-887e-539b-928a-f4cfd8daf075',
   '0252c811-7c75-52db-bb6e-a312efbffb64',
-  'Super conseil ! J''ai testé et ça marche vraiment bien. Merci !',
+  'Coucou ! J''étais dans la même galère il y a 6 mois. Mon conseil : cherche sur les groupes Facebook de ta ville (ex: ''Étudiants Paris'', ''Colocation Lyon''). J''ai trouvé mon studio comme ça en 2 semaines, sans garant ! Beaucoup de proprios comprennent la situation des étudiants étrangers.',
   'sophie.l@example.com',
   'Sophie L.',
-  TRUE,
-  0
+  FALSE,
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'f231d709-46d0-5dd0-84a7-85d117b8a878',
   '0252c811-7c75-52db-bb6e-a312efbffb64',
-  'Pour compléter, n''oublie pas de...',
+  'Salut ! Pour le garant, tu peux essayer Visale (c''est gratuit et ça fonctionne bien). Sinon, certaines banques proposent des garanties locatives pour étudiants. J''ai utilisé celle de la BNP et ça m''a sauvé !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11205,33 +11205,33 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'cbc3ca1e-8965-500a-8aa3-5524f2b20979',
   '4977e849-ca23-57f9-bdf1-1e41c48f6b84',
-  'Merci pour cette question ! J''étais dans la même situation il y a quelques mois. Voici ce qui a fonctionné pour moi...',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
-  FALSE,
-  0
+  TRUE,
+  9
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '16b6be30-11ba-5838-9f6f-8530b1f169ff',
   '4977e849-ca23-57f9-bdf1-1e41c48f6b84',
-  'Excellente question ! Je recommande de vérifier d''abord si tous tes documents sont bien en ligne dans ton espace personnel.',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  7
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '47fbe9b0-f597-55d4-ad45-20a7c5e6a3f5',
   '4977e849-ca23-57f9-bdf1-1e41c48f6b84',
-  'J''ai eu le même problème. La solution c''est de les appeler directement et de demander un rendez-vous physique si possible.',
+  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  3
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11253,44 +11253,44 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'c4c0dd99-1f7b-50d9-a3a8-ce738f892b41',
   '4be15efb-482e-5591-948c-aed49937f904',
-  'Merci beaucoup pour ces informations, ça m''aide énormément !',
+  'Salut ! Pour progresser en français, ce qui m''a le plus aidé c''est de regarder des séries françaises sur Netflix avec les sous-titres en français (pas dans ta langue !). Au début c''est dur mais après 2-3 semaines tu comprends déjà beaucoup mieux.',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  12
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'f70bcd7b-d255-523e-af2f-d415943168b9',
   '4be15efb-482e-5591-948c-aed49937f904',
-  'Très bonne réponse. Je voulais juste ajouter que...',
+  'Bonjour ! Je te conseille vraiment de rejoindre des groupes de conversation. Il y en a partout (Meetup, Facebook, ou même à l''université). Parler avec des natifs même 1h par semaine, ça fait une ÉNORME différence !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  10
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '24c3fb59-11d3-5954-9767-58c777014e28',
   '4be15efb-482e-5591-948c-aed49937f904',
-  'Je recommande aussi de consulter ce site : [lien]. C''est très utile.',
+  'Super conseil ! Je confirme, Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te ...',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'd7659e4e-3fd3-5d61-84d6-fa520361f0f7',
   '4be15efb-482e-5591-948c-aed49937f904',
-  'D''accord avec toi ! J''ai fait exactement pareil et tout s''est bien passé.',
+  'Oui exactement ! Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te fait gagne...',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
-  6
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11312,22 +11312,22 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'fa2ed4e1-0cb2-5c59-94ea-55fe65e10153',
   'f6af59a3-67d6-5abe-8238-7cd32053cad4',
-  'Merci pour cette question ! J''étais dans la même situation il y a quelques mois. Voici ce qui a fonctionné pour moi...',
+  'Salut ! Pour progresser en français, ce qui m''a le plus aidé c''est de regarder des séries françaises sur Netflix avec les sous-titres en français (pas dans ta langue !). Au début c''est dur mais après 2-3 semaines tu comprends déjà beaucoup mieux.',
   'sophie.l@example.com',
   'Sophie L.',
-  TRUE,
-  0
+  FALSE,
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'd9e5134f-a0e9-5be7-a612-d044b632d21e',
   'f6af59a3-67d6-5abe-8238-7cd32053cad4',
-  'Excellente question ! Je recommande de vérifier d''abord si tous tes documents sont bien en ligne dans ton espace personnel.',
+  'Bonjour ! Je te conseille vraiment de rejoindre des groupes de conversation. Il y en a partout (Meetup, Facebook, ou même à l''université). Parler avec des natifs même 1h par semaine, ça fait une ÉNORME différence !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11349,33 +11349,33 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'c5cdb167-75bd-55c0-bfd7-ca5fc9b36820',
   '42912afd-dbf5-5b6e-951b-73463aa5e390',
-  'Très bonne réponse. Je voulais juste ajouter que...',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  9
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'cda5dc73-d90a-5233-949a-596355de0dbd',
   '42912afd-dbf5-5b6e-951b-73463aa5e390',
-  'Je recommande aussi de consulter ce site : [lien]. C''est très utile.',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  7
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'cc731023-a1b9-55fc-bd3a-d50b086397bf',
   '42912afd-dbf5-5b6e-951b-73463aa5e390',
-  'D''accord avec toi ! J''ai fait exactement pareil et tout s''est bien passé.',
+  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  3
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11397,44 +11397,44 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '768b5902-c1c5-5788-8cb4-b946aa33b470',
   '0d24cd77-825c-547b-85e3-5d23ad9d17b0',
-  'Merci beaucoup pour ces informations, ça m''aide énormément !',
+  'Salut ! Pour progresser en français, ce qui m''a le plus aidé c''est de regarder des séries françaises sur Netflix avec les sous-titres en français (pas dans ta langue !). Au début c''est dur mais après 2-3 semaines tu comprends déjà beaucoup mieux.',
   'sophie.l@example.com',
   'Sophie L.',
-  FALSE,
-  0
+  TRUE,
+  12
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '78b7df9e-bffa-52c1-acc0-c32b0488841b',
   '0d24cd77-825c-547b-85e3-5d23ad9d17b0',
-  'Très bonne réponse. Je voulais juste ajouter que...',
+  'Bonjour ! Je te conseille vraiment de rejoindre des groupes de conversation. Il y en a partout (Meetup, Facebook, ou même à l''université). Parler avec des natifs même 1h par semaine, ça fait une ÉNORME différence !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  10
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'd5d30fa7-6860-540b-9a3f-6b8e92ae82a8',
   '0d24cd77-825c-547b-85e3-5d23ad9d17b0',
-  'Je recommande aussi de consulter ce site : [lien]. C''est très utile.',
+  'Super conseil ! Je confirme, Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te ...',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'e3902060-5417-5512-9fca-cd1fe6d71b56',
   '0d24cd77-825c-547b-85e3-5d23ad9d17b0',
-  'D''accord avec toi ! J''ai fait exactement pareil et tout s''est bien passé.',
+  'Oui exactement ! Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te fait gagne...',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
-  6
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11456,22 +11456,22 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '28a12b8c-ae45-543f-882f-4b4f83b64d6e',
   '6a48bc7b-7699-5e0a-87d0-a3b01e533b01',
-  'Super conseil ! J''ai testé et ça marche vraiment bien. Merci !',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
-  TRUE,
-  0
+  FALSE,
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'c974261e-966f-55ef-9fce-9abdc042c0b8',
   '6a48bc7b-7699-5e0a-87d0-a3b01e533b01',
-  'Pour compléter, n''oublie pas de...',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11493,33 +11493,33 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '2dbaf360-b6d0-52b7-a87a-1453319df583',
   'ba244ce1-3191-52a6-ba43-1c0cd17845e2',
-  'Super conseil ! J''ai testé et ça marche vraiment bien. Merci !',
+  'Salut ! Pour progresser en français, ce qui m''a le plus aidé c''est de regarder des séries françaises sur Netflix avec les sous-titres en français (pas dans ta langue !). Au début c''est dur mais après 2-3 semaines tu comprends déjà beaucoup mieux.',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  9
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '2cf0ebfd-4fb0-51ff-a11e-3db7b9c61f7d',
   'ba244ce1-3191-52a6-ba43-1c0cd17845e2',
-  'Pour compléter, n''oublie pas de...',
+  'Bonjour ! Je te conseille vraiment de rejoindre des groupes de conversation. Il y en a partout (Meetup, Facebook, ou même à l''université). Parler avec des natifs même 1h par semaine, ça fait une ÉNORME différence !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  7
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '41057a08-8412-55e4-9b44-63f24798d224',
   'ba244ce1-3191-52a6-ba43-1c0cd17845e2',
-  'Merci beaucoup pour ces informations, ça m''aide énormément !',
+  'Super conseil ! Je confirme, Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te ...',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  3
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11541,44 +11541,44 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '51c259c8-5334-5634-93b1-96d0cb5e50d8',
   'c100ac4f-7794-5f69-adb8-7e499d90e707',
-  'Merci beaucoup pour ces informations, ça m''aide énormément !',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  12
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '522b9bc3-fdaf-5367-bd11-962c00c351ff',
   'c100ac4f-7794-5f69-adb8-7e499d90e707',
-  'Très bonne réponse. Je voulais juste ajouter que...',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  10
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '1a33707a-ef77-5e10-904e-5dfb66f0a03f',
   'c100ac4f-7794-5f69-adb8-7e499d90e707',
-  'Je recommande aussi de consulter ce site : [lien]. C''est très utile.',
+  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'e4f68eb9-703d-5bda-94de-bbb22b569b4c',
   'c100ac4f-7794-5f69-adb8-7e499d90e707',
-  'D''accord avec toi ! J''ai fait exactement pareil et tout s''est bien passé.',
+  'Oui exactement ! Bon conseil ! J''ajouterais juste que......',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
-  6
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11600,22 +11600,22 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '4e08691b-736a-580f-a188-37865cf678f5',
   '991b6e5c-b1db-5423-8ef4-1951f107e8fc',
-  'Merci pour cette question ! J''étais dans la même situation il y a quelques mois. Voici ce qui a fonctionné pour moi...',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
   TRUE,
-  0
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '6782cb03-85ba-5753-a55f-b5ce4ea15df6',
   '991b6e5c-b1db-5423-8ef4-1951f107e8fc',
-  'Excellente question ! Je recommande de vérifier d''abord si tous tes documents sont bien en ligne dans ton espace personnel.',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11637,33 +11637,33 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '3d93ac60-78c5-5de3-b4b8-f87f695587db',
   '2dd7e778-2505-5f8a-9beb-fb26046941e1',
-  'Pour ma part, j''ai utilisé cette méthode et ça a très bien fonctionné. Bon courage !',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  9
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '3e71e74e-4576-5f45-a0dc-2c1887219d26',
   '2dd7e778-2505-5f8a-9beb-fb26046941e1',
-  'Attention, il y a quelques pièges à éviter. Fais attention à bien vérifier que...',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  7
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '434b29f3-c9f0-54d8-8b7a-87279105bd6c',
   '2dd7e778-2505-5f8a-9beb-fb26046941e1',
-  'Je confirme ce qui a été dit. J''ajouterais juste que...',
+  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  3
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11685,44 +11685,44 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'b1f76025-401d-5f68-bf4f-bead184787dd',
   '07f3ed10-a0e8-54d1-adfb-bb46c6f20b1e',
-  'Merci beaucoup pour ces informations, ça m''aide énormément !',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  12
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '64cbeecb-f7a8-5830-a18b-1d5c90dde523',
   '07f3ed10-a0e8-54d1-adfb-bb46c6f20b1e',
-  'Très bonne réponse. Je voulais juste ajouter que...',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  10
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'dc450361-64fb-54c3-8a20-f7981db55f18',
   '07f3ed10-a0e8-54d1-adfb-bb46c6f20b1e',
-  'Je recommande aussi de consulter ce site : [lien]. C''est très utile.',
+  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'e7ae3bf0-a83b-5c6a-8452-fbf95515d9a3',
   '07f3ed10-a0e8-54d1-adfb-bb46c6f20b1e',
-  'D''accord avec toi ! J''ai fait exactement pareil et tout s''est bien passé.',
+  'Oui exactement ! Bon conseil ! J''ajouterais juste que......',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
-  6
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11744,22 +11744,22 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '2546d133-47ba-563d-b380-2023dea65368',
   'c397cb7e-0fa4-5902-85a6-3fa1a4088197',
-  'Super conseil ! J''ai testé et ça marche vraiment bien. Merci !',
+  'Salut ! J''ai renouvelé mon titre de séjour il y a 3 mois. Le truc important c''est de prendre le RDV en ligne DÈS que possible (les créneaux partent très vite). Ensuite, prépare TOUS tes documents 2 semaines avant pour éviter le stress.',
   'sophie.l@example.com',
   'Sophie L.',
-  TRUE,
-  0
+  FALSE,
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '78bfa75c-c1f5-5757-a9ee-9d5f8b7ca227',
   'c397cb7e-0fa4-5902-85a6-3fa1a4088197',
-  'Pour compléter, n''oublie pas de...',
+  'Bonjour ! Un conseil qui m''a sauvé : fais des photos/scan de TOUS tes documents avant de les déposer à la préfecture. Comme ça si jamais il manque quelque chose, tu peux les imprimer rapidement sans refaire tout le dossier.',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11781,33 +11781,33 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '8034f207-c8ff-583d-abac-fc9e598bf000',
   '56983b7e-6a93-5b10-9196-4bd88661052c',
-  'Merci pour cette question ! J''étais dans la même situation il y a quelques mois. Voici ce qui a fonctionné pour moi...',
+  'Salut ! Pour progresser en français, ce qui m''a le plus aidé c''est de regarder des séries françaises sur Netflix avec les sous-titres en français (pas dans ta langue !). Au début c''est dur mais après 2-3 semaines tu comprends déjà beaucoup mieux.',
   'sophie.l@example.com',
   'Sophie L.',
-  FALSE,
-  0
+  TRUE,
+  9
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'bee17707-8eb7-5dcd-936d-58720a9742db',
   '56983b7e-6a93-5b10-9196-4bd88661052c',
-  'Excellente question ! Je recommande de vérifier d''abord si tous tes documents sont bien en ligne dans ton espace personnel.',
+  'Bonjour ! Je te conseille vraiment de rejoindre des groupes de conversation. Il y en a partout (Meetup, Facebook, ou même à l''université). Parler avec des natifs même 1h par semaine, ça fait une ÉNORME différence !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  7
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '78f87165-8b86-5f5e-bb85-6bad475c1d51',
   '56983b7e-6a93-5b10-9196-4bd88661052c',
-  'J''ai eu le même problème. La solution c''est de les appeler directement et de demander un rendez-vous physique si possible.',
+  'Super conseil ! Je confirme, Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te ...',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  3
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11829,44 +11829,44 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '7147632b-f583-5a8b-b236-a0f5adab4cb3',
   'ba5e2f22-7d7e-5351-a4fd-e17b653900d7',
-  'Merci beaucoup pour ces informations, ça m''aide énormément !',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  12
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'e79df5a6-468c-546b-a6d5-6c74d5f219a1',
   'ba5e2f22-7d7e-5351-a4fd-e17b653900d7',
-  'Très bonne réponse. Je voulais juste ajouter que...',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  10
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '10797d0f-5162-5d9c-9a33-66883676bd05',
   'ba5e2f22-7d7e-5351-a4fd-e17b653900d7',
-  'Je recommande aussi de consulter ce site : [lien]. C''est très utile.',
+  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '1f7c2251-343d-52ab-9303-93102c9e335f',
   'ba5e2f22-7d7e-5351-a4fd-e17b653900d7',
-  'D''accord avec toi ! J''ai fait exactement pareil et tout s''est bien passé.',
+  'Oui exactement ! Bon conseil ! J''ajouterais juste que......',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
-  6
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11888,22 +11888,22 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '5dc14ec0-90e1-5b76-a93f-9342a1a55b78',
   'fa3c3a98-045e-51f0-a24c-0646e1c64136',
-  'Merci pour cette question ! J''étais dans la même situation il y a quelques mois. Voici ce qui a fonctionné pour moi...',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
-  TRUE,
-  0
+  FALSE,
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '4993bbdb-1c79-5c58-bd25-379d897ee6ba',
   'fa3c3a98-045e-51f0-a24c-0646e1c64136',
-  'Excellente question ! Je recommande de vérifier d''abord si tous tes documents sont bien en ligne dans ton espace personnel.',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11925,33 +11925,33 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '84ea4022-2656-5937-ac39-b88c213cbac5',
   '0b5435e2-eefc-5e0f-ab26-d19c11a6222c',
-  'Très bonne réponse. Je voulais juste ajouter que...',
+  'Bonjour ! J''ai fait ma demande il y a 3 mois. Le délai normal c''est environ 3 semaines, mais ça peut prendre jusqu''à 2 mois selon les périodes. Le plus important c''est de créer ton compte ameli.fr dès que tu as ton numéro étudiant, comme ça tu peux suivre l''avancement en temps réel !',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  9
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '07a8b9a2-e439-5823-9750-8e20c51d8aa0',
   '0b5435e2-eefc-5e0f-ab26-d19c11a6222c',
-  'Je recommande aussi de consulter ce site : [lien]. C''est très utile.',
+  'Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive automatiquement par courrier sous 2-3 semaines. Si elle n''arrive pas après 1 mois, appelle le 3646 (numéro gratuit) pour la réclamer. Ils te la renvoient rapidement !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  7
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '9c62b8c8-27f4-58ae-972b-94fbaf92ea54',
   '0b5435e2-eefc-5e0f-ab26-d19c11a6222c',
-  'D''accord avec toi ! J''ai fait exactement pareil et tout s''est bien passé.',
+  'Super conseil ! Je confirme, Hello ! Conseil important : prends une mutuelle étudiante (LMDE ou SMEREP) dès que possible. Elle coûte que 20-30€/mois ...',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  3
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -11973,44 +11973,44 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'fa611ff4-4213-5068-8958-ace0e3d6d148',
   '17006f43-5b49-5d6e-b67e-33495364b1b0',
-  'Merci beaucoup pour ces informations, ça m''aide énormément !',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
-  FALSE,
-  0
+  TRUE,
+  12
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '2cda2c38-520f-5442-bcd0-c21084c4cfc1',
   '17006f43-5b49-5d6e-b67e-33495364b1b0',
-  'Très bonne réponse. Je voulais juste ajouter que...',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  10
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '9ca6aa3a-a22b-5131-9c17-278c945cf496',
   '17006f43-5b49-5d6e-b67e-33495364b1b0',
-  'Je recommande aussi de consulter ce site : [lien]. C''est très utile.',
+  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '31de6085-4823-5946-8567-8d30505d4a96',
   '17006f43-5b49-5d6e-b67e-33495364b1b0',
-  'D''accord avec toi ! J''ai fait exactement pareil et tout s''est bien passé.',
+  'Oui exactement ! Bon conseil ! J''ajouterais juste que......',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
-  6
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -12032,22 +12032,22 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '45f11d5e-8eef-524e-84c4-2a5e3a7cf019',
   'b1959853-fbb4-580f-a513-7af79c949efa',
-  'Super conseil ! J''ai testé et ça marche vraiment bien. Merci !',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
-  TRUE,
-  0
+  FALSE,
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '2f81fcd9-f281-5508-9567-da6f9c043a56',
   'b1959853-fbb4-580f-a513-7af79c949efa',
-  'Pour compléter, n''oublie pas de...',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -12069,33 +12069,33 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '7c5bc58a-f99b-5907-942f-96032fac7d80',
   '995374cb-f3d1-5426-9f81-a626cb9cfcd4',
-  'Super conseil ! J''ai testé et ça marche vraiment bien. Merci !',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  9
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '179fde6f-ac59-5316-937b-3b78cd1a466e',
   '995374cb-f3d1-5426-9f81-a626cb9cfcd4',
-  'Pour compléter, n''oublie pas de...',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  7
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '204ccb01-bde8-5075-8add-1b3967d767b2',
   '995374cb-f3d1-5426-9f81-a626cb9cfcd4',
-  'Merci beaucoup pour ces informations, ça m''aide énormément !',
+  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  3
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -12117,44 +12117,44 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'abdd1d35-4357-569c-a42a-07a5cffa714c',
   '8adb5f2e-7d96-500e-bd5b-26a15439af60',
-  'Merci beaucoup pour ces informations, ça m''aide énormément !',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
-  0
+  12
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '30b258ef-f086-578d-8564-beb97921019a',
   '8adb5f2e-7d96-500e-bd5b-26a15439af60',
-  'Très bonne réponse. Je voulais juste ajouter que...',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  10
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   '6e6283e9-ff4b-5b58-9e81-cff4e52d6ebd',
   '8adb5f2e-7d96-500e-bd5b-26a15439af60',
-  'Je recommande aussi de consulter ce site : [lien]. C''est très utile.',
+  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
-  4
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'cdfa2f5a-b223-556c-92da-ff9dfa2d82da',
   '8adb5f2e-7d96-500e-bd5b-26a15439af60',
-  'D''accord avec toi ! J''ai fait exactement pareil et tout s''est bien passé.',
+  'Oui exactement ! Bon conseil ! J''ajouterais juste que......',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
-  6
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_posts (id, title, content, category, author_email, author_name, replies_count, views_count, is_pinned, is_solved, tags) VALUES
@@ -12176,22 +12176,22 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '4ea65a15-a799-57d8-b33a-4c8a06836229',
   '532fe846-b4d2-58de-87c6-9e1e879bdc11',
-  'Merci pour cette question ! J''étais dans la même situation il y a quelques mois. Voici ce qui a fonctionné pour moi...',
+  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
   'sophie.l@example.com',
   'Sophie L.',
   TRUE,
-  0
+  6
 ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_solution, likes_count) VALUES
 (
   'a2b9acfb-0124-55c6-ae00-70b52f5f5c6a',
   '532fe846-b4d2-58de-87c6-9e1e879bdc11',
-  'Excellente question ! Je recommande de vérifier d''abord si tous tes documents sont bien en ligne dans ton espace personnel.',
+  'Excellente question ! Je te conseille vraiment de...',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
-  2
+  4
 ) ON CONFLICT (id) DO NOTHING;
 
 -- Réactiver les contraintes
