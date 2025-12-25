@@ -26,7 +26,7 @@ export default function Pricing() {
     if (authenticated) {
       const userData = await getCurrentUser();
       console.log('Pricing - User data:', userData);
-      console.log('Pricing - is_premium:', userData?.is_premium);
+      console.log('Pricing - is_premium:', userData?.is_premium, 'subscription_status:', userData?.subscription_status);
       setUser(userData);
     }
   };
@@ -86,7 +86,8 @@ export default function Pricing() {
   ];
 
   // Vérifier si l'utilisateur est déjà Premium
-  const isPremium = user?.is_premium === true || user?.subscription_status === 'active';
+  const isPremium = user?.is_premium === true || (user?.subscription_status && user?.subscription_status !== 'inactive');
+  console.log('isPremium computed:', isPremium, 'user.is_premium:', user?.is_premium, 'user.subscription_status:', user?.subscription_status);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">

@@ -6,8 +6,16 @@ module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
-    if (!apiKey) return res.status(500).json({ error: 'GEMINI_API_KEY not configured on server' });
+    // Try multiple env var names for the API key
+    const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+    
+    console.log('Gemini proxy - checking for API key...');
+    console.log('Available env vars:', Object.keys(process.env).filter(k => k.includes('GEMINI') || k.includes('GOOGLE')).slice(0, 5));
+    
+    if (!apiKey) {
+      console.error('GEMINI_API_KEY not found in:', { GEMINI_API_KEY: !!process.env.GEMINI_API_KEY, VITE_GEMINI_API_KEY: !!process.env.VITE_GEMINI_API_KEY, GOOGLE_API_KEY: !!process.env.GOOGLE_API_KEY });
+      return res.status(500).json({ error: 'GEMINI_API_KEY not configured on server' });
+    }
 
     const body = req.body || {};
     const prompt = body.prompt;
@@ -30,6 +38,7 @@ module.exports = async function handler(req, res) {
       ]
     };
 
+    console.log('Gemini proxy - calling API with key:', apiKey.substring(0, 10) + '...');
     const upstream = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -43,6 +52,7 @@ module.exports = async function handler(req, res) {
     }
 
     const content = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    console.log('Gemini proxy - success');
     return res.status(200).json({ content, raw: json });
   } catch (err) {
     console.error('Gemini proxy error:', err);

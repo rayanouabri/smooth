@@ -12,9 +12,13 @@ import { supabase } from './supabaseClient';
  */
 export const InvokeLLM = async ({ prompt, add_context_from_internet = false, model = 'gpt-4', response_json_schema = null }) => {
   try {
-    // Si Gemini API Key est configurée côté client OU via proxy serveur (/api/gemini), utiliser Gemini (priorité)
-    if (import.meta.env.VITE_GEMINI_API_KEY || true) {
-      const useProxy = !import.meta.env.VITE_GEMINI_API_KEY; // si pas de clé côté client, on passe par l'API proxy (serveur)
+    // Gemini API (priorité si clé disponible client-side ou via proxy serveur)
+    const hasClientKey = !!import.meta.env.VITE_GEMINI_API_KEY;
+    console.log('🤖 InvokeLLM: Checking Gemini availability. Client key:', hasClientKey ? 'YES' : 'NO. Using proxy endpoint /api/gemini');
+    
+    if (hasClientKey || true) {
+      // try client-side key first, then fallback to proxy endpoint
+      const useProxy = !hasClientKey;
       try {
         const response = await fetch(useProxy ? '/api/gemini' : `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}` , {
           method: 'POST',
@@ -32,7 +36,7 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
 
         const content = json.content || json.candidates?.[0]?.content?.parts?.[0]?.text || '';
         if (!content) {
-          console.error('❌ Pas de contenu dans la réponse:', json);
+          console.error('❌ Pas de contenu dans la réponse Gemini:', json);
           throw new Error('Réponse vide de Gemini');
         }
 
@@ -45,9 +49,10 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
           }
         }
 
+        console.log('✅ Gemini response received:', content.substring(0, 100));
         return content;
       } catch (err) {
-        console.error('Gemini fetch failed, fallback to OpenAI if configured:', err);
+        console.error('❌ Gemini fetch failed:', err.message, '- trying OpenAI fallback...');
         // continue to OpenAI fallback if configured
       }
     }
@@ -99,14 +104,15 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
     }
 
     // Sinon, retourner une erreur claire
-    console.error('❌ Aucune clé API configurée pour l\'IA');
-    throw new Error('Configuration IA manquante. Veuillez configurer VITE_GEMINI_API_KEY ou VITE_OPENAI_API_KEY dans votre fichier .env');
+    const missingApiMsg = '❌ Aucune clé API configurée pour l\'IA (Gemini ou OpenAI). Configuration requise sur Vercel: GEMINI_API_KEY';
+    console.error(missingApiMsg);
+    throw new Error('IA n\'est pas configurée. Contactez l\'administrateur pour configurer les clés API (GEMINI_API_KEY ou VITE_OPENAI_API_KEY).');
   } catch (error) {
-    console.error('❌ Erreur lors de l\'appel à l\'IA:', error);
+    console.error('❌ Erreur lors de l\'appel à l\'IA:', error.message);
     
     // Message d'erreur plus clair pour l'utilisateur
-    if (error.message.includes('API key')) {
-      throw new Error('Clé API invalide. Vérifiez votre configuration.');
+    if (error.message.includes('API key') || error.message.includes('Configuration')) {
+      throw new Error(error.message);
     }
     if (error.message.includes('quota')) {
       throw new Error('Quota API dépassé. Veuillez réessayer plus tard.');
