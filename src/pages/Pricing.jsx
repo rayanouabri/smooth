@@ -25,6 +25,8 @@ export default function Pricing() {
     
     if (authenticated) {
       const userData = await getCurrentUser();
+      console.log('Pricing - User data:', userData);
+      console.log('Pricing - is_premium:', userData?.is_premium);
       setUser(userData);
     }
   };
@@ -75,12 +77,16 @@ export default function Pricing() {
         { text: "Réduction 20% sur cours particuliers", included: true },
       ],
       cta: "Passer à Premium",
+      ctaPremium: "Gérer mon abonnement",
       highlighted: true,
       popular: true,
       icon: "⚡",
       color: "from-orange-500 to-pink-500"
     }
   ];
+
+  // Vérifier si l'utilisateur est déjà Premium
+  const isPremium = user?.is_premium === true;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
@@ -154,11 +160,20 @@ export default function Pricing() {
                     : "border-2 border-gray-200 hover:shadow-xl transition-shadow"
                 }`}
               >
-                {plan.popular && (
+                {plan.popular && !isPremium && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
                     <Badge className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-1 shadow-lg">
                       <Star className="w-3 h-3 mr-1 inline" />
                       Le plus choisi
+                    </Badge>
+                  </div>
+                )}
+                
+                {plan.price > 0 && isPremium && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                    <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-1 shadow-lg">
+                      <Check className="w-3 h-3 mr-1 inline" />
+                      Plan Actif
                     </Badge>
                   </div>
                 )}
@@ -233,6 +248,12 @@ export default function Pricing() {
                     }`}
                     disabled={isProcessing}
                     onClick={async () => {
+                      // Si plan Premium et utilisateur déjà Premium
+                      if (plan.price > 0 && isPremium) {
+                        window.location.href = '/profile?tab=subscription';
+                        return;
+                      }
+
                       if (!isAuthenticated) {
                         redirectToLogin(window.location.href);
                       } else if (plan.price > 0) {
@@ -249,7 +270,7 @@ export default function Pricing() {
                             priceId: priceId,
                             userId: user?.id,
                             userEmail: user?.email,
-                            successUrl: window.location.origin + '/payment-success',
+                            successUrl: window.location.origin + '/PaymentSuccess',
                             cancelUrl: window.location.origin + '/pricing',
                           });
 
@@ -266,7 +287,7 @@ export default function Pricing() {
                       }
                     }}
                   >
-                    {isProcessing ? '⏳ Chargement...' : plan.cta}
+                    {isProcessing ? '⏳ Chargement...' : (plan.price > 0 && isPremium ? plan.ctaPremium : plan.cta)}
                   </Button>
                 </CardContent>
               </Card>

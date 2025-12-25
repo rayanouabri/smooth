@@ -44,7 +44,7 @@ export default async function handler(req, res) {
       customer_email: userEmail,
       'line_items[0][price]': priceId,
       'line_items[0][quantity]': '1',
-      success_url: (successUrl || 'https://www.franceprepacademy.fr/payment-success') + '?session_id={CHECKOUT_SESSION_ID}',
+      success_url: (successUrl || 'https://www.franceprepacademy.fr/PaymentSuccess') + '?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: cancelUrl || 'https://www.franceprepacademy.fr/pricing',
       allow_promotion_codes: 'true',
       billing_address_collection: 'auto',

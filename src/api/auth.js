@@ -38,12 +38,14 @@ export const me = async () => {
     return null;
   }
   
-  // Récupérer le profil utilisateur depuis la table user_profiles (par user_id ou user_email)
+  // Récupérer le profil utilisateur depuis la table user_profiles avec id exact
   const { data: profile, error } = await supabase
     .from('user_profiles')
     .select('*')
-    .or(`user_id.eq.${user.id},user_email.eq.${user.email}`)
-    .maybeSingle();
+    .eq('id', user.id)
+    .single();
+  
+  console.log('me() - User:', user.id, 'Profile:', profile, 'is_premium:', profile?.is_premium);
   
   // Si le profil n'existe pas, retourner juste les données de base de l'utilisateur
   // Le trigger ou AuthCallback créera le profil plus tard
@@ -52,6 +54,8 @@ export const me = async () => {
     id: user.id,
     email: user.email,
     full_name: profile?.full_name || user.user_metadata?.full_name || user.email?.split('@')[0],
+    is_premium: profile?.is_premium || false,
+    subscription_status: profile?.subscription_status || 'inactive',
     ...(profile || {}),
     ...user,
   };

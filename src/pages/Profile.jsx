@@ -13,7 +13,7 @@ import {
   SelectValue 
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { User, Globe, MapPin, Calendar, BookOpen, Target, X, Crown, Loader2 } from "lucide-react";
+import { User, Globe, MapPin, Calendar, BookOpen, Target, X, Crown, Loader2, Check } from "lucide-react";
 import ChatBot from "../components/ChatBot";
 
 export default function Profile() {
@@ -241,6 +241,100 @@ export default function Profile() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Subscription Management Card - Only for Premium users */}
+        {profile?.is_premium && (
+          <Card className="mb-8 border-2 border-yellow-400 bg-gradient-to-br from-yellow-50 to-orange-50">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Crown className="w-6 h-6 mr-2 text-yellow-600" />
+                Mon abonnement Premium
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium text-gray-700">Statut</label>
+                  <div className="flex items-center gap-2 mt-1">
+                    <Badge className="bg-green-600 text-white">
+                      <Check className="w-3 h-3 mr-1" />
+                      {profile.subscription_status === 'active' ? 'Actif' : profile.subscription_status}
+                    </Badge>
+                  </div>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-700">Membre Premium depuis</label>
+                  <p className="text-gray-900 font-semibold mt-1">
+                    {profile.premium_since ? new Date(profile.premium_since).toLocaleDateString('fr-FR') : 'Récemment'}
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white/50 p-4 rounded-lg">
+                <h3 className="font-semibold text-gray-900 mb-2">Avantages Premium actifs :</h3>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-600" />
+                    Accès illimité à tous les cours Premium
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-600" />
+                    IA Sophie illimitée avec historique
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-600" />
+                    Certificats professionnels
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-600" />
+                    Support prioritaire
+                  </li>
+                </ul>
+              </div>
+
+              <div className="flex gap-3">
+                <Button
+                  variant="outline"
+                  className="flex-1"
+                  onClick={() => window.open('https://billing.stripe.com/p/login/test_...', '_blank')}
+                >
+                  Gérer mon abonnement
+                </Button>
+                <Button
+                  onClick={() => window.location.href = '/pricing'}
+                  className="flex-1 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white"
+                >
+                  Voir les avantages Premium
+                </Button>
+              </div>
+
+              <p className="text-xs text-gray-600 text-center">
+                Pour modifier ou annuler votre abonnement, utilisez le portail de gestion Stripe
+              </p>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Upgrade Card - Only for Free users */}
+        {!profile?.is_premium && (
+          <Card className="mb-8 border-2 border-orange-400 bg-gradient-to-br from-orange-50 to-pink-50">
+            <CardContent className="p-6 text-center">
+              <div className="inline-block p-3 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full mb-4">
+                <Crown className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Passez Premium !</h3>
+              <p className="text-gray-700 mb-4">
+                Débloquez tous les cours, IA illimitée et certificats professionnels
+              </p>
+              <Button
+                onClick={() => window.location.href = '/pricing'}
+                className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white text-lg px-8 py-6"
+              >
+                Découvrir Premium →
+              </Button>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Profile Form */}
         <Card className="mb-8">
