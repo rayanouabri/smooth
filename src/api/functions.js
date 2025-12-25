@@ -65,6 +65,49 @@ export const checkStripeSession = async (sessionId) => {
 };
 
 /**
+ * Créer une session de billing portal Stripe pour gérer l'abonnement
+ */
+export const createBillingPortal = async ({ customerId, returnUrl }) => {
+  if (!customerId || typeof customerId !== 'string') {
+    throw new Error('Customer ID invalide. Un identifiant Stripe customer est requis.');
+  }
+
+  try {
+    console.log('Creating billing portal session for customer:', customerId);
+
+    const response = await fetch('/api/stripe/billing-portal', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        customerId,
+        returnUrl: returnUrl || window.location.origin + '/profile?tab=subscription',
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error('API error:', data);
+      throw new Error(data.error || 'Failed to create billing portal session');
+    }
+
+    // Rediriger vers le billing portal Stripe
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error('No billing portal URL returned');
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Erreur createBillingPortal:', error);
+    throw new Error(error?.message || 'Erreur lors de la création de la session de gestion d\'abonnement');
+  }
+};
+
+/**
  * Webhook Stripe
  */
 export const stripeWebhook = async (event, signature) => {

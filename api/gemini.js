@@ -48,11 +48,15 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing prompt' });
     }
 
-    // Essayer d'abord v1 avec gemini-1.5-flash, puis v1beta en fallback
-    // Format: https://generativelanguage.googleapis.com/v1/models/{model}:generateContent
-    let url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // Essayer plusieurs modèles dans l'ordre : gemini-1.5-flash, puis gemini-1.5-pro-latest
+    // Format: https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent
+    const models = [
+      { name: 'gemini-1.5-flash', version: 'v1beta' },
+      { name: 'gemini-1.5-pro-latest', version: 'v1beta' },
+      { name: 'gemini-1.5-pro', version: 'v1beta' },
+    ];
     
-    // Si v1 ne fonctionne pas, on essaiera v1beta dans le catch
+    let url = `https://generativelanguage.googleapis.com/${models[0].version}/models/${models[0].name}:generateContent?key=${apiKey}`;
     const payload = {
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
@@ -70,56 +74,60 @@ export default async function handler(req, res) {
     };
 
     console.log('[Gemini] Making request to Gemini API, prompt length:', prompt.length);
-    console.log('[Gemini] Using URL:', url.replace(apiKey, 'API_KEY_HIDDEN'));
+    console.log('[Gemini] Trying models in order:', models.map(m => m.name).join(', '));
     
     let upstream;
     let lastError;
+    let triedModels = [];
     
-    // Essayer d'abord avec v1
-    try {
-      upstream = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+    // Essayer chaque modèle jusqu'à ce qu'un fonctionne
+    for (const model of models) {
+      const modelUrl = `https://generativelanguage.googleapis.com/${model.version}/models/${model.name}:generateContent?key=${apiKey}`;
+      triedModels.push(`${model.version}/${model.name}`);
       
-      // Si v1 échoue avec 404, essayer v1beta
-      if (upstream.status === 404) {
-        console.log('[Gemini] v1 returned 404, trying v1beta...');
-        const v1betaUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-        upstream = await fetch(v1betaUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-      }
-    } catch (fetchError) {
-      console.error('[Gemini] Fetch error:', fetchError.message);
-      lastError = fetchError;
-      
-      // Essayer v1beta en fallback si v1 échoue complètement
       try {
-        console.log('[Gemini] Trying v1beta as fallback...');
-        const v1betaUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-        upstream = await fetch(v1betaUrl, {
+        console.log(`[Gemini] Trying ${model.version}/${model.name}...`);
+        upstream = await fetch(modelUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
-        lastError = null; // Reset error si v1beta fonctionne
-      } catch (v1betaError) {
-        console.error('[Gemini] Both v1 and v1beta failed:', v1betaError.message);
-        return res.status(500).json({ 
-          error: 'Network error connecting to Gemini API',
-          message: `v1: ${fetchError.message}, v1beta: ${v1betaError.message}`
-        });
+        
+        // Si ça fonctionne (status < 400), on sort de la boucle
+        if (upstream.status < 400) {
+          console.log(`[Gemini] Success with ${model.version}/${model.name}`);
+          break;
+        }
+        
+        // Si 404, essayer le modèle suivant
+        if (upstream.status === 404) {
+          console.log(`[Gemini] ${model.version}/${model.name} returned 404, trying next model...`);
+          const errorText = await upstream.text();
+          let errorJson;
+          try {
+            errorJson = JSON.parse(errorText);
+          } catch (e) {
+            errorJson = { error: { message: errorText } };
+          }
+          lastError = new Error(errorJson.error?.message || `Model ${model.name} not found`);
+          continue; // Essayer le modèle suivant
+        }
+        
+        // Autre erreur, on sort
+        break;
+      } catch (fetchError) {
+        console.error(`[Gemini] Error with ${model.version}/${model.name}:`, fetchError.message);
+        lastError = fetchError;
+        continue; // Essayer le modèle suivant
       }
     }
     
-    if (lastError && !upstream) {
+    if (!upstream || upstream.status >= 400) {
+      const errorMsg = lastError?.message || `All models failed. Tried: ${triedModels.join(', ')}`;
+      console.error('[Gemini] All models failed:', errorMsg);
       return res.status(500).json({ 
-        error: 'Network error connecting to Gemini API',
-        message: lastError.message 
+        error: 'No available Gemini model',
+        message: errorMsg
       });
     }
 
