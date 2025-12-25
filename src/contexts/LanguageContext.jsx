@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getTranslation } from '../utils/i18n';
+import React, { createContext, useContext, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import '../i18n/config'; // Initialiser i18next
 
 const LanguageContext = createContext();
 
@@ -12,25 +13,24 @@ export const useLanguage = () => {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState(() => {
-    // Récupérer la langue sauvegardée ou détecter depuis le navigateur
-    const saved = localStorage.getItem('franceprep_language');
-    if (saved) return saved;
-    
-    const browserLang = navigator.language.split('-')[0];
-    const supported = ['fr', 'en', 'es', 'ar', 'zh', 'pt', 'ru', 'de', 'it', 'ja', 'ko', 'hi', 'tr', 'vi', 'pl'];
-    return supported.includes(browserLang) ? browserLang : 'fr';
-  });
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
-    localStorage.setItem('franceprep_language', language);
-    document.documentElement.lang = language;
-  }, [language]);
+    // Mettre à jour l'attribut lang du document
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
-  const t = (key) => getTranslation(language, key);
+  const setLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+  };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ 
+      language: i18n.language, 
+      setLanguage, 
+      t,
+      i18n 
+    }}>
       {children}
     </LanguageContext.Provider>
   );

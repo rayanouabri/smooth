@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { getCurrentUser, me } from "@/api/auth";
 import { supabase } from "@/api/supabaseClient";
 import { createBillingPortal } from "@/api/functions";
@@ -16,11 +16,12 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { User, Globe, MapPin, Calendar, BookOpen, Target, X, Crown, Loader2, Check, CreditCard } from "lucide-react";
+import { User, Globe, MapPin, Calendar, BookOpen, Target, X, Crown, Loader2, Check, CreditCard, AlertCircle, Calendar as CalendarIcon, DollarSign, FileText } from "lucide-react";
 import ChatBot from "../components/ChatBot";
 
 export default function Profile() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const activeTab = searchParams.get('tab') || 'profile';
   
   const [user, setUser] = useState(null);
@@ -214,7 +215,13 @@ export default function Profile() {
         )}
 
         {/* Tabs */}
-        <Tabs value={activeTab} className="mb-8">
+        <Tabs 
+          value={activeTab} 
+          onValueChange={(value) => {
+            setSearchParams({ tab: value });
+          }}
+          className="mb-8"
+        >
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="profile">Mon Profil</TabsTrigger>
             <TabsTrigger value="subscription" disabled={!profile?.is_premium}>
@@ -454,103 +461,155 @@ export default function Profile() {
           <TabsContent value="subscription">
             {/* Subscription Management Card */}
             {profile?.is_premium ? (
-              <Card className="border-2 border-yellow-400 bg-gradient-to-br from-yellow-50 to-orange-50">
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Crown className="w-6 h-6 mr-2 text-yellow-600" />
-                    Mon abonnement Premium
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm font-medium text-gray-700">Statut</label>
-                      <div className="flex items-center gap-2 mt-1">
-                        <Badge className="bg-green-600 text-white">
-                          <Check className="w-3 h-3 mr-1" />
-                          {profile.subscription_status === 'active' ? 'Actif' : profile.subscription_status}
-                        </Badge>
+              <div className="space-y-6">
+                <Card className="border-2 border-yellow-400 bg-gradient-to-br from-yellow-50 to-orange-50">
+                  <CardHeader>
+                    <CardTitle className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <Crown className="w-6 h-6 mr-2 text-yellow-600" />
+                        Mon abonnement Premium
+                      </div>
+                      <Badge className="bg-green-600 text-white">
+                        <Check className="w-3 h-3 mr-1" />
+                        {profile.subscription_status === 'active' ? 'Actif' : profile.subscription_status || 'Actif'}
+                      </Badge>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    {/* Informations de l'abonnement */}
+                    <div className="grid md:grid-cols-3 gap-4">
+                      <div className="bg-white/70 p-4 rounded-lg">
+                        <div className="flex items-center gap-2 mb-2">
+                          <CalendarIcon className="w-4 h-4 text-gray-600" />
+                          <label className="text-xs font-medium text-gray-600">Membre depuis</label>
+                        </div>
+                        <p className="text-gray-900 font-semibold">
+                          {profile.premium_since ? new Date(profile.premium_since).toLocaleDateString('fr-FR', { 
+                            day: 'numeric', 
+                            month: 'long', 
+                            year: 'numeric' 
+                          }) : 'Récemment'}
+                        </p>
+                      </div>
+                      <div className="bg-white/70 p-4 rounded-lg">
+                        <div className="flex items-center gap-2 mb-2">
+                          <DollarSign className="w-4 h-4 text-gray-600" />
+                          <label className="text-xs font-medium text-gray-600">ID Client Stripe</label>
+                        </div>
+                        <p className="text-gray-900 font-semibold text-xs truncate">
+                          {profile.stripe_customer_id || 'Non disponible'}
+                        </p>
+                      </div>
+                      <div className="bg-white/70 p-4 rounded-lg">
+                        <div className="flex items-center gap-2 mb-2">
+                          <FileText className="w-4 h-4 text-gray-600" />
+                          <label className="text-xs font-medium text-gray-600">ID Abonnement</label>
+                        </div>
+                        <p className="text-gray-900 font-semibold text-xs truncate">
+                          {profile.stripe_subscription_id || 'Non disponible'}
+                        </p>
                       </div>
                     </div>
-                    <div>
-                      <label className="text-sm font-medium text-gray-700">Membre Premium depuis</label>
-                      <p className="text-gray-900 font-semibold mt-1">
-                        {profile.premium_since ? new Date(profile.premium_since).toLocaleDateString('fr-FR') : 'Récemment'}
-                      </p>
+
+                    {/* Avantages Premium */}
+                    <div className="bg-white/50 p-4 rounded-lg">
+                      <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
+                        <Check className="w-5 h-5 mr-2 text-green-600" />
+                        Avantages Premium actifs
+                      </h3>
+                      <ul className="space-y-2 text-sm text-gray-700">
+                        <li className="flex items-center">
+                          <Check className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
+                          Accès illimité à tous les cours Premium
+                        </li>
+                        <li className="flex items-center">
+                          <Check className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
+                          IA Sophie illimitée avec historique complet
+                        </li>
+                        <li className="flex items-center">
+                          <Check className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
+                          Certificats professionnels téléchargeables
+                        </li>
+                        <li className="flex items-center">
+                          <Check className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
+                          Support prioritaire par email
+                        </li>
+                        <li className="flex items-center">
+                          <Check className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
+                          Accès anticipé aux nouveaux cours
+                        </li>
+                      </ul>
                     </div>
-                  </div>
 
-                  <div className="bg-white/50 p-4 rounded-lg">
-                    <h3 className="font-semibold text-gray-900 mb-2">Avantages Premium actifs :</h3>
-                    <ul className="space-y-2 text-sm text-gray-700">
-                      <li className="flex items-center">
-                        <Check className="w-4 h-4 mr-2 text-green-600" />
-                        Accès illimité à tous les cours Premium
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-4 h-4 mr-2 text-green-600" />
-                        IA Sophie illimitée avec historique
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-4 h-4 mr-2 text-green-600" />
-                        Certificats professionnels
-                      </li>
-                      <li className="flex items-center">
-                        <Check className="w-4 h-4 mr-2 text-green-600" />
-                        Support prioritaire
-                      </li>
-                    </ul>
-                  </div>
+                    {/* Actions */}
+                    <div className="space-y-3">
+                      <div className="flex gap-3">
+                        <Button
+                          variant="outline"
+                          className="flex-1"
+                          disabled={billingLoading}
+                          onClick={async () => {
+                            if (!profile?.stripe_customer_id) {
+                              alert('Aucun identifiant client Stripe trouvé. Contactez le support à contact@franceprepacademy.fr');
+                              return;
+                            }
+                            
+                            setBillingLoading(true);
+                            try {
+                              await createBillingPortal({
+                                customerId: profile.stripe_customer_id,
+                                returnUrl: window.location.origin + '/profile?tab=subscription',
+                              });
+                            } catch (error) {
+                              console.error('Erreur billing portal:', error);
+                              alert('Erreur lors de l\'ouverture du portail de gestion. ' + error.message);
+                              setBillingLoading(false);
+                            }
+                          }}
+                        >
+                          {billingLoading ? (
+                            <>
+                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                              Chargement...
+                            </>
+                          ) : (
+                            <>
+                              <CreditCard className="w-4 h-4 mr-2" />
+                              Gérer mon abonnement
+                            </>
+                          )}
+                        </Button>
+                        <Button
+                          onClick={() => window.location.href = '/pricing'}
+                          className="flex-1 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white"
+                        >
+                          Voir tous les avantages
+                        </Button>
+                      </div>
 
-                  <div className="flex gap-3">
-                    <Button
-                      variant="outline"
-                      className="flex-1"
-                      disabled={billingLoading}
-                      onClick={async () => {
-                        if (!profile?.stripe_customer_id) {
-                          alert('Aucun identifiant client Stripe trouvé. Contactez le support.');
-                          return;
-                        }
-                        
-                        setBillingLoading(true);
-                        try {
-                          await createBillingPortal({
-                            customerId: profile.stripe_customer_id,
-                            returnUrl: window.location.origin + '/profile?tab=subscription',
-                          });
-                        } catch (error) {
-                          console.error('Erreur billing portal:', error);
-                          alert('Erreur lors de l\'ouverture du portail de gestion. ' + error.message);
-                          setBillingLoading(false);
-                        }
-                      }}
-                    >
-                      {billingLoading ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Chargement...
-                        </>
-                      ) : (
-                        <>
-                          <CreditCard className="w-4 h-4 mr-2" />
-                          Gérer mon abonnement
-                        </>
-                      )}
-                    </Button>
-                    <Button
-                      onClick={() => window.location.href = '/pricing'}
-                      className="flex-1 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white"
-                    >
-                      Voir les avantages Premium
-                    </Button>
-                  </div>
-
-                  <p className="text-xs text-gray-600 text-center">
-                    Pour modifier ou annuler votre abonnement, utilisez le portail de gestion Stripe
-                  </p>
-                </CardContent>
-              </Card>
+                      {/* Informations importantes */}
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <div className="flex items-start gap-2">
+                          <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                          <div className="text-sm text-blue-900">
+                            <p className="font-semibold mb-1">Gestion de votre abonnement</p>
+                            <p className="text-blue-800">
+                              Pour modifier votre méthode de paiement, consulter vos factures, ou résilier votre abonnement, 
+                              cliquez sur "Gérer mon abonnement" ci-dessus. Vous serez redirigé vers le portail sécurisé Stripe.
+                            </p>
+                            <p className="text-blue-800 mt-2">
+                              <strong>Besoin d'aide ?</strong> Contactez-nous à{' '}
+                              <a href="mailto:contact@franceprepacademy.fr" className="underline font-semibold">
+                                contact@franceprepacademy.fr
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             ) : (
               <Card className="border-2 border-orange-400 bg-gradient-to-br from-orange-50 to-pink-50">
                 <CardContent className="p-6 text-center">
