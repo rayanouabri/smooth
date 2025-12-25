@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 .env
+# Fichiers d'environnement avec clés API sensibles
+.env
+.env.local
+.env*.local

@@ -15,7 +15,7 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
     // Si Gemini API Key est configurée, utiliser Gemini (priorité)
     if (import.meta.env.VITE_GEMINI_API_KEY) {
       const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
       
       const requestBody = {
         contents: [{
@@ -27,10 +27,29 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
           temperature: 0.7,
           topK: 40,
           topP: 0.95,
-          maxOutputTokens: 2048,
-        }
+          maxOutputTokens: 4096,
+        },
+        safetySettings: [
+          {
+            category: "HARM_CATEGORY_HARASSMENT",
+            threshold: "BLOCK_NONE"
+          },
+          {
+            category: "HARM_CATEGORY_HATE_SPEECH",
+            threshold: "BLOCK_NONE"
+          },
+          {
+            category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            threshold: "BLOCK_NONE"
+          },
+          {
+            category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+            threshold: "BLOCK_NONE"
+          }
+        ]
       };
 
+      console.log('🤖 Appel à Gemini API...');
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -41,11 +60,19 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
 
       if (!response.ok) {
         const error = await response.json();
+        console.error('❌ Erreur Gemini API:', error);
         throw new Error(error.error?.message || 'Erreur Gemini API');
       }
 
       const json = await response.json();
-      const content = json.candidates[0]?.content?.parts[0]?.text || '';
+      console.log('✅ Réponse Gemini reçue');
+      
+      const content = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      
+      if (!content) {
+        console.error('❌ Pas de contenu dans la réponse:', json);
+        throw new Error('Réponse vide de Gemini');
+      }
 
       // Si response_json_schema est fourni, essayer d'extraire le JSON
       if (response_json_schema && content) {
@@ -109,33 +136,20 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
       return content;
     }
 
-    // Sinon, utiliser une Edge Function Supabase
-    const { data, error } = await supabase.functions.invoke('invoke-llm', {
-      body: {
-        prompt,
-        add_context_from_internet,
-        model,
-        response_json_schema,
-      },
-    });
-
-    if (error) throw error;
-
-    // Si vous utilisez une Edge Function
-    const result = data?.response || data?.text || data;
-    
-    // Si response_json_schema est fourni et que le résultat est une string, essayer de parser
-    if (response_json_schema && typeof result === 'string') {
-      try {
-        return JSON.parse(result);
-      } catch (e) {
-        return result;
-      }
-    }
-
-    return result;
+    // Sinon, retourner une erreur claire
+    console.error('❌ Aucune clé API configurée pour l\'IA');
+    throw new Error('Configuration IA manquante. Veuillez configurer VITE_GEMINI_API_KEY ou VITE_OPENAI_API_KEY dans votre fichier .env');
   } catch (error) {
-    console.error('Error invoking LLM:', error);
+    console.error('❌ Erreur lors de l\'appel à l\'IA:', error);
+    
+    // Message d'erreur plus clair pour l'utilisateur
+    if (error.message.includes('API key')) {
+      throw new Error('Clé API invalide. Vérifiez votre configuration.');
+    }
+    if (error.message.includes('quota')) {
+      throw new Error('Quota API dépassé. Veuillez réessayer plus tard.');
+    }
+    
     throw error;
   }
 };

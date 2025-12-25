@@ -80,9 +80,26 @@ Réponds maintenant de manière utile et bienveillante :`,
 
       setMessages(prev => [...prev, { role: "assistant", content: response }]);
     } catch (error) {
+      console.error("Erreur ChatBot:", error);
+      
+      let errorMessage = "😔 Désolée, une erreur s'est produite. ";
+      
+      // Messages d'erreur personnalisés
+      if (error.message.includes('Configuration IA manquante')) {
+        errorMessage = "🔧 L'IA n'est pas encore configurée. Veuillez ajouter une clé API Gemini dans votre fichier .env\n\n📝 Obtenez une clé gratuite sur : https://makersuite.google.com/app/apikey";
+      } else if (error.message.includes('quota')) {
+        errorMessage = "⚠️ Quota API dépassé. Veuillez réessayer dans quelques minutes.";
+      } else if (error.message.includes('API key')) {
+        errorMessage = "🔑 Clé API invalide. Vérifiez votre configuration dans le fichier .env";
+      } else if (error.message.includes('network') || error.message.includes('fetch')) {
+        errorMessage = "🌐 Erreur de connexion. Vérifiez votre connexion internet.";
+      } else {
+        errorMessage += "Veuillez réessayer ou contactez le support : contact@franceprepacademy.fr";
+      }
+      
       setMessages(prev => [...prev, { 
         role: "assistant", 
-        content: "😔 Désolée, une erreur s'est produite. Veuillez réessayer." 
+        content: errorMessage
       }]);
     } finally {
       setIsLoading(false);
