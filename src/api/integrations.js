@@ -12,13 +12,9 @@ import { supabase } from './supabaseClient';
  */
 export const InvokeLLM = async ({ prompt, add_context_from_internet = false, model = 'gpt-4', response_json_schema = null }) => {
   try {
-    console.log('🤖 [InvokeLLM] Starting LLM call...');
-    
-    // Always use Gemini via proxy - most secure method
-    // Never expose API keys to client-side code
-    
+    // Utiliser TOUJOURS le proxy /api/gemini (clé backend sûre)
     try {
-      // Use /api/gemini proxy endpoint (server-side, secure)
+      console.log('[InvokeLLM] Calling /api/gemini proxy');
       const response = await fetch('/api/gemini', {
         method: 'POST',
         headers: {
@@ -27,62 +23,43 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
         body: JSON.stringify({ prompt }),
       });
 
-      console.log('🤖 [InvokeLLM] Proxy response status:', response.status);
-      console.log('🤖 [InvokeLLM] Response content-type:', response.headers.get('content-type'));
-      
-      // Get response text first to debug
-      const text = await response.text();
-      console.log('🤖 [InvokeLLM] Raw response (first 300 chars):', text.substring(0, 300));
-      
-      let json;
-      try {
-        json = JSON.parse(text);
-      } catch (parseErr) {
-        console.error('❌ [InvokeLLM] Failed to parse JSON:', parseErr.message);
-        console.error('❌ [InvokeLLM] Raw text was:', text);
-        throw new Error(`Invalid JSON response: ${text.substring(0, 100)}...`);
-      }
-      
       if (!response.ok) {
-        console.error('❌ [InvokeLLM] Proxy error:', json);
-        
-        // Check if it's a leaked key issue
-        if (json.error?.includes?.('leaked') || json.message?.includes?.('leaked')) {
-          console.error('🚨 [InvokeLLM] API KEY WAS COMPROMISED!');
-          throw new Error('API key compromised - need to generate a new one');
-        }
-        
-        throw new Error(json.error || `Server error ${response.status}`);
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        console.error('[InvokeLLM] Gemini proxy error:', response.status, errorData);
+        throw new Error(errorData.error || `Gemini API error (${response.status})`);
       }
 
-      const content = json.content || '';
-      if (!content) {
-        console.error('❌ [InvokeLLM] No content in proxy response:', json);
-        throw new Error('Empty response from LLM');
-      }
-
-      console.log('✅ [InvokeLLM] Got content, length:', content.length);
+      const json = await response.json();
+      const content = json.content;
       
+      if (!content) {
+        console.error('[InvokeLLM] Empty content from proxy:', json);
+        throw new Error('Réponse vide de Gemini');
+      }
+
       if (response_json_schema && content) {
         try {
           const jsonMatch = content.match(/\{[\s\S]*\}/);
-          if (jsonMatch) return JSON.parse(jsonMatch[0]);
+          if (jsonMatch) {
+            return JSON.parse(jsonMatch[0]);
+          }
         } catch (e) {
-          console.error('Error parsing JSON from response:', e);
+          console.warn('[InvokeLLM] JSON parsing failed, returning raw content');
         }
       }
 
+      console.log('[InvokeLLM] Gemini success, content length:', content.length);
       return content;
-    } catch (proxyErr) {
-      console.error('❌ [InvokeLLM] Proxy failed:', proxyErr.message);
-      console.log('🤖 [InvokeLLM] Trying OpenAI fallback...');
-      
-      // Fallback to OpenAI
+    } catch (err) {
+      console.error('[InvokeLLM] Gemini proxy failed:', err.message);
       if (!import.meta.env.VITE_OPENAI_API_KEY) {
-        throw new Error('No LLM configured. Please set up GEMINI_API_KEY on Vercel or use OpenAI.');
+        throw err;
       }
-      
-      // OpenAI fallback
+    }
+    
+    // Fallback: Si OpenAI API Key est configurée
+    if (import.meta.env.VITE_OPENAI_API_KEY) {
+      console.log('[InvokeLLM] Falling back to OpenAI');
       const requestBody = {
         model: model === 'gpt-4' ? 'gpt-4-turbo-preview' : model,
         messages: [{ role: 'user', content: prompt }],
@@ -91,7 +68,7 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
 
       if (response_json_schema) {
         requestBody.response_format = { type: 'json_object' };
-        const jsonPrompt = `${prompt}\n\nRespond ONLY with valid JSON matching: ${JSON.stringify(response_json_schema)}`;
+        const jsonPrompt = `${prompt}\n\nImportant: Réponds UNIQUEMENT avec un objet JSON valide qui correspond exactement à ce schéma: ${JSON.stringify(response_json_schema)}`;
         requestBody.messages[0].content = jsonPrompt;
       }
 
@@ -110,24 +87,39 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
       }
 
       const json = await response.json();
-      const content = json.choices[0].message.content;
+      const content = json.choices[0]?.message?.content;
+
+      if (!content) {
+        throw new Error('OpenAI returned empty content');
+      }
 
       if (response_json_schema) {
         try {
           return JSON.parse(content);
         } catch (e) {
-          console.error('Error parsing JSON:', e);
-          throw new Error('Invalid JSON in LLM response');
+          console.error('[InvokeLLM] JSON parse error from OpenAI:', e);
+          throw new Error('Invalid JSON from OpenAI');
         }
       }
 
       return content;
     }
 
-    // No LLM configured
-    throw new Error('❌ No LLM API configured. Set GEMINI_API_KEY on Vercel (https://aistudio.google.com/apikey) or configure OpenAI.');
+    // Erreur: Aucune clé API configurée
+    throw new Error('No AI API configured. Set GEMINI_API_KEY on Vercel or VITE_OPENAI_API_KEY in .env');
   } catch (error) {
-    console.error('❌ [InvokeLLM] Fatal error:', error.message);
+    console.error('[InvokeLLM] Fatal error:', error.message);
+    
+    if (error.message.includes('GEMINI_API_KEY not configured')) {
+      throw new Error('⚠️ Clé Gemini non configurée sur le serveur.');
+    }
+    if (error.message.includes('quota')) {
+      throw new Error('⚠️ Quota API dépassé.');
+    }
+    if (error.message.includes('network') || error.message.includes('fetch')) {
+      throw new Error('⚠️ Erreur de connexion réseau.');
+    }
+    
     throw error;
   }
 };

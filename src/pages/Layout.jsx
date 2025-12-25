@@ -20,22 +20,8 @@ export default function Layout({ children, currentPageName }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
 
-  // Debug: log when user changes
-  useEffect(() => {
-    if (user?.is_premium) {
-      console.log('✅ Badge should be visible - user.is_premium is TRUE:', user.is_premium);
-    } else if (user) {
-      console.log('⚠️ Badge NOT visible - user.is_premium is FALSE:', user.is_premium);
-    }
-  }, [user?.is_premium]);
-
   useEffect(() => {
     checkAuth();
-    
-    // Rafraîchir le user toutes les 5 secondes (utile après paiement)
-    const refreshInterval = setInterval(checkAuth, 5000);
-    
-    return () => clearInterval(refreshInterval);
   }, []);
 
   const checkAuth = async () => {
@@ -44,19 +30,10 @@ export default function Layout({ children, currentPageName }) {
     if (authenticated) {
       try {
         const userData = await getCurrentUser();
-        console.log('🔄 Layout - User data updated:', {
-          id: userData?.id,
-          email: userData?.email,
-          is_premium: userData?.is_premium,
-          subscription_status: userData?.subscription_status,
-          full_name: userData?.full_name,
-        });
         setUser(userData);
       } catch (err) {
-        console.error("❌ Error fetching user:", err);
+        console.error("Error fetching user:", err);
       }
-    } else {
-      console.log('🔄 Layout - User not authenticated');
     }
   };
 

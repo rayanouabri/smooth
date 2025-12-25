@@ -23,15 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# Environment files with sensitive API keys
+.env
+# Fichiers d'environnement avec clés API sensibles
 .env
 .env.local
 .env*.local
-.env.*.local
-
-# IDE
-.venv
-venv/
-
-# OS
-Thumbs.db
