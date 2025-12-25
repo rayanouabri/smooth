@@ -137,21 +137,40 @@ function _getCurrentPage(url) {
 function PagesContent() {
     const location = useLocation();
     const [isReady, setIsReady] = React.useState(false);
+    const [hasError, setHasError] = React.useState(false);
     
     React.useEffect(() => {
         // S'assurer que le composant est prêt avant de rendre
-        setIsReady(true);
+        // Utiliser setTimeout pour éviter les problèmes de compatibilité avec Opera
+        const timer = setTimeout(() => {
+            try {
+                setIsReady(true);
+            } catch (err) {
+                console.error('Error initializing PagesContent:', err);
+                setHasError(true);
+            }
+        }, 0);
+        
+        return () => clearTimeout(timer);
     }, []);
     
     const currentPage = _getCurrentPage(location.pathname);
     
     // Afficher un loader pendant le chargement initial pour éviter les pages blanches
-    if (!isReady) {
+    if (!isReady || hasError) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-cyan-50">
                 <div className="text-center">
                     <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
                     <p className="text-gray-600">Chargement...</p>
+                    {hasError && (
+                        <button 
+                            onClick={() => window.location.reload()} 
+                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                        >
+                            Recharger
+                        </button>
+                    )}
                 </div>
             </div>
         );
