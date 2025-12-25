@@ -27,6 +27,12 @@ export default function Profile() {
 
   useEffect(() => {
     loadProfile();
+    // Recharger le profil quand on revient sur la page (après paiement)
+    const handleFocus = () => {
+      loadProfile();
+    };
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
   }, []);
 
   const loadProfile = async () => {

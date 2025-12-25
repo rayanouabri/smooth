@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/api/supabaseClient";
 
 export default function Layout({ children, currentPageName }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,14 +23,36 @@ export default function Layout({ children, currentPageName }) {
 
   useEffect(() => {
     checkAuth();
-  }, []);
+    // Recharger le statut utilisateur périodiquement pour détecter les changements de premium
+    const interval = setInterval(() => {
+      if (isAuthenticated) {
+        checkAuth();
+      }
+    }, 30000); // Toutes les 30 secondes
+    
+    return () => clearInterval(interval);
+  }, [isAuthenticated]);
 
   const checkAuth = async () => {
     const authenticated = await checkAuthStatus();
     setIsAuthenticated(authenticated);
     if (authenticated) {
       try {
+        // Utiliser me() pour obtenir les données complètes avec le profil premium
         const userData = await getCurrentUser();
+        // Recharger le profil depuis la base de données pour être sûr
+        if (userData?.id) {
+          const { data: profile } = await supabase
+            .from('user_profiles')
+            .select('is_premium, subscription_status')
+            .eq('id', userData.id)
+            .single();
+          
+          if (profile) {
+            userData.is_premium = profile.is_premium === true;
+            userData.subscription_status = profile.subscription_status;
+          }
+        }
         setUser(userData);
       } catch (err) {
         console.error("Error fetching user:", err);

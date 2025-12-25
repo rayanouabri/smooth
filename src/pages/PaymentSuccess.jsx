@@ -43,6 +43,8 @@ export default function PaymentSuccess() {
         // Utilisateur connecté - marquer comme premium
         console.log('User authenticated, marking as premium');
         await markUserAsPremium(authUser.id, authUser.email);
+        // Attendre un peu pour que la base de données se mette à jour
+        await new Promise(resolve => setTimeout(resolve, 1000));
         setUser(authUser);
         setStep('success');
       } else {
@@ -136,6 +138,8 @@ export default function PaymentSuccess() {
       if (data.user) {
         // Créer le profil premium
         await markUserAsPremium(data.user.id, formData.email);
+        // Attendre un peu pour que la base de données se mette à jour
+        await new Promise(resolve => setTimeout(resolve, 1000));
         
         setUser(data.user);
         setStep('success');
@@ -218,7 +222,10 @@ export default function PaymentSuccess() {
                 </div>
 
                 <Button 
-                  onClick={() => navigate('/dashboard')} 
+                  onClick={() => {
+                    // Forcer le rechargement pour mettre à jour le statut premium
+                    window.location.href = '/dashboard';
+                  }} 
                   className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white py-6 font-semibold text-lg"
                 >
                   Accéder à mon Dashboard →

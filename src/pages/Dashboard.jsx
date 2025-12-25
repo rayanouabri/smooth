@@ -38,6 +38,12 @@ export default function Dashboard() {
 
   useEffect(() => {
     loadUser();
+    // Recharger le profil quand on revient sur la page (après paiement)
+    const handleFocus = () => {
+      loadUser();
+    };
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
   }, []);
 
   const loadUser = async () => {

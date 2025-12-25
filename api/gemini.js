@@ -1,9 +1,16 @@
 module.exports = async function handler(req, res) {
+  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
   try {
     // Parser le body si nécessaire
@@ -13,14 +20,17 @@ module.exports = async function handler(req, res) {
         body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
       } catch (e) {
         console.error('[Gemini] Body parse error:', e.message);
-        body = {};
+        return res.status(400).json({ error: 'Invalid JSON in request body' });
       }
     }
 
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      console.error('[Gemini] GEMINI_API_KEY not configured');
-      return res.status(500).json({ error: 'GEMINI_API_KEY not configured on server' });
+      console.error('[Gemini] GEMINI_API_KEY not configured in Vercel environment variables');
+      return res.status(500).json({ 
+        error: 'GEMINI_API_KEY not configured on server',
+        message: 'Please configure GEMINI_API_KEY in Vercel project settings → Environment Variables'
+      });
     }
 
     const prompt = body.prompt;
@@ -46,11 +56,22 @@ module.exports = async function handler(req, res) {
       ]
     };
 
-    const upstream = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+    console.log('[Gemini] Making request to Gemini API, prompt length:', prompt.length);
+    
+    let upstream;
+    try {
+      upstream = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+    } catch (fetchError) {
+      console.error('[Gemini] Fetch error:', fetchError.message);
+      return res.status(500).json({ 
+        error: 'Network error connecting to Gemini API',
+        message: fetchError.message 
+      });
+    }
 
     const rawText = await upstream.text();
     let json;
@@ -62,8 +83,27 @@ module.exports = async function handler(req, res) {
     }
 
     if (!upstream.ok) {
-      console.error('[Gemini] API error:', upstream.status, json);
-      return res.status(upstream.status).json({ error: json.error?.message || 'Gemini API error' });
+      console.error('[Gemini] API error:', upstream.status, JSON.stringify(json).substring(0, 500));
+      const errorMessage = json.error?.message || json.error || 'Gemini API error';
+      
+      // Messages d'erreur plus spécifiques
+      if (upstream.status === 401 || upstream.status === 403) {
+        return res.status(500).json({ 
+          error: 'Invalid API key',
+          message: 'Please check your GEMINI_API_KEY in Vercel environment variables'
+        });
+      }
+      if (upstream.status === 429) {
+        return res.status(500).json({ 
+          error: 'Rate limit exceeded',
+          message: 'Gemini API quota exceeded. Please try again later.'
+        });
+      }
+      
+      return res.status(500).json({ 
+        error: errorMessage,
+        status: upstream.status
+      });
     }
 
     const content = json.candidates?.[0]?.content?.parts?.[0]?.text;

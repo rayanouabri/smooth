@@ -8,6 +8,7 @@ import { createCheckout } from "@/api/functions";
 import { createPageUrl } from "../utils";
 import ChatBot from "../components/ChatBot";
 import { motion } from "framer-motion";
+import { supabase } from "@/api/supabaseClient";
 
 export default function Pricing() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,6 +18,14 @@ export default function Pricing() {
 
   useEffect(() => {
     checkAuth();
+    // Recharger le statut utilisateur quand on revient sur la page (après paiement)
+    const handleFocus = () => {
+      if (isAuthenticated) {
+        checkAuth();
+      }
+    };
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
   }, []);
 
   const checkAuth = async () => {
@@ -24,10 +33,30 @@ export default function Pricing() {
     setIsAuthenticated(authenticated);
     
     if (authenticated) {
-      const userData = await getCurrentUser();
-      console.log('Pricing - User data:', userData);
-      console.log('Pricing - is_premium:', userData?.is_premium);
-      setUser(userData);
+      // Utiliser me() pour obtenir les données complètes avec le profil
+      const fullUserData = await getCurrentUser();
+      console.log('Pricing - User data:', fullUserData);
+      console.log('Pricing - is_premium:', fullUserData?.is_premium);
+      
+      if (fullUserData) {
+        // Recharger le profil depuis la base de données pour être sûr d'avoir les dernières données
+        try {
+          const { data: profile } = await supabase
+            .from('user_profiles')
+            .select('is_premium, subscription_status')
+            .eq('id', fullUserData.id)
+            .single();
+          
+          if (profile) {
+            fullUserData.is_premium = profile.is_premium === true;
+            fullUserData.subscription_status = profile.subscription_status;
+            console.log('Pricing - Profile reloaded, is_premium:', fullUserData.is_premium);
+          }
+        } catch (err) {
+          console.error('Error reloading profile:', err);
+        }
+        setUser(fullUserData);
+      }
     }
   };
 

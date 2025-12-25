@@ -26,21 +26,68 @@ serve(async (req) => {
         const session = event.data.object
         console.log('Checkout completed:', session.id, 'Email:', session.customer_email)
 
-        const { error } = await supabase
+        // Chercher l'utilisateur par email dans auth.users
+        const { data: authUsers } = await supabase.auth.admin.listUsers()
+        const authUser = authUsers?.users?.find(u => u.email === session.customer_email)
+        
+        // Chercher le profil existant
+        const { data: existingProfile } = await supabase
           .from('user_profiles')
-          .update({
-            is_premium: true,
-            subscription_status: 'active',
-            stripe_customer_id: session.customer,
-            stripe_subscription_id: session.subscription,
-            premium_since: new Date().toISOString(),
-          })
+          .select('*')
           .eq('user_email', session.customer_email)
+          .maybeSingle()
 
-        if (error) {
-          console.error('Error updating user:', error)
+        const premiumData = {
+          is_premium: true,
+          subscription_status: 'active',
+          stripe_customer_id: session.customer,
+          stripe_subscription_id: session.subscription,
+          premium_since: new Date().toISOString(),
+        }
+
+        if (existingProfile) {
+          // Mise à jour du profil existant
+          const { error } = await supabase
+            .from('user_profiles')
+            .update(premiumData)
+            .eq('user_email', session.customer_email)
+
+          if (error) {
+            console.error('Error updating user:', error)
+          } else {
+            console.log('User upgraded to Premium:', session.customer_email)
+          }
+        } else if (authUser) {
+          // Créer un nouveau profil avec l'ID de l'utilisateur auth
+          const { error } = await supabase
+            .from('user_profiles')
+            .insert({
+              id: authUser.id,
+              user_email: session.customer_email,
+              full_name: authUser.user_metadata?.full_name || session.customer_email.split('@')[0],
+              ...premiumData,
+            })
+
+          if (error) {
+            console.error('Error creating user profile:', error)
+          } else {
+            console.log('User profile created and upgraded to Premium:', session.customer_email)
+          }
         } else {
-          console.log('User upgraded to Premium:', session.customer_email)
+          // Créer un profil sans ID auth (utilisateur non encore inscrit)
+          const { error } = await supabase
+            .from('user_profiles')
+            .insert({
+              user_email: session.customer_email,
+              full_name: session.customer_email.split('@')[0],
+              ...premiumData,
+            })
+
+          if (error) {
+            console.error('Error creating user profile (no auth):', error)
+          } else {
+            console.log('User profile created (no auth) and upgraded to Premium:', session.customer_email)
+          }
         }
         break
       }
