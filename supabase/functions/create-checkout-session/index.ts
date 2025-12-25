@@ -1,79 +1,78 @@
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts'
 
 const stripeKey = Deno.env.get('STRIPE_SECRET_KEY')
-const stripeApiUrl = 'https://api.stripe.com/v1/checkout/sessions'
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
 
 serve(async (req) => {
+  // CORS
   if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
+    return new Response('ok', {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+    })
   }
 
   try {
     const { priceId, userId, userEmail, successUrl, cancelUrl } = await req.json()
-    
+
     if (!stripeKey) {
-      throw new Error('STRIPE_SECRET_KEY is not configured in Supabase Secrets')
+      console.error('STRIPE_SECRET_KEY not found')
+      return new Response(
+        JSON.stringify({ error: 'STRIPE_SECRET_KEY is not configured' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      )
     }
 
-    console.log('Creating checkout session for:', { priceId, userId, userEmail })
+    console.log('Creating checkout for:', { priceId, userEmail })
 
-    // Construire les paramètres pour l'API Stripe
-    const params = new URLSearchParams({
-      'payment_method_types[]': 'card',
-      mode: 'subscription',
-      customer_email: userEmail,
-      'line_items[0][price]': priceId,
-      'line_items[0][quantity]': '1',
-      success_url: successUrl || `${req.headers.get('origin')}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: cancelUrl || `${req.headers.get('origin')}/pricing`,
-      'metadata[userId]': userId,
-      allow_promotion_codes: 'true',
-      billing_address_collection: 'auto',
-    })
+    // Call Stripe API directly
+    const body = new URLSearchParams()
+    body.append('payment_method_types[]', 'card')
+    body.append('mode', 'subscription')
+    body.append('customer_email', userEmail)
+    body.append('line_items[0][price]', priceId)
+    body.append('line_items[0][quantity]', '1')
+    body.append('success_url', successUrl || `https://www.franceprepacademy.fr/payment-success?session_id={CHECKOUT_SESSION_ID}`)
+    body.append('cancel_url', cancelUrl || 'https://www.franceprepacademy.fr/pricing')
+    body.append('allow_promotion_codes', 'true')
+    body.append('billing_address_collection', 'auto')
 
-    // Appel HTTP direct à Stripe
-    const stripeResponse = await fetch(stripeApiUrl, {
+    const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${stripeKey}`,
+        Authorization: `Bearer ${stripeKey}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: params.toString(),
+      body: body.toString(),
     })
 
-    const data = await stripeResponse.json()
+    const data = await response.json()
 
-    if (!stripeResponse.ok) {
-      console.error('Stripe API error:', data)
-      throw new Error(data.error?.message || 'Failed to create checkout session')
+    if (!response.ok) {
+      console.error('Stripe error:', data)
+      return new Response(
+        JSON.stringify({ error: data.error?.message || 'Stripe error' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      )
     }
-
-    console.log('Checkout session created:', data.id)
 
     return new Response(
       JSON.stringify({ url: data.url, sessionId: data.id }),
-      { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      {
         status: 200,
-      },
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
     )
   } catch (error) {
-    console.error('Error creating checkout session:', error.message)
-    
+    console.error('Error:', error.message)
     return new Response(
-      JSON.stringify({ 
-        error: error.message,
-        details: 'Failed to create Stripe checkout session'
-      }),
-      { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 400,
-      },
+      JSON.stringify({ error: error.message }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
     )
   }
 })
