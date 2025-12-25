@@ -1,10 +1,5 @@
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts'
-import Stripe from 'https://esm.sh/stripe@14.5.0?target=deno'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.0'
-
-const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY') || '', {
-  apiVersion: '2023-10-16',
-})
 
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
@@ -13,6 +8,31 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey)
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+}
+
+// Vérifier la signature Stripe
+async function verifyStripeSignature(body: string, signature: string, secret: string): Promise<boolean> {
+  const encoder = new TextEncoder()
+  const secretBytes = encoder.encode(secret)
+  
+  const [timestamp, signatureValue] = signature.split(',')[0].split('=')[1] + ',' + signature.split(',')[1].split('=')[1]
+  const signedContent = `${signature.split(',')[0].split('=')[1]}.${body}`
+  
+  // Utiliser Web Crypto API
+  const key = await crypto.subtle.importKey(
+    'raw',
+    secretBytes,
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  )
+  
+  const computedSignature = await crypto.subtle.sign('HMAC', key, encoder.encode(signedContent))
+  const computedHex = Array.from(new Uint8Array(computedSignature))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('')
+  
+  return computedHex === signature.split('=')[2]
 }
 
 serve(async (req) => {
@@ -33,18 +53,49 @@ serve(async (req) => {
       throw new Error('STRIPE_WEBHOOK_SECRET not configured')
     }
 
-    // Vérifier la signature du webhook
-    const event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
+    // Parse Stripe signature
+    const parts = signature.split(',')
+    let timestamp = ''
+    let signatureValue = ''
+    
+    for (const part of parts) {
+      const [key, value] = part.split('=')
+      if (key === 't') timestamp = value
+      if (key === 'v1') signatureValue = value
+    }
 
+    // Recalculate signature
+    const encoder = new TextEncoder()
+    const secretKey = encoder.encode(webhookSecret)
+    const signedContent = encoder.encode(`${timestamp}.${body}`)
+    
+    const key = await crypto.subtle.importKey(
+      'raw',
+      secretKey,
+      { name: 'HMAC', hash: 'SHA-256' },
+      false,
+      ['sign']
+    )
+    
+    const computedSignature = await crypto.subtle.sign('HMAC', key, signedContent)
+    const computedHex = Array.from(new Uint8Array(computedSignature))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('')
+    
+    if (computedHex !== signatureValue) {
+      throw new Error('Invalid signature')
+    }
+
+    // Parse event
+    const event = JSON.parse(body)
     console.log('Webhook event:', event.type)
 
-    // Gérer les différents types d'événements
+    // Handle events
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object
         console.log('Checkout completed:', session.id)
 
-        // Mettre à jour le profil utilisateur pour marquer comme Premium
         if (session.metadata?.userId) {
           const { error } = await supabase
             .from('user_profiles')
@@ -70,7 +121,6 @@ serve(async (req) => {
         const subscription = event.data.object
         console.log('Subscription updated:', subscription.id)
 
-        // Mettre à jour le statut de l'abonnement
         const { error } = await supabase
           .from('user_profiles')
           .update({ 
@@ -89,7 +139,6 @@ serve(async (req) => {
         const subscription = event.data.object
         console.log('Subscription cancelled:', subscription.id)
 
-        // Désactiver le Premium
         const { error } = await supabase
           .from('user_profiles')
           .update({ 
@@ -108,7 +157,6 @@ serve(async (req) => {
         const invoice = event.data.object
         console.log('Payment failed for invoice:', invoice.id)
 
-        // Marquer l'utilisateur avec paiement en échec
         const { error } = await supabase
           .from('user_profiles')
           .update({ 
@@ -134,7 +182,7 @@ serve(async (req) => {
       },
     )
   } catch (error) {
-    console.error('Webhook error:', error)
+    console.error('Webhook error:', error.message)
     
     return new Response(
       JSON.stringify({ error: error.message }),

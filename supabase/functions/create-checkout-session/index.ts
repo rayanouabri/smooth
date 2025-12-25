@@ -1,9 +1,7 @@
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts'
-import Stripe from 'https://esm.sh/stripe@14.5.0?target=deno'
 
-const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY') || '', {
-  apiVersion: '2023-10-16',
-})
+const stripeKey = Deno.env.get('STRIPE_SECRET_KEY')
+const stripeApiUrl = 'https://api.stripe.com/v1/checkout/sessions'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -11,52 +9,66 @@ const corsHeaders = {
 }
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
 
   try {
     const { priceId, userId, userEmail, successUrl, cancelUrl } = await req.json()
+    
+    if (!stripeKey) {
+      throw new Error('STRIPE_SECRET_KEY is not configured in Supabase Secrets')
+    }
 
     console.log('Creating checkout session for:', { priceId, userId, userEmail })
 
-    // Créer une session de checkout Stripe
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+    // Construire les paramètres pour l'API Stripe
+    const params = new URLSearchParams({
+      'payment_method_types[]': 'card',
       mode: 'subscription',
       customer_email: userEmail,
-      line_items: [
-        {
-          price: priceId,
-          quantity: 1,
-        },
-      ],
+      'line_items[0][price]': priceId,
+      'line_items[0][quantity]': '1',
       success_url: successUrl || `${req.headers.get('origin')}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: cancelUrl || `${req.headers.get('origin')}/pricing`,
-      metadata: {
-        userId: userId,
-      },
-      allow_promotion_codes: true, // Permet les codes promo
+      'metadata[userId]': userId,
+      allow_promotion_codes: 'true',
       billing_address_collection: 'auto',
     })
 
-    console.log('Checkout session created:', session.id)
+    // Appel HTTP direct à Stripe
+    const stripeResponse = await fetch(stripeApiUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${stripeKey}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: params.toString(),
+    })
+
+    const data = await stripeResponse.json()
+
+    if (!stripeResponse.ok) {
+      console.error('Stripe API error:', data)
+      throw new Error(data.error?.message || 'Failed to create checkout session')
+    }
+
+    console.log('Checkout session created:', data.id)
 
     return new Response(
-      JSON.stringify({ url: session.url, sessionId: session.id }),
+      JSON.stringify({ url: data.url, sessionId: data.id }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 200,
       },
     )
   } catch (error) {
-    console.error('Error creating checkout session:', error)
+    console.error('Error creating checkout session:', error.message)
     
     return new Response(
       JSON.stringify({ 
         error: error.message,
-        details: 'Vérifiez que STRIPE_SECRET_KEY est configurée dans Supabase'
+        details: 'Failed to create Stripe checkout session'
       }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
