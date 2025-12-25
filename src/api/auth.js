@@ -43,36 +43,58 @@ export const me = async () => {
   // 2) fallback par user_email si pas trouvé (robustesse)
   let profile = null;
   try {
-    const { data: byId } = await supabase
+    // Essayer d'abord par ID
+    const { data: byId, error: errorById } = await supabase
       .from('user_profiles')
       .select('*')
       .eq('id', user.id)
       .maybeSingle();
-    profile = byId;
+    
+    if (errorById) {
+      console.error('me() error by ID:', errorById);
+    } else {
+      profile = byId;
+    }
 
+    // Si pas trouvé par ID, essayer par email
     if (!profile) {
-      const { data: byEmail } = await supabase
+      const { data: byEmail, error: errorByEmail } = await supabase
         .from('user_profiles')
         .select('*')
         .eq('user_email', user.email)
         .maybeSingle();
-      profile = byEmail;
+      
+      if (errorByEmail) {
+        console.error('me() error by email:', errorByEmail);
+      } else {
+        profile = byEmail;
+      }
     }
   } catch (err) {
     console.error('me() profile fetch error:', err);
   }
   
-  console.log('me() - User:', user.id, 'Profile:', profile?.id, 'is_premium:', profile?.is_premium);
+  // Forcer is_premium à être un boolean
+  const isPremium = profile?.is_premium === true || profile?.is_premium === 'true' || profile?.subscription_status === 'active';
   
-  return {
+  console.log('me() - User:', user.id, 'Email:', user.email);
+  console.log('me() - Profile found:', !!profile, 'Profile ID:', profile?.id);
+  console.log('me() - is_premium (raw):', profile?.is_premium, 'is_premium (computed):', isPremium);
+  console.log('me() - subscription_status:', profile?.subscription_status);
+  
+  // Construire l'objet utilisateur avec le profil
+  const userData = {
+    ...user,
     id: user.id,
     email: user.email,
     full_name: profile?.full_name || user.user_metadata?.full_name || user.email?.split('@')[0],
-    is_premium: profile?.is_premium === true,
+    is_premium: isPremium,
     subscription_status: profile?.subscription_status || 'inactive',
+    // Inclure toutes les données du profil
     ...(profile || {}),
-    ...user,
   };
+  
+  return userData;
 };
 
 // Déconnexion

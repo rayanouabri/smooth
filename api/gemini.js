@@ -14,14 +14,23 @@ module.exports = async function handler(req, res) {
 
   try {
     // Parser le body si nécessaire
+    // Vercel peut déjà parser le body, donc on vérifie d'abord
     let body = req.body;
-    if (!body || typeof body === 'string') {
+    
+    // Si le body est une string, le parser
+    if (typeof body === 'string') {
       try {
-        body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
+        body = JSON.parse(body);
       } catch (e) {
-        console.error('[Gemini] Body parse error:', e.message);
+        console.error('[Gemini] Body parse error:', e.message, 'Body:', body.substring(0, 100));
         return res.status(400).json({ error: 'Invalid JSON in request body' });
       }
+    }
+    
+    // Si body est undefined ou null, essayer de le lire depuis req
+    if (!body || (typeof body === 'object' && Object.keys(body).length === 0)) {
+      console.warn('[Gemini] Empty or undefined body, checking req.body directly');
+      body = req.body || {};
     }
 
     const apiKey = process.env.GEMINI_API_KEY;

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
-import { isAuthenticated as checkAuthStatus, me as getCurrentUser, logout, redirectToLogin } from "@/api/auth";
+import { isAuthenticated as checkAuthStatus, me, logout, redirectToLogin } from "@/api/auth";
 import { Button } from "@/components/ui/button";
 import { Menu, X, GraduationCap, ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -13,7 +13,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { supabase } from "@/api/supabaseClient";
 
 export default function Layout({ children, currentPageName }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,22 +37,13 @@ export default function Layout({ children, currentPageName }) {
     setIsAuthenticated(authenticated);
     if (authenticated) {
       try {
-        // Utiliser me() pour obtenir les données complètes avec le profil premium
-        const userData = await getCurrentUser();
-        // Recharger le profil depuis la base de données pour être sûr
-        if (userData?.id) {
-          const { data: profile } = await supabase
-            .from('user_profiles')
-            .select('is_premium, subscription_status')
-            .eq('id', userData.id)
-            .single();
-          
-          if (profile) {
-            userData.is_premium = profile.is_premium === true;
-            userData.subscription_status = profile.subscription_status;
-          }
+        // Utiliser me() qui récupère automatiquement le profil avec is_premium
+        const userData = await me();
+        console.log('Layout - User data:', userData);
+        console.log('Layout - is_premium:', userData?.is_premium);
+        if (userData) {
+          setUser(userData);
         }
-        setUser(userData);
       } catch (err) {
         console.error("Error fetching user:", err);
       }
