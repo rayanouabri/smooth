@@ -1,0 +1,10 @@
+# Fichiers à ignorer lors du déploiement Vercel
+node_modules
+.git
+.env.local
+*.md
+!README.md
+test-*.js
+import-*.js
+*.sql
+
