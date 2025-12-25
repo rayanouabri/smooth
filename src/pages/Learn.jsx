@@ -100,10 +100,19 @@ export default function Learn() {
   const { data: lessons = [], isLoading: lessonsLoading } = useQuery({
     queryKey: ['lessons', courseId],
     queryFn: async () => {
-      const allLessons = await Lesson.all();
-      return allLessons
-        .filter(lesson => lesson.course_id === courseId)
-        .sort((a, b) => (a.order || 0) - (b.order || 0));
+      try {
+        // Utiliser filter directement au lieu de all() puis filter
+        const filteredLessons = await Lesson.filter({ course_id: courseId }, 'order');
+        // S'assurer que les leçons sont triées par order
+        return filteredLessons.sort((a, b) => {
+          const orderA = a.order || 0;
+          const orderB = b.order || 0;
+          return orderA - orderB;
+        });
+      } catch (error) {
+        console.error("Erreur lors du chargement des leçons:", error);
+        return [];
+      }
     },
     enabled: !!courseId,
   });

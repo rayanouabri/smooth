@@ -167,7 +167,7 @@ export default function Dashboard() {
             </div>
             <div className="mt-4 md:mt-0 flex gap-3">
               <Link to={createPageUrl("Profile")}>
-                <Button variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button variant="outline" className="border-2 border-white/50 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm font-semibold">
                   Mon profil
                 </Button>
               </Link>
