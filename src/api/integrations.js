@@ -14,12 +14,11 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
   try {
     console.log('🤖 [InvokeLLM] Starting LLM call...');
     
-    // Try Gemini via proxy first (most reliable)
-    const hasClientKey = !!import.meta.env.VITE_GEMINI_API_KEY;
-    console.log('🤖 [InvokeLLM] Client Gemini key:', hasClientKey ? 'Present' : 'Missing (will use /api/gemini proxy)');
+    // Always use Gemini via proxy - most secure method
+    // Never expose API keys to client-side code
     
     try {
-      // Always use proxy endpoint - it's more secure
+      // Use /api/gemini proxy endpoint (server-side, secure)
       const response = await fetch('/api/gemini', {
         method: 'POST',
         headers: {

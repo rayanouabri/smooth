@@ -9,21 +9,19 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    // Get API key from environment
-    const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
+    // Get API key from environment - ALWAYS use server-side variable for security
+    // Never expose Gemini API key to client
+    const apiKey = process.env.GEMINI_API_KEY;
     
     console.log('[Gemini Proxy] Starting request...');
     console.log('[Gemini Proxy] API Key present:', !!apiKey);
     
     if (!apiKey) {
-      console.error('[Gemini Proxy] ❌ No API key found');
-      console.error('[Gemini Proxy] Available vars:', {
-        GEMINI_API_KEY: !!process.env.GEMINI_API_KEY,
-        VITE_GEMINI_API_KEY: !!process.env.VITE_GEMINI_API_KEY
-      });
+      console.error('[Gemini Proxy] ❌ No GEMINI_API_KEY found on Vercel');
+      console.error('[Gemini Proxy] Please add it to Vercel Settings → Environment Variables');
       return res.status(500).json({ 
-        error: 'GEMINI_API_KEY not configured',
-        fix: 'Add GEMINI_API_KEY to Vercel environment variables'
+        error: 'GEMINI_API_KEY not configured on Vercel',
+        help: 'Add GEMINI_API_KEY at: https://vercel.com/dashboard → Settings → Environment Variables'
       });
     }
 
