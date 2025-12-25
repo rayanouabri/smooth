@@ -23,11 +23,6 @@ export default defineConfig({
   },
   build: {
     target: 'es2015', // Compatibilité avec les navigateurs plus anciens comme Opera
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: false, // Garder les console.log pour le debug
-      },
-    },
+    minify: 'esbuild', // Utiliser esbuild au lieu de terser (plus rapide et inclus)
   },
 }) 
