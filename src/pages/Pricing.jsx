@@ -249,7 +249,7 @@ export default function Pricing() {
                             priceId: priceId,
                             userId: user?.id,
                             userEmail: user?.email,
-                            successUrl: window.location.origin + '/payment-success?session_id={CHECKOUT_SESSION_ID}',
+                            successUrl: window.location.origin + '/payment-success',
                             cancelUrl: window.location.origin + '/pricing',
                           });
 
