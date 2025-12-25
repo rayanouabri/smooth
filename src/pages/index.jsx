@@ -51,6 +51,7 @@ import PaymentSuccess from "./PaymentSuccess";
 import AdminCourses from "./AdminCourses";
 
 import Login from "./Login";
+import ResetPassword from "./ResetPassword";
 import AuthCallback from "./AuthCallback";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
@@ -106,6 +107,10 @@ const PAGES = {
     PaymentSuccess: PaymentSuccess,
     
     AdminCourses: AdminCourses,
+    
+    Login: Login,
+    
+    ResetPassword: ResetPassword,
     
 }
 
@@ -185,6 +190,8 @@ function PagesContent() {
                 <Route path="/AdminCourses" element={<AdminCourses />} />
                 
                 <Route path="/login" element={<Login />} />
+                
+                <Route path="/reset-password" element={<ResetPassword />} />
                 
                 <Route path="/auth/callback" element={<AuthCallback />} />
                 
