@@ -48,17 +48,16 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing prompt' });
     }
 
-    // Utiliser gemini-2.0-flash-exp (modèle 2.0 flash expérimental - le plus récent)
+    // Utiliser gemini-2.5-flash (modèle 2.5 flash - accès exclusif)
     // Format: https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent
     const models = [
-      { name: 'gemini-2.0-flash-exp', version: 'v1beta' },
-      { name: 'gemini-2.0-flash', version: 'v1beta' },
-      { name: 'gemini-1.5-flash', version: 'v1beta' },
-      { name: 'gemini-1.5-flash-latest', version: 'v1beta' },
+      { name: 'gemini-2.5-flash', version: 'v1beta' },
+      { name: 'gemini-2.5-flash-exp', version: 'v1beta' },
+      { name: 'gemini-2.5-flash-latest', version: 'v1beta' },
     ];
     
-    // Utiliser directement gemini-2.0-flash-exp (modèle 2.0 flash)
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`;
+    // Utiliser directement gemini-2.5-flash
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
     const payload = {
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
@@ -76,7 +75,7 @@ export default async function handler(req, res) {
     };
 
     console.log('[Gemini] Making request to Gemini API, prompt length:', prompt.length);
-    console.log('[Gemini] Using model: gemini-2.0-flash-exp (v1beta)');
+    console.log('[Gemini] Using model: gemini-2.5-flash (v1beta)');
     
     let upstream;
     let lastError;
