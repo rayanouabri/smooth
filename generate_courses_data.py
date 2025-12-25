@@ -59,7 +59,8 @@ CATEGORIES = {
 }
 
 LEVELS = ['debutant', 'intermediaire', 'avance']
-PRICES = [0, 0, 0, 0, 0, 29, 39, 49]  # Majorité gratuits, quelques payants
+# Système Premium : 0 = Gratuit, 1 = Premium (abonnement requis, pas de prix par cours)
+PRICES = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1]  # Majorité gratuits, quelques premium
 
 def generate_slug(title):
     """Génère un slug à partir d'un titre"""
@@ -110,8 +111,8 @@ def generate_course(category_key, category_info, theme, course_index):
         "Optimiser vos chances de réussite"
     ]
     
-    # Générer 3-5 leçons
-    num_lessons = 3 + (course_index % 3)  # 3, 4 ou 5 leçons
+    # Générer 8-12 leçons par cours (beaucoup plus de contenu)
+    num_lessons = 8 + (course_index % 5)  # 8, 9, 10, 11 ou 12 leçons
     lessons = []
     
     lesson_titles = [

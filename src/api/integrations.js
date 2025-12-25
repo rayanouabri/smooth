@@ -12,7 +12,58 @@ import { supabase } from './supabaseClient';
  */
 export const InvokeLLM = async ({ prompt, add_context_from_internet = false, model = 'gpt-4', response_json_schema = null }) => {
   try {
-    // Si OpenAI API Key est configurée, utiliser directement OpenAI (recommandé)
+    // Si Gemini API Key est configurée, utiliser Gemini (priorité)
+    if (import.meta.env.VITE_GEMINI_API_KEY) {
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
+      
+      const requestBody = {
+        contents: [{
+          parts: [{
+            text: prompt
+          }]
+        }],
+        generationConfig: {
+          temperature: 0.7,
+          topK: 40,
+          topP: 0.95,
+          maxOutputTokens: 2048,
+        }
+      };
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error?.message || 'Erreur Gemini API');
+      }
+
+      const json = await response.json();
+      const content = json.candidates[0]?.content?.parts[0]?.text || '';
+
+      // Si response_json_schema est fourni, essayer d'extraire le JSON
+      if (response_json_schema && content) {
+        try {
+          // Essayer de trouver un JSON dans la réponse
+          const jsonMatch = content.match(/\{[\s\S]*\}/);
+          if (jsonMatch) {
+            return JSON.parse(jsonMatch[0]);
+          }
+        } catch (e) {
+          console.error('Error parsing JSON from Gemini response:', e);
+        }
+      }
+
+      return content;
+    }
+    
+    // Si OpenAI API Key est configurée, utiliser directement OpenAI
     if (import.meta.env.VITE_OPENAI_API_KEY) {
       const requestBody = {
         model: model === 'gpt-4' ? 'gpt-4-turbo-preview' : model,

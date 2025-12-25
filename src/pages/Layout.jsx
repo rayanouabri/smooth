@@ -11,12 +11,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Layout({ children, currentPageName }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState("fr");
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     checkAuth();
@@ -57,15 +58,15 @@ export default function Layout({ children, currentPageName }) {
     { code: "pl", name: "Polski", flag: "🇵🇱" },
   ];
 
-  const currentLang = languages.find(l => l.code === currentLanguage) || languages[0];
+  const currentLang = languages.find(l => l.code === language) || languages[0];
 
   const navLinks = [
-    { name: "Accueil", page: "Home" },
-    { name: "Cours", page: "Courses" },
-    { name: "Cours particuliers", page: "Teachers" },
-    { name: "Dashboard", page: "Dashboard" },
-    { name: "Communauté", page: "Community" },
-    { name: "Tarifs", page: "Pricing" },
+    { name: t('nav.home'), page: "Home" },
+    { name: t('nav.courses'), page: "Courses" },
+    { name: t('nav.teachers'), page: "Teachers" },
+    { name: t('nav.dashboard'), page: "Dashboard" },
+    { name: t('nav.community'), page: "Community" },
+    { name: t('nav.pricing'), page: "Pricing" },
   ];
 
   return (
@@ -137,7 +138,7 @@ export default function Layout({ children, currentPageName }) {
                   {languages.map((lang) => (
                     <DropdownMenuItem
                       key={lang.code}
-                      onClick={() => setCurrentLanguage(lang.code)}
+                      onClick={() => setLanguage(lang.code)}
                       className="cursor-pointer"
                     >
                       <span className="mr-2">{lang.flag}</span>

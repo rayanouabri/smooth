@@ -1,7 +1,7 @@
 -- =====================================================
 -- SCRIPT COMPLET DE DONNÉES POUR FRANCEPREP ACADEMY
 -- 80 cours complets + 25 posts forum avec commentaires
--- Généré le 2025-12-25 01:51:35
+-- Généré le 2025-12-25 02:22:40
 -- =====================================================
 
 -- Désactiver temporairement les contraintes
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'intermediaire',
   'fr',
-  1,
+  5,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=1',
   '["Comprendre caf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -156,6 +156,156 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '511da6f7-9612-542a-a66d-4619f6ef81e8',
+  'c5e9e1aa-441d-56e4-a7eb-ef5148374409',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ef5e5736-14d8-533b-a937-d1576842ccc5',
+  'c5e9e1aa-441d-56e4-a7eb-ef5148374409',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8264a32c-448f-589a-bf2a-034f7f450129',
+  'c5e9e1aa-441d-56e4-a7eb-ef5148374409',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b2a6d290-4488-599a-80b1-c215da2b5ebf',
+  'c5e9e1aa-441d-56e4-a7eb-ef5148374409',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5bb311fb-8612-5960-8dc5-48c91741653b',
+  'c5e9e1aa-441d-56e4-a7eb-ef5148374409',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'acac3731-c5a1-52f9-9e1d-04e3bf8d3a29',
@@ -166,7 +316,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'avance',
   'fr',
-  2,
+  6,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=2',
   '["Comprendre sécurité sociale", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -331,6 +481,156 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '68193cb3-1d6e-5e30-b3b2-153dfcb40d7c',
+  'acac3731-c5a1-52f9-9e1d-04e3bf8d3a29',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9d27c95b-f8bb-5499-a631-9f2b7977d5d0',
+  'acac3731-c5a1-52f9-9e1d-04e3bf8d3a29',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '44ae3707-ebdf-5805-89fb-db81f39cecea',
+  'acac3731-c5a1-52f9-9e1d-04e3bf8d3a29',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '28554c2e-7c48-5d8e-b10a-4f2aa16a4b37',
+  'acac3731-c5a1-52f9-9e1d-04e3bf8d3a29',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '365f63bb-41e9-51c9-8c4f-7ddc6ce1f200',
+  'acac3731-c5a1-52f9-9e1d-04e3bf8d3a29',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '4d85f8d0-1041-52f6-a9cc-155e2de26d10',
@@ -341,7 +641,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'debutant',
   'fr',
-  1,
+  7,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=3',
   '["Comprendre titre de séjour", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -444,6 +744,246 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a9e16fb6-ce54-5856-82a9-21d467fa814f',
+  '4d85f8d0-1041-52f6-a9cc-155e2de26d10',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2990e4f1-8bc6-5f93-a6cb-c8b6b9c7e9f0',
+  '4d85f8d0-1041-52f6-a9cc-155e2de26d10',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '977b6566-c10e-507b-bc77-22159c7b7462',
+  '4d85f8d0-1041-52f6-a9cc-155e2de26d10',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'bd906f80-92bc-5bdc-9acd-5994fc43b8ed',
+  '4d85f8d0-1041-52f6-a9cc-155e2de26d10',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a517bfde-469b-5300-9511-1bc055a1d1ca',
+  '4d85f8d0-1041-52f6-a9cc-155e2de26d10',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e92b4970-a545-5f4e-a8bb-46135703d288',
+  '4d85f8d0-1041-52f6-a9cc-155e2de26d10',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ba4ae4d1-a5e3-584b-8bf3-3168ba3c9446',
+  '4d85f8d0-1041-52f6-a9cc-155e2de26d10',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2ed99188-6a20-57e0-a4b1-62d4add5fb12',
+  '4d85f8d0-1041-52f6-a9cc-155e2de26d10',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '23a0f201-625d-54d9-b747-cb601a8ba343',
@@ -454,7 +994,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'intermediaire',
   'fr',
-  1,
+  8,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=4',
   '["Comprendre logement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -588,6 +1128,246 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '47b03a20-82d1-5ee9-8927-bed489861e34',
+  '23a0f201-625d-54d9-b747-cb601a8ba343',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '99fe11d6-0383-5fb5-9cbe-7ffbac1891db',
+  '23a0f201-625d-54d9-b747-cb601a8ba343',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '81d7e3a2-b660-54c3-a087-c2fab80d8913',
+  '23a0f201-625d-54d9-b747-cb601a8ba343',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd85ea9c4-c479-5b07-b6b7-7a9c6d519e9b',
+  '23a0f201-625d-54d9-b747-cb601a8ba343',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '99fb2d4e-f0c2-5c88-8499-d70c497ecd6d',
+  '23a0f201-625d-54d9-b747-cb601a8ba343',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '52a01ccf-8d81-52ca-9c6e-f0da17862ebe',
+  '23a0f201-625d-54d9-b747-cb601a8ba343',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8b6f39bd-eb79-5ec4-a1e0-bdeafff5b299',
+  '23a0f201-625d-54d9-b747-cb601a8ba343',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2a79fb0b-0584-5c1b-b1d3-c34d7d60a3a1',
+  '23a0f201-625d-54d9-b747-cb601a8ba343',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c69480f5-97cc-5102-98d8-d8e572b1d5dd',
@@ -598,7 +1378,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'avance',
   'fr',
-  2,
+  4,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=5',
   '["Comprendre banque", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -756,6 +1536,96 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e000403b-a366-5d99-848e-a2d4868fba59',
+  'c69480f5-97cc-5102-98d8-d8e572b1d5dd',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '50b8629c-e0b3-5395-ba42-95319ce25c2c',
+  'c69480f5-97cc-5102-98d8-d8e572b1d5dd',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c8ca430e-0d06-52cc-ab6e-e66a94f0ffe3',
+  'c69480f5-97cc-5102-98d8-d8e572b1d5dd',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'b82b701b-37d4-5e91-a5fa-4f6994cae081',
@@ -766,7 +1636,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'debutant',
   'fr',
-  1,
+  5,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=6',
   '["Comprendre assurance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -864,6 +1734,186 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c6586aa8-6a53-5c38-9744-fcd566962438',
+  'b82b701b-37d4-5e91-a5fa-4f6994cae081',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a0d23543-7d08-5e66-9d76-d7c94462df3d',
+  'b82b701b-37d4-5e91-a5fa-4f6994cae081',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6240ea5e-faa5-5c29-8409-067f2f8fb485',
+  'b82b701b-37d4-5e91-a5fa-4f6994cae081',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ecccfe8e-059f-53d3-a3ee-3d62ef27ff57',
+  'b82b701b-37d4-5e91-a5fa-4f6994cae081',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5aa60fe7-35f3-569d-8a13-74ffa83ead19',
+  'b82b701b-37d4-5e91-a5fa-4f6994cae081',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6b61b8e3-dc6a-5cba-9a15-ae5d56e445c9',
+  'b82b701b-37d4-5e91-a5fa-4f6994cae081',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd68ff61a-54d2-56b6-ad6a-cf7014910b62',
@@ -874,7 +1924,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'intermediaire',
   'fr',
-  1,
+  6,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=7',
   '["Comprendre impôts", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -1002,6 +2052,186 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '14260c24-e5b1-5ea9-85a8-4061bfce73c7',
+  'd68ff61a-54d2-56b6-ad6a-cf7014910b62',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '05f46e7e-b222-5572-bdd8-d0253fb2580c',
+  'd68ff61a-54d2-56b6-ad6a-cf7014910b62',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '31c26011-3185-52cc-a23f-dbd47582ad79',
+  'd68ff61a-54d2-56b6-ad6a-cf7014910b62',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6bd64405-0e2e-5347-a383-b8209263ad8d',
+  'd68ff61a-54d2-56b6-ad6a-cf7014910b62',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8e893db0-6fdf-5848-b0c2-c42e0611235f',
+  'd68ff61a-54d2-56b6-ad6a-cf7014910b62',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6ccc5759-f462-5192-b865-55e34ee6f573',
+  'd68ff61a-54d2-56b6-ad6a-cf7014910b62',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd8d862d7-df06-5a2c-b7a4-67537c51649b',
@@ -1012,7 +2242,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'avance',
   'fr',
-  2,
+  7,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=8',
   '["Comprendre démarches préfecture", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -1170,6 +2400,186 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a3fca561-b6c1-5c3a-aea3-9c0d87df47e2',
+  'd8d862d7-df06-5a2c-b7a4-67537c51649b',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '56ab98d4-c638-5496-9142-8b02f9be8137',
+  'd8d862d7-df06-5a2c-b7a4-67537c51649b',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c3201e81-bcbd-5dcf-91bd-e4499081e70d',
+  'd8d862d7-df06-5a2c-b7a4-67537c51649b',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '925e4cbd-8979-50eb-86d8-a83f24f856db',
+  'd8d862d7-df06-5a2c-b7a4-67537c51649b',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2ede7c15-11dd-5071-95b0-0e3425757687',
+  'd8d862d7-df06-5a2c-b7a4-67537c51649b',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a8e0c6e8-ac76-5bce-b7c6-100bd0102ec2',
+  'd8d862d7-df06-5a2c-b7a4-67537c51649b',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '82cba879-2b17-5895-8579-aec5efcf0fdc',
@@ -1180,7 +2590,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'debutant',
   'fr',
-  1,
+  8,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=9',
   '["Comprendre visa", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -1283,6 +2693,276 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9f70989e-98ad-5972-ad10-5d629e5a8200',
+  '82cba879-2b17-5895-8579-aec5efcf0fdc',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '522f8b69-b99a-5c43-8e6b-f9b7bfc6e3ac',
+  '82cba879-2b17-5895-8579-aec5efcf0fdc',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '4ed5a3b7-c09d-5437-b221-3af1ef5975cd',
+  '82cba879-2b17-5895-8579-aec5efcf0fdc',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '049a72ae-3715-5c84-81a9-b73e2525f48a',
+  '82cba879-2b17-5895-8579-aec5efcf0fdc',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'bfaee3ae-64ea-57c8-b911-0c8d44d68cb0',
+  '82cba879-2b17-5895-8579-aec5efcf0fdc',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2a0c0683-2213-5862-a896-5d106b6f0225',
+  '82cba879-2b17-5895-8579-aec5efcf0fdc',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '57ae851b-3896-520f-899f-38abca2c9733',
+  '82cba879-2b17-5895-8579-aec5efcf0fdc',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '903a723a-bbf4-5d55-b4b7-eca142d369c8',
+  '82cba879-2b17-5895-8579-aec5efcf0fdc',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ce512dc8-b2c1-5b14-92ed-3874f5135cec',
+  '82cba879-2b17-5895-8579-aec5efcf0fdc',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd697c2e4-eb12-570b-ae6d-daab49751174',
@@ -1293,7 +2973,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'intermediaire',
   'fr',
-  1,
+  4,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=10',
   '["Comprendre carte vitale", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -1421,6 +3101,126 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0138aed4-b755-5ca6-8186-91cf0f218375',
+  'd697c2e4-eb12-570b-ae6d-daab49751174',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5bc0576f-47c9-5c03-b54d-243539396364',
+  'd697c2e4-eb12-570b-ae6d-daab49751174',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8e6dd8ec-d369-5b19-b880-94c299c93bf3',
+  'd697c2e4-eb12-570b-ae6d-daab49751174',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e711d9c5-5e98-5665-bbfd-7204dafd3365',
+  'd697c2e4-eb12-570b-ae6d-daab49751174',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'f092d096-326b-5fa2-b522-fc7aeedd0fa3',
@@ -1431,7 +3231,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'avance',
   'fr',
-  2,
+  5,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=11',
   '["Comprendre mutuelle", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -1596,6 +3396,126 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1d43f0f2-0359-59c1-9225-03d5b3a10918',
+  'f092d096-326b-5fa2-b522-fc7aeedd0fa3',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1b90a6fc-c061-5d33-966a-60bc4481aca2',
+  'f092d096-326b-5fa2-b522-fc7aeedd0fa3',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '50c544f3-4b40-5619-8a48-12f9515df8aa',
+  'f092d096-326b-5fa2-b522-fc7aeedd0fa3',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e2cd38fd-8653-5ae7-ab5c-4364638ac0e0',
+  'f092d096-326b-5fa2-b522-fc7aeedd0fa3',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '0fb13029-81be-51b4-9c61-973c61ebe40f',
@@ -1606,7 +3526,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'debutant',
   'fr',
-  1,
+  6,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=12',
   '["Comprendre cpam", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -1711,6 +3631,216 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '24892f1f-aa12-5e3d-8a61-113fb47e4c79',
+  '0fb13029-81be-51b4-9c61-973c61ebe40f',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9d93487c-00c8-5cf6-a5f4-a633c2ab3a68',
+  '0fb13029-81be-51b4-9c61-973c61ebe40f',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'bb8f357a-6f32-56e5-9979-1b659e731d2b',
+  '0fb13029-81be-51b4-9c61-973c61ebe40f',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '057dfab9-1943-5713-b11a-dc203ee0bc93',
+  '0fb13029-81be-51b4-9c61-973c61ebe40f',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '00469813-3d19-57eb-8908-5b93f33d13c0',
+  '0fb13029-81be-51b4-9c61-973c61ebe40f',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '432a76fc-5232-5888-8ea1-cbfadde314b8',
+  '0fb13029-81be-51b4-9c61-973c61ebe40f',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0fa2d9ff-3f8b-554c-a385-b9097125afb2',
+  '0fb13029-81be-51b4-9c61-973c61ebe40f',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd9542a60-0ac2-5038-9510-a1f1f86f7aec',
@@ -1721,7 +3851,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'intermediaire',
   'fr',
-  1,
+  7,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=13',
   '["Comprendre rsi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -1849,6 +3979,216 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1d8bf1fb-7eb6-5485-b56e-eb11bf27200b',
+  'd9542a60-0ac2-5038-9510-a1f1f86f7aec',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '355d4ea0-a085-5593-8113-a89bcb81faf0',
+  'd9542a60-0ac2-5038-9510-a1f1f86f7aec',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0ac281e6-ce8b-5a60-b49d-c8be76d76dbf',
+  'd9542a60-0ac2-5038-9510-a1f1f86f7aec',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '514307b9-995c-5ca6-927a-9d279f85ede6',
+  'd9542a60-0ac2-5038-9510-a1f1f86f7aec',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '7b4ee6e8-2f8d-526c-9a1a-74f2ae67048c',
+  'd9542a60-0ac2-5038-9510-a1f1f86f7aec',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '72936b3f-a532-56f8-8d21-a1a060720972',
+  'd9542a60-0ac2-5038-9510-a1f1f86f7aec',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ecdadabc-5dcf-5e35-948b-ce112df7804d',
+  'd9542a60-0ac2-5038-9510-a1f1f86f7aec',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '750b1c7f-7e8a-5fc6-a0f2-af39e0321857',
@@ -1859,7 +4199,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'avance',
   'fr',
-  2,
+  8,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=14',
   '["Comprendre urssaf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -2017,6 +4357,216 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6a8cc822-2c2e-5a34-8d07-5e82ccf85e12',
+  '750b1c7f-7e8a-5fc6-a0f2-af39e0321857',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '7a674b31-4bcc-5863-902b-12602b108520',
+  '750b1c7f-7e8a-5fc6-a0f2-af39e0321857',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5d521877-8024-5342-a648-39ee3a6adb9a',
+  '750b1c7f-7e8a-5fc6-a0f2-af39e0321857',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f1309d7b-4700-58c8-b45b-15a86d742081',
+  '750b1c7f-7e8a-5fc6-a0f2-af39e0321857',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '4c85ce8d-d405-55e8-90b3-4ac3ece90cd8',
+  '750b1c7f-7e8a-5fc6-a0f2-af39e0321857',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f16d5879-fb38-5315-b105-ab394e13084f',
+  '750b1c7f-7e8a-5fc6-a0f2-af39e0321857',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'cbde677c-fa8c-5dbe-9c77-c37ad33493fb',
+  '750b1c7f-7e8a-5fc6-a0f2-af39e0321857',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '4cf88925-1e27-5a21-8d84-e06df3377022',
@@ -2027,7 +4577,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'debutant',
   'fr',
-  1,
+  4,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=15',
   '["Comprendre pôle emploi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -2125,6 +4675,156 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1a8f4f3a-d63d-58a7-8133-0e331ba5cc3e',
+  '4cf88925-1e27-5a21-8d84-e06df3377022',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2083fa58-b909-551b-909e-bd34b25faf68',
+  '4cf88925-1e27-5a21-8d84-e06df3377022',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '82c33d61-80a2-59e9-af02-582a106ceac8',
+  '4cf88925-1e27-5a21-8d84-e06df3377022',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'db0d11dc-8147-51ff-a048-4ddb4e1694ec',
+  '4cf88925-1e27-5a21-8d84-e06df3377022',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '01f964b9-5295-5a77-8345-8dc7a17c9237',
+  '4cf88925-1e27-5a21-8d84-e06df3377022',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'b0b71099-9d60-556a-846d-e927b0341804',
@@ -2135,7 +4835,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'intermediaire',
   'fr',
-  1,
+  5,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=16',
   '["Comprendre passeport", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -2263,6 +4963,156 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'cb279b9f-f67c-58ba-a33f-5c853fb2952b',
+  'b0b71099-9d60-556a-846d-e927b0341804',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'affdad24-96f1-51e0-95aa-47b82308d91b',
+  'b0b71099-9d60-556a-846d-e927b0341804',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b7e712f9-b5be-5f80-9828-692f7b6787f9',
+  'b0b71099-9d60-556a-846d-e927b0341804',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '4370e682-a9b2-53ab-827e-10de9f647e19',
+  'b0b71099-9d60-556a-846d-e927b0341804',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '671407cc-c6e9-5398-aa6f-502f35d9f8d4',
+  'b0b71099-9d60-556a-846d-e927b0341804',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '0c8c0a70-6c1a-5ece-968a-3a7b5df35a41',
@@ -2273,7 +5123,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'avance',
   'fr',
-  2,
+  6,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=17',
   '["Comprendre carte didentité", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -2431,6 +5281,156 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c57288dc-3344-5f8d-9b93-d81a41ffd68d',
+  '0c8c0a70-6c1a-5ece-968a-3a7b5df35a41',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8ed0db4b-b3fe-5dd0-963b-7f1e8dd0ebd4',
+  '0c8c0a70-6c1a-5ece-968a-3a7b5df35a41',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c1d97573-7ea1-594c-855d-aac4c59c12a8',
+  '0c8c0a70-6c1a-5ece-968a-3a7b5df35a41',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6dfcca84-06eb-5c0d-82b3-d98dfb19520d',
+  '0c8c0a70-6c1a-5ece-968a-3a7b5df35a41',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '629b3d29-3722-5060-a00a-2e7cd27c50b2',
+  '0c8c0a70-6c1a-5ece-968a-3a7b5df35a41',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '06da14aa-a677-5e59-9771-b7322cc537ad',
@@ -2441,7 +5441,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'debutant',
   'fr',
-  1,
+  7,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=18',
   '["Comprendre permis de séjour", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -2544,6 +5544,246 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'bba2101d-5f09-5ea0-8be6-a548f44d4387',
+  '06da14aa-a677-5e59-9771-b7322cc537ad',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '532de354-ae93-5ac3-97ce-191e88cbcb8d',
+  '06da14aa-a677-5e59-9771-b7322cc537ad',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'eaa2eebf-d6ec-5078-81ce-e1ef71d15437',
+  '06da14aa-a677-5e59-9771-b7322cc537ad',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9b99b945-f6a4-5161-ba71-835ee834c835',
+  '06da14aa-a677-5e59-9771-b7322cc537ad',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a83cef92-438d-56f5-9d14-004a1047a2e3',
+  '06da14aa-a677-5e59-9771-b7322cc537ad',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'bd62ffaa-411c-5fe4-93c5-5fe4494992b9',
+  '06da14aa-a677-5e59-9771-b7322cc537ad',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '475dc5de-8fd5-58da-bad6-6ce20b2cce76',
+  '06da14aa-a677-5e59-9771-b7322cc537ad',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '417ef9d2-a462-5b80-95a4-d108643f3d4b',
+  '06da14aa-a677-5e59-9771-b7322cc537ad',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'f89def1f-0546-516e-ae29-0abfd3f6fa5e',
@@ -2554,7 +5794,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'intermediaire',
   'fr',
-  1,
+  8,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=19',
   '["Comprendre renouvellement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -2682,6 +5922,246 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ebb4399e-2ba9-5d28-9131-3f897fc21ae8',
+  'f89def1f-0546-516e-ae29-0abfd3f6fa5e',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '98767bdc-7ad3-590e-a671-a186fc38e297',
+  'f89def1f-0546-516e-ae29-0abfd3f6fa5e',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd601eaf7-b77e-57c2-8ec1-a3df8f351358',
+  'f89def1f-0546-516e-ae29-0abfd3f6fa5e',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '40f2ec83-ff78-566e-9bc1-8c7083ffe6d3',
+  'f89def1f-0546-516e-ae29-0abfd3f6fa5e',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '62156e85-4bf1-5950-a982-1d2a2eb66f6a',
+  'f89def1f-0546-516e-ae29-0abfd3f6fa5e',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5bbee9c4-b3e2-5d60-ba80-a4fc935f3fba',
+  'f89def1f-0546-516e-ae29-0abfd3f6fa5e',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5177ea59-f566-51ed-807f-6c9c15a5fabe',
+  'f89def1f-0546-516e-ae29-0abfd3f6fa5e',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0c69428a-450e-53d2-af45-9dd4c0517792',
+  'f89def1f-0546-516e-ae29-0abfd3f6fa5e',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd5e062c5-eb8b-5dd6-9160-8fc136a7e9d4',
@@ -2692,7 +6172,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'avance',
   'fr',
-  2,
+  4,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=20',
   '["Comprendre naturalisation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -2850,6 +6330,96 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '220d8fa2-b662-5f0c-acee-22426a190520',
+  'd5e062c5-eb8b-5dd6-9160-8fc136a7e9d4',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '4ae8b8f5-8e83-57af-8048-1cfee7b6d1f0',
+  'd5e062c5-eb8b-5dd6-9160-8fc136a7e9d4',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '64b28033-2aa0-5ae1-b23f-e80be009ad42',
+  'd5e062c5-eb8b-5dd6-9160-8fc136a7e9d4',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'f814b538-a57b-5b46-a0a5-5f2cdf951b79',
@@ -2860,7 +6430,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'debutant',
   'fr',
-  1,
+  5,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=21',
   '["Comprendre français a1", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -2964,6 +6534,186 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '76c27ed4-9214-52f3-8c11-9c1024729a24',
+  'f814b538-a57b-5b46-a0a5-5f2cdf951b79',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1bb3bf30-5397-58fc-bd7c-efba45d855be',
+  'f814b538-a57b-5b46-a0a5-5f2cdf951b79',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '15784e80-684c-5077-905c-faeba522d0ee',
+  'f814b538-a57b-5b46-a0a5-5f2cdf951b79',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'dd8e5f15-ec9c-5137-96d4-fc0b5d164b5d',
+  'f814b538-a57b-5b46-a0a5-5f2cdf951b79',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '28f7da34-647a-59da-8660-fdad405a8916',
+  'f814b538-a57b-5b46-a0a5-5f2cdf951b79',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a1d0724d-154a-54c9-827f-df9c4c038f75',
+  'f814b538-a57b-5b46-a0a5-5f2cdf951b79',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '0e666326-377f-5bb1-8293-ec7d9cc6bb99',
@@ -2974,7 +6724,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'intermediaire',
   'fr',
-  1,
+  6,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=22',
   '["Comprendre français a2", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -3108,6 +6858,186 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '699ef566-af40-55a7-8792-adde373f36f8',
+  '0e666326-377f-5bb1-8293-ec7d9cc6bb99',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '15730fe4-cf32-5264-b0c5-1b5a1254ff6c',
+  '0e666326-377f-5bb1-8293-ec7d9cc6bb99',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '05abbae1-d960-5224-bd53-52dbd36d8ccc',
+  '0e666326-377f-5bb1-8293-ec7d9cc6bb99',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9c281421-4442-5d6d-9e0b-a375967535ff',
+  '0e666326-377f-5bb1-8293-ec7d9cc6bb99',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '38362168-d9cc-5b21-96a8-19ec4e306dfd',
+  '0e666326-377f-5bb1-8293-ec7d9cc6bb99',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e75fd1a5-c3c2-58e7-a21f-9bf8119a6a8c',
+  '0e666326-377f-5bb1-8293-ec7d9cc6bb99',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'ad63ebd0-935d-55e7-8604-f61e36be828a',
@@ -3118,7 +7048,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'avance',
   'fr',
-  2,
+  7,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=23',
   '["Comprendre français b1", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -3282,6 +7212,186 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'beffd84b-770f-5036-a1d3-ea6ca24a9811',
+  'ad63ebd0-935d-55e7-8604-f61e36be828a',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '72b4fbbe-91ce-5111-b398-1114daf6d4ba',
+  'ad63ebd0-935d-55e7-8604-f61e36be828a',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c1a3f918-c0f4-59f7-941c-4d5105c46d0e',
+  'ad63ebd0-935d-55e7-8604-f61e36be828a',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '3cce5648-9e09-59fd-90ad-40c4ebcfd3af',
+  'ad63ebd0-935d-55e7-8604-f61e36be828a',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '38f182ed-341f-5894-bc92-afc5a0de684c',
+  'ad63ebd0-935d-55e7-8604-f61e36be828a',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1f052226-7b04-53fc-8d47-31fa40ff18e1',
+  'ad63ebd0-935d-55e7-8604-f61e36be828a',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '2e8f5923-62aa-5009-b1aa-ad1e6818fd21',
@@ -3292,7 +7402,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'debutant',
   'fr',
-  1,
+  8,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=24',
   '["Comprendre français b2", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -3396,6 +7506,276 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0c5f3b78-760e-5137-adf6-f67b2fc15d2f',
+  '2e8f5923-62aa-5009-b1aa-ad1e6818fd21',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '092afb96-090e-5f0d-9bb1-5c5986c3894b',
+  '2e8f5923-62aa-5009-b1aa-ad1e6818fd21',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '91ec19ea-a868-5c5b-8e9c-a7762c430a99',
+  '2e8f5923-62aa-5009-b1aa-ad1e6818fd21',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '62831d8e-7973-5ba5-8e72-e2432ad3dbb3',
+  '2e8f5923-62aa-5009-b1aa-ad1e6818fd21',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '99f429e2-9cc2-565e-b94a-1e7558c6ca95',
+  '2e8f5923-62aa-5009-b1aa-ad1e6818fd21',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1e7d2fcf-77ed-5c54-9f50-8a7e8a79fba5',
+  '2e8f5923-62aa-5009-b1aa-ad1e6818fd21',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ae31fb60-b1ba-5a6a-8422-10e5cba248fc',
+  '2e8f5923-62aa-5009-b1aa-ad1e6818fd21',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8a3a1bab-a752-534b-bb8e-e4059d69287a',
+  '2e8f5923-62aa-5009-b1aa-ad1e6818fd21',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ee5e9e9f-f228-581d-81e4-153da7cc7119',
+  '2e8f5923-62aa-5009-b1aa-ad1e6818fd21',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '28a75f3b-57c7-58f2-878f-649893bb8bda',
@@ -3406,7 +7786,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'intermediaire',
   'fr',
-  1,
+  4,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=25',
   '["Comprendre delf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -3540,6 +7920,126 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c0bcd52d-fec5-53e2-8e11-8176d77f13c6',
+  '28a75f3b-57c7-58f2-878f-649893bb8bda',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '7de7e64d-7333-597b-b76d-b949e8d72ea7',
+  '28a75f3b-57c7-58f2-878f-649893bb8bda',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '86eab02f-e245-58cc-ae40-91b4c1fbdf69',
+  '28a75f3b-57c7-58f2-878f-649893bb8bda',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '62669d1c-ab34-5293-ad91-90dc1d762030',
+  '28a75f3b-57c7-58f2-878f-649893bb8bda',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '67f19067-6596-54e8-a5ad-fb28223de216',
@@ -3550,7 +8050,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'avance',
   'fr',
-  2,
+  5,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=26',
   '["Comprendre dalf", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -3714,6 +8214,126 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2ba723d4-fbea-5cf7-b548-5228d3a502cb',
+  '67f19067-6596-54e8-a5ad-fb28223de216',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '53a0b6e0-ba3b-5bf4-bb47-8ef61206248e',
+  '67f19067-6596-54e8-a5ad-fb28223de216',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '79633c50-1fd2-5582-9963-d173e9a99d05',
+  '67f19067-6596-54e8-a5ad-fb28223de216',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0e97fb6e-e0f8-5230-8c9c-57e5fe7b9f48',
+  '67f19067-6596-54e8-a5ad-fb28223de216',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '1c11bd6d-d0e0-59cd-84d4-4e467fa3713d',
@@ -3724,7 +8344,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'debutant',
   'fr',
-  1,
+  6,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=27',
   '["Comprendre système éducatif", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -3822,6 +8442,216 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'dda2ac9a-2812-5203-8081-8f85ada36bcb',
+  '1c11bd6d-d0e0-59cd-84d4-4e467fa3713d',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5668ab5a-d2f4-5533-889f-9631f90fbd2f',
+  '1c11bd6d-d0e0-59cd-84d4-4e467fa3713d',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f8ec2dbd-33ce-5bd0-9fee-dddf52a39390',
+  '1c11bd6d-d0e0-59cd-84d4-4e467fa3713d',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '548e04fd-c186-5e9e-a6db-897abb7d25c8',
+  '1c11bd6d-d0e0-59cd-84d4-4e467fa3713d',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'db7a1bd0-b8c7-521f-a7a1-35eb7039f9d7',
+  '1c11bd6d-d0e0-59cd-84d4-4e467fa3713d',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9aa0ab7e-b913-5fd7-9538-afcbb1b00013',
+  '1c11bd6d-d0e0-59cd-84d4-4e467fa3713d',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '05fcce26-c79d-5924-9507-c7fafc3087ba',
+  '1c11bd6d-d0e0-59cd-84d4-4e467fa3713d',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '016fc562-ead6-5ed2-a991-256e9b644cd3',
@@ -3832,7 +8662,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'intermediaire',
   'fr',
-  1,
+  7,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=28',
   '["Comprendre inscription université", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -3960,6 +8790,216 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8fb024f3-0101-5752-bdba-d77f7aa11871',
+  '016fc562-ead6-5ed2-a991-256e9b644cd3',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6caaaac0-5a72-5a4a-a983-888e6f284c0f',
+  '016fc562-ead6-5ed2-a991-256e9b644cd3',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'aa43adb5-438c-505a-9003-d94480130477',
+  '016fc562-ead6-5ed2-a991-256e9b644cd3',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b2a791c3-a1b5-53ee-b687-220d9a6133ba',
+  '016fc562-ead6-5ed2-a991-256e9b644cd3',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '034aaf25-3e23-5016-b78f-1aaf9a332b08',
+  '016fc562-ead6-5ed2-a991-256e9b644cd3',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b707ee0a-da6e-592f-a530-aa7d5b5b9a06',
+  '016fc562-ead6-5ed2-a991-256e9b644cd3',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c5afefd2-67db-50c4-afd5-8ac1c7778efe',
+  '016fc562-ead6-5ed2-a991-256e9b644cd3',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '3496137e-cd83-5814-91f9-197b223acad3',
@@ -3970,7 +9010,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'avance',
   'fr',
-  2,
+  8,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=29',
   '["Comprendre lmd", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -4128,6 +9168,216 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '84eb55a6-90ce-5708-9eca-7cd454ae313e',
+  '3496137e-cd83-5814-91f9-197b223acad3',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b91e07b3-e10e-539e-bc69-49f26a0661fd',
+  '3496137e-cd83-5814-91f9-197b223acad3',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5f4aed5e-b2b9-53ec-b507-23e870c51b67',
+  '3496137e-cd83-5814-91f9-197b223acad3',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '32e9fd6e-502a-5986-b884-5d209abfbd53',
+  '3496137e-cd83-5814-91f9-197b223acad3',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '34b77696-cdeb-5c45-bb63-9045c6caef65',
+  '3496137e-cd83-5814-91f9-197b223acad3',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '707009fe-9d75-5601-9340-d3be1a3d75b4',
+  '3496137e-cd83-5814-91f9-197b223acad3',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '05fc632d-0942-54cb-81ff-4c493152b38b',
+  '3496137e-cd83-5814-91f9-197b223acad3',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '8be331f7-fd12-5a02-82ab-eb840bc2bbae',
@@ -4138,7 +9388,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'debutant',
   'fr',
-  1,
+  4,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=30',
   '["Comprendre bourses", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -4236,6 +9486,156 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8793674b-4994-521d-aacc-d39dee0dd3cc',
+  '8be331f7-fd12-5a02-82ab-eb840bc2bbae',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '04bf0782-dd10-57ec-b74f-c7c5dcb866ed',
+  '8be331f7-fd12-5a02-82ab-eb840bc2bbae',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5242c57d-214f-57d0-ab12-7561f96d2aad',
+  '8be331f7-fd12-5a02-82ab-eb840bc2bbae',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '76840e4c-5311-520c-8fc2-65cdec620c56',
+  '8be331f7-fd12-5a02-82ab-eb840bc2bbae',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0f7ad9d2-7667-5317-97e0-364dd5a2b0d8',
+  '8be331f7-fd12-5a02-82ab-eb840bc2bbae',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c7ffb411-530e-5017-8a79-2f6428977ad6',
@@ -4246,7 +9646,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'intermediaire',
   'fr',
-  1,
+  5,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=31',
   '["Comprendre équivalences", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -4374,6 +9774,156 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '7ce72785-a01a-52cf-b9a6-deaf087bad45',
+  'c7ffb411-530e-5017-8a79-2f6428977ad6',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '46fcab95-b81c-5962-a9ef-26ef52fdcc0c',
+  'c7ffb411-530e-5017-8a79-2f6428977ad6',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '815c84e0-3dad-540f-b9dc-caac16951099',
+  'c7ffb411-530e-5017-8a79-2f6428977ad6',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '65e7685a-31e7-5f82-8f6d-91d5eee838f9',
+  'c7ffb411-530e-5017-8a79-2f6428977ad6',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5fb19c1b-8a7d-5296-bd6c-461ddab3fd8f',
+  'c7ffb411-530e-5017-8a79-2f6428977ad6',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c52da179-2c0e-59d1-863b-b2d1827d6614',
@@ -4384,7 +9934,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'avance',
   'fr',
-  2,
+  6,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=32',
   '["Comprendre mémoire", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -4542,6 +10092,156 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '255ce723-c336-54b7-9aba-3e195a7fee67',
+  'c52da179-2c0e-59d1-863b-b2d1827d6614',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a9bbab75-5fa9-58ab-b775-5cba7fe3794f',
+  'c52da179-2c0e-59d1-863b-b2d1827d6614',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b7a5bb4c-5513-58e7-9286-9b2defc3ad60',
+  'c52da179-2c0e-59d1-863b-b2d1827d6614',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '90409071-bc0e-5f03-aaf9-fa0ccebce1ff',
+  'c52da179-2c0e-59d1-863b-b2d1827d6614',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '078fd33d-149c-5555-bf23-1f9904b7fcf9',
+  'c52da179-2c0e-59d1-863b-b2d1827d6614',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '6d4e876d-3843-5429-8d50-725c741023c8',
@@ -4552,7 +10252,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'debutant',
   'fr',
-  1,
+  7,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=33',
   '["Comprendre thèse", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -4650,6 +10350,246 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f4155c39-24a1-5a85-944f-935b223b9e71',
+  '6d4e876d-3843-5429-8d50-725c741023c8',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '64694a1f-4b2a-587d-9b86-90efa639cee8',
+  '6d4e876d-3843-5429-8d50-725c741023c8',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f17df060-4c0b-5672-b796-7eb8bdb1f587',
+  '6d4e876d-3843-5429-8d50-725c741023c8',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '37e9f554-0ad4-5a2e-8440-abfe24998adb',
+  '6d4e876d-3843-5429-8d50-725c741023c8',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '00e2f682-ad76-5519-96cf-908022ca22fe',
+  '6d4e876d-3843-5429-8d50-725c741023c8',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '81673bfc-3602-5f1e-8297-b3adbb5ca180',
+  '6d4e876d-3843-5429-8d50-725c741023c8',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f1504b61-5452-57eb-b631-9e9470295dc0',
+  '6d4e876d-3843-5429-8d50-725c741023c8',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'bc11aae1-88a9-5a7a-ab0c-40e66294cc19',
+  '6d4e876d-3843-5429-8d50-725c741023c8',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '7fe7066b-abbe-5914-9f89-93157bf0d2a7',
@@ -4660,7 +10600,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'intermediaire',
   'fr',
-  1,
+  8,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=34',
   '["Comprendre recherche", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -4788,6 +10728,246 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '7a5ae673-e10a-58d6-adcc-3848def9113c',
+  '7fe7066b-abbe-5914-9f89-93157bf0d2a7',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '039a7d39-22b9-5318-9299-539fb571accd',
+  '7fe7066b-abbe-5914-9f89-93157bf0d2a7',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1f2ded39-d5c0-551d-bbd1-98f8af6ce675',
+  '7fe7066b-abbe-5914-9f89-93157bf0d2a7',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a7dca7bd-f8f8-5324-8fa5-64f89101d196',
+  '7fe7066b-abbe-5914-9f89-93157bf0d2a7',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '77ea954f-b7f8-5a69-9cda-41c9c51efe44',
+  '7fe7066b-abbe-5914-9f89-93157bf0d2a7',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8c63e4b4-398c-5ad2-beb2-a04b8ee7128a',
+  '7fe7066b-abbe-5914-9f89-93157bf0d2a7',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'dc98d1ea-68a7-5e88-ae50-e8508a443720',
+  '7fe7066b-abbe-5914-9f89-93157bf0d2a7',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'dc9dad70-1a01-5310-87ae-2ee37ff8547e',
+  '7fe7066b-abbe-5914-9f89-93157bf0d2a7',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c32ca30f-e40d-5168-a14d-0111b23ce4bf',
@@ -4798,7 +10978,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'avance',
   'fr',
-  2,
+  4,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=35',
   '["Comprendre bibliographie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -4956,6 +11136,96 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b28a5958-af2b-5c87-befb-6f4da0756fc5',
+  'c32ca30f-e40d-5168-a14d-0111b23ce4bf',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '304e69bd-ba5b-5443-93ad-889f9f2cfa16',
+  'c32ca30f-e40d-5168-a14d-0111b23ce4bf',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f33de3e2-bf79-5b99-ae50-814621f90e90',
+  'c32ca30f-e40d-5168-a14d-0111b23ce4bf',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '4a3a4dbc-365e-5c5f-9b62-4ea83ea9718f',
@@ -4966,7 +11236,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'debutant',
   'fr',
-  1,
+  5,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=36',
   '["Comprendre présentations", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -5064,6 +11334,186 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '3bca3555-7148-56e1-b57c-b561a6ed31b8',
+  '4a3a4dbc-365e-5c5f-9b62-4ea83ea9718f',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '26f104a9-1156-534b-a133-c7d0195298ff',
+  '4a3a4dbc-365e-5c5f-9b62-4ea83ea9718f',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '15dc563e-d13f-51a8-a75b-c1e2aec1e609',
+  '4a3a4dbc-365e-5c5f-9b62-4ea83ea9718f',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '94f9fb4e-e92c-55c2-986c-faeafe355f5a',
+  '4a3a4dbc-365e-5c5f-9b62-4ea83ea9718f',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'bcf9c32f-7fd3-5dbe-b5ce-ef855b57d7e9',
+  '4a3a4dbc-365e-5c5f-9b62-4ea83ea9718f',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b7379987-bad2-5cdc-836d-16fb11646062',
+  '4a3a4dbc-365e-5c5f-9b62-4ea83ea9718f',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '38833e90-ca82-5318-b714-5b8889cb3ced',
@@ -5074,7 +11524,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'intermediaire',
   'fr',
-  1,
+  6,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=37',
   '["Comprendre examens", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -5202,6 +11652,186 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '68343c74-4cc7-5c8a-9362-12b1c7c1c2a6',
+  '38833e90-ca82-5318-b714-5b8889cb3ced',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '653048c1-afa1-5da8-9d6a-7adf7ed131c8',
+  '38833e90-ca82-5318-b714-5b8889cb3ced',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c2079788-d3bb-53b2-bbd5-2d75dbb3a2ec',
+  '38833e90-ca82-5318-b714-5b8889cb3ced',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6e98aed6-9667-5a70-93e6-23514f7b04cc',
+  '38833e90-ca82-5318-b714-5b8889cb3ced',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'cd54338a-f291-5e99-b609-1449df5aa77c',
+  '38833e90-ca82-5318-b714-5b8889cb3ced',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'cf239277-154a-500c-ae95-90c25802317a',
+  '38833e90-ca82-5318-b714-5b8889cb3ced',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'da88c66a-4d61-5a5e-a178-0f3f198bbc0f',
@@ -5212,7 +11842,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'avance',
   'fr',
-  2,
+  7,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=38',
   '["Comprendre méthodologie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -5370,6 +12000,186 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c8e17bbd-1ce5-518f-bc6e-b738561db582',
+  'da88c66a-4d61-5a5e-a178-0f3f198bbc0f',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '393511f1-a517-53c8-9ac7-99dfbb271709',
+  'da88c66a-4d61-5a5e-a178-0f3f198bbc0f',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c64ec5d5-0824-5750-8ac7-7d9680a60486',
+  'da88c66a-4d61-5a5e-a178-0f3f198bbc0f',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'db788a3a-dddf-51a8-a614-5fb94c690617',
+  'da88c66a-4d61-5a5e-a178-0f3f198bbc0f',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'fbe7ad51-d830-558d-9fd9-7eb1fdcd7683',
+  'da88c66a-4d61-5a5e-a178-0f3f198bbc0f',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '56deccd5-c44a-5e7b-8eb8-162fb9786a75',
+  'da88c66a-4d61-5a5e-a178-0f3f198bbc0f',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '60aefcc7-9ad3-54b0-92f6-14c5efee11c3',
@@ -5380,7 +12190,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'debutant',
   'fr',
-  1,
+  8,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=39',
   '["Comprendre prise de notes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -5478,6 +12288,276 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f45ea494-ab0e-559e-8557-a0380d5d815b',
+  '60aefcc7-9ad3-54b0-92f6-14c5efee11c3',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a2e0b6ee-3113-5141-9590-381e855a0078',
+  '60aefcc7-9ad3-54b0-92f6-14c5efee11c3',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a2536d1d-df97-5d09-95a2-a86623ea91f6',
+  '60aefcc7-9ad3-54b0-92f6-14c5efee11c3',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '3a845ed9-5280-5b46-92fe-1fb50d18a94f',
+  '60aefcc7-9ad3-54b0-92f6-14c5efee11c3',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '4673925e-66fd-5211-9621-90d456ea43b4',
+  '60aefcc7-9ad3-54b0-92f6-14c5efee11c3',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5c8a0d1d-2e06-5af2-98a8-7178706a6de8',
+  '60aefcc7-9ad3-54b0-92f6-14c5efee11c3',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2c40788f-ab2c-5497-81fb-93c9ee6e2d6a',
+  '60aefcc7-9ad3-54b0-92f6-14c5efee11c3',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1de87e33-b90a-5fe1-9442-3a49b54f2723',
+  '60aefcc7-9ad3-54b0-92f6-14c5efee11c3',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '61676a1c-780d-5caf-94a7-9d60bd58c305',
+  '60aefcc7-9ad3-54b0-92f6-14c5efee11c3',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'e13aa66a-d08a-52c2-9e8d-d0a367f450ff',
@@ -5488,7 +12568,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'preparation_academique',
   'intermediaire',
   'fr',
-  1,
+  4,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=40',
   '["Comprendre apprentissage", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -5616,6 +12696,126 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'babb0bbd-2b84-5e3c-8faa-a097bcea51ef',
+  'e13aa66a-d08a-52c2-9e8d-d0a367f450ff',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '3899aec0-8a99-5eb5-9883-95f51945a7df',
+  'e13aa66a-d08a-52c2-9e8d-d0a367f450ff',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ffe77f94-aa41-590d-8ab2-851edc12ae57',
+  'e13aa66a-d08a-52c2-9e8d-d0a367f450ff',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a728f319-2a5e-5e66-858c-3f7c8f3568f0',
+  'e13aa66a-d08a-52c2-9e8d-d0a367f450ff',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '037be095-d748-512e-8ed8-f1e0743d4738',
@@ -5626,7 +12826,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'avance',
   'fr',
-  2,
+  5,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=41',
   '["Comprendre codes sociaux", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -5784,6 +12984,126 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e31a7b54-cd2d-5ed3-91be-a527dc4c86e5',
+  '037be095-d748-512e-8ed8-f1e0743d4738',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9466d65f-2379-5d46-ab65-2ff0beb24e55',
+  '037be095-d748-512e-8ed8-f1e0743d4738',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '4e6551c2-c342-51ba-94ba-75931a6872d3',
+  '037be095-d748-512e-8ed8-f1e0743d4738',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6a153ed7-62be-596b-9ee9-a976d680193a',
+  '037be095-d748-512e-8ed8-f1e0743d4738',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'b300742e-de87-5f11-a7d4-571dafede82b',
@@ -5794,7 +13114,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'debutant',
   'fr',
-  1,
+  6,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=42',
   '["Comprendre politesse", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -5892,6 +13212,216 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '56112f74-b372-582d-9261-a8ac7e594cde',
+  'b300742e-de87-5f11-a7d4-571dafede82b',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ca29c931-74d3-5e03-bb08-b595dab1a436',
+  'b300742e-de87-5f11-a7d4-571dafede82b',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9a4b026a-9767-552d-b04b-b69cef26a63a',
+  'b300742e-de87-5f11-a7d4-571dafede82b',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '4ade2df1-32f9-5ad1-87d1-26dd76f2d7ed',
+  'b300742e-de87-5f11-a7d4-571dafede82b',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '124f2e7c-f2d8-5bc9-811a-23e50d0fa1b0',
+  'b300742e-de87-5f11-a7d4-571dafede82b',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '36a798d0-8eb3-5824-bf20-ae42ae0f163e',
+  'b300742e-de87-5f11-a7d4-571dafede82b',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6d03594b-fa1e-5798-b490-2fa4e55f8e3b',
+  'b300742e-de87-5f11-a7d4-571dafede82b',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '69f5b33d-ba22-5f30-8b47-7dbe66ca6b2b',
@@ -5902,7 +13432,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'intermediaire',
   'fr',
-  1,
+  7,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=43',
   '["Comprendre tutoiement/vouvoiement", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -6030,6 +13560,216 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '89e4ffd3-9691-567f-bd2f-abb31de2725d',
+  '69f5b33d-ba22-5f30-8b47-7dbe66ca6b2b',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '617d4f0f-e088-5a19-9161-c44b8b512b78',
+  '69f5b33d-ba22-5f30-8b47-7dbe66ca6b2b',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '45e3e73c-e849-5522-8c45-c6954592390f',
+  '69f5b33d-ba22-5f30-8b47-7dbe66ca6b2b',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c92b2b8d-f126-593f-b953-cdfe4124755d',
+  '69f5b33d-ba22-5f30-8b47-7dbe66ca6b2b',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b061a6f2-6be4-58fa-a6f1-0d3ba56234be',
+  '69f5b33d-ba22-5f30-8b47-7dbe66ca6b2b',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6396539d-d2db-547a-ab35-cc262f239b30',
+  '69f5b33d-ba22-5f30-8b47-7dbe66ca6b2b',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '471f5515-f572-5784-a71d-54c6d8058898',
+  '69f5b33d-ba22-5f30-8b47-7dbe66ca6b2b',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'db1656ff-edc5-5041-a460-b30f83037cc6',
@@ -6040,7 +13780,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'avance',
   'fr',
-  2,
+  8,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=44',
   '["Comprendre repas", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -6198,6 +13938,216 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a9050750-cc41-585b-9e80-cb530dfbffdd',
+  'db1656ff-edc5-5041-a460-b30f83037cc6',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e7f10850-f903-5cfc-a4e3-edfc45e33b46',
+  'db1656ff-edc5-5041-a460-b30f83037cc6',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '16eb69cf-b4fe-5ee0-8fac-70e7f52adf16',
+  'db1656ff-edc5-5041-a460-b30f83037cc6',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9397d5c2-228e-5413-9a43-342436dec470',
+  'db1656ff-edc5-5041-a460-b30f83037cc6',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e2017cb0-8df7-5ed4-b552-46940cc3ec40',
+  'db1656ff-edc5-5041-a460-b30f83037cc6',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1264e3af-8e5e-5ff5-a290-0996a2bbc3da',
+  'db1656ff-edc5-5041-a460-b30f83037cc6',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '7ad47e8c-a8a3-5936-930b-e365a333e7a5',
+  'db1656ff-edc5-5041-a460-b30f83037cc6',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'a74489af-2d5f-5fc5-ac8b-d707a69567cf',
@@ -6208,7 +14158,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'debutant',
   'fr',
-  1,
+  4,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=45',
   '["Comprendre cadeaux", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -6306,6 +14256,156 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6d511c05-20dc-5eec-b53f-f439ff5aea29',
+  'a74489af-2d5f-5fc5-ac8b-d707a69567cf',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9dd7b652-5115-5d28-8525-9c208fec918b',
+  'a74489af-2d5f-5fc5-ac8b-d707a69567cf',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '19b7f4f0-6109-516a-a549-4e251a224c09',
+  'a74489af-2d5f-5fc5-ac8b-d707a69567cf',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd4678f01-2394-545c-bfce-5c2ab2e1e705',
+  'a74489af-2d5f-5fc5-ac8b-d707a69567cf',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd133a8af-2ed4-5a7f-be1e-7211a7a03b17',
+  'a74489af-2d5f-5fc5-ac8b-d707a69567cf',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'bed05488-270c-57d4-97df-df677303b328',
@@ -6316,7 +14416,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'intermediaire',
   'fr',
-  1,
+  5,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=46',
   '["Comprendre transport paris", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -6444,6 +14544,156 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c0f73583-8e61-5f9e-bbdf-58e07f653575',
+  'bed05488-270c-57d4-97df-df677303b328',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e26e16b1-6005-5af8-895e-a65a4d708e5e',
+  'bed05488-270c-57d4-97df-df677303b328',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '63ab2c30-4e16-52bb-af23-09c330463d26',
+  'bed05488-270c-57d4-97df-df677303b328',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ceeba455-32bd-5d78-bdef-08b1eb5c12a5',
+  'bed05488-270c-57d4-97df-df677303b328',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ae698c1e-07d2-51d9-98f8-da83271a77d3',
+  'bed05488-270c-57d4-97df-df677303b328',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'ec9e8d76-9a23-52c8-826b-4a8fe67a2eb7',
@@ -6454,7 +14704,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'avance',
   'fr',
-  2,
+  6,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=47',
   '["Comprendre carte navigo", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -6612,6 +14862,156 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '769f7dc1-f8d7-5ee0-9050-3290b71c7de6',
+  'ec9e8d76-9a23-52c8-826b-4a8fe67a2eb7',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '68a425d1-051d-5366-8acf-0846cbd388ed',
+  'ec9e8d76-9a23-52c8-826b-4a8fe67a2eb7',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ba9e1168-8b82-5a7f-b8fc-394797d50910',
+  'ec9e8d76-9a23-52c8-826b-4a8fe67a2eb7',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '097704d6-1c68-563d-bc90-141d11c7645a',
+  'ec9e8d76-9a23-52c8-826b-4a8fe67a2eb7',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6425b4f2-ab22-51ee-b8d6-4d1b646cb1ac',
+  'ec9e8d76-9a23-52c8-826b-4a8fe67a2eb7',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '71f5186e-c87a-5677-af21-9dee20c73dd4',
@@ -6622,7 +15022,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'debutant',
   'fr',
-  1,
+  7,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=48',
   '["Comprendre événements", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -6720,6 +15120,246 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '7faa1b22-81e1-5b73-979a-9d53b321c15d',
+  '71f5186e-c87a-5677-af21-9dee20c73dd4',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9a56a387-57e1-5a72-8a71-186a7a45cb58',
+  '71f5186e-c87a-5677-af21-9dee20c73dd4',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '21af5bae-2007-5989-8017-505ffd0ea3a1',
+  '71f5186e-c87a-5677-af21-9dee20c73dd4',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'cc435110-1449-5a41-9e14-69da0f06abff',
+  '71f5186e-c87a-5677-af21-9dee20c73dd4',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '126afd4e-77ff-5ea4-ba3a-cc72deba1ab7',
+  '71f5186e-c87a-5677-af21-9dee20c73dd4',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'bb6bac4f-9508-582d-bed4-8fdec60ff182',
+  '71f5186e-c87a-5677-af21-9dee20c73dd4',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b16f6a62-4165-50b2-994d-d88a0e1306d9',
+  '71f5186e-c87a-5677-af21-9dee20c73dd4',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f5d83eac-87b5-5600-97af-cf4deb76a4e3',
+  '71f5186e-c87a-5677-af21-9dee20c73dd4',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '024a2d17-ae36-5bef-be64-298a5e6f130b',
@@ -6730,7 +15370,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'intermediaire',
   'fr',
-  1,
+  8,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=49',
   '["Comprendre fêtes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -6858,6 +15498,246 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '4f072534-b8f2-5cdc-8bef-bf9abe0e74d0',
+  '024a2d17-ae36-5bef-be64-298a5e6f130b',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5a943a70-1ac3-5bb4-b213-d49037c6a5e7',
+  '024a2d17-ae36-5bef-be64-298a5e6f130b',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '14503bfc-210f-57ce-9306-ebdfb5e0c597',
+  '024a2d17-ae36-5bef-be64-298a5e6f130b',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6f69b572-7a29-5c7c-9f15-9a5f8eed3e9b',
+  '024a2d17-ae36-5bef-be64-298a5e6f130b',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd8272454-eaa1-5e53-b462-f0d52a151ae5',
+  '024a2d17-ae36-5bef-be64-298a5e6f130b',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '143f31c9-e993-5399-94b2-5761048c59b9',
+  '024a2d17-ae36-5bef-be64-298a5e6f130b',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1b9fb661-dda2-54ee-8655-8b3f7b107375',
+  '024a2d17-ae36-5bef-be64-298a5e6f130b',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'db26d8f2-10e5-5b85-929d-3d8b88628f17',
+  '024a2d17-ae36-5bef-be64-298a5e6f130b',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '97584e36-6e66-599f-a073-86d260b64b13',
@@ -6868,7 +15748,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'avance',
   'fr',
-  2,
+  4,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=50',
   '["Comprendre traditions", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -7026,6 +15906,96 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '3a1714b3-febb-5711-897b-7744ea17552b',
+  '97584e36-6e66-599f-a073-86d260b64b13',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd752a30d-c54e-5a16-8fdf-c087fe25ea14',
+  '97584e36-6e66-599f-a073-86d260b64b13',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f08b2969-02f0-56fc-b83f-942ff8ebb581',
+  '97584e36-6e66-599f-a073-86d260b64b13',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c8740d55-3f25-5cc4-8807-6a1a5c9cca48',
@@ -7036,7 +16006,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'debutant',
   'fr',
-  1,
+  5,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=51',
   '["Comprendre histoire france", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -7134,6 +16104,186 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd2270f0f-8cab-51cc-ad98-b836ce0e6c1b',
+  'c8740d55-3f25-5cc4-8807-6a1a5c9cca48',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '80123026-fb07-5669-91bf-9bb23f81fa5e',
+  'c8740d55-3f25-5cc4-8807-6a1a5c9cca48',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '76e7c895-b5fe-5013-abeb-860c440a2335',
+  'c8740d55-3f25-5cc4-8807-6a1a5c9cca48',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'edd5dd8c-b746-57bd-9e23-1d4c3f86fddb',
+  'c8740d55-3f25-5cc4-8807-6a1a5c9cca48',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '74fe0659-71e9-5fa3-90a5-06addd7dd5e6',
+  'c8740d55-3f25-5cc4-8807-6a1a5c9cca48',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'bfaf082c-cd28-508c-826f-e0f4411d388c',
+  'c8740d55-3f25-5cc4-8807-6a1a5c9cca48',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '8d075147-3d4c-533a-9ce4-52cb42c678ce',
@@ -7144,7 +16294,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'intermediaire',
   'fr',
-  1,
+  6,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=52',
   '["Comprendre géographie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -7272,6 +16422,186 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ac9c0c6e-f0a4-5022-8f3b-25c679e67d06',
+  '8d075147-3d4c-533a-9ce4-52cb42c678ce',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5f02e62e-7543-5b56-8d97-5ceac883b2a6',
+  '8d075147-3d4c-533a-9ce4-52cb42c678ce',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '230ba7ae-81ff-5865-8eb6-d048d1c9c750',
+  '8d075147-3d4c-533a-9ce4-52cb42c678ce',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '11623df5-5c0e-5ac6-b806-7251ee26560e',
+  '8d075147-3d4c-533a-9ce4-52cb42c678ce',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c7788603-c041-5670-96ce-4afb0b37204d',
+  '8d075147-3d4c-533a-9ce4-52cb42c678ce',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8a9206ed-7b36-525c-9de9-f679f81ca32f',
+  '8d075147-3d4c-533a-9ce4-52cb42c678ce',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '0dc01311-ce32-5306-bcec-343272734361',
@@ -7282,7 +16612,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'avance',
   'fr',
-  2,
+  7,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=53',
   '["Comprendre régions", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -7440,6 +16770,186 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c1ad007c-5c41-5dd8-ae94-97acee07f2e1',
+  '0dc01311-ce32-5306-bcec-343272734361',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c731b7d5-3e3b-5758-bbbb-20228c4abafb',
+  '0dc01311-ce32-5306-bcec-343272734361',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c0429c96-35f0-5685-bab7-3b72380e80b0',
+  '0dc01311-ce32-5306-bcec-343272734361',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '09b2fe0e-51fc-5b39-8f36-40cd7b1e714d',
+  '0dc01311-ce32-5306-bcec-343272734361',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0ea0cb02-f2ec-524a-9e02-37f9ac1f61f5',
+  '0dc01311-ce32-5306-bcec-343272734361',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9ad757a3-6aba-55b2-a926-7b3843ff7691',
+  '0dc01311-ce32-5306-bcec-343272734361',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'ccec44b2-962f-55b3-b8c6-c5c615497718',
@@ -7450,7 +16960,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'debutant',
   'fr',
-  1,
+  8,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=54',
   '["Comprendre patrimoine", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -7548,6 +17058,276 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b92a15d0-fbed-5a5b-8496-edcff27d6ab0',
+  'ccec44b2-962f-55b3-b8c6-c5c615497718',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b0be37d5-bb17-520f-89b6-c923b2af6d3f',
+  'ccec44b2-962f-55b3-b8c6-c5c615497718',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'fbc7c23d-e9bb-539a-9192-4d24c671db02',
+  'ccec44b2-962f-55b3-b8c6-c5c615497718',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a23c6aca-6cdd-5c34-a978-e0941e67d365',
+  'ccec44b2-962f-55b3-b8c6-c5c615497718',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ac400618-b316-53aa-8a90-81319f20be46',
+  'ccec44b2-962f-55b3-b8c6-c5c615497718',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f48e6e5d-8409-522a-a956-12e09fdc93e4',
+  'ccec44b2-962f-55b3-b8c6-c5c615497718',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8da7aeec-45c8-5c8d-a32e-5a92af15fa28',
+  'ccec44b2-962f-55b3-b8c6-c5c615497718',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'faeb8555-4e42-51f4-bc1b-70f3160b74b6',
+  'ccec44b2-962f-55b3-b8c6-c5c615497718',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '463fb098-8e7d-5cc9-bb02-4e9dbd79411b',
+  'ccec44b2-962f-55b3-b8c6-c5c615497718',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'e6cfbd6e-34ca-5d4a-8960-cfae74361ad1',
@@ -7558,7 +17338,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'culture_codes_sociaux',
   'intermediaire',
   'fr',
-  1,
+  4,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=55',
   '["Comprendre art", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -7686,6 +17466,126 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b266535c-0f10-5257-a593-d261626e32f6',
+  'e6cfbd6e-34ca-5d4a-8960-cfae74361ad1',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c6c2aa74-15eb-525b-b3cc-3d97b5672d6a',
+  'e6cfbd6e-34ca-5d4a-8960-cfae74361ad1',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '408b2eb2-697c-5845-a5d0-aab0b5441c65',
+  'e6cfbd6e-34ca-5d4a-8960-cfae74361ad1',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ffb84eec-e8f5-55f8-9f68-e8bc93ae57df',
+  'e6cfbd6e-34ca-5d4a-8960-cfae74361ad1',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '4b7a2635-af6f-5f51-8a25-c05a67490caa',
@@ -7696,7 +17596,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'avance',
   'fr',
-  2,
+  5,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=56',
   '["Comprendre cv français", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -7860,6 +17760,126 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8eb7d135-c05b-583a-8564-1a491809901a',
+  '4b7a2635-af6f-5f51-8a25-c05a67490caa',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f3c25143-83fa-57ed-bb81-dec71bb731d5',
+  '4b7a2635-af6f-5f51-8a25-c05a67490caa',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '93208c66-14c7-5c11-b765-8de17423161f',
+  '4b7a2635-af6f-5f51-8a25-c05a67490caa',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'fb1cdfa7-17da-579f-b18a-2d9c1bd9e622',
+  '4b7a2635-af6f-5f51-8a25-c05a67490caa',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '8e12ddbb-112e-585d-b9c6-3e788c6c7092',
@@ -7870,7 +17890,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'debutant',
   'fr',
-  1,
+  6,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=57',
   '["Comprendre lettre motivation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -7968,6 +17988,216 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '63993d90-d329-572a-b64d-8e29c646c234',
+  '8e12ddbb-112e-585d-b9c6-3e788c6c7092',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a934f3cc-c90a-5318-b027-e8c027f173d4',
+  '8e12ddbb-112e-585d-b9c6-3e788c6c7092',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd535aca2-f1a9-5ede-9f19-df2135f397af',
+  '8e12ddbb-112e-585d-b9c6-3e788c6c7092',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f74ec2d6-cdf6-50e9-b172-deb794327d75',
+  '8e12ddbb-112e-585d-b9c6-3e788c6c7092',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd7541b83-fe69-5554-810c-d9aacf011c02',
+  '8e12ddbb-112e-585d-b9c6-3e788c6c7092',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b89fab3d-2a1e-5c63-bb43-5c5ea53d48f0',
+  '8e12ddbb-112e-585d-b9c6-3e788c6c7092',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd3613695-7ddc-531d-8b4d-ef00388741b3',
+  '8e12ddbb-112e-585d-b9c6-3e788c6c7092',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '393674c5-fb47-5c89-9769-63f523f7db83',
@@ -7978,7 +18208,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'intermediaire',
   'fr',
-  1,
+  7,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=58',
   '["Comprendre entretien", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -8106,6 +18336,216 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b369932d-9187-53ff-a364-bb8f1f889609',
+  '393674c5-fb47-5c89-9769-63f523f7db83',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '540daf2c-1b10-54cb-8032-8056b1bad266',
+  '393674c5-fb47-5c89-9769-63f523f7db83',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'fbadec76-bf11-5731-a662-4d74f91be626',
+  '393674c5-fb47-5c89-9769-63f523f7db83',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '4180397a-461e-523c-bd20-8e89fe305299',
+  '393674c5-fb47-5c89-9769-63f523f7db83',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ca9f01a8-55d2-5aa0-bf6b-b1320b7b9f52',
+  '393674c5-fb47-5c89-9769-63f523f7db83',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e5f4fa3e-7be0-598a-a897-aed93166b305',
+  '393674c5-fb47-5c89-9769-63f523f7db83',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '204cccfd-1079-520e-927f-246ba0e3bfc2',
+  '393674c5-fb47-5c89-9769-63f523f7db83',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '30874e2f-2f80-54d9-b3b7-978c1556c4f4',
@@ -8116,7 +18556,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'avance',
   'fr',
-  2,
+  8,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=59',
   '["Comprendre linkedin", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -8274,6 +18714,216 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '72db942f-a008-5d64-b068-6f20a14ffdde',
+  '30874e2f-2f80-54d9-b3b7-978c1556c4f4',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c0ad43ae-9cf6-5af1-9b1e-de5506373753',
+  '30874e2f-2f80-54d9-b3b7-978c1556c4f4',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '151d38f4-caf7-5d82-8991-09ac4683f9b5',
+  '30874e2f-2f80-54d9-b3b7-978c1556c4f4',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f8638508-5ef2-52fc-bd52-a282a72e4fff',
+  '30874e2f-2f80-54d9-b3b7-978c1556c4f4',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '68bab490-c085-5af0-807a-180312df1f64',
+  '30874e2f-2f80-54d9-b3b7-978c1556c4f4',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '322810db-2c5f-5126-85aa-da81d1aad354',
+  '30874e2f-2f80-54d9-b3b7-978c1556c4f4',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8f80b7b0-84e4-5071-80e7-4926e9d7a988',
+  '30874e2f-2f80-54d9-b3b7-978c1556c4f4',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'efa2d432-d51b-54ba-88c0-794c252488f0',
@@ -8284,7 +18934,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'debutant',
   'fr',
-  1,
+  4,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=60',
   '["Comprendre réseau", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -8382,6 +19032,156 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1c067ea3-20b0-51c6-8177-2d9dbf2b8ec7',
+  'efa2d432-d51b-54ba-88c0-794c252488f0',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'eeb0bdd7-e982-528b-91f3-207fa68f5822',
+  'efa2d432-d51b-54ba-88c0-794c252488f0',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '3748fb1a-ac86-5820-b6c6-b319fff44652',
+  'efa2d432-d51b-54ba-88c0-794c252488f0',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f58f70f5-6f3e-5486-a288-604c76b6a579',
+  'efa2d432-d51b-54ba-88c0-794c252488f0',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '84527fd2-5f8a-55ee-bfc9-2c754104f2c1',
+  'efa2d432-d51b-54ba-88c0-794c252488f0',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'c7ef3fd4-af73-5414-8191-90ea2b46bd8b',
@@ -8392,7 +19192,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'intermediaire',
   'fr',
-  1,
+  5,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=61',
   '["Comprendre stage", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -8520,6 +19320,156 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ae7716dc-ba64-5374-8639-7d3329ecf515',
+  'c7ef3fd4-af73-5414-8191-90ea2b46bd8b',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '356a5de5-0b07-5b73-93d8-358309c7bfda',
+  'c7ef3fd4-af73-5414-8191-90ea2b46bd8b',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b8614511-5096-5620-beb3-7b52dc50ef57',
+  'c7ef3fd4-af73-5414-8191-90ea2b46bd8b',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b5149b26-487d-51ea-bce0-8951fa45baa1',
+  'c7ef3fd4-af73-5414-8191-90ea2b46bd8b',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '20a88ef5-b0cb-5cdf-923d-cb12ba8f52be',
+  'c7ef3fd4-af73-5414-8191-90ea2b46bd8b',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '3b980880-fdf0-5868-956c-877291bd547b',
@@ -8530,7 +19480,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'avance',
   'fr',
-  2,
+  6,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=62',
   '["Comprendre alternance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -8688,6 +19638,156 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'fd198874-a5ca-59d1-b514-cc3acf16e883',
+  '3b980880-fdf0-5868-956c-877291bd547b',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '09f65f68-05cd-59d7-8494-93e92cd9123c',
+  '3b980880-fdf0-5868-956c-877291bd547b',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '80a4ad48-8c30-509c-8fc9-bebc6b1a709a',
+  '3b980880-fdf0-5868-956c-877291bd547b',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a9ea0535-21a3-549a-9de7-5ff4a36d1281',
+  '3b980880-fdf0-5868-956c-877291bd547b',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd3e3837a-f939-5f1a-87f8-c8d0d40d83f6',
+  '3b980880-fdf0-5868-956c-877291bd547b',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '9216c13d-7986-5cd9-acf4-64708d4e4de8',
@@ -8698,7 +19798,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'debutant',
   'fr',
-  1,
+  7,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=63',
   '["Comprendre cdd", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -8796,6 +19896,246 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b2bd7d9f-7930-5009-a57e-7ef9ea01d1de',
+  '9216c13d-7986-5cd9-acf4-64708d4e4de8',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '410f403b-2907-5f09-a6be-7081fa8c361e',
+  '9216c13d-7986-5cd9-acf4-64708d4e4de8',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8c9dae15-3b62-5548-a316-ffefdd449705',
+  '9216c13d-7986-5cd9-acf4-64708d4e4de8',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b45ad116-de8a-5790-bda7-e9442ae15337',
+  '9216c13d-7986-5cd9-acf4-64708d4e4de8',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ae5c2b69-02de-5e4c-b35f-2605365ec93f',
+  '9216c13d-7986-5cd9-acf4-64708d4e4de8',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0b250f4b-7a86-515f-b75f-4891d1e75a82',
+  '9216c13d-7986-5cd9-acf4-64708d4e4de8',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8861a583-055c-5dd5-bada-f36ad9bfe4fc',
+  '9216c13d-7986-5cd9-acf4-64708d4e4de8',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '19a56ef4-0cd3-553f-a6e0-522bf8af9a85',
+  '9216c13d-7986-5cd9-acf4-64708d4e4de8',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'd03c8d50-df4d-5b4f-98f9-98ecf09dfe08',
@@ -8806,7 +20146,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'intermediaire',
   'fr',
-  1,
+  8,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=64',
   '["Comprendre cdi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -8934,6 +20274,246 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd6e8b24c-7315-5ab2-b8f3-a3473dca8d8f',
+  'd03c8d50-df4d-5b4f-98f9-98ecf09dfe08',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'fdda9ba0-3156-5db3-896a-ed935181a1b8',
+  'd03c8d50-df4d-5b4f-98f9-98ecf09dfe08',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '91101f64-6e9a-5b7f-a39e-34d5c98e92cc',
+  'd03c8d50-df4d-5b4f-98f9-98ecf09dfe08',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5f93f467-c044-532b-a164-6567b260161a',
+  'd03c8d50-df4d-5b4f-98f9-98ecf09dfe08',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '798377f7-9584-5258-9e3b-cec9487cd847',
+  'd03c8d50-df4d-5b4f-98f9-98ecf09dfe08',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd16e231b-2733-5437-8099-b5745d00ba8a',
+  'd03c8d50-df4d-5b4f-98f9-98ecf09dfe08',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0195dcec-5a48-5302-9a05-e53b8cf1b7dc',
+  'd03c8d50-df4d-5b4f-98f9-98ecf09dfe08',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '54a62e16-8394-5e9f-a050-5bbca242f264',
+  'd03c8d50-df4d-5b4f-98f9-98ecf09dfe08',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '9d552d35-dfd6-5108-a9e2-17d9ea545eb3',
@@ -8944,7 +20524,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'avance',
   'fr',
-  2,
+  4,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=65',
   '["Comprendre freelance", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -9102,6 +20682,96 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd9adc81e-57a6-5070-97d7-44e298953d03',
+  '9d552d35-dfd6-5108-a9e2-17d9ea545eb3',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2d321731-6ae4-5a2a-b67d-735db9d3a84d',
+  '9d552d35-dfd6-5108-a9e2-17d9ea545eb3',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '845129f3-bff2-5fea-9406-4f65d2b9b357',
+  '9d552d35-dfd6-5108-a9e2-17d9ea545eb3',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'ca164036-fe9d-511c-92dd-199bf18cbb53',
@@ -9112,7 +20782,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'debutant',
   'fr',
-  1,
+  5,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=66',
   '["Comprendre salaire", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -9210,6 +20880,186 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f4e5cc3a-29b9-561d-83f2-93b96a0b29fa',
+  'ca164036-fe9d-511c-92dd-199bf18cbb53',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '360c7b9a-680d-57e8-962c-66e71d784798',
+  'ca164036-fe9d-511c-92dd-199bf18cbb53',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b06c346d-e15f-5601-bd80-0d1b1da7d57b',
+  'ca164036-fe9d-511c-92dd-199bf18cbb53',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'aa70d60f-4ee1-53f5-bb4f-6d0942f31298',
+  'ca164036-fe9d-511c-92dd-199bf18cbb53',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0e3a64cb-ba58-5fdc-80d3-001eac12f311',
+  'ca164036-fe9d-511c-92dd-199bf18cbb53',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd1405b18-79ac-575c-b151-e675a33b5d20',
+  'ca164036-fe9d-511c-92dd-199bf18cbb53',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'bb04d730-b42d-5df9-bc28-3e6ef5a07d34',
@@ -9220,7 +21070,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'intermediaire',
   'fr',
-  1,
+  6,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=67',
   '["Comprendre négociation", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -9348,6 +21198,186 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b6462895-ee2e-5316-a9b2-6f421e4031e2',
+  'bb04d730-b42d-5df9-bc28-3e6ef5a07d34',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b18bb37a-c757-537d-bf06-d11965c2307d',
+  'bb04d730-b42d-5df9-bc28-3e6ef5a07d34',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9af418b1-b3b2-5f98-ad81-a1b8a7a03653',
+  'bb04d730-b42d-5df9-bc28-3e6ef5a07d34',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c2193189-d097-5f8f-8574-87effcc8cbe7',
+  'bb04d730-b42d-5df9-bc28-3e6ef5a07d34',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '927bf4d0-70bc-58bd-9b7f-6f18ed17cdad',
+  'bb04d730-b42d-5df9-bc28-3e6ef5a07d34',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '472587d7-33ea-593e-92dc-ebd833348617',
+  'bb04d730-b42d-5df9-bc28-3e6ef5a07d34',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '98f496f7-8ee5-5cc2-9518-ca08b474bed9',
@@ -9358,7 +21388,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'avance',
   'fr',
-  2,
+  7,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=68',
   '["Comprendre droits travail", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -9516,6 +21546,186 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a2827121-a77d-587c-bfaf-c69db8d923bd',
+  '98f496f7-8ee5-5cc2-9518-ca08b474bed9',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0752b3ef-4dab-5b3a-a68c-bfa9cac1f5c8',
+  '98f496f7-8ee5-5cc2-9518-ca08b474bed9',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9266ad2a-4fb4-5b74-aa01-8fe57748ab59',
+  '98f496f7-8ee5-5cc2-9518-ca08b474bed9',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '7294e8f2-ed6b-5014-a88d-d6cbdf0b7115',
+  '98f496f7-8ee5-5cc2-9518-ca08b474bed9',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '4bd349e1-c260-5388-b883-bc8cabbe5a01',
+  '98f496f7-8ee5-5cc2-9518-ca08b474bed9',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '3324adac-410f-5606-bae1-be696db217a1',
+  '98f496f7-8ee5-5cc2-9518-ca08b474bed9',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '356db2e0-9f67-58fb-8a2e-6f71f6dbeb0b',
@@ -9526,7 +21736,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'debutant',
   'fr',
-  1,
+  8,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=69',
   '["Comprendre congés", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -9624,6 +21834,276 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8c8a7873-d34d-59a5-843d-b0dd929e6cfa',
+  '356db2e0-9f67-58fb-8a2e-6f71f6dbeb0b',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e249e181-3b20-5bb2-9d1e-e1694445f624',
+  '356db2e0-9f67-58fb-8a2e-6f71f6dbeb0b',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'fd461f9d-e983-5ed0-965e-2f6f90dee34b',
+  '356db2e0-9f67-58fb-8a2e-6f71f6dbeb0b',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b1475f5e-5a41-57e3-a381-38b0aefbd8c5',
+  '356db2e0-9f67-58fb-8a2e-6f71f6dbeb0b',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '98b8c3da-a2f4-58ff-ad4d-dbcbbad19ac2',
+  '356db2e0-9f67-58fb-8a2e-6f71f6dbeb0b',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '376e49b2-e72a-5d3d-9c22-cce51ecd9956',
+  '356db2e0-9f67-58fb-8a2e-6f71f6dbeb0b',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '19bda186-bd14-5573-b6af-51cdd296f7e4',
+  '356db2e0-9f67-58fb-8a2e-6f71f6dbeb0b',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '9b51448f-98ba-515d-a703-79b935ec86f1',
+  '356db2e0-9f67-58fb-8a2e-6f71f6dbeb0b',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'a754d5ec-ca92-5fd6-a0ab-0a67b9bcdb62',
+  '356db2e0-9f67-58fb-8a2e-6f71f6dbeb0b',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '253337de-db98-5e5d-bdbb-78a80040cbbb',
@@ -9634,7 +22114,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'insertion_professionnelle',
   'intermediaire',
   'fr',
-  1,
+  4,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=70',
   '["Comprendre télétravail", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -9762,6 +22242,126 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'df47dbd2-3387-5f93-b3e0-bce31edd39dc',
+  '253337de-db98-5e5d-bdbb-78a80040cbbb',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'dd77f9c8-f156-59b1-bdec-c2570a5e3a7f',
+  '253337de-db98-5e5d-bdbb-78a80040cbbb',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'dd668cf9-19b2-5d88-aeda-f1d1853025b5',
+  '253337de-db98-5e5d-bdbb-78a80040cbbb',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '81799c0f-610f-5e4b-8ce1-7ae43ee04c8e',
+  '253337de-db98-5e5d-bdbb-78a80040cbbb',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'db213c5d-b726-501d-94a3-8729e04bcb1e',
@@ -9772,7 +22372,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'formations_professionnelles',
   'avance',
   'fr',
-  2,
+  5,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=71',
   '["Comprendre concours administratifs", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -9930,6 +22530,126 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ecaa629c-97c3-5141-a14d-1940a9df6c77',
+  'db213c5d-b726-501d-94a3-8729e04bcb1e',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '33d819f6-9493-524e-8792-484fcab66e87',
+  'db213c5d-b726-501d-94a3-8729e04bcb1e',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ad11dba2-c841-5f0e-af69-db575dd473fc',
+  'db213c5d-b726-501d-94a3-8729e04bcb1e',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '037650fe-82d0-5059-8430-653c699cec88',
+  'db213c5d-b726-501d-94a3-8729e04bcb1e',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '31b91a8b-8235-504e-9e9d-b70d6ab86f9e',
@@ -9940,7 +22660,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'formations_professionnelles',
   'debutant',
   'fr',
-  1,
+  6,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=72',
   '["Comprendre ifsi", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -10038,6 +22758,216 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e0608d08-82ce-5d4c-8415-f7435a702e9e',
+  '31b91a8b-8235-504e-9e9d-b70d6ab86f9e',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'feeca4c6-f9e4-583a-ac1b-48ee63302c6d',
+  '31b91a8b-8235-504e-9e9d-b70d6ab86f9e',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '1a712e5b-8d31-5407-80f8-0060dd35c625',
+  '31b91a8b-8235-504e-9e9d-b70d6ab86f9e',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '86625ba0-e02b-5f04-902b-c0afc577ad4f',
+  '31b91a8b-8235-504e-9e9d-b70d6ab86f9e',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e363c1b4-e501-5aef-bc78-f3346c392e3c',
+  '31b91a8b-8235-504e-9e9d-b70d6ab86f9e',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd53a4114-0605-578b-a7cc-4229278e660b',
+  '31b91a8b-8235-504e-9e9d-b70d6ab86f9e',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b232d31d-560f-594f-8631-b56451729940',
+  '31b91a8b-8235-504e-9e9d-b70d6ab86f9e',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '6b4abb06-3175-53b0-97a4-858e5774101e',
@@ -10048,7 +22978,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'formations_professionnelles',
   'intermediaire',
   'fr',
-  1,
+  7,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=73',
   '["Comprendre gendarmerie", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -10176,6 +23106,216 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '26bf22b1-11ae-54c7-8759-60d7bd3f1b8f',
+  '6b4abb06-3175-53b0-97a4-858e5774101e',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8650dfa5-94c2-522a-a0a8-9681104d809d',
+  '6b4abb06-3175-53b0-97a4-858e5774101e',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '87e8f5f2-f5dd-5e43-810e-eeb6332942b0',
+  '6b4abb06-3175-53b0-97a4-858e5774101e',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd4acfeb9-8ae1-5129-91c5-4a204adc6e2d',
+  '6b4abb06-3175-53b0-97a4-858e5774101e',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0a1247cd-a70d-5e25-9348-f169ab540e0e',
+  '6b4abb06-3175-53b0-97a4-858e5774101e',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e0f14533-8f0f-5d53-8400-18e3e850d660',
+  '6b4abb06-3175-53b0-97a4-858e5774101e',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '60b54a98-71bc-5519-9c3e-dfbed577ab50',
+  '6b4abb06-3175-53b0-97a4-858e5774101e',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '3891b2b0-553e-53a8-b223-698d5816409b',
@@ -10186,7 +23326,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'formations_professionnelles',
   'avance',
   'fr',
-  2,
+  8,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=74',
   '["Comprendre police", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -10344,6 +23484,216 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '61500b93-5998-5cce-a294-4f2cee9015c5',
+  '3891b2b0-553e-53a8-b223-698d5816409b',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'c4b68650-fad2-5d23-a8b7-564422d4625e',
+  '3891b2b0-553e-53a8-b223-698d5816409b',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd3617df9-4ba4-5623-bb17-8e219d3b6972',
+  '3891b2b0-553e-53a8-b223-698d5816409b',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'f23e8c4f-c7a7-5c6c-9041-8c675546895f',
+  '3891b2b0-553e-53a8-b223-698d5816409b',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2e6fba29-02fb-5b83-bede-ba10c04de35f',
+  '3891b2b0-553e-53a8-b223-698d5816409b',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8f522c10-30f2-57ce-a8b1-7098049c6b76',
+  '3891b2b0-553e-53a8-b223-698d5816409b',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5bd25782-e62c-50f5-bab5-62fbfd428776',
+  '3891b2b0-553e-53a8-b223-698d5816409b',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '8ea16789-207e-588d-9004-6c7d398c4d98',
@@ -10354,7 +23704,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'formations_professionnelles',
   'debutant',
   'fr',
-  1,
+  4,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=75',
   '["Comprendre douanes", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -10452,6 +23802,156 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'baa4a71c-53a4-525b-81cd-f6c514bd7f7c',
+  '8ea16789-207e-588d-9004-6c7d398c4d98',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '5161f911-f05f-5f61-899d-2a7525eefe39',
+  '8ea16789-207e-588d-9004-6c7d398c4d98',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '47f215a6-d88f-5330-8cda-aff09ca9d26b',
+  '8ea16789-207e-588d-9004-6c7d398c4d98',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'cddc9666-a9c0-5df1-914a-1a63132d3ac3',
+  '8ea16789-207e-588d-9004-6c7d398c4d98',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '320e865e-8ad3-550d-b636-c7168b3e4b98',
+  '8ea16789-207e-588d-9004-6c7d398c4d98',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'b03eddf2-162b-5bd5-a5df-d4fccc0d038c',
@@ -10462,7 +23962,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'formations_professionnelles',
   'intermediaire',
   'fr',
-  1,
+  5,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=76',
   '["Comprendre pompier", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -10590,6 +24090,156 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '85c23f29-7512-5dc1-b75d-6a18c18e8b2b',
+  'b03eddf2-162b-5bd5-a5df-d4fccc0d038c',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '24b11751-9c81-5c35-a45a-909ff174a550',
+  'b03eddf2-162b-5bd5-a5df-d4fccc0d038c',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'd9af5bdb-a88a-56b1-ac11-988cf40bba24',
+  'b03eddf2-162b-5bd5-a5df-d4fccc0d038c',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'cd46409c-e439-55eb-8804-5294d1a7af47',
+  'b03eddf2-162b-5bd5-a5df-d4fccc0d038c',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '3664fdf8-1be7-5305-a82c-45107ff4dc9a',
+  'b03eddf2-162b-5bd5-a5df-d4fccc0d038c',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '8e9e8ecc-ba25-5d72-9927-e8bc02bbccce',
@@ -10600,7 +24250,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'formations_professionnelles',
   'avance',
   'fr',
-  2,
+  6,
   29,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=77',
   '["Comprendre sapeur", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -10758,6 +24408,156 @@ Si vous rencontrez des difficultés :
   35
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2d917bd5-43a2-5723-a576-1aaecf85360c',
+  '8e9e8ecc-ba25-5d72-9927-e8bc02bbccce',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '8cb68f68-a11a-5ab3-9220-819619cc21c9',
+  '8e9e8ecc-ba25-5d72-9927-e8bc02bbccce',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '7e432528-b06f-5c9a-aa2b-d6f2e5dfdad0',
+  '8e9e8ecc-ba25-5d72-9927-e8bc02bbccce',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '13fc6a1c-6434-5e9d-ba38-0c6902283cb4',
+  '8e9e8ecc-ba25-5d72-9927-e8bc02bbccce',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e52f8596-52f7-59aa-9db5-ec0b4ea00c98',
+  '8e9e8ecc-ba25-5d72-9927-e8bc02bbccce',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'f58bb291-260b-51f2-88f6-d84f64095520',
@@ -10768,7 +24568,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'formations_professionnelles',
   'debutant',
   'fr',
-  1,
+  7,
   39,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=78',
   '["Comprendre magistrat", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -10866,6 +24666,246 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) V
   25
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '576ea08d-5c12-548f-aa6c-40ec2d6a9d86',
+  'f58bb291-260b-51f2-88f6-d84f64095520',
+  'Conseils et bonnes pratiques',
+  '# Conseils et bonnes pratiques
+
+## Les erreurs à éviter
+
+1. ❌ Erreur courante 1
+2. ❌ Erreur courante 2
+3. ❌ Erreur courante 3
+
+## Les bonnes pratiques
+
+1. ✅ Bonne pratique 1
+2. ✅ Bonne pratique 2
+3. ✅ Bonne pratique 3
+
+## FAQ
+
+**Q : Question fréquente ?**
+R : Réponse détaillée.
+
+**Q : Autre question ?**
+R : Autre réponse.',
+  4,
+  30
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e7c8b510-17a9-5db2-84f2-560c772b9ede',
+  'f58bb291-260b-51f2-88f6-d84f64095520',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ab769f93-f8b7-5fec-b76e-ae00d1bb653c',
+  'f58bb291-260b-51f2-88f6-d84f64095520',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '88756d79-520c-57d7-9b4e-ef4b0a8842ec',
+  'f58bb291-260b-51f2-88f6-d84f64095520',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'ebe6a649-2449-5c93-ab34-0b9baccfefed',
+  'f58bb291-260b-51f2-88f6-d84f64095520',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '439141b5-d4f0-5b60-b630-48979bd5a23d',
+  'f58bb291-260b-51f2-88f6-d84f64095520',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '6e136da3-6d1d-53af-b43a-2f0edeb05271',
+  'f58bb291-260b-51f2-88f6-d84f64095520',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '73b57de4-e788-594d-ade2-9a5944a6fd1f',
+  'f58bb291-260b-51f2-88f6-d84f64095520',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   'e73c1cd6-4086-5df9-8d38-117834200998',
@@ -10876,7 +24916,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'formations_professionnelles',
   'intermediaire',
   'fr',
-  1,
+  8,
   49,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=79',
   '["Comprendre avocat", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -11004,6 +25044,246 @@ R : Autre réponse.',
   30
 ) ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '504f56c7-5955-50d1-95e2-3ee36b7f7fbf',
+  'e73c1cd6-4086-5df9-8d38-117834200998',
+  'Résolution de problèmes courants',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  5,
+  35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '36daf11a-a436-5abf-9c5e-458be6fc0571',
+  'e73c1cd6-4086-5df9-8d38-117834200998',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '0239d6a0-e67e-54da-8ce9-9cf6c38fdc95',
+  'e73c1cd6-4086-5df9-8d38-117834200998',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '64ad3ad4-259f-5c6d-8467-226f75a6a3df',
+  'e73c1cd6-4086-5df9-8d38-117834200998',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'e144b0e3-a956-5bfb-9f1a-c5f8056a7e40',
+  'e73c1cd6-4086-5df9-8d38-117834200998',
+  'Leçon 9',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  9,
+  55
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'b5ddb036-86e5-53c5-864c-ee6de740749a',
+  'e73c1cd6-4086-5df9-8d38-117834200998',
+  'Leçon 10',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  10,
+  60
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  'af6c42dc-0e61-5743-936e-9c99f2e5043f',
+  'e73c1cd6-4086-5df9-8d38-117834200998',
+  'Leçon 11',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  11,
+  65
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '903d03f4-f4c2-52de-85ad-e842796db056',
+  'e73c1cd6-4086-5df9-8d38-117834200998',
+  'Leçon 12',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  12,
+  70
+) ON CONFLICT (id) DO NOTHING;
+
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating) VALUES
 (
   '780224dd-7001-59cc-9261-8212529e5f7d',
@@ -11014,7 +25294,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'formations_professionnelles',
   'avance',
   'fr',
-  2,
+  4,
   0,
   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=80',
   '["Comprendre professeur", "Maîtriser les démarches pratiques", "Éviter les erreurs courantes", "Optimiser vos chances de réussite"]'::jsonb,
@@ -11170,6 +25450,96 @@ Si vous rencontrez des difficultés :
 - Utilisez notre forum d''entraide',
   5,
   35
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '05ad5989-cb3d-5256-b81b-c2f2298e556c',
+  '780224dd-7001-59cc-9261-8212529e5f7d',
+  'Leçon 6',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  6,
+  40
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '2a988a98-c450-57e1-8516-63594e7179c4',
+  '780224dd-7001-59cc-9261-8212529e5f7d',
+  'Leçon 7',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  7,
+  45
+) ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes) VALUES
+(
+  '59252a61-bfe4-5d91-b348-1893978440bd',
+  '780224dd-7001-59cc-9261-8212529e5f7d',
+  'Leçon 8',
+  '# Résolution de problèmes courants
+
+## Problème 1 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+- Étape 3
+
+## Problème 2 : Description
+
+**Solution :**
+- Étape 1
+- Étape 2
+
+## Contact et aide
+
+Si vous rencontrez des difficultés :
+- Consultez la FAQ
+- Contactez le service concerné
+- Utilisez notre forum d''entraide',
+  8,
+  50
 ) ON CONFLICT (id) DO NOTHING;
 
 -- =====================================================
