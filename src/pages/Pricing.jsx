@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, X, Star, Zap, Shield, Sparkles } from "lucide-react";
-import { isAuthenticated as checkAuthStatus, redirectToLogin } from "@/api/auth";
+import { isAuthenticated as checkAuthStatus, redirectToLogin, me as getCurrentUser } from "@/api/auth";
 import { createCheckout } from "@/api/functions";
 import { createPageUrl } from "../utils";
 import ChatBot from "../components/ChatBot";
@@ -11,7 +11,9 @@ import { motion } from "framer-motion";
 
 export default function Pricing() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
   const [billingCycle, setBillingCycle] = useState("monthly");
+  const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
     checkAuth();
@@ -20,6 +22,17 @@ export default function Pricing() {
   const checkAuth = async () => {
     const authenticated = await checkAuthStatus();
     setIsAuthenticated(authenticated);
+    
+    if (authenticated) {
+      const userData = await getCurrentUser();
+      setUser(userData);
+    }
+  };
+
+  // Price IDs Stripe - Remplacez par vos vrais Price IDs
+  const STRIPE_PRICES = {
+    monthly: 'price_VOTRE_PRICE_ID_MENSUEL', // À remplacer par votre Price ID Stripe
+    annual: 'price_VOTRE_PRICE_ID_ANNUEL',   // À remplacer par votre Price ID Stripe
   };
 
   const plans = [
@@ -218,25 +231,37 @@ export default function Pricing() {
                         ? "bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white shadow-xl"
                         : "bg-gray-900 hover:bg-gray-800 text-white"
                     }`}
+                    disabled={isProcessing}
                     onClick={async () => {
                       if (!isAuthenticated) {
                         redirectToLogin(window.location.href);
                       } else if (plan.price > 0) {
+                        setIsProcessing(true);
                         try {
-                          // Note: Vous devrez implémenter createCheckout pour utiliser Stripe
-                          // const response = await createCheckout({
-                          //   courseId: null,
-                          //   userId: user.id,
-                          //   redirectUrl: window.location.origin + createPageUrl('PaymentSuccess')
-                          // });
-                          alert('Fonctionnalité de paiement à configurer avec Stripe');
+                          const priceId = billingCycle === 'monthly' ? STRIPE_PRICES.monthly : STRIPE_PRICES.annual;
+                          
+                          const response = await createCheckout({
+                            priceId: priceId,
+                            userId: user?.id,
+                            userEmail: user?.email,
+                            successUrl: window.location.origin + '/payment-success?session_id={CHECKOUT_SESSION_ID}',
+                            cancelUrl: window.location.origin + '/pricing',
+                          });
+
+                          // Redirection vers Stripe Checkout
+                          if (response?.url) {
+                            window.location.href = response.url;
+                          }
                         } catch (error) {
-                          alert('Erreur lors de la création de la session de paiement. Veuillez réessayer.');
+                          console.error('Erreur paiement:', error);
+                          alert('❌ Erreur : ' + (error.message || 'Veuillez configurer Stripe. Consultez CONFIGURATION_STRIPE.md'));
+                        } finally {
+                          setIsProcessing(false);
                         }
                       }
                     }}
                   >
-                    {plan.cta}
+                    {isProcessing ? '⏳ Chargement...' : plan.cta}
                   </Button>
                 </CardContent>
               </Card>
