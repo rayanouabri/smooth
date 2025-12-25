@@ -60,7 +60,31 @@ const translations = {
       allCategories: "Toutes les catégories",
       allLevels: "Tous les niveaux",
       coursesFound: "cours",
-      resetFilters: "Réinitialiser les filtres"
+      resetFilters: "Réinitialiser les filtres",
+      categories: {
+        all: "Toutes les catégories",
+        preparation_academique: "📚 Préparation Académique",
+        integration_administrative: "📋 Intégration Administrative",
+        culture_codes_sociaux: "🎭 Culture & Codes Sociaux",
+        insertion_professionnelle: "💼 Insertion Professionnelle",
+        formations_professionnelles: "🚀 Formations Professionnelles"
+      },
+      levels: {
+        all: "Tous les niveaux",
+        debutant: "🟢 Débutant",
+        intermediaire: "🟡 Intermédiaire",
+        avance: "🔴 Avancé"
+      }
+    },
+    challenges: {
+      title1: "Démarches administratives complexes",
+      desc1: "CAF, sécurité sociale, logement, banque... Des procédures souvent incompréhensibles.",
+      title2: "Barrière linguistique",
+      desc2: "Maîtriser le français académique et professionnel est essentiel pour réussir.",
+      title3: "Codes culturels différents",
+      desc3: "Comprendre les attentes et le savoir-vivre français pour s'intégrer.",
+      title4: "Insertion professionnelle",
+      desc4: "Adapter son CV, préparer les entretiens et comprendre le marché du travail français."
     },
     dashboard: {
       welcome: "Bienvenue",
@@ -148,7 +172,31 @@ const translations = {
       allCategories: "All categories",
       allLevels: "All levels",
       coursesFound: "courses",
-      resetFilters: "Reset filters"
+      resetFilters: "Reset filters",
+      categories: {
+        all: "All categories",
+        preparation_academique: "📚 Academic Preparation",
+        integration_administrative: "📋 Administrative Integration",
+        culture_codes_sociaux: "🎭 Culture & Social Codes",
+        insertion_professionnelle: "💼 Professional Integration",
+        formations_professionnelles: "🚀 Professional Training"
+      },
+      levels: {
+        all: "All levels",
+        debutant: "🟢 Beginner",
+        intermediaire: "🟡 Intermediate",
+        avance: "🔴 Advanced"
+      }
+    },
+    challenges: {
+      title1: "Complex administrative procedures",
+      desc1: "CAF, social security, housing, bank... Often incomprehensible procedures.",
+      title2: "Language barrier",
+      desc2: "Mastering academic and professional French is essential to succeed.",
+      title3: "Different cultural codes",
+      desc3: "Understanding French expectations and etiquette to integrate.",
+      title4: "Professional integration",
+      desc4: "Adapt your CV, prepare for interviews and understand the French job market."
     },
     dashboard: {
       welcome: "Welcome",

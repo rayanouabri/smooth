@@ -139,24 +139,28 @@ export default function Layout({ children, currentPageName }) {
             </div>
 
             {/* Right Section: Language + Auth */}
-            <div className="hidden lg:flex items-center space-x-2 flex-shrink-0">
-              {/* Language Selector */}
+            <div className="flex items-center space-x-2 flex-shrink-0">
+              {/* Language Selector - Visible on all screens */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="flex items-center gap-1">
-                    <span className="text-lg">{currentLang.flag}</span>
-                    <ChevronDown className="w-3 h-3" />
+                  <Button variant="ghost" size="sm" className="flex items-center gap-1.5 px-2 sm:px-3">
+                    <span className="text-lg sm:text-xl">{currentLang.flag}</span>
+                    <span className="hidden sm:inline text-sm font-medium">{currentLang.code.toUpperCase()}</span>
+                    <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48 max-h-96 overflow-y-auto">
+                <DropdownMenuContent align="end" className="w-56 max-h-96 overflow-y-auto">
                   {languages.map((lang) => (
                     <DropdownMenuItem
                       key={lang.code}
                       onClick={() => setLanguage(lang.code)}
-                      className="cursor-pointer"
+                      className="cursor-pointer flex items-center gap-2 py-2.5"
                     >
-                      <span className="mr-2">{lang.flag}</span>
-                      <span>{lang.name}</span>
+                      <span className="text-xl">{lang.flag}</span>
+                      <span className="font-medium">{lang.name}</span>
+                      {lang.code === language && (
+                        <span className="ml-auto text-blue-600">✓</span>
+                      )}
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>

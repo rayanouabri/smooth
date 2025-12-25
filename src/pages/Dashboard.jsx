@@ -159,10 +159,10 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+    <div className="flex flex-col sm:flex-row min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
       <DashboardSidebar currentPage="Dashboard" />
       
-      <div className="flex-1">
+      <div className="flex-1 min-w-0 px-3 sm:px-4 lg:px-6 py-4 sm:py-6">
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white py-8 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">

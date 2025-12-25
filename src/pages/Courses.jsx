@@ -47,19 +47,19 @@ export default function Courses() {
   });
 
   const categoryLabels = {
-    all: "Toutes les catégories",
-    preparation_academique: "📚 Préparation Académique",
-    integration_administrative: "📋 Intégration Administrative",
-    culture_codes_sociaux: "🎭 Culture & Codes Sociaux",
-    insertion_professionnelle: "💼 Insertion Professionnelle",
-    formations_professionnelles: "🚀 Formations Professionnelles"
+    all: t('courses.categories.all'),
+    preparation_academique: t('courses.categories.preparation_academique'),
+    integration_administrative: t('courses.categories.integration_administrative'),
+    culture_codes_sociaux: t('courses.categories.culture_codes_sociaux'),
+    insertion_professionnelle: t('courses.categories.insertion_professionnelle'),
+    formations_professionnelles: t('courses.categories.formations_professionnelles')
   };
 
   const levelLabels = {
-    all: "Tous les niveaux",
-    debutant: "🟢 Débutant",
-    intermediaire: "🟡 Intermédiaire",
-    avance: "🔴 Avancé"
+    all: t('courses.levels.all'),
+    debutant: t('courses.levels.debutant'),
+    intermediaire: t('courses.levels.intermediaire'),
+    avance: t('courses.levels.avance')
   };
 
   const filteredCourses = courses.filter(course => {
@@ -118,28 +118,28 @@ export default function Courses() {
         </div>
       </div>
 
-      {/* Filters */}
+      {/* Filters - Mobile Optimized */}
       <div className="bg-white/80 backdrop-blur-lg border-b-2 border-indigo-100 sticky top-16 z-40 shadow-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid md:grid-cols-3 gap-4">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-500 w-5 h-5" />
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
+            <div className="relative col-span-1 sm:col-span-3 lg:col-span-1">
+              <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-indigo-500 w-4 h-4 sm:w-5 sm:h-5" />
               <Input
-                  placeholder={t('courses.searchPlaceholder')}
+                placeholder={t('courses.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-2xl shadow-sm bg-white text-lg"
+                className="pl-9 sm:pl-12 h-10 sm:h-12 lg:h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-xl sm:rounded-2xl shadow-sm bg-white text-sm sm:text-base lg:text-lg"
               />
             </div>
 
             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-              <SelectTrigger className="h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-2xl shadow-sm bg-white text-base">
-                <Filter className="w-5 h-5 mr-2 text-indigo-500" />
+              <SelectTrigger className="h-10 sm:h-12 lg:h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-xl sm:rounded-2xl shadow-sm bg-white text-sm sm:text-base">
+                <Filter className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-indigo-500" />
                 <SelectValue placeholder="Catégorie" />
               </SelectTrigger>
               <SelectContent>
                 {Object.entries(categoryLabels).map(([value, label]) => (
-                  <SelectItem key={value} value={value} className="text-base">
+                  <SelectItem key={value} value={value} className="text-sm sm:text-base">
                     {label}
                   </SelectItem>
                 ))}
@@ -147,12 +147,12 @@ export default function Courses() {
             </Select>
 
             <Select value={levelFilter} onValueChange={setLevelFilter}>
-              <SelectTrigger className="h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-2xl shadow-sm bg-white text-base">
+              <SelectTrigger className="h-10 sm:h-12 lg:h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-xl sm:rounded-2xl shadow-sm bg-white text-sm sm:text-base">
                 <SelectValue placeholder="Niveau" />
               </SelectTrigger>
               <SelectContent>
                 {Object.entries(levelLabels).map(([value, label]) => (
-                  <SelectItem key={value} value={value} className="text-base">
+                  <SelectItem key={value} value={value} className="text-sm sm:text-base">
                     {label}
                   </SelectItem>
                 ))}
@@ -160,30 +160,30 @@ export default function Courses() {
             </Select>
           </div>
 
-          <div className="mt-6 flex items-center justify-between flex-wrap gap-4">
-            <div className="flex items-center gap-3">
-              <p className="text-gray-700 font-bold text-lg">
-                <span className="text-3xl text-indigo-600">{filteredCourses.length}</span> cours
+          <div className="mt-3 sm:mt-4 lg:mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 lg:gap-4">
+            <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+              <p className="text-gray-700 font-bold text-sm sm:text-base lg:text-lg">
+                <span className="text-xl sm:text-2xl lg:text-3xl text-indigo-600">{filteredCourses.length}</span> {t('courses.coursesFound')}
               </p>
-              <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-3 py-1">
-                ✓ {freeCourses.length} gratuits
+              <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm">
+                ✓ {freeCourses.length} {t('courses.freeCourses')}
               </Badge>
-              <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 px-3 py-1">
-                ⭐ {premiumCourses.length} premium
+              <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm">
+                ⭐ {premiumCourses.length} {t('courses.premiumCourses')}
               </Badge>
             </div>
             {(categoryFilter !== "all" || levelFilter !== "all" || searchTerm) && (
               <Button
                 variant="outline"
                 size="sm"
-                className="border-indigo-300 text-indigo-600 hover:bg-indigo-50 rounded-full"
+                className="border-indigo-300 text-indigo-600 hover:bg-indigo-50 rounded-full text-xs sm:text-sm"
                 onClick={() => {
                   setSearchTerm("");
                   setCategoryFilter("all");
                   setLevelFilter("all");
                 }}
               >
-                ✕ Réinitialiser les filtres
+                ✕ {t('courses.resetFilters')}
               </Button>
             )}
           </div>

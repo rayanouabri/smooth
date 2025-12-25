@@ -79,23 +79,23 @@ export default function Home() {
   const challenges = [
     {
       icon: FileText,
-      title: "Démarches administratives complexes",
-      description: "CAF, sécurité sociale, logement, banque... Des procédures souvent incompréhensibles."
+      titleKey: "challenges.title1",
+      descKey: "challenges.desc1"
     },
     {
       icon: Globe,
-      title: "Barrière linguistique",
-      description: "Maîtriser le français académique et professionnel est essentiel pour réussir."
+      titleKey: "challenges.title2",
+      descKey: "challenges.desc2"
     },
     {
       icon: Users,
-      title: "Codes culturels différents",
-      description: "Comprendre les attentes et le savoir-vivre français pour s'intégrer."
+      titleKey: "challenges.title3",
+      descKey: "challenges.desc3"
     },
     {
       icon: Briefcase,
-      title: "Insertion professionnelle",
-      description: "Adapter son CV, préparer les entretiens et comprendre le marché du travail français."
+      titleKey: "challenges.title4",
+      descKey: "challenges.desc4"
     }
   ];
 
@@ -206,87 +206,76 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Right: AI Chat Interface */}
+            {/* Right: Education Background */}
             <motion.div
               initial={{ opacity: 0, x: 50, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative"
+              className="relative hidden lg:block"
             >
-              <div className="bg-white/10 backdrop-blur-2xl rounded-3xl p-8 border-2 border-white/20 shadow-2xl">
-                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/20">
-                  <div className="relative">
-                    <div className="w-14 h-14 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-xl">
-                      <MessageCircle className="w-7 h-7 text-white" />
-                    </div>
-                    <span className="absolute bottom-0 right-0 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></span>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl">Sophie • IA FrancePrep</h3>
-                    <p className="text-sm text-green-300 flex items-center gap-1">
-                      <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                      En ligne • Répond en 2s
-                    </p>
-                  </div>
+              <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden">
+                {/* Background Image with Overlay */}
+                <div 
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: "url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80')"
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-indigo-900/70 to-purple-900/80"></div>
                 </div>
-
-                <div className="space-y-4 mb-6">
+                
+                {/* Floating Education Elements */}
+                <div className="relative h-full p-8 flex flex-col justify-center items-center">
+                  {/* Graduation Cap */}
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-md rounded-2xl p-4 border border-cyan-300/30"
+                    className="mb-6"
                   >
-                    <p className="text-sm font-medium">
-                      👋 <strong>Bonjour !</strong> Je suis Sophie, votre assistante IA. Posez-moi n'importe quelle question sur la France !
-                    </p>
+                    <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/30 shadow-2xl">
+                      <GraduationCap className="w-12 h-12 text-white" />
+                    </div>
                   </motion.div>
 
+                  {/* Books Stack */}
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="bg-white/20 backdrop-blur-md rounded-2xl rounded-tr-none p-4 ml-8 border border-white/30 text-right"
+                    className="flex gap-2 mb-6"
                   >
-                    <p className="text-sm font-medium">
-                      Comment faire ma demande de CAF ? 🏠
-                    </p>
+                    {[1, 2, 3].map((i) => (
+                      <div
+                        key={i}
+                        className="w-16 h-20 bg-white/20 backdrop-blur-md rounded-lg border border-white/30 shadow-xl"
+                        style={{ transform: `rotate(${(i - 2) * 5}deg)` }}
+                      ></div>
+                    ))}
                   </motion.div>
 
+                  {/* Stats Cards */}
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1 }}
-                    className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-md rounded-2xl p-4 border border-cyan-300/30"
+                    className="grid grid-cols-2 gap-4 w-full max-w-xs"
                   >
-                    <p className="text-sm font-medium mb-3">
-                      📋 Excellente question ! Pour votre demande CAF :
-                    </p>
-                    <ul className="text-xs space-y-1 text-blue-100 pl-4">
-                      <li>✓ Titre de séjour valide</li>
-                      <li>✓ Justificatif de domicile</li>
-                      <li>✓ RIB français</li>
-                      <li>✓ Attestation d'inscription</li>
-                    </ul>
+                    <div className="bg-white/20 backdrop-blur-md rounded-xl p-4 border border-white/30 text-center">
+                      <div className="text-3xl font-bold text-white mb-1">200+</div>
+                      <div className="text-sm text-blue-100">Cours</div>
+                    </div>
+                    <div className="bg-white/20 backdrop-blur-md rounded-xl p-4 border border-white/30 text-center">
+                      <div className="text-3xl font-bold text-white mb-1">15K+</div>
+                      <div className="text-sm text-blue-100">Étudiants</div>
+                    </div>
                   </motion.div>
-                </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.2 }}
-                  className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 flex items-center gap-2"
-                >
-                  <input 
-                    type="text" 
-                    placeholder="Tapez votre question..."
-                    className="bg-transparent flex-1 outline-none text-sm placeholder:text-white/50"
-                    disabled
-                  />
-                  <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
-                    <Send className="w-5 h-5" />
-                  </div>
-                </motion.div>
+                  {/* Decorative Elements */}
+                  <div className="absolute top-10 right-10 w-16 h-16 bg-yellow-400/30 rounded-full blur-xl"></div>
+                  <div className="absolute bottom-10 left-10 w-20 h-20 bg-pink-400/30 rounded-full blur-xl"></div>
+                  <div className="absolute top-1/2 right-5 w-12 h-12 bg-cyan-400/30 rounded-full blur-lg"></div>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -328,9 +317,9 @@ export default function Home() {
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-gray-900 mb-3">
-                          {challenge.title}
+                          {t(challenge.titleKey)}
                         </h3>
-                        <p className="text-gray-600 leading-relaxed">{challenge.description}</p>
+                        <p className="text-gray-600 leading-relaxed">{t(challenge.descKey)}</p>
                       </div>
                     </div>
                   </CardContent>
