@@ -5,6 +5,7 @@ import { createPageUrl } from "../utils";
 import { isAuthenticated as checkAuthStatus, me as getCurrentUser, logout, redirectToLogin } from "@/api/auth";
 import { Button } from "@/components/ui/button";
 import { Menu, X, GraduationCap, ChevronDown } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -158,10 +159,15 @@ export default function Layout({ children, currentPageName }) {
                   </Link>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm" className="flex items-center space-x-2">
+                      <Button variant="outline" size="sm" className="flex items-center space-x-2 relative">
                         <div className="w-7 h-7 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                           {user?.full_name?.[0] || user?.email?.[0] || "U"}
                         </div>
+                        {user?.is_premium && (
+                          <Badge className="absolute -right-2 -top-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-0 text-[10px]">
+                            Premium
+                          </Badge>
+                        )}
                         <ChevronDown className="w-3 h-3" />
                       </Button>
                     </DropdownMenuTrigger>
@@ -176,6 +182,13 @@ export default function Layout({ children, currentPageName }) {
                           Mon profil
                         </Link>
                       </DropdownMenuItem>
+                      {user?.is_premium && (
+                        <DropdownMenuItem asChild>
+                          <Link to={createPageUrl("Profile") + '?tab=subscription'} className="w-full cursor-pointer text-gray-900">
+                            Gérer mon abonnement
+                          </Link>
+                        </DropdownMenuItem>
+                      )}
                       <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                         Déconnexion
                       </DropdownMenuItem>
