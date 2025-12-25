@@ -651,7 +651,7 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5" />
-              <span>Garantie 30 jours</span>
+              <span>Accès illimité</span>
             </div>
           </div>
 

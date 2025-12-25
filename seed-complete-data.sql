@@ -1,7 +1,7 @@
 -- =====================================================
 -- SCRIPT COMPLET DE DONNÉES POUR FRANCEPREP ACADEMY
 -- 80 cours complets + 25 posts forum avec commentaires
--- Généré le 2025-12-25 01:18:58
+-- Généré le 2025-12-25 01:51:35
 -- =====================================================
 
 -- Désactiver temporairement les contraintes
@@ -41,14 +41,22 @@ Ce cours vous guide pas à pas dans caf.
 
 ## Pourquoi c''est important ?
 
-CAF est essentiel pour réussir votre intégration en France.
+CAF est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de caf
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Site](https://www.caf.fr)
+- [Simulateur](https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimateurs)
+- [Espace](https://www.caf.fr/espaces)
+
 
 ## Prérequis
 
@@ -178,14 +186,22 @@ Ce cours vous guide pas à pas dans sécurité sociale.
 
 ## Pourquoi c''est important ?
 
-Sécurité Sociale est essentiel pour réussir votre intégration en France.
+Sécurité Sociale est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de sécurité sociale
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Ameli](https://www.ameli.fr)
+- [Cpam](https://www.ameli.fr/assure/droits-demarches/principes/etre-affilie-au-regime-general)
+- [Carte Vitale](https://www.ameli.fr/assure/droits-demarches/demarches-et-declarations/remplacer-carte-vitale)
+
 
 ## Prérequis
 
@@ -345,14 +361,20 @@ Ce cours vous guide pas à pas dans titre de séjour.
 
 ## Pourquoi c''est important ?
 
-Titre de Séjour est essentiel pour réussir votre intégration en France.
+Titre de Séjour est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de titre de séjour
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Prefecture](https://www.service-public.fr/particuliers/vosdroits/F1560)
+
 
 ## Prérequis
 
@@ -452,14 +474,21 @@ Ce cours vous guide pas à pas dans logement.
 
 ## Pourquoi c''est important ?
 
-Logement est essentiel pour réussir votre intégration en France.
+Logement est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de logement
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Visale](https://www.actionlogement.fr/visale)
+- [Dossier](https://www.service-public.fr/particuliers/vosdroits/F2005)
+
 
 ## Prérequis
 
@@ -589,14 +618,15 @@ Ce cours vous guide pas à pas dans banque.
 
 ## Pourquoi c''est important ?
 
-Banque est essentiel pour réussir votre intégration en France.
+Banque est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de banque
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -756,14 +786,15 @@ Ce cours vous guide pas à pas dans assurance.
 
 ## Pourquoi c''est important ?
 
-Assurance est essentiel pour réussir votre intégration en France.
+Assurance est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de assurance
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -863,14 +894,15 @@ Ce cours vous guide pas à pas dans impôts.
 
 ## Pourquoi c''est important ?
 
-Impôts est essentiel pour réussir votre intégration en France.
+Impôts est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de impôts
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -1000,14 +1032,15 @@ Ce cours vous guide pas à pas dans démarches préfecture.
 
 ## Pourquoi c''est important ?
 
-Démarches Préfecture est essentiel pour réussir votre intégration en France.
+Démarches Préfecture est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de démarches préfecture
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -1167,14 +1200,20 @@ Ce cours vous guide pas à pas dans visa.
 
 ## Pourquoi c''est important ?
 
-Visa est essentiel pour réussir votre intégration en France.
+Visa est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de visa
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Prefecture](https://www.service-public.fr/particuliers/vosdroits/F1560)
+
 
 ## Prérequis
 
@@ -1274,14 +1313,15 @@ Ce cours vous guide pas à pas dans carte vitale.
 
 ## Pourquoi c''est important ?
 
-Carte Vitale est essentiel pour réussir votre intégration en France.
+Carte Vitale est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de carte vitale
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -1411,14 +1451,22 @@ Ce cours vous guide pas à pas dans mutuelle.
 
 ## Pourquoi c''est important ?
 
-Mutuelle est essentiel pour réussir votre intégration en France.
+Mutuelle est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de mutuelle
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Ameli](https://www.ameli.fr)
+- [Cpam](https://www.ameli.fr/assure/droits-demarches/principes/etre-affilie-au-regime-general)
+- [Carte Vitale](https://www.ameli.fr/assure/droits-demarches/demarches-et-declarations/remplacer-carte-vitale)
+
 
 ## Prérequis
 
@@ -1578,14 +1626,22 @@ Ce cours vous guide pas à pas dans cpam.
 
 ## Pourquoi c''est important ?
 
-CPAM est essentiel pour réussir votre intégration en France.
+CPAM est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de cpam
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Ameli](https://www.ameli.fr)
+- [Cpam](https://www.ameli.fr/assure/droits-demarches/principes/etre-affilie-au-regime-general)
+- [Carte Vitale](https://www.ameli.fr/assure/droits-demarches/demarches-et-declarations/remplacer-carte-vitale)
+
 
 ## Prérequis
 
@@ -1685,14 +1741,15 @@ Ce cours vous guide pas à pas dans rsi.
 
 ## Pourquoi c''est important ?
 
-RSI est essentiel pour réussir votre intégration en France.
+RSI est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de rsi
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -1822,14 +1879,15 @@ Ce cours vous guide pas à pas dans urssaf.
 
 ## Pourquoi c''est important ?
 
-Urssaf est essentiel pour réussir votre intégration en France.
+Urssaf est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de urssaf
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -1989,14 +2047,15 @@ Ce cours vous guide pas à pas dans pôle emploi.
 
 ## Pourquoi c''est important ?
 
-Pôle Emploi est essentiel pour réussir votre intégration en France.
+Pôle Emploi est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de pôle emploi
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -2096,14 +2155,15 @@ Ce cours vous guide pas à pas dans passeport.
 
 ## Pourquoi c''est important ?
 
-Passeport est essentiel pour réussir votre intégration en France.
+Passeport est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de passeport
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -2233,14 +2293,15 @@ Ce cours vous guide pas à pas dans carte didentité.
 
 ## Pourquoi c''est important ?
 
-Carte dIdentité est essentiel pour réussir votre intégration en France.
+Carte dIdentité est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de carte didentité
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -2400,14 +2461,20 @@ Ce cours vous guide pas à pas dans permis de séjour.
 
 ## Pourquoi c''est important ?
 
-Permis de Séjour est essentiel pour réussir votre intégration en France.
+Permis de Séjour est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de permis de séjour
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Prefecture](https://www.service-public.fr/particuliers/vosdroits/F1560)
+
 
 ## Prérequis
 
@@ -2507,14 +2574,15 @@ Ce cours vous guide pas à pas dans renouvellement.
 
 ## Pourquoi c''est important ?
 
-Renouvellement est essentiel pour réussir votre intégration en France.
+Renouvellement est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de renouvellement
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -2644,14 +2712,15 @@ Ce cours vous guide pas à pas dans naturalisation.
 
 ## Pourquoi c''est important ?
 
-Naturalisation est essentiel pour réussir votre intégration en France.
+Naturalisation est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de naturalisation
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -2811,14 +2880,21 @@ Ce cours vous guide pas à pas dans français a1.
 
 ## Pourquoi c''est important ?
 
-Français A1 est essentiel pour réussir votre intégration en France.
+Français A1 est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de français a1
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Delf](https://www.france-education-international.fr/diplome/delf-dalf)
+- [Ciel](https://www.ciep.fr/delf-dalf)
+
 
 ## Prérequis
 
@@ -2918,14 +2994,21 @@ Ce cours vous guide pas à pas dans français a2.
 
 ## Pourquoi c''est important ?
 
-Français A2 est essentiel pour réussir votre intégration en France.
+Français A2 est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de français a2
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Delf](https://www.france-education-international.fr/diplome/delf-dalf)
+- [Ciel](https://www.ciep.fr/delf-dalf)
+
 
 ## Prérequis
 
@@ -3055,14 +3138,21 @@ Ce cours vous guide pas à pas dans français b1.
 
 ## Pourquoi c''est important ?
 
-Français B1 est essentiel pour réussir votre intégration en France.
+Français B1 est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de français b1
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Delf](https://www.france-education-international.fr/diplome/delf-dalf)
+- [Ciel](https://www.ciep.fr/delf-dalf)
+
 
 ## Prérequis
 
@@ -3222,14 +3312,21 @@ Ce cours vous guide pas à pas dans français b2.
 
 ## Pourquoi c''est important ?
 
-Français B2 est essentiel pour réussir votre intégration en France.
+Français B2 est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de français b2
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Delf](https://www.france-education-international.fr/diplome/delf-dalf)
+- [Ciel](https://www.ciep.fr/delf-dalf)
+
 
 ## Prérequis
 
@@ -3329,14 +3426,21 @@ Ce cours vous guide pas à pas dans delf.
 
 ## Pourquoi c''est important ?
 
-DELF est essentiel pour réussir votre intégration en France.
+DELF est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de delf
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Delf](https://www.france-education-international.fr/diplome/delf-dalf)
+- [Ciel](https://www.ciep.fr/delf-dalf)
+
 
 ## Prérequis
 
@@ -3466,14 +3570,21 @@ Ce cours vous guide pas à pas dans dalf.
 
 ## Pourquoi c''est important ?
 
-DALF est essentiel pour réussir votre intégration en France.
+DALF est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de dalf
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Delf](https://www.france-education-international.fr/diplome/delf-dalf)
+- [Ciel](https://www.ciep.fr/delf-dalf)
+
 
 ## Prérequis
 
@@ -3633,14 +3744,15 @@ Ce cours vous guide pas à pas dans système éducatif.
 
 ## Pourquoi c''est important ?
 
-Système Éducatif est essentiel pour réussir votre intégration en France.
+Système Éducatif est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de système éducatif
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -3740,14 +3852,15 @@ Ce cours vous guide pas à pas dans inscription université.
 
 ## Pourquoi c''est important ?
 
-Inscription Université est essentiel pour réussir votre intégration en France.
+Inscription Université est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de inscription université
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -3877,14 +3990,15 @@ Ce cours vous guide pas à pas dans lmd.
 
 ## Pourquoi c''est important ?
 
-LMD est essentiel pour réussir votre intégration en France.
+LMD est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de lmd
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -4044,14 +4158,15 @@ Ce cours vous guide pas à pas dans bourses.
 
 ## Pourquoi c''est important ?
 
-Bourses est essentiel pour réussir votre intégration en France.
+Bourses est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de bourses
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -4151,14 +4266,15 @@ Ce cours vous guide pas à pas dans équivalences.
 
 ## Pourquoi c''est important ?
 
-Équivalences est essentiel pour réussir votre intégration en France.
+Équivalences est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de équivalences
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -4288,14 +4404,15 @@ Ce cours vous guide pas à pas dans mémoire.
 
 ## Pourquoi c''est important ?
 
-Mémoire est essentiel pour réussir votre intégration en France.
+Mémoire est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de mémoire
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -4455,14 +4572,15 @@ Ce cours vous guide pas à pas dans thèse.
 
 ## Pourquoi c''est important ?
 
-Thèse est essentiel pour réussir votre intégration en France.
+Thèse est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de thèse
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -4562,14 +4680,15 @@ Ce cours vous guide pas à pas dans recherche.
 
 ## Pourquoi c''est important ?
 
-Recherche est essentiel pour réussir votre intégration en France.
+Recherche est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de recherche
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -4699,14 +4818,15 @@ Ce cours vous guide pas à pas dans bibliographie.
 
 ## Pourquoi c''est important ?
 
-Bibliographie est essentiel pour réussir votre intégration en France.
+Bibliographie est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de bibliographie
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -4866,14 +4986,15 @@ Ce cours vous guide pas à pas dans présentations.
 
 ## Pourquoi c''est important ?
 
-Présentations est essentiel pour réussir votre intégration en France.
+Présentations est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de présentations
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -4973,14 +5094,15 @@ Ce cours vous guide pas à pas dans examens.
 
 ## Pourquoi c''est important ?
 
-Examens est essentiel pour réussir votre intégration en France.
+Examens est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de examens
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -5110,14 +5232,15 @@ Ce cours vous guide pas à pas dans méthodologie.
 
 ## Pourquoi c''est important ?
 
-Méthodologie est essentiel pour réussir votre intégration en France.
+Méthodologie est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de méthodologie
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -5277,14 +5400,15 @@ Ce cours vous guide pas à pas dans prise de notes.
 
 ## Pourquoi c''est important ?
 
-Prise de Notes est essentiel pour réussir votre intégration en France.
+Prise de Notes est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de prise de notes
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -5384,14 +5508,15 @@ Ce cours vous guide pas à pas dans apprentissage.
 
 ## Pourquoi c''est important ?
 
-Apprentissage est essentiel pour réussir votre intégration en France.
+Apprentissage est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de apprentissage
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -5521,14 +5646,15 @@ Ce cours vous guide pas à pas dans codes sociaux.
 
 ## Pourquoi c''est important ?
 
-Codes Sociaux est essentiel pour réussir votre intégration en France.
+Codes Sociaux est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de codes sociaux
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -5688,14 +5814,15 @@ Ce cours vous guide pas à pas dans politesse.
 
 ## Pourquoi c''est important ?
 
-Politesse est essentiel pour réussir votre intégration en France.
+Politesse est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de politesse
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -5795,14 +5922,15 @@ Ce cours vous guide pas à pas dans tutoiement/vouvoiement.
 
 ## Pourquoi c''est important ?
 
-Tutoiement/Vouvoiement est essentiel pour réussir votre intégration en France.
+Tutoiement/Vouvoiement est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de tutoiement/vouvoiement
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -5932,14 +6060,15 @@ Ce cours vous guide pas à pas dans repas.
 
 ## Pourquoi c''est important ?
 
-Repas est essentiel pour réussir votre intégration en France.
+Repas est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de repas
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -6099,14 +6228,15 @@ Ce cours vous guide pas à pas dans cadeaux.
 
 ## Pourquoi c''est important ?
 
-Cadeaux est essentiel pour réussir votre intégration en France.
+Cadeaux est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de cadeaux
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -6206,14 +6336,15 @@ Ce cours vous guide pas à pas dans transport paris.
 
 ## Pourquoi c''est important ?
 
-Transport Paris est essentiel pour réussir votre intégration en France.
+Transport Paris est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de transport paris
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -6343,14 +6474,15 @@ Ce cours vous guide pas à pas dans carte navigo.
 
 ## Pourquoi c''est important ?
 
-Carte Navigo est essentiel pour réussir votre intégration en France.
+Carte Navigo est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de carte navigo
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -6510,14 +6642,15 @@ Ce cours vous guide pas à pas dans événements.
 
 ## Pourquoi c''est important ?
 
-Événements est essentiel pour réussir votre intégration en France.
+Événements est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de événements
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -6617,14 +6750,15 @@ Ce cours vous guide pas à pas dans fêtes.
 
 ## Pourquoi c''est important ?
 
-Fêtes est essentiel pour réussir votre intégration en France.
+Fêtes est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de fêtes
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -6754,14 +6888,15 @@ Ce cours vous guide pas à pas dans traditions.
 
 ## Pourquoi c''est important ?
 
-Traditions est essentiel pour réussir votre intégration en France.
+Traditions est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de traditions
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -6921,14 +7056,15 @@ Ce cours vous guide pas à pas dans histoire france.
 
 ## Pourquoi c''est important ?
 
-Histoire France est essentiel pour réussir votre intégration en France.
+Histoire France est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de histoire france
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -7028,14 +7164,15 @@ Ce cours vous guide pas à pas dans géographie.
 
 ## Pourquoi c''est important ?
 
-Géographie est essentiel pour réussir votre intégration en France.
+Géographie est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de géographie
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -7165,14 +7302,15 @@ Ce cours vous guide pas à pas dans régions.
 
 ## Pourquoi c''est important ?
 
-Régions est essentiel pour réussir votre intégration en France.
+Régions est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de régions
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -7332,14 +7470,15 @@ Ce cours vous guide pas à pas dans patrimoine.
 
 ## Pourquoi c''est important ?
 
-Patrimoine est essentiel pour réussir votre intégration en France.
+Patrimoine est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de patrimoine
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -7439,14 +7578,15 @@ Ce cours vous guide pas à pas dans art.
 
 ## Pourquoi c''est important ?
 
-Art est essentiel pour réussir votre intégration en France.
+Art est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de art
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -7576,14 +7716,21 @@ Ce cours vous guide pas à pas dans cv français.
 
 ## Pourquoi c''est important ?
 
-CV Français est essentiel pour réussir votre intégration en France.
+CV Français est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de cv français
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
+
+## 📚 Ressources Officielles
+
+- [Delf](https://www.france-education-international.fr/diplome/delf-dalf)
+- [Ciel](https://www.ciep.fr/delf-dalf)
+
 
 ## Prérequis
 
@@ -7743,14 +7890,15 @@ Ce cours vous guide pas à pas dans lettre motivation.
 
 ## Pourquoi c''est important ?
 
-Lettre Motivation est essentiel pour réussir votre intégration en France.
+Lettre Motivation est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de lettre motivation
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -7850,14 +7998,15 @@ Ce cours vous guide pas à pas dans entretien.
 
 ## Pourquoi c''est important ?
 
-Entretien est essentiel pour réussir votre intégration en France.
+Entretien est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de entretien
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -7987,14 +8136,15 @@ Ce cours vous guide pas à pas dans linkedin.
 
 ## Pourquoi c''est important ?
 
-LinkedIn est essentiel pour réussir votre intégration en France.
+LinkedIn est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de linkedin
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -8154,14 +8304,15 @@ Ce cours vous guide pas à pas dans réseau.
 
 ## Pourquoi c''est important ?
 
-Réseau est essentiel pour réussir votre intégration en France.
+Réseau est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de réseau
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -8261,14 +8412,15 @@ Ce cours vous guide pas à pas dans stage.
 
 ## Pourquoi c''est important ?
 
-Stage est essentiel pour réussir votre intégration en France.
+Stage est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de stage
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -8398,14 +8550,15 @@ Ce cours vous guide pas à pas dans alternance.
 
 ## Pourquoi c''est important ?
 
-Alternance est essentiel pour réussir votre intégration en France.
+Alternance est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de alternance
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -8565,14 +8718,15 @@ Ce cours vous guide pas à pas dans cdd.
 
 ## Pourquoi c''est important ?
 
-CDD est essentiel pour réussir votre intégration en France.
+CDD est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de cdd
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -8672,14 +8826,15 @@ Ce cours vous guide pas à pas dans cdi.
 
 ## Pourquoi c''est important ?
 
-CDI est essentiel pour réussir votre intégration en France.
+CDI est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de cdi
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -8809,14 +8964,15 @@ Ce cours vous guide pas à pas dans freelance.
 
 ## Pourquoi c''est important ?
 
-Freelance est essentiel pour réussir votre intégration en France.
+Freelance est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de freelance
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -8976,14 +9132,15 @@ Ce cours vous guide pas à pas dans salaire.
 
 ## Pourquoi c''est important ?
 
-Salaire est essentiel pour réussir votre intégration en France.
+Salaire est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de salaire
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -9083,14 +9240,15 @@ Ce cours vous guide pas à pas dans négociation.
 
 ## Pourquoi c''est important ?
 
-Négociation est essentiel pour réussir votre intégration en France.
+Négociation est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de négociation
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -9220,14 +9378,15 @@ Ce cours vous guide pas à pas dans droits travail.
 
 ## Pourquoi c''est important ?
 
-Droits Travail est essentiel pour réussir votre intégration en France.
+Droits Travail est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de droits travail
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -9387,14 +9546,15 @@ Ce cours vous guide pas à pas dans congés.
 
 ## Pourquoi c''est important ?
 
-Congés est essentiel pour réussir votre intégration en France.
+Congés est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de congés
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -9494,14 +9654,15 @@ Ce cours vous guide pas à pas dans télétravail.
 
 ## Pourquoi c''est important ?
 
-Télétravail est essentiel pour réussir votre intégration en France.
+Télétravail est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de télétravail
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -9631,14 +9792,15 @@ Ce cours vous guide pas à pas dans concours administratifs.
 
 ## Pourquoi c''est important ?
 
-Concours Administratifs est essentiel pour réussir votre intégration en France.
+Concours Administratifs est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de concours administratifs
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -9798,14 +9960,15 @@ Ce cours vous guide pas à pas dans ifsi.
 
 ## Pourquoi c''est important ?
 
-IFSI est essentiel pour réussir votre intégration en France.
+IFSI est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de ifsi
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -9905,14 +10068,15 @@ Ce cours vous guide pas à pas dans gendarmerie.
 
 ## Pourquoi c''est important ?
 
-Gendarmerie est essentiel pour réussir votre intégration en France.
+Gendarmerie est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de gendarmerie
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -10042,14 +10206,15 @@ Ce cours vous guide pas à pas dans police.
 
 ## Pourquoi c''est important ?
 
-Police est essentiel pour réussir votre intégration en France.
+Police est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de police
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -10209,14 +10374,15 @@ Ce cours vous guide pas à pas dans douanes.
 
 ## Pourquoi c''est important ?
 
-Douanes est essentiel pour réussir votre intégration en France.
+Douanes est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de douanes
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -10316,14 +10482,15 @@ Ce cours vous guide pas à pas dans pompier.
 
 ## Pourquoi c''est important ?
 
-Pompier est essentiel pour réussir votre intégration en France.
+Pompier est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de pompier
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -10453,14 +10620,15 @@ Ce cours vous guide pas à pas dans sapeur.
 
 ## Pourquoi c''est important ?
 
-Sapeur est essentiel pour réussir votre intégration en France.
+Sapeur est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de sapeur
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -10620,14 +10788,15 @@ Ce cours vous guide pas à pas dans magistrat.
 
 ## Pourquoi c''est important ?
 
-Magistrat est essentiel pour réussir votre intégration en France.
+Magistrat est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de magistrat
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -10727,14 +10896,15 @@ Ce cours vous guide pas à pas dans avocat.
 
 ## Pourquoi c''est important ?
 
-Avocat est essentiel pour réussir votre intégration en France.
+Avocat est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de avocat
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -10864,14 +11034,15 @@ Ce cours vous guide pas à pas dans professeur.
 
 ## Pourquoi c''est important ?
 
-Professeur est essentiel pour réussir votre intégration en France.
+Professeur est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de professeur
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser
 
 ## Prérequis
 
@@ -11061,7 +11232,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'd5aa9de3-e439-58b1-a8a3-9e6a0392575e',
   '9b8b1299-dc2f-5b8e-ae3a-de77531b68c5',
-  'Salut ! J''ai eu exactement le même problème l''année dernière. En fait, ce qui a fonctionné pour moi c''est de remplir le dossier en ligne ET d''envoyer les pièces justificatives par courrier recommandé en même temps. Ça accélère vraiment le traitement !',
+  'Salut ! 3 mois c''est effectivement long mais pas anormal malheureusement. Ce qui a marché pour moi : j''ai appelé la CAF tous les 15 jours pour relancer (pas trop souvent pour pas les embêter). Au 3ème appel, ils ont accéléré mon dossier. Le numéro : 0810 25 25 10 (numéro non surtaxé). Bon courage !',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
@@ -11083,7 +11254,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '0567fd61-a9df-5f73-bf5d-02f47d453adc',
   '9b8b1299-dc2f-5b8e-ae3a-de77531b68c5',
-  'Super conseil ! Je confirme, Hello ! Pour accélérer, je conseille vraiment de prendre rendez-vous dans l''agence CAF près de chez toi. C''est un peu lo...',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Bonjour ! Attention, un conseil important : vérifie bien que ton RIB est un compte français. J''avais... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11131,7 +11302,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'e3a1a217-4b77-5917-a4f0-2a3c16aeefba',
   '173cb5ba-c871-55c8-8bc8-76a24bd9562f',
-  'Super conseil ! Je confirme, Hello ! Conseil important : prends une mutuelle étudiante (LMDE ou SMEREP) dès que possible. Elle coûte que 20-30€/mois ...',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive automatiquement par ... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11142,7 +11313,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'cf0de055-f603-59d6-ae82-8185b8744b40',
   '173cb5ba-c871-55c8-8bc8-76a24bd9562f',
-  'Oui exactement ! Hello ! Conseil important : prends une mutuelle étudiante (LMDE ou SMEREP) dès que possible. Elle coûte que 20-30€/mois et ça te r...',
+  'Super fil de discussion ! Tous ces conseils sont vraiment utiles. Pour ma part, je recommande aussi de Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive ...',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
@@ -11168,7 +11339,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '25878249-887e-539b-928a-f4cfd8daf075',
   '0252c811-7c75-52db-bb6e-a312efbffb64',
-  'Coucou ! J''étais dans la même galère il y a 6 mois. Mon conseil : cherche sur les groupes Facebook de ta ville (ex: ''Étudiants Paris'', ''Colocation Lyon''). J''ai trouvé mon studio comme ça en 2 semaines, sans garant ! Beaucoup de proprios comprennent la situation des étudiants étrangers.',
+  'Coucou ! Oui c''est possible ! J''étais dans la même situation. Deux solutions qui marchent : 1) Visale (garantie gratuite de l''État) - tu peux la demander sur actionlogement.fr, 2) Certaines banques proposent des garanties pour étudiants. J''ai utilisé celle de Boursorama, c''est rapide et pas cher. Ça vaut vraiment le coup d''essayer !',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
@@ -11205,7 +11376,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'cbc3ca1e-8965-500a-8aa3-5524f2b20979',
   '4977e849-ca23-57f9-bdf1-1e41c48f6b84',
-  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
+  'Hello ! Même problème ici ! La solution : certaines banques en ligne (N26, Revolut, Boursorama) acceptent des justificatifs de moins de 3 mois, voire même une attestation d''hébergement. J''ai ouvert mon compte Boursorama avec juste une attestation d''hébergement signée par mon colocataire. Essaye ça, c''est beaucoup plus simple !',
   'sophie.l@example.com',
   'Sophie L.',
   TRUE,
@@ -11216,7 +11387,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '16b6be30-11ba-5838-9f6f-8530b1f169ff',
   '4977e849-ca23-57f9-bdf1-1e41c48f6b84',
-  'Excellente question ! Je te conseille vraiment de...',
+  'Salut ! Pour le garant, tu peux essayer Visale (c''est gratuit et ça fonctionne bien). Sinon, certaines banques proposent des garanties locatives pour étudiants. J''ai utilisé celle de la BNP et ça m''a sauvé !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
@@ -11227,7 +11398,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '47fbe9b0-f597-55d4-ad45-20a7c5e6a3f5',
   '4977e849-ca23-57f9-bdf1-1e41c48f6b84',
-  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Salut ! Pour le garant, tu peux essayer Visale (c''est gratuit et ça fonctionne bien). Sinon, certain... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11253,7 +11424,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'c4c0dd99-1f7b-50d9-a3a8-ce738f892b41',
   '4be15efb-482e-5591-948c-aed49937f904',
-  'Salut ! Pour progresser en français, ce qui m''a le plus aidé c''est de regarder des séries françaises sur Netflix avec les sous-titres en français (pas dans ta langue !). Au début c''est dur mais après 2-3 semaines tu comprends déjà beaucoup mieux.',
+  'Bonjour ! J''ai fait ma demande il y a 3 mois. Le délai normal c''est environ 3 semaines, mais ça peut prendre jusqu''à 2 mois selon les périodes. Le plus important c''est de créer ton compte ameli.fr dès que tu as ton numéro étudiant, comme ça tu peux suivre l''avancement en temps réel !',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
@@ -11264,7 +11435,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'f70bcd7b-d255-523e-af2f-d415943168b9',
   '4be15efb-482e-5591-948c-aed49937f904',
-  'Bonjour ! Je te conseille vraiment de rejoindre des groupes de conversation. Il y en a partout (Meetup, Facebook, ou même à l''université). Parler avec des natifs même 1h par semaine, ça fait une ÉNORME différence !',
+  'Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive automatiquement par courrier sous 2-3 semaines. Si elle n''arrive pas après 1 mois, appelle le 3646 (numéro gratuit) pour la réclamer. Ils te la renvoient rapidement !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
@@ -11275,7 +11446,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '24c3fb59-11d3-5954-9767-58c777014e28',
   '4be15efb-482e-5591-948c-aed49937f904',
-  'Super conseil ! Je confirme, Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te ...',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive automatiquement par ... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11286,7 +11457,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'd7659e4e-3fd3-5d61-84d6-fa520361f0f7',
   '4be15efb-482e-5591-948c-aed49937f904',
-  'Oui exactement ! Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te fait gagne...',
+  'Super fil de discussion ! Tous ces conseils sont vraiment utiles. Pour ma part, je recommande aussi de Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive ...',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
@@ -11312,7 +11483,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'fa2ed4e1-0cb2-5c59-94ea-55fe65e10153',
   'f6af59a3-67d6-5abe-8238-7cd32053cad4',
-  'Salut ! Pour progresser en français, ce qui m''a le plus aidé c''est de regarder des séries françaises sur Netflix avec les sous-titres en français (pas dans ta langue !). Au début c''est dur mais après 2-3 semaines tu comprends déjà beaucoup mieux.',
+  'Salut ! J''ai passé le DELF B2 il y a 6 mois et je l''ai eu du premier coup. Mes conseils : 1) Fais TOUTES les annales disponibles (il y en a plein sur francaisfacile.com), 2) Pour l''oral, entraîne-toi à parler 10 minutes sur un sujet au hasard, 3) Pour la production écrite, apprends les formules de politesse françaises. C''est ça qui fait la différence ! Bonne chance !',
   'sophie.l@example.com',
   'Sophie L.',
   FALSE,
@@ -11371,7 +11542,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'cc731023-a1b9-55fc-bd3a-d50b086397bf',
   '42912afd-dbf5-5b6e-951b-73463aa5e390',
-  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Excellente question ! Je te conseille vraiment de...... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11419,7 +11590,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'd5d30fa7-6860-540b-9a3f-6b8e92ae82a8',
   '0d24cd77-825c-547b-85e3-5d23ad9d17b0',
-  'Super conseil ! Je confirme, Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te ...',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Bonjour ! Je te conseille vraiment de rejoindre des groupes de conversation. Il y en a partout (Meet... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11430,7 +11601,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'e3902060-5417-5512-9fca-cd1fe6d71b56',
   '0d24cd77-825c-547b-85e3-5d23ad9d17b0',
-  'Oui exactement ! Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te fait gagne...',
+  'Super fil de discussion ! Tous ces conseils sont vraiment utiles. Pour ma part, je recommande aussi de Bonjour ! Je te conseille vraiment de rejoindre des groupes de conversation. Il ...',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
@@ -11515,7 +11686,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '41057a08-8412-55e4-9b44-63f24798d224',
   'ba244ce1-3191-52a6-ba43-1c0cd17845e2',
-  'Super conseil ! Je confirme, Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te ...',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Bonjour ! Je te conseille vraiment de rejoindre des groupes de conversation. Il y en a partout (Meet... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11563,7 +11734,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '1a33707a-ef77-5e10-904e-5dfb66f0a03f',
   'c100ac4f-7794-5f69-adb8-7e499d90e707',
-  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Excellente question ! Je te conseille vraiment de...... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11574,7 +11745,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'e4f68eb9-703d-5bda-94de-bbb22b569b4c',
   'c100ac4f-7794-5f69-adb8-7e499d90e707',
-  'Oui exactement ! Bon conseil ! J''ajouterais juste que......',
+  'Super fil de discussion ! Tous ces conseils sont vraiment utiles. Pour ma part, je recommande aussi de Excellente question ! Je te conseille vraiment de......',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
@@ -11659,7 +11830,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '434b29f3-c9f0-54d8-8b7a-87279105bd6c',
   '2dd7e778-2505-5f8a-9beb-fb26046941e1',
-  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Excellente question ! Je te conseille vraiment de...... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11707,7 +11878,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'dc450361-64fb-54c3-8a20-f7981db55f18',
   '07f3ed10-a0e8-54d1-adfb-bb46c6f20b1e',
-  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Excellente question ! Je te conseille vraiment de...... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11718,7 +11889,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'e7ae3bf0-a83b-5c6a-8452-fbf95515d9a3',
   '07f3ed10-a0e8-54d1-adfb-bb46c6f20b1e',
-  'Oui exactement ! Bon conseil ! J''ajouterais juste que......',
+  'Super fil de discussion ! Tous ces conseils sont vraiment utiles. Pour ma part, je recommande aussi de Excellente question ! Je te conseille vraiment de......',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
@@ -11803,7 +11974,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '78f87165-8b86-5f5e-bb85-6bad475c1d51',
   '56983b7e-6a93-5b10-9196-4bd88661052c',
-  'Super conseil ! Je confirme, Hey ! Pour le DELF B2, je recommande vraiment de faire les annales. Le format des épreuves est très spécifique et ça te ...',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Bonjour ! Je te conseille vraiment de rejoindre des groupes de conversation. Il y en a partout (Meet... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11851,7 +12022,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '10797d0f-5162-5d9c-9a33-66883676bd05',
   'ba5e2f22-7d7e-5351-a4fd-e17b653900d7',
-  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Excellente question ! Je te conseille vraiment de...... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11862,7 +12033,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '1f7c2251-343d-52ab-9303-93102c9e335f',
   'ba5e2f22-7d7e-5351-a4fd-e17b653900d7',
-  'Oui exactement ! Bon conseil ! J''ajouterais juste que......',
+  'Super fil de discussion ! Tous ces conseils sont vraiment utiles. Pour ma part, je recommande aussi de Excellente question ! Je te conseille vraiment de......',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
@@ -11947,7 +12118,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '9c62b8c8-27f4-58ae-972b-94fbaf92ea54',
   '0b5435e2-eefc-5e0f-ab26-d19c11a6222c',
-  'Super conseil ! Je confirme, Hello ! Conseil important : prends une mutuelle étudiante (LMDE ou SMEREP) dès que possible. Elle coûte que 20-30€/mois ...',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive automatiquement par ... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -11973,7 +12144,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'fa611ff4-4213-5068-8958-ace0e3d6d148',
   '17006f43-5b49-5d6e-b67e-33495364b1b0',
-  'Merci pour cette question ! J''étais exactement dans la même situation il y a quelques mois. Ce qui a fonctionné pour moi c''est de...',
+  'Bonjour ! J''ai fait ma demande il y a 3 mois. Le délai normal c''est environ 3 semaines, mais ça peut prendre jusqu''à 2 mois selon les périodes. Le plus important c''est de créer ton compte ameli.fr dès que tu as ton numéro étudiant, comme ça tu peux suivre l''avancement en temps réel !',
   'sophie.l@example.com',
   'Sophie L.',
   TRUE,
@@ -11984,7 +12155,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '2cda2c38-520f-5442-bcd0-c21084c4cfc1',
   '17006f43-5b49-5d6e-b67e-33495364b1b0',
-  'Excellente question ! Je te conseille vraiment de...',
+  'Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive automatiquement par courrier sous 2-3 semaines. Si elle n''arrive pas après 1 mois, appelle le 3646 (numéro gratuit) pour la réclamer. Ils te la renvoient rapidement !',
   'pierre.m@example.com',
   'Pierre M.',
   FALSE,
@@ -11995,7 +12166,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '9ca6aa3a-a22b-5131-9c17-278c945cf496',
   '17006f43-5b49-5d6e-b67e-33495364b1b0',
-  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive automatiquement par ... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -12006,7 +12177,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '31de6085-4823-5946-8567-8d30505d4a96',
   '17006f43-5b49-5d6e-b67e-33495364b1b0',
-  'Oui exactement ! Bon conseil ! J''ajouterais juste que......',
+  'Super fil de discussion ! Tous ces conseils sont vraiment utiles. Pour ma part, je recommande aussi de Salut ! Pour la carte Vitale, une fois que tu es affilié à la CPAM, elle arrive ...',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,
@@ -12091,7 +12262,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '204ccb01-bde8-5075-8add-1b3967d767b2',
   '995374cb-f3d1-5426-9f81-a626cb9cfcd4',
-  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Excellente question ! Je te conseille vraiment de...... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -12139,7 +12310,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   '6e6283e9-ff4b-5b58-9e81-cff4e52d6ebd',
   '8adb5f2e-7d96-500e-bd5b-26a15439af60',
-  'Super conseil ! Je confirme, Salut ! J''ai eu le même problème. Voici ce que j''ai fait et ça a marché......',
+  'Merci Sophie L. et Pierre M. pour ces conseils ! Je confirme que Excellente question ! Je te conseille vraiment de...... C''est vraiment ce qui m''a aidé aussi.',
   'emma.d@example.com',
   'Emma D.',
   FALSE,
@@ -12150,7 +12321,7 @@ INSERT INTO forum_replies (id, post_id, content, author_email, author_name, is_s
 (
   'cdfa2f5a-b223-556c-92da-ff9dfa2d82da',
   '8adb5f2e-7d96-500e-bd5b-26a15439af60',
-  'Oui exactement ! Bon conseil ! J''ajouterais juste que......',
+  'Super fil de discussion ! Tous ces conseils sont vraiment utiles. Pour ma part, je recommande aussi de Excellente question ! Je te conseille vraiment de......',
   'thomas.r@example.com',
   'Thomas R.',
   FALSE,

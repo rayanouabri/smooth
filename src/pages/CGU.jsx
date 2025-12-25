@@ -117,7 +117,7 @@ export default function CGU() {
             </p>
             <p>
               <strong>6.4 Remboursement :</strong> Conformément à notre politique de satisfaction, vous disposez 
-              de 30 jours pour demander un remboursement complet.
+              pour demander un remboursement complet.
             </p>
           </CardContent>
         </Card>

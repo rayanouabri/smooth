@@ -90,7 +90,7 @@ export default function CourseCard({ course }) {
               </div>
               <div className="flex items-center space-x-2 bg-gradient-to-r from-purple-50 to-pink-50 px-3 py-2 rounded-xl flex-1">
                 <BookOpen className="w-4 h-4 text-purple-600 flex-shrink-0" />
-                <span className="text-sm font-bold text-gray-900">{course.total_lessons || 0} leçons</span>
+                <span className="text-sm font-bold text-gray-900">{course.lessons_count || 0} leçons</span>
               </div>
             </div>
 
@@ -110,7 +110,6 @@ export default function CourseCard({ course }) {
                     ))}
                   </div>
                   <span className="text-sm font-bold text-gray-900">{course.rating.toFixed(1)}</span>
-                  <span className="text-xs text-gray-500">({course.reviews_count})</span>
                 </div>
               </div>
             )}

@@ -26,7 +26,17 @@ export default function Courses() {
     queryFn: async () => {
       try {
         const result = await Course.filter({ is_published: true }, '-created_date');
-        return result || [];
+        // Pour chaque cours, compter les leçons
+        const coursesWithLessons = await Promise.all(result.map(async (course) => {
+          try {
+            const { Lesson } = await import('@/api/entities');
+            const lessons = await Lesson.filter({ course_id: course.id });
+            return { ...course, lessons_count: lessons.length };
+          } catch (err) {
+            return { ...course, lessons_count: 0 };
+          }
+        }));
+        return coursesWithLessons || [];
       } catch (error) {
         console.error("Erreur lors du chargement des cours:", error);
         return [];

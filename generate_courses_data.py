@@ -122,6 +122,43 @@ def generate_course(category_key, category_info, theme, course_index):
         f"Résolution de problèmes courants"
     ]
     
+    # Sources officielles selon le thème
+    sources = {}
+    theme_lower = theme.lower()
+    if 'caf' in theme_lower or 'allocation' in theme_lower:
+        sources = {
+            'site': 'https://www.caf.fr',
+            'simulateur': 'https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimateurs',
+            'espace': 'https://www.caf.fr/espaces'
+        }
+    elif 'sécurité' in theme_lower or 'sante' in theme_lower or 'mutuelle' in theme_lower or 'cpam' in theme_lower:
+        sources = {
+            'ameli': 'https://www.ameli.fr',
+            'cpam': 'https://www.ameli.fr/assure/droits-demarches/principes/etre-affilie-au-regime-general',
+            'carte_vitale': 'https://www.ameli.fr/assure/droits-demarches/demarches-et-declarations/remplacer-carte-vitale'
+        }
+    elif 'logement' in theme_lower or 'appartement' in theme_lower or 'garant' in theme_lower:
+        sources = {
+            'visale': 'https://www.actionlogement.fr/visale',
+            'dossier': 'https://www.service-public.fr/particuliers/vosdroits/F2005'
+        }
+    elif 'titre' in theme_lower or 'visa' in theme_lower or 'séjour' in theme_lower or 'prefecture' in theme_lower:
+        sources = {
+            'prefecture': 'https://www.service-public.fr/particuliers/vosdroits/F1560'
+        }
+    elif 'français' in theme_lower or 'delf' in theme_lower or 'dalf' in theme_lower:
+        sources = {
+            'delf': 'https://www.france-education-international.fr/diplome/delf-dalf',
+            'ciel': 'https://www.ciep.fr/delf-dalf'
+        }
+    
+    sources_text = ""
+    if sources:
+        sources_text = "\n\n## 📚 Ressources Officielles\n\n"
+        for key, url in sources.items():
+            label = key.replace('_', ' ').title()
+            sources_text += f"- [{label}]({url})\n"
+    
     lesson_contents = [
         f"""# Introduction à {theme}
 
@@ -129,14 +166,15 @@ Ce cours vous guide pas à pas dans {theme.lower()}.
 
 ## Pourquoi c'est important ?
 
-{theme} est essentiel pour réussir votre intégration en France.
+{theme} est essentiel pour réussir votre intégration en France. Ce guide complet vous accompagne dans toutes vos démarches.
 
 ## Ce que vous allez apprendre
 
 - Les bases de {theme.lower()}
-- Les démarches nécessaires
+- Les démarches nécessaires étape par étape
 - Les pièges à éviter
 - Les meilleures pratiques
+- Les ressources officielles à utiliser{sources_text}
 
 ## Prérequis
 
@@ -428,29 +466,55 @@ def generate_forum_post(post_index):
         ('Antoine C.', 'antoine.c@example.com')
     ]
     
-    # Déterminer le type de question pour des réponses pertinentes
+    # Déterminer le type de question pour des réponses pertinentes en analysant titre ET contenu
     question_type = 'general'
     title_lower = titles[post_index].lower() if post_index < len(titles) else ''
-    if 'caf' in title_lower or 'allocation' in title_lower:
+    content_lower = contents[post_index].lower() if post_index < len(contents) else ''
+    combined_text = title_lower + " " + content_lower
+    
+    if 'caf' in combined_text or 'allocation' in combined_text or 'apl' in combined_text:
         question_type = 'caf'
-    elif 'logement' in title_lower or 'appartement' in title_lower or 'studio' in title_lower or 'garant' in title_lower:
+    elif 'logement' in combined_text or 'appartement' in combined_text or 'studio' in combined_text or 'garant' in combined_text or 'loyer' in combined_text:
         question_type = 'logement'
-    elif 'sécurité' in title_lower or 'sante' in title_lower or 'mutuelle' in title_lower or 'vitale' in title_lower or 'cpam' in title_lower:
+    elif 'sécurité' in combined_text or 'sante' in combined_text or 'mutuelle' in combined_text or 'vitale' in combined_text or 'cpam' in combined_text or 'médecin' in combined_text:
         question_type = 'securite_sociale'
-    elif 'français' in title_lower or 'delf' in title_lower or 'francais' in title_lower:
+    elif 'français' in combined_text or 'delf' in combined_text or 'francais' in combined_text or 'dalf' in combined_text or 'b1' in combined_text or 'b2' in combined_text:
         question_type = 'francais'
-    elif 'titre' in title_lower or 'visa' in title_lower or 'séjour' in title_lower or 'prefecture' in title_lower:
+    elif 'titre' in combined_text or 'visa' in combined_text or 'séjour' in combined_text or 'prefecture' in combined_text or 'renouvellement' in combined_text:
         question_type = 'titre_sejour'
+    elif 'bancaire' in combined_text or 'compte' in combined_text and 'banque' in combined_text:
+        question_type = 'logement'  # Similaire au logement pour les garanties
+    elif 'stage' in combined_text or 'cv' in combined_text or 'entretien' in combined_text or 'contrat' in combined_text:
+        question_type = 'general'  # Professionnel
     
     # Sélectionner les réponses appropriées
     available_replies = reply_templates.get(question_type, reply_templates['general'])
+    
+    # Créer des réponses spécifiques pour certaines questions fréquentes
+    specific_replies = {}
+    if post_index < len(contents):
+        content = contents[post_index]
+        if '3 mois' in content and 'réponse' in content:
+            # Question sur délai CAF
+            specific_replies[0] = "Salut ! 3 mois c'est effectivement long mais pas anormal malheureusement. Ce qui a marché pour moi : j'ai appelé la CAF tous les 15 jours pour relancer (pas trop souvent pour pas les embêter). Au 3ème appel, ils ont accéléré mon dossier. Le numéro : 0810 25 25 10 (numéro non surtaxé). Bon courage !"
+        elif 'garant' in content.lower() and 'français' in content.lower():
+            # Question garant français
+            specific_replies[0] = "Coucou ! Oui c'est possible ! J'étais dans la même situation. Deux solutions qui marchent : 1) Visale (garantie gratuite de l'État) - tu peux la demander sur actionlogement.fr, 2) Certaines banques proposent des garanties pour étudiants. J'ai utilisé celle de Boursorama, c'est rapide et pas cher. Ça vaut vraiment le coup d'essayer !"
+        elif 'justificatif de domicile' in content.lower() or '3 mois' in content and 'domicile' in content.lower():
+            # Question justificatif de domicile
+            specific_replies[0] = "Hello ! Même problème ici ! La solution : certaines banques en ligne (N26, Revolut, Boursorama) acceptent des justificatifs de moins de 3 mois, voire même une attestation d'hébergement. J'ai ouvert mon compte Boursorama avec juste une attestation d'hébergement signée par mon colocataire. Essaye ça, c'est beaucoup plus simple !"
+        elif 'delf b2' in content.lower() or 'delf' in content.lower() and 'préparation' in content.lower():
+            # Question préparation DELF
+            specific_replies[0] = "Salut ! J'ai passé le DELF B2 il y a 6 mois et je l'ai eu du premier coup. Mes conseils : 1) Fais TOUTES les annales disponibles (il y en a plein sur francaisfacile.com), 2) Pour l'oral, entraîne-toi à parler 10 minutes sur un sujet au hasard, 3) Pour la production écrite, apprends les formules de politesse françaises. C'est ça qui fait la différence ! Bonne chance !"
     
     for i in range(num_comments):
         reply_id = str(uuid.uuid5(uuid.UUID('6ba7b813-9dad-11d1-80b4-00c04fd430c8'), f'{post_id}-reply-{i}'))
         reply_author_name, reply_author_email = reply_authors[i % len(reply_authors)]
         
-        # Varier les réponses pour qu'elles soient plus naturelles
-        if i == 0:
+        # Utiliser une réponse spécifique si elle existe, sinon utiliser les templates
+        if i in specific_replies:
+            reply_content = specific_replies[i]
+        elif i == 0:
             # Première réponse : détaillée et utile
             reply_content = available_replies[i % len(available_replies)]
         elif i == 1:
@@ -458,22 +522,13 @@ def generate_forum_post(post_index):
             if len(available_replies) > 1:
                 reply_content = available_replies[1 % len(available_replies)]
             else:
-                reply_content = f"D'accord avec la réponse ci-dessus ! J'ajouterais que j'ai aussi rencontré ce problème. {available_replies[0][:100]}..."
+                reply_content = f"D'accord avec {reply_authors[0][0]} ! J'ajouterais que {available_replies[0][:120]}..."
         else:
-            # Autres réponses : plus courtes, plus conversationnelles
-            if len(available_replies) > 2:
-                base_reply = available_replies[min(i, len(available_replies)-1)]
+            # Autres réponses : références aux réponses précédentes pour créer un vrai fil de discussion
+            if i == 2:
+                reply_content = f"Merci {reply_authors[0][0]} et {reply_authors[1][0]} pour ces conseils ! Je confirme que {available_replies[min(i-1, len(available_replies)-1)][:100]}... C'est vraiment ce qui m'a aidé aussi."
             else:
-                base_reply = available_replies[i % len(available_replies)]
-            
-            # Ajouter des variantes conversationnelles
-            variants = [
-                base_reply,
-                f"Merci pour cette réponse ! {base_reply[:150]}...",
-                f"Super conseil ! Je confirme, {base_reply[:120]}...",
-                f"Oui exactement ! {base_reply[:130]}..."
-            ]
-            reply_content = variants[i % len(variants)]
+                reply_content = f"Super fil de discussion ! Tous ces conseils sont vraiment utiles. Pour ma part, je recommande aussi de {available_replies[min(i-2, len(available_replies)-1)][:80]}..."
         
         replies.append({
             'id': reply_id,

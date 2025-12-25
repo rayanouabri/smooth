@@ -79,8 +79,8 @@ export default function CGV() {
               votre droit de rétractation sans avoir à justifier de motifs.
             </p>
             <p>
-              <strong>Garantie satisfaction 30 jours :</strong> Au-delà du délai légal de rétractation, 
-              FrancePrepAcademy offre une garantie "Satisfait ou remboursé" de 30 jours à compter de la 
+              <strong>Garantie satisfaction :</strong> Au-delà du délai légal de rétractation, 
+              FrancePrepAcademy offre une garantie "Satisfait ou remboursé" à compter de la 
               souscription à l'abonnement Premium.
             </p>
             <p>
