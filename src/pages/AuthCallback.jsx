@@ -23,20 +23,27 @@ export default function AuthCallback() {
           // Créer ou mettre à jour le profil utilisateur
           const user = data.session.user;
           
-          // Vérifier si le profil existe
+          // Vérifier si le profil existe (par id ou user_id ou email)
           const { data: existingProfile } = await supabase
             .from('user_profiles')
             .select('*')
-            .eq('user_id', user.id)
-            .single();
+            .or(`id.eq.${user.id},user_id.eq.${user.id},user_email.eq.${user.email}`)
+            .maybeSingle();
 
           if (!existingProfile) {
-            // Créer un nouveau profil
-            await supabase.from('user_profiles').insert({
+            // Créer un nouveau profil avec toutes les colonnes nécessaires
+            const { error: insertError } = await supabase.from('user_profiles').insert({
+              id: user.id, // Utiliser l'ID de l'utilisateur auth comme ID du profil
               user_id: user.id,
               user_email: user.email,
               full_name: user.user_metadata?.full_name || user.email?.split('@')[0],
+              is_premium: false,
+              subscription_status: 'inactive',
             });
+            
+            if (insertError) {
+              console.error('Error creating profile in AuthCallback:', insertError);
+            }
           }
 
           // Rediriger vers la page demandée ou le dashboard
