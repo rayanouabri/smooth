@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { 
   CheckCircle, 
   BookOpen, 
@@ -31,6 +32,7 @@ import ChatBot from "../components/ChatBot";
 
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     checkAuth();
@@ -54,22 +56,22 @@ export default function Home() {
   const heroFeatures = [
     {
       icon: GraduationCap,
-      title: "200+ Cours d'intégration",
+      titleKey: "home.feature1",
       color: "from-blue-500 to-cyan-500"
     },
     {
       icon: CheckCircle,
-      title: "Guides CAF & Administration",
+      titleKey: "home.feature2",
       color: "from-green-500 to-emerald-500"
     },
     {
       icon: Briefcase,
-      title: "CV & Emploi",
+      titleKey: "home.feature3",
       color: "from-orange-500 to-red-500"
     },
     {
       icon: HeartHandshake,
-      title: "Support 24/7",
+      titleKey: "home.feature4",
       color: "from-purple-500 to-pink-500"
     }
   ];
@@ -173,7 +175,7 @@ export default function Home() {
                 {isAuthenticated ? (
                   <Link to={createPageUrl("Dashboard")}>
                     <Button size="lg" className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold shadow-2xl px-8 py-6 text-lg">
-                      🎓 Mon Espace
+                      🎓 {t('common.mySpace')}
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
                   </Link>
@@ -183,24 +185,24 @@ export default function Home() {
                     className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold shadow-2xl px-8 py-6 text-lg"
                     onClick={() => redirectToLogin(window.location.href)}
                   >
-                    🚀 Commencer gratuitement
+                    🚀 {t('common.startFree')}
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 )}
                 <Link to={createPageUrl("Courses")}>
                   <Button size="lg" variant="outline" className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-indigo-900 font-bold px-8 py-6 text-lg backdrop-blur">
-                    Découvrir les cours
+                    {t('common.discoverCourses')}
                   </Button>
                 </Link>
               </div>
 
               <div className="flex items-center gap-4 text-sm text-blue-200">
                 <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>Gratuit</span>
+                <span>{t('common.free')}</span>
                 <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>Sans engagement</span>
+                <span>{t('common.noCommitment')}</span>
                 <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>Accès immédiat</span>
+                <span>{t('common.immediateAccess')}</span>
               </div>
             </motion.div>
 

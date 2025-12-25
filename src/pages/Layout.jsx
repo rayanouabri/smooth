@@ -153,7 +153,7 @@ export default function Layout({ children, currentPageName }) {
                 <>
                   <Link to={createPageUrl("Dashboard")}>
                     <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg" size="sm">
-                      🎓 Mon Espace
+                      🎓 {t('common.mySpace')}
                     </Button>
                   </Link>
                   <DropdownMenu>

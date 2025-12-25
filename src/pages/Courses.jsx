@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Course } from "@/api/entities";
 import { useQuery } from "@tanstack/react-query";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { 
@@ -20,6 +21,7 @@ export default function Courses() {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [levelFilter, setLevelFilter] = useState("all");
+  const { t } = useLanguage();
 
   const { data: courses = [], isLoading } = useQuery({
     queryKey: ['courses'],
@@ -98,16 +100,13 @@ export default function Courses() {
           >
             <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-pink-400 text-white border-0 text-base px-6 py-2 shadow-2xl animate-bounce">
               <Sparkles className="w-4 h-4 mr-2 inline" />
-              {courses.length}+ Cours Disponibles • 70% Gratuits
+              {courses.length}+ {t('courses.availableCourses')} • 70% {t('courses.freeCourses')}
             </Badge>
             <h1 className="text-5xl md:text-7xl font-extrabold mb-6 drop-shadow-2xl">
-              Catalogue de
-              <span className="block mt-2 bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-300 bg-clip-text text-transparent">
-                Formations Expert
-              </span>
+              {t('courses.title')}
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-8">
-              Des cours ultra-complets pour maîtriser chaque aspect de votre vie en France
+              {t('courses.subtitle')}
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 flex items-center gap-2">
@@ -126,7 +125,7 @@ export default function Courses() {
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-500 w-5 h-5" />
               <Input
-                placeholder="Rechercher un cours..."
+                  placeholder={t('courses.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-12 h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-2xl shadow-sm bg-white text-lg"
