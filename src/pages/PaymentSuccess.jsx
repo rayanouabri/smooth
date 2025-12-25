@@ -12,140 +12,215 @@ export default function PaymentSuccess() {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
   
-  const [step, setStep] = useState('verify');
+  const [step, setStep] = useState('loading');
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('Vérification en cours...');
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
-  const [formError, setFormError] = useState('');
 
   useEffect(() => {
-    verifySession();
+    console.log('PaymentSuccess mounted, sessionId:', sessionId);
+    checkAuthentication();
   }, []);
 
-  const verifySession = async () => {
+  const checkAuthentication = async () => {
     try {
+      console.log('Checking authentication...');
+      
       if (!sessionId) {
+        console.error('No session ID found');
+        setError('Aucun identifiant de session trouvé. Veuillez réessayer le paiement.');
         setStep('error');
-        setMessage('Pas de session trouvée');
         return;
       }
 
-      const { data: { user: authUser } } = await supabase.auth.getUser();
+      // Vérifier si l'utilisateur est connecté
+      const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
+      
+      console.log('Auth user:', authUser);
       
       if (authUser) {
-        await markAsPremium(authUser.id);
+        // Utilisateur connecté - marquer comme premium
+        console.log('User authenticated, marking as premium');
+        await markUserAsPremium(authUser.id, authUser.email);
         setUser(authUser);
         setStep('success');
       } else {
+        // Pas connecté - montrer formulaire d'inscription
+        console.log('User not authenticated, showing signup form');
         setStep('signup');
       }
-    } catch (error) {
-      console.error('Error:', error);
+    } catch (err) {
+      console.error('Error in checkAuthentication:', err);
+      setError(err.message || 'Une erreur est survenue');
       setStep('error');
-      setMessage(error.message || 'Erreur lors de la vérification');
     }
   };
 
-  const markAsPremium = async (userId) => {
+  const markUserAsPremium = async (userId, userEmail) => {
     try {
-      await supabase
+      console.log('Marking user as premium:', userId);
+      
+      // Vérifier si le profil existe
+      const { data: existingProfile, error: fetchError } = await supabase
         .from('user_profiles')
-        .update({
-          is_premium: true,
-          subscription_status: 'active',
-          premium_since: new Date().toISOString(),
-        })
-        .eq('id', userId);
+        .select('*')
+        .eq('id', userId)
+        .single();
+
+      if (existingProfile) {
+        // Mise à jour du profil existant
+        const { error: updateError } = await supabase
+          .from('user_profiles')
+          .update({
+            is_premium: true,
+            subscription_status: 'active',
+            premium_since: new Date().toISOString(),
+          })
+          .eq('id', userId);
+
+        if (updateError) throw updateError;
+      } else {
+        // Créer un nouveau profil
+        const { error: insertError } = await supabase
+          .from('user_profiles')
+          .insert({
+            id: userId,
+            user_email: userEmail,
+            is_premium: true,
+            subscription_status: 'active',
+            premium_since: new Date().toISOString(),
+          });
+
+        if (insertError) throw insertError;
+      }
+      
+      console.log('User marked as premium successfully');
     } catch (err) {
-      console.error('Error marking as premium:', err);
+      console.error('Error marking user as premium:', err);
+      // Ne pas bloquer le flux si erreur
     }
   };
 
   const handleSignup = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setFormError('');
+    setError('');
 
     try {
+      console.log('Starting signup process...');
+      
       if (!formData.name || !formData.email || !formData.password) {
         throw new Error('Tous les champs sont obligatoires');
       }
+      
       if (formData.password.length < 6) {
         throw new Error('Le mot de passe doit contenir au moins 6 caractères');
       }
 
-      const { data, error } = await supabase.auth.signUp({
+      // Créer le compte
+      const { data, error: signupError } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
         options: {
-          data: { full_name: formData.name },
+          data: { 
+            full_name: formData.name 
+          },
         },
       });
 
-      if (error) throw error;
+      if (signupError) throw signupError;
+
+      console.log('Signup successful:', data);
 
       if (data.user) {
-        await supabase.from('user_profiles').insert({
-          id: data.user.id,
-          email: formData.email,
-          full_name: formData.name,
-          is_premium: true,
-          subscription_status: 'active',
-          premium_since: new Date().toISOString(),
-        });
-
+        // Créer le profil premium
+        await markUserAsPremium(data.user.id, formData.email);
+        
         setUser(data.user);
         setStep('success');
+      } else {
+        throw new Error('Erreur lors de la création du compte');
       }
-    } catch (error) {
-      setFormError(error.message || 'Erreur lors de l\'inscription');
+    } catch (err) {
+      console.error('Error in handleSignup:', err);
+      setError(err.message || 'Erreur lors de l\'inscription');
     } finally {
       setLoading(false);
     }
   };
 
-  if (step === 'verify') {
+  // État de chargement initial
+  if (step === 'loading') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center p-4">
         <Card className="w-full max-w-md border-0 shadow-lg">
           <CardContent className="p-12 text-center">
             <Loader2 className="w-12 h-12 text-blue-500 animate-spin mx-auto mb-4" />
             <h2 className="text-xl font-semibold mb-2">Vérification du paiement</h2>
-            <p className="text-gray-600">{message}</p>
+            <p className="text-gray-600">Veuillez patienter...</p>
           </CardContent>
         </Card>
       </div>
     );
   }
 
+  // État de succès
   if (step === 'success') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50 flex items-center justify-center p-4">
-        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="w-full max-w-md">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }} 
+          animate={{ opacity: 1, scale: 1 }} 
+          className="w-full max-w-md"
+        >
           <Card className="border-0 shadow-lg overflow-hidden">
             <div className="bg-gradient-to-r from-green-500 to-emerald-500 p-8 text-center text-white">
-              <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, type: 'spring' }} className="inline-block p-3 bg-white rounded-full mb-4">
+              <motion.div 
+                initial={{ scale: 0 }} 
+                animate={{ scale: 1 }} 
+                transition={{ delay: 0.2, type: 'spring' }} 
+                className="inline-block p-3 bg-white rounded-full mb-4"
+              >
                 <CheckCircle className="w-12 h-12 text-green-500" />
               </motion.div>
-              <h1 className="text-2xl font-bold">Bienvenue Premium !</h1>
+              <h1 className="text-3xl font-bold">Bienvenue Premium !</h1>
+              <p className="text-green-100 mt-2">Votre paiement a été confirmé</p>
             </div>
 
             <CardContent className="p-8">
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
-                  <p className="font-semibold text-green-900 mb-2">✨ Accès activé</p>
-                  <ul className="text-sm text-green-800 space-y-1">
-                    <li>✓ Tous les cours Premium</li>
-                    <li>✓ IA Sophie illimitée</li>
-                    <li>✓ Support prioritaire</li>
-                    <li>✓ Certificats professionnels</li>
+                  <p className="font-semibold text-green-900 mb-3">✨ Votre accès Premium est activé !</p>
+                  <ul className="text-sm text-green-800 space-y-2">
+                    <li className="flex items-center">
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                      Tous les cours Premium débloqués
+                    </li>
+                    <li className="flex items-center">
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                      IA Sophie illimitée
+                    </li>
+                    <li className="flex items-center">
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                      Support prioritaire
+                    </li>
+                    <li className="flex items-center">
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                      Certificats professionnels
+                    </li>
                   </ul>
                 </div>
 
-                <p className="text-center text-gray-600 py-4">{user?.email || formData.email}</p>
+                <div className="text-center">
+                  <p className="text-sm text-gray-600 mb-1">Compte Premium</p>
+                  <p className="text-gray-900 font-semibold">{user?.email || formData.email}</p>
+                </div>
 
-                <Button onClick={() => navigate('/dashboard')} className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-6 font-semibold">
+                <Button 
+                  onClick={() => navigate('/dashboard')} 
+                  className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white py-6 font-semibold text-lg"
+                >
                   Accéder à mon Dashboard →
                 </Button>
               </div>
@@ -156,48 +231,117 @@ export default function PaymentSuccess() {
     );
   }
 
+  // Formulaire d'inscription
   if (step === 'signup') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center p-4">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          className="w-full max-w-md"
+        >
           <Card className="border-0 shadow-lg">
             <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-6 text-white">
-              <h1 className="text-2xl font-bold">Créer mon compte Premium</h1>
-              <p className="text-blue-100 mt-1">Paiement confirmé ✓</p>
+              <div className="flex items-center justify-between mb-2">
+                <h1 className="text-2xl font-bold">Créer mon compte Premium</h1>
+                <CheckCircle className="w-6 h-6" />
+              </div>
+              <p className="text-blue-100">Paiement confirmé ✓ Dernière étape !</p>
             </div>
 
             <CardContent className="p-8">
-              {formError && (
-                <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded">
+              {error && (
+                <motion.div 
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded"
+                >
                   <p className="text-sm text-red-700 flex items-center gap-2">
                     <AlertCircle className="w-4 h-4" />
-                    {formError}
+                    {error}
                   </p>
-                </div>
+                </motion.div>
               )}
 
-              <form onSubmit={handleSignup} className="space-y-4">
+              <form onSubmit={handleSignup} className="space-y-5">
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700">Votre nom complet</label>
-                  <Input type="text" placeholder="Jean Dupont" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} disabled={loading} required />
+                  <label className="block text-sm font-medium mb-2 text-gray-700">
+                    Nom complet *
+                  </label>
+                  <Input 
+                    type="text" 
+                    placeholder="Jean Dupont" 
+                    value={formData.name} 
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })} 
+                    disabled={loading} 
+                    required 
+                    className="h-12"
+                  />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700">Email</label>
-                  <Input type="email" placeholder="vous@example.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} disabled={loading} required />
+                  <label className="block text-sm font-medium mb-2 text-gray-700">
+                    Email *
+                  </label>
+                  <Input 
+                    type="email" 
+                    placeholder="vous@example.com" 
+                    value={formData.email} 
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })} 
+                    disabled={loading} 
+                    required 
+                    className="h-12"
+                  />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700">Mot de passe</label>
-                  <Input type="password" placeholder="••••••••" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} disabled={loading} required minLength={6} />
-                  <p className="text-xs text-gray-500 mt-1">Min. 6 caractères</p>
+                  <label className="block text-sm font-medium mb-2 text-gray-700">
+                    Mot de passe *
+                  </label>
+                  <Input 
+                    type="password" 
+                    placeholder="••••••••" 
+                    value={formData.password} 
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })} 
+                    disabled={loading} 
+                    required 
+                    minLength={6} 
+                    className="h-12"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">Minimum 6 caractères</p>
                 </div>
 
-                <Button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-6 font-semibold">
-                  {loading ? 'Création...' : 'Créer mon compte'}
+                <Button 
+                  type="submit" 
+                  disabled={loading} 
+                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white py-6 font-semibold text-lg"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Création en cours...
+                    </>
+                  ) : (
+                    'Créer mon compte Premium'
+                  )}
                 </Button>
 
-                <Button type="button" variant="outline" className="w-full" onClick={() => navigate('/login')} disabled={loading}>
+                <div className="relative my-6">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-gray-500">Ou</span>
+                  </div>
+                </div>
+
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  className="w-full h-12" 
+                  onClick={() => navigate('/login')} 
+                  disabled={loading}
+                >
                   J'ai déjà un compte
                 </Button>
               </form>
@@ -208,20 +352,28 @@ export default function PaymentSuccess() {
     );
   }
 
+  // État d'erreur
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-md border-0 shadow-lg">
         <CardContent className="p-12 text-center">
-          <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold mb-2 text-red-900">Erreur</h2>
-          <p className="text-red-700 mb-6">{message}</p>
+          <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <h2 className="text-2xl font-semibold mb-3 text-red-900">Oups ! Une erreur est survenue</h2>
+          <p className="text-red-700 mb-8">{error || 'Une erreur inattendue s\'est produite'}</p>
           
-          <div className="space-y-2">
-            <Button onClick={() => navigate('/pricing')} className="w-full bg-red-500 text-white">
+          <div className="space-y-3">
+            <Button 
+              onClick={() => navigate('/pricing')} 
+              className="w-full bg-red-500 hover:bg-red-600 text-white h-12"
+            >
               Retour à la tarification
             </Button>
-            <Button variant="outline" className="w-full" onClick={() => navigate('/')}>
-              Accueil
+            <Button 
+              variant="outline" 
+              className="w-full h-12" 
+              onClick={() => navigate('/')}
+            >
+              Retour à l'accueil
             </Button>
           </div>
         </CardContent>

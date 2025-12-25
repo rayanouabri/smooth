@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { me as getCurrentUser } from "@/api/auth";
-import { UserProfile } from "@/api/entities";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { getCurrentUser } from "@/api/auth";
+import { supabase } from "@/api/supabaseClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,7 +13,7 @@ import {
   SelectValue 
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { User, Globe, MapPin, Calendar, BookOpen, Target, X } from "lucide-react";
+import { User, Globe, MapPin, Calendar, BookOpen, Target, X, Crown, Loader2 } from "lucide-react";
 import ChatBot from "../components/ChatBot";
 
 export default function Profile() {
@@ -22,64 +21,123 @@ export default function Profile() {
   const [profile, setProfile] = useState(null);
   const [formData, setFormData] = useState({});
   const [goalInput, setGoalInput] = useState("");
-  const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState({ type: '', text: '' });
 
   useEffect(() => {
     loadProfile();
   }, []);
 
   const loadProfile = async () => {
-    const userData = await getCurrentUser();
-    setUser(userData);
-    
-    const profiles = await UserProfile.filter({ user_email: userData.email });
-    if (profiles.length > 0) {
-      setProfile(profiles[0]);
-      setFormData({
-        photo_url: profiles[0].photo_url || "",
-        country_origin: profiles[0].country_origin || "",
-        city_destination: profiles[0].city_destination || "",
-        arrival_date: profiles[0].arrival_date || "",
-        study_field: profiles[0].study_field || "",
-        french_level: profiles[0].french_level || "A1",
-        goals: profiles[0].goals || [],
-        bio: profiles[0].bio || "",
-        phone: profiles[0].phone || ""
-      });
-    } else {
-      setFormData({
-        photo_url: "",
-        country_origin: "",
-        city_destination: "",
-        arrival_date: "",
-        study_field: "",
-        french_level: "A1",
-        goals: [],
-        bio: "",
-        phone: ""
-      });
+    try {
+      setLoading(true);
+      console.log('Loading profile...');
+      
+      // Récupérer l'utilisateur connecté
+      const userData = await getCurrentUser();
+      console.log('User data:', userData);
+      
+      if (!userData) {
+        console.error('No user found');
+        window.location.href = '/login';
+        return;
+      }
+      
+      setUser(userData);
+      
+      // Récupérer le profil depuis user_profiles
+      const { data: profileData, error } = await supabase
+        .from('user_profiles')
+        .select('*')
+        .eq('id', userData.id)
+        .single();
+      
+      console.log('Profile data:', profileData, 'Error:', error);
+      
+      if (profileData) {
+        setProfile(profileData);
+        setFormData({
+          photo_url: profileData.photo_url || "",
+          country_origin: profileData.country_origin || "",
+          city_destination: profileData.city_destination || "",
+          arrival_date: profileData.arrival_date || "",
+          study_field: profileData.study_field || "",
+          french_level: profileData.french_level || "A1",
+          goals: profileData.goals || [],
+          bio: profileData.bio || "",
+          phone: profileData.phone || ""
+        });
+      } else {
+        // Profil n'existe pas encore, initialiser avec des valeurs vides
+        setFormData({
+          photo_url: "",
+          country_origin: "",
+          city_destination: "",
+          arrival_date: "",
+          study_field: "",
+          french_level: "A1",
+          goals: [],
+          bio: "",
+          phone: ""
+        });
+      }
+    } catch (error) {
+      console.error('Error loading profile:', error);
+      setMessage({ type: 'error', text: 'Erreur lors du chargement du profil' });
+    } finally {
+      setLoading(false);
     }
   };
 
-  const saveMutation = useMutation({
-    mutationFn: async () => {
-      const data = {
+  const saveProfile = async () => {
+    try {
+      setSaving(true);
+      setMessage({ type: '', text: '' });
+      
+      console.log('Saving profile...');
+      
+      if (!user) {
+        throw new Error('Utilisateur non connecté');
+      }
+
+      const profilePayload = {
+        id: user.id,
         user_email: user.email,
+        full_name: user.full_name || user.user_metadata?.full_name || user.email.split('@')[0],
         ...formData
       };
 
+      console.log('Profile payload:', profilePayload);
+
       if (profile) {
-        return UserProfile.update(profile.id, data);
+        // Mise à jour
+        const { error } = await supabase
+          .from('user_profiles')
+          .update(profilePayload)
+          .eq('id', user.id);
+        
+        if (error) throw error;
       } else {
-        return UserProfile.create(data);
+        // Insertion
+        const { error } = await supabase
+          .from('user_profiles')
+          .insert(profilePayload);
+        
+        if (error) throw error;
       }
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['user-profile'] });
-      alert('Profil mis à jour avec succès !');
-      loadProfile();
-    },
-  });
+
+      setMessage({ type: 'success', text: 'Profil mis à jour avec succès !' });
+      
+      // Recharger le profil
+      await loadProfile();
+    } catch (error) {
+      console.error('Error saving profile:', error);
+      setMessage({ type: 'error', text: error.message || 'Erreur lors de la sauvegarde' });
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const handleChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -96,13 +154,24 @@ export default function Profile() {
     handleChange('goals', formData.goals.filter((_, i) => i !== index));
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto mb-4" />
+          <p className="text-gray-600">Chargement de votre profil...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mb-4"></div>
-          <p className="text-gray-600">Chargement...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Card className="p-8 text-center">
+          <p className="text-gray-600 mb-4">Vous devez être connecté pour accéder à votre profil</p>
+          <Button onClick={() => window.location.href = '/login'}>Se connecter</Button>
+        </Card>
       </div>
     );
   }
@@ -120,34 +189,53 @@ export default function Profile() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Message de confirmation/erreur */}
+        {message.text && (
+          <div className={`mb-6 p-4 rounded-lg border-l-4 ${
+            message.type === 'success' 
+              ? 'bg-green-50 border-green-500 text-green-800' 
+              : 'bg-red-50 border-red-500 text-red-800'
+          }`}>
+            {message.text}
+          </div>
+        )}
+
         {/* User Info Card */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="flex items-center">
-              <User className="w-6 h-6 mr-2" />
-              Informations de compte
+            <CardTitle className="flex items-center justify-between">
+              <div className="flex items-center">
+                <User className="w-6 h-6 mr-2" />
+                Informations de compte
+              </div>
+              {profile?.is_premium && (
+                <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white">
+                  <Crown className="w-3 h-3 mr-1" />
+                  Premium
+                </Badge>
+              )}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="text-sm font-medium text-gray-700">Nom complet</label>
-                <p className="text-gray-900 font-semibold">{user.full_name || "Non renseigné"}</p>
+                <p className="text-gray-900 font-semibold">{user.full_name || user.user_metadata?.full_name || "Non renseigné"}</p>
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700">Email</label>
                 <p className="text-gray-900 font-semibold">{user.email}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-700">Rôle</label>
-                <Badge className={user.role === 'admin' ? 'bg-purple-600' : 'bg-blue-600'}>
-                  {user.role === 'admin' ? 'Administrateur' : 'Étudiant'}
+                <label className="text-sm font-medium text-gray-700">Statut</label>
+                <Badge className={profile?.is_premium ? 'bg-yellow-600' : 'bg-blue-600'}>
+                  {profile?.is_premium ? 'Membre Premium' : 'Membre Gratuit'}
                 </Badge>
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700">Membre depuis</label>
                 <p className="text-gray-900 font-semibold">
-                  {new Date(user.created_date).toLocaleDateString('fr-FR')}
+                  {user.created_at ? new Date(user.created_at).toLocaleDateString('fr-FR') : 'Récemment'}
                 </p>
               </div>
             </div>
@@ -325,10 +413,17 @@ export default function Profile() {
           <Button
             size="lg"
             className="bg-blue-900 hover:bg-blue-800"
-            onClick={() => saveMutation.mutate()}
-            disabled={saveMutation.isPending}
+            onClick={saveProfile}
+            disabled={saving}
           >
-            {saveMutation.isPending ? "Enregistrement..." : "Enregistrer les modifications"}
+            {saving ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Enregistrement...
+              </>
+            ) : (
+              'Enregistrer les modifications'
+            )}
           </Button>
         </div>
       </div>
