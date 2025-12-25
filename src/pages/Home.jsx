@@ -166,7 +166,7 @@ export default function Home() {
                     <div className={`inline-flex p-2 rounded-lg bg-gradient-to-br ${feature.color} mb-2`}>
                       <feature.icon className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-sm font-bold">{feature.title}</h3>
+                    <h3 className="text-sm font-bold">{t(feature.titleKey)}</h3>
                   </motion.div>
                 ))}
               </div>
