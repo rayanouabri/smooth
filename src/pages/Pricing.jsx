@@ -86,7 +86,7 @@ export default function Pricing() {
   ];
 
   // Vérifier si l'utilisateur est déjà Premium
-  const isPremium = user?.is_premium === true;
+  const isPremium = user?.is_premium === true || user?.subscription_status === 'active';
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">

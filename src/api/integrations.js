@@ -12,82 +12,44 @@ import { supabase } from './supabaseClient';
  */
 export const InvokeLLM = async ({ prompt, add_context_from_internet = false, model = 'gpt-4', response_json_schema = null }) => {
   try {
-    // Si Gemini API Key est configurée, utiliser Gemini (priorité)
-    if (import.meta.env.VITE_GEMINI_API_KEY) {
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-      
-      const requestBody = {
-        contents: [{
-          parts: [{
-            text: prompt
-          }]
-        }],
-        generationConfig: {
-          temperature: 0.7,
-          topK: 40,
-          topP: 0.95,
-          maxOutputTokens: 4096,
-        },
-        safetySettings: [
-          {
-            category: "HARM_CATEGORY_HARASSMENT",
-            threshold: "BLOCK_NONE"
+    // Si Gemini API Key est configurée côté client OU via proxy serveur (/api/gemini), utiliser Gemini (priorité)
+    if (import.meta.env.VITE_GEMINI_API_KEY || true) {
+      const useProxy = !import.meta.env.VITE_GEMINI_API_KEY; // si pas de clé côté client, on passe par l'API proxy (serveur)
+      try {
+        const response = await fetch(useProxy ? '/api/gemini' : `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}` , {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-          {
-            category: "HARM_CATEGORY_HATE_SPEECH",
-            threshold: "BLOCK_NONE"
-          },
-          {
-            category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-            threshold: "BLOCK_NONE"
-          },
-          {
-            category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-            threshold: "BLOCK_NONE"
-          }
-        ]
-      };
+          body: JSON.stringify({ prompt }),
+        });
 
-      console.log('🤖 Appel à Gemini API...');
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        console.error('❌ Erreur Gemini API:', error);
-        throw new Error(error.error?.message || 'Erreur Gemini API');
-      }
-
-      const json = await response.json();
-      console.log('✅ Réponse Gemini reçue');
-      
-      const content = json.candidates?.[0]?.content?.parts?.[0]?.text || '';
-      
-      if (!content) {
-        console.error('❌ Pas de contenu dans la réponse:', json);
-        throw new Error('Réponse vide de Gemini');
-      }
-
-      // Si response_json_schema est fourni, essayer d'extraire le JSON
-      if (response_json_schema && content) {
-        try {
-          // Essayer de trouver un JSON dans la réponse
-          const jsonMatch = content.match(/\{[\s\S]*\}/);
-          if (jsonMatch) {
-            return JSON.parse(jsonMatch[0]);
-          }
-        } catch (e) {
-          console.error('Error parsing JSON from Gemini response:', e);
+        const json = await response.json();
+        if (!response.ok) {
+          console.error('❌ Erreur Gemini API:', json);
+          throw new Error(json.error || 'Erreur Gemini API');
         }
-      }
 
-      return content;
+        const content = json.content || json.candidates?.[0]?.content?.parts?.[0]?.text || '';
+        if (!content) {
+          console.error('❌ Pas de contenu dans la réponse:', json);
+          throw new Error('Réponse vide de Gemini');
+        }
+
+        if (response_json_schema && content) {
+          try {
+            const jsonMatch = content.match(/\{[\s\S]*\}/);
+            if (jsonMatch) return JSON.parse(jsonMatch[0]);
+          } catch (e) {
+            console.error('Error parsing JSON from Gemini response:', e);
+          }
+        }
+
+        return content;
+      } catch (err) {
+        console.error('Gemini fetch failed, fallback to OpenAI if configured:', err);
+        // continue to OpenAI fallback if configured
+      }
     }
     
     // Si OpenAI API Key est configurée, utiliser directement OpenAI

@@ -38,23 +38,37 @@ export const me = async () => {
     return null;
   }
   
-  // Récupérer le profil utilisateur depuis la table user_profiles avec id exact
-  const { data: profile, error } = await supabase
-    .from('user_profiles')
-    .select('*')
-    .eq('id', user.id)
-    .single();
+  // Récupérer le profil utilisateur depuis la table user_profiles
+  // 1) recherche par id exact
+  // 2) fallback par user_email si pas trouvé (robustesse)
+  let profile = null;
+  try {
+    const { data: byId } = await supabase
+      .from('user_profiles')
+      .select('*')
+      .eq('id', user.id)
+      .maybeSingle();
+    profile = byId;
+
+    if (!profile) {
+      const { data: byEmail } = await supabase
+        .from('user_profiles')
+        .select('*')
+        .eq('user_email', user.email)
+        .maybeSingle();
+      profile = byEmail;
+    }
+  } catch (err) {
+    console.error('me() profile fetch error:', err);
+  }
   
-  console.log('me() - User:', user.id, 'Profile:', profile, 'is_premium:', profile?.is_premium);
-  
-  // Si le profil n'existe pas, retourner juste les données de base de l'utilisateur
-  // Le trigger ou AuthCallback créera le profil plus tard
+  console.log('me() - User:', user.id, 'Profile:', profile?.id, 'is_premium:', profile?.is_premium);
   
   return {
     id: user.id,
     email: user.email,
     full_name: profile?.full_name || user.user_metadata?.full_name || user.email?.split('@')[0],
-    is_premium: profile?.is_premium || false,
+    is_premium: profile?.is_premium === true,
     subscription_status: profile?.subscription_status || 'inactive',
     ...(profile || {}),
     ...user,
