@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { isAuthenticated as checkAuthStatus, me as getCurrentUser, redirectToLogin } from "@/api/auth";
+import { isAuthenticated as checkAuthStatus, me, redirectToLogin } from "@/api/auth";
+import { supabase } from "@/api/supabaseClient";
 import { UserProfile, Course, Lesson, Enrollment } from "@/api/entities";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -51,12 +52,25 @@ export default function CourseDetail() {
     const authenticated = await checkAuthStatus();
     setIsAuthenticated(authenticated);
     if (authenticated) {
-      const userData = await getCurrentUser();
+      // Utiliser me() pour obtenir le profil avec is_premium
+      const userData = await me();
       setUser(userData);
       
-      const profiles = await UserProfile.filter({ user_email: userData.email });
-      if (profiles.length > 0) {
-        setUserProfile(profiles[0]);
+      // Charger le profil depuis la base de données pour être sûr
+      if (userData?.id) {
+        const { data: profile } = await supabase
+          .from('user_profiles')
+          .select('*')
+          .eq('id', userData.id)
+          .single();
+        
+        if (profile) {
+          setUserProfile(profile);
+          console.log('CourseDetail - Profile loaded, is_premium:', profile.is_premium);
+        } else {
+          // Fallback: utiliser les données de me()
+          setUserProfile(userData);
+        }
       }
     }
   };
@@ -99,19 +113,21 @@ export default function CourseDetail() {
       return;
     }
 
-    const plan = userProfile?.subscription_plan || 'gratuit';
-
-    switch(plan) {
-      case 'gratuit':
-        setCanAccess(false);
-        break;
-      case 'decouverte':
-      case 'premium':
-      case 'intensif':
-        setCanAccess(true);
-        break;
-      default:
-        setCanAccess(false);
+    // Vérifier is_premium au lieu de subscription_plan
+    const isPremium = userProfile?.is_premium === true || userProfile?.subscription_status === 'active';
+    
+    console.log('CourseDetail - checkCourseAccess:', {
+      coursePrice: course.price,
+      isPremium: isPremium,
+      userProfile: userProfile,
+      is_premium: userProfile?.is_premium,
+      subscription_status: userProfile?.subscription_status
+    });
+    
+    if (isPremium) {
+      setCanAccess(true);
+    } else {
+      setCanAccess(false);
     }
   };
 

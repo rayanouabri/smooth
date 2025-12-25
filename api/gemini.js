@@ -123,7 +123,13 @@ module.exports = async function handler(req, res) {
     
     return res.status(200).json({ content });
   } catch (err) {
-    console.error('[Gemini] Server error:', err.message, err.stack);
-    return res.status(500).json({ error: err.message || 'Server error' });
+    console.error('[Gemini] Server error:', err.message);
+    console.error('[Gemini] Stack:', err.stack);
+    // Retourner un message d'erreur plus détaillé
+    const errorMessage = err.message || 'Unknown server error';
+    return res.status(500).json({ 
+      error: errorMessage,
+      message: 'An error occurred while processing your request. Please check the server logs for more details.'
+    });
   }
 };

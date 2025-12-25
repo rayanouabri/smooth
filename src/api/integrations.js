@@ -24,9 +24,16 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        let errorData;
+        try {
+          const text = await response.text();
+          errorData = text ? JSON.parse(text) : { error: `HTTP ${response.status}` };
+        } catch (parseErr) {
+          errorData = { error: `HTTP ${response.status} - Failed to parse error response` };
+        }
         console.error('[InvokeLLM] Gemini proxy error:', response.status, errorData);
-        throw new Error(errorData.error || `Gemini API error (${response.status})`);
+        const errorMessage = errorData.error || errorData.message || `Gemini API error (${response.status})`;
+        throw new Error(errorMessage);
       }
 
       const json = await response.json();
