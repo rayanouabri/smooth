@@ -206,7 +206,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Right: Students Background Image - Image Only */}
+            {/* Right: Education Illustration - Less Transparent */}
             <motion.div
               initial={{ opacity: 0, x: 50, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -214,15 +214,15 @@ export default function Home() {
               className="relative hidden lg:block"
             >
               <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl">
-                {/* Background Image - Earth or Students Talking */}
+                {/* Background Image - Modern Education Illustration */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80')"
+                    backgroundImage: "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80')"
                   }}
                 >
-                  {/* Minimal Gradient Overlay for consistency */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-indigo-900/50 to-purple-900/60"></div>
+                  {/* Light Gradient Overlay - Less Transparent */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-indigo-900/15 to-purple-900/20"></div>
                 </div>
               </div>
             </motion.div>
