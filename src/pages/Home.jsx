@@ -111,38 +111,61 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section - Style chaleureux et humain */}
-      <section className="relative py-16 md:py-24 bg-gradient-to-br from-indigo-50 via-white to-rose-50 overflow-hidden">
-        {/* Décoration douce */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-50"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-rose-100 rounded-full blur-3xl opacity-50"></div>
+      {/* Hero Section - Design moderne et élégant */}
+      <section className="relative py-20 md:py-32 bg-gradient-to-b from-white via-indigo-50/30 to-white overflow-hidden">
+        {/* Décoration moderne */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-indigo-200/40 to-purple-200/40 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-rose-200/30 to-pink-200/30 rounded-full blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
+            className="text-center max-w-5xl mx-auto"
           >
-            <Badge className="mb-6 bg-indigo-100 text-indigo-700 border-0 text-base px-6 py-2 hover:bg-indigo-200 transition-colors">
-              <HeartHandshake className="w-4 h-4 mr-2 inline" />
-              Votre partenaire de confiance pour réussir en France
-            </Badge>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              <Badge className="mb-8 inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0 text-sm font-medium px-5 py-2.5 shadow-lg">
+                <HeartHandshake className="w-4 h-4" />
+                Votre partenaire de confiance pour réussir en France
+              </Badge>
+            </motion.div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-8 leading-tight tracking-tight"
+            >
               Bienvenue en France,
               <br />
-              <span className="text-indigo-600">on vous accompagne à chaque étape</span>
-            </h1>
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                on vous accompagne
+              </span>
+            </motion.h1>
             
-            <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed max-w-3xl mx-auto font-light"
+            >
               Formations pratiques, accompagnement humain et communauté solidaire pour maîtriser vos démarches administratives, comprendre la culture française et réussir votre intégration.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+            >
               {isAuthenticated ? (
                 <Link to={createPageUrl("Dashboard")}>
-                  <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-6 text-lg shadow-lg">
+                  <Button size="lg" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-7 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5">
                     Accéder à mes cours
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
@@ -150,7 +173,7 @@ export default function Home() {
               ) : (
                 <Button
                   size="lg"
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-6 text-lg shadow-lg"
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-7 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5"
                   onClick={() => redirectToLogin(window.location.href)}
                 >
                   Commencer gratuitement
@@ -158,68 +181,86 @@ export default function Home() {
                 </Button>
               )}
               <Link to={createPageUrl("Courses")}>
-                <Button size="lg" variant="outline" className="border-2 border-gray-300 px-8 py-6 text-lg hover:bg-gray-50">
+                <Button size="lg" variant="outline" className="border-2 border-gray-300 hover:border-indigo-400 px-10 py-7 text-lg font-semibold hover:bg-gray-50 transition-all">
                   Découvrir les formations
                   <BookOpen className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-600">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-600" />
-                <span>15,000+ étudiants accompagnés</span>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-600"
+            >
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <span className="font-medium">15,000+ étudiants accompagnés</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-600" />
-                <span>Sans engagement</span>
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <span className="font-medium">Sans engagement</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-600" />
-                <span>Accès immédiat</span>
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <span className="font-medium">Accès immédiat</span>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Section : Deux parcours */}
-      <section className="py-16 bg-white">
+      {/* Section : Deux parcours - Design moderne */}
+      <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <Badge className="mb-4 inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 border-0 text-sm font-medium px-5 py-2">
+              <Target className="w-4 h-4" />
+              Commencez ici
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
               Par où commencer ?
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light">
               Choisissez votre situation et découvrez comment nous pouvons vous aider
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-              <Card className="h-full border-2 border-gray-200 hover:border-indigo-300 hover:shadow-xl transition-all">
-                <CardContent className="p-8">
-                  <div className="inline-flex p-4 bg-indigo-100 rounded-2xl mb-6">
-                    <Plane className="w-10 h-10 text-indigo-600" />
+              <Card className="h-full border-2 border-gray-100 hover:border-indigo-300 hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-indigo-50/30">
+                <CardContent className="p-10">
+                  <div className="inline-flex p-5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Plane className="w-12 h-12 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Je prépare mon départ</h3>
-                  <p className="text-gray-600 mb-6">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-4">Je prépare mon départ</h3>
+                  <p className="text-gray-600 mb-8 text-lg leading-relaxed">
                     Vous êtes encore dans votre pays et vous préparez votre arrivée en France.
                   </p>
-                  <ul className="space-y-3 mb-6">
+                  <ul className="space-y-4 mb-8">
                     {["Demande de visa étudiant", "Recherche de logement", "Inscription Campus France", "Préparation administrative"].map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                        <span className="text-gray-700">{item}</span>
+                        <div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                        </div>
+                        <span className="text-gray-700 font-medium">{item}</span>
                       </li>
                     ))}
                   </ul>
                   <Button 
-                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white"
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
                     onClick={() => {
                       if (!isAuthenticated) {
                         redirectToLogin(window.location.href);
@@ -229,7 +270,7 @@ export default function Home() {
                     }}
                   >
                     Commencer ma préparation
-                    <ArrowRight className="ml-2 w-4 h-4" />
+                    <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </CardContent>
               </Card>
@@ -239,26 +280,30 @@ export default function Home() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-              <Card className="h-full border-2 border-gray-200 hover:border-rose-300 hover:shadow-xl transition-all">
-                <CardContent className="p-8">
-                  <div className="inline-flex p-4 bg-rose-100 rounded-2xl mb-6">
-                    <MapPin className="w-10 h-10 text-rose-600" />
+              <Card className="h-full border-2 border-gray-100 hover:border-rose-300 hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-rose-50/30">
+                <CardContent className="p-10">
+                  <div className="inline-flex p-5 bg-gradient-to-br from-rose-500 to-pink-600 rounded-3xl mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <MapPin className="w-12 h-12 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Je suis déjà en France</h3>
-                  <p className="text-gray-600 mb-6">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-4">Je suis déjà en France</h3>
+                  <p className="text-gray-600 mb-8 text-lg leading-relaxed">
                     Vous êtes arrivé en France et vous avez besoin d'aide pour vos démarches.
                   </p>
-                  <ul className="space-y-3 mb-6">
+                  <ul className="space-y-4 mb-8">
                     {["Demande CAF (APL)", "Titre de séjour / Préfecture", "Recherche d'emploi", "Comprendre les codes sociaux"].map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                        <span className="text-gray-700">{item}</span>
+                        <div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                        </div>
+                        <span className="text-gray-700 font-medium">{item}</span>
                       </li>
                     ))}
                   </ul>
                   <Button 
-                    className="w-full bg-rose-600 hover:bg-rose-700 text-white"
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-semibold py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
                     onClick={() => {
                       if (!isAuthenticated) {
                         redirectToLogin(window.location.href);
@@ -268,10 +313,141 @@ export default function Home() {
                     }}
                   >
                     Accéder aux formations
-                    <ArrowRight className="ml-2 w-4 h-4" />
+                    <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </CardContent>
               </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section IA - Design moderne */}
+      <section className="py-24 bg-gradient-to-br from-indigo-50 via-purple-50/50 to-pink-50 relative overflow-hidden">
+        {/* Décoration subtile */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-indigo-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Badge className="mb-6 inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 text-sm font-medium px-5 py-2.5 shadow-lg">
+                <MessageCircle className="w-4 h-4" />
+                Assistant Intelligent
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight">
+                Votre assistante Sophie disponible
+                <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"> 24h/24</span>
+              </h2>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed font-light">
+                Besoin d'aide immédiate ? Notre assistante IA Sophie répond à toutes vos questions sur les démarches administratives, les cours et la culture française, à tout moment et partout.
+              </p>
+              
+              <div className="space-y-4 mb-8">
+                {[
+                  { icon: FileText, text: "Décryptage de documents administratifs en temps réel" },
+                  { icon: MessageCircle, text: "Réponses instantanées à toutes vos questions" },
+                  { icon: Clock, text: "Disponible 24h/24, 7j/7, partout dans le monde" },
+                  { icon: Shield, text: "Informations fiables et vérifiées par nos experts" }
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-start gap-4 bg-white/80 backdrop-blur-sm rounded-2xl p-5 shadow-sm hover:shadow-md transition-all"
+                  >
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                      <item.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <span className="text-gray-700 font-medium pt-2">{item.text}</span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <Button 
+                size="lg"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-8 py-6 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5"
+                onClick={() => {
+                  const chatButton = document.querySelector('[class*="fixed bottom-6 right-6"]');
+                  if (chatButton) {
+                    chatButton.click();
+                  }
+                }}
+              >
+                Parler avec Sophie
+                <MessageCircle className="ml-2 w-5 h-5" />
+              </Button>
+            </motion.div>
+
+            {/* Demo visuelle du chat - Design moderne */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="relative bg-white/90 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20">
+                {/* Effet glow subtil */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 rounded-3xl blur-xl opacity-30"></div>
+                
+                <div className="relative">
+                  {/* Header du chat */}
+                  <div className="flex items-center gap-4 mb-6 pb-4 border-b border-gray-200">
+                    <div className="w-14 h-14 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
+                      <span className="text-2xl">👩‍💼</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-bold text-gray-900 text-lg">Sophie</p>
+                      <p className="text-sm text-green-600 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        En ligne • Répond instantanément
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Messages */}
+                  <div className="space-y-4 mb-6">
+                    <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl rounded-tl-sm p-4 shadow-sm">
+                      <p className="text-sm text-gray-800">
+                        💡 Bonjour ! Je suis Sophie, votre assistante. Comment puis-je vous aider aujourd'hui ?
+                      </p>
+                    </div>
+                    <div className="bg-gray-100 rounded-2xl rounded-tr-sm p-4 ml-8 shadow-sm">
+                      <p className="text-sm text-gray-800">
+                        Comment remplir ma demande CAF ?
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl rounded-tl-sm p-4 shadow-sm">
+                      <p className="text-sm text-gray-800 mb-2">
+                        📋 Pour la CAF, vous aurez besoin de :
+                      </p>
+                      <ul className="text-xs text-gray-700 space-y-1 ml-4">
+                        <li>• Titre de séjour valide</li>
+                        <li>• Justificatif de domicile</li>
+                        <li>• RIB d'une banque française</li>
+                        <li>• Attestation de scolarité ou contrat de travail</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Quick replies */}
+                  <div className="flex gap-2 flex-wrap">
+                    {["💼 Trouver un job", "🏠 Chercher un logement", "📝 Rédiger un CV"].map((btn, i) => (
+                      <button key={i} className="text-xs bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 px-4 py-2 rounded-full transition-all border border-purple-100">
+                        {btn}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
