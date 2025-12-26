@@ -3,6 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, X, Star, Zap, Shield, Sparkles, Crown, Users, ArrowRight, Lock } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { isAuthenticated as checkAuthStatus, redirectToLogin, me } from "@/api/auth";
 import { createCheckout } from "@/api/functions";
 import { createPageUrl } from "../utils";
@@ -146,6 +152,7 @@ export default function Pricing() {
   ];
 
   const isPremium = user?.is_premium === true || user?.subscription_status === 'active';
+  const isUltimateVIP = user?.subscription_plan === 'ultimate' || user?.subscription_status === 'active' && user?.stripe_subscription_id?.includes('ultimate');
 
   const handlePlanClick = async (plan) => {
     if (plan.isOneShot) {
@@ -164,10 +171,21 @@ export default function Pricing() {
       return;
     }
 
-    // Si plan payant et utilisateur déjà Premium/VIP
-    if (isPremium) {
+    // Si utilisateur a déjà Ultimate VIP et clique sur Ultimate VIP
+    if (plan.name === "Ultimate VIP" && isUltimateVIP) {
       window.location.href = '/profile?tab=subscription';
       return;
+    }
+
+    // Si utilisateur a Premium et clique sur Premium
+    if (plan.name === "Premium" && isPremium && !isUltimateVIP) {
+      window.location.href = '/profile?tab=subscription';
+      return;
+    }
+
+    // Permettre à un Premium de passer à Ultimate VIP
+    if (plan.name === "Ultimate VIP" && isPremium && !isUltimateVIP) {
+      // Continuera avec le checkout pour passer à Ultimate VIP
     }
 
     if (!isAuthenticated) {
@@ -400,7 +418,11 @@ export default function Pricing() {
                   </ul>
 
                   <Button
-                    className={`w-full text-base md:text-lg py-6 font-bold ${
+                    className={`w-full ${
+                      plan.isVip || plan.isOneShot 
+                        ? "text-sm md:text-base py-7 md:py-8" 
+                        : "text-base md:text-lg py-6"
+                    } font-bold ${
                       plan.highlighted && plan.popular
                         ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl"
                         : plan.isVip
@@ -416,7 +438,15 @@ export default function Pricing() {
                       '⏳ Chargement...'
                     ) : (
                       <>
-                        {plan.price > 0 && !plan.isOneShot && isPremium ? plan.ctaPremium : plan.cta}
+                        {plan.name === "Ultimate VIP" && isPremium && !isUltimateVIP 
+                          ? "Passer à Ultimate VIP" 
+                          : plan.name === "Premium" && isPremium && !isUltimateVIP 
+                          ? plan.ctaPremium 
+                          : plan.name === "Ultimate VIP" && isUltimateVIP
+                          ? plan.ctaPremium
+                          : plan.price > 0 && !plan.isOneShot && isPremium 
+                          ? plan.ctaPremium 
+                          : plan.cta}
                         {plan.isOneShot && <ArrowRight className="w-4 h-4 ml-2 inline" />}
                       </>
                     )}
@@ -534,60 +564,60 @@ export default function Pricing() {
         </div>
 
         {/* FAQ */}
-        <div className="max-w-3xl mx-auto mb-20">
-          <h2 className="text-3xl font-bold text-center mb-12">
+        <div className="max-w-4xl mx-auto mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
             Questions fréquentes 💬
           </h2>
 
-          <div className="space-y-4">
+          <Accordion type="single" collapsible className="w-full space-y-4">
             {[
               {
                 q: "Est-ce sans engagement ?",
-                a: "Oui, absolument ! Tous nos abonnements (Premium et Ultimate VIP) sont sans engagement. Vous pouvez résilier en 1 clic à tout moment depuis votre profil, sans frais de résiliation."
+                a: "Oui, absolument ! Tous nos abonnements (Premium et Ultimate VIP) sont sans engagement. Vous pouvez résilier en 1 clic à tout moment depuis votre profil, sans frais de résiliation. Aucun engagement de durée, vous êtes libre de partir quand vous voulez."
               },
               {
-                q: "Comment se passe l'accompagnement individuel ?",
-                a: "Avec l'offre Ultimate VIP, vous avez accès à un conseiller dédié qui vous accompagne pas à pas. Il vous aide à remplir vos dossiers (Visa, CPAM, CAF), vérifie vos documents avant envoi, répond à vos questions administratives complexes et vous aide à trouver un job ou une alternance avec une stratégie personnalisée."
+                q: "Comment se passe l'accompagnement individuel avec Ultimate VIP ?",
+                a: "Avec l'offre Ultimate VIP, vous avez accès à un conseiller dédié qui vous accompagne pas à pas. Il vous aide à remplir vos dossiers (Visa, CPAM, CAF), vérifie vos documents avant envoi, répond à vos questions administratives complexes et vous aide à trouver un job ou une alternance avec une stratégie personnalisée. Vous pouvez le contacter par email ou WhatsApp et il vous répond dans les plus brefs délais."
+              },
+              {
+                q: "Puis-je passer de Premium à Ultimate VIP ?",
+                a: "Oui, absolument ! Si vous avez déjà un abonnement Premium, vous pouvez passer à Ultimate VIP à tout moment. Le changement se fait instantanément et vous bénéficiez immédiatement de tous les avantages de l'accompagnement personnalisé. Le prix de votre abonnement sera ajusté au prorata."
               },
               {
                 q: "Puis-je changer de formule à tout moment ?",
-                a: "Oui ! Vous pouvez passer de Gratuit à Premium ou Ultimate VIP instantanément, ou passer d'une formule à l'autre selon vos besoins. Vous pouvez aussi annuler votre abonnement à tout moment."
+                a: "Oui ! Vous pouvez passer de Gratuit à Premium ou Ultimate VIP instantanément, ou passer d'une formule à l'autre selon vos besoins. Vous pouvez aussi annuler votre abonnement à tout moment depuis votre profil."
               },
               {
                 q: "Y a-t-il une garantie satisfait ou remboursé ?",
-                a: "Absolument. Si Premium ne vous convient pas dans les 30 premiers jours, nous vous remboursons intégralement, sans poser de questions."
+                a: "Absolument. Si Premium ou Ultimate VIP ne vous convient pas dans les 30 premiers jours, nous vous remboursons intégralement, sans poser de questions. C'est notre garantie qualité."
               },
               {
                 q: "Que se passe-t-il si j'annule mon abonnement ?",
-                a: "Vous gardez l'accès Premium/Ultimate VIP jusqu'à la fin de votre période payée. Ensuite, vous repassez automatiquement au plan Découverte (gratuit) et conservez tout votre historique."
+                a: "Vous gardez l'accès Premium/Ultimate VIP jusqu'à la fin de votre période payée. Ensuite, vous repassez automatiquement au plan Découverte (gratuit) et conservez tout votre historique, vos cours suivis et vos données. Rien n'est perdu !"
               },
               {
                 q: "Le paiement est-il sécurisé ?",
-                a: "100%. Nous utilisons Stripe, le leader mondial des paiements en ligne, pour garantir la sécurité de vos transactions. Vos données bancaires ne sont jamais stockées sur nos serveurs."
+                a: "100%. Nous utilisons Stripe, le leader mondial des paiements en ligne, pour garantir la sécurité de vos transactions. Vos données bancaires ne sont jamais stockées sur nos serveurs et sont cryptées selon les normes les plus strictes de l'industrie."
               },
               {
                 q: "Y a-t-il des réductions pour les étudiants ?",
-                a: "Oui ! Contactez-nous à contact@franceprepacademy.fr avec votre carte étudiante pour bénéficier de 20% de réduction sur l'abonnement Premium."
+                a: "Oui ! Contactez-nous à contact@franceprepacademy.fr avec votre carte étudiante pour bénéficier de 20% de réduction sur l'abonnement Premium. Cette réduction s'applique aussi à Ultimate VIP."
+              },
+              {
+                q: "Quelle est la différence entre Premium et Ultimate VIP ?",
+                a: "Premium vous donne accès à tous nos contenus (200+ formations) et à l'IA illimitée. Ultimate VIP inclut tout cela PLUS un accompagnement humain personnalisé avec un conseiller dédié qui vous aide à remplir vos dossiers, vérifie vos documents et vous guide dans toutes vos démarches administratives."
               }
             ].map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">
-                      {faq.q}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">{faq.a}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <AccordionItem key={index} value={`item-${index}`} className="border-2 border-gray-200 rounded-lg px-4 mb-4">
+                <AccordionTrigger className="text-left font-bold text-gray-900 hover:no-underline py-4">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed pb-4">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
 
         {/* Final CTA */}

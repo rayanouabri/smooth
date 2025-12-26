@@ -25,9 +25,15 @@ import {
   CheckCircle,
   AlertCircle,
   Briefcase,
-  Home,
   CreditCard,
-  Building2
+  Building2,
+  Star,
+  Users,
+  Award,
+  TrendingUp,
+  MessageCircle,
+  Zap,
+  HeartHandshake
 } from "lucide-react";
 import { createPageUrl } from "../utils";
 import { Link } from "react-router-dom";
@@ -46,6 +52,30 @@ const SERVICE_TYPES = [
   { value: "emploi", label: "Recherche d'emploi / Alternance", icon: "💼" },
   { value: "impots", label: "Déclaration d'impôts", icon: "📊" },
   { value: "autre", label: "Autre démarche administrative", icon: "📝" },
+];
+
+const TESTIMONIALS = [
+  {
+    name: "Sarah M.",
+    origin: "Étudiante Canadienne",
+    service: "Dossier Visa",
+    text: "J'étais complètement perdue avec mon dossier de visa. L'équipe a tout géré pour moi et j'ai obtenu mon titre de séjour en 2 semaines. Un service exceptionnel !",
+    rating: 5
+  },
+  {
+    name: "Mohammed K.",
+    origin: "Entrepreneur Marocain",
+    service: "CAF + Logement",
+    text: "Grâce au service Expert, j'ai résolu mon problème de CAF qui traînait depuis 3 mois en une semaine. Et ils ont même trouvé un appartement pour moi !",
+    rating: 5
+  },
+  {
+    name: "Emma L.",
+    origin: "Travailleuse Britannique",
+    service: "CPAM + Banque",
+    text: "L'ouverture de compte bancaire et l'inscription à la CPAM ont été gérées de A à Z. Je n'ai eu qu'à signer. Je recommande à 100% !",
+    rating: 5
+  }
 ];
 
 export default function ExpertOneShot() {
@@ -97,7 +127,6 @@ export default function ExpertOneShot() {
       return;
     }
 
-    // Validation
     if (!formData.name || !formData.email || !formData.serviceType || !formData.description) {
       toast({
         title: "Champs manquants",
@@ -173,7 +202,7 @@ ${formData.description}
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -209,7 +238,7 @@ ${formData.description}
                     </Button>
                   </Link>
                   <Link to={createPageUrl("Dashboard")}>
-                    <Button className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600">
+                    <Button className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-indigo-600">
                       Aller au tableau de bord
                     </Button>
                   </Link>
@@ -224,7 +253,7 @@ ${formData.description}
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-800 text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -245,94 +274,205 @@ ${formData.description}
             </Link>
             <Badge className="mb-6 bg-purple-500 text-white border-0 text-base px-6 py-2 shadow-xl">
               <Wrench className="w-4 h-4 mr-2 inline" />
-              Service Expert
+              Service Expert 'Clé en main'
             </Badge>
             <h1 className="text-4xl md:text-6xl font-extrabold mb-6">
-              Service Expert 'Clé en main'
+              On le fait à votre place
             </h1>
             <p className="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto mb-8">
-              Un blocage sur un dossier ? Une urgence ? Nos experts prennent le relais de A à Z.
+              Un blocage sur un dossier ? Une urgence ? Nos experts prennent le relais de A à Z sur une démarche précise.
             </p>
-            <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="flex items-center justify-center gap-6 mb-8">
               <div className="text-center">
                 <div className="text-4xl font-bold">À partir de 180€</div>
                 <div className="text-sm text-purple-200">Devis personnalisé selon votre besoin</div>
+              </div>
+              <div className="h-12 w-px bg-white/30"></div>
+              <div className="text-center">
+                <div className="text-4xl font-bold">&lt; 24h</div>
+                <div className="text-sm text-purple-200">Réponse garantie</div>
+              </div>
+              <div className="h-12 w-px bg-white/30"></div>
+              <div className="text-center">
+                <div className="text-4xl font-bold">100%</div>
+                <div className="text-sm text-purple-200">Satisfaction</div>
               </div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Explanation Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Why Trust Us Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
+          className="mb-16"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+              Pourquoi faire confiance à nos experts ?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Nous avons accompagné des centaines d'étudiants dans leurs démarches administratives avec un taux de réussite de 100%
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6 mb-12">
+            {[
+              { icon: Award, title: "Experts certifiés", desc: "Nos équipes maîtrisent parfaitement les démarches françaises" },
+              { icon: Clock, title: "Intervention rapide", desc: "Réponse sous 24h, traitement en moins d'une semaine" },
+              { icon: Shield, title: "Garantie résultat", desc: "Nous garantissons la réussite de votre dossier" },
+              { icon: HeartHandshake, title: "Accompagnement humain", desc: "Un expert dédié vous suit personnellement" },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full text-center border-2 hover:shadow-xl transition-all">
+                  <CardContent className="p-6">
+                    <div className="inline-flex p-4 bg-purple-100 rounded-full mb-4">
+                      <item.icon className="w-8 h-8 text-purple-600" />
+                    </div>
+                    <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                    <p className="text-sm text-gray-600">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* How It Works */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mb-16"
         >
           <Card className="border-2 border-purple-200 shadow-xl">
-            <CardContent className="p-8">
-              <h2 className="text-2xl font-bold mb-6 text-gray-900">Comment ça fonctionne ?</h2>
-              <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <CardContent className="p-8 md:p-12">
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-gray-900">
+                Comment ça fonctionne ? 3 étapes simples
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="inline-flex p-4 bg-purple-100 rounded-full mb-4">
-                    <FileText className="w-8 h-8 text-purple-600" />
+                  <div className="relative inline-block mb-6">
+                    <div className="inline-flex p-6 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full shadow-xl">
+                      <FileText className="w-12 h-12 text-white" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold">
+                      1
+                    </div>
                   </div>
-                  <h3 className="font-bold mb-2">1. Remplissez le formulaire</h3>
-                  <p className="text-sm text-gray-600">Décrivez votre besoin et votre situation</p>
+                  <h3 className="font-bold text-xl mb-3 text-gray-900">Remplissez le formulaire</h3>
+                  <p className="text-gray-600">
+                    Décrivez votre besoin et votre situation en quelques minutes. Plus vous êtes précis, mieux nous pourrons vous aider.
+                  </p>
                 </div>
                 <div className="text-center">
-                  <div className="inline-flex p-4 bg-purple-100 rounded-full mb-4">
-                    <Mail className="w-8 h-8 text-purple-600" />
+                  <div className="relative inline-block mb-6">
+                    <div className="inline-flex p-6 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full shadow-xl">
+                      <Mail className="w-12 h-12 text-white" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold">
+                      2
+                    </div>
                   </div>
-                  <h3 className="font-bold mb-2">2. Recevez un devis</h3>
-                  <p className="text-sm text-gray-600">Notre équipe vous contacte sous 24h avec un devis personnalisé</p>
+                  <h3 className="font-bold text-xl mb-3 text-gray-900">Recevez un devis personnalisé</h3>
+                  <p className="text-gray-600">
+                    Notre équipe vous contacte sous 24h avec un devis détaillé et un plan d'action clair pour résoudre votre problème.
+                  </p>
                 </div>
                 <div className="text-center">
-                  <div className="inline-flex p-4 bg-purple-100 rounded-full mb-4">
-                    <CheckCircle className="w-8 h-8 text-purple-600" />
+                  <div className="relative inline-block mb-6">
+                    <div className="inline-flex p-6 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full shadow-xl">
+                      <CheckCircle className="w-12 h-12 text-white" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold">
+                      3
+                    </div>
                   </div>
-                  <h3 className="font-bold mb-2">3. On s'en occupe</h3>
-                  <p className="text-sm text-gray-600">Nos experts prennent le relais de A à Z pour vous</p>
+                  <h3 className="font-bold text-xl mb-3 text-gray-900">On s'en occupe pour vous</h3>
+                  <p className="text-gray-600">
+                    Une fois le devis accepté, nos experts prennent le relais de A à Z. Vous êtes informé à chaque étape.
+                  </p>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+        </motion.div>
 
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
-                <h3 className="font-bold text-purple-900 mb-3">Types d'interventions possibles :</h3>
-                <div className="grid md:grid-cols-2 gap-3 text-sm">
-                  <div className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                    <span>Dossier Visa / Titre de séjour</span>
+        {/* Testimonials */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mb-16"
+        >
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-yellow-100 text-yellow-700 border-0 text-base px-6 py-2">
+              ⭐ Témoignages
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+              Ils nous ont fait confiance
+            </h2>
+            <p className="text-xl text-gray-600">
+              Découvrez les retours de nos clients satisfaits
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {TESTIMONIALS.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + index * 0.1 }}
+              >
+                <Card className="h-full border-2 hover:shadow-xl transition-all">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+                    <Badge className="mb-3 bg-purple-100 text-purple-700">
+                      {testimonial.service}
+                    </Badge>
+                    <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
+                    <div className="border-t pt-4">
+                      <div className="font-bold text-gray-900">{testimonial.name}</div>
+                      <div className="text-sm text-gray-600">{testimonial.origin}</div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Service Types */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mb-16"
+        >
+          <Card className="bg-gradient-to-br from-purple-50 to-indigo-50 border-2 border-purple-200">
+            <CardContent className="p-8">
+              <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">
+                Types d'interventions possibles
+              </h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {SERVICE_TYPES.map((service, index) => (
+                  <div key={index} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-purple-100">
+                    <span className="text-2xl flex-shrink-0">{service.icon}</span>
+                    <span className="text-sm font-medium text-gray-700">{service.label}</span>
                   </div>
-                  <div className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                    <span>Sécurité Sociale (CPAM)</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                    <span>CAF (APL - Aide au Logement)</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                    <span>Litige Logement</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                    <span>Ouverture compte bancaire</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                    <span>Recherche d'emploi / Alternance</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                    <span>Déclaration d'impôts</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                    <span>Autre démarche administrative</span>
-                  </div>
-                </div>
+                ))}
               </div>
             </CardContent>
           </Card>
@@ -342,20 +482,19 @@ ${formData.description}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.8 }}
         >
           <Card className="border-2 shadow-xl">
             <CardHeader>
               <CardTitle className="text-2xl md:text-3xl text-center">
-                Formulaire de demande
+                Demandez votre devis personnalisé
               </CardTitle>
               <p className="text-center text-gray-600 mt-2">
-                Remplissez ce formulaire pour recevoir un devis personnalisé
+                Remplissez ce formulaire et nous vous recontacterons sous 24h
               </p>
             </CardHeader>
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Personal Information */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="name" className="flex items-center gap-2 mb-2">
@@ -400,7 +539,6 @@ ${formData.description}
                   />
                 </div>
 
-                {/* Service Type */}
                 <div>
                   <Label htmlFor="serviceType" className="flex items-center gap-2 mb-2">
                     <Briefcase className="w-4 h-4" />
@@ -427,7 +565,6 @@ ${formData.description}
                   </Select>
                 </div>
 
-                {/* Urgency */}
                 <div>
                   <Label htmlFor="urgency" className="flex items-center gap-2 mb-2">
                     <Clock className="w-4 h-4" />
@@ -448,7 +585,6 @@ ${formData.description}
                   </Select>
                 </div>
 
-                {/* Budget */}
                 <div>
                   <Label htmlFor="budget" className="flex items-center gap-2 mb-2">
                     <CreditCard className="w-4 h-4" />
@@ -467,7 +603,6 @@ ${formData.description}
                   </p>
                 </div>
 
-                {/* Description */}
                 <div>
                   <Label htmlFor="description" className="flex items-center gap-2 mb-2">
                     <FileText className="w-4 h-4" />
@@ -482,12 +617,8 @@ ${formData.description}
                     rows={8}
                     className="resize-none"
                   />
-                  <p className="text-sm text-gray-500 mt-1">
-                    Soyez le plus précis possible pour que nous puissions vous proposer le meilleur service.
-                  </p>
                 </div>
 
-                {/* Submit Button */}
                 <div className="pt-4">
                   {!isAuthenticatedUser ? (
                     <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
@@ -496,7 +627,7 @@ ${formData.description}
                         <div>
                           <p className="font-medium text-yellow-900 mb-1">Connexion requise</p>
                           <p className="text-sm text-yellow-800">
-                            Vous devez être connecté pour soumettre une demande. Le bouton de soumission vous redirigera vers la page de connexion.
+                            Vous devez être connecté pour soumettre une demande.
                           </p>
                         </div>
                       </div>
@@ -506,7 +637,7 @@ ${formData.description}
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-6 text-lg shadow-xl"
+                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-7 text-lg shadow-xl"
                   >
                     {isSubmitting ? (
                       <>
@@ -531,33 +662,33 @@ ${formData.description}
           </Card>
         </motion.div>
 
-        {/* Trust Section */}
+        {/* Guarantees */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 1 }}
           className="mt-12"
         >
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="text-center border-2">
+            <Card className="text-center border-2 border-green-200 bg-green-50">
               <CardContent className="p-6">
-                <Shield className="w-10 h-10 text-purple-600 mx-auto mb-4" />
-                <h3 className="font-bold mb-2">Confidentialité garantie</h3>
-                <p className="text-sm text-gray-600">Vos données sont traitées en toute confidentialité</p>
+                <Shield className="w-10 h-10 text-green-600 mx-auto mb-4" />
+                <h3 className="font-bold mb-2 text-green-900">Confidentialité garantie</h3>
+                <p className="text-sm text-green-800">Vos données sont traitées en toute confidentialité</p>
               </CardContent>
             </Card>
-            <Card className="text-center border-2">
+            <Card className="text-center border-2 border-blue-200 bg-blue-50">
               <CardContent className="p-6">
-                <Clock className="w-10 h-10 text-purple-600 mx-auto mb-4" />
-                <h3 className="font-bold mb-2">Réponse rapide</h3>
-                <p className="text-sm text-gray-600">Nous vous contactons sous 24h maximum</p>
+                <Clock className="w-10 h-10 text-blue-600 mx-auto mb-4" />
+                <h3 className="font-bold mb-2 text-blue-900">Réponse rapide</h3>
+                <p className="text-sm text-blue-800">Nous vous contactons sous 24h maximum</p>
               </CardContent>
             </Card>
-            <Card className="text-center border-2">
+            <Card className="text-center border-2 border-purple-200 bg-purple-50">
               <CardContent className="p-6">
-                <CheckCircle className="w-10 h-10 text-purple-600 mx-auto mb-4" />
-                <h3 className="font-bold mb-2">Expertise garantie</h3>
-                <p className="text-sm text-gray-600">Nos experts maîtrisent parfaitement les démarches françaises</p>
+                <Award className="w-10 h-10 text-purple-600 mx-auto mb-4" />
+                <h3 className="font-bold mb-2 text-purple-900">Expertise garantie</h3>
+                <p className="text-sm text-purple-800">Nos experts maîtrisent parfaitement les démarches françaises</p>
               </CardContent>
             </Card>
           </div>
@@ -568,4 +699,3 @@ ${formData.description}
     </div>
   );
 }
-
