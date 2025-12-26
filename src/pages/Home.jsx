@@ -235,9 +235,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section : Accompagnement personnalisé - Design amélioré */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-purple-50 via-indigo-50 to-pink-50 relative overflow-hidden">
-        {/* Décoration */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-indigo-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
 
@@ -261,7 +259,6 @@ export default function Home() {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            {/* Carte gauche - Assistant disponible */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -269,18 +266,17 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <Card className="border-2 border-purple-200 bg-white shadow-xl hover:shadow-2xl transition-all overflow-hidden relative">
-                {/* Image/Illustration en haut */}
-                <div className="relative h-48 bg-gradient-to-br from-purple-100 via-pink-50 to-indigo-50 flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 opacity-20">
+                <div className="relative h-64 bg-gradient-to-br from-purple-100 via-pink-50 to-indigo-50 flex items-end justify-center overflow-hidden">
+                  <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-10 left-10 w-32 h-32 bg-purple-300 rounded-full blur-2xl"></div>
                     <div className="absolute bottom-10 right-10 w-40 h-40 bg-pink-300 rounded-full blur-2xl"></div>
                   </div>
-                  <div className="relative z-10 flex items-center gap-6">
-                    <div className="text-7xl md:text-8xl">👨‍🎓</div>
-                    <div className="flex flex-col gap-2">
-                      <div className="text-5xl md:text-6xl">💬</div>
-                      <div className="text-4xl md:text-5xl">👩‍💼</div>
-                    </div>
+                  <div className="relative z-10 w-full h-full flex items-end justify-center pb-6">
+                    <img 
+                      src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=400&fit=crop&crop=faces" 
+                      alt="Étudiant et assistant en conversation"
+                      className="w-full h-full object-cover rounded-lg"
+                    />
                   </div>
                 </div>
 
@@ -324,7 +320,6 @@ export default function Home() {
               </Card>
             </motion.div>
 
-            {/* Carte droite - Démarches faites pour vous */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -332,21 +327,17 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <Card className="border-2 border-indigo-200 bg-white shadow-xl hover:shadow-2xl transition-all overflow-hidden relative">
-                {/* Image/Illustration en haut */}
-                <div className="relative h-48 bg-gradient-to-br from-indigo-100 via-blue-50 to-cyan-50 flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 opacity-20">
+                <div className="relative h-64 bg-gradient-to-br from-indigo-100 via-blue-50 to-cyan-50 flex items-end justify-center overflow-hidden">
+                  <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-10 right-10 w-32 h-32 bg-indigo-300 rounded-full blur-2xl"></div>
                     <div className="absolute bottom-10 left-10 w-40 h-40 bg-cyan-300 rounded-full blur-2xl"></div>
                   </div>
-                  <div className="relative z-10 flex items-center gap-6">
-                    <div className="text-7xl md:text-8xl">👩‍💼</div>
-                    <div className="flex flex-col gap-3">
-                      <div className="flex gap-2">
-                        <div className="text-3xl md:text-4xl">📋</div>
-                        <div className="text-3xl md:text-4xl">✅</div>
-                      </div>
-                      <div className="text-4xl md:text-5xl">📦</div>
-                    </div>
+                  <div className="relative z-10 w-full h-full flex items-end justify-center pb-6">
+                    <img 
+                      src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&h=400&fit=crop&crop=faces" 
+                      alt="Expert travaillant sur des documents administratifs"
+                      className="w-full h-full object-cover rounded-lg"
+                    />
                   </div>
                 </div>
 
@@ -391,7 +382,6 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Témoignage visuel */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -400,7 +390,11 @@ export default function Home() {
             className="mt-12 bg-white rounded-2xl p-8 shadow-lg border-2 border-purple-100"
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="text-5xl">👤</div>
+              <img 
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=faces" 
+                alt="Marie, étudiante mexicaine"
+                className="w-16 h-16 rounded-full object-cover border-2 border-purple-200"
+              />
               <div>
                 <p className="text-lg font-semibold text-gray-900">Marie, étudiante mexicaine</p>
                 <p className="text-sm text-gray-600">Ultimate VIP</p>
