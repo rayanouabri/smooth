@@ -161,17 +161,17 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex flex-col sm:flex-row min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+    <div className="flex flex-col sm:flex-row min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 overflow-x-hidden">
       <DashboardSidebar currentPage="Dashboard" />
       
-      <div className="flex-1 min-w-0 px-3 sm:px-4 lg:px-6 py-4 sm:py-6">
+      <div className="flex-1 min-w-0 px-3 sm:px-4 lg:px-6 py-4 sm:py-6 overflow-x-hidden">
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white py-8 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-0 w-96 h-96 bg-pink-500 rounded-full blur-3xl animate-pulse"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative">
           <div className="flex flex-col md:flex-row md:items-center justify-between">
             <div>
               <motion.div
@@ -207,9 +207,9 @@ export default function Dashboard() {
         </div>
       </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 py-4 sm:py-6 lg:py-8">
         {/* Gamification Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
           {[
             {
               icon: BookOpen,

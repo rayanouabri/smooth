@@ -24,8 +24,10 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { createPageUrl } from "../utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Learn() {
+  const { t } = useLanguage();
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const [enrollment, setEnrollment] = useState(null);
@@ -210,7 +212,7 @@ export default function Learn() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-200 border-t-blue-900 mb-4"></div>
-          <p className="text-xl font-semibold text-gray-700">Chargement du cours...</p>
+          <p className="text-xl font-semibold text-gray-700">{t('learn.loadingCourse')}</p>
           <p className="text-sm text-gray-500 mt-2">Préparation de votre contenu</p>
         </div>
       </div>
@@ -224,14 +226,14 @@ export default function Learn() {
           <CardContent className="p-8 text-center">
             <div className="text-6xl mb-4">❌</div>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Cours introuvable
+              {t('learn.courseNotFound')}
             </h2>
             <p className="text-gray-600 mb-6">
-              Ce cours n'existe pas ou vous n'êtes pas inscrit.
+              {t('learn.courseNotFoundDesc')}
             </p>
             <Link to={createPageUrl("Courses")}>
               <Button className="w-full bg-blue-900 hover:bg-blue-800">
-                Retour aux cours
+                {t('learn.backToCourses')}
               </Button>
             </Link>
           </CardContent>
@@ -247,14 +249,14 @@ export default function Learn() {
           <CardContent className="p-8 text-center">
             <div className="text-6xl mb-4">📚</div>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Aucune leçon disponible
+              {t('learn.noLessons')}
             </h2>
             <p className="text-gray-600 mb-6">
-              Ce cours n'a pas encore de contenu. Revenez bientôt !
+              {t('learn.noLessonsDesc')}
             </p>
             <Link to={createPageUrl("Courses")}>
               <Button className="w-full bg-blue-900 hover:bg-blue-800">
-                Retour aux cours
+                {t('learn.backToCourses')}
               </Button>
             </Link>
           </CardContent>
@@ -268,7 +270,7 @@ export default function Learn() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-200 border-t-blue-900 mb-4"></div>
-          <p className="text-xl font-semibold text-gray-700">Chargement de la leçon...</p>
+          <p className="text-xl font-semibold text-gray-700">{t('learn.loadingLesson')}</p>
         </div>
       </div>
     );
@@ -281,20 +283,20 @@ export default function Learn() {
           <CardContent className="p-8 text-center">
             <div className="text-6xl mb-4">🔒</div>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Accès restreint
+              {t('learn.accessRestricted')}
             </h2>
             <p className="text-gray-600 mb-6">
-              Ce cours nécessite un abonnement Premium ou supérieur pour être consulté.
+              {t('learn.accessRestrictedDesc')}
             </p>
             <div className="space-y-3">
               <Link to={createPageUrl("Pricing")}>
                 <Button className="w-full bg-blue-900 hover:bg-blue-800">
-                  Découvrir nos abonnements
+                  {t('learn.discoverSubscriptions')}
                 </Button>
               </Link>
               <Link to={createPageUrl("Courses")}>
                 <Button variant="outline" className="w-full">
-                  Retour aux cours
+                  {t('learn.backToCourses')}
                 </Button>
               </Link>
             </div>
@@ -309,9 +311,9 @@ export default function Learn() {
   const hasContent = lessonContent.trim().length > 0 || currentLesson.content_url;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 flex">
-      {/* Sidebar - Modern Design */}
-      <div className="w-80 bg-white border-r border-gray-200 overflow-y-auto hidden lg:block shadow-lg">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 flex flex-col lg:flex-row overflow-x-hidden">
+      {/* Sidebar - Modern Design - Mobile Optimized */}
+      <div className="w-full lg:w-80 bg-white border-r border-gray-200 overflow-y-auto lg:block shadow-lg max-h-[40vh] lg:max-h-screen">
         <div className="p-6 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
           <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`}>
             <h2 className="text-lg font-bold hover:underline line-clamp-2 mb-4">
@@ -320,12 +322,12 @@ export default function Learn() {
           </Link>
           <div className="mt-4">
             <div className="flex items-center justify-between text-sm mb-2">
-              <span className="text-blue-100">Progression globale</span>
+              <span className="text-blue-100">{t('learn.overallProgress')}</span>
               <span className="font-bold text-lg">{Math.round(progressPercentage)}%</span>
             </div>
             <Progress value={progressPercentage} className="h-2.5 bg-white/20" />
             <p className="text-xs text-blue-100 mt-2">
-              {enrollment.completed_lessons?.length || 0} / {lessons.length} leçons complétées
+              {enrollment.completed_lessons?.length || 0} / {lessons.length} {t('learn.lessonsCompleted')}
             </p>
           </div>
         </div>
@@ -335,7 +337,7 @@ export default function Learn() {
             <div key={moduleNum} className="mb-6">
               <div className="font-bold text-gray-900 mb-3 flex items-center space-x-2 text-sm uppercase tracking-wide">
                 <BookOpen className="w-4 h-4 text-blue-600" />
-                <span>Module {moduleNum}</span>
+                <span>{t('learn.module')} {moduleNum}</span>
               </div>
               <div className="space-y-2">
                 {moduleLessons.map((lesson, idx) => {
@@ -369,7 +371,7 @@ export default function Learn() {
                             isCurrentLesson ? 'text-white' : 
                             isLessonCompleted ? 'text-gray-900' : 'text-gray-700'
                           }`}>
-                            {lesson.title || `Leçon ${idx + 1}`}
+                            {lesson.title || `${t('learn.lesson')} ${idx + 1}`}
                           </span>
                         </div>
                         {isLessonCompleted && !isCurrentLesson && (
@@ -393,14 +395,14 @@ export default function Learn() {
         </div>
       </div>
 
-      {/* Main Content - Modern Design */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="max-w-5xl mx-auto p-6 lg:p-10">
+      {/* Main Content - Modern Design - Mobile Optimized */}
+      <div className="flex-1 overflow-y-auto min-w-0">
+        <div className="max-w-5xl mx-auto p-3 sm:p-4 lg:p-6 xl:p-10">
           {/* Back Button */}
           <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`}>
             <Button variant="ghost" className="mb-4 -ml-2">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Retour au cours
+              {t('learn.backToCourse')}
             </Button>
           </Link>
 
@@ -413,7 +415,7 @@ export default function Learn() {
                     <BookOpen className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 text-lg">Progression du cours</h3>
+                    <h3 className="font-bold text-gray-900 text-lg">{t('learn.overallProgress')}</h3>
                     <p className="text-sm text-gray-600">{Math.round(progressPercentage)}% complété</p>
                   </div>
                 </div>
@@ -422,7 +424,7 @@ export default function Learn() {
                     {Math.round(progressPercentage)}%
                   </div>
                   <p className="text-xs text-gray-500 mt-1">
-                    {enrollment.completed_lessons?.length || 0} / {lessons.length} leçons
+                    {enrollment.completed_lessons?.length || 0} / {lessons.length} {t('common.lessons')}
                   </p>
                 </div>
               </div>
@@ -435,17 +437,17 @@ export default function Learn() {
             <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
               <Badge className="text-base px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0">
                 <BookOpen className="w-4 h-4 mr-2" />
-                Module {currentLesson.module_number || 1} - Leçon {currentLesson.lesson_number || currentIndex + 1}
+                {t('learn.module')} {currentLesson.module_number || 1} - {t('learn.lesson')} {currentLesson.lesson_number || currentIndex + 1}
               </Badge>
               {isCompleted && (
                 <Badge className="bg-green-500 text-white text-base px-4 py-2 border-0">
                   <CheckCircle className="w-4 h-4 mr-2" />
-                  Complété
+                  {t('learn.completed')}
                 </Badge>
               )}
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3 leading-tight">
-              {currentLesson.title || 'Leçon sans titre'}
+              {currentLesson.title || t('learn.lessonWithoutTitle')}
             </h1>
             {currentLesson.description && (
               <p className="text-xl text-gray-600 mt-2">
@@ -494,7 +496,7 @@ export default function Learn() {
                     ) : (
                       <div className="text-center py-12">
                         <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                        <p className="text-gray-500">Le contenu de cette leçon sera bientôt disponible.</p>
+                        <p className="text-gray-500">{t('learn.contentInPreparationDesc')}</p>
                       </div>
                     )}
                   </div>
@@ -505,12 +507,12 @@ export default function Learn() {
               {currentLesson.content_type === "pdf" && currentLesson.content_url && (
                 <div className="p-12 text-center bg-gray-50">
                   <FileText className="w-20 h-20 text-blue-600 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-2 text-gray-900">Document PDF</h3>
-                  <p className="text-gray-600 mb-6">Téléchargez le document pour consulter cette leçon</p>
+                  <h3 className="text-2xl font-bold mb-2 text-gray-900">{t('learn.pdfDocument')}</h3>
+                  <p className="text-gray-600 mb-6">{t('learn.pdfDocumentDesc')}</p>
                   <a href={currentLesson.content_url} target="_blank" rel="noopener noreferrer">
                     <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
                       <Download className="w-5 h-5 mr-2" />
-                      Télécharger le document
+                      {t('learn.downloadDocument')}
                     </Button>
                   </a>
                 </div>
@@ -520,45 +522,44 @@ export default function Learn() {
               {!hasContent && currentLesson.content_type !== "video" && currentLesson.content_type !== "pdf" && (
                 <div className="p-12 text-center bg-gradient-to-br from-blue-50 to-purple-50">
                   <BookOpen className="w-20 h-20 text-blue-400 mx-auto mb-4 opacity-50" />
-                  <h3 className="text-2xl font-bold mb-2 text-gray-700">Contenu en préparation</h3>
+                  <h3 className="text-2xl font-bold mb-2 text-gray-700">{t('learn.contentInPreparation')}</h3>
                   <p className="text-gray-600 max-w-md mx-auto">
-                    Le contenu détaillé de cette leçon sera bientôt disponible. 
-                    En attendant, vous pouvez consulter les autres leçons du cours.
+                    {t('learn.contentInPreparationDesc')}
                   </p>
                 </div>
               )}
             </CardContent>
           </Card>
 
-          {/* Navigation Buttons */}
-          <div className="flex items-center justify-between mb-6 gap-4">
+          {/* Navigation Buttons - Mobile Optimized */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between mb-6 gap-3 sm:gap-4 px-2 sm:px-0">
             <Button
               variant="outline"
               onClick={handlePrev}
               disabled={!prevLesson}
               size="lg"
-              className="flex-1 max-w-xs"
+              className="flex-1 sm:max-w-xs w-full sm:w-auto"
             >
               <ChevronLeft className="w-5 h-5 mr-2" />
-              Leçon précédente
+              {t('learn.previousLesson')}
             </Button>
 
             {!isCompleted && (
               <Button
                 onClick={() => markCompleteMutation.mutate()}
-                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold"
+                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold flex-1 sm:flex-none"
                 size="lg"
                 disabled={markCompleteMutation.isPending}
               >
                 {markCompleteMutation.isPending ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                    Enregistrement...
+                    {t('learn.saving')}
                   </>
                 ) : (
                   <>
                     <CheckCircle className="w-5 h-5 mr-2" />
-                    Marquer comme complété
+                    {t('learn.markAsCompleted')}
                   </>
                 )}
               </Button>
@@ -567,10 +568,10 @@ export default function Learn() {
             <Button
               onClick={handleNext}
               disabled={!nextLesson}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold flex-1 max-w-xs"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold flex-1 sm:max-w-xs w-full sm:w-auto"
               size="lg"
             >
-              Leçon suivante
+              {t('learn.nextLesson')}
               <ChevronRight className="w-5 h-5 ml-2" />
             </Button>
           </div>
@@ -586,17 +587,17 @@ export default function Learn() {
                   <Award className="w-24 h-24 text-yellow-500 mx-auto animate-bounce" />
                 </div>
                 <h3 className="text-4xl font-bold text-gray-900 mb-4">
-                  🎉 Félicitations ! 🎉
+                  🎉 {t('learn.congratulations')} 🎉
                 </h3>
                 <p className="text-xl text-gray-700 mb-3">
-                  Vous avez terminé ce cours avec succès !
+                  {t('learn.courseCompleted')}
                 </p>
                 <p className="text-lg text-gray-600 mb-8">
-                  Vous pouvez maintenant télécharger votre certificat de complétion
+                  {t('learn.downloadCertificate')}
                 </p>
                 <Button size="lg" className="bg-gradient-to-r from-yellow-500 via-orange-500 to-pink-500 hover:shadow-2xl text-white font-bold text-lg px-8 py-6">
                   <Award className="w-6 h-6 mr-2" />
-                  Télécharger mon certificat
+                  {t('learn.downloadMyCertificate')}
                 </Button>
               </CardContent>
             </Card>

@@ -214,11 +214,11 @@ export default function Home() {
               className="relative hidden lg:block"
             >
               <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl">
-                {/* Background Image with Students */}
+                {/* Background Image - Earth or Students Talking */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80')"
+                    backgroundImage: "url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80')"
                   }}
                 >
                   {/* Gradient Overlay */}

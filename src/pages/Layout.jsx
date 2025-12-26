@@ -87,8 +87,8 @@ export default function Layout({ children, currentPageName }) {
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Navigation */}
       <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 gap-2 md:gap-4">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8">
+          <div className="flex justify-between items-center h-14 sm:h-16 gap-1 sm:gap-2 md:gap-4 overflow-x-auto">
             {/* Logo */}
             <Link to={createPageUrl("Home")} className="flex items-center space-x-1 md:space-x-2 flex-shrink-0">
               <GraduationCap className="w-6 h-6 md:w-7 md:h-7 text-cyan-500 flex-shrink-0" />
@@ -96,7 +96,7 @@ export default function Layout({ children, currentPageName }) {
             </Link>
 
             {/* Desktop Navigation - Full Menu */}
-            <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center">
+            <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center min-w-0">
               {navLinks.map((link) => {
                 // Si c'est Dashboard et pas connecté, rediriger vers login
                 const handleClick = async (e) => {
@@ -139,7 +139,7 @@ export default function Layout({ children, currentPageName }) {
             </div>
 
             {/* Right Section: Language + Auth */}
-            <div className="flex items-center space-x-2 flex-shrink-0">
+            <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
               {/* Language Selector - Visible on all screens */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

@@ -5,20 +5,23 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, Users, Star, BookOpen, Zap } from "lucide-react";
 import { createPageUrl } from "../utils";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function CourseCard({ course }) {
+  const { t } = useLanguage();
+  
   const categoryLabels = {
-    preparation_academique: "Préparation Académique",
-    integration_administrative: "Intégration Administrative",
-    culture_codes_sociaux: "Culture & Codes Sociaux",
-    insertion_professionnelle: "Insertion Professionnelle",
-    formations_professionnelles: "Formations Professionnelles"
+    preparation_academique: t('courses.categories.preparation_academique'),
+    integration_administrative: t('courses.categories.integration_administrative'),
+    culture_codes_sociaux: t('courses.categories.culture_codes_sociaux'),
+    insertion_professionnelle: t('courses.categories.insertion_professionnelle'),
+    formations_professionnelles: t('courses.categories.formations_professionnelles')
   };
 
   const levelLabels = {
-    debutant: "Débutant",
-    intermediaire: "Intermédiaire",
-    avance: "Avancé"
+    debutant: t('courses.levels.debutant'),
+    intermediaire: t('courses.levels.intermediaire'),
+    avance: t('courses.levels.avance')
   };
 
   const levelColors = {
@@ -56,11 +59,11 @@ export default function CourseCard({ course }) {
               </Badge>
               {course.price === 0 ? (
                 <Badge className="bg-green-500 text-white font-bold shadow-xl text-xs px-3 py-1">
-                  ✓ GRATUIT
+                  ✓ {t('common.free').toUpperCase()}
                 </Badge>
               ) : (
                 <Badge className="bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold shadow-xl text-xs px-3 py-1">
-                  ⭐ PREMIUM
+                  ⭐ {t('common.premium').toUpperCase()}
                 </Badge>
               )}
             </div>
@@ -90,7 +93,7 @@ export default function CourseCard({ course }) {
               </div>
               <div className="flex items-center space-x-2 bg-gradient-to-r from-purple-50 to-pink-50 px-3 py-2 rounded-xl flex-1">
                 <BookOpen className="w-4 h-4 text-purple-600 flex-shrink-0" />
-                <span className="text-sm font-bold text-gray-900">{course.lessons_count || 0} leçons</span>
+                <span className="text-sm font-bold text-gray-900">{course.lessons_count || 0} {t('common.lessons')}</span>
               </div>
             </div>
 
