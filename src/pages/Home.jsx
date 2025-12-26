@@ -235,96 +235,187 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section : Accompagnement humain et démarches */}
-      <section className="py-12 md:py-16 bg-gradient-to-br from-purple-50 via-indigo-50 to-pink-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Section : Accompagnement personnalisé - Design amélioré */}
+      <section className="py-16 md:py-20 bg-gradient-to-br from-purple-50 via-indigo-50 to-pink-50 relative overflow-hidden">
+        {/* Décoration */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-indigo-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-10"
+            className="text-center mb-12"
           >
-            <Badge className="mb-4 inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 text-sm font-medium px-5 py-2">
+            <Badge className="mb-4 inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 text-sm font-medium px-5 py-2.5 shadow-lg">
               <HeartHandshake className="w-4 h-4" />
               Accompagnement personnalisé
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-              Un assistant humain dédié selon votre abonnement
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+              Une personne dédiée selon votre abonnement
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Avec nos formules Premium et Ultimate VIP, profitez d'un accompagnement humain et de la réalisation de vos démarches administratives par nos experts.
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Avec nos formules Premium et Ultimate VIP, profitez d'un accompagnement personnalisé et de la réalisation de vos démarches administratives par nos experts.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="border-2 border-purple-200 bg-white">
-              <CardContent className="p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-3 bg-purple-100 rounded-xl">
-                    <Users className="w-8 h-8 text-purple-600" />
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            {/* Carte gauche - Assistant disponible */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="border-2 border-purple-200 bg-white shadow-xl hover:shadow-2xl transition-all overflow-hidden relative">
+                {/* Image/Illustration en haut */}
+                <div className="relative h-48 bg-gradient-to-br from-purple-100 via-pink-50 to-indigo-50 flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 opacity-20">
+                    <div className="absolute top-10 left-10 w-32 h-32 bg-purple-300 rounded-full blur-2xl"></div>
+                    <div className="absolute bottom-10 right-10 w-40 h-40 bg-pink-300 rounded-full blur-2xl"></div>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Assistant humain disponible</h3>
+                  <div className="relative z-10 flex items-center gap-6">
+                    <div className="text-7xl md:text-8xl">👨‍🎓</div>
+                    <div className="flex flex-col gap-2">
+                      <div className="text-5xl md:text-6xl">💬</div>
+                      <div className="text-4xl md:text-5xl">👩‍💼</div>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  Selon votre abonnement, vous bénéficiez d'un conseiller dédié qui vous accompagne dans toutes vos démarches : CAF, CPAM, Visa, Titre de séjour, recherche d'emploi...
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                    <span className="text-gray-700">Réponses rapides à vos questions</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                    <span className="text-gray-700">Vérification de vos documents</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                    <span className="text-gray-700">Aide au remplissage des formulaires</span>
-                  </li>
-                </ul>
-                <Link to={createPageUrl("Pricing")}>
-                  <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white">
-                    Voir les formules
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
 
-            <Card className="border-2 border-indigo-200 bg-white">
-              <CardContent className="p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-3 bg-indigo-100 rounded-xl">
-                    <FileText className="w-8 h-8 text-indigo-600" />
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl shadow-lg">
+                      <Users className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Un assistant à votre écoute</h3>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">On fait vos démarches pour vous</h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                    Selon votre abonnement, vous bénéficiez d'une personne dédiée qui vous accompagne dans toutes vos démarches : CAF, CPAM, Visa, Titre de séjour, recherche d'emploi...
+                  </p>
+                  <ul className="space-y-3 mb-8">
+                    <li className="flex items-center gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                      </div>
+                      <span className="text-gray-700 font-medium">Réponses rapides à vos questions</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                      </div>
+                      <span className="text-gray-700 font-medium">Vérification de vos documents</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                      </div>
+                      <span className="text-gray-700 font-medium">Aide au remplissage des formulaires</span>
+                    </li>
+                  </ul>
+                  <Link to={createPageUrl("Pricing")}>
+                    <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                      Voir les formules
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Carte droite - Démarches faites pour vous */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="border-2 border-indigo-200 bg-white shadow-xl hover:shadow-2xl transition-all overflow-hidden relative">
+                {/* Image/Illustration en haut */}
+                <div className="relative h-48 bg-gradient-to-br from-indigo-100 via-blue-50 to-cyan-50 flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 opacity-20">
+                    <div className="absolute top-10 right-10 w-32 h-32 bg-indigo-300 rounded-full blur-2xl"></div>
+                    <div className="absolute bottom-10 left-10 w-40 h-40 bg-cyan-300 rounded-full blur-2xl"></div>
+                  </div>
+                  <div className="relative z-10 flex items-center gap-6">
+                    <div className="text-7xl md:text-8xl">👩‍💼</div>
+                    <div className="flex flex-col gap-3">
+                      <div className="flex gap-2">
+                        <div className="text-3xl md:text-4xl">📋</div>
+                        <div className="text-3xl md:text-4xl">✅</div>
+                      </div>
+                      <div className="text-4xl md:text-5xl">📦</div>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  Avec Ultimate VIP et le Pack Expert, nos experts réalisent vos démarches administratives de A à Z. Vous n'avez qu'à signer, on s'occupe du reste.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                    <span className="text-gray-700">Gestion complète de vos dossiers</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                    <span className="text-gray-700">Dépôt et suivi des demandes</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                    <span className="text-gray-700">Intervention rapide en cas de problème</span>
-                  </li>
-                </ul>
-                <Link to={createPageUrl("ExpertOneShot")}>
-                  <Button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white">
-                    Découvrir les services
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-3 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-xl shadow-lg">
+                      <FileText className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">On fait vos démarches pour vous</h3>
+                  </div>
+                  <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                    Avec Ultimate VIP et le Pack Expert, nos experts réalisent vos démarches administratives de A à Z. Vous n'avez qu'à signer, on s'occupe du reste.
+                  </p>
+                  <ul className="space-y-3 mb-8">
+                    <li className="flex items-center gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                      </div>
+                      <span className="text-gray-700 font-medium">Gestion complète de vos dossiers</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                      </div>
+                      <span className="text-gray-700 font-medium">Dépôt et suivi des demandes</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                      </div>
+                      <span className="text-gray-700 font-medium">Intervention rapide en cas de problème</span>
+                    </li>
+                  </ul>
+                  <Link to={createPageUrl("ExpertOneShot")}>
+                    <Button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                      Découvrir les services
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
+
+          {/* Témoignage visuel */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="mt-12 bg-white rounded-2xl p-8 shadow-lg border-2 border-purple-100"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="text-5xl">👤</div>
+              <div>
+                <p className="text-lg font-semibold text-gray-900">Marie, étudiante mexicaine</p>
+                <p className="text-sm text-gray-600">Ultimate VIP</p>
+              </div>
+            </div>
+            <p className="text-gray-700 text-lg italic leading-relaxed">
+              "Mon assistante a rempli ma demande CAF pour moi, vérifié tous mes documents et m'a guidée pour trouver un logement. 
+              Je n'ai eu qu'à signer, tout était fait ! C'est un gain de temps énorme."
+            </p>
+            <div className="flex gap-1 mt-4">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
