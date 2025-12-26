@@ -117,7 +117,7 @@ export default function Home() {
         <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-indigo-200/40 to-purple-200/40 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-rose-200/30 to-pink-200/30 rounded-full blur-3xl"></div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -129,7 +129,7 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <Badge className="mb-6 inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0 text-sm font-medium px-5 py-2.5 shadow-lg">
+              <Badge className="mb-4 inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0 text-sm font-medium px-5 py-2.5 shadow-lg">
                 <HeartHandshake className="w-4 h-4" />
                 Votre partenaire de confiance pour réussir en France
               </Badge>
@@ -139,7 +139,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight"
             >
               Bienvenue en France,
               <br />
@@ -152,7 +152,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto font-light"
+              className="text-xl md:text-2xl text-gray-600 mb-6 leading-relaxed max-w-3xl mx-auto font-light"
             >
               Formations pratiques, accompagnement humain et communauté solidaire pour maîtriser vos démarches administratives, comprendre la culture française et réussir votre intégration.
             </motion.p>
@@ -161,11 +161,11 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-6"
             >
               {isAuthenticated ? (
                 <Link to={createPageUrl("Dashboard")}>
-                  <Button size="lg" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5">
+                  <Button size="lg" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-7 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5">
                     Accéder à mes cours
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
@@ -173,7 +173,7 @@ export default function Home() {
               ) : (
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5"
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-7 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5"
                   onClick={() => redirectToLogin(window.location.href)}
                 >
                   Commencer gratuitement
@@ -181,7 +181,7 @@ export default function Home() {
                 </Button>
               )}
               <Link to={createPageUrl("Courses")}>
-                <Button size="lg" variant="outline" className="border-2 border-gray-300 hover:border-indigo-400 px-10 py-6 text-lg font-semibold hover:bg-gray-50 transition-all">
+                <Button size="lg" variant="outline" className="border-2 border-gray-300 hover:border-indigo-400 px-10 py-7 text-lg font-semibold hover:bg-gray-50 transition-all">
                   Découvrir les formations
                   <BookOpen className="ml-2 w-5 h-5" />
                 </Button>
