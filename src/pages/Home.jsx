@@ -32,6 +32,7 @@ import { motion } from "framer-motion";
 import CourseCard from "../components/CourseCard";
 import StatsSection from "../components/StatsSection";
 import ChatBot from "../components/ChatBot";
+import FrancePrepHero from "../components/FrancePrepHero";
 
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -148,110 +149,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with AI Chat */}
-      <section className="relative bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Text Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Badge className="mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-base px-6 py-2 border-0 shadow-xl">
-                <Sparkles className="w-4 h-4 mr-2 inline" />
-                Services d'expatriation
-              </Badge>
-
-              <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-white">
-                Réussissez votre installation en France sans stress.
-              </h1>
-              
-              <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-                De l'obtention du visa à l'ouverture de votre compte bancaire, nous gérons votre intégration de A à Z. Ne laissez plus l'administration freiner vos projets.
-              </p>
-
-              {/* 4 features cards */}
-              <div className="grid grid-cols-2 gap-3 mb-8">
-                {heroFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 + index * 0.1 }}
-                    className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 hover:bg-white/20 transition-all"
-                  >
-                    <div className={`inline-flex p-2 rounded-lg bg-gradient-to-br ${feature.color} mb-2`}>
-                      <feature.icon className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="text-sm font-bold">{t(feature.titleKey)}</h3>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                {isAuthenticated ? (
-                  <Link to={createPageUrl("Dashboard")}>
-                    <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold shadow-2xl px-8 py-6 text-lg">
-                      🎓 {t('common.mySpace')}
-                      <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button>
-                  </Link>
-                ) : (
-                  <Button
-                    size="lg"
-                    className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold shadow-2xl px-8 py-6 text-lg"
-                    onClick={() => redirectToLogin(window.location.href)}
-                  >
-                    🚀 {t('common.startFree')}
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                )}
-                <Link to={createPageUrl("Pricing")}>
-                  <Button size="lg" variant="outline" className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-indigo-900 font-bold px-8 py-6 text-lg backdrop-blur">
-                    Découvrir nos solutions d'accompagnement
-                  </Button>
-                </Link>
-              </div>
-
-              <div className="flex items-center gap-4 text-sm text-blue-200">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>{t('common.free')}</span>
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>{t('common.noCommitment')}</span>
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>{t('common.immediateAccess')}</span>
-              </div>
-            </motion.div>
-
-            {/* Right: Education Illustration - Less Transparent */}
-            <motion.div
-              initial={{ opacity: 0, x: 50, scale: 0.9 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative hidden lg:block"
-            >
-              <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl">
-                {/* Background Image - Modern Education Illustration */}
-                <div 
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80')"
-                  }}
-                >
-                  {/* Light Gradient Overlay - Less Transparent */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-indigo-900/15 to-purple-900/20"></div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <FrancePrepHero />
 
       {/* Stats Section */}
       <StatsSection />
