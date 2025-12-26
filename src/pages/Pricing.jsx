@@ -420,9 +420,9 @@ export default function Pricing() {
                   <Button
                     className={`w-full ${
                       plan.isVip || plan.isOneShot 
-                        ? "text-sm md:text-base py-7 md:py-8" 
+                        ? "text-xs sm:text-sm md:text-base py-6 sm:py-7 md:py-8 min-h-[60px] sm:min-h-[70px]" 
                         : "text-base md:text-lg py-6"
-                    } font-bold ${
+                    } font-bold whitespace-normal break-words ${
                       plan.highlighted && plan.popular
                         ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl"
                         : plan.isVip
@@ -438,15 +438,17 @@ export default function Pricing() {
                       '⏳ Chargement...'
                     ) : (
                       <>
-                        {plan.name === "Ultimate VIP" && isPremium && !isUltimateVIP 
-                          ? "Passer à Ultimate VIP" 
-                          : plan.name === "Premium" && isPremium && !isUltimateVIP 
-                          ? plan.ctaPremium 
-                          : plan.name === "Ultimate VIP" && isUltimateVIP
-                          ? plan.ctaPremium
-                          : plan.price > 0 && !plan.isOneShot && isPremium 
-                          ? plan.ctaPremium 
-                          : plan.cta}
+                        <span className="block">
+                          {plan.name === "Ultimate VIP" && isPremium && !isUltimateVIP 
+                            ? "Passer à Ultimate VIP" 
+                            : plan.name === "Premium" && isPremium && !isUltimateVIP 
+                            ? plan.ctaPremium 
+                            : plan.name === "Ultimate VIP" && isUltimateVIP
+                            ? plan.ctaPremium
+                            : plan.price > 0 && !plan.isOneShot && isPremium 
+                            ? plan.ctaPremium 
+                            : plan.cta}
+                        </span>
                         {plan.isOneShot && <ArrowRight className="w-4 h-4 ml-2 inline" />}
                       </>
                     )}
