@@ -27,9 +27,11 @@ import {
   Building2,
   Plane,
   MapPin,
-  Brain,
-  Network,
-  AlertCircle
+  BookOpen,
+  Video,
+  PlayCircle,
+  Award as AwardIcon,
+  Users as UsersIcon
 } from "lucide-react";
 import { createPageUrl } from "../utils";
 import { motion } from "framer-motion";
@@ -58,7 +60,7 @@ export default function Home() {
     {
       name: "Daniela",
       origin: "Travailleuse internationale",
-      text: "Le support WhatsApp 24/7 a été un game-changer. À chaque question, j'avais une réponse immédiate. Je recommande à 100%.",
+      text: "Les cours sont excellents et très pratiques. J'ai appris énormément sur la culture française et les démarches administratives. Je recommande vivement !",
       rating: 5,
       photo: "👩‍💼"
     },
@@ -118,10 +120,10 @@ export default function Home() {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <motion.div
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8 }}
             className="text-center max-w-5xl mx-auto mb-12"
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
@@ -130,15 +132,15 @@ export default function Home() {
               <span className="bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
                 Réussissez-y.
               </span>
-              </h1>
-              
+            </h1>
+            
             <p className="text-xl md:text-2xl text-blue-100 mb-12 leading-relaxed max-w-4xl mx-auto">
-              La seule plateforme qui combine IA experte, formations culturelle et administrative et accompagnement humain et communauté solidaire pour maîtriser vos papiers, votre carrière et les codes français.
-              </p>
+              La seule plateforme qui combine formations culturelle et administrative, accompagnement humain et communauté solidaire pour maîtriser vos papiers, votre carrière et les codes français.
+            </p>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
               {/* Carte GAUCHE */}
-                  <motion.div
+              <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
@@ -165,7 +167,7 @@ export default function Home() {
                     </Button>
                   </CardContent>
                 </Card>
-            </motion.div>
+              </motion.div>
 
               {/* Carte DROITE */}
               <motion.div
@@ -196,7 +198,7 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </motion.div>
-          </div>
+            </div>
 
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-blue-200">
               <div className="flex items-center gap-2">
@@ -216,119 +218,123 @@ export default function Home() {
         </div>
       </section>
 
-      {/* IA Section - Spectaculaire */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20"></div>
-        </div>
+      {/* Nos Formations Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-0 text-base px-6 py-2">
+              🎓 Nos Formations
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+              Plus de 200 formations pour réussir en France
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Des cours complets et pratiques, conçus par des experts, pour maîtriser tous les aspects de la vie étudiante en France.
+            </p>
+          </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <Badge className="mb-6 bg-gradient-to-r from-cyan-400 to-blue-400 text-white text-base px-6 py-2 border-0">
-                🤖 Intelligence Artificielle
-              </Badge>
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-                Votre Assistant IA 24/7 : L'Expert dans votre poche
-              </h2>
-              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                Un document à décrypter ? Une lettre de motivation à rédiger ? Une question sur la CAF à 2h du matin ? Notre IA spécialisée analyse vos besoins et vous répond instantanément.
-              </p>
-              
-              <div className="space-y-4">
-                {[
-                  { icon: FileText, text: "Décryptage de documents administratifs en temps réel" },
-                  { icon: MessageCircle, text: "Réponses instantanées à toutes vos questions" },
-                  { icon: Zap, text: "Rédaction assistée de lettres et CV personnalisés" },
-                  { icon: Clock, text: "Disponible 24h/24, 7j/7, partout dans le monde" }
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-center gap-4 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
-                  >
-                    <div className="bg-gradient-to-br from-cyan-400 to-blue-400 p-3 rounded-lg">
-                      <item.icon className="w-6 h-6 text-white" />
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: FileText,
+                title: "Formations Administratives",
+                description: "CAF, CPAM, Visa, Titre de séjour... Apprenez à gérer toutes vos démarches administratives avec confiance.",
+                count: "50+ cours",
+                color: "from-blue-500 to-cyan-500",
+                category: "integration_administrative"
+              },
+              {
+                icon: GraduationCap,
+                title: "Cours de Français",
+                description: "DELF, DALF, français professionnel. Progressez rapidement avec nos cours adaptés à votre niveau.",
+                count: "40+ cours",
+                color: "from-purple-500 to-pink-500",
+                category: "francais"
+              },
+              {
+                icon: Briefcase,
+                title: "Insertion Professionnelle",
+                description: "CV, lettre de motivation, entretiens, réseautage. Développez votre carrière en France.",
+                count: "30+ cours",
+                color: "from-amber-500 to-orange-500",
+                category: "emploi"
+              },
+              {
+                icon: Globe,
+                title: "Culture & Codes Sociaux",
+                description: "Comprenez les codes implicites français, le savoir-vivre, et intégrez-vous facilement.",
+                count: "35+ cours",
+                color: "from-green-500 to-emerald-500",
+                category: "culture"
+              },
+              {
+                icon: Building2,
+                title: "Logement & Vie Pratique",
+                description: "Trouver un logement, ouvrir un compte bancaire, comprendre les contrats... Tout ce qu'il faut savoir.",
+                count: "25+ cours",
+                color: "from-red-500 to-pink-500",
+                category: "logement"
+              },
+              {
+                icon: HeartHandshake,
+                title: "Santé & Bien-être",
+                description: "CPAM, mutuelle, remboursements. Maîtrisez le système de santé français.",
+                count: "20+ cours",
+                color: "from-indigo-500 to-purple-500",
+                category: "sante"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full border-2 hover:shadow-xl transition-all text-center">
+                  <CardContent className="p-8">
+                    <div className={`inline-flex p-6 rounded-2xl bg-gradient-to-br ${item.color} mb-6 shadow-xl`}>
+                      <item.icon className="w-10 h-10 text-white" />
                     </div>
-                    <span className="text-blue-100">{item.text}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                    <Badge className="mb-4 bg-gray-100 text-gray-700">{item.count}</Badge>
+                    <p className="text-gray-600 leading-relaxed mb-6">{item.description}</p>
+                    <Link to={createPageUrl("Courses")}>
+                      <Button variant="outline" className="w-full">
+                        Découvrir les cours
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
 
-            {/* Demo visuelle du chat */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="relative bg-white/10 backdrop-blur-2xl rounded-3xl p-6 border-2 border-white/20 shadow-2xl">
-                {/* Effet glow */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 rounded-3xl blur-xl opacity-50 animate-pulse"></div>
-                
-                <div className="relative">
-                  <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/20">
-                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
-                      <Brain className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                      <p className="font-bold">Assistant FrancePrep</p>
-                    <p className="text-xs text-green-300 flex items-center gap-1">
-                        <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                      En ligne
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-3 mb-4">
-                    <div className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30 backdrop-blur-md rounded-xl rounded-tr-none p-3 text-sm">
-                    💡 Bonjour ! Comment puis-je vous aider aujourd'hui ?
-                  </div>
-                    <div className="bg-white/20 backdrop-blur-md rounded-xl rounded-tl-none p-3 ml-6 text-sm text-right">
-                      Comment remplir ma demande CAF ?
-                  </div>
-                    <div className="bg-gradient-to-r from-cyan-500/30 to-blue-500/30 backdrop-blur-md rounded-xl p-3 text-sm">
-                      📋 Pour la CAF, vous aurez besoin de :
-                      <ul className="mt-2 text-xs space-y-1 text-blue-100 ml-4">
-                      <li>• Titre de séjour</li>
-                      <li>• Justificatif de domicile</li>
-                      <li>• RIB français</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="flex gap-2 flex-wrap">
-                    {["💼 Trouver un job", "🏠 Chercher un logement", "📝 Rédiger un CV"].map((btn, i) => (
-                      <button key={i} className="text-xs bg-white/10 px-3 py-2 rounded-full hover:bg-white/20 transition-colors">
-                        {btn}
-                  </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+          <div className="text-center mt-12">
+            <Link to={createPageUrl("Courses")}>
+              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-8 py-6">
+                Voir tous nos cours (200+)
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* 3 Piliers de l'Excellence */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-0 text-base px-6 py-2">
               ⭐ Les 3 Piliers de l'Excellence
             </Badge>
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
-              La Valeur que nous apportons
+              Notre Approche Pédagogique
             </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Une méthode complète qui vous accompagne à chaque étape de votre intégration en France.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -337,7 +343,7 @@ export default function Home() {
                 icon: FileText,
                 title: "L'Administration",
                 subtitle: "La Sérénité",
-                description: "Ne faites plus d'erreurs coûteuses. Nous gérons vos dossiers (Visa, CAF, CPAM) pour vous garantir la paix d'esprit.",
+                description: "Ne faites plus d'erreurs coûteuses. Nos formations vous apprennent à gérer vos dossiers (Visa, CAF, CPAM) et vous garantissent la paix d'esprit.",
                 color: "from-blue-500 to-cyan-500",
                 features: ["Gestion complète des dossiers", "Vérification avant envoi", "Suivi personnalisé"]
               },
@@ -345,15 +351,15 @@ export default function Home() {
                 icon: GraduationCap,
                 title: "La Culture",
                 subtitle: "Les Codes",
-                description: "Maîtrisez l'implicite français. Nos cours vous apprennent à réseauter, à vous comporter en entreprise et à vous faire des amis.",
+                description: "Maîtrisez l'implicite français. Nos cours vous apprennent à réseauter, à vous comporter en entreprise et à vous faire des amis authentiques.",
                 color: "from-purple-500 to-pink-500",
                 features: ["Codes sociaux français", "Réseautage efficace", "Comportement professionnel"]
               },
               {
-                icon: Network,
+                icon: UsersIcon,
                 title: "La Communauté",
                 subtitle: "Le Réseau",
-                description: "Rejoignez 15 000+ étudiants. Ne restez plus seul, partagez les bons plans et trouvez vos futurs colocataires.",
+                description: "Rejoignez 15 000+ étudiants. Ne restez plus seul, partagez les bons plans et trouvez vos futurs colocataires dans notre forum actif.",
                 color: "from-amber-500 to-orange-500",
                 features: ["Forum actif", "Partage d'expériences", "Réseau solidaire"]
               }
@@ -389,8 +395,120 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pourquoi Choisir Nos Formations */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-green-100 text-green-700 border-0 text-base px-6 py-2">
+              ✨ Pourquoi choisir nos formations ?
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+              Une pédagogie adaptée à vos besoins
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {[
+              { icon: Video, title: "Cours vidéo", desc: "Apprenez à votre rythme avec des vidéos pédagogiques" },
+              { icon: BookOpen, title: "Ressources complètes", desc: "Supports PDF, fiches pratiques, exercices" },
+              { icon: PlayCircle, title: "Apprentissage progressif", desc: "Des cours structurés du niveau débutant à avancé" },
+              { icon: AwardIcon, title: "Certificats", desc: "Obtenez des certificats de complétion pour vos cours" },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full text-center border-2 hover:shadow-xl transition-all">
+                  <CardContent className="p-6">
+                    <div className="inline-flex p-4 bg-blue-100 rounded-full mb-4">
+                      <item.icon className="w-8 h-8 text-blue-600" />
+                    </div>
+                    <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                    <p className="text-sm text-gray-600">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section IA - Réduite et intégrée */}
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Badge className="mb-4 bg-purple-100 text-purple-700 border-0">
+                💬 Assistance 24/7
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                Votre assistante Sophie disponible à tout moment
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
+                Besoin d'aide ? Notre assistante IA Sophie répond à toutes vos questions sur les démarches administratives, les cours et la culture française, 24h/24 et 7j/7.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  <span className="text-gray-700">Réponses instantanées à vos questions</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  <span className="text-gray-700">Aide pour vos démarches administratives</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  <span className="text-gray-700">Support pour vos cours et formations</span>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Card className="border-2 border-purple-200 bg-white">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4 pb-4 border-b">
+                    <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center">
+                      <span className="text-2xl">👩‍💼</span>
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900">Sophie</p>
+                      <p className="text-sm text-green-600 flex items-center gap-1">
+                        <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        En ligne
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="bg-purple-50 rounded-lg p-3 text-sm">
+                      💡 Bonjour ! Je suis Sophie, votre assistante. Comment puis-je vous aider aujourd'hui ?
+                    </div>
+                    <div className="bg-gray-100 rounded-lg p-3 text-sm ml-4">
+                      Comment remplir ma demande CAF ?
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-3 text-sm">
+                      📋 Je vais vous guider étape par étape...
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Grille Tarifaire */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white border-0 text-base px-6 py-2">
@@ -479,7 +597,9 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <AlertCircle className="w-16 h-16 mx-auto mb-6 animate-pulse" />
+            <Badge className="mb-6 bg-white/20 backdrop-blur-md text-white border-0 px-6 py-2 text-base">
+              ⚠️ Urgence
+            </Badge>
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
               Un refus de visa ? Un dossier bloqué ? Ne perdez pas de temps.
             </h2>
@@ -501,7 +621,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             {[
-              { number: "15,000+", label: "étudiants accompagnés", icon: Users },
+              { number: "15,000+", label: "étudiants accompagnés", icon: UsersIcon },
               { number: "95%", label: "de réussite aux visas", icon: Award },
               { number: "120", label: "pays représentés", icon: Globe }
             ].map((stat, index) => (
@@ -524,46 +644,49 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-purple-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <Badge className="mb-4 bg-yellow-100 text-yellow-700 border-0 text-base px-6 py-2">
-                ⭐ Témoignages
-              </Badge>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-purple-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-yellow-100 text-yellow-700 border-0 text-base px-6 py-2">
+              ⭐ Témoignages
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
               Ils nous ont fait confiance
-              </h2>
-            </div>
+            </h2>
+            <p className="text-xl text-gray-600">
+              Découvrez les retours de nos étudiants satisfaits
+            </p>
+          </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <motion.div
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
                 key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card className="h-full border-2 hover:shadow-xl transition-all">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-1 mb-4">
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full border-2 hover:shadow-xl transition-all">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                        ))}
-                      </div>
+                      ))}
+                    </div>
                     <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
                     <div className="border-t pt-4">
                       <div className="text-3xl mb-2">{testimonial.photo}</div>
                       <div className="font-bold text-gray-900">{testimonial.name}</div>
                       <div className="text-sm text-gray-600">{testimonial.origin}</div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
       {/* Final CTA */}
       <section className="relative py-20 bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white overflow-hidden">

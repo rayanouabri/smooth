@@ -159,14 +159,14 @@ Réponds maintenant de manière utile et bienveillante :`,
               <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white p-4 rounded-t-lg flex justify-between items-center">
                 <div className="flex items-center space-x-3">
                   <div className="relative">
-                    <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                      <span className="text-2xl">🤖</span>
+                    <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                      <span className="text-2xl">👩‍💼</span>
                     </div>
                     <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></span>
                   </div>
                   <div>
                     <div className="font-bold">Sophie</div>
-                    <div className="text-xs text-blue-100">Assistant IA • En ligne</div>
+                    <div className="text-xs text-blue-100">Assistante • En ligne</div>
                   </div>
                 </div>
                 <Button
@@ -187,8 +187,8 @@ Réponds maintenant de manière utile et bienveillante :`,
                     className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
                   >
                     {message.role === "assistant" && (
-                      <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mr-2 flex-shrink-0">
-                        <span className="text-sm">🤖</span>
+                      <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center mr-2 flex-shrink-0">
+                        <span className="text-sm">👩‍💼</span>
                       </div>
                     )}
                     <div
@@ -204,8 +204,8 @@ Réponds maintenant de manière utile et bienveillante :`,
                 ))}
                 {isLoading && (
                   <div className="flex justify-start">
-                    <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mr-2 flex-shrink-0">
-                      <span className="text-sm">🤖</span>
+                    <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center mr-2 flex-shrink-0">
+                      <span className="text-sm">👩‍💼</span>
                     </div>
                     <div className="bg-white p-3 rounded-2xl border border-gray-200 rounded-tl-none">
                       <div className="flex space-x-1">
