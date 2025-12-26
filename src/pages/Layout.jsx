@@ -169,7 +169,7 @@ export default function Layout({ children, currentPageName }) {
               {/* Auth Buttons */}
               {isAuthenticated ? (
                 <>
-                  <Link to={createPageUrl("Dashboard")}>
+                  <Link to={createPageUrl("Dashboard")} className="hidden sm:inline-block">
                     <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg" size="sm">
                       🎓 {t('common.mySpace')}
                     </Button>

@@ -206,7 +206,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Right: Students Background Image */}
+            {/* Right: Students Background Image - Image Only */}
             <motion.div
               initial={{ opacity: 0, x: 50, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -221,37 +221,8 @@ export default function Home() {
                     backgroundImage: "url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80')"
                   }}
                 >
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-indigo-900/75 to-purple-900/85"></div>
-                  
-                  {/* Additional overlay for better text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                </div>
-                
-                {/* Content Overlay */}
-                <div className="relative h-full p-8 flex flex-col justify-end">
-                  {/* Stats Badge */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
-                    className="bg-white/20 backdrop-blur-md rounded-2xl p-6 border border-white/30 shadow-2xl"
-                  >
-                    <div className="grid grid-cols-2 gap-4 mb-4">
-                      <div className="text-center">
-                        <div className="text-4xl font-bold text-white mb-1">200+</div>
-                        <div className="text-sm text-blue-100 font-medium">Cours</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-4xl font-bold text-white mb-1">15K+</div>
-                        <div className="text-sm text-blue-100 font-medium">Étudiants</div>
-                      </div>
-                    </div>
-                    <div className="text-center pt-4 border-t border-white/20">
-                      <p className="text-white font-semibold text-lg mb-1">Rejoignez la communauté</p>
-                      <p className="text-blue-100 text-sm">Des étudiants du monde entier</p>
-                    </div>
-                  </motion.div>
+                  {/* Minimal Gradient Overlay for consistency */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-indigo-900/50 to-purple-900/60"></div>
                 </div>
               </div>
             </motion.div>
