@@ -18,7 +18,6 @@ import {
   MessageCircle,
   FileText,
   Briefcase,
-  Home,
   CreditCard,
   Globe,
   TrendingUp,
