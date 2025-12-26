@@ -1,0 +1,571 @@
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { 
+  Check, 
+  Wrench, 
+  FileText, 
+  Mail, 
+  Phone, 
+  User, 
+  ArrowLeft,
+  Shield,
+  Clock,
+  CheckCircle,
+  AlertCircle,
+  Briefcase,
+  Home,
+  CreditCard,
+  Building2
+} from "lucide-react";
+import { createPageUrl } from "../utils";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { isAuthenticated, redirectToLogin, me } from "@/api/auth";
+import { SendEmail } from "@/api/integrations";
+import { useToast } from "@/components/ui/use-toast";
+import ChatBot from "../components/ChatBot";
+
+const SERVICE_TYPES = [
+  { value: "visa", label: "Dossier Visa / Titre de séjour", icon: "📋" },
+  { value: "cpam", label: "Sécurité Sociale (CPAM)", icon: "🏥" },
+  { value: "caf", label: "CAF (APL - Aide Personnalisée au Logement)", icon: "🏠" },
+  { value: "logement", label: "Litige Logement", icon: "🔑" },
+  { value: "banque", label: "Ouverture compte bancaire", icon: "💳" },
+  { value: "emploi", label: "Recherche d'emploi / Alternance", icon: "💼" },
+  { value: "impots", label: "Déclaration d'impôts", icon: "📊" },
+  { value: "autre", label: "Autre démarche administrative", icon: "📝" },
+];
+
+export default function ExpertOneShot() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    serviceType: "",
+    urgency: "normal",
+    description: "",
+    budget: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isAuthenticatedUser, setIsAuthenticatedUser] = useState(false);
+  const [user, setUser] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
+
+  React.useEffect(() => {
+    checkAuth();
+  }, []);
+
+  const checkAuth = async () => {
+    const authenticated = await isAuthenticated();
+    setIsAuthenticatedUser(authenticated);
+    if (authenticated) {
+      const userData = await me();
+      if (userData) {
+        setUser(userData);
+        setFormData(prev => ({
+          ...prev,
+          name: userData.full_name || userData.name || prev.name,
+          email: userData.email || prev.email,
+          phone: userData.phone || prev.phone,
+        }));
+      }
+    }
+  };
+
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!isAuthenticatedUser) {
+      redirectToLogin(window.location.href);
+      return;
+    }
+
+    // Validation
+    if (!formData.name || !formData.email || !formData.serviceType || !formData.description) {
+      toast({
+        title: "Champs manquants",
+        description: "Veuillez remplir tous les champs obligatoires.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const selectedService = SERVICE_TYPES.find(s => s.value === formData.serviceType);
+      
+      const emailContent = `
+        <h2>Nouvelle demande de Service Expert 'Clé en main'</h2>
+        <h3>Informations du client</h3>
+        <ul>
+          <li><strong>Nom :</strong> ${formData.name}</li>
+          <li><strong>Email :</strong> ${formData.email}</li>
+          <li><strong>Téléphone :</strong> ${formData.phone || 'Non renseigné'}</li>
+        </ul>
+        <h3>Détails de la demande</h3>
+        <ul>
+          <li><strong>Type de service :</strong> ${selectedService?.label || formData.serviceType}</li>
+          <li><strong>Urgence :</strong> ${formData.urgency === 'urgent' ? 'Urgent' : formData.urgency === 'normal' ? 'Normal' : 'Non urgent'}</li>
+          <li><strong>Budget estimé :</strong> ${formData.budget || 'Non renseigné'}€</li>
+        </ul>
+        <h3>Description</h3>
+        <p>${formData.description}</p>
+      `;
+
+      const textContent = `
+Nouvelle demande de Service Expert 'Clé en main'
+
+Informations du client:
+- Nom: ${formData.name}
+- Email: ${formData.email}
+- Téléphone: ${formData.phone || 'Non renseigné'}
+
+Détails de la demande:
+- Type de service: ${selectedService?.label || formData.serviceType}
+- Urgence: ${formData.urgency === 'urgent' ? 'Urgent' : formData.urgency === 'normal' ? 'Normal' : 'Non urgent'}
+- Budget estimé: ${formData.budget || 'Non renseigné'}€
+
+Description:
+${formData.description}
+      `;
+
+      await SendEmail({
+        to: "contact@franceprepacademy.fr",
+        subject: `[Service Expert] Nouvelle demande - ${selectedService?.label || formData.serviceType}`,
+        html: emailContent,
+        text: textContent,
+      });
+
+      setSubmitted(true);
+      toast({
+        title: "Demande envoyée avec succès !",
+        description: "Notre équipe vous contactera dans les plus brefs délais.",
+      });
+    } catch (error) {
+      console.error("Erreur lors de l'envoi:", error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer ou nous contacter directement à contact@franceprepacademy.fr",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center"
+          >
+            <Card className="border-2 border-green-200 shadow-xl">
+              <CardContent className="p-12">
+                <div className="inline-flex p-4 bg-green-100 rounded-full mb-6">
+                  <CheckCircle className="w-16 h-16 text-green-600" />
+                </div>
+                <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                  Demande envoyée avec succès !
+                </h1>
+                <p className="text-lg text-gray-600 mb-8">
+                  Notre équipe d'experts a bien reçu votre demande. Nous vous contacterons dans les <strong>24 heures</strong> 
+                  pour discuter de vos besoins et vous proposer un devis personnalisé.
+                </p>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8 text-left">
+                  <h3 className="font-bold text-blue-900 mb-2">Prochaines étapes :</h3>
+                  <ol className="list-decimal list-inside space-y-2 text-blue-800">
+                    <li>Nous analysons votre demande dans les 24h</li>
+                    <li>Un expert vous contacte par email ou téléphone</li>
+                    <li>Nous vous proposons un devis personnalisé</li>
+                    <li>Vous validez et nous prenons le relais</li>
+                  </ol>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link to={createPageUrl("Pricing")}>
+                    <Button variant="outline" className="w-full sm:w-auto">
+                      <ArrowLeft className="w-4 h-4 mr-2" />
+                      Retour aux tarifs
+                    </Button>
+                  </Link>
+                  <Link to={createPageUrl("Dashboard")}>
+                    <Button className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600">
+                      Aller au tableau de bord
+                    </Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+        <ChatBot />
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-800 text-white py-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-purple-400 rounded-full blur-3xl animate-pulse"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center"
+          >
+            <Link to={createPageUrl("Pricing")}>
+              <Button variant="outline" className="mb-6 border-white/20 bg-white/10 text-white hover:bg-white hover:text-purple-900">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Retour aux tarifs
+              </Button>
+            </Link>
+            <Badge className="mb-6 bg-purple-500 text-white border-0 text-base px-6 py-2 shadow-xl">
+              <Wrench className="w-4 h-4 mr-2 inline" />
+              Service Expert
+            </Badge>
+            <h1 className="text-4xl md:text-6xl font-extrabold mb-6">
+              Service Expert 'Clé en main'
+            </h1>
+            <p className="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto mb-8">
+              Un blocage sur un dossier ? Une urgence ? Nos experts prennent le relais de A à Z.
+            </p>
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="text-center">
+                <div className="text-4xl font-bold">À partir de 180€</div>
+                <div className="text-sm text-purple-200">Devis personnalisé selon votre besoin</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Explanation Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-12"
+        >
+          <Card className="border-2 border-purple-200 shadow-xl">
+            <CardContent className="p-8">
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">Comment ça fonctionne ?</h2>
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                <div className="text-center">
+                  <div className="inline-flex p-4 bg-purple-100 rounded-full mb-4">
+                    <FileText className="w-8 h-8 text-purple-600" />
+                  </div>
+                  <h3 className="font-bold mb-2">1. Remplissez le formulaire</h3>
+                  <p className="text-sm text-gray-600">Décrivez votre besoin et votre situation</p>
+                </div>
+                <div className="text-center">
+                  <div className="inline-flex p-4 bg-purple-100 rounded-full mb-4">
+                    <Mail className="w-8 h-8 text-purple-600" />
+                  </div>
+                  <h3 className="font-bold mb-2">2. Recevez un devis</h3>
+                  <p className="text-sm text-gray-600">Notre équipe vous contacte sous 24h avec un devis personnalisé</p>
+                </div>
+                <div className="text-center">
+                  <div className="inline-flex p-4 bg-purple-100 rounded-full mb-4">
+                    <CheckCircle className="w-8 h-8 text-purple-600" />
+                  </div>
+                  <h3 className="font-bold mb-2">3. On s'en occupe</h3>
+                  <p className="text-sm text-gray-600">Nos experts prennent le relais de A à Z pour vous</p>
+                </div>
+              </div>
+
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
+                <h3 className="font-bold text-purple-900 mb-3">Types d'interventions possibles :</h3>
+                <div className="grid md:grid-cols-2 gap-3 text-sm">
+                  <div className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Dossier Visa / Titre de séjour</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Sécurité Sociale (CPAM)</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>CAF (APL - Aide au Logement)</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Litige Logement</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Ouverture compte bancaire</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Recherche d'emploi / Alternance</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Déclaration d'impôts</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Autre démarche administrative</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Form Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <Card className="border-2 shadow-xl">
+            <CardHeader>
+              <CardTitle className="text-2xl md:text-3xl text-center">
+                Formulaire de demande
+              </CardTitle>
+              <p className="text-center text-gray-600 mt-2">
+                Remplissez ce formulaire pour recevoir un devis personnalisé
+              </p>
+            </CardHeader>
+            <CardContent className="p-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Personal Information */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="name" className="flex items-center gap-2 mb-2">
+                      <User className="w-4 h-4" />
+                      Nom complet *
+                    </Label>
+                    <Input
+                      id="name"
+                      value={formData.name}
+                      onChange={(e) => handleChange("name", e.target.value)}
+                      required
+                      placeholder="Jean Dupont"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email" className="flex items-center gap-2 mb-2">
+                      <Mail className="w-4 h-4" />
+                      Email *
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleChange("email", e.target.value)}
+                      required
+                      placeholder="jean.dupont@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="phone" className="flex items-center gap-2 mb-2">
+                    <Phone className="w-4 h-4" />
+                    Téléphone
+                  </Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => handleChange("phone", e.target.value)}
+                    placeholder="+33 6 12 34 56 78"
+                  />
+                </div>
+
+                {/* Service Type */}
+                <div>
+                  <Label htmlFor="serviceType" className="flex items-center gap-2 mb-2">
+                    <Briefcase className="w-4 h-4" />
+                    Type de service demandé *
+                  </Label>
+                  <Select
+                    value={formData.serviceType}
+                    onValueChange={(value) => handleChange("serviceType", value)}
+                    required
+                  >
+                    <SelectTrigger id="serviceType">
+                      <SelectValue placeholder="Sélectionnez le type de service" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {SERVICE_TYPES.map((service) => (
+                        <SelectItem key={service.value} value={service.value}>
+                          <span className="flex items-center gap-2">
+                            <span>{service.icon}</span>
+                            {service.label}
+                          </span>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Urgency */}
+                <div>
+                  <Label htmlFor="urgency" className="flex items-center gap-2 mb-2">
+                    <Clock className="w-4 h-4" />
+                    Niveau d'urgence
+                  </Label>
+                  <Select
+                    value={formData.urgency}
+                    onValueChange={(value) => handleChange("urgency", value)}
+                  >
+                    <SelectTrigger id="urgency">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="non-urgent">Non urgent</SelectItem>
+                      <SelectItem value="normal">Normal (souhaitable sous 1 semaine)</SelectItem>
+                      <SelectItem value="urgent">Urgent (sous 48h)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Budget */}
+                <div>
+                  <Label htmlFor="budget" className="flex items-center gap-2 mb-2">
+                    <CreditCard className="w-4 h-4" />
+                    Budget estimé (optionnel)
+                  </Label>
+                  <Input
+                    id="budget"
+                    type="number"
+                    value={formData.budget}
+                    onChange={(e) => handleChange("budget", e.target.value)}
+                    placeholder="180"
+                    min="180"
+                  />
+                  <p className="text-sm text-gray-500 mt-1">
+                    Prix de départ : 180€. Le prix final dépendra de la complexité de votre dossier.
+                  </p>
+                </div>
+
+                {/* Description */}
+                <div>
+                  <Label htmlFor="description" className="flex items-center gap-2 mb-2">
+                    <FileText className="w-4 h-4" />
+                    Décrivez votre situation et votre besoin *
+                  </Label>
+                  <Textarea
+                    id="description"
+                    value={formData.description}
+                    onChange={(e) => handleChange("description", e.target.value)}
+                    required
+                    placeholder="Décrivez en détail votre situation, ce dont vous avez besoin, les documents que vous possédez déjà, etc. Plus vous êtes précis, mieux nous pourrons vous aider."
+                    rows={8}
+                    className="resize-none"
+                  />
+                  <p className="text-sm text-gray-500 mt-1">
+                    Soyez le plus précis possible pour que nous puissions vous proposer le meilleur service.
+                  </p>
+                </div>
+
+                {/* Submit Button */}
+                <div className="pt-4">
+                  {!isAuthenticatedUser ? (
+                    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                      <div className="flex items-start gap-3">
+                        <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-medium text-yellow-900 mb-1">Connexion requise</p>
+                          <p className="text-sm text-yellow-800">
+                            Vous devez être connecté pour soumettre une demande. Le bouton de soumission vous redirigera vers la page de connexion.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
+                  
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-6 text-lg shadow-xl"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <span className="animate-spin mr-2">⏳</span>
+                        Envoi en cours...
+                      </>
+                    ) : (
+                      <>
+                        Envoyer ma demande
+                        <ArrowLeft className="w-5 h-5 ml-2 rotate-180" />
+                      </>
+                    )}
+                  </Button>
+                  
+                  <p className="text-sm text-center text-gray-500 mt-4">
+                    En soumettant ce formulaire, vous acceptez d'être contacté par notre équipe. 
+                    Nous vous répondrons dans les <strong>24 heures</strong>.
+                  </p>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Trust Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-12"
+        >
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="text-center border-2">
+              <CardContent className="p-6">
+                <Shield className="w-10 h-10 text-purple-600 mx-auto mb-4" />
+                <h3 className="font-bold mb-2">Confidentialité garantie</h3>
+                <p className="text-sm text-gray-600">Vos données sont traitées en toute confidentialité</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center border-2">
+              <CardContent className="p-6">
+                <Clock className="w-10 h-10 text-purple-600 mx-auto mb-4" />
+                <h3 className="font-bold mb-2">Réponse rapide</h3>
+                <p className="text-sm text-gray-600">Nous vous contactons sous 24h maximum</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center border-2">
+              <CardContent className="p-6">
+                <CheckCircle className="w-10 h-10 text-purple-600 mx-auto mb-4" />
+                <h3 className="font-bold mb-2">Expertise garantie</h3>
+                <p className="text-sm text-gray-600">Nos experts maîtrisent parfaitement les démarches françaises</p>
+              </CardContent>
+            </Card>
+          </div>
+        </motion.div>
+      </div>
+
+      <ChatBot />
+    </div>
+  );
+}
+

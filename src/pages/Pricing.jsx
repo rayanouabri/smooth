@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, Star, Zap, Shield, Sparkles } from "lucide-react";
+import { Check, X, Star, Zap, Shield, Sparkles, Crown, Users, ArrowRight, Lock } from "lucide-react";
 import { isAuthenticated as checkAuthStatus, redirectToLogin, me } from "@/api/auth";
 import { createCheckout } from "@/api/functions";
 import { createPageUrl } from "../utils";
@@ -18,7 +18,6 @@ export default function Pricing() {
 
   useEffect(() => {
     checkAuth();
-    // Recharger le statut utilisateur quand on revient sur la page (après paiement)
     const handleFocus = () => {
       if (isAuthenticated) {
         checkAuth();
@@ -33,12 +32,7 @@ export default function Pricing() {
     setIsAuthenticated(authenticated);
     
     if (authenticated) {
-      // Utiliser me() qui récupère automatiquement le profil avec is_premium
       const fullUserData = await me();
-      console.log('Pricing - User data:', fullUserData);
-      console.log('Pricing - is_premium:', fullUserData?.is_premium);
-      console.log('Pricing - subscription_status:', fullUserData?.subscription_status);
-      
       if (fullUserData) {
         setUser(fullUserData);
       }
@@ -47,28 +41,34 @@ export default function Pricing() {
 
   // Price IDs Stripe - Remplacez par vos vrais Price IDs
   const STRIPE_PRICES = {
-    monthly: 'price_1ShgKyEKmsqeO7fH3eOB1TV5', // Exemple: price_12345...
-    annual: 'price_1SiEWLEKmsqeO7fH2UqWhy0L',   // Exemple: price_67890...
+    premium: {
+      monthly: 'price_1ShgKyEKmsqeO7fH3eOB1TV5',
+      annual: 'price_1SiEWLEKmsqeO7fH2UqWhy0L',
+    },
+    ultimate: {
+      monthly: 'price_1SieSjEKmsqeO7fHFiHhd2g6',
+      annual: 'price_1SieV1EKmsqeO7fHo3wLXwo7',
+    }
   };
 
   const plans = [
     {
-      name: "Gratuit",
+      name: "Découverte",
       price: 0,
       priceAnnual: 0,
-      tagline: "Pour découvrir",
-      description: "Idéal pour tester la plateforme",
+      tagline: "Pour explorer la plateforme",
+      description: "Idéal pour tester nos services",
       features: [
-        { text: "Guides d'intégration gratuits", included: true },
-        { text: "Aperçu des services Premium", included: true },
-        { text: "Forum communautaire en lecture", included: true },
-        { text: "Chatbot IA (10 questions/jour)", included: true },
-        { text: "Accès complet aux services Premium", included: false },
-        { text: "IA illimitée avec historique", included: false },
-        { text: "Support prioritaire 24/7", included: false },
-        { text: "Conciergerie VIP", included: false },
+        { text: "Accès limité à une sélection de cours", included: true },
+        { text: "Accès au Forum communautaire", included: true },
+        { text: "Max 10 messages avec l'IA Assistant", included: true },
+        { text: "Accès illimité aux 200+ formations", included: false },
+        { text: "IA Assistante illimitée 24h/24", included: false },
+        { text: "Accès prioritaire au Forum & Centre d'aide", included: false },
+        { text: "Outils de suivi de dossier", included: false },
+        { text: "Accompagnement individuel personnalisé", included: false },
       ],
-      cta: "Commencer gratuitement",
+      cta: "S'inscrire gratuitement",
       highlighted: false,
       popular: false,
       icon: "🎓",
@@ -76,21 +76,21 @@ export default function Pricing() {
     },
     {
       name: "Premium",
-      price: 29,
-      priceAnnual: 24,
-      tagline: "Le plus populaire",
-      description: "Accès complet à tous les services",
+      price: 24.90,
+      priceAnnual: 21.20,
+      tagline: "La réussite en toute autonomie",
+      description: "Le choix des étudiants",
       features: [
-        { text: "Tous les guides Premium débloqués", included: true },
-        { text: "IA illimitée avec historique", included: true },
-        { text: "Participation active au forum", included: true },
-        { text: "Support prioritaire par email", included: true },
-        { text: "Nouveaux guides en avant-première", included: true },
+        { text: "Accès illimité aux 200+ formations", included: true },
+        { text: "IA Assistante illimitée 24h/24", included: true },
+        { text: "Accès prioritaire au Forum & Centre d'aide", included: true },
+        { text: "Outils de suivi de dossier", included: true },
         { text: "Téléchargement des supports PDF", included: true },
-        { text: "Conciergerie VIP", included: false },
-        { text: "Gestion RDV préfecture", included: false },
+        { text: "Nouveaux guides en avant-première", included: true },
+        { text: "Accompagnement individuel personnalisé", included: false },
+        { text: "Aide pas-à-pas pour remplir vos dossiers", included: false },
       ],
-      cta: "Passer à Premium",
+      cta: "Devenir Premium",
       ctaPremium: "Gérer mon abonnement",
       highlighted: true,
       popular: true,
@@ -98,33 +98,115 @@ export default function Pricing() {
       color: "from-blue-600 to-indigo-600"
     },
     {
-      name: "Conciergerie VIP",
-      price: 599,
-      priceAnnual: 599,
-      tagline: "Service sur mesure",
-      description: "On gère votre intégration de A à Z",
+      name: "Ultimate VIP",
+      price: 89.00,
+      priceAnnual: 75.65,
+      tagline: "On ne vous lâche pas la main",
+      description: "Accompagnement personnalisé complet",
       features: [
-        { text: "Accès total Premium inclus", included: true },
-        { text: "On gère vos RDV en préfecture", included: true },
-        { text: "Recherche de logement personnalisée", included: true },
-        { text: "Ouverture de compte bancaire", included: true },
-        { text: "Support WhatsApp 24/7", included: true },
+        { text: "Accompagnement individuel personnalisé", included: true },
+        { text: "Aide pas-à-pas pour remplir vos dossiers : Visa, Sécurité Sociale (CPAM), CAF (APL)", included: true },
+        { text: "Vérification humaine de vos documents avant envoi", included: true },
+        { text: "Support réactif pour vos questions administratives complexes", included: true },
+        { text: "Stratégie personnalisée de recherche de Job / Alternance", included: true },
+        { text: "Tous les avantages Premium inclus", included: true },
+        { text: "Support WhatsApp prioritaire", included: true },
         { text: "Conseiller dédié", included: true },
-        { text: "Suivi personnalisé de votre dossier", included: true },
-        { text: "Assistance complète administrative", included: true },
       ],
-      cta: "Découvrir la Conciergerie VIP",
+      cta: "Réserver mon accompagnement",
       ctaPremium: "Gérer mon abonnement",
-      highlighted: false,
+      highlighted: true,
       popular: false,
       icon: "👑",
-      color: "from-amber-500 to-yellow-500",
-      isVip: true
+      color: "from-amber-500 via-yellow-500 to-amber-600",
+      isVip: true,
+      glow: true
+    },
+    {
+      name: "Service Expert 'Clé en main'",
+      price: 180,
+      priceAnnual: 180,
+      tagline: "On le fait à votre place",
+      description: "Intervention ponctuelle sur mesure",
+      features: [
+        { text: "Un blocage sur un dossier ? Une urgence ?", included: true },
+        { text: "Nos experts prennent le relais de A à Z", included: true },
+        { text: "Sur une démarche précise", included: true },
+        { text: "Visa, Litige Logement, Dossier CAF complexe...", included: true },
+        { text: "Intervention rapide et efficace", included: true },
+        { text: "Devis personnalisé selon votre besoin", included: true },
+      ],
+      cta: "Demander une intervention",
+      highlighted: false,
+      popular: false,
+      icon: "🔧",
+      color: "from-purple-500 to-indigo-500",
+      isOneShot: true
     }
   ];
 
-  // Vérifier si l'utilisateur est déjà Premium
   const isPremium = user?.is_premium === true || user?.subscription_status === 'active';
+
+  const handlePlanClick = async (plan) => {
+    if (plan.isOneShot) {
+      // Rediriger vers la page dédiée Expert One-Shot
+      window.location.href = createPageUrl("ExpertOneShot");
+      return;
+    }
+
+    if (plan.price === 0) {
+      // Plan gratuit - rediriger vers l'inscription
+      if (!isAuthenticated) {
+        redirectToLogin(window.location.href);
+      } else {
+        window.location.href = createPageUrl("Dashboard");
+      }
+      return;
+    }
+
+    // Si plan payant et utilisateur déjà Premium/VIP
+    if (isPremium) {
+      window.location.href = '/profile?tab=subscription';
+      return;
+    }
+
+    if (!isAuthenticated) {
+      redirectToLogin(window.location.href);
+      return;
+    }
+
+    setIsProcessing(true);
+    try {
+      // Déterminer le Price ID selon le plan
+      let priceId;
+      if (plan.name === "Ultimate VIP") {
+        priceId = billingCycle === 'monthly' ? STRIPE_PRICES.ultimate.monthly : STRIPE_PRICES.ultimate.annual;
+      } else {
+        priceId = billingCycle === 'monthly' ? STRIPE_PRICES.premium.monthly : STRIPE_PRICES.premium.annual;
+      }
+
+      if (!priceId || !String(priceId).startsWith('price_')) {
+        throw new Error('Price ID non configuré. Allez sur Stripe → Products → Pricing, copiez le "Price ID" (price_...) et mettez-le dans STRIPE_PRICES.');
+      }
+      
+      const response = await createCheckout({
+        priceId: priceId,
+        userId: user?.id,
+        userEmail: user?.email,
+        successUrl: window.location.origin + '/PaymentSuccess',
+        cancelUrl: window.location.origin + '/pricing',
+      });
+
+      if (response?.url) {
+        window.location.href = response.url;
+      }
+    } catch (error) {
+      console.error('Erreur paiement:', error);
+      alert('❌ ' + (error.message || 'Erreur inconnue. Consultez CONFIGURATION_STRIPE.md'));
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
@@ -150,7 +232,7 @@ export default function Pricing() {
               </span>
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Des prix simples et justes. Sans engagement, annulation à tout moment.
+              Des prix simples et justes. Sans engagement, annulation à tout moment. Résiliation en 1 clic.
             </p>
 
             {/* Billing Toggle */}
@@ -174,7 +256,7 @@ export default function Pricing() {
                 }`}
               >
                 Annuel
-                <Badge className="bg-green-500 text-white text-xs">-17%</Badge>
+                <Badge className="bg-green-500 text-white text-xs">-15%</Badge>
               </button>
             </div>
           </motion.div>
@@ -182,8 +264,8 @@ export default function Pricing() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Plans Grid - 3 columns */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-20">
+        {/* Plans Grid - 4 columns desktop, 1 column mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-20">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
@@ -191,12 +273,14 @@ export default function Pricing() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-                <Card
-                className={`relative h-full ${
-                  plan.highlighted
-                    ? "border-4 border-blue-600 shadow-2xl shadow-blue-200"
-                    : plan.isVip
-                    ? "border-4 border-amber-400 shadow-2xl shadow-amber-200"
+              <Card
+                className={`relative h-full transition-all ${
+                  plan.highlighted && plan.popular
+                    ? "border-4 border-blue-600 shadow-2xl shadow-blue-200 scale-105"
+                    : plan.isVip && plan.glow
+                    ? "border-4 border-amber-400 shadow-2xl shadow-amber-200/50 ring-4 ring-amber-400/20"
+                    : plan.isOneShot
+                    ? "border-2 border-purple-300 hover:shadow-xl transition-shadow"
                     : "border-2 border-gray-200 hover:shadow-xl transition-shadow"
                 }`}
               >
@@ -204,12 +288,21 @@ export default function Pricing() {
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
                     <Badge className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-1 shadow-lg">
                       <Star className="w-3 h-3 mr-1 inline" />
-                      Le plus choisi
+                      Choix des étudiants
+                    </Badge>
+                  </div>
+                )}
+
+                {plan.isVip && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                    <Badge className="bg-gradient-to-r from-amber-400 to-yellow-400 text-gray-900 px-4 py-1 shadow-lg font-bold">
+                      <Crown className="w-3 h-3 mr-1 inline" />
+                      VIP
                     </Badge>
                   </div>
                 )}
                 
-                {plan.price > 0 && isPremium && (
+                {plan.price > 0 && !plan.isOneShot && isPremium && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
                     <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-1 shadow-lg">
                       <Check className="w-3 h-3 mr-1 inline" />
@@ -219,48 +312,51 @@ export default function Pricing() {
                 )}
 
                 <CardHeader className={
-                  plan.highlighted 
+                  plan.highlighted && plan.popular
                     ? "bg-gradient-to-br from-blue-50 to-indigo-50" 
                     : plan.isVip
-                    ? "bg-gradient-to-br from-amber-50 to-yellow-50"
+                    ? "bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-50"
+                    : plan.isOneShot
+                    ? "bg-gradient-to-br from-purple-50 to-indigo-50"
                     : "bg-gray-50"
                 }>
                   <div className="text-center">
                     <div className="text-5xl mb-4">{plan.icon}</div>
-                    <CardTitle className="text-3xl font-bold text-gray-900 mb-2">
+                    <CardTitle className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                       {plan.name}
                     </CardTitle>
-                    <p className="text-sm text-gray-600 mb-4">{plan.description}</p>
+                    <p className="text-sm text-gray-600 mb-1 font-medium">{plan.tagline}</p>
+                    <p className="text-xs text-gray-500 mb-4">{plan.description}</p>
                     
                     <div className="mb-4">
                       <div className="flex items-end justify-center gap-2">
-                        <span className="text-5xl font-bold text-gray-900">
-                          {plan.isVip ? plan.price : (billingCycle === "annual" ? plan.priceAnnual : plan.price)}€
+                        <span className="text-4xl md:text-5xl font-bold text-gray-900">
+                          {plan.isOneShot ? plan.price : (billingCycle === "annual" ? plan.priceAnnual : plan.price)}€
                         </span>
-                        {plan.price > 0 && !plan.isVip && (
+                        {plan.price > 0 && !plan.isOneShot && (
                           <span className="text-gray-600 text-lg mb-2">/mois</span>
                         )}
-                        {plan.isVip && (
+                        {plan.isOneShot && (
                           <span className="text-gray-600 text-lg mb-2">/service</span>
                         )}
                       </div>
-                      {plan.price > 0 && !plan.isVip && billingCycle === "annual" && (
+                      {plan.price > 0 && !plan.isOneShot && billingCycle === "annual" && (
                         <p className="text-sm text-green-600 font-medium mt-2">
-                          Économisez {(plan.price - plan.priceAnnual) * 12}€/an
+                          Économisez {((plan.price - plan.priceAnnual) * 12).toFixed(0)}€/an
                         </p>
                       )}
                       {plan.price === 0 && (
                         <p className="text-sm text-gray-600 mt-2">Toujours gratuit</p>
                       )}
-                      {plan.isVip && (
-                        <p className="text-sm text-amber-600 font-medium mt-2">À partir de</p>
+                      {plan.isOneShot && (
+                        <p className="text-sm text-purple-600 font-medium mt-2">À partir de</p>
                       )}
                     </div>
                   </div>
                 </CardHeader>
 
                 <CardContent className="pt-8 pb-8">
-                  {plan.highlighted && (
+                  {plan.highlighted && plan.popular && (
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3">
                       <Shield className="w-6 h-6 text-green-600 flex-shrink-0" />
                       <div>
@@ -269,15 +365,26 @@ export default function Pricing() {
                       </div>
                     </div>
                   )}
-                  <ul className="space-y-4 mb-8">
+
+                  {plan.isVip && (
+                    <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg flex items-center gap-3">
+                      <Crown className="w-6 h-6 text-amber-600 flex-shrink-0" />
+                      <div>
+                        <div className="font-bold text-amber-900 text-sm">Accompagnement Premium</div>
+                        <div className="text-xs text-amber-700">Support humain dédié</div>
+                      </div>
+                    </div>
+                  )}
+
+                  <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-3">
                         {feature.included ? (
-                          <div className="bg-green-100 rounded-full p-1 mt-0.5">
+                          <div className="bg-green-100 rounded-full p-1 mt-0.5 flex-shrink-0">
                             <Check className="w-4 h-4 text-green-600" />
                           </div>
                         ) : (
-                          <div className="bg-gray-100 rounded-full p-1 mt-0.5">
+                          <div className="bg-gray-100 rounded-full p-1 mt-0.5 flex-shrink-0">
                             <X className="w-4 h-4 text-gray-400" />
                           </div>
                         )}
@@ -292,77 +399,119 @@ export default function Pricing() {
                     ))}
                   </ul>
 
-                  {plan.isVip ? (
-                    <Link to={createPageUrl("ConciergerieVIP")}>
-                      <Button
-                        className="w-full text-lg py-6 font-bold bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white shadow-xl"
-                      >
-                        {plan.cta}
-                      </Button>
-                    </Link>
-                  ) : (
-                    <Button
-                      className={`w-full text-lg py-6 font-bold ${
-                        plan.highlighted
-                          ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl"
-                          : "bg-gray-900 hover:bg-gray-800 text-white"
-                      }`}
-                      disabled={isProcessing}
-                      onClick={async () => {
-                        // Si plan Premium et utilisateur déjà Premium
-                        if (plan.price > 0 && isPremium) {
-                          window.location.href = '/profile?tab=subscription';
-                          return;
-                        }
-
-                        if (!isAuthenticated) {
-                          redirectToLogin(window.location.href);
-                        } else if (plan.price > 0) {
-                          setIsProcessing(true);
-                          try {
-                            const priceId = billingCycle === 'monthly' ? STRIPE_PRICES.monthly : STRIPE_PRICES.annual;
-
-                            // Validation locale du Price ID
-                            if (!priceId || !String(priceId).startsWith('price_')) {
-                              throw new Error('Price ID non configuré. Allez sur Stripe → Products → Pricing, copiez le "Price ID" (price_...) et mettez-le dans STRIPE_PRICES.');
-                            }
-                            
-                            const response = await createCheckout({
-                              priceId: priceId,
-                              userId: user?.id,
-                              userEmail: user?.email,
-                              successUrl: window.location.origin + '/PaymentSuccess',
-                              cancelUrl: window.location.origin + '/pricing',
-                            });
-
-                            // Redirection vers Stripe Checkout
-                            if (response?.url) {
-                              window.location.href = response.url;
-                            }
-                          } catch (error) {
-                            console.error('Erreur paiement:', error);
-                            alert('❌ ' + (error.message || 'Erreur inconnue. Consultez CONFIGURATION_STRIPE.md'));
-                          } finally {
-                            setIsProcessing(false);
-                          }
-                        }
-                      }}
-                    >
-                      {isProcessing ? '⏳ Chargement...' : (plan.price > 0 && isPremium ? plan.ctaPremium : plan.cta)}
-                    </Button>
-                  )}
+                  <Button
+                    className={`w-full text-base md:text-lg py-6 font-bold ${
+                      plan.highlighted && plan.popular
+                        ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl"
+                        : plan.isVip
+                        ? "bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white shadow-xl"
+                        : plan.isOneShot
+                        ? "bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white shadow-xl"
+                        : "bg-gray-900 hover:bg-gray-800 text-white"
+                    }`}
+                    disabled={isProcessing && !plan.isOneShot}
+                    onClick={() => handlePlanClick(plan)}
+                  >
+                    {isProcessing && !plan.isOneShot ? (
+                      '⏳ Chargement...'
+                    ) : (
+                      <>
+                        {plan.price > 0 && !plan.isOneShot && isPremium ? plan.ctaPremium : plan.cta}
+                        {plan.isOneShot && <ArrowRight className="w-4 h-4 ml-2 inline" />}
+                      </>
+                    )}
+                  </Button>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </div>
 
+        {/* Section d'explication des offres */}
+        <div className="mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+              Comprendre nos offres
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Découverte */}
+              <div className="border-l-4 border-gray-400 pl-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl">🎓</span>
+                  <h3 className="text-xl font-bold text-gray-900">Offre Découverte</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Parfait pour découvrir la plateforme sans engagement. Accédez à une sélection de cours gratuits, 
+                  participez au forum communautaire et testez notre IA Assistant avec 10 messages gratuits.
+                </p>
+                <p className="text-sm text-gray-500">
+                  <strong>Idéal pour :</strong> Les nouveaux arrivants qui souhaitent explorer nos services avant de s'engager.
+                </p>
+              </div>
+
+              {/* Premium */}
+              <div className="border-l-4 border-blue-600 pl-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl">⚡</span>
+                  <h3 className="text-xl font-bold text-gray-900">Offre Premium</h3>
+                  <Badge className="bg-blue-600 text-white">Le plus choisi</Badge>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Accès illimité à toutes nos formations (200+), IA Assistant disponible 24h/24, accès prioritaire 
+                  au forum et outils de suivi de dossier. La formule parfaite pour réussir en toute autonomie.
+                </p>
+                <p className="text-sm text-gray-500">
+                  <strong>Idéal pour :</strong> Les étudiants autonomes qui veulent accéder à tous nos contenus et ressources.
+                </p>
+              </div>
+
+              {/* Ultimate VIP */}
+              <div className="border-l-4 border-amber-500 pl-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl">👑</span>
+                  <h3 className="text-xl font-bold text-gray-900">Ultimate VIP</h3>
+                  <Badge className="bg-amber-500 text-white">Premium</Badge>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Accompagnement personnalisé complet avec un expert dédié. Aide pour remplir vos dossiers (Visa, CPAM, CAF), 
+                  vérification de documents, support réactif et stratégie personnalisée pour trouver un job ou une alternance. 
+                  <strong> On ne vous lâche pas la main.</strong>
+                </p>
+                <p className="text-sm text-gray-500">
+                  <strong>Idéal pour :</strong> Ceux qui veulent un accompagnement humain personnalisé à chaque étape.
+                </p>
+              </div>
+
+              {/* Expert One-Shot */}
+              <div className="border-l-4 border-purple-500 pl-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl">🔧</span>
+                  <h3 className="text-xl font-bold text-gray-900">Service Expert 'Clé en main'</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Vous avez un blocage spécifique ou une urgence ? Nos experts prennent le relais de A à Z sur une démarche 
+                  précise. On le fait à votre place : Visa, Litige Logement, Dossier CAF complexe, etc.
+                </p>
+                <p className="text-sm text-gray-500">
+                  <strong>Idéal pour :</strong> Une intervention ponctuelle et rapide sur un dossier précis.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
         {/* Trust Badges */}
         <div className="grid md:grid-cols-3 gap-6 mb-20">
           {[
-            { icon: Shield, title: "Satisfait ou remboursé", desc: "Garantie qualité" },
-            { icon: Zap, title: "Accès immédiat", desc: "Commencez en 30 secondes" },
-            { icon: Sparkles, title: "Sans engagement", desc: "Annulez à tout moment" }
+            { icon: Shield, title: "Paiement Stripe sécurisé", desc: "Vos données bancaires sont protégées" },
+            { icon: Zap, title: "Résiliation en 1 clic", desc: "Annulez votre abonnement à tout moment" },
+            { icon: Sparkles, title: "Sans engagement", desc: "Aucun engagement de durée" }
           ].map((badge, index) => (
             <motion.div
               key={index}
@@ -385,7 +534,7 @@ export default function Pricing() {
         </div>
 
         {/* FAQ */}
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto mb-20">
           <h2 className="text-3xl font-bold text-center mb-12">
             Questions fréquentes 💬
           </h2>
@@ -393,16 +542,24 @@ export default function Pricing() {
           <div className="space-y-4">
             {[
               {
+                q: "Est-ce sans engagement ?",
+                a: "Oui, absolument ! Tous nos abonnements (Premium et Ultimate VIP) sont sans engagement. Vous pouvez résilier en 1 clic à tout moment depuis votre profil, sans frais de résiliation."
+              },
+              {
+                q: "Comment se passe l'accompagnement individuel ?",
+                a: "Avec l'offre Ultimate VIP, vous avez accès à un conseiller dédié qui vous accompagne pas à pas. Il vous aide à remplir vos dossiers (Visa, CPAM, CAF), vérifie vos documents avant envoi, répond à vos questions administratives complexes et vous aide à trouver un job ou une alternance avec une stratégie personnalisée."
+              },
+              {
                 q: "Puis-je changer de formule à tout moment ?",
-                a: "Oui ! Vous pouvez passer de Gratuit à Premium instantanément, ou annuler votre abonnement Premium à tout moment. Aucun engagement."
+                a: "Oui ! Vous pouvez passer de Gratuit à Premium ou Ultimate VIP instantanément, ou passer d'une formule à l'autre selon vos besoins. Vous pouvez aussi annuler votre abonnement à tout moment."
               },
               {
                 q: "Y a-t-il une garantie satisfait ou remboursé ?",
-                a: "Absolument. Si Premium ne vous convient pas, nous vous remboursons intégralement, sans poser de questions."
+                a: "Absolument. Si Premium ne vous convient pas dans les 30 premiers jours, nous vous remboursons intégralement, sans poser de questions."
               },
               {
-                q: "Que se passe-t-il si j'annule Premium ?",
-                a: "Vous gardez l'accès Premium jusqu'à la fin de votre période payée. Ensuite, vous repassez automatiquement au plan Gratuit et conservez tout votre historique."
+                q: "Que se passe-t-il si j'annule mon abonnement ?",
+                a: "Vous gardez l'accès Premium/Ultimate VIP jusqu'à la fin de votre période payée. Ensuite, vous repassez automatiquement au plan Découverte (gratuit) et conservez tout votre historique."
               },
               {
                 q: "Le paiement est-il sécurisé ?",
@@ -410,7 +567,7 @@ export default function Pricing() {
               },
               {
                 q: "Y a-t-il des réductions pour les étudiants ?",
-                a: "Oui ! Contactez-nous avec votre carte étudiante pour bénéficier de 20% de réduction sur l'abonnement Premium."
+                a: "Oui ! Contactez-nous à contact@franceprepacademy.fr avec votre carte étudiante pour bénéficier de 20% de réduction sur l'abonnement Premium."
               }
             ].map((faq, index) => (
               <motion.div
@@ -438,7 +595,7 @@ export default function Pricing() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-20 bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 rounded-3xl p-12 text-center text-white relative overflow-hidden"
+          className="bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 rounded-3xl p-12 text-center text-white relative overflow-hidden"
         >
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-500 rounded-full blur-3xl"></div>
@@ -458,13 +615,15 @@ export default function Pricing() {
               onClick={() => {
                 if (!isAuthenticated) {
                   redirectToLogin(window.location.href);
+                } else {
+                  window.location.href = createPageUrl("Dashboard");
                 }
               }}
             >
               Commencer gratuitement maintenant
             </Button>
             <p className="mt-4 text-blue-200 text-sm">
-              ✓ Sans carte bancaire • ✓ Accès instantané • ✓ Support francophone
+              ✓ Sans carte bancaire • ✓ Accès instantané • ✓ Support francophone • ✓ Sans engagement
             </p>
           </div>
         </motion.div>

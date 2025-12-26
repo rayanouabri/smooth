@@ -43,6 +43,8 @@ import Pricing from "./Pricing";
 
 import ConciergerieVIP from "./ConciergerieVIP";
 
+import ExpertOneShot from "./ExpertOneShot";
+
 import CGU from "./CGU";
 
 import CGV from "./CGV";
@@ -102,6 +104,8 @@ const PAGES = {
     Pricing: Pricing,
 
     ConciergerieVIP: ConciergerieVIP,
+
+    ExpertOneShot: ExpertOneShot,
 
     CGU: CGU,
     
@@ -226,6 +230,8 @@ function PagesContent() {
                 <Route path="/Community" element={<Community />} />
                 
                 <Route path="/Pricing" element={<Pricing />} />
+                
+                <Route path="/ExpertOneShot" element={<ExpertOneShot />} />
                 
                 <Route path="/CGU" element={<CGU />} />
                 
