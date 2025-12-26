@@ -906,7 +906,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             {[
-              { number: "", label: "Une communauté d'étudiants motivés", icon: Users },
+              { number: "200+", label: "tutoriels disponibles", icon: BookOpen },
               { number: "95%", label: "de réussite aux visas", icon: Award },
               { number: "120", label: "pays représentés", icon: Globe }
             ].map((stat, index) => (
