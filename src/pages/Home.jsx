@@ -22,7 +22,10 @@ import {
   GraduationCap,
   ShieldCheck,
   HeartHandshake,
-  Target
+  Target,
+  Clock,
+  Shield,
+  Zap
 } from "lucide-react";
 import { createPageUrl } from "../utils";
 import { motion } from "framer-motion";
@@ -48,10 +51,33 @@ export default function Home() {
     queryFn: () => Course.filter({ is_published: true }, '-rating', 6),
   });
 
-  const { data: testimonials = [] } = useQuery({
-    queryKey: ['testimonials'],
-    queryFn: () => Testimonial.filter({ is_featured: true }, '-created_date', 3),
-  });
+  // Témoignages d'expatriés (hardcodés pour le pivot)
+  const testimonials = [
+    {
+      id: '1',
+      content: "Grâce à FrancePrepAcademy, j'ai pu m'installer en France en 2 semaines au lieu de 3 mois. Tout était géré pour moi, je n'ai eu qu'à signer les papiers.",
+      student_name: "Thomas",
+      country_origin: "Expatrié Canadien",
+      rating: 5,
+      student_photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100"
+    },
+    {
+      id: '2',
+      content: "Le support WhatsApp 24/7 a été un game-changer. À chaque question, j'avais une réponse immédiate. Je recommande à 100%.",
+      student_name: "Daniela",
+      country_origin: "Travailleuse internationale",
+      rating: 5,
+      student_photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
+    },
+    {
+      id: '3',
+      content: "L'ouverture de compte bancaire et la recherche de logement ont été gérées parfaitement. J'ai économisé des semaines de démarches.",
+      student_name: "Ahmed",
+      country_origin: "Entrepreneur",
+      rating: 5,
+      student_photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
+    }
+  ];
 
   const heroFeatures = [
     {
@@ -137,20 +163,17 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-pink-400 text-white text-base px-6 py-2 border-0 shadow-xl">
+              <Badge className="mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-base px-6 py-2 border-0 shadow-xl">
                 <Sparkles className="w-4 h-4 mr-2 inline" />
-                {t('home.joinCommunity')}
+                Services d'expatriation
               </Badge>
 
-              <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-                {t('home.heroTitle')}{" "}
-                <span className="bg-gradient-to-r from-orange-300 to-pink-300 bg-clip-text text-transparent">
-                  {t('home.heroTitleHighlight')}
-                </span>
+              <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-white">
+                Réussissez votre installation en France sans stress.
               </h1>
               
               <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-                {t('home.heroSubtitle')}
+                De l'obtention du visa à l'ouverture de votre compte bancaire, nous gérons votre intégration de A à Z. Ne laissez plus l'administration freiner vos projets.
               </p>
 
               {/* 4 features cards */}
@@ -174,7 +197,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 mb-6">
                 {isAuthenticated ? (
                   <Link to={createPageUrl("Dashboard")}>
-                    <Button size="lg" className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold shadow-2xl px-8 py-6 text-lg">
+                    <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold shadow-2xl px-8 py-6 text-lg">
                       🎓 {t('common.mySpace')}
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
@@ -182,16 +205,16 @@ export default function Home() {
                 ) : (
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold shadow-2xl px-8 py-6 text-lg"
+                    className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold shadow-2xl px-8 py-6 text-lg"
                     onClick={() => redirectToLogin(window.location.href)}
                   >
                     🚀 {t('common.startFree')}
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 )}
-                <Link to={createPageUrl("Courses")}>
+                <Link to={createPageUrl("Pricing")}>
                   <Button size="lg" variant="outline" className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-indigo-900 font-bold px-8 py-6 text-lg backdrop-blur">
-                    {t('common.discoverCourses')}
+                    Découvrir nos solutions d'accompagnement
                   </Button>
                 </Link>
               </div>
@@ -399,6 +422,72 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pourquoi nous ? Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-0 text-base px-6 py-2">
+              ⭐ Pourquoi nous ?
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+              Votre intégration en France, simplifiée
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Nous gérons votre intégration de A à Z pour que vous puissiez vous concentrer sur l'essentiel
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <div className="bg-gradient-to-br from-blue-100 to-indigo-100 p-6 rounded-2xl mb-4 inline-block">
+                <Clock className="w-12 h-12 text-blue-600 mx-auto" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Gain de temps</h3>
+              <p className="text-gray-600">
+                Économisez des semaines de démarches administratives. Nous gérons tout pour vous.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-center"
+            >
+              <div className="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-2xl mb-4 inline-block">
+                <Shield className="w-12 h-12 text-amber-600 mx-auto" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Zéro erreur</h3>
+              <p className="text-gray-600">
+                Nos experts connaissent parfaitement les démarches. Aucune erreur administrative.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-center"
+            >
+              <div className="bg-gradient-to-br from-blue-100 to-indigo-100 p-6 rounded-2xl mb-4 inline-block">
+                <Zap className="w-12 h-12 text-blue-600 mx-auto" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Installation rapide</h3>
+              <p className="text-gray-600">
+                De l'obtention du visa à l'ouverture de compte bancaire, tout est géré rapidement.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Solutions Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -542,7 +631,7 @@ export default function Home() {
       )}
 
       {/* Final CTA */}
-      <section className="relative py-16 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white overflow-hidden">
+      <section className="relative py-16 bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-800 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-0 w-96 h-96 bg-yellow-400 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-700 rounded-full blur-3xl animate-pulse"></div>
@@ -562,19 +651,19 @@ export default function Home() {
           </p>
 
           {isAuthenticated ? (
-            <Link to={createPageUrl("Courses")}>
-              <Button size="lg" className="bg-white text-pink-600 hover:bg-gray-100 font-bold px-8 py-4 text-lg shadow-2xl">
-                🚀 Explorer les cours
+            <Link to={createPageUrl("Pricing")}>
+              <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-4 text-lg shadow-2xl">
+                🚀 Découvrir nos solutions
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
           ) : (
             <Button
               size="lg"
-              className="bg-white text-pink-600 hover:bg-gray-100 font-bold px-8 py-4 text-lg shadow-2xl"
+              className="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-4 text-lg shadow-2xl"
               onClick={() => redirectToLogin(window.location.href)}
             >
-              🚀 Explorer les cours
+              🚀 Découvrir nos solutions
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           )}

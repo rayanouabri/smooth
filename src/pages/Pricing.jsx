@@ -6,6 +6,7 @@ import { Check, X, Star, Zap, Shield, Sparkles } from "lucide-react";
 import { isAuthenticated as checkAuthStatus, redirectToLogin, me } from "@/api/auth";
 import { createCheckout } from "@/api/functions";
 import { createPageUrl } from "../utils";
+import { Link } from "react-router-dom";
 import ChatBot from "../components/ChatBot";
 import { motion } from "framer-motion";
 
@@ -58,14 +59,14 @@ export default function Pricing() {
       tagline: "Pour découvrir",
       description: "Idéal pour tester la plateforme",
       features: [
-        { text: "Cours gratuits illimités", included: true },
-        { text: "Aperçu des cours Premium (1ère leçon)", included: true },
+        { text: "Guides d'intégration gratuits", included: true },
+        { text: "Aperçu des services Premium", included: true },
         { text: "Forum communautaire en lecture", included: true },
         { text: "Chatbot IA (10 questions/jour)", included: true },
-        { text: "Certificats basiques", included: true },
-        { text: "Accès complet aux cours Premium", included: false },
+        { text: "Accès complet aux services Premium", included: false },
         { text: "IA illimitée avec historique", included: false },
         { text: "Support prioritaire 24/7", included: false },
+        { text: "Conciergerie VIP", included: false },
       ],
       cta: "Commencer gratuitement",
       highlighted: false,
@@ -78,23 +79,47 @@ export default function Pricing() {
       price: 29,
       priceAnnual: 24,
       tagline: "Le plus populaire",
-      description: "Accès complet à tout",
+      description: "Accès complet à tous les services",
       features: [
-        { text: "Tous les cours Premium débloqués", included: true },
+        { text: "Tous les guides Premium débloqués", included: true },
         { text: "IA illimitée avec historique", included: true },
         { text: "Participation active au forum", included: true },
-        { text: "Tous les certificats professionnels", included: true },
         { text: "Support prioritaire par email", included: true },
-        { text: "Nouveaux cours en avant-première", included: true },
+        { text: "Nouveaux guides en avant-première", included: true },
         { text: "Téléchargement des supports PDF", included: true },
-        { text: "Réduction 20% sur cours particuliers", included: true },
+        { text: "Conciergerie VIP", included: false },
+        { text: "Gestion RDV préfecture", included: false },
       ],
       cta: "Passer à Premium",
       ctaPremium: "Gérer mon abonnement",
       highlighted: true,
       popular: true,
       icon: "⚡",
-      color: "from-orange-500 to-pink-500"
+      color: "from-blue-600 to-indigo-600"
+    },
+    {
+      name: "Conciergerie VIP",
+      price: 599,
+      priceAnnual: 599,
+      tagline: "Service sur mesure",
+      description: "On gère votre intégration de A à Z",
+      features: [
+        { text: "Accès total Premium inclus", included: true },
+        { text: "On gère vos RDV en préfecture", included: true },
+        { text: "Recherche de logement personnalisée", included: true },
+        { text: "Ouverture de compte bancaire", included: true },
+        { text: "Support WhatsApp 24/7", included: true },
+        { text: "Conseiller dédié", included: true },
+        { text: "Suivi personnalisé de votre dossier", included: true },
+        { text: "Assistance complète administrative", included: true },
+      ],
+      cta: "Découvrir la Conciergerie VIP",
+      ctaPremium: "Gérer mon abonnement",
+      highlighted: false,
+      popular: false,
+      icon: "👑",
+      color: "from-amber-500 to-yellow-500",
+      isVip: true
     }
   ];
 
@@ -156,9 +181,9 @@ export default function Pricing() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Plans Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Plans Grid - 3 columns */}
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-20">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
@@ -166,10 +191,12 @@ export default function Pricing() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card
+                <Card
                 className={`relative h-full ${
                   plan.highlighted
-                    ? "border-4 border-orange-400 shadow-2xl shadow-orange-200 scale-105"
+                    ? "border-4 border-blue-600 shadow-2xl shadow-blue-200"
+                    : plan.isVip
+                    ? "border-4 border-amber-400 shadow-2xl shadow-amber-200"
                     : "border-2 border-gray-200 hover:shadow-xl transition-shadow"
                 }`}
               >
@@ -191,7 +218,13 @@ export default function Pricing() {
                   </div>
                 )}
 
-                <CardHeader className={plan.highlighted ? "bg-gradient-to-br from-orange-50 to-pink-50" : "bg-gray-50"}>
+                <CardHeader className={
+                  plan.highlighted 
+                    ? "bg-gradient-to-br from-blue-50 to-indigo-50" 
+                    : plan.isVip
+                    ? "bg-gradient-to-br from-amber-50 to-yellow-50"
+                    : "bg-gray-50"
+                }>
                   <div className="text-center">
                     <div className="text-5xl mb-4">{plan.icon}</div>
                     <CardTitle className="text-3xl font-bold text-gray-900 mb-2">
@@ -202,19 +235,25 @@ export default function Pricing() {
                     <div className="mb-4">
                       <div className="flex items-end justify-center gap-2">
                         <span className="text-5xl font-bold text-gray-900">
-                          {billingCycle === "annual" ? plan.priceAnnual : plan.price}€
+                          {plan.isVip ? plan.price : (billingCycle === "annual" ? plan.priceAnnual : plan.price)}€
                         </span>
-                        {plan.price > 0 && (
+                        {plan.price > 0 && !plan.isVip && (
                           <span className="text-gray-600 text-lg mb-2">/mois</span>
                         )}
+                        {plan.isVip && (
+                          <span className="text-gray-600 text-lg mb-2">/service</span>
+                        )}
                       </div>
-                      {plan.price > 0 && billingCycle === "annual" && (
+                      {plan.price > 0 && !plan.isVip && billingCycle === "annual" && (
                         <p className="text-sm text-green-600 font-medium mt-2">
                           Économisez {(plan.price - plan.priceAnnual) * 12}€/an
                         </p>
                       )}
                       {plan.price === 0 && (
                         <p className="text-sm text-gray-600 mt-2">Toujours gratuit</p>
+                      )}
+                      {plan.isVip && (
+                        <p className="text-sm text-amber-600 font-medium mt-2">À partir de</p>
                       )}
                     </div>
                   </div>
@@ -253,55 +292,65 @@ export default function Pricing() {
                     ))}
                   </ul>
 
-                  <Button
-                    className={`w-full text-lg py-6 font-bold ${
-                      plan.highlighted
-                        ? "bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white shadow-xl"
-                        : "bg-gray-900 hover:bg-gray-800 text-white"
-                    }`}
-                    disabled={isProcessing}
-                    onClick={async () => {
-                      // Si plan Premium et utilisateur déjà Premium
-                      if (plan.price > 0 && isPremium) {
-                        window.location.href = '/profile?tab=subscription';
-                        return;
-                      }
-
-                      if (!isAuthenticated) {
-                        redirectToLogin(window.location.href);
-                      } else if (plan.price > 0) {
-                        setIsProcessing(true);
-                        try {
-                          const priceId = billingCycle === 'monthly' ? STRIPE_PRICES.monthly : STRIPE_PRICES.annual;
-
-                          // Validation locale du Price ID
-                          if (!priceId || !String(priceId).startsWith('price_')) {
-                            throw new Error('Price ID non configuré. Allez sur Stripe → Products → Pricing, copiez le "Price ID" (price_...) et mettez-le dans STRIPE_PRICES.');
-                          }
-                          
-                          const response = await createCheckout({
-                            priceId: priceId,
-                            userId: user?.id,
-                            userEmail: user?.email,
-                            successUrl: window.location.origin + '/PaymentSuccess',
-                            cancelUrl: window.location.origin + '/pricing',
-                          });
-
-                          // Redirection vers Stripe Checkout
-                          if (response?.url) {
-                            window.location.href = response.url;
-                          }
-                        } catch (error) {
-                          console.error('Erreur paiement:', error);
-                          alert('❌ ' + (error.message || 'Erreur inconnue. Consultez CONFIGURATION_STRIPE.md'));
-                        } finally {
-                          setIsProcessing(false);
+                  {plan.isVip ? (
+                    <Link to={createPageUrl("ConciergerieVIP")}>
+                      <Button
+                        className="w-full text-lg py-6 font-bold bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white shadow-xl"
+                      >
+                        {plan.cta}
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button
+                      className={`w-full text-lg py-6 font-bold ${
+                        plan.highlighted
+                          ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl"
+                          : "bg-gray-900 hover:bg-gray-800 text-white"
+                      }`}
+                      disabled={isProcessing}
+                      onClick={async () => {
+                        // Si plan Premium et utilisateur déjà Premium
+                        if (plan.price > 0 && isPremium) {
+                          window.location.href = '/profile?tab=subscription';
+                          return;
                         }
-                      }
-                    }}
-                  >
-                    {isProcessing ? '⏳ Chargement...' : (plan.price > 0 && isPremium ? plan.ctaPremium : plan.cta)}
-                  </Button>
+
+                        if (!isAuthenticated) {
+                          redirectToLogin(window.location.href);
+                        } else if (plan.price > 0) {
+                          setIsProcessing(true);
+                          try {
+                            const priceId = billingCycle === 'monthly' ? STRIPE_PRICES.monthly : STRIPE_PRICES.annual;
+
+                            // Validation locale du Price ID
+                            if (!priceId || !String(priceId).startsWith('price_')) {
+                              throw new Error('Price ID non configuré. Allez sur Stripe → Products → Pricing, copiez le "Price ID" (price_...) et mettez-le dans STRIPE_PRICES.');
+                            }
+                            
+                            const response = await createCheckout({
+                              priceId: priceId,
+                              userId: user?.id,
+                              userEmail: user?.email,
+                              successUrl: window.location.origin + '/PaymentSuccess',
+                              cancelUrl: window.location.origin + '/pricing',
+                            });
+
+                            // Redirection vers Stripe Checkout
+                            if (response?.url) {
+                              window.location.href = response.url;
+                            }
+                          } catch (error) {
+                            console.error('Erreur paiement:', error);
+                            alert('❌ ' + (error.message || 'Erreur inconnue. Consultez CONFIGURATION_STRIPE.md'));
+                          } finally {
+                            setIsProcessing(false);
+                          }
+                        }
+                      }}
+                    >
+                      {isProcessing ? '⏳ Chargement...' : (plan.price > 0 && isPremium ? plan.ctaPremium : plan.cta)}
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>

@@ -63,6 +63,18 @@ export default function Courses() {
   };
 
   const filteredCourses = courses.filter(course => {
+    // Exclure les cours de français académique (Bac, FLE, Philosophie, Histoire-Géo)
+    const excludedKeywords = ['français', 'french', 'fle', 'delf', 'dalf', 'bac', 'baccalauréat', 
+                              'philosophie', 'philo', 'histoire', 'géographie', 'histoire-géo',
+                              'littérature', 'grammaire', 'conjugaison', 'orthographe'];
+    const titleLower = course.title?.toLowerCase() || '';
+    const descLower = course.short_description?.toLowerCase() || '';
+    const isExcluded = excludedKeywords.some(keyword => 
+      titleLower.includes(keyword) || descLower.includes(keyword)
+    );
+    
+    if (isExcluded) return false;
+    
     const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          course.short_description?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = categoryFilter === "all" || course.category === categoryFilter;

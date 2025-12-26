@@ -41,6 +41,8 @@ import Community from "./Community";
 
 import Pricing from "./Pricing";
 
+import ConciergerieVIP from "./ConciergerieVIP";
+
 import CGU from "./CGU";
 
 import CGV from "./CGV";
@@ -98,7 +100,9 @@ const PAGES = {
     Community: Community,
     
     Pricing: Pricing,
-    
+
+    ConciergerieVIP: ConciergerieVIP,
+
     CGU: CGU,
     
     CGV: CGV,
