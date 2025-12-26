@@ -139,18 +139,18 @@ export default function Home() {
             >
               <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-pink-400 text-white text-base px-6 py-2 border-0 shadow-xl">
                 <Sparkles className="w-4 h-4 mr-2 inline" />
-              Rejoignez notre communauté
+                {t('home.joinCommunity')}
               </Badge>
 
               <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-                Réussissez votre{" "}
+                {t('home.heroTitle')}{" "}
                 <span className="bg-gradient-to-r from-orange-300 to-pink-300 bg-clip-text text-transparent">
-                  vie en France
+                  {t('home.heroTitleHighlight')}
                 </span>
               </h1>
               
               <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-                De l'arrivée à l'emploi : formations complètes, IA 24/7 et communauté active pour vous accompagner à chaque étape.
+                {t('home.heroSubtitle')}
               </p>
 
               {/* 4 features cards */}
@@ -206,75 +206,52 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Right: Education Background */}
+            {/* Right: Students Background Image */}
             <motion.div
               initial={{ opacity: 0, x: 50, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="relative hidden lg:block"
             >
-              <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden">
-                {/* Background Image with Overlay */}
+              <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+                {/* Background Image with Students */}
                 <div 
-                  className="absolute inset-0 bg-cover bg-center"
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80')"
+                    backgroundImage: "url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80')"
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-indigo-900/70 to-purple-900/80"></div>
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-indigo-900/75 to-purple-900/85"></div>
+                  
+                  {/* Additional overlay for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                 </div>
                 
-                {/* Floating Education Elements */}
-                <div className="relative h-full p-8 flex flex-col justify-center items-center">
-                  {/* Graduation Cap */}
+                {/* Content Overlay */}
+                <div className="relative h-full p-8 flex flex-col justify-end">
+                  {/* Stats Badge */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="mb-6"
+                    className="bg-white/20 backdrop-blur-md rounded-2xl p-6 border border-white/30 shadow-2xl"
                   >
-                    <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/30 shadow-2xl">
-                      <GraduationCap className="w-12 h-12 text-white" />
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                      <div className="text-center">
+                        <div className="text-4xl font-bold text-white mb-1">200+</div>
+                        <div className="text-sm text-blue-100 font-medium">Cours</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-4xl font-bold text-white mb-1">15K+</div>
+                        <div className="text-sm text-blue-100 font-medium">Étudiants</div>
+                      </div>
+                    </div>
+                    <div className="text-center pt-4 border-t border-white/20">
+                      <p className="text-white font-semibold text-lg mb-1">Rejoignez la communauté</p>
+                      <p className="text-blue-100 text-sm">Des étudiants du monde entier</p>
                     </div>
                   </motion.div>
-
-                  {/* Books Stack */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.8 }}
-                    className="flex gap-2 mb-6"
-                  >
-                    {[1, 2, 3].map((i) => (
-                      <div
-                        key={i}
-                        className="w-16 h-20 bg-white/20 backdrop-blur-md rounded-lg border border-white/30 shadow-xl"
-                        style={{ transform: `rotate(${(i - 2) * 5}deg)` }}
-                      ></div>
-                    ))}
-                  </motion.div>
-
-                  {/* Stats Cards */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 }}
-                    className="grid grid-cols-2 gap-4 w-full max-w-xs"
-                  >
-                    <div className="bg-white/20 backdrop-blur-md rounded-xl p-4 border border-white/30 text-center">
-                      <div className="text-3xl font-bold text-white mb-1">200+</div>
-                      <div className="text-sm text-blue-100">Cours</div>
-                    </div>
-                    <div className="bg-white/20 backdrop-blur-md rounded-xl p-4 border border-white/30 text-center">
-                      <div className="text-3xl font-bold text-white mb-1">15K+</div>
-                      <div className="text-sm text-blue-100">Étudiants</div>
-                    </div>
-                  </motion.div>
-
-                  {/* Decorative Elements */}
-                  <div className="absolute top-10 right-10 w-16 h-16 bg-yellow-400/30 rounded-full blur-xl"></div>
-                  <div className="absolute bottom-10 left-10 w-20 h-20 bg-pink-400/30 rounded-full blur-xl"></div>
-                  <div className="absolute top-1/2 right-5 w-12 h-12 bg-cyan-400/30 rounded-full blur-lg"></div>
                 </div>
               </div>
             </motion.div>
@@ -290,7 +267,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-red-100 text-red-700 border-0 text-base px-6 py-2">
-              ❌ Les obstacles courants
+              ❌ {t('home.obstaclesTag')}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
               Vous n'êtes pas seul face à ces défis
@@ -335,10 +312,10 @@ export default function Home() {
             className="mt-12 text-center"
           >
             <p className="text-2xl font-bold text-gray-900 mb-2">
-              💡 <span className="text-orange-600">Bonne nouvelle :</span>
+              💡 <span className="text-orange-600">{t('home.goodNews')}</span>
             </p>
             <p className="text-xl text-gray-700">
-              Nous avons la solution pour chaque défi 👇
+              {t('home.goodNewsDesc')} 👇
             </p>
           </motion.div>
         </div>
@@ -359,21 +336,21 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <Badge className="mb-6 bg-gradient-to-r from-cyan-400 to-blue-400 text-white text-base px-6 py-2 border-0">
-                🤖 Intelligence Artificielle
+                🤖 {t('home.aiTag')}
               </Badge>
               <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-                Votre assistant IA personnel disponible 24/7
+                {t('home.aiSectionTitle')}
               </h2>
               <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                Notre IA spécialisée vous accompagne à chaque étape : démarches administratives, questions CAF, recherche de logement, conseils d'intégration et bien plus.
+                {t('home.aiSectionDesc')}
               </p>
 
               <div className="space-y-4 mb-8">
                 {[
-                  { icon: Sparkles, title: "Réponses instantanées", desc: "Posez vos questions en français, obtenez des réponses précises immédiatement" },
-                  { icon: FileText, title: "Aide aux démarches", desc: "Guide pas à pas pour CAF, sécurité sociale, titre de séjour..." },
-                  { icon: Target, title: "Conseils personnalisés", desc: "Recommandations adaptées à votre situation et vos objectifs" },
-                  { icon: CheckCircle, title: "Disponible 24/7", desc: "Toujours là quand vous avez besoin, jour et nuit" }
+                  { icon: Sparkles, titleKey: "home.aiFeature1", descKey: "home.aiFeature1Desc" },
+                  { icon: FileText, titleKey: "home.aiFeature2", descKey: "home.aiFeature2Desc" },
+                  { icon: Target, titleKey: "home.aiFeature3", descKey: "home.aiFeature3Desc" },
+                  { icon: CheckCircle, titleKey: "home.aiFeature4", descKey: "home.aiFeature4Desc" }
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -388,8 +365,8 @@ export default function Home() {
                         <item.icon className="w-5 h-5 text-white" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-lg mb-1">{item.title}</h3>
-                        <p className="text-sm text-blue-100">{item.desc}</p>
+                        <h3 className="font-bold text-lg mb-1">{t(item.titleKey)}</h3>
+                        <p className="text-sm text-blue-100">{t(item.descKey)}</p>
                       </div>
                     </div>
                   </motion.div>

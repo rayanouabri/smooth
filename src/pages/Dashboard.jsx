@@ -31,11 +31,13 @@ import CourseCard from "../components/CourseCard";
 import ChatBot from "../components/ChatBot";
 import DashboardSidebar from "../components/DashboardSidebar";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   useEffect(() => {
     loadUser();
@@ -211,28 +213,28 @@ export default function Dashboard() {
           {[
             {
               icon: BookOpen,
-              label: "Cours suivis",
+              labelKey: "dashboard.coursesFollowed",
               value: enrollments.length,
               color: "from-blue-500 to-cyan-500",
               badge: "🎯 Explorer"
             },
             {
               icon: Flame,
-              label: "Série active",
+              labelKey: "dashboard.activeStreak",
               value: `${Math.min(7, enrollments.length)} jours`,
               color: "from-orange-500 to-red-500",
               badge: "🔥 Continue!"
             },
             {
               icon: Trophy,
-              label: "Badges gagnés",
+              labelKey: "dashboard.badgesEarned",
               value: completedEnrollments.length + Math.floor(avgProgress / 25),
               color: "from-yellow-500 to-orange-500",
               badge: "⭐ Top!"
             },
             {
               icon: Zap,
-              label: "Points XP",
+              labelKey: "dashboard.xpPoints",
               value: (completedEnrollments.length * 100) + Math.floor(avgProgress * 10),
               color: "from-purple-500 to-pink-500",
               badge: "🚀 Level " + Math.floor(1 + enrollments.length / 3)
@@ -252,7 +254,7 @@ export default function Dashboard() {
                   <div className="text-2xl font-bold text-gray-900 mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-gray-600 mb-2">{stat.label}</div>
+                  <div className="text-xs text-gray-600 mb-2">{t(stat.labelKey)}</div>
                   <Badge className="text-xs bg-gray-100 text-gray-700 border-0">
                     {stat.badge}
                   </Badge>
