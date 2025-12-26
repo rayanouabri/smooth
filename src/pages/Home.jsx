@@ -112,12 +112,12 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section - Design moderne et élégant */}
-      <section className="relative py-20 md:py-32 bg-gradient-to-b from-white via-indigo-50/30 to-white overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-white via-indigo-50/30 to-white overflow-hidden">
         {/* Décoration moderne */}
         <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-indigo-200/40 to-purple-200/40 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-rose-200/30 to-pink-200/30 rounded-full blur-3xl"></div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -129,7 +129,7 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <Badge className="mb-8 inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0 text-sm font-medium px-5 py-2.5 shadow-lg">
+              <Badge className="mb-6 inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0 text-sm font-medium px-5 py-2.5 shadow-lg">
                 <HeartHandshake className="w-4 h-4" />
                 Votre partenaire de confiance pour réussir en France
               </Badge>
@@ -139,7 +139,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-8 leading-tight tracking-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight"
             >
               Bienvenue en France,
               <br />
@@ -152,7 +152,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed max-w-3xl mx-auto font-light"
+              className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto font-light"
             >
               Formations pratiques, accompagnement humain et communauté solidaire pour maîtriser vos démarches administratives, comprendre la culture française et réussir votre intégration.
             </motion.p>
@@ -161,11 +161,11 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
             >
               {isAuthenticated ? (
                 <Link to={createPageUrl("Dashboard")}>
-                  <Button size="lg" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-7 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5">
+                  <Button size="lg" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5">
                     Accéder à mes cours
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
@@ -173,7 +173,7 @@ export default function Home() {
               ) : (
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-7 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5"
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5"
                   onClick={() => redirectToLogin(window.location.href)}
                 >
                   Commencer gratuitement
@@ -181,7 +181,7 @@ export default function Home() {
                 </Button>
               )}
               <Link to={createPageUrl("Courses")}>
-                <Button size="lg" variant="outline" className="border-2 border-gray-300 hover:border-indigo-400 px-10 py-7 text-lg font-semibold hover:bg-gray-50 transition-all">
+                <Button size="lg" variant="outline" className="border-2 border-gray-300 hover:border-indigo-400 px-10 py-6 text-lg font-semibold hover:bg-gray-50 transition-all">
                   Découvrir les formations
                   <BookOpen className="ml-2 w-5 h-5" />
                 </Button>
@@ -192,7 +192,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-600"
+              className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600"
             >
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
                 <CheckCircle className="w-5 h-5 text-green-500" />
@@ -212,13 +212,13 @@ export default function Home() {
       </section>
 
       {/* Section : Deux parcours - Design moderne */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-10"
           >
             <Badge className="mb-4 inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 border-0 text-sm font-medium px-5 py-2">
               <Target className="w-4 h-4" />
@@ -323,7 +323,7 @@ export default function Home() {
       </section>
 
       {/* Section IA - Design moderne */}
-      <section className="py-24 bg-gradient-to-br from-indigo-50 via-purple-50/50 to-pink-50 relative overflow-hidden">
+      <section className="py-12 md:py-16 bg-gradient-to-br from-indigo-50 via-purple-50/50 to-pink-50 relative overflow-hidden">
         {/* Décoration subtile */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-indigo-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
@@ -348,7 +348,7 @@ export default function Home() {
                 Besoin d'aide immédiate ? Notre assistante IA Sophie répond à toutes vos questions sur les démarches administratives, les cours et la culture française, à tout moment et partout.
               </p>
               
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 mb-6">
                 {[
                   { icon: FileText, text: "Décryptage de documents administratifs en temps réel" },
                   { icon: MessageCircle, text: "Réponses instantanées à toutes vos questions" },
@@ -414,7 +414,7 @@ export default function Home() {
                   </div>
 
                   {/* Messages */}
-                  <div className="space-y-4 mb-6">
+                  <div className="space-y-3 mb-5">
                     <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl rounded-tl-sm p-4 shadow-sm">
                       <p className="text-sm text-gray-800">
                         💡 Bonjour ! Je suis Sophie, votre assistante. Comment puis-je vous aider aujourd'hui ?
@@ -454,9 +454,9 @@ export default function Home() {
       </section>
 
       {/* Section : Nos formations par catégorie */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-indigo-50">
+      <section className="py-12 md:py-16 bg-gradient-to-br from-gray-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <Badge className="mb-4 bg-indigo-100 text-indigo-700 border-0 text-base px-6 py-2">
               <GraduationCap className="w-4 h-4 mr-2 inline" />
               Formations complètes
@@ -557,9 +557,9 @@ export default function Home() {
       </section>
 
       {/* Section : Pourquoi nous choisir */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Pourquoi choisir FrancePrepAcademy ?
             </h2>
@@ -610,9 +610,9 @@ export default function Home() {
       </section>
 
       {/* Section : Comment ça marche */}
-      <section className="py-20 bg-gradient-to-br from-indigo-50 to-white">
+      <section className="py-12 md:py-16 bg-gradient-to-br from-indigo-50 to-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <Badge className="mb-4 bg-indigo-100 text-indigo-700 border-0 text-base px-6 py-2">
               <Target className="w-4 h-4 mr-2 inline" />
               Simple et efficace
@@ -654,9 +654,9 @@ export default function Home() {
       </section>
 
       {/* Section : Témoignages */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <Badge className="mb-4 bg-amber-100 text-amber-700 border-0 text-base px-6 py-2">
               <Star className="w-4 h-4 mr-2 inline" />
               Ils nous font confiance
@@ -699,7 +699,7 @@ export default function Home() {
       </section>
 
       {/* Section : Social Proof */}
-      <section className="py-16 bg-gradient-to-br from-indigo-50 to-rose-50">
+      <section className="py-12 md:py-14 bg-gradient-to-br from-indigo-50 to-rose-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             {[
@@ -726,9 +726,9 @@ export default function Home() {
       </section>
 
       {/* Section : Offres */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <Badge className="mb-4 bg-indigo-100 text-indigo-700 border-0 text-base px-6 py-2">
               <Coffee className="w-4 h-4 mr-2 inline" />
               Choisissez votre formule
@@ -805,7 +805,7 @@ export default function Home() {
       </section>
 
       {/* CTA Final */}
-      <section className="py-20 bg-gradient-to-br from-indigo-600 to-indigo-800 text-white">
+      <section className="py-12 md:py-16 bg-gradient-to-br from-indigo-600 to-indigo-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
