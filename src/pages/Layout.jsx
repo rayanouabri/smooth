@@ -245,63 +245,69 @@ export default function Layout({ children, currentPageName }) {
             </button>
           </div>
 
-          {/* Mobile menu */}
+          {/* Mobile menu - Design amélioré */}
           {mobileMenuOpen && (
-            <div className="lg:hidden py-4 border-t border-gray-200">
-              <div className="flex flex-col space-y-2">
+            <div className="lg:hidden fixed inset-0 top-[70px] bg-white z-50 overflow-y-auto shadow-2xl">
+              <div className="px-4 py-6 space-y-1">
                 {navLinks.map((link) => (
                   <Link key={link.page} to={createPageUrl(link.page)}>
                     <Button
-                      variant="ghost"
-                      className="w-full justify-start"
+                      variant={currentPageName === link.page ? "default" : "ghost"}
+                      className={`w-full justify-start h-12 text-base ${
+                        currentPageName === link.page 
+                          ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white" 
+                          : "hover:bg-gray-100"
+                      }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {link.name}
                     </Button>
                   </Link>
                 ))}
-                {isAuthenticated ? (
-                  <>
-                    <Link to={createPageUrl("Dashboard")}>
+                <div className="border-t border-gray-200 my-4 pt-4">
+                  {isAuthenticated ? (
+                    <>
+                      <Link to={createPageUrl("Dashboard")}>
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-start h-12 text-base hover:bg-gray-100"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          📊 Tableau de bord
+                        </Button>
+                      </Link>
+                      <Link to={createPageUrl("Profile")}>
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-start h-12 text-base hover:bg-gray-100"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          👤 Mon profil
+                        </Button>
+                      </Link>
                       <Button
                         variant="ghost"
-                        className="w-full justify-start"
-                        onClick={() => setMobileMenuOpen(false)}
+                        className="w-full justify-start h-12 text-base hover:bg-red-50 text-red-600"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          handleLogout();
+                        }}
                       >
-                        Tableau de bord
+                        🚪 Déconnexion
                       </Button>
-                    </Link>
-                    <Link to={createPageUrl("Profile")}>
-                      <Button
-                        variant="ghost"
-                        className="w-full justify-start"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        Mon profil
-                      </Button>
-                    </Link>
+                    </>
+                  ) : (
                     <Button
-                      variant="ghost"
-                      className="w-full justify-start"
+                      className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white h-12 text-base font-semibold shadow-lg"
                       onClick={() => {
                         setMobileMenuOpen(false);
-                        handleLogout();
+                        redirectToLogin(window.location.href);
                       }}
                     >
-                      Déconnexion
+                      Commencer gratuitement
                     </Button>
-                  </>
-                ) : (
-                  <Button
-                    className="bg-blue-900 hover:bg-blue-800"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      redirectToLogin(window.location.href);
-                    }}
-                  >
-                    Commencer gratuitement
-                  </Button>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           )}

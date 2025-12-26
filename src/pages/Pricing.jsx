@@ -374,15 +374,6 @@ export default function Pricing() {
                 </CardHeader>
 
                 <CardContent className="pt-8 pb-8">
-                  {plan.highlighted && plan.popular && (
-                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3">
-                      <Shield className="w-6 h-6 text-green-600 flex-shrink-0" />
-                      <div>
-                        <div className="font-bold text-green-900 text-sm">Satisfait ou remboursé</div>
-                        <div className="text-xs text-green-700">Garantie qualité</div>
-                      </div>
-                    </div>
-                  )}
 
                   {plan.isVip && (
                     <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg flex items-center gap-3">
@@ -588,10 +579,6 @@ export default function Pricing() {
               {
                 q: "Puis-je changer de formule à tout moment ?",
                 a: "Oui ! Vous pouvez passer de Gratuit à Premium ou Ultimate VIP instantanément, ou passer d'une formule à l'autre selon vos besoins. Vous pouvez aussi annuler votre abonnement à tout moment depuis votre profil."
-              },
-              {
-                q: "Y a-t-il une garantie satisfait ou remboursé ?",
-                a: "Absolument. Si Premium ou Ultimate VIP ne vous convient pas dans les 30 premiers jours, nous vous remboursons intégralement, sans poser de questions. C'est notre garantie qualité."
               },
               {
                 q: "Que se passe-t-il si j'annule mon abonnement ?",

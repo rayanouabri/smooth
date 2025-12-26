@@ -30,7 +30,9 @@ import {
   Smile,
   HandHeart,
   Coffee,
-  Home as HomeIcon
+  Home as HomeIcon,
+  Bot,
+  Languages
 } from "lucide-react";
 import { createPageUrl } from "../utils";
 import { motion } from "framer-motion";
@@ -52,21 +54,21 @@ export default function Home() {
     {
       name: "Thomas",
       origin: "Étudiant Canadien",
-      text: "Grâce à FrancePrepAcademy, j'ai pu m'installer en France en 2 semaines au lieu de 3 mois. Les formations sont claires et pratiques, et l'accompagnement est incroyable.",
+      text: "Grâce à FrancePrepAcademy, j'ai pu m'installer en France en 2 semaines au lieu de 3 mois. Les tutoriels sont clairs et pratiques, et l'accompagnement est incroyable.",
       rating: 5,
       photo: "👨‍🎓"
     },
     {
       name: "Daniela",
       origin: "Travailleuse internationale",
-      text: "Les cours sont excellents et très pratiques. J'ai appris énormément sur la culture française et les démarches administratives. Je recommande vivement !",
+      text: "Les tutoriels sont excellents et très pratiques. J'ai appris énormément sur la culture française et les démarches administratives. Je recommande vivement !",
       rating: 5,
       photo: "👩‍💼"
     },
     {
       name: "Ahmed",
       origin: "Entrepreneur",
-      text: "L'ouverture de compte bancaire et la recherche de logement ont été expliquées parfaitement. J'ai économisé des semaines de démarches grâce aux formations.",
+      text: "L'ouverture de compte bancaire et la recherche de logement ont été expliquées parfaitement. J'ai économisé des semaines de démarches grâce aux tutoriels.",
       rating: 5,
       photo: "👨‍💻"
     }
@@ -77,7 +79,7 @@ export default function Home() {
       name: "Découverte",
       price: "0€",
       description: "Pour explorer la plateforme",
-      features: ["10 messages IA", "Cours de base", "Accès Forum"],
+      features: ["10 messages IA", "Tutoriels de base", "Accès Forum"],
       icon: "🎓",
       color: "from-gray-500 to-gray-600"
     },
@@ -85,7 +87,7 @@ export default function Home() {
       name: "Premium",
       price: "24,90€",
       description: "Choix de la communauté",
-      features: ["IA ILLIMITÉE", "Accès à tous les cours (200+)", "Forum VIP", "Centre d'aide complet"],
+      features: ["IA ILLIMITÉE", "Accès à tous les tutoriels (200+)", "Forum VIP", "Centre d'aide complet"],
       icon: "⚡",
       color: "from-blue-600 to-indigo-600",
       popular: true
@@ -112,7 +114,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section - Design moderne et élégant */}
-      <section className="relative min-h-screen flex items-start justify-center pt-20 pb-8 bg-gradient-to-b from-white via-indigo-50/30 to-white overflow-hidden">
+      <section className="relative min-h-screen flex items-start justify-center pt-12 pb-4 bg-gradient-to-b from-white via-indigo-50/30 to-white overflow-hidden">
         {/* Décoration moderne */}
         <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-indigo-200/40 to-purple-200/40 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-rose-200/30 to-pink-200/30 rounded-full blur-3xl"></div>
@@ -129,7 +131,7 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <Badge className="mb-3 inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0 text-sm font-medium px-5 py-2.5 shadow-lg">
+              <Badge className="mb-2 inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0 text-sm font-medium px-5 py-2.5 shadow-lg">
                 <HeartHandshake className="w-4 h-4" />
                 Votre partenaire de confiance pour réussir en France
               </Badge>
@@ -139,7 +141,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-3 leading-tight tracking-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-2 leading-tight tracking-tight"
             >
               Bienvenue en France,
               <br />
@@ -152,38 +154,60 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl text-gray-600 mb-5 leading-relaxed max-w-3xl mx-auto font-light"
+              className="text-xl md:text-2xl text-gray-600 mb-4 leading-relaxed max-w-4xl mx-auto font-light"
             >
-              Formations pratiques, accompagnement humain et communauté solidaire pour maîtriser vos démarches administratives, comprendre la culture française et réussir votre intégration.
+              De vos papiers administratifs à la maîtrise de la culture française. Profitez d'un accompagnement sur mesure : tutoriels administratifs et culturels, profs particuliers, IA d'assistance 24/7, experts dédiés à vos démarches administratives, et une communauté soudée pour une intégration réussie.
             </motion.p>
 
+            {/* 4 Piliers */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-5"
+              className="flex flex-wrap items-center justify-center gap-4 md:gap-6 mb-5 text-sm"
             >
-              {isAuthenticated ? (
-                <Link to={createPageUrl("Dashboard")}>
-                  <Button size="lg" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-7 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5">
-                    Accéder à mes cours
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-              ) : (
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-7 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5"
-                  onClick={() => redirectToLogin(window.location.href)}
-                >
-                  Commencer gratuitement
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              )}
-              <Link to={createPageUrl("Courses")}>
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-2 rounded-full shadow-sm">
+                <span className="text-lg">🏛️</span>
+                <span className="font-medium text-gray-700">Admin & Logement</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-2 rounded-full shadow-sm">
+                <span className="text-lg">🗣️</span>
+                <span className="font-medium text-gray-700">Langue & Culture</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-2 rounded-full shadow-sm">
+                <span className="text-lg">🤖</span>
+                <span className="font-medium text-gray-700">IA Intégrée</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-2 rounded-full shadow-sm">
+                <span className="text-lg">🤝</span>
+                <span className="font-medium text-gray-700">Communauté</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-4"
+            >
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-10 py-7 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5"
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    redirectToLogin(window.location.href);
+                  } else {
+                    window.location.href = createPageUrl("Dashboard");
+                  }
+                }}
+              >
+                Lancer mon intégration
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              <Link to={createPageUrl("ExpertOneShot")}>
                 <Button size="lg" variant="outline" className="border-2 border-gray-300 hover:border-indigo-400 px-10 py-7 text-lg font-semibold hover:bg-gray-50 transition-all">
-                  Découvrir les formations
-                  <BookOpen className="ml-2 w-5 h-5" />
+                  Besoin d'un expert ? (Conciergerie)
+                  <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
             </motion.div>
@@ -191,12 +215,12 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.7 }}
               className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600"
             >
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
                 <CheckCircle className="w-5 h-5 text-green-500" />
-                <span className="font-medium">15,000+ étudiants accompagnés</span>
+                <span className="font-medium">Une communauté d'étudiants motivés</span>
               </div>
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
                 <CheckCircle className="w-5 h-5 text-green-500" />
@@ -204,10 +228,103 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
                 <CheckCircle className="w-5 h-5 text-green-500" />
-                <span className="font-medium">Accès immédiat</span>
+                <span className="font-medium">200+ tutoriels disponibles</span>
               </div>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Section : Accompagnement humain et démarches */}
+      <section className="py-12 md:py-16 bg-gradient-to-br from-purple-50 via-indigo-50 to-pink-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <Badge className="mb-4 inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 text-sm font-medium px-5 py-2">
+              <HeartHandshake className="w-4 h-4" />
+              Accompagnement personnalisé
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+              Un assistant humain dédié selon votre abonnement
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Avec nos formules Premium et Ultimate VIP, profitez d'un accompagnement humain et de la réalisation de vos démarches administratives par nos experts.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="border-2 border-purple-200 bg-white">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-purple-100 rounded-xl">
+                    <Users className="w-8 h-8 text-purple-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Assistant humain disponible</h3>
+                </div>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Selon votre abonnement, vous bénéficiez d'un conseiller dédié qui vous accompagne dans toutes vos démarches : CAF, CPAM, Visa, Titre de séjour, recherche d'emploi...
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700">Réponses rapides à vos questions</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700">Vérification de vos documents</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700">Aide au remplissage des formulaires</span>
+                  </li>
+                </ul>
+                <Link to={createPageUrl("Pricing")}>
+                  <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white">
+                    Voir les formules
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-indigo-200 bg-white">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-indigo-100 rounded-xl">
+                    <FileText className="w-8 h-8 text-indigo-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">On fait vos démarches pour vous</h3>
+                </div>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Avec Ultimate VIP et le Pack Expert, nos experts réalisent vos démarches administratives de A à Z. Vous n'avez qu'à signer, on s'occupe du reste.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700">Gestion complète de vos dossiers</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700">Dépôt et suivi des demandes</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700">Intervention rapide en cas de problème</span>
+                  </li>
+                </ul>
+                <Link to={createPageUrl("ExpertOneShot")}>
+                  <Button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white">
+                    Découvrir les services
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
@@ -312,7 +429,7 @@ export default function Home() {
                       }
                     }}
                   >
-                    Accéder aux formations
+                    Accéder aux tutoriels
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </CardContent>
@@ -345,7 +462,7 @@ export default function Home() {
                 <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"> 24h/24</span>
               </h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed font-light">
-                Besoin d'aide immédiate ? Notre assistante IA Sophie répond à toutes vos questions sur les démarches administratives, les cours et la culture française, à tout moment et partout.
+                Besoin d'aide immédiate ? Notre assistante IA Sophie répond à toutes vos questions sur les démarches administratives, les tutoriels et la culture française, à tout moment et partout.
               </p>
               
               <div className="space-y-3 mb-6">
@@ -453,19 +570,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section : Nos formations par catégorie */}
+      {/* Section : Nos tutoriels par catégorie */}
       <section className="py-12 md:py-16 bg-gradient-to-br from-gray-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <Badge className="mb-4 bg-indigo-100 text-indigo-700 border-0 text-base px-6 py-2">
               <GraduationCap className="w-4 h-4 mr-2 inline" />
-              Formations complètes
+              Tutoriels complets
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Plus de 200 formations pour maîtriser la vie en France
+              Plus de 200 tutoriels pour maîtriser la vie en France
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Des cours pratiques et complets, conçus par des experts, pour chaque étape de votre intégration
+              Des tutoriels pratiques et complets, conçus par des experts, pour chaque étape de votre intégration
             </p>
           </div>
 
@@ -475,23 +592,24 @@ export default function Home() {
                 icon: FileText,
                 title: "Administration",
                 description: "CAF, CPAM, Visa, Titre de séjour... Gérer toutes vos démarches avec confiance.",
-                count: "50+ cours",
+                count: "50+ tutoriels",
                 color: "bg-blue-100 text-blue-700",
                 iconColor: "text-blue-600"
               },
               {
-                icon: GraduationCap,
-                title: "Français",
-                description: "DELF, DALF, français professionnel. Progressez rapidement selon votre niveau.",
-                count: "40+ cours",
+                icon: Users,
+                title: "Professeurs particuliers",
+                description: "Apprenez le français avec des profs natifs. Cours particuliers personnalisés pour parler comme un local.",
+                count: "Professeurs natifs",
                 color: "bg-purple-100 text-purple-700",
-                iconColor: "text-purple-600"
+                iconColor: "text-purple-600",
+                linkTo: "Teachers"
               },
               {
                 icon: Briefcase,
                 title: "Carrière",
                 description: "CV, entretiens, réseautage. Développez votre carrière professionnelle en France.",
-                count: "30+ cours",
+                count: "30+ tutoriels",
                 color: "bg-amber-100 text-amber-700",
                 iconColor: "text-amber-600"
               },
@@ -499,7 +617,7 @@ export default function Home() {
                 icon: Globe,
                 title: "Culture & Codes",
                 description: "Comprenez les codes implicites français et intégrez-vous facilement.",
-                count: "35+ cours",
+                count: "35+ tutoriels",
                 color: "bg-green-100 text-green-700",
                 iconColor: "text-green-600"
               },
@@ -507,7 +625,7 @@ export default function Home() {
                 icon: Building2,
                 title: "Logement",
                 description: "Trouver un logement, comprendre les contrats, ouvrir un compte bancaire.",
-                count: "25+ cours",
+                count: "25+ tutoriels",
                 color: "bg-rose-100 text-rose-700",
                 iconColor: "text-rose-600"
               },
@@ -515,7 +633,7 @@ export default function Home() {
                 icon: Shield,
                 title: "Santé",
                 description: "CPAM, mutuelle, remboursements. Maîtrisez le système de santé français.",
-                count: "20+ cours",
+                count: "20+ tutoriels",
                 color: "bg-indigo-100 text-indigo-700",
                 iconColor: "text-indigo-600"
               }
@@ -535,8 +653,8 @@ export default function Home() {
                     <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
                     <Badge variant="outline" className="mb-3 text-xs">{item.count}</Badge>
                     <p className="text-gray-600 text-sm mb-4 leading-relaxed">{item.description}</p>
-                    <Link to={createPageUrl("Courses")} className="text-sm font-semibold text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
-                      Voir les cours
+                    <Link to={createPageUrl(item.linkTo || "Courses")} className="text-sm font-semibold text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
+                      {item.linkTo ? "Voir les professeurs" : "Voir les tutoriels"}
                       <ArrowRight className="w-4 h-4" />
                     </Link>
                   </CardContent>
@@ -548,7 +666,7 @@ export default function Home() {
           <div className="text-center">
             <Link to={createPageUrl("Courses")}>
               <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-6">
-                Explorer toutes les formations (200+)
+                Explorer tous les tutoriels (200+)
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -572,8 +690,8 @@ export default function Home() {
             {[
               {
                 icon: BookOpen,
-                title: "Formations pratiques",
-                description: "Des cours concrets avec des exemples réels, des modèles de documents et des guides pas-à-pas.",
+                title: "Tutoriels pratiques",
+                description: "Des tutoriels concrets avec des exemples réels, des modèles de documents et des guides pas-à-pas.",
                 color: "bg-blue-50"
               },
               {
@@ -585,7 +703,7 @@ export default function Home() {
               {
                 icon: Users,
                 title: "Communauté active",
-                description: "Rejoignez 15,000+ étudiants. Partagez vos expériences et trouvez des réponses ensemble.",
+                description: "Rejoignez une communauté d'étudiants motivés. Partagez vos expériences et trouvez des réponses ensemble.",
                 color: "bg-indigo-50"
               }
             ].map((item, index) => (
@@ -625,8 +743,8 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-6">
             {[
               { step: "1", title: "Inscrivez-vous", desc: "Créer votre compte gratuitement", icon: Smile },
-              { step: "2", title: "Choisissez", desc: "Sélectionnez les formations qui vous intéressent", icon: BookOpen },
-              { step: "3", title: "Apprenez", desc: "Suivez les cours à votre rythme", icon: PlayCircle },
+              { step: "2", title: "Choisissez", desc: "Sélectionnez les tutoriels qui vous intéressent", icon: BookOpen },
+              { step: "3", title: "Apprenez", desc: "Suivez les tutoriels à votre rythme", icon: PlayCircle },
               { step: "4", title: "Réussissez", desc: "Maîtrisez vos démarches et intégrez-vous", icon: Award }
             ].map((item, index) => (
               <motion.div
@@ -703,7 +821,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             {[
-              { number: "15,000+", label: "étudiants accompagnés", icon: Users },
+              { number: "", label: "Une communauté d'étudiants motivés", icon: Users },
               { number: "95%", label: "de réussite aux visas", icon: Award },
               { number: "120", label: "pays représentés", icon: Globe }
             ].map((stat, index) => (
@@ -717,7 +835,7 @@ export default function Home() {
                 <div className="inline-flex p-4 bg-white rounded-full mb-4 shadow-sm">
                   <stat.icon className="w-8 h-8 text-indigo-600" />
                 </div>
-                <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">{stat.number}</div>
+                {stat.number && <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">{stat.number}</div>}
                 <div className="text-lg text-gray-600">{stat.label}</div>
               </motion.div>
             ))}
