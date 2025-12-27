@@ -42,9 +42,9 @@ Génère du SQL INSERT complet pour créer des COURS avec TOUTES leurs LEÇONS a
 | `id` | UUID | Auto | Génère un UUID v4 unique pour chaque leçon |
 | `course_id` | UUID | ✅ Oui | UUID du cours parent (celui que tu viens de créer) |
 | `title` | TEXT | ✅ Oui | Titre clair de la leçon (max 150 caractères) |
-| `content` | TEXT | Non | Contenu en Markdown TRÈS DÉTAILLÉ (minimum 800 mots) |
+ | `content` | TEXT | Non | Contenu en Markdown TRÈS DÉTAILLÉ (MINIMUM 1000 mots) |
 | `order` | INTEGER | Non | Numéro d'ordre (1, 2, 3, 4...) - Commence à 1 pour chaque cours |
-| `duration_minutes` | INTEGER | Non | Durée estimée en minutes (entre 10 et 60) |
+ | `duration_minutes` | INTEGER | Non | Durée estimée en minutes (entre 30 et 90) |
 | `video_url` | TEXT | Non | Laisse NULL |
 | `resources` | JSONB | Non | Array JSON ou '[]'::jsonb |
 | `created_date` | TIMESTAMPTZ | Auto | Laisse la valeur par défaut |
@@ -153,13 +153,13 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, v
 (
   'UUID-LECON-1',
   'UUID-COURS-1',
-  'Titre Leçon 1',
-  '# Titre Leçon 1
-
-Contenu Markdown très détaillé (800+ mots)...
-',
-  1,
-  25,
+   'Titre Leçon 1',
+   '# Titre Leçon 1
+ 
+ Contenu Markdown très détaillé (MINIMUM 1000 mots) avec beaucoup de liens vers sites officiels...
+ ',
+   1,
+   45,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -168,13 +168,13 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, v
 (
   'UUID-LECON-2',
   'UUID-COURS-1',
-  'Titre Leçon 2',
-  '# Titre Leçon 2
-
-Contenu Markdown très détaillé...
-',
-  2,
-  30,
+   'Titre Leçon 2',
+   '# Titre Leçon 2
+ 
+ Contenu Markdown très détaillé (MINIMUM 1000 mots) avec beaucoup de liens vers sites officiels...
+ ',
+   2,
+   60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -193,8 +193,8 @@ INSERT INTO lessons (...) VALUES (...) ON CONFLICT (id) DO NOTHING;
    - Réinitialise l'ordre à 1 pour chaque nouveau cours
 
 5. **Durées** :
-   - Estime `duration_minutes` entre 15 et 45 minutes par leçon
-   - Calcule `duration_hours` = somme des minutes / 60 (arrondi)
+   - Estime `duration_minutes` entre 30 et 90 minutes par leçon (30 min = 30, 1h30 = 90)
+   - Calcule `duration_hours` = somme des minutes / 60 (arrondi au supérieur)
 
 6. **Slugs** : 
    - Pas d'espaces, uniquement minuscules
@@ -208,22 +208,29 @@ INSERT INTO lessons (...) VALUES (...) ON CONFLICT (id) DO NOTHING;
 8. **Objectifs** : Génère 4 objectifs pertinents au format JSON array
 
 9. **Qualité du contenu des leçons** :
-   - MINIMUM 800 mots par leçon
+   - MINIMUM 1000 mots par leçon (très important !)
    - Très détaillé et actionnable
    - Adapté aux étudiants internationaux
    - Langue française claire et accessible
    - Exemples concrets et réalistes
+   - **BEAUCOUP de redirections vers les sites officiels** : CAF, CPAM, Préfecture, sites gouvernementaux, etc.
+   - Ne pas hésiter à citer les organisations d'État (CAF, CPAM, Ministère de l'Intérieur, etc.)
+   - Design soigné avec emojis appropriés (🏛️ 📋 ✅ ⚠️ 💡 🔗)
+   - Utilise des sections bien structurées avec sous-sections
+
+10. **Prix** :
+   - TOUJOURS mettre `price = 0` (gratuit) - Ne pas demander ou varier le prix
+   - L'utilisateur modifiera lui-même si nécessaire
 
 ## FORMAT D'ENTRÉE QUE JE VAIS TE DONNER
 
 Quand je te fournis une structure comme :
 
 ```
-CATÉGORIE: Integration Administrative
-  COURS: Guide CAF
-    Niveau: intermediaire
-    Prix: 0 (gratuit)
-    Leçons:
+ CATÉGORIE: Integration Administrative
+   COURS: Guide CAF
+     Niveau: intermediaire
+     Leçons:
       1. Introduction à la CAF et aux APL
       2. Vérifier votre éligibilité aux APL
       3. Documents à préparer pour votre demande
@@ -231,10 +238,9 @@ CATÉGORIE: Integration Administrative
       5. Remplir votre demande d'APL étape par étape
       6. Suivre et gérer votre dossier CAF
 
-  COURS: Guide CPAM
-    Niveau: intermediaire
-    Prix: 0 (gratuit)
-    Leçons:
+   COURS: Guide CPAM
+     Niveau: intermediaire
+     Leçons:
       1. Introduction à la CPAM
       2. S'inscrire à la Sécurité Sociale
       3. Choisir sa mutuelle complémentaire
@@ -265,21 +271,21 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'fr',
   3,
   0,
-  'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=1',
-  '["Comprendre le système CAF et les APL", "Vérifier votre éligibilité", "Préparer votre dossier complet", "Suivre votre demande efficacement"]'::jsonb,
-  '[]'::jsonb,
-  TRUE,
-  4.6,
-  320,
-  2100
-) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
+   'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&sig=1',
+   '["Comprendre le système CAF et les APL", "Vérifier votre éligibilité", "Préparer votre dossier complet", "Suivre votre demande efficacement"]'::jsonb,
+   '[]'::jsonb,
+   TRUE,
+   4.6,
+   320,
+   2100
+ ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
-INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
-(
-  'f1e2d3c4-b5a6-4789-0123-456789abcdef',
-  'a1b2c3d4-e5f6-4789-a012-3456789abcde',
-  'Introduction à la CAF et aux APL',
-  '# Introduction à la CAF et aux APL
+ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
+ (
+   'f1e2d3c4-b5a6-4789-0123-456789abcdef',
+   'a1b2c3d4-e5f6-4789-a012-3456789abcde',
+   'Introduction à la CAF et aux APL',
+   '# Introduction à la CAF et aux APL
 
 ## Pourquoi c''est important ?
 
@@ -299,6 +305,8 @@ Les APL peuvent représenter jusqu''à 200€ par mois d''aide, ce qui est un mo
 
 La CAF gère plusieurs types d''aides sociales en France, mais pour les étudiants internationaux, l''aide la plus pertinente est l''APL (Aide Personnalisée au Logement). Cette aide est destinée à réduire le coût de votre loyer et de vos charges.
 
+🔗 [Site officiel de la CAF](https://www.caf.fr) - Accédez à toutes les informations officielles
+
 ## Qu''est-ce que la CAF ?
 
 La CAF est un organisme public qui dépend de la branche Famille de la Sécurité Sociale. Elle gère :
@@ -307,12 +315,16 @@ La CAF est un organisme public qui dépend de la branche Famille de la Sécurit�
 - Le RSA (Revenu de Solidarité Active)
 - Le Complément de Libre Choix d''Activité
 
+🔗 [Présentation officielle de la CAF](https://www.caf.fr/caf-de-paris/je-suis/etudiant) - Section dédiée aux étudiants
+
 ## Les aides au logement
 
 Il existe trois types d''aides au logement :
 1. **APL (Aide Personnalisée au Logement)** : Pour les logements conventionnés (résidences étudiantes, foyers, logements sociaux)
 2. **ALF (Allocation de Logement Familiale)** : Pour les logements non conventionnés si vous avez des charges de famille
 3. **ALS (Allocation de Logement Sociale)** : Pour les logements non conventionnés sans charges de famille
+
+🔗 [Guide officiel des aides au logement](https://www.caf.fr/aides-et-services/aides-au-logement) - Documentation complète de la CAF
 
 ## Pourquoi l''APL est importante pour vous
 
@@ -330,11 +342,16 @@ Pour être éligible aux APL, vous devez généralement :
 - Avoir des ressources inférieures à un certain plafond
 - Résider en France de manière stable
 
+🔗 [Conditions d''éligibilité officielles](https://www.caf.fr/aides-et-services/aides-au-logement/l-aide-personnalisee-au-logement-apl) - Page officielle sur les conditions APL
+
 ## 💡 Conseils pratiques
 
 - Vérifiez avant de signer votre bail si le logement est conventionné CAF
 - Les résidences étudiantes (CROUS, privées) sont souvent éligibles
 - Vous pouvez faire une simulation sur le site caf.fr avant de faire votre demande
+
+🔗 [Simulateur d''aides CAF](https://www.caf.fr/simulateur) - Calculez votre aide potentielle
+🔗 [Liste des logements conventionnés](https://www.caf.fr/aides-et-services/aides-au-logement/les-logements-conventionnes) - Vérifiez si votre logement est éligible
 
 ## ⚠️ Pièges à éviter
 
@@ -342,18 +359,24 @@ Pour être éligible aux APL, vous devez généralement :
 - L''APL n''est pas automatique : vous devez faire une demande
 - Certains logements privés ne sont pas éligibles à l''APL
 
-## Ressources utiles
+## 📚 Ressources officielles
 
-- [Site officiel CAF](https://www.caf.fr)
-- [Simulateur d''aides](https://www.caf.fr/simulateur)
-- [Carte des CAF par département](https://www.caf.fr)
+- 🔗 [Site officiel CAF](https://www.caf.fr) - Portail principal
+- 🔗 [Créer votre compte CAF](https://www.caf.fr/actualites/2021/creer-votre-compte-ou-vous-identifier) - Inscription en ligne
+- 🔗 [Simulateur d''aides](https://www.caf.fr/simulateur) - Calculez votre aide
+- 🔗 [FAQ officielle CAF](https://www.caf.fr/aides-et-services/aides-au-logement/faq-apl) - Questions fréquentes
+- 🔗 [Carte des CAF par département](https://www.caf.fr/caf-de-paris/contacts) - Trouvez votre CAF locale
+- 🔗 [Espace personnel CAF](https://www.caf.fr/mon-compte) - Suivez vos dossiers en ligne
+- 🔗 [Formulaire de demande APL](https://www.caf.fr/aides-et-services/aides-au-logement/comprendre-les-aides-au-logement) - Guide de la demande
 
 ## Résumé
 
 La CAF propose des aides au logement, notamment l''APL, qui peut réduire significativement vos frais de logement. Cette aide est accessible aux étudiants internationaux sous certaines conditions. Dans les prochaines leçons, vous apprendrez à vérifier votre éligibilité, préparer votre dossier et faire votre demande.
+
+🔗 Retrouvez toutes les informations sur [www.caf.fr](https://www.caf.fr)
 ',
-  1,
-  25,
+   1,
+   45,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -367,9 +390,12 @@ La CAF propose des aides au logement, notamment l''APL, qui peut réduire signif
 2. Pour chaque cours, crée d''abord le INSERT courses, puis TOUTES ses leçons
 3. Utilise des UUIDs uniques pour chaque élément
 4. Double TOUTES les apostrophes
-5. Génère du contenu TRÈS DÉTAILLÉ (800+ mots par leçon minimum)
-6. Réponds UNIQUEMENT avec le code SQL, sans explications
-7. Sépare chaque cours par une ligne vide avec un commentaire -- COURS X
+5. Génère du contenu TRÈS DÉTAILLÉ (MINIMUM 1000 mots par leçon)
+6. Inclus BEAUCOUP de liens vers sites officiels (CAF, CPAM, Préfecture, sites gouvernementaux)
+7. TOUJOURS mettre price = 0 (gratuit) - ne pas demander ou varier
+8. Réponds UNIQUEMENT avec le code SQL, sans explications
+9. Sépare chaque cours par une ligne vide avec un commentaire -- COURS X
+10. Inclus au moins 5-10 liens vers sites officiels par leçon
 
 PRÊT ? Envoie-moi maintenant ta structure (catégories > cours > leçons) et je génère tout le SQL !
 ```
@@ -383,11 +409,10 @@ PRÊT ? Envoie-moi maintenant ta structure (catégories > cours > leçons) et je
 Organisez vos cours dans ce format :
 
 ```
-CATÉGORIE: integration_administrative
-  COURS: Guide CAF
-    Niveau: intermediaire
-    Prix: 0
-    Leçons:
+ CATÉGORIE: integration_administrative
+   COURS: Guide CAF
+     Niveau: intermediaire
+     Leçons:
       1. Introduction à la CAF
       2. Vérifier l'éligibilité
       3. Documents nécessaires
@@ -395,20 +420,18 @@ CATÉGORIE: integration_administrative
       5. Remplir la demande
       6. Suivre son dossier
 
-  COURS: Guide CPAM
-    Niveau: intermediaire
-    Prix: 0
-    Leçons:
+   COURS: Guide CPAM
+     Niveau: intermediaire
+     Leçons:
       1. Introduction CPAM
       2. S'inscrire
       3. Choisir mutuelle
       4. Comprendre remboursements
 
-CATÉGORIE: logement
-  COURS: Trouver un logement étudiant
-    Niveau: debutant
-    Prix: 0
-    Leçons:
+ CATÉGORIE: logement
+   COURS: Trouver un logement étudiant
+     Niveau: debutant
+     Leçons:
       1. Où chercher
       2. Types de logements
       3. Comprendre le bail
@@ -433,7 +456,11 @@ CATÉGORIE: logement
 ## ✅ AVANTAGES DE CE PROMPT :
 
 - ✅ Génère TOUT en une seule fois (cours + leçons)
-- ✅ Contenu très détaillé (800+ mots par leçon)
+- ✅ Contenu très détaillé (MINIMUM 1000 mots par leçon)
+- ✅ Nombreuses références vers sites officiels (CAF, CPAM, Préfecture, etc.)
+- ✅ Durée réaliste (30 min à 1h30 par leçon)
+- ✅ Tout gratuit par défaut (price = 0)
+- ✅ Design soigné avec emojis et structure claire
 - ✅ SQL prêt à exécuter directement
 - ✅ Format cohérent et professionnel
 - ✅ Gestion automatique des UUIDs
