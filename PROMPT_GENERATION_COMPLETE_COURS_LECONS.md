@@ -105,10 +105,15 @@ Conseils concrets et actionnables.
 
 Erreurs courantes et comment les éviter.
 
-## Ressources utiles
+## 📚 Ressources officielles
 
-- [Nom du lien](https://url.com)
-- Documentation officielle
+- 🔗 [Site officiel de l'organisme](https://exemple.gouv.fr) - Portail principal
+- 🔗 [Guide officiel PDF](https://exemple.gouv.fr/guide.pdf) - Documentation complète
+- 🔗 [Simulateur en ligne](https://exemple.gouv.fr/simulateur) - Calculez vos droits
+- 🔗 [FAQ officielle](https://exemple.gouv.fr/faq) - Questions fréquentes
+- 🔗 [Contact et assistance](https://exemple.gouv.fr/contact) - Aide et support
+- 🔗 [Formulaire en ligne](https://exemple.gouv.fr/formulaire) - Faire une demande
+- 🔗 [Espace personnel](https://exemple.gouv.fr/mon-compte) - Suivre vos dossiers
 
 ## Résumé
 
