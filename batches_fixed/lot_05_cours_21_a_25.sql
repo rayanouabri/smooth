@@ -120,8 +120,8 @@ L''état des lieux d''entrée est le moment le plus important de votre location 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Tester l''eau, l''électricité et les ouvertures',
   '# Tester l''eau, l''électricité et les ouvertures
 
@@ -181,8 +181,8 @@ Tester minutieusement les installations d''eau, d''électricité et toutes les o
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Prendre des photos de tout (défauts)',
   '# Prendre des photos de tout (défauts)
 
@@ -261,8 +261,8 @@ Prendre des photos et des vidéos datées de tous les défauts, même minimes, e
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Signer et récupérer sa copie',
   '# Signer et récupérer sa copie
 
@@ -360,8 +360,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 23
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'L''obligation légale d''assurance',
   '# L''obligation légale d''assurance
 
@@ -449,8 +449,8 @@ L''assurance habitation est une obligation légale et une nécessité absolue po
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Responsabilité Civile vs Multirisque',
   '# Responsabilité Civile vs Multirisque
 
@@ -539,8 +539,8 @@ La Responsabilité Civile Locative est l''assurance habitation minimum légaleme
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Comparer les offres (Banques vs Assureurs en ligne)',
   '# Comparer les offres (Banques vs Assureurs en ligne)
 
@@ -622,8 +622,8 @@ Comparer les offres d''assurance habitation entre les banques, les assureurs tra
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Obtenir son attestation',
   '# Obtenir son attestation d''assurance habitation
 
@@ -825,8 +825,8 @@ Relever les compteurs d''électricité et de gaz (et eau si individualisée) à 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Choisir son fournisseur (EDF, Total, Engie...)',
   '# Choisir son fournisseur (EDF, Total, Engie...)
 
@@ -908,8 +908,8 @@ Choisir son fournisseur d''électricité et de gaz en France est une démarche i
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Comprendre les heures creuses / heures pleines',
   '# Comprendre les heures creuses / heures pleines
 
@@ -994,8 +994,8 @@ Comprendre le système d''heures creuses et heures pleines est crucial pour opti
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Le compteur Linky : Comment ça marche',
   '# Le compteur Linky : Comment ça marche
 
