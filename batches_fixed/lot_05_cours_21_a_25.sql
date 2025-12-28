@@ -1104,8 +1104,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 25
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'c3d4e5f6-a7b8-4901-c2d3-e4f5a6b7c8d9',
+  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
   'Tester l''éligibilité de son adresse',
   '# Tester l''éligibilité de son adresse
 
