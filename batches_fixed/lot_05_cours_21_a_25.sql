@@ -1181,8 +1181,8 @@ Tester l''éligibilité de votre adresse est la première étape indispensable p
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'd4e5f6a7-b8c9-4012-d3e4-f5a6b7c8d9e0',
+  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
   'Box vs Forfait 4G/5G',
   '# Box vs Forfait 4G/5G
 
@@ -1252,8 +1252,8 @@ Le choix entre une Box Internet (Fibre/ADSL) et un forfait 4G/5G est crucial pou
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'e5f6a7b8-c9d0-4012-e4f5-a6b7c8d9e0f1',
+  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
   'L''installation : Rendez-vous technicien',
   '# L''installation : Rendez-vous technicien
 
@@ -1340,8 +1340,8 @@ L''installation de votre Box Internet (Fibre ou ADSL) nécessite souvent un rend
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f6a7b8c9-d0e1-4012-f5a6-b7c8d9e0f1a2',
+  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
   'Résiliation : Attention aux frais',
   '# Résiliation : Attention aux frais
 
