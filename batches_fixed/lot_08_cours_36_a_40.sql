@@ -14,13 +14,21 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Déclarer son Médecin Traitant : Le guide pour être bien remboursé',
   'declarer-medecin-traitant-guide-bien-rembourse',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux affiliés à la Sécurité Sociale française. Déclarer un "médecin traitant" est un geste simple, mais absolument crucial pour être bien remboursé de vos frais de santé et bénéficier du "parcours de soins coordonnés". Ne pas le faire entraîne une pénalisation systématique de vos remboursements, vous faisant payer plus cher chaque consultation. Nous vous expliquerons pourquoi c''est obligatoire pour un remboursement optimal, comment demander à un médecin de devenir votre traitant, et la procédure de déclaration en ligne lors de la consultation. Maîtriser cette démarche est essentiel pour optimiser votre budget santé et accéder aux soins au meilleur coût en France.',
-  'Déclarez votre médecin traitant : obligatoire pour un bon remboursement Sécu ! Comment choisir, demander, déclarer en ligne. Optimisez vos frais de santé.',
+  'Déclarez votre médecin traitant : obligatoire pour un bon remboursement Sécu ! Comment choisir,
+  demander,
+  déclarer en ligne. Optimisez vos frais de santé.',
   'sante',
   'debutant',
   'fr',
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la nécessité de déclarer un médecin traitant pour un bon remboursement", "Savoir comment choisir et demander à un médecin de devenir son traitant", "Maîtriser la procédure de déclaration en ligne (ou papier) lors de la consultation", "Identifier les conséquences du non-respect du parcours de soins coordonnés"]'::jsonb,
   '["Avoir votre numéro définitif de Sécurité Sociale (NIR) et votre Carte Vitale"]'::jsonb,
+  4,
+  0,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 37
@@ -224,16 +232,26 @@ La déclaration de votre médecin traitant se fait généralement en ligne par l
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Comprendre les remboursements de santé : Base, Ticket Modérateur, Ameli',
+  'Comprendre les remboursements de santé : Base,
+  Ticket Modérateur,
+  Ameli',
   'comprendre-remboursements-sante-base-ticket-moderateur-ameli',
   'Ce cours est essentiel pour tous les étudiants internationaux affiliés à la Sécurité Sociale française. Comprendre comment vos frais de santé sont remboursés, quelles sont les parts prises en charge par l''Assurance Maladie et la mutuelle, et comment suivre ces remboursements est absolument crucial. Nous vous expliquerons les notions de "Base de Remboursement de la Sécu" (BRSS), de "Ticket Modérateur" (la partie qui reste à votre charge), et comment utiliser votre espace `ameli.fr` pour suivre vos paiements. Une bonne compréhension de ce processus est fondamentale pour gérer votre budget santé, éviter les surprises et vous assurer que vous bénéficiez pleinement de vos droits. ',
-  'Remboursements santé : BRSS, Ticket Modérateur, Ameli.fr. Suivez vos remboursements et maîtrisez votre budget santé !',
+  'Remboursements santé : BRSS,
+  Ticket Modérateur,
+  Ameli.fr. Suivez vos remboursements et maîtrisez votre budget santé !',
   'sante',
   'intermediaire',
   'fr',
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la Base de Remboursement de la Sécurité Sociale (BRSS)", "Identifier ce qu''est le Ticket Modérateur et la part qui reste à charge", "Savoir comment utiliser son espace personnel ameli.fr pour suivre ses remboursements", "Maîtriser les conseils pour optimiser la réception de ses remboursements"]'::jsonb,
   '["Avoir votre numéro définitif de Sécurité Sociale (NIR) et une Carte Vitale"]'::jsonb,
+  4,
+  0,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 38
@@ -461,6 +479,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''importance d''une mutuelle complémentaire santé", "Déterminer si une mutuelle est nécessaire pour votre situation", "Identifier l''éligibilité à la Complémentaire Santé Solidaire (CSS) gratuite", "Savoir comparer les offres de mutuelles étudiantes et classiques"]'::jsonb,
   '["Avoir un numéro de Sécurité Sociale (NIR) en France"]'::jsonb,
+  4,
+  0,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 39
@@ -697,13 +721,21 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Doctolib et prise de RDV : Facilitez votre accès aux soins en France',
   'doctolib-prise-rdv-facilitez-acces-soins-france',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui ont besoin de consulter un médecin ou un spécialiste. Doctolib est la plateforme de prise de rendez-vous médicaux en ligne la plus utilisée, simplifiant considérablement l''accès aux soins. Nous vous expliquerons comment créer votre compte Doctolib, utiliser les filtres de recherche (par langue parlée, spécialité), et comment fonctionne la téléconsultation, une option pratique et de plus en plus courante. Maîtriser Doctolib est absolument crucial pour trouver un professionnel de santé rapidement, prendre rendez-vous efficacement, et gérer votre suivi médical en toute autonomie et sérénité.',
-  'Doctolib : Créez votre compte, filtrez par langue, téléconsultation. Prenez RDV médecin et simplifiez votre accès aux soins en France !',
+  'Doctolib : Créez votre compte,
+  filtrez par langue,
+  téléconsultation. Prenez RDV médecin et simplifiez votre accès aux soins en France !',
   'sante',
   'debutant',
   'fr',
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''utilité et le fonctionnement de Doctolib", "Savoir créer et gérer son compte personnel Doctolib", "Maîtriser les filtres de recherche (spécialité, langues parlées, nouveaux patients)", "Découvrir et utiliser la téléconsultation pour un accès rapide aux soins"]'::jsonb,
   '["Avoir un numéro de Sécurité Sociale (NIR) et une adresse en France"]'::jsonb,
+  4,
+  0,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 40
@@ -933,13 +965,26 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Urgences et Numéros utiles en France : Votre guide de sécurité',
   'urgences-numeros-utiles-france-guide-securite',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France. Connaître les numéros d''urgence et savoir comment réagir en cas d''urgence médicale, d''accident, de détresse ou de danger est absolument crucial pour votre sécurité et celle de votre entourage. Nous vous détaillerons les numéros essentiels (15 SAMU, 18 Pompiers, 112 Europe), les alternatives aux urgences (SOS Médecins pour les consultations à domicile), et l''importance de connaître la pharmacie de garde. Maîtriser ces informations est fondamental pour réagir efficacement en cas de situation critique et garantir votre sécurité et votre bien-être sur le territoire français.',
-  'Urgences France : 15 SAMU, 18 Pompiers, 112 Europe. SOS Médecins, pharmacie de garde. Votre guide pour agir vite et en sécurité !',
+  'Urgences France : 15 SAMU,
+  18 Pompiers,
+  112 Europe. SOS Médecins,
+  pharmacie de garde. Votre guide pour agir vite et en sécurité !',
   'sante',
   'debutant',
   'fr',
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Connaître les numéros d''urgence essentiels (SAMU, Pompiers, Europe)", "Savoir quand appeler les urgences et comment communiquer", "Identifier les alternatives aux urgences hospitalières (SOS Médecins)", "Maîtriser les conseils pour trouver une pharmacie de garde"]'::jsonb,
   '[]'::jsonb,
+  TRUE,
+  4.5,
+  100,
+  500,
+  4,
+  0,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 41

@@ -14,13 +14,21 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Ouvrir un compte bancaire en France : Guide pas à pas pour étrangers',
   'ouvrir-compte-bancaire-france-guide-etrangers',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux et nouveaux résidents en France. L''ouverture d''un compte bancaire français est une démarche absolument cruciale : elle est indispensable pour recevoir vos aides sociales (APL de la CAF), vos salaires (job étudiant), payer vos loyers, et gérer votre budget au quotidien. Ne pas avoir de compte français complique considérablement votre installation. Nous vous détaillerons les justificatifs requis (passeport, titre de séjour, domicile), le processus de rendez-vous en agence ou d''inscription en ligne, et le contrat qui vous lie à la banque. Maîtriser cette ouverture de compte est fondamental pour votre autonomie financière et une intégration réussie en France.',
-  'Ouvrir un compte bancaire en France : justificatifs (passeport, titre de séjour), rendez-vous, contrat. Indispensable pour votre argent et vos aides !',
+  'Ouvrir un compte bancaire en France : justificatifs (passeport, titre de séjour),
+  rendez-vous,
+  contrat. Indispensable pour votre argent et vos aides !',
   'budget_finances',
   'debutant',
   'fr',
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la nécessité d''un compte bancaire français", "Identifier les justificatifs requis pour l''ouverture d''un compte", "Maîtriser les étapes de l''ouverture de compte (en agence ou en ligne)", "Décrypter la convention de compte et ses principales clauses"]'::jsonb,
   '["Avoir un passeport et un titre de séjour valide en France"]'::jsonb,
+  4,
+  0,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 47
@@ -260,6 +268,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la composition d''un RIB (IBAN, BIC/SWIFT)", "Savoir où trouver et télécharger son RIB (espace client, chéquier)", "Identifier les situations où le RIB est demandé (salaires, APL, prélèvements)", "Maîtriser les conseils pour transmettre son RIB en toute sécurité"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
+  4,
+  0,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 48
@@ -479,16 +493,25 @@ Le RIB contient des informations suffisantes pour initier des prélèvements aut
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Carte bancaire en France : Débit immédiat, différé et plafonds',
+  'Carte bancaire en France : Débit immédiat,
+  différé et plafonds',
   'carte-bancaire-france-debit-immediat-differe-plafonds',
   'Ce cours est essentiel pour tous les étudiants internationaux qui vont utiliser une carte bancaire en France. Le choix de votre carte, notamment entre le "débit immédiat" et le "débit différé", ainsi que la compréhension de vos "plafonds" de paiement et de retrait, ont un impact direct sur la gestion de votre budget. Ne pas maîtriser ces options peut entraîner des découverts bancaires, des paiements refusés, ou des difficultés à retirer de l''argent en cas de besoin. Nous vous expliquerons les différences entre les types de débit, le fonctionnement du paiement "sans contact" et ses limites, et comment gérer vos plafonds. Maîtriser sa carte bancaire est absolument crucial pour une gestion financière autonome et sereine en France.',
-  'Carte bancaire France : débit immédiat/différé, sans contact, plafonds. Maîtrisez votre carte pour un budget serein !',
+  'Carte bancaire France : débit immédiat/différé,
+  sans contact,
+  plafonds. Maîtrisez votre carte pour un budget serein !',
   'budget_finances',
   'debutant',
   'fr',
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la distinction entre carte à débit immédiat et à débit différé", "Identifier le fonctionnement et les limites du paiement "sans contact"", "Savoir gérer et adapter ses plafonds de paiement et de retrait", "Maîtriser les conseils pour une utilisation sécurisée de sa carte bancaire"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
+  4,
+  0,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 49
@@ -568,16 +591,24 @@ Le réflexe du "cash".
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Le Chéquier en France : Utilisation, remplissage et caution',
+  'Le Chéquier en France : Utilisation,
+  remplissage et caution',
   'chequier-france-utilisation-remplissage-caution',
   'Ce cours est essentiel pour tous les étudiants internationaux en France. Le chèque, bien que moins utilisé qu''avant, reste un moyen de paiement courant pour certaines transactions, notamment pour les dépôts de garantie de location ou les gros achats. Comprendre si l''on utilise encore des chèques en France, comment remplir correctement un chèque, et la spécificité du "chèque de caution" non encaissé, est absolument crucial. Ne pas savoir utiliser un chéquier, ou le faire de manière incorrecte, peut entraîner des paiements refusés ou des problèmes avec des prestataires. Maîtriser le chéquier est fondamental pour compléter vos moyens de paiement et gérer des situations spécifiques en toute sécurité.',
-  'Chéquier en France : encore utilisé ? Comment remplir, chèque de caution non encaissé. Maîtrisez ce moyen de paiement !',
+  'Chéquier en France : encore utilisé ? Comment remplir,
+  chèque de caution non encaissé. Maîtrisez ce moyen de paiement !',
   'budget_finances',
   'debutant',
   'fr',
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''usage du chèque en France et s''il est encore pertinent", "Savoir comment remplir correctement un chèque (montant, bénéficiaire, date, signature)", "Identifier la spécificité du "chèque de caution" non encaissé (pour le logement)", "Maîtriser les conseils pour commander et utiliser son chéquier en toute sécurité"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
+  4,
+  0,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 50
@@ -820,16 +851,26 @@ Le chèque de caution non encaissé est une pratique courante pour le dépôt de
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Virements internationaux : Moins de frais, plus de rapidité',
+  'Virements internationaux : Moins de frais,
+  plus de rapidité',
   'virements-internationaux-moins-frais-plus-rapidite',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui ont besoin d''envoyer ou de recevoir de l''argent depuis ou vers leur pays d''origine. Les virements internationaux peuvent être coûteux et lents avec les banques traditionnelles. Nous vous expliquerons la différence entre les frais bancaires classiques et les services spécialisés (comme Wise ou Remitly) qui offrent des solutions plus avantageuses. Nous ferons une démonstration de l''utilisation de ces plateformes, et nous aborderons les délais de réception et les pièges à éviter. Maîtriser ces outils est absolument crucial pour optimiser vos transferts d''argent, réduire les frais, et gérer votre budget efficacement.',
-  'Virements internationaux : Frais bancaires vs Wise/Remitly. Démo, délais de réception. Économisez sur vos transferts d''argent !',
+  'Virements internationaux : Frais bancaires vs Wise/Remitly. Démo,
+  délais de réception. Économisez sur vos transferts d''argent !',
   'budget_finances',
   'intermediaire',
   'fr',
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre les coûts des virements internationaux avec les banques traditionnelles", "Découvrir les avantages des services spécialisés (Wise, Remitly)", "Maîtriser l''utilisation des plateformes de transfert d''argent en ligne", "Identifier les délais de réception et les pièges à éviter lors des virements"]'::jsonb,
+  '["Comprendre les coûts des virements internationaux avec les banques traditionnelles",
+  "Découvrir les avantages des services spécialisés (Wise, Remitly)",
+  "Maîtriser l''utilisation des plateformes de transfert d''argent en ligne",
+  "Identifier les délais de réception et les pièges à éviter lors des virements"]'::jsonb,
   '["Avoir un compte bancaire en France et/ou dans votre pays d''origine"]'::jsonb,
+  0,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 51
