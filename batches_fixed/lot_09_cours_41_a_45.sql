@@ -33,7 +33,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Ordonnance vs Automédication',
   '# Ordonnance vs Automédication
 
@@ -114,7 +114,7 @@ En France, de nombreux médicaments nécessitent une ordonnance médicale pour �
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Les génériques : "C''est la même chose"',
   '# Les génériques : "C''est la même chose"
 
@@ -189,7 +189,7 @@ Les médicaments génériques sont des copies de médicaments originaux, avec la
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'La parapharmacie',
   '# La parapharmacie
 
@@ -262,7 +262,7 @@ La parapharmacie regroupe des produits de santé, d''hygiène et de beauté qui 
 -- COURS 43 : Soutien psychologique
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Soutien psychologique : Aides et ressources pour étudiants en France',
   'soutien-psychologique-aides-ressources-etudiants-france',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France. L''éloignement familial, le choc culturel, les difficultés académiques ou financières peuvent générer du stress, de l''anxiété ou de la déprime. Accéder à un soutien psychologique adapté est essentiel pour votre bien-être mental. Nous vous présenterons les Bureaux d''Aide Psychologique Universitaire (BAPU) gratuits, le dispositif "Santé Psy Étudiant" offrant des séances gratuites chez un psychologue, et les lignes d''écoute anonymes et confidentielles. Maîtriser ces ressources est absolument crucial pour prendre soin de votre santé mentale, briser les tabous, et trouver l''aide nécessaire pour traverser les moments difficiles de votre parcours en France.',
@@ -285,7 +285,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Les BAPU (Bureaux d''Aide Psychologique)',
   '# Les BAPU (Bureaux d''Aide Psychologique Universitaire)
 
@@ -354,7 +354,7 @@ Les BAPU (Bureaux d''Aide Psychologique Universitaire) offrent un soutien psycho
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Santé Psy Étudiant : 8 séances gratuites',
   '# Santé Psy Étudiant : 8 séances gratuites
 
@@ -431,7 +431,7 @@ Le dispositif "Santé Psy Étudiant" vous offre 8 séances gratuites (renouvelab
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Lignes d''écoute anonymes',
   '# Lignes d''écoute anonymes
 
@@ -511,7 +511,7 @@ Les lignes d''écoute anonymes et confidentielles (SOS Amitié, Fil Santé Jeune
 -- COURS 44 : Santé sexuelle
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Santé sexuelle en France : Contraception, Dépistage et Prévention',
   'sante-sexuelle-france-contraception-depistage-prevention',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre les enjeux et l''accès aux services de santé sexuelle. En France, la prévention et l''accès aux méthodes contraceptives et au dépistage sont des priorités. Nous vous informerons sur la gratuité des préservatifs en pharmacie pour les moins de 26 ans, les différentes options de contraception d''urgence et leur accessibilité, ainsi que le rôle des CeGIDD (Centres Gratuits d''Information, de Dépistage et de Diagnostic) pour le dépistage des IST. Maîtriser ces informations est absolument crucial pour vivre votre sexualité de manière éclairée, protégée et responsable, et pour garantir votre bien-être et votre santé. ',
@@ -534,7 +534,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Préservatifs gratuits en pharmacie (-26 ans)',
   '# Préservatifs gratuits en pharmacie (-26 ans)
 
@@ -607,7 +607,7 @@ Les préservatifs masculins sont gratuits en pharmacie pour tous les jeunes de m
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Contraception d''urgence',
   '# Contraception d''urgence
 
@@ -696,7 +696,7 @@ La contraception d''urgence est un moyen essentiel de prévention des grossesses
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Les CeGIDD (Dépistage gratuit)',
   '# Les CeGIDD (Dépistage gratuit)
 
@@ -766,7 +766,7 @@ Les CeGIDD (Centres Gratuits d''Information, de Dépistage et de Diagnostic) son
 -- COURS 45 : Lunettes et Dents (100% Santé)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Lunettes et Dents (100% Santé) : Zéro reste à charge en France',
   'lunettes-dents-100-sante-zero-reste-charge-france',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France qui ont besoin de lunettes, de lentilles ou de soins dentaires. Le dispositif "100% Santé" (anciennement "Reste à charge zéro") est une réforme majeure qui garantit l''accès à des équipements d''optique, des prothèses dentaires et des aides auditives entièrement remboursés, sans aucun reste à charge pour l''assuré. Ne pas connaître ce dispositif, c''est risquer de payer des centaines, voire des milliers d''euros, pour des soins et équipements qui pourraient être gratuits. Nous vous expliquerons le contenu du panier "100% Santé", comment en faire la demande auprès de votre opticien ou dentiste, et les délais de carence des mutuelles. Maîtriser ces informations est absolument crucial pour protéger votre budget et garantir votre accès à des soins essentiels.',
@@ -789,7 +789,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Le panier "100% Santé" : Zéro reste à charge',
   '# Le panier "100% Santé" : Zéro reste à charge
 
@@ -900,7 +900,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Banque avec agence (BNP, LCL...) : Avantages',
   '# Banque avec agence (BNP, LCL...) : Avantages
 
@@ -975,7 +975,7 @@ Les banques traditionnelles avec agence (BNP, LCL, Société Générale) offrent
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Néo-banques (Revolut, Bourso) : Avantages',
   '# Néo-banques (Revolut, Boursorama, N26...) : Avantages
 
@@ -1045,7 +1045,7 @@ Les banques en ligne (Boursorama, Fortuneo) et néo-banques (Revolut, N26) offre
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '2e49a995-c983-4e84-a3f4-181df2c712fb',
   'Choisir selon ses besoins (Dépôt d''espèces ?)',
   '# Choisir selon ses besoins (Dépôt d''espèces ?)
 

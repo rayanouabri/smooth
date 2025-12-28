@@ -33,7 +33,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'L''état des lieux de sortie',
   '# L''état des lieux de sortie
 
@@ -130,7 +130,7 @@ L''état des lieux de sortie est l''étape la plus importante pour la restitutio
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'Le délai légal de restitution (1 ou 2 mois)',
   '# Le délai légal de restitution (1 ou 2 mois)
 
@@ -205,7 +205,7 @@ Le délai légal de restitution de votre dépôt de garantie est d''un mois si l
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'Retenues sur caution : Ce qui est légal ou non',
   '# Retenues sur caution : Ce qui est légal ou non
 
@@ -280,7 +280,7 @@ Les retenues sur votre dépôt de garantie sont légales uniquement pour les loy
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'Mise en demeure : Que faire si le proprio ne rend pas l''argent',
   '# Mise en demeure : Que faire si le proprio ne rend pas l''argent
 
@@ -390,7 +390,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'Sécu vs Mutuelle : Le duo gagnant',
   '# Sécu vs Mutuelle : Le duo gagnant
 
@@ -467,7 +467,7 @@ Le système de santé français repose sur le "duo gagnant" Sécurité Sociale (
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'Le parcours de soins coordonnés',
   '# Le parcours de soins coordonnés
 
@@ -543,7 +543,7 @@ Le parcours de soins coordonnés a été mis en place pour responsabiliser les p
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'Tiers-payant : Ne pas avancer les frais',
   '# Tiers-payant : Ne pas avancer les frais
 
@@ -626,7 +626,7 @@ Le tiers-payant est un dispositif crucial du système de santé français qui vo
 -- COURS 34 : Inscription Sécurité Sociale
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '4a2bf82e-0ba8-479c-96fe-8d87c95ee250',
+  'bc78a03d-df75-4667-81e1-353a1b6e5173',
   'Inscription à la Sécurité Sociale française : Votre accès aux soins',
   'inscription-securite-sociale-francaise-acces-soins',
   'Ce cours est un guide absolument essentiel pour tous les étudiants internationaux en France. L''inscription à la Sécurité Sociale (Assurance Maladie) est une démarche **obligatoire et gratuite** qui vous ouvre les portes du système de santé français et vous permet d''être remboursé(e) de vos frais médicaux. Nous vous détaillerons la procédure de demande en ligne sur le site `etudiant-etranger.ameli.fr`, les documents clés à numériser (visa, acte de naissance), et les étapes pour obtenir votre attestation provisoire. Ne pas s''inscrire à la Sécurité Sociale, c''est risquer de payer la totalité de vos frais de santé et de vous retrouver dans une situation financière précaire en cas de maladie. Maîtriser cette inscription est crucial pour votre bien-être et votre sécurité financière.',
@@ -649,7 +649,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'Le site etudiant-etranger.ameli.fr',
   '# Le site etudiant-etranger.ameli.fr : Votre portail Sécurité Sociale
 
@@ -723,7 +723,7 @@ Le site `etudiant-etranger.ameli.fr` est votre portail unique et obligatoire pou
 -- COURS 35 : Numéro de Sécurité Sociale
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'Numéro de Sécurité Sociale en France : Provisoire et Définitif',
   'numero-securite-sociale-france-provisoire-definitif',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui s''affilient à la Sécurité Sociale. L''obtention d''un numéro de Sécurité Sociale est une étape clé, mais elle passe souvent par un numéro provisoire avant le numéro définitif, et le processus peut être long. Nous vous expliquerons ce qu''est le NIR (Numéro d''Identification au Répertoire) définitif et pourquoi son obtention prend du temps. Nous vous aiderons à comprendre la composition de ce numéro à 13 chiffres, et nous aborderons les démarches à suivre si votre dossier d''affiliation est bloqué ou si l''attente est anormalement longue. Maîtriser cette progression est crucial pour accéder pleinement à vos droits et à la Carte Vitale.',
@@ -746,7 +746,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'Le NIR (Numéro définitif) : Pourquoi c''est long ?',
   '# Le NIR (Numéro définitif) : Pourquoi c''est long ?
 
@@ -822,7 +822,7 @@ L''obtention de votre Numéro d''Identification au Répertoire (NIR) définitif 
 -- COURS 36 : La Carte Vitale
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'La Carte Vitale en France : Votre accès simplifié aux soins',
   'carte-vitale-france-acces-simplifie-soins',
   'Ce cours est essentiel pour tous les étudiants internationaux affiliés à la Sécurité Sociale française. La Carte Vitale est un document indispensable qui simplifie considérablement l''accès à vos droits à la santé et vos remboursements. Nous vous expliquerons comment commander votre carte (après l''obtention de votre numéro définitif de Sécurité Sociale), les étapes pour la mettre à jour (notamment dans les pharmacies), et l''émergence de l''application "Carte Vitale" dématérialisée. Ne pas avoir de Carte Vitale, c''est devoir avancer tous vos frais et envoyer des feuilles de soins. Maîtriser son utilisation est absolument crucial pour des remboursements rapides, le tiers-payant, et une gestion sereine de votre santé en France.',
@@ -845,7 +845,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'Commander sa carte (Photo, Formulaire)',
   '# Commander sa Carte Vitale (Photo, Formulaire)
 
@@ -921,7 +921,7 @@ La commande de votre Carte Vitale est une étape cruciale après l''obtention de
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'Mettre à jour sa carte (Bornes en pharmacie)',
   '# Mettre à jour sa Carte Vitale (Bornes en pharmacie)
 
@@ -983,7 +983,7 @@ Mettre à jour votre Carte Vitale est un geste simple, rapide et gratuit à fair
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
   'L''appli Carte Vitale (e-carte)',
   '# L''appli Carte Vitale (e-carte)
 

@@ -179,7 +179,7 @@ Les tarifs moyens des coiffeurs/barbiers en France varient de 15€ à 30€ pou
 -- COURS 92 : Acheter d'occasion
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'ab419afb-9677-4aad-9485-1493480ec2f0',
+  '3c51bfcf-830a-4ec2-af81-379653cbbfce',
   'Acheter d''occasion en France : Leboncoin, Vinted et bons plans',
   'acheter-occasion-france-leboncoin-vinted-bons-plans',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui souhaitent faire des économies en achetant des biens d''occasion. Le marché de l''occasion est très développé et offre de nombreuses opportunités (meubles, vêtements, livres, électronique). Ne pas connaître les plateformes fiables et les réflexes de prudence, c''est risquer des arnaques ou des déceptions. Nous vous expliquerons le fonctionnement de Leboncoin (le site de référence), les spécificités de Vinted pour les vêtements, et les bons plans pour trouver des meubles ou de l''électronique à petit prix. Maîtriser l''achat d''occasion est absolument crucial pour optimiser votre budget, équiper votre logement, et adopter un mode de consommation plus durable en France.',
@@ -382,7 +382,7 @@ Vinted est une plateforme incontournable pour acheter et vendre des vêtements d
 -- COURS 93 : La Boulangerie
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'ab419afb-9677-4aad-9485-1493480ec2f0',
+  '3c51bfcf-830a-4ec2-af81-379653cbbfce',
   'La Boulangerie en France : Types de pain et politesse',
   'boulangerie-france-types-pain-politesse',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un lieu emblématique de la vie quotidienne : la boulangerie. Le pain est un pilier de la gastronomie française, et le choix est vaste. Ne pas connaître les différents "types de pain" (tradition, baguette classique) ou les codes de politesse en boutique, c''est risquer des malentendus ou de ne pas se sentir à l''aise. Nous vous expliquerons la distinction entre la baguette "tradition" (qualité supérieure) et la baguette "classique", les autres pains, et les règles de politesse (bonjour, s''il vous plaît, merci) à utiliser. Maîtriser ces informations est absolument crucial pour faire vos achats sereinement, profiter du bon pain français, et vous intégrer aux habitudes locales.',
@@ -576,7 +576,7 @@ La politesse en boulangerie (et en commerce) est essentielle en France. Dites to
 -- COURS 94 : Le Café en terrasse
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'ab419afb-9677-4aad-9485-1493480ec2f0',
+  '3c51bfcf-830a-4ec2-af81-379653cbbfce',
   'Le Café en terrasse en France : Prix, savoir-vivre et culture',
   'cafe-terrasse-france-prix-savoir-vivre-culture',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un rituel social emblématique : prendre un café en terrasse. Ce moment de détente est une institution, mais il a ses propres codes, notamment en matière de prix (différents si "au comptoir" ou "en salle"). Ne pas connaître ces nuances, c''est risquer de payer plus cher, de ne pas se sentir à l''aise, ou de ne pas profiter pleinement de l''expérience. Nous vous expliquerons la distinction entre les prix "au comptoir" et "en salle", et la tolérance à "rester deux heures avec un seul café". Maîtriser ces informations est absolument crucial pour faire vos choix de consommation intelligemment, gérer votre budget, et vous intégrer à une pratique culturelle française. ',
@@ -763,7 +763,7 @@ En France, il est tout à fait possible et acceptable de rester longtemps (une o
 -- COURS 95 : Tabac
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'ab419afb-9677-4aad-9485-1493480ec2f0',
+  '3c51bfcf-830a-4ec2-af81-379653cbbfce',
   'Tabac en France : Où acheter et interdictions de fumer',
   'tabac-france-acheter-interdictions-fumer',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre les règles et les lieux d''achat du tabac. La législation française concernant le tabac est stricte (interdiction de fumer dans les lieux publics, vente limitée) et les prix sont élevés. Ne pas connaître ces règles, c''est risquer des amendes, des problèmes de santé, ou de ne pas savoir où se procurer ses cigarettes. Nous vous expliquerons que la vente est réservée aux "bureaux de tabac", et l''interdiction de fumer dans les lieux publics (y compris les terrasses couvertes). Maîtriser ces informations est absolument crucial pour respecter la loi, protéger votre santé et celle des autres, et éviter les désagréments. ',

@@ -261,7 +261,7 @@ Lorsque vous ouvrez un compte bancaire en France, vous signez un document essent
 -- COURS 48 : Le RIB (Relevé d'Identité Bancaire)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '180a995f-8ca6-4831-8c45-4f53d557a681',
+  '6c80a9dd-1d8f-46a4-9c16-9d4627f35fb0',
   'Le RIB (Relevé d''Identité Bancaire) : Votre identifiant financier en France',
   'rib-releve-identite-bancaire-identifiant-financier-france',
   'Ce cours est essentiel pour tous les étudiants internationaux en France. Le Relevé d''Identité Bancaire (RIB) est un document omniprésent dans votre vie financière. Il contient les informations uniques de votre compte bancaire français et est indispensable pour recevoir de l''argent (salaires, bourses, APL) et pour autoriser des prélèvements automatiques (loyer, électricité, téléphone). Nous vous expliquerons la différence entre l''IBAN et le BIC/SWIFT, où trouver votre RIB (en ligne, sur chéquier), et les règles pour le transmettre en toute sécurité, sans risque. Maîtriser le RIB est absolument crucial pour gérer vos flux financiers, automatiser vos paiements, et interagir sereinement avec l''administration et les prestataires de services en France.',
@@ -502,7 +502,7 @@ Le RIB contient des informations suffisantes pour initier des prélèvements aut
 -- COURS 49 : Carte bancaire : Les options
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '180a995f-8ca6-4831-8c45-4f53d557a681',
+  '6c80a9dd-1d8f-46a4-9c16-9d4627f35fb0',
   'Carte bancaire en France : Débit immédiat, différé et plafonds',
   'carte-bancaire-france-debit-immediat-differe-plafonds',
   'Ce cours est essentiel pour tous les étudiants internationaux qui vont utiliser une carte bancaire en France. Le choix de votre carte, notamment entre le "débit immédiat" et le "débit différé", ainsi que la compréhension de vos "plafonds" de paiement et de retrait, ont un impact direct sur la gestion de votre budget. Ne pas maîtriser ces options peut entraîner des découverts bancaires, des paiements refusés, ou des difficultés à retirer de l''argent en cas de besoin. Nous vous expliquerons les différences entre les types de débit, le fonctionnement du paiement "sans contact" et ses limites, et comment gérer vos plafonds. Maîtriser sa carte bancaire est absolument crucial pour une gestion financière autonome et sereine en France.',
@@ -599,7 +599,7 @@ Le réflexe du "cash".
 -- COURS 50 : Le Chéquier
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '180a995f-8ca6-4831-8c45-4f53d557a681',
+  '6c80a9dd-1d8f-46a4-9c16-9d4627f35fb0',
   'Le Chéquier en France : Utilisation, remplissage et caution',
   'chequier-france-utilisation-remplissage-caution',
   'Ce cours est essentiel pour tous les étudiants internationaux en France. Le chèque, bien que moins utilisé qu''avant, reste un moyen de paiement courant pour certaines transactions, notamment pour les dépôts de garantie de location ou les gros achats. Comprendre si l''on utilise encore des chèques en France, comment remplir correctement un chèque, et la spécificité du "chèque de caution" non encaissé, est absolument crucial. Ne pas savoir utiliser un chéquier, ou le faire de manière incorrecte, peut entraîner des paiements refusés ou des problèmes avec des prestataires. Maîtriser le chéquier est fondamental pour compléter vos moyens de paiement et gérer des situations spécifiques en toute sécurité.',
@@ -863,7 +863,7 @@ Le chèque de caution non encaissé est une pratique courante pour le dépôt de
 -- COURS 51 : Virements internationaux
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '180a995f-8ca6-4831-8c45-4f53d557a681',
+  '6c80a9dd-1d8f-46a4-9c16-9d4627f35fb0',
   'Virements internationaux : Moins de frais, plus de rapidité',
   'virements-internationaux-moins-frais-plus-rapidite',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui ont besoin d''envoyer ou de recevoir de l''argent depuis ou vers leur pays d''origine. Les virements internationaux peuvent être coûteux et lents avec les banques traditionnelles. Nous vous expliquerons la différence entre les frais bancaires classiques et les services spécialisés (comme Wise ou Remitly) qui offrent des solutions plus avantageuses. Nous ferons une démonstration de l''utilisation de ces plateformes, et nous aborderons les délais de réception et les pièges à éviter. Maîtriser ces outils est absolument crucial pour optimiser vos transferts d''argent, réduire les frais, et gérer votre budget efficacement.',

@@ -276,7 +276,7 @@ Proposer des sorties et des activités est absolument crucial pour les étudiant
 -- COURS 82 : Associations étudiantes
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '328f40b8-0ef8-485d-978c-f9adcd08654b',
+  'd7bada37-0b34-4233-b103-d9e2fb0df74d',
   'Associations étudiantes en France : BDE, sport, culture et bénévolat',
   'associations-etudiantes-france-bde-sport-culture-benevolat',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent s''impliquer dans la vie universitaire et sociale. Les associations étudiantes sont un formidable levier d''intégration, de rencontres, et de développement de compétences. Nous vous expliquerons ce qu''est un BDE (Bureau des Élèves) et son rôle d''animation, les avantages des associations sportives ou culturelles pour faire des amis, et la valeur du bénévolat pour votre CV. Maîtriser l''implication associative est absolument crucial pour briser l''isolement, développer votre réseau, enrichir votre expérience étudiante, et valoriser votre engagement sur le marché du travail français.',
@@ -545,7 +545,7 @@ Valoriser votre engagement associatif (BDE, humanitaire, sportif, culturel) sur 
 -- COURS 83 : Culture Pass
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '328f40b8-0ef8-485d-978c-f9adcd08654b',
+  'd7bada37-0b34-4233-b103-d9e2fb0df74d',
   'Culture Pass : Musées gratuits, 300€ offerts aux jeunes',
   'culture-pass-musees-gratuits-300-offerts-jeunes',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent accéder à la culture à moindre coût. La France offre des dispositifs avantageux, notamment le **"Culture Pass"** (300€ offerts aux jeunes de 18 ans) et la gratuité des musées nationaux pour les moins de 26 ans. Ne pas connaître ces aides, c''est se priver d''une opportunité fantastique de découvrir le riche patrimoine culturel français sans grever son budget. Nous vous expliquerons comment bénéficier du Culture Pass, la gratuité des musées, et les tarifs réduits pour l''opéra et le théâtre. Maîtriser ces informations est absolument crucial pour vous immerger dans la culture française, faire des découvertes, et enrichir votre expérience étudiante.',
@@ -814,7 +814,7 @@ L''opéra et le théâtre en France sont accessibles aux étudiants internationa
 -- COURS 84 : Le Cinéma
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '328f40b8-0ef8-485d-978c-f9adcd08654b',
+  'd7bada37-0b34-4233-b103-d9e2fb0df74d',
   'Le Cinéma en France : UGC Illimité, VOSTFR vs VF et bons plans',
   'cinema-france-ugc-illimite-vostfr-vf-bons-plans',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui aiment le cinéma. La France est un pays de cinéphiles, avec une offre riche et variée, et de nombreuses salles de cinéma. Nous vous expliquerons les avantages des cartes d''abonnement illimité (UGC Illimité, CinéPass), la distinction cruciale entre les versions VOSTFR (Version Originale Sous-Titrée en Français) et VF (Version Française), et les bons plans (tarifs étudiants, Fête du Cinéma) pour aller au cinéma à moindre coût. Maîtriser ces informations est absolument crucial pour profiter pleinement du cinéma français et international, gérer votre budget loisirs, et vous immerger dans la culture cinématographique. ',
@@ -1065,7 +1065,7 @@ La Fête du Cinéma est un événement annuel crucial en France, proposant des p
 -- COURS 85 : Grèves et Manifs
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '328f40b8-0ef8-485d-978c-f9adcd08654b',
+  'd7bada37-0b34-4233-b103-d9e2fb0df74d',
   'Grèves et Manifs en France : Comprendre l''impact sur votre quotidien',
   'greves-manifs-france-comprendre-impact-quotidien',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un aspect important de la vie sociale française : les grèves et les manifestations. Ces mouvements sociaux peuvent avoir un impact direct et significatif sur votre quotidien (transports, universités, services publics). Ne pas connaître les raisons des grèves, ne pas savoir comment vérifier le trafic ou les perturbations, et ne pas comprendre comment se comporter en manifestation, c''est risquer des retards importants, des problèmes d''accès, ou des situations délicates. Nous vous expliquerons comment vérifier le trafic les jours de grève, les revendications, et les règles de sécurité. Maîtriser ces informations est absolument crucial pour anticiper les perturbations, vous adapter, et naviguer sereinement dans la vie sociale française.',

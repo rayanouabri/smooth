@@ -33,7 +33,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Pourquoi c''est obligatoire pour être bien remboursé',
   '# Pourquoi c''est obligatoire pour être bien remboursé
 
@@ -100,7 +100,7 @@ Déclarer un médecin traitant est une obligation cruciale en France pour béné
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Comment demander à un médecin',
   '# Comment demander à un médecin d''être son traitant
 
@@ -166,7 +166,7 @@ Demander à un médecin généraliste de devenir votre médecin traitant est une
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'La déclaration en ligne lors de la consultation',
   '# La déclaration en ligne lors de la consultation
 
@@ -235,7 +235,7 @@ La déclaration de votre médecin traitant se fait généralement en ligne par l
 -- COURS 38 : Comprendre les remboursements
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Comprendre les remboursements de santé : Base, Ticket Modérateur, Ameli',
   'comprendre-remboursements-sante-base-ticket-moderateur-ameli',
   'Ce cours est essentiel pour tous les étudiants internationaux affiliés à la Sécurité Sociale française. Comprendre comment vos frais de santé sont remboursés, quelles sont les parts prises en charge par l''Assurance Maladie et la mutuelle, et comment suivre ces remboursements est absolument crucial. Nous vous expliquerons les notions de "Base de Remboursement de la Sécu" (BRSS), de "Ticket Modérateur" (la partie qui reste à votre charge), et comment utiliser votre espace `ameli.fr` pour suivre vos paiements. Une bonne compréhension de ce processus est fondamentale pour gérer votre budget santé, éviter les surprises et vous assurer que vous bénéficiez pleinement de vos droits. ',
@@ -258,7 +258,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Base de Remboursement de la Sécu (BRSS)',
   '# Base de Remboursement de la Sécu (BRSS)
 
@@ -334,7 +334,7 @@ La Base de Remboursement de la Sécurité Sociale (BRSS) est le tarif de référ
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Le ticket modérateur (ce qu''il reste à payer)',
   '# Le ticket modérateur (ce qu''il reste à payer)
 
@@ -407,7 +407,7 @@ Le ticket modérateur est la part de vos frais de santé qui reste à votre char
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Suivre ses remboursements sur Ameli',
   '# Suivre ses remboursements sur Ameli
 
@@ -474,7 +474,7 @@ Suivre vos remboursements sur votre espace personnel `ameli.fr` est une démarch
 -- COURS 39 : La Mutuelle (Complémentaire)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'La Mutuelle (Complémentaire Santé) en France : Votre protection renforcée',
   'mutuelle-complementaire-sante-france-protection-renforcee',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, après leur affiliation à la Sécurité Sociale. La "mutuelle" (ou complémentaire santé) est le deuxième pilier de votre couverture santé, elle complète les remboursements de l''Assurance Maladie et peut réduire considérablement votre "reste à charge". Nous vous aiderons à déterminer si vous avez besoin d''une mutuelle (la réponse est presque toujours oui !), à comprendre le fonctionnement de la Complémentaire Santé Solidaire (CSS) gratuite pour les faibles revenus, et à comparer les offres spécifiques pour étudiants (LMDE, HEYME...) ou les mutuelles classiques. Maîtriser le choix et la souscription d''une mutuelle est absolument crucial pour optimiser vos remboursements, accéder à tous les soins, et protéger votre budget contre les dépenses imprévues.',
@@ -497,7 +497,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Avez-vous besoin d''une mutuelle ?',
   '# Avez-vous besoin d''une mutuelle ?
 
@@ -571,7 +571,7 @@ Oui, vous avez besoin d''une mutuelle complémentaire santé en France, même si
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'La Complémentaire Santé Solidaire (CSS) gratuite',
   '# La Complémentaire Santé Solidaire (CSS) gratuite
 
@@ -655,7 +655,7 @@ La Complémentaire Santé Solidaire (CSS) est une mutuelle gratuite (ou à faibl
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Comparer les offres étudiantes (LMDE, HEYME...)',
   '# Comparer les offres étudiantes (LMDE, HEYME...)
 
@@ -729,7 +729,7 @@ Comparer les offres de mutuelles étudiantes (LMDE, HEYME) et classiques est une
 -- COURS 40 : Doctolib et prise de RDV
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Doctolib et prise de RDV : Facilitez votre accès aux soins en France',
   'doctolib-prise-rdv-facilitez-acces-soins-france',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui ont besoin de consulter un médecin ou un spécialiste. Doctolib est la plateforme de prise de rendez-vous médicaux en ligne la plus utilisée, simplifiant considérablement l''accès aux soins. Nous vous expliquerons comment créer votre compte Doctolib, utiliser les filtres de recherche (par langue parlée, spécialité), et comment fonctionne la téléconsultation, une option pratique et de plus en plus courante. Maîtriser Doctolib est absolument crucial pour trouver un professionnel de santé rapidement, prendre rendez-vous efficacement, et gérer votre suivi médical en toute autonomie et sérénité.',
@@ -752,7 +752,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Créer son compte Doctolib',
   '# Créer son compte Doctolib
 
@@ -820,7 +820,7 @@ C''est une étape de sécurité.
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Filtrer par langues parlées',
   '# Filtrer par langues parlées sur Doctolib
 
@@ -906,7 +906,7 @@ Le filtre "Langues parlées" sur Doctolib est un outil indispensable pour les é
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Téléconsultation : Comment ça marche ?',
   '# Téléconsultation : Comment ça marche ?
 
@@ -977,7 +977,7 @@ La téléconsultation est un mode d''accès aux soins flexible et rapide en Fran
 -- COURS 41 : Urgences et Numéros utiles
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'Urgences et Numéros utiles en France : Votre guide de sécurité',
   'urgences-numeros-utiles-france-guide-securite',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France. Connaître les numéros d''urgence et savoir comment réagir en cas d''urgence médicale, d''accident, de détresse ou de danger est absolument crucial pour votre sécurité et celle de votre entourage. Nous vous détaillerons les numéros essentiels (15 SAMU, 18 Pompiers, 112 Europe), les alternatives aux urgences (SOS Médecins pour les consultations à domicile), et l''importance de connaître la pharmacie de garde. Maîtriser ces informations est fondamental pour réagir efficacement en cas de situation critique et garantir votre sécurité et votre bien-être sur le territoire français.',
@@ -1000,7 +1000,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   '15 (SAMU), 18 (Pompiers), 112 (Europe)',
   '# 15 (SAMU), 18 (Pompiers), 112 (Europe)
 
@@ -1084,7 +1084,7 @@ Connaître les numéros d''urgence (15 SAMU pour urgences médicales graves, 18 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'SOS Médecins : Alternative aux urgences',
   '# SOS Médecins : Alternative aux urgences
 
@@ -1155,7 +1155,7 @@ SOS Médecins est une excellente alternative aux urgences hospitalières pour le
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '1ba49e93-ed48-4465-8c60-d823a461e5db',
+  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
   'La pharmacie de garde',
   '# La pharmacie de garde
 
