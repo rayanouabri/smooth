@@ -684,7 +684,7 @@ Une traduction assermentée n''a pas de date de péremption en soi, mais sa vali
 -- COURS 14 : La "Laïcité" et droits civiques
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'La "Laïcité" et les droits civiques en France : Guide d''intégration',
   'laicite-droits-civiques-france-guide-integration',
   'Ce cours est conçu pour aider les étudiants internationaux à comprendre les concepts fondamentaux de la "Laïcité" et des droits civiques en France, des piliers essentiels de la République française. Nous expliquerons ce qu''est la Laïcité et comment elle s''applique dans l''espace public, notamment dans les institutions scolaires et administratives. Nous aborderons également les droits à la manifestation et à la grève, ainsi que la liberté d''expression et ses limites légales. Maîtriser ces principes est crucial pour une intégration réussie, le respect des lois et des valeurs de la société française, et pour naviguer en toute connaissance de cause dans votre vie quotidienne et citoyenne.',
@@ -707,7 +707,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'c5d6e7f8-a9b0-4012-e3f4-a5b6c7d8e9f0',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'La Laïcité expliquée aux étrangers',
   '# La Laïcité expliquée aux étrangers
 
@@ -788,7 +788,7 @@ La Laïcité est un principe fondamental français qui garantit la neutralité d
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'bc7f24bd-51b3-4b7b-a450-33fb0d027f06',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Droits à la manifestation et à la grève',
   '# Droits à la manifestation et à la grève
 
@@ -855,7 +855,7 @@ Le droit de manifester et de faire grève sont des droits fondamentaux en France
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'ff6cee77-7a13-450d-a69a-8fa1bc5bf091',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Liberté d''expression et ses limites légales',
   '# Liberté d''expression et ses limites légales
 
@@ -947,7 +947,7 @@ La liberté d''expression est un droit fondamental en France, mais elle est stri
 -- COURS 15 : Service-Public.fr : Le portail
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Service-Public.fr : Votre portail pour l''administration française',
   'service-public-fr-portail-administration-francaise',
   'Ce cours est un guide essentiel pour les étudiants internationaux souhaitant naviguer efficacement dans le labyrinthe de l''administration française. `Service-Public.fr` est le portail officiel de l''administration, centralisant une quantité inestimable d''informations et de démarches. Nous vous expliquerons comment créer votre compte FranceConnect pour simplifier vos accès, comment utiliser les fiches pratiques pour comprendre vos droits et obligations, comment utiliser les simulateurs de droits pour estimer vos aides (CAF, logement), et comment contacter l''administration via le site. Maîtriser ce portail est une compétence clé pour gérer toutes vos démarches administratives en France avec autonomie et sérénité.',
@@ -970,7 +970,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'c5d6e7f8-a9b0-4012-e3f4-a5b6c7d8e9f0',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Créer son compte France Connect',
   '# Créer son compte FranceConnect
 
@@ -1049,7 +1049,7 @@ FranceConnect est un dispositif gouvernemental qui simplifie et sécurise l''acc
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'eb33c6f5-b7f8-451f-b7dd-52ac8f7ccc34',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Naviguer dans les fiches pratiques',
   '# Naviguer dans les fiches pratiques
 
@@ -1136,7 +1136,7 @@ Naviguer dans les fiches pratiques de Service-Public.fr est une compétence indi
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'e3f4a5b6-c7d8-4012-f9a0-b1c2d3e4f5a6',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Utiliser les simulateurs de droits',
   '# Utiliser les simulateurs de droits
 
@@ -1210,7 +1210,7 @@ Les simulateurs de droits en ligne sont des outils indispensables pour les étud
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   '8bb5ea54-53cb-4319-ad93-c943c2bfd55f',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Contacter l''administration via le site',
   '# Contacter l''administration via le site
 
@@ -1288,7 +1288,7 @@ Contacter l''administration française via leurs sites internet est un moyen eff
 -- COURS 16 : Décoder les annonces immobilières
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Décoder les annonces immobilières en France : Votre guide logement',
   'decoder-annonces-immobilieres-france',
   'Ce cours est un guide indispensable pour les étudiants internationaux en recherche de logement en France. Les annonces immobilières françaises regorgent d''abréviations et de termes spécifiques qui peuvent être difficiles à comprendre. Nous vous aiderons à décoder le lexique (CC, HC, F1, T2, Bis), à comprendre les différences cruciales entre logement meublé et non-meublé et leur impact sur le bail, à repérer les éventuels frais d''agence cachés, et à analyser l''importance de la performance énergétique (DPE). Maîtriser ce langage est crucial pour identifier rapidement les logements qui correspondent à vos critères, éviter les arnaques et comprendre ce que vous louez réellement.',
@@ -1314,7 +1314,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   '2d3e4f5a-6b7c-4012-f8a9-b0c1d2e3f4a5',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Lexique : CC, HC, F1, T2, Bis',
   '# Lexique : CC, HC, F1, T2, Bis
 
@@ -1383,7 +1383,7 @@ Le lexique des annonces immobilières françaises est spécifique. Maîtrisez le
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   '3e4f5a6b-7c8d-4012-e9f0-a1b2c3d4e5f6',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Meublé vs Non-meublé : Impact sur le bail',
   '# Meublé vs Non-meublé : Impact sur le bail
 
@@ -1458,7 +1458,7 @@ Le choix entre un logement meublé et non-meublé a des répercussions majeures 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   '3644e0c7-4447-4e85-9a9c-b028ff9e9fdc',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Repérer les frais d''agence cachés',
   '# Repérer les frais d''agence cachés
 
@@ -1547,7 +1547,7 @@ Les frais d''agence immobilière pour le locataire sont strictement encadrés et
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   '06d56fea-ead9-4c38-a5de-2aae8df11a04',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'a91ab1fe-5cde-454c-8e33-4957014f19e4',
   'Analyser la performance énergétique (DPE)',
   '# Analyser la performance énergétique (DPE)
 
