@@ -31,8 +31,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 22
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Pourquoi c''est le moment le plus important',
   '# Pourquoi c''est le moment le plus important
 
@@ -733,8 +733,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 24
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'b2c3d4e5-f6a7-4890-b1c2-d3e4f5a6b7c8',
+  'b2c3d4e5-f6a7-4890-b1c2-d3e4f5a6b7c8',
   'Relever les compteurs à l''entrée',
   '# Relever les compteurs à l''entrée
 
