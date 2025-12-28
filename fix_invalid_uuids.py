@@ -43,12 +43,12 @@ def fix_invalid_uuids_in_file(file_path):
             # Générer un nouvel UUID valide
             new_uuid = generate_valid_uuid()
             uuid_map[uuid_str] = new_uuid
-            print(f"  UUID invalide trouvé: {uuid_str[:20]}... -> {new_uuid}")
+            print(f"  UUID invalide trouve: {uuid_str[:20]}... -> {new_uuid}")
     
     # Remplacer tous les UUID invalides
     if uuid_map:
         for old_uuid, new_uuid in uuid_map.items():
-            # Remplacer dans les INSERT INTO courses
+            # Remplacer dans le contenu
             content = content.replace(f"'{old_uuid}'", f"'{new_uuid}'")
         
         # Sauvegarder le fichier corrigé
@@ -76,14 +76,14 @@ def main():
         print(f"Traitement de {sql_file.name}...")
         modified, count = fix_invalid_uuids_in_file(sql_file)
         if modified:
-            print(f"  ✓ {count} UUID invalides corrigés\n")
+            print(f"  OK: {count} UUID invalides corriges\n")
             files_modified += 1
             total_fixed += count
         else:
-            print(f"  ✓ Aucun UUID invalide trouvé\n")
+            print(f"  OK: Aucun UUID invalide trouve\n")
     
     print(f"\n{'='*60}")
-    print(f"SUCCÈS: {files_modified} fichiers modifiés, {total_fixed} UUID invalides corrigés au total")
+    print(f"SUCCES: {files_modified} fichiers modifies, {total_fixed} UUID invalides corriges au total")
     print(f"{'='*60}")
 
 if __name__ == "__main__":
