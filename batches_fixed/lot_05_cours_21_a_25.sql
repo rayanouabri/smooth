@@ -11,7 +11,7 @@
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'L'''État des lieux d''entrée : Protégez votre dépôt de garantie',
+  'L''État des lieux d''entrée : Protégez votre dépôt de garantie',
   'etat-des-lieux-entree-protegez-depot-garantie',
   'Ce cours est d''une importance capitale pour tout locataire en France, et particulièrement pour les étudiants internationaux. L'''état des lieux d''entrée est le document qui décrit précisément l''état du logement au moment de votre emménagement. Il est la preuve de l''état initial du bien et conditionne directement la restitution de votre dépôt de garantie à votre départ. Ne pas le réaliser avec la plus grande rigueur, ou le signer sans attention, peut vous coûter cher. Nous vous expliquerons pourquoi c''est le moment le plus important, comment tester l''eau et l''électricité, l''impératif de prendre des photos de tout défaut, et de récupérer votre copie signée. Maîtriser cette étape est crucial pour protéger vos finances.',
   'État des lieux d''entrée : le moment clé ! Testez, photographiez les défauts, obtenez votre copie. Protégez votre dépôt de garantie !',
@@ -1127,7 +1127,7 @@ Le déploiement de la fibre optique en France progresse rapidement, mais l''ADSL
 
 -   **Qu''est-ce que c''est ?** : C''est la technologie la plus rapide et la plus stable. La fibre arrive directement jusqu''à votre logement.
 
-#### b) L'''ADSL / VDSL
+#### b) L''ADSL / VDSL
 -   **Qu''est-ce que c''est ?** : Utilise le réseau téléphonique cuivre (les anciennes lignes de téléphone fixe).
 -   **Débit** : Moins rapide que la fibre (généralement quelques Mb/s pour l''ADSL, jusqu''à 50-100 Mb/s pour le VDSL si proche du répartiteur). Le débit dépend de la distance entre votre logement et le central téléphonique.
 
