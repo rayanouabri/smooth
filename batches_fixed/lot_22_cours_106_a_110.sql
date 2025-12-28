@@ -10,7 +10,7 @@
 -- COURS 96 : Alcool et Soirées
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'd9ebf366-c641-4ba9-80f8-5d5f2ed79415',
   'Alcool et Soirées en France : Règles de vente et consommation',
   'alcool-soirees-france-regles-vente-consommation',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre la législation concernant l''alcool et les soirées. Les règles de vente et de consommation d''alcool sont strictes, notamment l''interdiction de vente après une certaine heure et les restrictions de consommation sur la voie publique. Ne pas connaître ces règles, c''est risquer des amendes, des problèmes avec la police, ou de se retrouver sans moyen d''acheter de l''alcool. Nous vous expliquerons les horaires de vente, les interdictions de consommation sur la voie publique dans certaines zones, et les conseils pour des soirées responsables. Maîtriser ces informations est absolument crucial pour respecter la loi, éviter les ennuis, et profiter pleinement de la vie étudiante et sociale en France en toute sécurité.',
@@ -214,7 +214,7 @@ La consommation d''alcool sur la voie publique en France est généralement tol�
 -- COURS 97 : Le Pourboire
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'd9ebf366-c641-4ba9-80f8-5d5f2ed79415',
   'Le Pourboire en France : Service compris, un geste apprécié',
   'pourboire-france-service-compris-geste-apprecie',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre la culture du "pourboire" dans les restaurants, cafés, taxis et autres services. Contrairement à de nombreux pays où le pourboire est obligatoire, en France, le "service est compris" dans le prix. Ne pas connaître cette règle, c''est risquer de payer deux fois ou de laisser un pourboire inapproprié. Nous vous expliquerons que le service est inclus dans le prix final, et quand (et comment) il est apprécié de laisser quelques pièces en signe de satisfaction. Maîtriser cette nuance est absolument crucial pour gérer votre budget, faire preuve de savoir-vivre, et vivre des interactions fluides et agréables avec le personnel de service en France.',
@@ -390,7 +390,7 @@ Bien que le "service soit compris" en France et que le pourboire ne soit pas obl
 -- COURS 98 : LGBTQ+ en France
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'd9ebf366-c641-4ba9-80f8-5d5f2ed79415',
   'LGBTQ+ en France : Droits, mariage pour tous et associations',
   'lgbtq-france-droits-mariage-tous-associations',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre la situation des personnes LGBTQ+ (Lesbiennes, Gays, Bisexuels, Transgenres, Queers et autres). La France est un pays qui reconnaît de nombreux droits aux personnes LGBTQ+, notamment le mariage et l''adoption pour tous. Cependant, il est crucial de connaître ces droits, de comprendre le cadre légal et social, et de savoir où trouver du soutien si nécessaire. Nous vous expliquerons les principaux droits des personnes LGBTQ+, la loi sur le "mariage pour tous", et le rôle des centres et associations LGBTQ+. Maîtriser ces informations est absolument crucial pour vivre votre identité en toute sécurité, vous intégrer dans la société française, et savoir comment réagir en cas de discrimination ou de problème.',
@@ -497,7 +497,7 @@ La France reconnaît de nombreux droits aux personnes LGBTQ+ (non-discrimination
 -- COURS 99 : Checklist Départ
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'd9ebf366-c641-4ba9-80f8-5d5f2ed79415',
   'Checklist Départ de France : Résilier contrats, Sécu et banque',
   'checklist-depart-france-resilier-contrats-secu-banque',
   'Ce cours est un guide absolument essentiel pour tous les étudiants internationaux qui s''apprêtent à quitter la France. Un départ réussi ne se limite pas à faire ses valises : il implique une série de démarches administratives et financières cruciales pour résilier tous vos contrats et éviter les frais inattendus ou les dettes. Nous vous fournirons une checklist complète pour résilier tous vos contrats (logement, énergie, internet, téléphone), pour clôturer votre affiliation à la Sécurité Sociale, et pour fermer votre compte bancaire français. Maîtriser cette checklist est fondamental pour un départ serein, en toute conformité, et sans mauvaises surprises qui pourraient impacter votre avenir. Ne laissez rien au hasard !',
@@ -667,7 +667,7 @@ S''assurer que vous n''êtes plus affilié(e).
 -- COURS 100 : Réseau Alumni
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'd9ebf366-c641-4ba9-80f8-5d5f2ed79415',
   'Réseau Alumni : Garder un lien professionnel avec la France',
   'reseau-alumni-garder-lien-professionnel-france',
   'Ce cours est essentiel pour tous les étudiants internationaux qui ont étudié en France et s''apprêtent à repartir dans leur pays d''origine (ou ailleurs). Votre expérience en France est un atout précieux, et le **réseau Alumni** est le moyen le plus efficace de garder un lien professionnel avec la France et de valoriser votre parcours à l''international. Ne pas le connaître, c''est se priver d''opportunités de carrière, d''échanges, et de soutien. Nous vous expliquerons le rôle de "France Alumni" (le réseau mondial des anciens élèves de l''enseignement supérieur français), comment rester connecté(e) avec votre établissement, et les avantages de maintenir un lien professionnel. Maîtriser ces outils est absolument crucial pour développer votre carrière à l''international et faire rayonner votre expérience française.',

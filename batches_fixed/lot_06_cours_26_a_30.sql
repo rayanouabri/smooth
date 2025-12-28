@@ -366,7 +366,7 @@ Pour le versement de vos APL, vous devrez fournir un RIB d''un compte bancaire f
 -- COURS 28 : Taxe d'Ordures Ménagères
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Taxe d''Ordures Ménagères (TEOM) : Comprendre vos charges',
   'taxe-ordures-menageres-teom-comprendre-charges',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui louent un logement et découvrent leurs charges locatives. La Taxe d''Enlèvement des Ordures Ménagères (TEOM) est un impôt local souvent inclus dans vos charges, mais son fonctionnement et son calcul peuvent être complexes. Nous vous expliquerons ce qu''est la TEOM et qui la paie réellement (le propriétaire, qui la récupère sur le locataire), comment elle est calculée et incluse dans vos provisions pour charges, et pourquoi il est important de vérifier son montant lors de la régularisation annuelle. Maîtriser cette information est crucial pour comprendre la composition de votre loyer, éviter de payer des montants indus et gérer efficacement votre budget.',
@@ -389,7 +389,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'C''est quoi la TEOM ?',
   '# C''est quoi la TEOM ?
 
@@ -459,7 +459,7 @@ La Taxe d''Enlèvement des Ordures Ménagères (TEOM) est un impôt local payé 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Comment elle est calculée dans les charges',
   '# Comment la TEOM est calculée dans les charges
 
@@ -532,7 +532,7 @@ La TEOM est calculée par l''administration fiscale sur la valeur locative cadas
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Vérifier le montant lors de la régularisation',
   '# Vérifier le montant lors de la régularisation de charges
 
@@ -607,7 +607,7 @@ Lors de la régularisation annuelle de vos charges, il est essentiel de vérifie
 -- COURS 29 : Types de logements étudiants
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Types de logements étudiants en France : Comparatif et conseils',
   'types-logements-etudiants-france-comparatif-conseils',
   'Ce cours est un guide indispensable pour tous les étudiants internationaux en recherche de logement en France. Le marché du logement étudiant est diversifié et offre de multiples options, chacune avec ses avantages et ses inconvénients. Nous vous présenterons un comparatif détaillé des principales solutions : les résidences du CROUS (critères d''éligibilité et calendrier DSE), les résidences privées (services inclus mais coûts souvent plus élevés), la colocation (avantages sociaux et inconvénients financiers), et le logement chez l''habitant ou intergénérationnel. Maîtriser ces options est crucial pour choisir le type de logement le plus adapté à votre budget, votre mode de vie et vos besoins en France.',
@@ -630,7 +630,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Le CROUS : Critères et calendrier DSE',
   '# Le CROUS : Critères et calendrier DSE
 
@@ -707,7 +707,7 @@ Les résidences CROUS sont une solution de logement abordable et recherchée en 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Résidences privées (Services inclus mais chers)',
   '# Résidences privées (Services inclus mais chers)
 
@@ -778,7 +778,7 @@ Les résidences étudiantes privées offrent confort et services (internet, séc
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'La Colocation : Avantages et inconvénients',
   '# La Colocation : Avantages et inconvénients
 
@@ -848,7 +848,7 @@ La colocation offre des avantages financiers (coût réduit, logement plus grand
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Logement chez l''habitant / Intergénérationnel',
   '# Logement chez l''habitant / Intergénérationnel
 
@@ -934,7 +934,7 @@ Le logement chez l''habitant ou intergénérationnel offre des avantages économ
 -- COURS 30 : Vie en copropriété
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Vie en copropriété : Règles et respect du voisinage en France',
   'vie-copropriete-regles-respect-voisinage-france',
   'Ce cours est essentiel pour tous les étudiants internationaux qui louent un logement dans un immeuble en France. Vivre en copropriété implique le respect de règles spécifiques pour assurer une bonne cohabitation entre voisins. Nous vous expliquerons ce qu''est le règlement de copropriété et comment il encadre la vie de l''immeuble. Nous aborderons la gestion des poubelles et des parties communes, ainsi que les règles concernant le tapage nocturne et le respect du voisinage, des points souvent sources de conflits. Maîtriser ces règles est absolument crucial pour une intégration harmonieuse, éviter les problèmes avec vos voisins ou le syndic, et profiter sereinement de votre logement en France.',
@@ -957,7 +957,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Le règlement de copropriété',
   '# Le règlement de copropriété
 
@@ -1034,7 +1034,7 @@ Le règlement de copropriété est un document juridique essentiel qui encadre l
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Gestion des poubelles et parties communes',
   '# Gestion des poubelles et parties communes
 
@@ -1106,7 +1106,7 @@ La bonne gestion des poubelles (tri sélectif) et le respect des parties commune
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Tapage nocturne et respect du voisinage',
   '# Tapage nocturne et respect du voisinage
 
@@ -1184,7 +1184,7 @@ Le respect de la tranquillité du voisinage est essentiel en France. Le tapage n
 -- COURS 31 : Quitter son logement
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Quitter son logement en France : Préavis et état des lieux de sortie',
   'quitter-logement-france-preavis-etat-des-lieux-sortie',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux qui s''apprêtent à quitter leur logement en France. La procédure de départ est encadrée par des règles strictes concernant le préavis et l''état des lieux de sortie, et une mauvaise gestion de ces étapes peut entraîner des frais imprévus ou la perte de votre dépôt de garantie. Nous vous expliquerons comment déterminer la durée de votre préavis (1 mois en zone tendue/meublé, 3 mois sinon), comment rédiger et envoyer votre lettre de congé (modèle fourni), et l''importance cruciale de l''état des lieux de sortie pour récupérer votre caution. Maîtriser ces étapes est absolument crucial pour un départ serein, en conformité avec la loi, et pour protéger vos finances.',
@@ -1207,7 +1207,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Préavis : 1 mois (Zone tendue/Meublé) ou 3 mois ?',
   '# Préavis : 1 mois (Zone tendue/Meublé) ou 3 mois ?
 
@@ -1283,7 +1283,7 @@ Le préavis de départ est une étape cruciale pour quitter votre logement en Fr
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'Rédiger sa lettre de congé (Modèle fourni)',
   '# Rédiger sa lettre de congé (Modèle fourni)
 
@@ -1367,7 +1367,7 @@ Rédiger votre lettre de congé de location est une étape cruciale pour quitter
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbeb4792-655a-4bb4-9fce-c732baa86f56',
   'L''envoi en Recommandé avec Accusé de Réception',
   '# L''envoi en Recommandé avec Accusé de Réception
 

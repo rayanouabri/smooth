@@ -10,7 +10,7 @@
 -- COURS 22 : L'État des lieux d'entrée
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'L''État des lieux d''entrée : Protégez votre dépôt de garantie',
   'etat-des-lieux-entree-protegez-depot-garantie',
   'Ce cours est d''une importance capitale pour tout locataire en France, et particulièrement pour les étudiants internationaux. L''état des lieux d''entrée est le document qui décrit précisément l''état du logement au moment de votre emménagement. Il est la preuve de l''état initial du bien et conditionne directement la restitution de votre dépôt de garantie à votre départ. Ne pas le réaliser avec la plus grande rigueur, ou le signer sans attention, peut vous coûter cher. Nous vous expliquerons pourquoi c''est le moment le plus important, comment tester l''eau et l''électricité, l''impératif de prendre des photos de tout défaut, et de récupérer votre copie signée. Maîtriser cette étape est crucial pour protéger vos finances.',
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 22
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Pourquoi c''est le moment le plus important',
   '# Pourquoi c''est le moment le plus important
 
@@ -121,8 +121,8 @@ L''état des lieux d''entrée est le moment le plus important de votre location 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Tester l''eau, l''électricité et les ouvertures',
   '# Tester l''eau, l''électricité et les ouvertures
 
@@ -182,8 +182,8 @@ Tester minutieusement les installations d''eau, d''électricité et toutes les o
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Prendre des photos de tout (défauts)',
   '# Prendre des photos de tout (défauts)
 
@@ -262,8 +262,8 @@ Prendre des photos et des vidéos datées de tous les défauts, même minimes, e
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Signer et récupérer sa copie',
   '# Signer et récupérer sa copie
 
@@ -339,7 +339,7 @@ Signer l''état des lieux d''entrée et récupérer votre copie sont les étapes
 -- COURS 23 : Assurance Habitation
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Assurance Habitation en France : Protégez votre logement',
   'assurance-habitation-france-protegez-logement',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux qui s''apprêtent à louer un logement en France. L''assurance habitation est une obligation légale pour le locataire et une protection indispensable pour votre bien-être. Nous vous expliquerons pourquoi cette assurance est obligatoire, la distinction entre la Responsabilité Civile et l''assurance Multirisque Habitation, comment comparer les offres des banques et des assureurs en ligne, et comment obtenir rapidement votre attestation d''assurance. Maîtriser ce sujet est crucial pour être en règle avec la loi, protéger vos biens et ceux du propriétaire, et éviter des frais exorbitants en cas de sinistre. Ne négligez jamais cette protection !',
@@ -361,8 +361,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 23
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'L''obligation légale d''assurance',
   '# L''obligation légale d''assurance
 
@@ -450,8 +450,8 @@ L''assurance habitation est une obligation légale et une nécessité absolue po
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Responsabilité Civile vs Multirisque',
   '# Responsabilité Civile vs Multirisque
 
@@ -540,8 +540,8 @@ La Responsabilité Civile Locative est l''assurance habitation minimum légaleme
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Comparer les offres (Banques vs Assureurs en ligne)',
   '# Comparer les offres (Banques vs Assureurs en ligne)
 
@@ -623,8 +623,8 @@ Comparer les offres d''assurance habitation entre les banques, les assureurs tra
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Obtenir son attestation',
   '# Obtenir son attestation d''assurance habitation
 
@@ -712,7 +712,7 @@ L''obtention rapide et la conservation précieuse de votre attestation d''assura
 -- COURS 24 : Ouvrir ses compteurs (Énergie)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Ouvrir ses compteurs (Énergie) en France : Électricité et Gaz',
   'ouvrir-compteurs-energie-france-electricite-gaz',
   'Ce cours est un guide essentiel pour les étudiants internationaux s''installant dans un nouveau logement en France et devant gérer leurs contrats d''énergie. L''ouverture des compteurs d''électricité et de gaz est une démarche obligatoire et urgente pour avoir l''énergie dans votre logement. Nous vous expliquerons comment relever les compteurs à l''entrée, comment choisir votre fournisseur (EDF, TotalEnergies, Engie, etc.), la différence entre heures creuses et heures pleines pour optimiser votre consommation, et le fonctionnement du compteur Linky. Maîtriser ces étapes est crucial pour éviter de vous retrouver sans électricité ou gaz, gérer votre consommation et comprendre vos factures.',
@@ -734,8 +734,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 24
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Relever les compteurs à l''entrée',
   '# Relever les compteurs à l''entrée
 
@@ -826,8 +826,8 @@ Relever les compteurs d''électricité et de gaz (et eau si individualisée) à 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Choisir son fournisseur (EDF, Total, Engie...)',
   '# Choisir son fournisseur (EDF, Total, Engie...)
 
@@ -909,8 +909,8 @@ Choisir son fournisseur d''électricité et de gaz en France est une démarche i
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Comprendre les heures creuses / heures pleines',
   '# Comprendre les heures creuses / heures pleines
 
@@ -995,8 +995,8 @@ Comprendre le système d''heures creuses et heures pleines est crucial pour opti
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Le compteur Linky : Comment ça marche',
   '# Le compteur Linky : Comment ça marche
 
@@ -1083,7 +1083,7 @@ Le compteur Linky est le nouveau compteur électrique communicant, qui simplifie
 -- COURS 25 : Internet et Fibre
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Internet et Fibre en France : Connectez votre logement',
   'internet-fibre-france-connecter-logement',
   'Ce cours est un guide indispensable pour les étudiants internationaux souhaitant connecter leur logement à Internet en France. Le choix d''un fournisseur d''accès (Orange, Free, SFR, Bouygues Telecom) et du type de connexion (Fibre optique, ADSL, 4G/5G Box) peut être complexe. Nous vous expliquerons comment tester l''éligibilité de votre adresse à la fibre, la distinction entre les offres "Box" et les "Forfaits 4G/5G" (idéaux pour les petits budgets ou les déménagements fréquents), les étapes de l''installation (rendez-vous technicien), et les pièges à éviter lors de la résiliation (frais cachés). Maîtriser ce sujet est crucial pour rester connecté(e) et gérer votre budget Internet efficacement.',
@@ -1105,8 +1105,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 25
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Tester l''éligibilité de son adresse',
   '# Tester l''éligibilité de son adresse
 
@@ -1182,8 +1182,8 @@ Tester l''éligibilité de votre adresse est la première étape indispensable p
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Box vs Forfait 4G/5G',
   '# Box vs Forfait 4G/5G
 
@@ -1253,8 +1253,8 @@ Le choix entre une Box Internet (Fibre/ADSL) et un forfait 4G/5G est crucial pou
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'L''installation : Rendez-vous technicien',
   '# L''installation : Rendez-vous technicien
 
@@ -1341,8 +1341,8 @@ L''installation de votre Box Internet (Fibre ou ADSL) nécessite souvent un rend
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'Résiliation : Attention aux frais',
   '# Résiliation : Attention aux frais
 

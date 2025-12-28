@@ -10,7 +10,7 @@
 -- COURS 62 : Alternance et Apprentissage
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '4ccd0266-f9d3-4e48-9058-248a276668c3',
   'Alternance et Apprentissage en France : La voie de l''insertion pro',
   'alternance-apprentissage-france-voie-insertion-pro',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui envisagent une formation en alternance ou un contrat d''apprentissage. Ces dispositifs sont des voies privilégiées pour l''insertion professionnelle, combinant études et expérience en entreprise. Nous vous expliquerons la différence cruciale entre un contrat d''apprentissage et un contrat de professionnalisation, les avantages majeurs de l''alternance (salaire, formation payée), et les défis pour trouver une entreprise. Maîtriser ces informations est absolument crucial pour comprendre ce mode de formation, évaluer si l''alternance est faite pour vous, et maximiser vos chances de trouver un contrat pour votre avenir professionnel en France.',
@@ -313,7 +313,7 @@ Trouver une entreprise d''accueil est le principal défi de l''alternance en Fra
 -- COURS 63 : Les stages en France
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '4ccd0266-f9d3-4e48-9058-248a276668c3',
   'Les stages en France : Convention obligatoire et gratification',
   'stages-france-convention-obligatoire-gratification',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui envisagent d''effectuer un stage. Le stage est une étape cruciale pour acquérir une première expérience professionnelle et faciliter l''insertion, mais il est strictement encadré par la loi (loi de 2014 et de 2021). Ne pas connaître les règles de la "convention de stage obligatoire", les conditions de "gratification minimale" (si le stage dure plus de 2 mois), et la distinction entre stage et job étudiant (pour éviter l''exploitation), c''est risquer de travailler illégalement ou de ne pas être payé(e) correctement. Maîtriser cette législation est absolument crucial pour faire un stage en toute légalité, protéger vos droits, et valoriser cette expérience.',
@@ -596,7 +596,7 @@ La distinction entre un stage (période de formation pédagogique avec conventio
 -- COURS 64 : Statut Auto-entrepreneur
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '4ccd0266-f9d3-4e48-9058-248a276668c3',
   'Statut Auto-entrepreneur en France : Créer son activité étudiante',
   'statut-auto-entrepreneur-france-creer-activite-etudiante',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui envisagent de créer leur propre activité indépendante sous le régime de la micro-entreprise (anciennement auto-entrepreneur). Cette option offre flexibilité et simplicité administrative, mais elle est soumise à des conditions spécifiques, notamment la compatibilité avec votre visa étudiant. Nous vous expliquerons si le statut est cumulable avec votre titre de séjour, la procédure de création sur le site de l''URSSAF, et les obligations de déclaration de chiffre d''affaires mensuelle ou trimestrielle. Maîtriser le statut d''auto-entrepreneur est absolument crucial pour lancer votre activité en toute légalité, comprendre vos obligations fiscales et sociales, et financer vos études de manière autonome.',
@@ -890,7 +890,7 @@ La déclaration de votre chiffre d''affaires (CA) mensuelle ou trimestrielle est
 -- COURS 65 : Networking et LinkedIn
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '4ccd0266-f9d3-4e48-9058-248a276668c3',
   'Networking et LinkedIn en France : Développez votre réseau pro',
   'networking-linkedin-france-developpez-reseau-pro',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent développer leur réseau professionnel et faciliter leur insertion sur le marché de l''emploi. Le "réseau" est une notion très importante en France, et LinkedIn est un outil incontournable pour le développer. Nous vous expliquerons l''importance du networking (rencontres professionnelles), comment optimiser votre profil LinkedIn pour attirer les recruteurs, et les conseils pour participer efficacement à des événements professionnels (salons, conférences). Maîtriser ces stratégies est absolument crucial pour créer des opportunités d''emploi, trouver des stages, et réussir votre carrière en France.',
@@ -1185,7 +1185,7 @@ Participer à des événements professionnels (salons, forums, conférences) est
 -- COURS 66 : Forfaits mobiles
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '4ccd0266-f9d3-4e48-9058-248a276668c3',
   'Forfaits mobiles en France : Choisir et gérer sa SIM',
   'forfaits-mobiles-france-choisir-gerer-sim',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui ont besoin de choisir et de gérer leur forfait mobile. Le marché français est riche en offres, avec des opérateurs historiques et des "low cost" sans engagement. Nous vous expliquerons la flexibilité des forfaits sans engagement (Sosh, RED by SFR, Free Mobile), comment conserver votre numéro de téléphone si vous changez d''opérateur (le code RIO), et la solution pratique des cartes SIM prépayées pour une arrivée rapide. Maîtriser ce choix est absolument crucial pour rester connecté(e), communiquer avec vos proches en France et à l''étranger, et optimiser votre budget télécoms sans frais cachés ni engagement contraignant.',

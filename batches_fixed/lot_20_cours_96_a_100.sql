@@ -10,7 +10,7 @@
 -- COURS 86 : Venir en famille
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'e0ed19e6-afd4-43ce-a360-4d79926a4adb',
   'Venir en famille en France : Scolarisation et aides CAF',
   'venir-famille-france-scolarisation-aides-caf',
   'Ce cours est essentiel pour tous les étudiants internationaux ou les professionnels qui s''installent en France avec leur famille (conjoint, enfants). Venir en famille implique des démarches administratives spécifiques, notamment pour la scolarisation des enfants et l''accès aux aides sociales. Ne pas connaître ces procédures, c''est risquer des difficultés pour l''intégration de vos enfants, ou de ne pas bénéficier des prestations de la CAF (allocations familiales, aides au logement). Nous vous expliquerons comment inscrire vos enfants à l''école ou à la crèche, et les conditions pour demander les allocations familiales de la CAF. Maîtriser ces informations est absolument crucial pour une installation familiale sereine et une bonne intégration de tous les membres de votre foyer en France.',
@@ -213,7 +213,7 @@ Si vous venez en France avec au moins deux enfants à charge, vous pouvez béné
 -- COURS 87 : Animaux de compagnie
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'e0ed19e6-afd4-43ce-a360-4d79926a4adb',
   'Animaux de compagnie en France : Passeport européen et vétérinaire',
   'animaux-compagnie-france-passeport-europeen-veterinaire',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui voyagent avec un animal de compagnie (chien, chat, furet). L''arrivée en France avec un animal est soumise à des règles sanitaires et administratives strictes (passeport européen, vaccination). Ne pas les respecter, c''est risquer de voir votre animal refoulé à la frontière ou mis en quarantaine, ce qui serait une épreuve coûteuse et douloureuse. Nous vous expliquerons la nécessité du passeport européen et des vaccins (notamment antirabique), et comment trouver un vétérinaire en France. Maîtriser ces informations est absolument crucial pour voyager sereinement avec votre animal, garantir sa santé, et respecter la législation française.',
@@ -394,7 +394,7 @@ Trouver un vétérinaire en France est absolument crucial pour la santé de votr
 -- COURS 88 : Voyager en Europe
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'e0ed19e6-afd4-43ce-a360-4d79926a4adb',
   'Voyager en Europe : Espace Schengen, low-cost et Flixbus',
   'voyager-europe-espace-schengen-low-cost-flixbus',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent voyager à travers l''Europe. L''Europe offre une grande liberté de circulation grâce à l''Espace Schengen, mais il est crucial de connaître les règles d''entrée et de séjour, ainsi que les options de transport économiques. Nous vous expliquerons le concept de l''Espace Schengen et ses implications pour votre titre de séjour, les avantages des compagnies aériennes "low-cost" et des bus (Flixbus) pour des voyages à petit prix. Maîtriser ces informations est absolument crucial pour planifier vos voyages, respecter la législation, et profiter pleinement de l''opportunité unique de découvrir l''Europe pendant votre séjour en France.',
@@ -586,7 +586,7 @@ Pour voyager à travers l''Europe à petit prix depuis la France, privilégiez l
 -- COURS 89 : Jours fériés et Ponts
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'e0ed19e6-afd4-43ce-a360-4d79926a4adb',
   'Jours fériés et Ponts en France : Planifiez vos congés !',
   'jours-feries-ponts-france-planifiez-conges',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre le calendrier des jours fériés et la tradition des "ponts". Les jours fériés sont des jours de repos légaux, et un "pont" est un jour de congé supplémentaire pour relier un jour férié au week-end. Ne pas connaître ces dates, c''est risquer de se retrouver face à des administrations ou des magasins fermés, de ne pas pouvoir planifier ses voyages, ou de manquer des opportunités de repos. Nous vous présenterons le calendrier des jours fériés, et l''art de "faire le pont" en posant ses congés intelligemment. Maîtriser ces informations est absolument crucial pour planifier votre emploi du temps, vos voyages, et profiter pleinement des fêtes nationales et des jours de repos en France.',
@@ -756,7 +756,7 @@ Le "faire le pont" est une tradition française qui permet de prolonger les week
 -- COURS 90 : Manger Spécifique
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'e0ed19e6-afd4-43ce-a360-4d79926a4adb',
   'Manger Spécifique en France : Halal, Casher, Végé, Vegan',
   'manger-specifique-france-halal-casher-vege-vegan',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui ont des régimes alimentaires spécifiques (religieux, éthiques, de santé). Le marché alimentaire français offre de plus en plus d''options, mais il est crucial de savoir où trouver des produits **Halal, Casher, Végétariens ou Végans**, et comment identifier les restaurants adaptés. Ne pas connaître ces ressources, c''est risquer des difficultés pour vous alimenter selon vos convictions ou vos besoins, et de ne pas profiter pleinement de l''offre culinaire. Nous vous expliquerons comment trouver ces produits en supermarché et en magasins spécialisés, et les astuces pour repérer les restaurants proposant ces options. Maîtriser ces informations est absolument crucial pour une alimentation conforme et un mode de vie respectueux de vos choix en France.',

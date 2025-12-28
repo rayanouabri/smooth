@@ -10,7 +10,7 @@
 -- COURS 77 : La Bise
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '59baab58-aa39-4a40-916e-9e210d097ca8',
   'La Bise en France : À qui, combien, comment ?',
   'bise-france-qui-combien-comment',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un code social emblématique mais complexe : la "bise" (le fait de s''embrasser sur la joue pour se saluer). Les règles concernant "à qui fait-on la bise ?", "combien de bises selon la région ?", et "comment la faire ?" sont très subtiles et peuvent être une source d''embarras ou de malentendus si vous n''êtes pas familier(ère) avec les coutumes françaises. Nous aborderons les conventions, les variations régionales du nombre de bises, et l''impact de la pandémie sur les habitudes. Maîtriser ce rituel est absolument crucial pour des interactions sociales réussies, une bonne intégration, et pour éviter les situations inconfortables.',
@@ -296,7 +296,7 @@ La pandémie de COVID-19 a fait évoluer les rituels de salutation en France, av
 -- COURS 78 : Repas et Resto U
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '59baab58-aa39-4a40-916e-9e210d097ca8',
   'Repas et Resto U en France : Manger étudiant et économique',
   'repas-resto-u-france-manger-etudiant-economique',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin d''optimiser leur budget alimentaire. Les restaurants universitaires (Resto U) sont une solution économique et pratique pour se restaurer au quotidien. Nous vous expliquerons le "tarif social" (1€ ou 3,30€) dont vous pouvez bénéficier en tant qu''étudiant, et comment payer vos repas avec la carte **Izly**, le système de paiement des CROUS. Nous aborderons également les horaires des repas en France, souvent plus tôt qu''ailleurs. Maîtriser ces informations est absolument crucial pour manger équilibré à moindre coût, gérer votre budget alimentation efficacement, et vous intégrer aux habitudes culinaires françaises.',
@@ -551,7 +551,7 @@ Les horaires des repas en France sont plus tôt qu''ailleurs, avec un déjeuner 
 -- COURS 79 : L'Apéro
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '59baab58-aa39-4a40-916e-9e210d097ca8',
   'L''Apéro en France : Concept social, convivialité et bonnes manières',
   'apero-france-concept-social-convivialite-bonnes-manieres',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un rituel social profondément ancré dans la culture française : l''"apéro" (apéritif). L''apéro n''est pas un simple "verre" ; c''est un moment de convivialité qui précède le dîner, avec ses propres codes et attentes. Ne pas comprendre son concept social (ni dîner, ni goûter), savoir quoi apporter si vous êtes invité(e), et les règles pour "trinquer" en se regardant dans les yeux, c''est risquer de commettre des impairs, de ne pas participer pleinement, ou de se sentir exclu(e). Maîtriser le rituel de l''apéro est absolument crucial pour une intégration sociale réussie et pour nouer des liens avec les Français.',
@@ -826,7 +826,7 @@ Trinquer en se regardant dans les yeux est un rituel social absolument crucial e
 -- COURS 80 : Améliorer son français
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '59baab58-aa39-4a40-916e-9e210d097ca8',
   'Améliorer son français en France : Ressources et astuces pour progresser',
   'ameliorer-francais-france-ressources-astuces-progresser',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent perfectionner leur maîtrise de la langue française. Une bonne connaissance du français est la clé d''une intégration réussie, d''une meilleure réussite académique, et d''une insertion professionnelle facilitée. Nous vous présenterons des applications gratuites pour l''apprentissage (Duolingo, Babbel), les avantages des "cafés des langues" et des "tandems linguistiques" pour la pratique orale, et l''intérêt des médias français (Radio France, Arte) pour l''écoute et la compréhension. Maîtriser ces ressources et ces astuces est absolument crucial pour progresser rapidement, gagner en confiance, et vous immerger pleinement dans la vie française.',
@@ -1076,7 +1076,7 @@ L''immersion passive via les médias français (Radio France pour l''écoute, Ar
 -- COURS 81 : Se faire des amis
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '59baab58-aa39-4a40-916e-9e210d097ca8',
   'Se faire des amis en France : Brisez la bulle et intégrez-vous !',
   'se-faire-amis-france-brisez-bulle-integrez',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de faciliter leur intégration sociale et de nouer des liens d''amitié. L''éloignement familial et le choc culturel peuvent rendre difficile la création de nouvelles relations. Nous vous expliquerons pourquoi il est important de "sortir de la bulle des expatriés" pour rencontrer des Français, les avantages des activités sportives universitaires (SUAPS) pour faire des rencontres, et comment proposer des sorties et des activités. Maîtriser ces stratégies est absolument crucial pour briser l''isolement, développer un cercle social riche, et vivre une expérience étudiante épanouissante et mémorable en France.',
