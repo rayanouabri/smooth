@@ -707,7 +707,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'c5d6e7f8-a9b0-4012-e3f4-a5b6c7d8e9f0',
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  'f8e2d276-b66b-4554-b5d6-a6e3ea08a501',
   'La Laïcité expliquée aux étrangers',
   '# La Laïcité expliquée aux étrangers
 
@@ -788,7 +788,7 @@ La Laïcité est un principe fondamental français qui garantit la neutralité d
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'bc7f24bd-51b3-4b7b-a450-33fb0d027f06',
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  'f8e2d276-b66b-4554-b5d6-a6e3ea08a501',
   'Droits à la manifestation et à la grève',
   '# Droits à la manifestation et à la grève
 
@@ -855,7 +855,7 @@ Le droit de manifester et de faire grève sont des droits fondamentaux en France
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   'ff6cee77-7a13-450d-a69a-8fa1bc5bf091',
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  'f8e2d276-b66b-4554-b5d6-a6e3ea08a501',
   'Liberté d''expression et ses limites légales',
   '# Liberté d''expression et ses limites légales
 
@@ -1288,7 +1288,7 @@ Contacter l''administration française via leurs sites internet est un moyen eff
 -- COURS 16 : Décoder les annonces immobilières
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  'e4c583d0-c247-45a0-80bb-f1682f2464c3',
   'Décoder les annonces immobilières en France : Votre guide logement',
   'decoder-annonces-immobilieres-france',
   'Ce cours est un guide indispensable pour les étudiants internationaux en recherche de logement en France. Les annonces immobilières françaises regorgent d''abréviations et de termes spécifiques qui peuvent être difficiles à comprendre. Nous vous aiderons à décoder le lexique (CC, HC, F1, T2, Bis), à comprendre les différences cruciales entre logement meublé et non-meublé et leur impact sur le bail, à repérer les éventuels frais d''agence cachés, et à analyser l''importance de la performance énergétique (DPE). Maîtriser ce langage est crucial pour identifier rapidement les logements qui correspondent à vos critères, éviter les arnaques et comprendre ce que vous louez réellement.',
@@ -1314,7 +1314,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   '2d3e4f5a-6b7c-4012-f8a9-b0c1d2e3f4a5',
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  'e4c583d0-c247-45a0-80bb-f1682f2464c3',
   'Lexique : CC, HC, F1, T2, Bis',
   '# Lexique : CC, HC, F1, T2, Bis
 
@@ -1383,7 +1383,7 @@ Le lexique des annonces immobilières françaises est spécifique. Maîtrisez le
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   '3e4f5a6b-7c8d-4012-e9f0-a1b2c3d4e5f6',
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  'e4c583d0-c247-45a0-80bb-f1682f2464c3',
   'Meublé vs Non-meublé : Impact sur le bail',
   '# Meublé vs Non-meublé : Impact sur le bail
 
@@ -1458,7 +1458,7 @@ Le choix entre un logement meublé et non-meublé a des répercussions majeures 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   '3644e0c7-4447-4e85-9a9c-b028ff9e9fdc',
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  'e4c583d0-c247-45a0-80bb-f1682f2464c3',
   'Repérer les frais d''agence cachés',
   '# Repérer les frais d''agence cachés
 
@@ -1547,7 +1547,7 @@ Les frais d''agence immobilière pour le locataire sont strictement encadrés et
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
   '06d56fea-ead9-4c38-a5de-2aae8df11a04',
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  'e4c583d0-c247-45a0-80bb-f1682f2464c3',
   'Analyser la performance énergétique (DPE)',
   '# Analyser la performance énergétique (DPE)
 
