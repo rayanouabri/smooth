@@ -21,6 +21,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le rôle des associations étudiantes (BDE, sport, culture, humanitaire)", "Identifier les avantages de l''engagement associatif (rencontres, compétences, réseau)", "Savoir comment trouver et rejoindre une association étudiante", "Maîtriser les conseils pour valoriser son engagement sur le CV et dans sa recherche d''emploi"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 82
@@ -278,6 +284,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement et les avantages du Culture Pass (300€ offerts)", "Identifier la gratuité des musées nationaux pour les moins de 26 ans", "Savoir comment accéder aux tarifs réduits pour l''opéra et le théâtre", "Maîtriser les conseils pour profiter pleinement de l''offre culturelle française"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 83
@@ -535,6 +547,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement et la rentabilité des cartes d''abonnement illimité (UGC/CinéPass)", "Distinguer les versions VOSTFR (VO sous-titrée français) et VF (version française)", "Identifier les bons plans (tarifs étudiants, Fête du Cinéma) pour réduire le coût", "Maîtriser les conseils pour profiter du cinéma en France et gérer son budget"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 84
@@ -774,6 +792,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''impact des grèves sur les transports et services publics", "Savoir comment vérifier le trafic et les perturbations en temps réel", "Identifier les raisons et les revendications des grèves et manifestations", "Maîtriser les conseils de sécurité en manifestation et les réflexes à adopter"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 85
@@ -1028,6 +1052,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la procédure d''inscription scolaire/crèche pour les enfants d''étrangers", "Identifier les documents requis pour la scolarisation des enfants", "Savoir comment demander les allocations familiales et autres aides de la CAF", "Maîtriser les conseils pour une installation familiale réussie et l''intégration de vos enfants"]'::jsonb,
   '["Avoir un titre de séjour valide en France", "Avoir des enfants à charge et/ou un conjoint"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 86

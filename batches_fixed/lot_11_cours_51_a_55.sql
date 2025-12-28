@@ -21,6 +21,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Identifier les frais bancaires courants (tenue de compte, carte, virements)", "Comprendre la différence entre découvert autorisé et non autorisé", "Maîtriser le concept des commissions d''intervention et comment les éviter", "Savoir comment comparer les tarifs bancaires et optimiser son budget"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 52
@@ -266,6 +272,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Estimer le coût de la vie moyen dans différentes villes françaises", "Appliquer des méthodes de gestion budgétaire (règle 50/30/20) à votre situation", "Découvrir et utiliser des applications mobiles pour le suivi de dépenses", "Maîtriser les conseils pour équilibrer ses revenus et dépenses et éviter les difficultés"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 53
@@ -496,6 +508,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''existence et l''accès aux aides financières d''urgence", "Identifier l''aide ponctuelle du CROUS et ses conditions", "Découvrir les bourses au mérite et les aides des collectivités locales", "Maîtriser la démarche pour contacter une assistante sociale et obtenir de l''aide"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 54
@@ -754,6 +772,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la nécessité de clôturer son compte bancaire avant de quitter la France", "Savoir comment vérifier et arrêter tous les prélèvements et virements automatiques", "Maîtriser la rédaction et l''envoi de la lettre de clôture à la banque", "Identifier les étapes pour transférer le solde restant et récupérer son argent"]'::jsonb,
   '["Avoir un compte bancaire en France et envisager de le clôturer"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 55
@@ -994,6 +1018,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Distinguer les Cours Magistraux (CM) des Travaux Dirigés (TD)", "Comprendre le système des crédits ECTS et la validation des études", "Identifier l''importance de la présence aux cours et des règles d''assiduité", "Maîtriser les différentes formes d''examens (partiels, contrôle continu) et leur évaluation"]'::jsonb,
   '["Être admis(e) dans un établissement d''enseignement supérieur français"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 56

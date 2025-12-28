@@ -21,6 +21,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Maîtriser la création de son compte allocataire sur caf.fr", "Remplir correctement sa déclaration de ressources pour les APL", "Fournir toutes les informations sur le logement et le bailleur", "Comprendre les modalités de versement des APL (locataire ou propriétaire)"]'::jsonb,
   '["Avoir un logement en France", "Avoir un titre de séjour valide (ou VLS-TS validé)", "Avoir une attestation de loyer remplie par le propriétaire"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 27
@@ -363,6 +369,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la nature de la Taxe d''Enlèvement des Ordures Ménagères (TEOM)", "Savoir comment la TEOM est incluse et calculée dans les charges locatives", "Identifier l''importance de vérifier le montant lors de la régularisation annuelle", "Maîtriser les conseils pour une bonne gestion de cette charge locative"]'::jsonb,
   '["Avoir un logement en France avec des charges locatives"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 28
@@ -592,6 +604,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les spécificités des résidences CROUS et leurs critères d''attribution", "Identifier les avantages et inconvénients des résidences étudiantes privées", "Évaluer les opportunités et les contraintes de la colocation", "Découvrir les options de logement chez l''habitant ou intergénérationnel"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 29
@@ -905,6 +923,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le rôle du règlement de copropriété", "Savoir comment gérer les poubelles et utiliser les parties communes", "Identifier les règles concernant le tapage nocturne et le bruit", "Maîtriser les conseils pour une cohabitation respectueuse et harmonieuse avec le voisinage"]'::jsonb,
   '["Avoir un logement en appartement en France"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 30
@@ -1143,6 +1167,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la durée légale du préavis de départ (1 ou 3 mois)", "Savoir rédiger et envoyer une lettre de congé conforme", "Identifier l''importance de l''état des lieux de sortie pour le dépôt de garantie", "Maîtriser les conseils pour un départ serein et conforme à la loi"]'::jsonb,
   '["Avoir un contrat de location en France"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 31

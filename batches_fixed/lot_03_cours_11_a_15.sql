@@ -21,6 +21,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1594967399343-982d1c68615c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBhc3Nwb3J0JTIwdHJhdmVsfGVufDB8fDB8fHww',
   '["Connaître les pays ayant un accord de réciprocité avec la France", "Comprendre l''importance du délai d''un an pour l''échange", "Maîtriser la procédure de demande sur la plateforme ANTS", "Identifier les règles pour conduire avec son permis étranger en France"]'::jsonb,
   '["Avoir un permis de conduire valide délivré par un pays étranger"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 12
@@ -352,6 +358,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1554902409-9b9a6b1e6e9b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
   '["Comprendre la définition et la nécessité d''une traduction assermentée", "Savoir trouver un traducteur agréé en France", "Distinguer l''apostille de la légalisation et leur utilité", "Maîtriser les règles de validité des traductions pour l''administration"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 13
@@ -667,6 +679,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le principe de la Laïcité et ses applications", "Identifier les droits fondamentaux de manifestation et de grève", "Maîtriser les limites légales de la liberté d''expression", "Favoriser une intégration respectueuse des valeurs républicaines françaises"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 14
@@ -918,6 +936,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''utilité et la richesse du portail Service-Public.fr", "Savoir créer et utiliser son compte FranceConnect", "Maîtriser la recherche et l''utilisation des fiches pratiques", "Utiliser les simulateurs de droits et contacter l''administration efficacement"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 15
@@ -1248,6 +1272,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 #M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
   '["Décoder les abréviations courantes (CC, HC, F1, T2, Bis)", "Comprendre les différences entre logement meublé et non-meublé", "Repérer et évaluer les frais d''agence immobilière", "Interpréter le Diagnostic de Performance Énergétique (DPE)"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 16

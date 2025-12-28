@@ -21,6 +21,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le vocabulaire de base pour une coupe de cheveux ou une taille de barbe", "Identifier les tarifs moyens des coiffeurs/barbiers en France", "Savoir si et comment laisser un pourboire (service compris)", "Maîtriser les conseils pour exprimer clairement ses souhaits et obtenir la coupe désirée"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 91
@@ -180,6 +186,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement de Leboncoin pour les annonces généralistes", "Identifier les spécificités de Vinted pour l''achat/vente de vêtements", "Savoir où trouver des bons plans pour les meubles et l''électronique", "Maîtriser les conseils de prudence pour éviter les arnaques à l''achat d''occasion"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 92
@@ -373,6 +385,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la distinction entre baguette "tradition" et "classique"", "Identifier les autres types de pains et de viennoiseries courantes", "Savoir comment interagir poliment avec le boulanger/la boulangère", "Maîtriser les conseils pour faire ses achats en boulangerie et profiter du pain français"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 93
@@ -557,6 +575,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la différence de prix entre un café "au comptoir" et "en salle/terrasse"", "Savoir commander son café et s''adapter aux codes du service", "Identifier la tolérance à rester longtemps avec une seule consommation", "Maîtriser les conseils pour profiter de l''expérience café en terrasse et gérer son budget"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 94
@@ -734,6 +758,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre que la vente de tabac est limitée aux bureaux de tabac", "Identifier les règles d''interdiction de fumer dans les lieux publics (y compris certaines terrasses)", "Savoir le prix élevé du tabac en France et son impact sur le budget", "Maîtriser les conseils pour respecter la législation et protéger sa santé"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 95

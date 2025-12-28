@@ -21,6 +21,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1523050854805-4c6e94e50871?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHVuaXZlcnNpdHl8ZW58MHx8MHx8fDA%3D',
   '["Maîtriser la création et la gestion de son compte Campus France", "Savoir constituer un panier de formations pertinent", "Préparer un dossier de candidature complet et attrayant", "Réussir l''entretien pédagogique Campus France"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 2
@@ -378,6 +384,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1543699564-88404f2f4c39?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG9mZmNpYWwlMjBwYXBlcnN8ZW58MHx8MHx8fDA%3D',
   '["Comprendre l''urgence de la validation du VLS-TS", "Maîtriser la création de compte sur la plateforme ANEF", "Savoir acheter et utiliser le timbre fiscal électronique", "Obtenir l''attestation de validation de votre visa"]'::jsonb,
   '["Avoir un VLS-TS (Visa Long Séjour valant Titre de Séjour) valide"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 3
@@ -750,6 +762,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1576091160550-2173167b2d56?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1lZGljYWwlMjBjaGVja3VwfGVufDB8fDB8fHww',
   '["Identifier si vous êtes concerné(e) par la visite médicale OFII", "Comprendre le processus de convocation et ses délais", "Préparer les documents et examens pour la visite", "Savoir l''importance de l''attestation médicale finale"]'::jsonb,
   '["Avoir validé ou être en cours de validation de votre VLS-TS"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 4
@@ -1070,6 +1088,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1554902409-9b9a6b1e6e9b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
   '["Comprendre les délais impératifs pour le renouvellement", "Savoir prendre rendez-vous en préfecture (ou en ligne)", "Rassembler toutes les preuves requises pour votre dossier", "Comprendre les droits offerts par le récépissé et récupérer son nouveau titre"]'::jsonb,
   '["Avoir un titre de séjour temporaire en France", "Avoir validé votre VLS-TS"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 5
@@ -1430,6 +1454,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1518655282711-d9774656ee43?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGFkbWluaXN0cmF0aW9uJTIwcGFwZXJzJTIwfGVufDB8fDB8fHww',
   '["Connaître la liste exhaustive des documents pour la préfecture", "Identifier les justificatifs de domicile valides", "Comprendre les exigences en matière de ressources financières", "Préparer des photos d''identité aux normes et organiser son dossier"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 6

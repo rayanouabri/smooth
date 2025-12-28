@@ -21,6 +21,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''importance cruciale de l''état des lieux d''entrée", "Savoir comment vérifier l''état des équipements (eau, électricité, ouvertures)", "Maîtriser la prise de photos comme preuve de tous les défauts", "Obtenir impérativement votre copie de l''état des lieux signé"]'::jsonb,
   '["Avoir signé un bail de location"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 22
@@ -336,6 +342,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''obligation légale de souscrire une assurance habitation", "Distinguer la Responsabilité Civile de la garantie Multirisque Habitation", "Savoir comparer les offres et choisir la bonne assurance", "Obtenir rapidement son attestation d''assurance pour le propriétaire"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 23
@@ -695,6 +707,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Savoir relever les compteurs d''électricité et de gaz à votre arrivée", "Comprendre le marché de l''énergie et choisir son fournisseur (EDF, Engie)", "Distinguer les heures creuses/heures pleines pour optimiser sa consommation", "Comprendre le fonctionnement et les avantages du compteur Linky"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 24
@@ -1052,6 +1070,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Savoir tester l''éligibilité de son adresse à la fibre optique", "Distinguer les offres "Box" des "Forfaits 4G/5G" et leurs avantages", "Comprendre les étapes et les délais d''installation (technicien)", "Identifier les frais cachés et les pièges lors de la résiliation d''un contrat"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 25
@@ -1372,6 +1396,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les principes du calcul des APL (loyer, zone, revenus)", "Savoir utiliser le simulateur CAF pour estimer ses droits", "Identifier les conditions d''éligibilité spécifiques aux étrangers (titre de séjour)", "Maîtriser les critères pour optimiser ses chances de bénéficier des APL"]'::jsonb,
   '["Avoir un logement en France", "Avoir un titre de séjour valide (ou VLS-TS validé)"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 26

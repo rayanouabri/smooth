@@ -21,6 +21,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement du Pass Navigo et des équivalents régionaux", "Identifier les tarifs spécifiques pour les étudiants (Imagine R)", "Savoir comment valider son titre de transport à chaque passage", "Maîtriser les conseils pour optimiser ses déplacements et éviter les amendes"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 67
@@ -274,6 +280,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Distinguer les offres TGV Inoui (standard) et Ouigo (low cost)", "Comprendre l''intérêt et la rentabilité de la Carte Avantage Jeune", "Savoir utiliser l''application Connect SNCF pour la réservation et les infos trafic", "Maîtriser les conseils pour planifier ses voyages en train et acheter ses billets au meilleur prix"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 68
@@ -503,6 +515,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement des services de vélos en libre-service (Vélib'') et leurs abonnements", "Identifier les règles du Code de la route spécifiques aux cyclistes", "Savoir comment sécuriser son vélo personnel contre le vol", "Maîtriser les conseils pour une mobilité douce sûre et agréable en ville"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 69
@@ -753,6 +771,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la typologie des magasins (hypermarché, supermarché, supérette)", "Identifier les avantages des enseignes hard-discount (Lidl, Aldi) pour les petits budgets", "Savoir comment utiliser les cartes de fidélité pour des réductions", "Maîtriser les conseils pour faire ses courses intelligemment et économiser"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 70
@@ -976,6 +1000,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les principes du tri sélectif en France", "Identifier les catégories de déchets pour chaque couleur de poubelle (jaune, verte, marron)", "Savoir où déposer le verre et les autres déchets spécifiques", "Maîtriser les nouvelles règles de tri et les conseils pour une bonne gestion des déchets"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 71

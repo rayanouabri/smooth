@@ -21,6 +21,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''échelle de notation française sur 20 et la signification du 10/20", "Identifier les différentes mentions (Assez Bien, Bien, Très Bien) et leurs critères", "Distinguer les examens "partiels" du "contrôle continu" et leur impact", "Maîtriser les conseils pour optimiser sa réussite aux examens"]'::jsonb,
   '["Être admis(e) dans un établissement d''enseignement supérieur français"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 57
@@ -283,6 +289,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la structure et le design attendus d''un CV français", "Savoir si inclure une photo est recommandé ou non", "Maîtriser la valorisation de ses expériences et diplômes étrangers", "Identifier les erreurs courantes à éviter pour un CV impactant"]'::jsonb,
   '[]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 58
@@ -538,6 +550,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la structure "Vous, Moi, Nous" d''une lettre de motivation française", "Identifier les formules de politesse adéquates (début et fin de lettre)", "Savoir comment personnaliser sa lettre pour chaque offre d''emploi", "Maîtriser les erreurs classiques à éviter pour une LM percutante"]'::jsonb,
   '["Avoir un CV aux normes françaises"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 59
@@ -813,6 +831,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la limite légale des 964 heures de travail par an pour étudiants non-européens", "Savoir comment déclarer ses heures de travail si l''on est hors UE", "Identifier le montant du SMIC horaire en France et ses implications", "Maîtriser les conseils pour travailler légalement et protéger son statut étudiant"]'::jsonb,
   '["Être titulaire d''un titre de séjour étudiant valide en France"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 60
@@ -1071,6 +1095,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Utiliser les plateformes dédiées à l''emploi étudiant (Jobaviz)", "Identifier les secteurs qui recrutent le plus d''étudiants", "Comprendre les spécificités du contrat de travail étudiant", "Maîtriser les conseils pour optimiser sa recherche de job et concilier études/travail"]'::jsonb,
   '["Être titulaire d''un titre de séjour étudiant valide en France", "Avoir un CV et une lettre de motivation aux normes françaises"]'::jsonb,
+  NULL,
+  NULL,
+  TRUE,
+  4.5,
+  100,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 61
