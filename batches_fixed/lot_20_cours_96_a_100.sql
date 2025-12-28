@@ -21,12 +21,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la procédure d''inscription scolaire/crèche pour les enfants d''étrangers", "Identifier les documents requis pour la scolarisation des enfants", "Savoir comment demander les allocations familiales et autres aides de la CAF", "Maîtriser les conseils pour une installation familiale réussie et l''intégration de vos enfants"]'::jsonb,
   '["Avoir un titre de séjour valide en France", "Avoir des enfants à charge et/ou un conjoint"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 86
@@ -116,6 +110,8 @@ L''accès à l''école est gratuit.
 
 L''inscription scolaire (à partir de 3 ans en maternelle, 6 ans en primaire) ou en crèche (moins de 3 ans) est une démarche cruciale pour les enfants d''étrangers en France. Contactez la mairie de votre lieu de résidence avec vos documents (titre de séjour, livret de famille traduit, carnet de santé avec vaccins à jour). Les places en crèche sont limitées, anticipez. Vos enfants pourront bénéficier d''un soutien linguistique (FLS) pour leur intégration. Maîtriser ces informations est absolument crucial pour une installation familiale sereine et une bonne intégration éducative et sociale de vos enfants en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -200,6 +196,8 @@ La CAF est un organisme public qui a pour mission de soutenir financièrement le
 
 Si vous venez en France avec au moins deux enfants à charge, vous pouvez bénéficier des allocations familiales de la CAF. Les conditions d''éligibilité incluent un titre de séjour valide pour vous et vos enfants, et des conditions de ressources (revenus N-2). Créez votre compte allocataire `caf.fr`, remplissez la demande en ligne avec précision, et téléchargez tous les justificatifs (titres de séjour, actes de naissance traduits, avis d''imposition, RIB français). Maîtriser ces informations est absolument crucial pour optimiser votre budget familial, garantir une installation sereine, et bénéficier de toutes les aides financières disponibles en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -220,12 +218,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la nécessité du passeport européen pour animaux de compagnie", "Identifier les vaccins obligatoires (notamment antirabique) et l''identification", "Savoir comment trouver un vétérinaire en France", "Maîtriser les conseils pour voyager et vivre sereinement avec son animal en France"]'::jsonb,
   '["Avoir un animal de compagnie et vouloir l''emmener en France"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 87
@@ -303,6 +295,8 @@ Ces règles visent à protéger la santé publique et animale, et à empêcher l
 
 Si vous venez en France avec votre animal de compagnie, il est absolument crucial d''obtenir un passeport européen pour animal de compagnie, d''assurer son identification par puce électronique, et de le vacciner obligatoirement contre la rage (avec un protocole strict de 21 jours). Un titrage des anticorps antirabiques peut être nécessaire si votre pays est à risque. Anticipez ces démarches plusieurs mois avant votre départ. Maîtriser cette législation est fondamental pour voyager sereinement avec votre animal, garantir sa santé, et respecter les règles européennes en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -377,6 +371,8 @@ Une fois que vous êtes installé(e) en France avec votre animal de compagnie, t
 
 Trouver un vétérinaire en France est absolument crucial pour la santé de votre animal de compagnie. Utilisez l''annuaire de l''Ordre National des Vétérinaires pour localiser une clinique près de chez vous. Préparez le passeport européen et le carnet de santé de votre animal, et sachez que les consultations et soins sont payants (non remboursés par la Sécurité Sociale humaine). Respectez le suivi sanitaire (vaccins, vermifugation) et anticipez les urgences. Maîtriser cette démarche est fondamental pour prendre soin de son animal, garantir sa santé, et gérer son budget en toute sérénité en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -397,12 +393,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le concept et les règles de l''Espace Schengen pour les non-européens", "Identifier les compagnies aériennes low-cost et les compagnies de bus (Flixbus) pour des voyages économiques", "Savoir planifier un voyage en Europe en respectant les règles", "Maîtriser les conseils pour voyager en sécurité et optimiser son budget"]'::jsonb,
   '["Avoir un titre de séjour valide en France (ou VLS-TS validé)"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 88
@@ -489,6 +479,8 @@ Votre clé d''accès à l''Europe.
 
 L''Espace Schengen permet aux étudiants internationaux titulaires d''un titre de séjour français valide de voyager sans contrôle aux frontières intérieures dans 29 pays européens. Cependant, vous devez respecter la limite de 90 jours de séjour sur 180 jours dans l''ensemble de l''espace Schengen. Ayez toujours votre passeport et titre de séjour sur vous lors de vos voyages. Ne voyagez jamais avec un titre expiré ou un simple récépissé. Maîtriser ces règles est absolument crucial pour explorer l''Europe en toute légalité, profiter pleinement de cette opportunité, et éviter les problèmes lors de vos déplacements.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -565,6 +557,8 @@ Pour les étudiants internationaux en France qui rêvent d''explorer l''Europe, 
 
 Pour voyager à travers l''Europe à petit prix depuis la France, privilégiez les compagnies aériennes low-cost (Ryanair, EasyJet) pour les longues distances (attention aux frais de bagages et aéroports périphériques) et les compagnies de bus (Flixbus, BlaBlaCar Bus) pour les trajets plus courts ou si le budget est la priorité (attention aux temps de trajet longs). Réservez à l''avance, comparez les offres, et lisez attentivement les conditions. Maîtriser ces options est absolument crucial pour planifier vos voyages, optimiser votre budget, et profiter pleinement de la découverte de l''Europe pendant votre séjour en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -585,12 +579,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le calendrier des jours fériés légaux en France", "Identifier le concept de "pont" et comment il permet de prolonger les week-ends", "Savoir quand les administrations, magasins et services sont fermés", "Maîtriser les conseils pour planifier ses congés, ses voyages, et ses moments de repos"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 89
@@ -659,6 +647,8 @@ Les jours fériés sont des moments de repos, de célébration et de commémorat
 
 Le calendrier des 11 jours fériés légaux en France doit être maîtrisé par les étudiants internationaux. Ces jours de repos (Jour de l''An, Pâques, 1er mai, 8 mai, Ascension, Pentecôte, 14 juillet, Assomption, Toussaint, 11 novembre, Noël) entraînent la fermeture des administrations, des banques, des universités, et souvent des magasins. Anticipez vos démarches et vos courses, et profitez de ces jours pour vous reposer ou voyager. Maîtriser ce calendrier est absolument crucial pour une organisation efficace et une intégration réussie dans la vie française.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -731,6 +721,8 @@ La bonne gestion pour ne pas perdre de l''argent.
 
 Le "faire le pont" est une tradition française qui permet de prolonger les week-ends grâce aux jours fériés tombant un mardi ou un jeudi. Maîtriser le calendrier des jours fériés et des ponts potentiels est absolument crucial pour les étudiants internationaux afin de planifier vos congés, vos voyages (en réservant à l''avance) et vos moments de détente. Anticipez les fermetures des services et des commerces. Optimiser ces périodes de repos est fondamental pour profiter pleinement de votre séjour en France et explorer l''Europe à moindre coût.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -751,12 +743,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''offre de produits Halal et Casher en France", "Identifier les options végétariennes et véganes en supermarchés et restaurants", "Savoir où trouver des magasins spécialisés et des restaurants adaptés", "Maîtriser les conseils pour une alimentation conforme à ses choix et besoins en France"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 90
@@ -822,6 +808,8 @@ La France, pays laïc, respecte les pratiques religieuses de chacun, y compris e
 
 
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -899,6 +887,8 @@ Si vous suivez un régime alimentaire végétarien ou végan, il est absolument 
 
 Si vous êtes végétarien ou végan en France, il est absolument crucial de savoir où trouver des options adaptées. Utilisez des applications comme HappyCow ou VegOresto pour repérer les restaurants spécialisés ou ceux avec des options. N''hésitez pas à poser des questions claires aux restaurateurs sur les ingrédients, en étant poli(e) et respectueux(se). Le marché est en croissance, surtout dans les grandes villes, et de nombreux supermarchés proposent aussi des rayons dédiés. Maîtriser ces informations est fondamental pour une alimentation conforme à vos choix éthiques, votre bien-être, et pour profiter pleinement de l''expérience culinaire en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

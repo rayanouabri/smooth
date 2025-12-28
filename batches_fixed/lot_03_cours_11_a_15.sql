@@ -21,12 +21,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1594967399343-982d1c68615c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBhc3Nwb3J0JTIwdHJhdmVsfGVufDB8fDB8fHww',
   '["Connaître les pays ayant un accord de réciprocité avec la France", "Comprendre l''importance du délai d''un an pour l''échange", "Maîtriser la procédure de demande sur la plateforme ANTS", "Identifier les règles pour conduire avec son permis étranger en France"]'::jsonb,
   '["Avoir un permis de conduire valide délivré par un pays étranger"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 12
@@ -98,6 +92,8 @@ C''est un arrangement bilatéral entre deux États.
 
 L''échange de votre permis de conduire étranger en France dépend de l''existence d''un accord de réciprocité entre la France et le pays qui a délivré votre permis. Consultez la liste officielle sur `service-public.fr` pour vérifier votre éligibilité et les conditions spécifiques. Si votre pays n''est pas sur la liste, vous devrez repasser l''examen français. Cette vérification est une étape primordiale pour garantir votre droit de conduire légalement en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -180,6 +176,8 @@ C''est une période non prolongeable.
 
 Le délai d''un an pour déposer votre demande d''échange de permis de conduire étranger est un point crucial et non négociable. Il court à partir de la date d''acquisition de votre résidence normale en France. Dépasser ce délai signifie la perte définitive de la possibilité d''échange et l''obligation de repasser le permis français. Anticipez cette démarche, calculez précisément votre date limite, et rassemblez toutes les pièces bien avant. C''est votre seule garantie pour continuer à conduire légalement en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -265,6 +263,8 @@ C''est l''étape la plus importante et la plus délicate.
 
 La procédure d''échange de votre permis de conduire étranger se fait entièrement en ligne sur la plateforme ANTS. Créez votre compte, déposez votre demande, numérisez et téléversez tous les documents requis avec rigueur et en respectant les normes. Suivez attentivement l''avancement de votre dossier et soyez réactif(ve) aux demandes de compléments. Cette démarche est cruciale pour obtenir votre permis français et garantir votre droit de conduire légalement en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -338,6 +338,8 @@ C''est la transition cruciale.
 
 Vous pouvez conduire en France avec votre permis étranger pendant un an à partir de la date d''acquisition de votre résidence normale. Au-delà, si votre pays a un accord, vous devez avoir déposé une demande d''échange sur l''ANTS. Ayez toujours sur vous votre permis étranger (valide), sa traduction officielle ou un permis international, votre pièce d''identité, votre titre de séjour et votre attestation d''assurance. Le non-respect de ces règles peut avoir de graves conséquences. Anticipez et soyez toujours en règle pour conduire en toute légalité et sécurité en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -358,12 +360,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1554902409-9b9a6b1e6e9b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
   '["Comprendre la définition et la nécessité d''une traduction assermentée", "Savoir trouver un traducteur agréé en France", "Distinguer l''apostille de la légalisation et leur utilité", "Maîtriser les règles de validité des traductions pour l''administration"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 13
@@ -438,6 +434,8 @@ Le traducteur travaille à partir de l''original ou d''une copie certifiée.
 
 Une traduction assermentée est une traduction à valeur légale, réalisée par un traducteur expert agréé par une Cour d''appel française. Elle est indispensable pour la plupart de vos documents officiels étrangers présentés à l''administration. Assurez-vous de faire appel à un traducteur certifié, de lui fournir un document original de qualité, et de conserver précieusement la traduction avec tous les éléments de certification. Cette démarche est un pilier de la validité de vos documents en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -508,6 +506,8 @@ C''est une étape essentielle pour éviter les mauvaises surprises.
 
 Trouver un traducteur agréé par une Cour d''appel française est une étape cruciale pour l''obtention de traductions assermentées valides. Utilisez les annuaires officiels pour localiser un professionnel près de chez vous, vérifiez son agrément, demandez des devis clairs, et fournissez-lui des documents originaux de qualité. Anticipez les délais et assurez-vous que toutes les informations sont correctement retranscrites. Cette démarche est essentielle pour la reconnaissance de vos documents étrangers par l''administration française.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -588,6 +588,8 @@ L''apostille est la solution pour les pays signataires de la Convention de La Ha
 
 L''apostille et la légalisation sont des certifications d''authenticité de documents publics étrangers. L''apostille est une procédure simplifiée pour les pays signataires de la Convention de La Haye (un simple cachet), tandis que la légalisation est une procédure plus lourde pour les pays non signataires (double certification par les ministères et le consulat de France). Vous devez faire cette démarche dans le pays qui a délivré le document original, et il est souvent recommandé de l''effectuer avant la traduction assermentée. Anticipez ces démarches qui sont cruciales pour la validité de vos documents en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -659,6 +661,8 @@ C''est le facteur déterminant.
 
 Une traduction assermentée n''a pas de date de péremption en soi, mais sa validité est directement liée à celle du document original qu''elle traduit. Pour les documents à durée de vie limitée (casier judiciaire, certains actes de naissance), la traduction devient obsolète si l''original est périmé. Vérifiez toujours les exigences de récence de l''administration pour chaque démarche. Conservez précieusement vos traductions avec leurs originaux, et anticipez le renouvellement des documents à durée limitée pour éviter les blocages administratifs et les frais inutiles.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -679,12 +683,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le principe de la Laïcité et ses applications", "Identifier les droits fondamentaux de manifestation et de grève", "Maîtriser les limites légales de la liberté d''expression", "Favoriser une intégration respectueuse des valeurs républicaines françaises"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 14
@@ -763,6 +761,8 @@ La Laïcité n''a pas la même traduction partout.
 
 La Laïcité est un principe fondamental français qui garantit la neutralité de l''État, la liberté de conscience et l''égalité de tous. Elle s''applique différemment selon les espaces : elle est stricte dans les services publics (notamment à l''école) et plus souple dans l''espace privé. Comprendre ces nuances est essentiel pour une intégration réussie, le respect des lois françaises et une cohabitation harmonieuse. Respectez les règles, informez-vous et privilégiez le dialogue.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -828,6 +828,8 @@ La France est un pays où la liberté d''expression et d''action collective est 
 
 Le droit de manifester et de faire grève sont des droits fondamentaux en France, mais ils sont encadrés par la loi. En tant qu''étranger, vous avez le droit de manifester (si déclarée et pacifique) et de faire grève (si salarié), mais il est crucial de connaître et de respecter les règles pour éviter les problèmes avec la justice et l''administration. Renseignez-vous toujours, restez à l''écart des violences, et soyez informé(e) des mouvements sociaux qui peuvent impacter votre vie quotidienne.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -916,6 +918,8 @@ Les mêmes règles s''appliquent à vous.
 
 La liberté d''expression est un droit fondamental en France, mais elle est strictement encadrée par la loi pour protéger l''honneur des personnes, lutter contre la haine et prévenir le terrorisme. Les infractions comme la diffamation, l''injure, l''incitation à la haine ou l''apologie du terrorisme sont lourdement sanctionnées et peuvent avoir des conséquences graves sur votre séjour. Exprimez-vous librement mais toujours de manière responsable, respectueuse et en connaissance des lois françaises.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -936,12 +940,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''utilité et la richesse du portail Service-Public.fr", "Savoir créer et utiliser son compte FranceConnect", "Maîtriser la recherche et l''utilisation des fiches pratiques", "Utiliser les simulateurs de droits et contacter l''administration efficacement"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 15
@@ -1018,6 +1016,8 @@ La démarche est simple si vous avez déjà un compte "source".
 
 FranceConnect est un dispositif gouvernemental qui simplifie et sécurise l''accès à des centaines de services publics en ligne en utilisant un identifiant unique (celui de `impots.gouv.fr`, `ameli.fr`, etc.). Créer et utiliser votre compte FranceConnect est essentiel pour gagner du temps et gérer vos démarches administratives en toute sécurité. Assurez-vous d''avoir un compte actif chez un fournisseur d''identité et protégez vos identifiants. C''est la clé pour une expérience administrative simplifiée en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1103,6 +1103,8 @@ Trouver rapidement l''information dont vous avez besoin.
 
 Naviguer dans les fiches pratiques de Service-Public.fr est une compétence indispensable pour tout étranger en France. Ce portail officiel vous offre des informations fiables, structurées et à jour sur toutes vos démarches administratives. Apprenez à utiliser la barre de recherche et l''arborescence thématique, à interpréter les délais et les documents requis, et à exploiter les liens vers les démarches en ligne. Ce réflexe vous permettra d''être autonome, de gagner du temps et d''assurer la réussite de vos interactions avec l''administration française.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1175,6 +1177,8 @@ Ce sont des outils d''estimation précieux.
 
 Les simulateurs de droits en ligne sont des outils indispensables pour les étudiants internationaux en France. Ils vous permettent d''estimer rapidement et confidentiellement vos droits aux différentes aides sociales (APL, CSS, etc.) et même votre impôt sur le revenu. Utilisez-les avant de vous engager, saisissez des informations précises, et interprétez les résultats comme des estimations. Ces simulateurs sont une clé pour une meilleure gestion de votre budget et pour ne pas passer à côté des aides auxquelles vous avez droit.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1249,6 +1253,8 @@ Les sites internet des administrations françaises sont de plus en plus interact
 
 Contacter l''administration française via leurs sites internet est un moyen efficace et sécurisé de gérer vos démarches. Privilégiez les messageries sécurisées accessibles depuis votre espace personnel. Préparez vos questions avec précision, incluez vos numéros d''identification, et joignez les documents pertinents. Gardez une trace de tous vos échanges et soyez patient(e). Maîtriser ces outils de communication est essentiel pour une interaction fluide et autonome avec les services publics en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1272,12 +1278,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 #M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
   '["Décoder les abréviations courantes (CC, HC, F1, T2, Bis)", "Comprendre les différences entre logement meublé et non-meublé", "Repérer et évaluer les frais d''agence immobilière", "Interpréter le Diagnostic de Performance Énergétique (DPE)"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 16
@@ -1344,6 +1344,8 @@ Lorsque vous recherchez un logement en France, les annonces immobilières sont l
 
 Le lexique des annonces immobilières françaises est spécifique. Maîtrisez les abréviations comme CC (charges comprises) et HC (hors charges) pour le prix total. Comprenez les classifications T1/F1, T2/F2 pour le nombre de pièces. Une lecture attentive et une bonne connaissance de ce vocabulaire vous permettront de cibler efficacement votre recherche, d''éviter les mauvaises surprises et de trouver plus rapidement le logement idéal pour votre séjour en France. Gardez cette leçon à portée de main lors de vos recherches !
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1417,6 +1419,8 @@ Au-delà du bail, d''autres aspects sont différents.
 
 Le choix entre un logement meublé et non-meublé a des répercussions majeures sur votre bail (durée, préavis), votre budget et vos obligations. Un meublé est idéal pour des séjours courts (bail étudiant 9 mois) et une installation rapide, tandis qu''un non-meublé offre plus de liberté mais un engagement plus long (bail 3 ans). Lisez attentivement le bail, assurez-vous que les meubles obligatoires sont présents dans un meublé, et comprenez bien les conditions de préavis. Votre choix doit correspondre à la durée et à la nature de votre séjour en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1504,6 +1508,8 @@ Lorsque vous recherchez un logement en France via une agence immobilière, il es
 
 Les frais d''agence immobilière pour le locataire sont strictement encadrés et plafonnés par la loi en France (loi ALUR). Vous ne devez payer que les frais de visite, de constitution de dossier, de rédaction de bail et d''état des lieux d''entrée, dans la limite des plafonds par m². De nombreux autres frais sont illégaux. Renseignez-vous sur les plafonds de votre zone, lisez attentivement les annonces et les contrats, et n''hésitez pas à contester les frais abusifs en contactant l''ANIL ou les associations de consommateurs. Protégez votre budget et assurez-vous de payer uniquement ce qui est légalement dû.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1583,6 +1589,8 @@ C''est un bilan énergétique du logement.
 
 Le Diagnostic de Performance Énergétique (DPE) est un document clé pour tout logement en location. Il évalue sa consommation d''énergie (étiquette A à G) et son impact carbone. Analyser le DPE est crucial pour anticiper vos factures d''énergie et choisir un logement confortable et abordable sur le long terme. Ne négligez pas cet indicateur et demandez toujours le rapport complet. Un mauvais DPE peut signifier des coûts cachés importants et, à terme, des restrictions de location.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

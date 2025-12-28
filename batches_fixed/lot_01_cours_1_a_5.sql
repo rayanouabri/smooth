@@ -18,15 +18,9 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'intermediaire',
   'fr',
-  4,
-  0,
   'https://images.unsplash.com/photo-1523050854805-4c6e94e50871?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHVuaXZlcnNpdHl8ZW58MHx8MHx8fDA%3D',
   '["Maîtriser la création et la gestion de son compte Campus France", "Savoir constituer un panier de formations pertinent", "Préparer un dossier de candidature complet et attrayant", "Réussir l''entretien pédagogique Campus France"]'::jsonb,
   '[]'::jsonb,
-  TRUE,
-  4.8,
-  620,
-  4800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 2
@@ -99,6 +93,8 @@ Après avoir rempli le formulaire, un e-mail de confirmation avec un lien d''act
 
 La création de votre compte Campus France est une étape primordiale et obligatoire pour de nombreux étudiants internationaux. Elle exige rigueur et attention aux détails. En préparant vos documents, en remplissant précisément votre profil et en respectant les consignes, vous poserez les bases solides de votre candidature. Ne sous-estimez jamais l''importance de cette première étape pour garantir un parcours fluide vers vos études en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -165,6 +161,8 @@ Le panier de formations n''est pas une simple liste. C''est un ensemble de choix
 
 La constitution de votre panier de formations sur Campus France est une étape stratégique. Elle requiert une recherche approfondie, une cohérence de projet et une personnalisation de chaque candidature. En suivant ces conseils, vous augmenterez significativement vos chances d''être accepté dans les formations de votre choix et de concrétiser votre projet d''études en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -228,6 +226,8 @@ Avant de cliquer sur "Soumettre", prenez le temps de passer en revue chaque sect
 
 La soumission de votre dossier de candidature sur Campus France est une étape décisive. Elle requiert une relecture minutieuse de toutes les informations et documents, un respect strict des formats et des délais, ainsi que le paiement des frais de dossier. Une fois soumis, surveillez attentivement l''évolution de votre candidature. Un dossier complet et bien présenté augmentera considérablement vos chances de succès et de recevoir des propositions d''admission.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -301,6 +301,8 @@ L''entretien pédagogique est conduit par un conseiller Campus France dans votre
 
 L''entretien pédagogique est une étape cruciale qui met en lumière votre motivation, la cohérence de votre projet et votre niveau de langue. Une préparation minutieuse, la maîtrise de votre dossier et une communication claire sont les clés du succès. Prenez cet entretien au sérieux, entraînez-vous, et présentez votre meilleur profil pour obtenir un avis favorable et vous rapprocher de votre objectif d''études en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -364,6 +366,8 @@ Certains candidats peuvent être exemptés de ces frais. C''est le cas, par exem
 
 Le paiement des frais de dossier Campus France est une étape administrative cruciale. Il est impératif de vérifier le montant exact pour votre pays, d''utiliser une méthode de paiement sécurisée et de conserver toutes les preuves. Anticipez les délais, surtout pour les virements bancaires, et n''hésitez pas à contacter Campus France en cas de problème. Ce paiement est la dernière étape pour que votre dossier puisse être transmis aux établissements et étudié.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -384,12 +388,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1543699564-88404f2f4c39?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG9mZmNpYWwlMjBwYXBlcnN8ZW58MHx8MHx8fDA%3D',
   '["Comprendre l''urgence de la validation du VLS-TS", "Maîtriser la création de compte sur la plateforme ANEF", "Savoir acheter et utiliser le timbre fiscal électronique", "Obtenir l''attestation de validation de votre visa"]'::jsonb,
   '["Avoir un VLS-TS (Visa Long Séjour valant Titre de Séjour) valide"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 3
@@ -460,6 +458,8 @@ Les conséquences de l''absence de validation sont lourdes et doivent être pris
 
 La validation de votre VLS-TS en ligne dans les 3 mois suivant votre arrivée en France est une démarche administrative non seulement obligatoire, mais également urgente. C''est elle qui légalise pleinement votre séjour et vous ouvre l''accès à tous les droits (travail, santé, logement). Ne la négligez pas, anticipez et suivez scrupuleusement les étapes sur la plateforme ANEF pour une installation réussie et conforme à la loi.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -527,6 +527,8 @@ L''ANEF offre deux options pour vous connecter.
 
 La création de votre compte sur le site ANEF est l''étape préalable indispensable pour valider votre VLS-TS. Elle est simple mais demande attention et rigueur. Utilisez une adresse e-mail fiable, un mot de passe sécurisé et suivez les instructions d''activation. Une fois votre compte opérationnel, vous pourrez entamer la procédure de validation et sécuriser votre séjour en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -596,6 +598,8 @@ Une fois l''achat effectué, le timbre vous sera envoyé.
 
 L''achat du timbre fiscal électronique est une étape indispensable et payante pour la validation de votre VLS-TS. Il doit être fait sur le site officiel `timbres.impots.gouv.fr` et au montant exact correspondant à votre statut. Conservez précieusement le numéro de timbre que vous recevrez par e-mail, car il sera nécessaire pour finaliser votre démarche sur l''ANEF. Une fois ce timbre en main, vous serez prêt à passer à l''étape suivante.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -663,6 +667,8 @@ Après avoir soumis votre demande de validation et entré le numéro du timbre f
 
 L''attestation de validation est la preuve de la légalité de votre séjour en France après votre VLS-TS. Elle doit être téléchargée depuis votre espace ANEF, vérifiée, et précieusement conservée sous format numérique et papier. Ce document est votre passeport pour toutes vos démarches administratives et votre intégration. Assurez-vous de l''avoir toujours à portée de main et de bien comprendre sa date de validité pour anticiper les prochaines étapes de votre vie en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -742,6 +748,8 @@ Si le problème persiste après vos vérifications, il est temps de solliciter d
 
 Les bugs techniques sur la plateforme ANEF peuvent être frustrants, mais ils ne doivent pas compromettre la légalité de votre séjour. Face à un problème, commencez par des vérifications de base, documentez scrupuleusement le dysfonctionnement avec des preuves, puis contactez l''assistance technique de l''ANEF avec des informations claires et précises. Votre persévérance et votre méthode seront vos meilleurs atouts pour surmonter ces obstacles et valider votre VLS-TS dans les temps impartis.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -762,12 +770,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1576091160550-2173167b2d56?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1lZGljYWwlMjBjaGVja3VwfGVufDB8fDB8fHww',
   '["Identifier si vous êtes concerné(e) par la visite médicale OFII", "Comprendre le processus de convocation et ses délais", "Préparer les documents et examens pour la visite", "Savoir l''importance de l''attestation médicale finale"]'::jsonb,
   '["Avoir validé ou être en cours de validation de votre VLS-TS"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 4
@@ -843,6 +845,8 @@ La source d''information la plus fiable est la notification que vous recevrez de
 
 La visite médicale OFII est une étape administrative obligatoire pour certains titulaires de VLS-TS (Visiteur, Salarié, Vie privée et familiale), mais les étudiants et les titulaires d''un Passeport Talent en sont généralement dispensés. C''est l''OFII qui vous convoquera par courrier si vous êtes concerné. Soyez attentif à votre boîte aux lettres et, si vous êtes dispensé, ne vous inquiétez pas de ne rien recevoir. Cette connaissance vous évitera des démarches superflues et vous permettra de vous concentrer sur les étapes réellement nécessaires à votre intégration.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -918,6 +922,8 @@ C''est une situation à gérer rapidement.
 
 La réception de la convocation OFII est une étape clé pour les personnes soumises à la visite médicale. Elle est envoyée par courrier postal à l''adresse déclarée sur l''ANEF, généralement quelques semaines ou mois après la validation de votre VLS-TS. Soyez vigilant(e) sur votre boîte aux lettres et, en cas de non-réception prolongée ou de perte, contactez rapidement la direction territoriale de l''OFII compétente. Une bonne gestion de cette convocation garantira la fluidité de votre démarche administrative.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -994,6 +1000,8 @@ C''est le document que vous obtiendrez à la fin de la visite.
 
 Le jour de votre visite médicale OFII, la clé est une préparation minutieuse. Rassemblez tous les documents demandés sur votre convocation (passeport, VLS-TS validé, justificatif de domicile, photos conformes, éventuelle radio des poumons). Les examens sont simples et rapides. Votre diligence vous permettra d''obtenir sans délai l''attestation médicale, dernière pièce nécessaire à la finalisation de votre statut de résident en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1068,6 +1076,8 @@ L''attestation est un document standardisé.
 
 L''attestation médicale de l''OFII est le document qui finalise votre obligation de visite médicale et confirme la validité de votre VLS-TS. Conservez-la précieusement, à la fois numériquement et physiquement, et assurez-vous de connaître les informations qu''elle contient. C''est une preuve essentielle de la régularité de votre séjour en France et elle vous sera utile pour de nombreuses démarches administratives futures.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1088,12 +1098,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1554902409-9b9a6b1e6e9b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
   '["Comprendre les délais impératifs pour le renouvellement", "Savoir prendre rendez-vous en préfecture (ou en ligne)", "Rassembler toutes les preuves requises pour votre dossier", "Comprendre les droits offerts par le récépissé et récupérer son nouveau titre"]'::jsonb,
   '["Avoir un titre de séjour temporaire en France", "Avoir validé votre VLS-TS"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 5
@@ -1162,6 +1166,8 @@ Le Code de l''entrée et du séjour des étrangers et du droit d''asile (CESEDA)
 
 Anticiper la demande de renouvellement de votre titre de séjour est fondamental. La "règle des 2 mois" (dépôt entre 4 et 2 mois avant l''expiration) est un délai légal impératif. Un dépôt tardif peut entraîner des pénalités financières, une interruption de vos droits et un risque d''irrégularité de séjour. Marquez cette date sur votre calendrier et commencez à préparer votre dossier bien en amont pour garantir un renouvellement serein et une continuité de votre statut en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1231,6 +1237,8 @@ C''est une situation frustrante, mais des solutions existent.
 
 La prise de rendez-vous en préfecture ou le dépôt de dossier en ligne via l''ANEF est une étape charnière pour le renouvellement de votre titre de séjour. Vérifiez d''abord si votre démarche est dématérialisée. Si un rendez-vous physique est requis, armez-vous de patience et de persévérance pour obtenir un créneau sur le site de votre préfecture, en commençant très tôt. En cas de blocage, documentez vos tentatives et n''hésitez pas à chercher des solutions alternatives, y compris l''envoi d''un courrier recommandé. Une gestion proactive de cette étape est la clé pour maintenir votre statut régulier en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1302,6 +1310,8 @@ Le titre de séjour "étudiant" est un statut privilégié qui permet aux jeunes
 
 Prouver le "sérieux de vos études" est une condition sine qua non pour le renouvellement de votre titre de séjour étudiant. Cela implique de démontrer votre assiduité aux cours, votre participation aux examens et une progression cohérente dans votre cursus. Rassemblez tous vos certificats d''inscription, relevés de notes et diplômes. En cas de situation particulière (redoublement, changement d''orientation), préparez une explication claire et motivée. Une préparation rigoureuse de ce dossier est essentielle pour garantir la continuité de votre statut légal en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1366,6 +1376,8 @@ Le récépissé est une attestation officielle de dépôt de demande de titre de
 
 Le récépissé est un document provisoire essentiel qui atteste de la régularité de votre séjour en France après le dépôt de votre demande de renouvellement de titre de séjour. Il vous permet de maintenir vos droits fondamentaux (travail, sécurité sociale, aides sociales) et, avec des précautions, de voyager dans l''espace Schengen. Conservez-le précieusement, ayez-le toujours sur vous et anticipez son renouvellement si la décision sur votre titre de séjour tarde. C''est votre preuve de régularité en attendant votre nouveau titre.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1434,6 +1446,8 @@ Une fois votre titre en main, un dernier contrôle s''impose.
 
 Le retrait de votre nouveau titre de séjour est l''étape finale de votre renouvellement. Soyez attentif aux notifications de la préfecture, préparez tous les documents requis (convocation, passeport, ancien titre, récépissé, timbre fiscal) et vérifiez minutieusement toutes les informations inscrites sur votre carte. Une fois en votre possession, protégez-le comme un document précieux : il est la preuve de la légalité de votre séjour en France et la garantie de la continuité de tous vos droits.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1454,12 +1468,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1518655282711-d9774656ee43?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGFkbWluaXN0cmF0aW9uJTIwcGFwZXJzJTIwfGVufDB8fDB8fHww',
   '["Connaître la liste exhaustive des documents pour la préfecture", "Identifier les justificatifs de domicile valides", "Comprendre les exigences en matière de ressources financières", "Préparer des photos d''identité aux normes et organiser son dossier"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 6
@@ -1530,6 +1538,8 @@ Pour qu''un justificatif soit accepté, il doit répondre à des critères stric
 
 Le justificatif de domicile est une pièce indispensable pour votre dossier de préfecture. Il doit être récent (moins de 6 mois), à votre nom (ou au nom de votre hébergeant avec attestation et copie de sa pièce d''identité) et provenir d''un organisme officiel. Anticipez sa préparation, vérifiez sa validité et conservez-le précieusement. Une attention rigoureuse à cette pièce vous évitera de nombreux désagréments administratifs.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1589,6 +1599,8 @@ Ce montant est un minimum. Il est recommandé d''avoir plus.
 
 La preuve de ressources suffisantes (environ 615€/mois) est un pilier de votre dossier de titre de séjour. Qu''il s''agisse d''une attestation bancaire, d''une bourse ou d''une prise en charge par un garant, assurez-vous que vos justificatifs sont clairs, récents, et qu''ils couvrent le montant minimum requis. Une préparation rigoureuse de cette partie de votre dossier est essentielle pour prouver votre autonomie financière et garantir la réussite de votre demande.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1658,6 +1670,8 @@ Les photos d''identité sont utilisées pour des documents officiels comme votre
 
 Des photos d''identité conformes aux normes sont un élément non négociable de votre dossier de préfecture. Privilégiez les cabines "e-photo" ou les photographes agréés pour garantir leur validité. Respectez scrupuleusement les exigences de format, de fond, d''expression du visage et de qualité. Une attention méticuleuse à cette étape vous évitera un rejet de dossier et des retards inutiles.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1720,6 +1734,8 @@ La vie en France implique de nombreuses démarches administratives. Que ce soit 
 
 Une organisation rigoureuse de vos documents administratifs, tant physique que numérique, est essentielle pour la réussite de vos démarches en France. Créez un classeur par catégorie et des dossiers numériques structurés avec des noms de fichiers clairs. Scannez tous vos documents importants et sauvegardez-les dans un service cloud sécurisé. Cette méthode vous fera gagner un temps précieux, réduira votre stress et garantira que vous serez toujours prêt(e) à fournir les pièces nécessaires à l''administration.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

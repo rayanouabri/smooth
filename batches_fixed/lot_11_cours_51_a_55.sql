@@ -21,12 +21,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Identifier les frais bancaires courants (tenue de compte, carte, virements)", "Comprendre la différence entre découvert autorisé et non autorisé", "Maîtriser le concept des commissions d''intervention et comment les éviter", "Savoir comment comparer les tarifs bancaires et optimiser son budget"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 52
@@ -272,12 +266,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Estimer le coût de la vie moyen dans différentes villes françaises", "Appliquer des méthodes de gestion budgétaire (règle 50/30/20) à votre situation", "Découvrir et utiliser des applications mobiles pour le suivi de dépenses", "Maîtriser les conseils pour équilibrer ses revenus et dépenses et éviter les difficultés"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 53
@@ -488,6 +476,8 @@ Un large choix d''outils.
 
 Les applications de gestion de budget sont des outils indispensables pour les étudiants internationaux en France. Elles vous permettent de suivre, catégoriser et visualiser vos dépenses en temps réel (via les applications bancaires ou agrégatrices comme Bankin''/Linxo) ou manuellement (avec un tableur). Choisissez l''application adaptée à votre niveau d''autonomie, connectez vos comptes bancaires de manière sécurisée, et définissez des objectifs budgétaires. Intégrez cette gestion à votre routine pour maintenir un équilibre financier, éviter les découverts, et vivre une vie étudiante sereine et autonome en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -508,12 +498,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''existence et l''accès aux aides financières d''urgence", "Identifier l''aide ponctuelle du CROUS et ses conditions", "Découvrir les bourses au mérite et les aides des collectivités locales", "Maîtriser la démarche pour contacter une assistante sociale et obtenir de l''aide"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 54
@@ -599,6 +583,8 @@ Contactez le CROUS via l''assistante sociale.
 
 L''aide ponctuelle du CROUS (Fonds National d''Aide d''Urgence) est un dispositif précieux pour les étudiants internationaux confrontés à des difficultés financières graves et imprévues. Pour en bénéficier, vous devez contacter une assistante sociale du CROUS, être honnête sur votre situation, et fournir tous les justificatifs (identité, scolarité, ressources, preuves de difficulté). N''attendez pas que la situation devienne critique. Cette aide gratuite est un filet de sécurité crucial pour vous permettre de poursuivre vos études en France avec plus de sérénité.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -677,6 +663,8 @@ Au-delà des aides classiques, la France soutient aussi les étudiants par des d
 
 En plus de l''aide ponctuelle du CROUS, vous pouvez rechercher l''aide au mérite nationale (si vous êtes boursier et excellent) et les bourses proposées par les Régions ou les Villes. Il existe également des bourses spécifiques (ambassades, fondations). Renseignez-vous très tôt sur les sites des collectivités et de Campus France, et préparez des dossiers de candidature solides. Explorer toutes ces pistes de financement est absolument crucial pour optimiser votre budget et sécuriser la poursuite de vos études en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -752,6 +740,8 @@ N''hésitez pas, quel que soit le problème.
 
 Contacter l''assistante sociale étudiante (via le CROUS ou votre université) est une démarche essentielle et confidentielle pour les étudiants internationaux confrontés à des difficultés financières, de logement, de santé, administratives ou personnelles. N''ayez aucune honte à demander de l''aide. Préparez votre entretien et vos justificatifs. L''assistante sociale est là pour vous écouter, vous conseiller, vous orienter vers les aides adaptées (y compris l''aide ponctuelle du CROUS) et vous apporter un soutien précieux pour une intégration réussie et sereine en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -772,12 +762,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la nécessité de clôturer son compte bancaire avant de quitter la France", "Savoir comment vérifier et arrêter tous les prélèvements et virements automatiques", "Maîtriser la rédaction et l''envoi de la lettre de clôture à la banque", "Identifier les étapes pour transférer le solde restant et récupérer son argent"]'::jsonb,
   '["Avoir un compte bancaire en France et envisager de le clôturer"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 55
@@ -838,6 +822,8 @@ Un compte doit être "propre" avant d''être clôturé. Cela signifie qu''il ne 
 
 Avant de clôturer votre compte bancaire en France, vérifiez impérativement qu''il n''y a plus aucun prélèvement automatique ou virement automatique à venir. Contactez tous les organismes concernés pour les informer de votre départ et annuler les prélèvements, et révoquez les mandats via votre banque. Laissez un petit solde pour les dernières dépenses et transférez le solde restant vers un nouveau compte (français ou étranger) en fournissant votre nouveau RIB. Une préparation rigoureuse de cette étape est cruciale pour un départ serein, sans dettes inattendues ni problèmes financiers.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -930,6 +916,8 @@ Dans l'attente de votre confirmation, je vous prie d'agréer, Madame, Monsieur, 
 
 L''envoi d''une lettre de clôture par lettre recommandée avec accusé de réception est une étape cruciale pour fermer votre compte bancaire en France. Elle doit inclure les références de votre compte, la demande de transfert du solde restant vers un autre RIB, et la restitution/destruction de vos moyens de paiement. Conservez précieusement toutes les preuves d'envoi et demandez une attestation de clôture. Une bonne gestion de cette démarche est essentielle pour un départ serein, sans frais cachés ni complications financières, et pour récupérer votre argent.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -996,6 +984,8 @@ Lorsque vous clôturez votre compte bancaire en France, la dernière étape est 
 
 
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1018,12 +1008,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Distinguer les Cours Magistraux (CM) des Travaux Dirigés (TD)", "Comprendre le système des crédits ECTS et la validation des études", "Identifier l''importance de la présence aux cours et des règles d''assiduité", "Maîtriser les différentes formes d''examens (partiels, contrôle continu) et leur évaluation"]'::jsonb,
   '["Être admis(e) dans un établissement d''enseignement supérieur français"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 56
@@ -1094,6 +1078,8 @@ L''apprentissage actif et interactif.
 
 Le système universitaire français distingue les Cours Magistraux (CM) pour l''acquisition des connaissances (prise de notes) et les Travaux Dirigés (TD) pour l''application et l''approfondissement (participation active). La présence aux TD/TP est obligatoire et contrôlée. Préparez vos TD à l''avance, prenez des notes structurées en CM, et n''hésitez pas à poser des questions. Comprendre cette organisation pédagogique est absolument crucial pour adapter votre méthode de travail, réussir vos études, et bien vous intégrer dans le système académique français.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1164,6 +1150,8 @@ L''unité de mesure du travail étudiant.
 
 Les crédits ECTS mesurent la charge de travail de vos études et sont la clé de la validation de vos semestres (30 ECTS) et de vos années (60 ECTS). La validation de vos crédits est cruciale pour votre progression académique et pour le renouvellement de votre titre de séjour étudiant. Suivez attentivement vos résultats, comprenez les mécanismes de compensation et de rattrapage, et n''hésitez pas à demander de l''aide si vous avez des difficultés. Maîtriser le système ECTS est essentiel pour réussir vos études en France et assurer la reconnaissance de votre parcours.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1235,6 +1223,8 @@ Votre statut d''étudiant est lié à votre assiduité et à votre progression d
 
 La présence aux TD et TP est généralement obligatoire et contrôlée à l''université en France. Des absences non justifiées peuvent entraîner des pénalités académiques (perte de points, exclusion d''examen) et des problèmes pour le renouvellement de votre titre de séjour étudiant. En cas d''absence légitime (maladie, événement grave), informez rapidement votre secrétariat pédagogique et fournissez un justificatif. Comprendre et respecter ces règles d''assiduité est absolument crucial pour garantir votre sérieux académique et la régularité de votre séjour en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

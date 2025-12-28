@@ -21,12 +21,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la nécessité d''un compte bancaire français", "Identifier les justificatifs requis pour l''ouverture d''un compte", "Maîtriser les étapes de l''ouverture de compte (en agence ou en ligne)", "Décrypter la convention de compte et ses principales clauses"]'::jsonb,
   '["Avoir un passeport et un titre de séjour valide en France"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 47
@@ -266,12 +260,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la composition d''un RIB (IBAN, BIC/SWIFT)", "Savoir où trouver et télécharger son RIB (espace client, chéquier)", "Identifier les situations où le RIB est demandé (salaires, APL, prélèvements)", "Maîtriser les conseils pour transmettre son RIB en toute sécurité"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 48
@@ -501,12 +489,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la distinction entre carte à débit immédiat et à débit différé", "Identifier le fonctionnement et les limites du paiement "sans contact"", "Savoir gérer et adapter ses plafonds de paiement et de retrait", "Maîtriser les conseils pour une utilisation sécurisée de sa carte bancaire"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 49
@@ -596,12 +578,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''usage du chèque en France et s''il est encore pertinent", "Savoir comment remplir correctement un chèque (montant, bénéficiaire, date, signature)", "Identifier la spécificité du "chèque de caution" non encaissé (pour le logement)", "Maîtriser les conseils pour commander et utiliser son chéquier en toute sécurité"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 50
@@ -854,12 +830,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les coûts des virements internationaux avec les banques traditionnelles", "Découvrir les avantages des services spécialisés (Wise, Remitly)", "Maîtriser l''utilisation des plateformes de transfert d''argent en ligne", "Identifier les délais de réception et les pièges à éviter lors des virements"]'::jsonb,
   '["Avoir un compte bancaire en France et/ou dans votre pays d''origine"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 51

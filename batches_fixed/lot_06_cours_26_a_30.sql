@@ -21,12 +21,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Maîtriser la création de son compte allocataire sur caf.fr", "Remplir correctement sa déclaration de ressources pour les APL", "Fournir toutes les informations sur le logement et le bailleur", "Comprendre les modalités de versement des APL (locataire ou propriétaire)"]'::jsonb,
   '["Avoir un logement en France", "Avoir un titre de séjour valide (ou VLS-TS validé)", "Avoir une attestation de loyer remplie par le propriétaire"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 27
@@ -96,6 +90,8 @@ C''est une étape de sécurité et d''activation.
 
 Créer votre compte allocataire sur `caf.fr` est la première étape indispensable pour demander les APL et gérer vos prestations sociales en France. Renseignez vos informations d''identité et de contact avec précision, sécurisez votre mot de passe, et activez votre compte. Une fois votre demande déposée, vous obtiendrez un numéro allocataire, votre identifiant unique auprès de la CAF. Maîtriser cette création de compte est crucial pour initier vos démarches d''APL et assurer une gestion fluide de votre dossier.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -179,6 +175,8 @@ La CAF base le calcul de vos droits sur vos ressources. Il est donc essentiel d'
 
 Remplir correctement votre déclaration de ressources pour les APL sur `caf.fr` est une étape déterminante. Vous devrez déclarer vos revenus de l''année N-2 (y compris les salaires ou bourses imposables), même si vous indiquez 0. Préparez votre avis d''imposition N-2 (même de non-imposition), vos fiches de paie et vos preuves de fonds. Soyez précis(e) et honnête. Une déclaration conforme garantira un calcul juste de vos aides et évitera les problèmes avec la CAF.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -267,6 +265,8 @@ C''est le lien officiel entre vous, le propriétaire et la CAF.
 
 Fournir des informations précises sur votre logement et votre bailleur est crucial pour votre demande d''APL. L''attestation de loyer, remplie et signée par votre propriétaire, est un document clé. Assurez-vous d''avoir l''adresse complète, le loyer et les charges, le caractère conventionné du logement, et le RIB du bailleur (si le versement direct est souhaité). Coordonnez-vous avec votre propriétaire pour obtenir cette attestation rapidement. Une information complète et exacte est la garantie d''un traitement fluide de votre demande et du versement de vos aides.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -349,6 +349,8 @@ L''APL est versée "à terme échu".
 
 Pour le versement de vos APL, vous devrez fournir un RIB d''un compte bancaire français. L''APL peut vous être versée directement ou être versée au propriétaire (tiers payant), selon le choix du bailleur. Le versement au propriétaire est souvent plus simple pour votre gestion budgétaire. Anticipez l''ouverture de votre compte bancaire français, comprenez les modalités de versement (à terme échu) et n''oubliez pas que le premier versement peut prendre du temps. Une bonne gestion de ces aspects est cruciale pour une réception fluide de vos aides au logement en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -369,12 +371,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la nature de la Taxe d''Enlèvement des Ordures Ménagères (TEOM)", "Savoir comment la TEOM est incluse et calculée dans les charges locatives", "Identifier l''importance de vérifier le montant lors de la régularisation annuelle", "Maîtriser les conseils pour une bonne gestion de cette charge locative"]'::jsonb,
   '["Avoir un logement en France avec des charges locatives"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 28
@@ -442,6 +438,8 @@ Lorsque vous louez un logement en France, le loyer ne se compose pas seulement d
 
 La Taxe d''Enlèvement des Ordures Ménagères (TEOM) est un impôt local payé par le propriétaire mais qu''il a le droit de récupérer sur vous, le locataire, via les charges locatives. Elle est souvent incluse dans vos provisions pour charges mensuelles et fait l''objet d''une régularisation annuelle. Demandez une copie de l''avis de taxe foncière à votre propriétaire pour vérifier le montant de la TEOM et assurez-vous qu''elle ne vous est pas réclamée deux fois. Comprendre cette taxe est crucial pour décrypter vos charges et gérer votre budget en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -513,6 +511,8 @@ La TEOM est basée sur la valeur locative cadastrale du logement. C''est un mont
 
 La TEOM est calculée par l''administration fiscale sur la valeur locative cadastrale du logement et est répercutée sur le locataire via les charges locatives. Si vous payez des provisions pour charges, le propriétaire doit effectuer une régularisation annuelle en vous fournissant un relevé détaillé. Demandez toujours une copie de l''avis de taxe foncière du propriétaire pour vérifier le montant de la TEOM et le calcul au prorata de votre occupation. Comprendre ce mécanisme est essentiel pour vérifier la justesse de vos charges et gérer votre budget logement.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -584,6 +584,8 @@ C''est votre droit de tout vérifier.
 
 Lors de la régularisation annuelle de vos charges, il est essentiel de vérifier attentivement le montant de la TEOM qui vous est imputé. Demandez une copie de l''avis de taxe foncière au propriétaire, vérifiez le calcul au prorata de votre période d''occupation et assurez-vous qu''aucun frais supplémentaire n''est appliqué. C''est votre droit de demander des justificatifs. Une vigilance rigoureuse à cette étape vous permettra de protéger votre budget et de garantir la justesse de vos charges locatives en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -604,12 +606,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les spécificités des résidences CROUS et leurs critères d''attribution", "Identifier les avantages et inconvénients des résidences étudiantes privées", "Évaluer les opportunités et les contraintes de la colocation", "Découvrir les options de logement chez l''habitant ou intergénérationnel"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 29
@@ -684,6 +680,8 @@ Le CROUS est un établissement public au service de la vie étudiante. Il gère,
 
 Les résidences CROUS sont une solution de logement abordable et recherchée en France. L''accès est compétitif et passe par le Dossier Social Étudiant (DSE), à déposer impérativement entre le 1er mars et le 31 mai. Préparez votre attestation d''inscription, vos justificatifs de ressources (traduits si nécessaire) et remplissez le DSE avec la plus grande rigueur. Bien que l''obtention soit difficile, maximiser vos chances avec un dossier impeccable est crucial pour bénéficier de cette opportunité de logement. Ayez toujours un plan B en tête.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -753,6 +751,8 @@ Les résidences étudiantes privées sont gérées par des sociétés privées (
 
 Les résidences étudiantes privées offrent confort et services (internet, sécurité, salle de sport), mais à un coût souvent plus élevé que le CROUS ou le marché privé. Elles peuvent être une solution pratique pour une première installation en France. Comparez attentivement les prix, les services inclus/optionnels, et lisez scrupuleusement le contrat de location (durée, charges, frais de dossier). Assurez-vous de leur éligibilité aux APL et faites un état des lieux rigoureux. Choisir une résidence privée, c''est un compromis entre confort, praticité et budget.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -821,6 +821,8 @@ La colocation, c''est avant tout une aventure humaine et économique. Elle peut 
 
 La colocation offre des avantages financiers (coût réduit, logement plus grand) et sociaux (intégration, compagnie), mais elle présente des inconvénients importants, notamment la clause de solidarité qui vous rend responsable de la totalité du loyer. Choisissez vos colocataires avec soin, établissez un "pacte de colocation" pour définir les règles de vie, et communiquez ouvertement. Comprendre la clause de solidarité et ses implications est crucial pour protéger vos finances et assurer une expérience de colocation réussie et sereine en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -903,6 +905,8 @@ Pour les étudiants internationaux, le logement chez l''habitant ou le logement 
 
 Le logement chez l''habitant ou intergénérationnel offre des avantages économiques (coût réduit) et une immersion culturelle précieuse pour les étudiants internationaux. Cependant, ces options impliquent un fort engagement relationnel et le respect des règles de vie de votre hôte. Discutez clairement des attentes mutuelles, signez un contrat (même simple), et choisissez une solution adaptée à votre personnalité. Ces cohabitations peuvent offrir une expérience authentique et enrichissante de la vie en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -923,12 +927,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le rôle du règlement de copropriété", "Savoir comment gérer les poubelles et utiliser les parties communes", "Identifier les règles concernant le tapage nocturne et le bruit", "Maîtriser les conseils pour une cohabitation respectueuse et harmonieuse avec le voisinage"]'::jsonb,
   '["Avoir un logement en appartement en France"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 30
@@ -1003,6 +1001,8 @@ Le règlement de copropriété est la "constitution" de l''immeuble. Il organise
 
 Le règlement de copropriété est un document juridique essentiel qui encadre la vie collective dans votre immeuble. Il contient des règles sur l''utilisation des parties communes, le bruit, les animaux, les travaux, et l''aspect extérieur du bâtiment. Votre propriétaire a l''obligation de vous le remettre en annexe de votre bail. Lisez-le attentivement et respectez ses dispositions pour une cohabitation harmonieuse avec vos voisins et pour éviter les problèmes avec le syndic. Une bonne compréhension de ce règlement est cruciale pour votre intégration et votre sérénité en logement collectif en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1073,6 +1073,8 @@ La propreté et le bon usage des espaces partagés (local poubelles, escaliers, 
 
 La bonne gestion des poubelles (tri sélectif) et le respect des parties communes sont essentiels pour une vie harmonieuse en copropriété en France. Triez vos déchets selon les consignes de votre commune (jaune, vert, marron) et ne laissez jamais d''objets dans les couloirs ou le hall d''entrée. Lisez le règlement de copropriété (annexé à votre bail) pour connaître les règles spécifiques de votre immeuble. Ces gestes simples de respect du vivre-ensemble vous permettront d''éviter les conflits et de contribuer à la propreté et la sécurité de votre environnement.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1147,6 +1149,8 @@ La loi encadre le bruit pour garantir la tranquillité de chacun. La notion de "
 
 Le respect de la tranquillité du voisinage est essentiel en France. Le tapage nocturne (22h-7h) est sanctionné, et les bruits excessifs de jour (répétitifs, intenses, durables) sont également interdits. Modérez le volume de votre musique, prévenez vos voisins en cas de fête, et respectez les horaires pour les travaux bruyants. En cas de nuisance subie, privilégiez le dialogue amiable, puis les courriers, avant de contacter le propriétaire/syndic ou les forces de l''ordre. Une bonne compréhension de ces règles et une attitude respectueuse sont cruciales pour une cohabitation sereine en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1167,12 +1171,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la durée légale du préavis de départ (1 ou 3 mois)", "Savoir rédiger et envoyer une lettre de congé conforme", "Identifier l''importance de l''état des lieux de sortie pour le dépôt de garantie", "Maîtriser les conseils pour un départ serein et conforme à la loi"]'::jsonb,
   '["Avoir un contrat de location en France"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 31
@@ -1246,6 +1244,8 @@ L''engagement le plus long.
 
 Le préavis de départ est une étape cruciale pour quitter votre logement en France. Sa durée est d''un mois pour les locations meublées et les non-meublées en zone tendue, et de trois mois pour les non-meublées hors zone tendue. Il commence à la date de réception de votre lettre de congé (envoyée par recommandé avec accusé de réception). Respecter ce délai est essentiel pour éviter de payer des mois de loyer en trop. Vérifiez votre situation, calculez précisément votre date de fin de préavis, et anticipez votre démarche pour un départ serein et conforme à la loi.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1328,6 +1328,8 @@ Dans l''attente de vos nouvelles, je vous prie d''agréer, Madame, Monsieur, l''
 
 Rédiger votre lettre de congé de location est une étape cruciale pour quitter votre logement en France. Elle doit inclure toutes vos coordonnées, celles du propriétaire, les références du bail, votre déclaration de congé avec la durée du préavis applicable (1 ou 3 mois) et la date de fin de préavis, ainsi qu''une demande d''état des lieux. Utilisez un modèle conforme, adaptez-le à votre situation (avec justificatif pour préavis réduit), signez-le et envoyez-le impérativement par lettre recommandée avec accusé de réception. Une lettre bien préparée est la garantie d''un départ serein et d''une gestion financière correcte.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1405,6 +1407,8 @@ La lettre recommandée avec accusé de réception (LRAR) est la méthode d''envo
 
 L''envoi de votre lettre de congé par lettre recommandée avec accusé de réception (LRAR) est une étape administrative obligatoire et cruciale. C''est la seule méthode qui vous fournit une preuve légale de la date d''envoi et de réception de votre préavis, ce qui est essentiel pour calculer la fin de votre engagement et éviter de payer des loyers supplémentaires. Conservez précieusement le récépissé de dépôt et l''avis de réception. Votre diligence à cette étape protège vos droits et assure un départ serein de votre logement en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

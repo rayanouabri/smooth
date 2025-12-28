@@ -21,12 +21,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le vocabulaire de base pour une coupe de cheveux ou une taille de barbe", "Identifier les tarifs moyens des coiffeurs/barbiers en France", "Savoir si et comment laisser un pourboire (service compris)", "Maîtriser les conseils pour exprimer clairement ses souhaits et obtenir la coupe désirée"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 91
@@ -93,6 +87,8 @@ Une bonne communication avec votre coiffeur est la garantie d''une coupe réussi
 
 Maîtriser le vocabulaire de la coupe est absolument crucial pour communiquer efficacement avec votre coiffeur ou barbier en France. Utilisez des termes précis pour la longueur (pointes, court, long), les côtés (rasé, fondu, dégradé), le dessus, et la barbe. Le meilleur moyen de vous faire comprendre est d''apporter une photo de la coupe souhaitée. N''hésitez pas à poser des questions et à utiliser des gestes. Maîtriser ce vocabulaire est fondamental pour obtenir exactement la coupe que vous voulez et vivre une expérience sereine chez le coiffeur ou le barbier en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -166,6 +162,8 @@ Lorsque vous vous rendez chez le coiffeur ou le barbier en France, il est absolu
 
 Les tarifs moyens des coiffeurs/barbiers en France varient de 15€ à 30€ pour une coupe homme, et 25€ à 60€ pour une coupe femme. Le pourboire n''est pas obligatoire (le service est compris), mais il est apprécié si vous êtes satisfait(e) (quelques euros ou 5-10% du prix). Demandez le prix avant la prestation, vérifiez les affichages, et n''hésitez pas à demander un tarif étudiant. Maîtriser ces informations est absolument crucial pour gérer votre budget beauté, éviter les surprises, et vivre une expérience sereine chez le coiffeur ou le barbier en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -186,12 +184,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement de Leboncoin pour les annonces généralistes", "Identifier les spécificités de Vinted pour l''achat/vente de vêtements", "Savoir où trouver des bons plans pour les meubles et l''électronique", "Maîtriser les conseils de prudence pour éviter les arnaques à l''achat d''occasion"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 92
@@ -281,6 +273,8 @@ Le site de référence de l''occasion en France.
 
 Leboncoin est une excellente plateforme pour acheter d''occasion en France (meubles, électroménager, vélos), mais la vigilance est de mise. Méfiez-vous des prix anormalement bas et des demandes de paiement à distance. **La règle d''or est de ne jamais payer avant d''avoir vu le produit et rencontré le vendeur en personne, dans un lieu public et fréquenté.** Testez toujours l''article. Maîtriser ces conseils de prudence est absolument crucial pour faire de bonnes affaires en toute sécurité, équiper votre logement à moindre coût, et éviter les arnaques.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -365,6 +359,8 @@ Vinted a révolutionné le marché de la seconde main pour la mode. C''est une p
 
 Vinted est une plateforme incontournable pour acheter et vendre des vêtements d''occasion en France. Utilisez-la pour faire des économies sur vos achats et gagner un peu d''argent en vendant vos propres affaires. Pour acheter, vérifiez la réputation du vendeur et l''état de l''article. Pour vendre, prenez de bonnes photos et décrivez précisément votre article. **Toutes les transactions doivent passer par la plateforme Vinted pour être sécurisées.** Maîtriser Vinted est absolument crucial pour optimiser votre budget mode, adopter une consommation durable, et éviter les arnaques.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -385,12 +381,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la distinction entre baguette "tradition" et "classique"", "Identifier les autres types de pains et de viennoiseries courantes", "Savoir comment interagir poliment avec le boulanger/la boulangère", "Maîtriser les conseils pour faire ses achats en boulangerie et profiter du pain français"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 93
@@ -463,6 +453,8 @@ La boulangerie est un lieu emblématique de la vie française, et le pain est au
 
 En boulangerie en France, la distinction entre la baguette "tradition" (ingrédients nobles, pétrissage sur place, qualité supérieure) et la baguette "classique" (plus simple, moins chère) est cruciale. Goûtez les deux pour choisir votre préférée. N''hésitez pas à explorer les autres types de pains (campagne, céréales) et les viennoiseries (croissants, pains au chocolat). Maîtriser ces informations est fondamental pour faire vos achats sereinement, profiter de la richesse du pain français, et vous intégrer aux habitudes culinaires locales.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -555,6 +547,8 @@ Soyez à l''aise.
 
 La politesse en boulangerie (et en commerce) est essentielle en France. Dites toujours "Bonjour Madame/Monsieur" en entrant, utilisez "Je voudrais..." ou "Je souhaiterais..." avec "s''il vous plaît" pour commander, et "Merci, au revoir" en partant. Faites la queue et soyez patient(e). Maîtriser ces codes est absolument crucial pour des interactions agréables, un bon accueil, et une intégration réussie dans la vie quotidienne française. C''est un petit effort qui fait une grande différence.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -575,12 +569,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la différence de prix entre un café "au comptoir" et "en salle/terrasse"", "Savoir commander son café et s''adapter aux codes du service", "Identifier la tolérance à rester longtemps avec une seule consommation", "Maîtriser les conseils pour profiter de l''expérience café en terrasse et gérer son budget"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 94
@@ -660,6 +648,8 @@ Lorsque vous commandez un café (ou toute autre boisson) dans un café ou un bar
 
 Lorsque vous prenez un café en France, le prix varie selon que vous le consommez "au comptoir" (debout au bar, moins cher) ou "en salle/terrasse" (assis à une table, plus cher). Cette différence est due au coût du service et de l''occupation de l''espace. Choisissez l''option adaptée à votre budget et à votre besoin (rapidité ou détente). Lisez toujours la carte et commandez clairement "au comptoir" ou "en terrasse". Maîtriser cette nuance est absolument crucial pour faire des économies et profiter pleinement de la culture des cafés français sans mauvaise surprise.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -738,6 +728,8 @@ Profitez de l''ambiance.
 
 En France, il est tout à fait possible et acceptable de rester longtemps (une ou deux heures) avec une seule consommation dans un café, surtout en terrasse. C''est un espace social où l''on vient se détendre, travailler, lire ou discuter, sans pression de consommation. Adaptez-vous à l''affluence (évitez les heures de pointe pour monopoliser une table), commandez dès le début, et soyez discret(e). Laisser un petit pourboire est un geste apprécié. Maîtriser cette tolérance est absolument crucial pour les étudiants internationaux afin de profiter pleinement de l''ambiance des cafés français sans stress, et d''optimiser votre temps libre.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -758,12 +750,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre que la vente de tabac est limitée aux bureaux de tabac", "Identifier les règles d''interdiction de fumer dans les lieux publics (y compris certaines terrasses)", "Savoir le prix élevé du tabac en France et son impact sur le budget", "Maîtriser les conseils pour respecter la législation et protéger sa santé"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 95
@@ -831,6 +817,8 @@ Si vous êtes fumeur(se) et que vous arrivez en France, il est absolument crucia
 
 En France, la vente de tabac est un monopole d''État, réservée exclusivement aux bureaux de tabac (identifiables par un losange rouge). La vente est interdite aux moins de 18 ans et les prix sont très élevés. Ne cherchez pas de cigarettes ailleurs et respectez les limites douanières si vous ramenez du tabac de l''étranger. Maîtriser ces informations est absolument crucial pour acheter votre tabac en toute conformité, respecter la législation, et protéger votre santé et votre budget en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -901,6 +889,8 @@ La loi Évin de 1991 et ses décrets d''application ont fortement restreint la c
 
 En France, il est strictement interdit de fumer et de vapoter dans tous les lieux publics fermés et couverts, y compris les transports en commun et les enceintes universitaires. L''interdiction s''étend aux terrasses de cafés/restaurants qui sont closes et couvertes. Vous pouvez fumer dans la rue ou sur les terrasses ouvertes, en utilisant un cendrier. Maîtriser ces règles est absolument crucial pour respecter la loi (éviter les amendes), protéger votre santé et celle des autres, et vous intégrer aux normes de vie françaises. Soyez vigilant(e) et respectueux(se).
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

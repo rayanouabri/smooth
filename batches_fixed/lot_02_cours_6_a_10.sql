@@ -21,12 +21,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Identifier le moment opportun pour initier le changement de statut", "Comprendre la procédure de demande de titre de séjour salarié", "Maîtriser la notion d''opposabilité de l''emploi et ses critères", "Connaître les délais de traitement et le maintien des droits"]'::jsonb,
   '["Être titulaire d''un titre de séjour étudiant", "Avoir obtenu un diplôme de l''enseignement supérieur français (Master ou équivalent)"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 7
@@ -107,6 +101,8 @@ La promesse d''embauche doit être sollicitée dès que l''accord est donné.
 
 La promesse d''embauche est le document fondateur de votre changement de statut d''étudiant à salarié. Elle doit être formelle, complète et émaner de votre futur employeur. Ses informations précises (poste, rémunération, durée, date d''embauche) sont scrutées par l''administration. Soyez proactif dans son obtention et transparent avec votre employeur sur son importance. Ce document est votre passeport pour votre carrière professionnelle en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -189,6 +185,8 @@ Une fois l''autorisation de travail obtenue, vous pouvez déposer votre dossier.
 
 Le changement de statut d''étudiant à salarié est une procédure en deux temps : d''abord l''employeur dépose une demande d''autorisation de travail à la DREETS, puis vous déposez votre demande de titre de séjour salarié à la préfecture (souvent via l''ANEF). La promesse d''embauche, un diplôme français et la preuve du sérieux de vos études sont des éléments clés. Anticipez, préparez un dossier impeccable et communiquez étroitement avec votre employeur pour maximiser vos chances de réussite et sécuriser votre transition professionnelle en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -275,6 +273,8 @@ Heureusement, il existe des situations qui facilitent l''autorisation de travail
 
 L''opposabilité de l''emploi est un principe fondamental pour le changement de statut d''étudiant à salarié en France. Il exige que l''employeur démontre qu''il n''a pas trouvé de candidat sur le marché du travail français/européen. Les métiers en tension et l''obtention d''un Master français sont des atouts majeurs. En comprenant ce concept et en guidant votre employeur dans la justification de sa démarche, vous augmenterez considérablement vos chances d''obtenir l''autorisation de travail et de concrétiser votre projet professionnel en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -345,6 +345,8 @@ Si la procédure s''éternise, vous devrez faire renouveler votre récépissé.
 
 Les délais de traitement pour un changement de statut peuvent être longs. Le récépissé de demande de titre de séjour est le document qui vous garantit le maintien de vos droits au séjour, au travail et aux aides sociales pendant cette période. Il est crucial de déposer votre demande à temps, de veiller à son renouvellement si nécessaire, et de ne jamais laisser votre situation devenir irrégulière. Une gestion rigoureuse de ce processus vous permettra d''assurer une transition professionnelle et administrative réussie en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -365,12 +367,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1557804506-6691459a933f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGpvYiUyMHNlYXJjaHxlbnwwfHwwfHx8MA%3D%3D',
   '["Comprendre l''éligibilité à l''APS après l''obtention de votre diplôme", "Savoir quand et comment faire la demande avant l''expiration de votre titre étudiant", "Connaître les droits spécifiques liés à l''APS (travail, création d''entreprise)", "Identifier les conditions de renouvellement de ce statut temporaire"]'::jsonb,
   '["Être titulaire d''un titre de séjour étudiant", "Être diplômé(e) d''un Master ou d''un diplôme équivalent en France"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 8
@@ -445,6 +441,8 @@ La liste des diplômes ouvrant droit à l''APS est restrictive.
 
 L''éligibilité à l''APS "recherche d''emploi/création d''entreprise" est strictement conditionnée à l''obtention d''un diplôme de niveau Master ou équivalent, reconnu par l''État français (ingénieur, école de commerce accréditée, doctorat). La Licence et les DU ne sont généralement pas éligibles. Votre attestation de réussite provisoire est le document clé à fournir. Anticipez la demande de ce document auprès de votre établissement dès la fin de vos études pour initier votre démarche d''APS sans tarder.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -523,6 +521,8 @@ C''est la condition la plus stricte.
 
 Le dépôt de votre demande d''APS doit être effectué impérativement avant la date d''expiration de votre titre de séjour étudiant. C''est une condition non négociable pour maintenir la légalité de votre séjour en France après vos études. Dès l''obtention de votre attestation de réussite provisoire, anticipez et rassemblez tous les documents requis. Utilisez la plateforme ANEF si possible, ou prenez rendez-vous en préfecture avec une grande vigilance. Cette diligence est cruciale pour ouvrir les portes de votre avenir professionnel en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -607,6 +607,8 @@ L''APS assure la continuité de certains droits.
 
 L''APS "recherche d''emploi / création d''entreprise" est un droit précieux d''une durée d''un an pour les jeunes diplômés étrangers en France. Elle vous autorise à chercher un emploi, à créer votre entreprise, et à travailler sous certaines conditions (964h/an). Dès que vous trouvez un emploi stable ou que votre entreprise est lancée, vous devez impérativement demander un changement de statut avant l''expiration de votre APS. Connaître ces droits et anticiper les démarches est la clé pour transformer votre expérience étudiante en une carrière professionnelle réussie en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -684,6 +686,8 @@ L''objectif est de basculer vers un statut pérenne.
 
 L''APS "recherche d''emploi / création d''entreprise" est un tremplin précieux d''un an, mais il n''est généralement pas renouvelable. Son objectif est de vous permettre de basculer vers un titre de séjour plus pérenne (salarié, Passeport Talent, Entrepreneur/Profession Libérale) avant son expiration. Anticipez cette transition, utilisez l''année d''APS à bon escient pour trouver un emploi ou développer votre entreprise, et déposez votre demande de changement de statut dans les délais. Cette planification est la clé de votre réussite professionnelle et de la continuité de votre séjour légal en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -704,12 +708,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la finalité et l''utilité de la CVEC", "Identifier les cas d''exonération pour ne pas payer inutilement", "Maîtriser la procédure de paiement en ligne sur messervices.etudiant.gouv.fr", "Savoir obtenir et transmettre l''attestation CVEC à votre établissement"]'::jsonb,
   '["Être admis(e) dans un établissement d''enseignement supérieur en France"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 9
@@ -784,6 +782,8 @@ C''est une taxe spécifique aux étudiants.
 
 La CVEC est une contribution obligatoire qui finance des services essentiels pour améliorer votre vie étudiante et votre bien-être sur le campus. Elle couvre des domaines comme la santé, le social, le sport, la culture et l''aide aux associations. Payer la CVEC est une étape indispensable pour finaliser votre inscription administrative. En comprenant son utilité, vous pourrez profiter pleinement des services qu''elle finance et qui sont mis à votre disposition pour vous accompagner tout au long de votre parcours universitaire en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -857,6 +857,8 @@ Chaque cas d''exonération nécessite une preuve spécifique.
 
 De nombreux étudiants, notamment les boursiers du gouvernement français, les boursiers sur critères sociaux, et les réfugiés, sont exonérés de la CVEC. Il est crucial de vérifier votre éligibilité et d''obtenir votre attestation d''exonération sur `messervices.etudiant.gouv.fr` avant votre inscription administrative. Ne payez pas la CVEC si vous êtes éligible à une exemption, mais assurez-vous d''avoir le justificatif nécessaire. Cette vigilance vous permettra d''économiser de l''argent et de faciliter vos démarches administratives.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -937,6 +939,8 @@ C''est l''étape où vous indiquez si vous êtes redevable ou exonéré.
 
 Le paiement ou l''attestation d''exonération de la CVEC est une formalité administrative obligatoire à réaliser sur `messervices.etudiant.gouv.fr`. Que vous soyez redevable ou exonéré(e), vous devez impérativement obtenir votre attestation PDF et la conserver précieusement. Ce tutoriel vous a guidé pas à pas pour cette démarche essentielle qui conditionne votre inscription administrative et l''accès aux services de la vie étudiante en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1011,6 +1015,8 @@ L''attestation CVEC est la preuve officielle que vous avez bien accompli votre d
 
 L''obtention et la transmission de votre attestation CVEC à votre établissement sont les dernières étapes pour finaliser votre inscription administrative. Téléchargez le fichier PDF depuis `messervices.etudiant.gouv.fr`, sauvegardez-le précieusement, et transmettez-le selon les modalités indiquées par votre établissement. Une gestion rapide et rigoureuse de ce document vous garantit un accès fluide à votre formation et à tous les services offerts aux étudiants en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1031,12 +1037,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1554902409-9b9a6b1e6e9b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
   '["Comprendre l''obligation de la déclaration de revenus, même avec de faibles revenus", "Savoir pourquoi déclarer est important pour les aides sociales", "Maîtriser la procédure de la première déclaration papier", "Déclarer en ligne les années suivantes et comprendre le prélèvement à la source"]'::jsonb,
   '["Résider fiscalement en France", "Avoir un numéro fiscal (obtenu après une première démarche)"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 10
@@ -1108,6 +1108,8 @@ Même les "petits" revenus sont à renseigner.
 
 Le mythe "je ne gagne rien, je ne déclare rien" est à proscrire absolument. Si vous êtes résident fiscal en France, la déclaration de revenus est une obligation, même avec de faibles revenus. Ne pas déclarer peut entraîner des amendes, le blocage de vos aides sociales (CAF, APL) et des problèmes pour le renouvellement de votre titre de séjour. Soyez proactif, faites votre première déclaration papier pour obtenir votre numéro fiscal, et gardez toutes vos preuves de revenus. C''est une étape essentielle de votre intégration administrative en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1184,6 +1186,8 @@ Même sans payer d''impôts, le document est vital.
 
 Déclarer vos revenus en France est essentiel, même avec de faibles revenus, car c''est la base du calcul de vos droits aux aides sociales, notamment les APL de la CAF. Votre avis d''imposition (ou de non-imposition) est le document clé. Ne pas déclarer peut entraîner la suspension de vos aides ou l''obligation de rembourser. Faites votre déclaration chaque année, même si vous ne payez pas d''impôts, pour garantir la continuité de vos droits et éviter tout problème administratif.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1256,6 +1260,8 @@ C''est la finalité de cette première démarche.
 
 Votre première déclaration de revenus en France se fait obligatoirement via le formulaire papier 2042. C''est une étape cruciale pour obtenir votre numéro fiscal, indispensable pour toutes vos futures démarches fiscales en ligne et pour le calcul de vos aides sociales. Remplissez-la avec précision, déclarez tous vos revenus (même faibles), signez-la, et déposez-la au SIP de votre domicile dans les délais. Ce document est la fondation de votre régularité fiscale en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1331,6 +1337,8 @@ C''est un système très pratique.
 
 Après votre première déclaration papier et l''obtention de votre numéro fiscal, toutes les déclarations de revenus suivantes se feront en ligne sur `impots.gouv.fr`. Créez votre espace personnel, vérifiez attentivement la déclaration pré-remplie, ajoutez tous vos revenus (même faibles) et déclarez impérativement tous vos comptes bancaires détenus à l''étranger. La déclaration en ligne est simple, rapide et obligatoire. Maîtrisez-la pour une gestion fiscale autonome et sereine en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1414,6 +1422,8 @@ C''est une nouvelle façon de collecter l''impôt.
 
 Le prélèvement à la source est le mode de collecte de l''impôt sur le revenu en France. Il est directement déduit de vos revenus par votre employeur. Votre taux est personnalisé après votre déclaration annuelle, mais vous pouvez le moduler en cas de changement de situation. La déclaration annuelle reste obligatoire pour la régularisation. Comprendre le PAS est essentiel pour gérer votre budget et votre situation fiscale sans surprise en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1434,12 +1444,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1554902409-9b9a6b1e6e9b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
   '["Apprendre à lire et comprendre votre Avis de Situation Déclarative (ASDIR)", "Comprendre les principes de la Taxe d''Habitation et qui la paie encore", "Identifier les règles de la Contribution à l''Audiovisuel Public", "Gérer et archiver correctement ces documents fiscaux"]'::jsonb,
   '["Avoir effectué au moins une déclaration de revenus en France"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 11
@@ -1519,6 +1523,8 @@ C''est un document à ne jamais perdre.
 
 L''Avis de Situation Déclarative à l''Impôt sur le Revenu (ASDIR) est un document fiscal essentiel que vous recevez après votre déclaration. Il est la preuve officielle de votre situation fiscale, notamment de votre Revenu Fiscal de Référence (RFR), et est indispensable pour de nombreuses démarches administratives et pour le calcul de vos aides sociales. Apprenez à le lire, à le télécharger depuis votre espace `impots.gouv.fr`, et à le conserver précieusement. C''est un document clé pour votre vie en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1618,6 +1624,8 @@ Cette contribution est distincte de la taxe d''habitation et a également évolu
 
 La Taxe d''Habitation sur la résidence principale a été supprimée pour tous les contribuables depuis 2023. Si vous êtes étudiant et que votre logement est votre résidence principale, vous ne devriez plus la payer. La Contribution à l''Audiovisuel Public a également été supprimée. Si vous recevez malgré tout un avis de taxe d''habitation, vérifiez votre situation et n''hésitez pas à contacter le Service des Impôts des Particuliers (SIP) pour contester. Une bonne compréhension de ces réformes est essentielle pour gérer votre budget et éviter les erreurs fiscales.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1691,6 +1699,8 @@ Une mesure fiscale d''envergure.
 
 La Contribution à l''Audiovisuel Public (redevance télé) a été entièrement supprimée pour tous les foyers fiscaux depuis 2022. Vous n''avez donc plus à la payer. Vérifiez vos avis d''imposition pour vous en assurer et soyez vigilant(e) face à d''éventuelles tentatives de fraude. Cette suppression est une simplification fiscale qui allège votre budget et votre charge administrative.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

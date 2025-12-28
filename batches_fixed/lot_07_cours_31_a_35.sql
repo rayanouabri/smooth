@@ -21,12 +21,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''importance de l''état des lieux de sortie pour le dépôt de garantie", "Connaître le délai légal de restitution de la caution (1 ou 2 mois)", "Identifier les retenues légales (dégradations, impayés) et illégales", "Maîtriser les recours (mise en demeure, conciliation) si la caution n''est pas rendue"]'::jsonb,
   '["Avoir quitté un logement en France", "Avoir réalisé un état des lieux d''entrée précis"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 32
@@ -121,6 +115,8 @@ Soyez aussi minutieux qu''à l''entrée.
 
 L''état des lieux de sortie est l''étape la plus importante pour la restitution de votre dépôt de garantie. Préparez minutieusement le logement (nettoyage, petites réparations) et ayez votre état des lieux d''entrée avec vous pour la comparaison. Soyez rigoureux(se) lors de la visite, prenez des photos de tout, et consignez vos désaccords sur le document. Ne signez jamais si vous n''êtes pas d''accord. Une préparation exemplaire de cette étape est la garantie d''un départ serein et d''une récupération intégrale de votre caution en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -194,6 +190,8 @@ Le facteur clé est la conformité de l''état des lieux.
 
 Le délai légal de restitution de votre dépôt de garantie est d''un mois si l''état des lieux de sortie est conforme à celui d''entrée, et de deux mois en cas de différences. Ce délai court à partir de la remise des clés et de l''état des lieux. Au-delà, des pénalités de 10% du loyer HC par mois de retard s''appliquent. Préparez un état des lieux de sortie impeccable, conservez toutes vos preuves (états des lieux, photos), et agissez rapidement (mise en demeure, conciliation) si votre caution n''est pas rendue dans les délais. La connaissance de ces règles est cruciale pour protéger votre argent.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -267,6 +265,8 @@ Le "dépôt de garantie" (ou caution) que vous avez versé à votre entrée dans
 
 Les retenues sur votre dépôt de garantie sont légales uniquement pour les loyers/charges impayés et les dégradations qui vous sont imputables (hors vétusté normale). Le propriétaire doit toujours justifier ces retenues par l''état des lieux de sortie et des devis/factures. Contestez systématiquement les retenues illégales (vétusté, frais administratifs) en demandant des justificatifs, en vous appuyant sur vos états des lieux et vos photos. Si nécessaire, envoyez une mise en demeure et saisissez la Commission départementale de conciliation. La connaissance de ces règles est cruciale pour protéger votre argent et récupérer votre caution.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -348,6 +348,8 @@ Dans l'attente de votre régularisation dans les plus brefs délais, je vous pri
 
 
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -370,12 +372,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement du système de santé français (Sécurité Sociale + Mutuelle)", "Identifier l''importance du parcours de soins coordonnés pour de meilleurs remboursements", "Maîtriser le mécanisme du tiers-payant et ses avantages", "Accéder aux soins en toute sérénité et optimiser ses dépenses de santé"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 33
@@ -450,6 +446,8 @@ Le système de santé français est l''un des plus performants au monde, mais il
 
 Le système de santé français repose sur le "duo gagnant" Sécurité Sociale (Assurance Maladie) + mutuelle complémentaire. La Sécurité Sociale rembourse une partie de vos frais, et la mutuelle complète le reste (le ticket modérateur). Affiliez-vous obligatoirement et gratuitement à la Sécurité Sociale dès votre arrivée, puis souscrivez une mutuelle (ou vérifiez votre éligibilité à la CSS). C''est la clé pour une couverture santé optimale, des remboursements efficaces et une tranquillité d''esprit durant votre séjour en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -524,6 +522,8 @@ Le parcours de soins coordonnés a été mis en place pour responsabiliser les p
 
 
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -603,6 +603,8 @@ Le tiers-payant évite au patient d''avancer la part remboursée par l''Assuranc
 
 Le tiers-payant est un dispositif crucial du système de santé français qui vous permet de ne pas avancer les frais (part Sécurité Sociale et/ou part mutuelle) chez les professionnels de santé. Il est largement disponible en pharmacie, chez le médecin (avec la Carte Vitale et la mutuelle) et à l''hôpital. C''est un avantage considérable pour la gestion de votre budget et l''accès aux soins. Ayez toujours votre Carte Vitale et votre carte de mutuelle sur vous pour en bénéficier pleinement.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -623,12 +625,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''obligation et la gratuité de l''affiliation à la Sécurité Sociale", "Maîtriser la procédure de demande en ligne sur etudiant-etranger.ameli.fr", "Savoir quels documents numériser (titre de séjour, acte de naissance traduit)", "Obtenir et utiliser l''attestation provisoire de Sécurité Sociale"]'::jsonb,
   '["Avoir un titre de séjour valide (ou VLS-TS validé) en France"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 34
@@ -718,12 +714,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la différence entre numéro provisoire et numéro définitif (NIR)", "Identifier les raisons pour lesquelles l''obtention du NIR peut être longue", "Savoir décrypter les chiffres de votre numéro de Sécurité Sociale", "Maîtriser les recours et actions en cas de blocage du dossier d''affiliation"]'::jsonb,
   '["Avoir déposé sa demande d''affiliation à la Sécurité Sociale sur etudiant-etranger.ameli.fr"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 35
@@ -815,12 +805,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le rôle et les avantages de la Carte Vitale", "Savoir comment commander sa Carte Vitale après le NIR définitif", "Maîtriser la mise à jour régulière de la carte (bornes en pharmacie)", "Découvrir l''application "Carte Vitale" (e-carte) et son fonctionnement"]'::jsonb,
   '["Avoir obtenu votre numéro définitif de Sécurité Sociale (NIR)"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 36

@@ -21,12 +21,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''interdiction de vente d''alcool aux mineurs et les horaires de vente", "Identifier les règles de consommation d''alcool sur la voie publique (zones et restrictions)", "Savoir comment organiser des soirées étudiantes dans le respect de la loi", "Maîtriser les conseils pour une consommation responsable et éviter les problèmes avec la police"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 96
@@ -116,6 +110,8 @@ La législation sur l''alcool est une question de santé publique et d''ordre pu
 
 En France, la vente d''alcool est interdite aux moins de 18 ans et souvent restreinte après 22h (ou 2h du matin) dans certaines zones par des arrêtés municipaux. Anticipez vos achats pour vos soirées et respectez toujours les horaires de vente dans les magasins. La consommation d''alcool sur la voie publique est également réglementée. Maîtriser ces informations est absolument crucial pour respecter la loi (éviter les amendes), profiter des soirées étudiantes en toute sécurité, et faire preuve de responsabilité dans votre consommation d''alcool en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -201,6 +197,8 @@ Pas de consommation "sauvage".
 
 La consommation d''alcool sur la voie publique en France est généralement tolérée si elle ne trouble pas l''ordre public, mais elle est souvent interdite dans certaines zones (centres-villes, parcs) ou à certaines heures par des arrêtés municipaux. Renseignez-vous sur la réglementation spécifique de votre ville (sur le site de la mairie). Consommez avec modération, respectez l''environnement, ne faites pas de bruit, et ne soyez jamais en état d''ivresse manifeste. Maîtriser ces informations est absolument crucial pour respecter la loi, éviter les ennuis avec la police, et profiter des moments conviviaux en extérieur en toute sécurité.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -221,12 +219,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre que le "service est compris" en France (pas de pourboire obligatoire)", "Identifier les situations où le pourboire est apprécié (qualité du service)", "Savoir quel montant laisser (quelques euros, petite monnaie) et comment", "Maîtriser les conseils pour faire preuve de savoir-vivre et gérer son budget"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 97
@@ -306,6 +298,8 @@ Dans de nombreux pays, le pourboire (ou "tip") est une part essentielle de la r�
 
 En France, le "service est compris" dans le prix des prestations (restaurants, cafés, coiffeurs, taxis), ce qui signifie que le pourboire n''est pas obligatoire. Le personnel est déjà rémunéré. Le pourboire est un geste facultatif d''appréciation pour un service exceptionnel (quelques euros ou 5-10% du prix). Maîtriser cette nuance est absolument crucial pour gérer votre budget, faire preuve de savoir-vivre, et avoir des interactions fluides et agréables avec le personnel de service en France. Ne vous sentez jamais obligé(e) de laisser un pourboire.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -373,6 +367,8 @@ Bien que le pourboire ne soit pas obligatoire en France (le "service est compris
 
 Bien que le "service soit compris" en France et que le pourboire ne soit pas obligatoire, laisser quelques pièces (quelques euros ou 5-10%) est un geste apprécié pour un service de qualité exceptionnelle (restaurants, cafés, coiffeurs, taxis). Laissez-le discrètement en espèces ou via le terminal de paiement. Maîtriser quand laisser un pourboire (et dans quel montant) est absolument crucial pour les étudiants internationaux afin de faire preuve de savoir-vivre, de remercier le personnel, et d''avoir des interactions fluides et agréables en France. Ne vous sentez jamais obligé(e).
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -393,12 +389,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les droits des personnes LGBTQ+ en France (orientation sexuelle, identité de genre)", "Identifier les lois sur le mariage et l''adoption pour tous", "Savoir où trouver des centres et associations LGBTQ+ pour le soutien", "Maîtriser les conseils pour vivre son identité en sécurité et réagir en cas de discrimination"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 98
@@ -478,6 +468,8 @@ L''égalité devant la loi.
 
 La France reconnaît de nombreux droits aux personnes LGBTQ+ (non-discrimination, mariage et adoption pour tous, reconnaissance de l''identité de genre) et protège contre la haine et les violences. Il est absolument crucial de connaître ces droits pour vivre votre identité en toute sécurité et sérénité. N''hésitez pas à contacter les centres et associations LGBTQ+ (Fédération LGBTI+) pour du soutien, et le Défenseur des Droits en cas de discrimination. Maîtriser ces informations est fondamental pour une intégration réussie dans la société française et pour faire valoir vos droits.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -498,12 +490,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''importance d''une checklist complète pour son départ de France", "Savoir comment résilier tous ses contrats (logement, énergie, tel, internet)", "Identifier les démarches pour clôturer son affiliation à la Sécurité Sociale", "Maîtriser les étapes pour fermer son compte bancaire français et transférer son solde"]'::jsonb,
   '["Avoir un logement et des contrats en France", "Préparer son départ définitif"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 99
@@ -569,6 +555,8 @@ Un départ bien préparé évite les mauvaises surprises financières. L''antici
 
 
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -644,6 +632,8 @@ S''assurer que vous n''êtes plus affilié(e).
 
 
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -664,12 +654,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''importance du réseau Alumni pour les diplômés internationaux", "Découvrir la plateforme "France Alumni" et ses avantages", "Savoir comment rester connecté(e) avec son établissement d''origine", "Maîtriser les conseils pour développer son réseau professionnel à l''international grâce à son expérience française"]'::jsonb,
   '["Avoir étudié dans un établissement d''enseignement supérieur français"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 100
@@ -757,6 +741,8 @@ France Alumni est une initiative du Ministère de l''Europe et des Affaires Étr
 
 France Alumni est le réseau mondial officiel des diplômés de l''enseignement supérieur français. S''y inscrire et activer votre profil est absolument crucial pour les étudiants internationaux afin de garder un lien professionnel avec la France, accéder à des offres d''emploi à l''international, et développer votre réseau. Restez connecté(e) avec votre établissement, participez aux événements, et valorisez votre expérience française sur tous vos supports. Maîtriser ce réseau est fondamental pour développer votre carrière et faire rayonner votre parcours à l''échelle internationale.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -843,6 +829,8 @@ L''effort est la clé.
 
 Garder un lien professionnel avec la France est absolument crucial pour les étudiants internationaux. Votre diplôme et votre expérience française sont des atouts précieux (compétences linguistiques, interculturelles). Restez connecté(e) via France Alumni, l''association des anciens élèves de votre établissement, et LinkedIn. Valorisez votre "marque personnelle" française sur tous vos supports et entretenez votre réseau. Maîtriser ces stratégies est fondamental pour développer votre carrière à l''international, ouvrir de nouvelles portes, et continuer à faire rayonner votre parcours après votre départ de France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -930,6 +918,8 @@ L''effort est la clé.
 
 Garder un lien professionnel avec la France est absolument crucial pour les étudiants internationaux. Votre diplôme et votre expérience française sont des atouts précieux (compétences linguistiques, interculturelles). Restez connecté(e) via France Alumni, l''association des anciens élèves de votre établissement, et LinkedIn. Valorisez votre "marque personnelle" française sur tous vos supports et entretenez votre réseau. Maîtriser ces stratégies est fondamental pour développer votre carrière à l''international, ouvrir de nouvelles portes, et continuer à faire rayonner votre parcours après votre départ de France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

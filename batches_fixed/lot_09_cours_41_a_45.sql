@@ -21,12 +21,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la différence entre médicaments sur ordonnance et automédication", "Identifier les règles de l''automédication responsable en France", "Savoir l''intérêt et l''équivalence des médicaments génériques", "Maîtriser les conseils pour acheter ses médicaments en pharmacie en toute sécurité"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 42
@@ -267,12 +261,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''importance du soutien psychologique pour les étudiants internationaux", "Identifier les Bureaux d''Aide Psychologique Universitaire (BAPU) et leurs services gratuits", "Savoir comment bénéficier du dispositif Santé Psy Étudiant (8 séances gratuites)", "Maîtriser les ressources d''écoute anonymes et confidentielles"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 43
@@ -510,12 +498,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''accès gratuit aux préservatifs pour les jeunes de moins de 26 ans", "Identifier les différentes méthodes de contraception d''urgence et leur accessibilité", "Savoir où se faire dépister gratuitement des IST (CeGIDD)", "Maîtriser les conseils pour une sexualité protégée et responsable en France"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 44
@@ -759,12 +741,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le principe et les avantages du dispositif "100% Santé"", "Identifier le contenu du panier "100% Santé" pour l''optique et le dentaire", "Savoir comment demander ces équipements à votre opticien ou dentiste", "Maîtriser les délais de carence des mutuelles et l''accès aux équipements"]'::jsonb,
   '["Avoir un numéro de Sécurité Sociale (NIR) et une mutuelle complémentaire (ou la CSS)"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 45
@@ -868,12 +844,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les différences entre banques classiques et en ligne/néo-banques", "Identifier les avantages des banques avec agence (conseiller, dépôts espèces)", "Découvrir les atouts des banques en ligne (frais réduits, rapidité)", "Maîtriser les critères pour choisir la banque la plus adaptée à vos besoins d''étudiant"]'::jsonb,
   '["Avoir un passeport et un titre de séjour valide en France"]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 46

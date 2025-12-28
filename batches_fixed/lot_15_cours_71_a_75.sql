@@ -21,12 +21,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les services d''envoi de lettres et de colis de La Poste", "Identifier l''importance de la lettre recommandée avec accusé de réception (LRAR)", "Savoir comment envoyer un courrier ou un colis depuis un bureau de poste", "Maîtriser les conseils pour récupérer un colis en point relais et suivre ses envois"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 72
@@ -103,6 +97,8 @@ Le coût de l''envoi.
 
 Envoyer une lettre simple en France implique de bien la préparer (contenu, enveloppe), de l''adresser correctement (destinataire en bas à droite, expéditeur en haut à gauche), de l''affranchir avec le bon timbre (Lettre Verte ou Prioritaire), et de la déposer dans une boîte aux lettres jaune de La Poste. Vérifiez toujours les adresses et le poids pour un affranchissement correct. Maîtriser cette démarche est fondamental pour vos communications écrites courantes et pour comprendre le fonctionnement du service postal en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -186,6 +182,8 @@ La LRAR est un service proposé par La Poste qui garantit la traçabilité et la
 
 L''envoi de documents importants par lettre recommandée avec accusé de réception (LRAR) est une formalité administrative absolument cruciale en France. C''est le seul moyen d''avoir une preuve juridique et incontestable de votre envoi et de sa date de réception. Utilisez la LRAR pour votre lettre de congé de location, la clôture de votre compte bancaire, ou toute autre correspondance essentielle. Conservez précieusement le récépissé de dépôt et l''avis de réception. Maîtriser ce service postal est fondamental pour protéger vos droits, sécuriser vos démarches administratives, et éviter les litiges.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -252,6 +250,8 @@ Lorsque vous commandez des articles en ligne en France ou que des proches vous e
 
 Récupérer un colis en point relais est un mode de livraison très courant et pratique en France. Vous recevrez une notification (e-mail/SMS) avec l''adresse du point relais et un code de retrait. Présentez impérativement une pièce d''identité valide (passeport, titre de séjour) et le code de retrait dans le délai imparti (7 à 10 jours). Ne pas le faire, c''est risquer de voir votre colis renvoyé. Maîtriser cette procédure est absolument crucial pour recevoir vos achats en ligne et vos envois personnels en toute sécurité et sans encombre en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -272,12 +272,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement et les coûts des laveries automatiques", "Identifier les différents types de lessives et adoucissants en France", "Savoir lire et interpréter les étiquettes d''entretien des vêtements", "Maîtriser les conseils pour un lavage efficace, économique et respectueux du linge"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 73
@@ -342,6 +336,8 @@ Si votre logement étudiant en France n''est pas équipé d''une machine à lave
 
 
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -417,6 +413,8 @@ Une bonne lessive, c''est la garantie d''un linge propre et bien entretenu.
 
 Le choix de votre lessive (liquide pour couleurs/froid, poudre pour blanc/chaud, capsules pour simplicité) et l''utilisation d''adoucissant (pour douceur et parfum) impactent la propreté et l''entretien de votre linge en France. Choisissez une lessive adaptée au type de linge et à votre sensibilité (hypoallergénique si besoin). Achetez en promotion, ne surdosez pas, et lisez les étiquettes de vos vêtements. Maîtriser ces choix est absolument crucial pour un lavage efficace, économique, et respectueux de votre linge, surtout si vous utilisez les laveries automatiques.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -486,6 +484,8 @@ Les finitions et l''entretien professionnel.
 
 Savoir lire les étiquettes d''entretien des vêtements est absolument crucial pour prendre soin de votre linge en France. Comprenez les symboles de lavage (bac d''eau avec température et traits), de séchage (cercle dans le carré avec points), de repassage (fer à repasser avec points), et de nettoyage à sec (cercle). Triez votre linge, respectez les températures, et évitez de mettre au sèche-linge les matières fragiles. Maîtriser cette lecture vous permettra d''entretenir votre garde-robe efficacement, d''éviter les mauvaises surprises, et de faire des économies sur le long terme.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -506,12 +506,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les risques liés aux pickpockets et leurs techniques", "Identifier les bonnes pratiques pour rentrer seul(e) le soir en sécurité", "Savoir utiliser les numéros d''urgence (17 Police/Gendarmerie, 114 SMS)", "Maîtriser les conseils pour prévenir les agressions et réagir en cas de danger"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 74
@@ -578,6 +572,8 @@ Les pickpockets sont une réalité, surtout dans les grandes villes touristiques
 
 
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -661,6 +657,8 @@ La prévention est la meilleure protection. Adaptez votre comportement à l''env
 
 Rentrer seul(e) le soir en France exige des réflexes de prudence : planifiez votre trajet (rues éclairées et fréquentées), restez vigilant(e) (téléphone chargé, sans écouteurs), et modérez votre consommation d''alcool. Privilégiez les transports en commun la nuit ou les VTC officiels. En cas de danger, changez d''itinéraire, entrez dans un commerce, criez à l''aide, et appelez les services d''urgence (17 Police/Gendarmerie, 112 Europe, ou 114 par SMS si vous ne pouvez pas parler). Maîtriser ces conseils est absolument crucial pour prévenir les agressions, réagir efficacement, et garantir votre sécurité personnelle en ville.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -742,6 +740,8 @@ Une alternative à l''appel vocal.
 
 Le numéro 114, accessible par SMS ou fax, est un numéro d''urgence absolument crucial en France, surtout si vous êtes dans l''impossibilité de parler (agression, malaise, handicap). Il est destiné en priorité aux personnes sourdes/malentendantes, mais peut être utilisé par tous. Envoyez un SMS concis avec la nature de l''urgence, votre localisation exacte, et votre nom. Maîtriser le 114 est fondamental pour garantir votre sécurité dans toutes les circonstances, obtenir l''aide des services de secours, et communiquer efficacement en situation critique.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -762,12 +762,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la différence entre déposer une main courante et porter plainte", "Savoir comment contacter son consulat pour refaire son passeport/titre d''identité", "Identifier le rôle du service des objets trouvés et comment le contacter", "Maîtriser les conseils pour réagir rapidement en cas de perte ou de vol et minimiser les risques"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 75
@@ -841,6 +835,8 @@ En France, si vous êtes victime d''un vol, d''une perte de papiers, ou d''un in
 
 Comprendre la différence entre faire une "main courante" (trace officielle sans enquête systématique, pour perte de papiers ou vols simples) et "porter plainte" (déclenche une enquête judiciaire, pour vols avec violence ou agressions) est absolument crucial en France. Rendez-vous au commissariat ou à la gendarmerie, apportez votre pièce d''identité, et relisez attentivement votre déclaration avant de signer. Gardez toujours un récépissé. Maîtriser cette distinction est fondamental pour enclencher les démarches (refaire ses papiers, déclarer à l''assurance) et protéger vos droits après une perte ou un vol.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -918,6 +914,8 @@ Votre consulat ou ambassade est votre unique interlocuteur pour les démarches l
 
 Si votre passeport est perdu ou volé en France, vous devez d''abord le déclarer à la police française, puis contacter d''urgence votre consulat ou ambassade. Préparez un dossier complet (récépissé de déclaration, titre de séjour, acte de naissance traduit, photos) pour demander un nouveau passeport. Le consulat peut vous délivrer un titre de voyage d''urgence en attendant. Maîtriser cette procédure est absolument crucial pour refaire votre document d''identité, éviter les problèmes administratifs et juridiques, et garantir la régularité de votre séjour en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -984,6 +982,8 @@ Si vous perdez un objet (téléphone, portefeuille, clés, sac) en France, il ex
 
 Si vous perdez un objet ou vos papiers en France, contactez rapidement le service des objets trouvés compétent (police/mairie pour la rue, opérateur pour les transports). Pour les papiers importants (passeport, titre de séjour, carte bancaire), faites d''abord opposition à votre carte bancaire et déclarez la perte/vol à la police. Ayez des copies de vos documents. Maîtriser ces réflexes est absolument crucial pour maximiser vos chances de retrouver vos biens, protéger votre identité, et minimiser les conséquences d''une perte ou d''un vol, en régularisant votre situation au plus vite.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1006,12 +1006,6 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la distinction fondamentale entre "Tu" et "Vous" en français", "Identifier la "règle de l''âge et de la hiérarchie" pour le choix du pronom", "Savoir quand et comment passer du "Vous" au "Tu" (proposer, accepter)", "Maîtriser les spécificités du vouvoiement commercial et professionnel"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
-  TRUE,
-  4.5,
-  100,
-  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 76
@@ -1095,6 +1089,8 @@ Le "Tu" et le "Vous" sont des marqueurs sociaux puissants. Le "Vous" est la marq
 
 La "règle de l''âge et de la hiérarchie" est fondamentale pour choisir entre "Tu" et "Vous" en français. Vouvoyez systématiquement les personnes que vous ne connaissez pas, les personnes âgées, et les figures d''autorité (professeurs, administrateurs). En cas de doute, vouvoyez. N''utilisez le "Tu" que si la personne vous le propose ou si c''est un ami proche ou un enfant. Maîtriser cette règle est absolument crucial pour une communication respectueuse, éviter les malentendus, et faciliter votre intégration réussie dans la société française.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1189,6 +1185,8 @@ Le passage au "Tu" est une étape de la construction de la relation. Il n''y a p
 
 Le passage du "Vous" au "Tu" marque un rapprochement dans les relations en France. La règle de la "dissymétrie" s''applique : c''est à la personne la plus âgée ou la plus gradée de proposer le tutoiement. En cas de doute, vouvoyez toujours. Attendez que l''on vous propose le "Tu" avant de l''utiliser. Maîtriser cette transition est absolument crucial pour une communication tactique et respectueuse, pour développer des relations plus profondes, et pour une intégration sociale réussie dans la culture française.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1284,6 +1282,8 @@ Le respect dans l''échange de services.
 
 Le vouvoiement de politesse commerciale est la règle par défaut en France lorsque vous interagissez avec des commerçants, des vendeurs ou du personnel de service. Commencez toujours par "Bonjour" et utilisez le "Vous" pour marquer le respect et maintenir une distance professionnelle. N''utilisez le "Tu" que si le professionnel vous le propose. Maîtriser ce vouvoiement est absolument crucial pour des interactions fluides, agréables, et une bonne intégration dans la vie quotidienne française. C''est un aspect essentiel du savoir-vivre qui facilite vos échanges et votre séjour.
 ',
+  1,
+  60,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
