@@ -6,7 +6,6 @@
 -- ==========================================
 
 -- --- Cours 21 ---
-
 -- COURS 22 : L''État des lieux d'entrée
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
@@ -1148,7 +1147,7 @@ Le déploiement de la fibre optique en France progresse rapidement, mais l''ADSL
 -   Il vous listera les offres disponibles chez l''opérateur.
 
 
--   L'''**adresse exacte de votre logement**.
+-   L''**adresse exacte de votre logement**.
 -   Éventuellement le **numéro de l''ancienne ligne fixe** (si vous l''avez).
 
 
@@ -1298,7 +1297,7 @@ L''installation de la fibre optique nécessite le raccordement de votre logement
 
 -   Votre **pièce d''identité**.
 -   Votre **contrat avec l''opérateur**.
--   L'''**ancienne facture d''électricité** (pour savoir où se trouve le compteur électrique et le PDL, si le technicien en a besoin).
+-   L''**ancienne facture d''électricité** (pour savoir où se trouve le compteur électrique et le PDL, si le technicien en a besoin).
 
 -   N''hésitez pas à lui poser des questions sur l''emplacement de la PTO, le fonctionnement de la Box, ou la vitesse de connexion.
 
@@ -1487,7 +1486,7 @@ L''emplacement a un impact majeur.
 -   Il doit être "conventionné APL", c''est-à-dire que le propriétaire a signé une convention avec l''État. La plupart des logements sociaux et des résidences étudiantes sont conventionnés. Pour les logements privés, c''est à vérifier.
 
 
--   L'''**adresse complète de votre logement**.
+-   L''**adresse complète de votre logement**.
 -   Vos **informations de revenus N-2** (ex: avis d''imposition ou de non-imposition/ASDIR).
 
 
@@ -1638,7 +1637,7 @@ Votre identifiant auprès de l''administration.
 
 
 -   Votre **RIB** d''un compte bancaire français.
--   L'''**attestation de loyer** (fournie par la CAF, à faire remplir par le propriétaire).
+-   L''**attestation de loyer** (fournie par la CAF, à faire remplir par le propriétaire).
 -   Votre **avis d''imposition (ASDIR)** N-2.
 
 
