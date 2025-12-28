@@ -28,11 +28,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   100,
   500,
   4,
-  0,
-  TRUE,
-  4.5,
-  100,
-  500
+  0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 17
@@ -344,11 +340,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   100,
   500,
   4,
-  0,
-  TRUE,
-  4.5,
-  100,
-  500
+  0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 18
@@ -608,11 +600,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   100,
   500,
   4,
-  0,
-  TRUE,
-  4.5,
-  100,
-  500
+  0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 19
@@ -981,9 +969,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   100,
   500,
   TRUE,
-  4.5,
-  100,
-  500
+  4.5
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 20
@@ -1362,11 +1348,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   100,
   500,
   4,
-  0,
-  TRUE,
-  4.5,
-  100,
-  500
+  0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 21

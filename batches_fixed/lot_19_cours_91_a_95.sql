@@ -31,9 +31,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   100,
   500,
   TRUE,
-  4.5,
-  100,
-  500
+  4.5
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 81
@@ -304,10 +302,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   100,
   500,
   0,
-  TRUE,
-  4.5,
-  100,
-  500
+  TRUE
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 82
@@ -578,11 +573,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   100,
   500,
   4,
-  0,
-  TRUE,
-  4.5,
-  100,
-  500
+  0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 83
@@ -855,11 +846,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   100,
   500,
   4,
-  0,
-  TRUE,
-  4.5,
-  100,
-  500
+  0
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 84
@@ -1117,7 +1104,12 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   "Identifier les raisons et les revendications des grèves et manifestations",
   "Maîtriser les conseils de sécurité en manifestation et les réflexes à adopter"]'::jsonb,
   '[]'::jsonb,
-  TRUE
+  TRUE,
+  TRUE,
+  4.5,
+  100,
+  500,
+  500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 85

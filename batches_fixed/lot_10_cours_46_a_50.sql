@@ -870,6 +870,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   TRUE,
   4.5,
   100,
+  500,
   500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 

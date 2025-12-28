@@ -32,6 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   TRUE,
   4.5,
   100,
+  500,
+  100,
   500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
@@ -638,8 +640,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   100,
   500,
   4.5,
-  100,
-  500
+  100
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 29
