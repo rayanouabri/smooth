@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la nécessité d''un compte bancaire français", "Identifier les justificatifs requis pour l''ouverture d''un compte", "Maîtriser les étapes de l''ouverture de compte (en agence ou en ligne)", "Décrypter la convention de compte et ses principales clauses"]'::jsonb,
   '["Avoir un passeport et un titre de séjour valide en France"]'::jsonb,
   TRUE,
+  4.8,
   750,
   5800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -274,6 +275,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la composition d''un RIB (IBAN, BIC/SWIFT)", "Savoir où trouver et télécharger son RIB (espace client, chéquier)", "Identifier les situations où le RIB est demandé (salaires, APL, prélèvements)", "Maîtriser les conseils pour transmettre son RIB en toute sécurité"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
   TRUE,
+  4.8,
   700,
   5500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -514,6 +516,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la distinction entre carte à débit immédiat et à débit différé", "Identifier le fonctionnement et les limites du paiement "sans contact"", "Savoir gérer et adapter ses plafonds de paiement et de retrait", "Maîtriser les conseils pour une utilisation sécurisée de sa carte bancaire"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -610,6 +613,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''usage du chèque en France et s''il est encore pertinent", "Savoir comment remplir correctement un chèque (montant, bénéficiaire, date, signature)", "Identifier la spécificité du "chèque de caution" non encaissé (pour le logement)", "Maîtriser les conseils pour commander et utiliser son chéquier en toute sécurité"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
   TRUE,
+  4.8,
   400,
   3000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -873,6 +877,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre les coûts des virements internationaux avec les banques traditionnelles", "Découvrir les avantages des services spécialisés (Wise, Remitly)", "Maîtriser l''utilisation des plateformes de transfert d''argent en ligne", "Identifier les délais de réception et les pièges à éviter lors des virements"]'::jsonb,
   '["Avoir un compte bancaire en France et/ou dans votre pays d''origine"]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

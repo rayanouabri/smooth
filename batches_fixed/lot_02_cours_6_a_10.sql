@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Identifier le moment opportun pour initier le changement de statut", "Comprendre la procédure de demande de titre de séjour salarié", "Maîtriser la notion d''opposabilité de l''emploi et ses critères", "Connaître les délais de traitement et le maintien des droits"]'::jsonb,
   '["Être titulaire d''un titre de séjour étudiant", "Avoir obtenu un diplôme de l''enseignement supérieur français (Master ou équivalent)"]'::jsonb,
   TRUE,
+  4.8,
   380,
   2800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -375,6 +376,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''éligibilité à l''APS après l''obtention de votre diplôme", "Savoir quand et comment faire la demande avant l''expiration de votre titre étudiant", "Connaître les droits spécifiques liés à l''APS (travail, création d''entreprise)", "Identifier les conditions de renouvellement de ce statut temporaire"]'::jsonb,
   '["Être titulaire d''un titre de séjour étudiant", "Être diplômé(e) d''un Master ou d''un diplôme équivalent en France"]'::jsonb,
   TRUE,
+  4.8,
   410,
   3100
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -721,6 +723,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la finalité et l''utilité de la CVEC", "Identifier les cas d''exonération pour ne pas payer inutilement", "Maîtriser la procédure de paiement en ligne sur messervices.etudiant.gouv.fr", "Savoir obtenir et transmettre l''attestation CVEC à votre établissement"]'::jsonb,
   '["Être admis(e) dans un établissement d''enseignement supérieur en France"]'::jsonb,
   TRUE,
+  4.8,
   680,
   5200
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1055,6 +1058,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''obligation de la déclaration de revenus, même avec de faibles revenus", "Savoir pourquoi déclarer est important pour les aides sociales", "Maîtriser la procédure de la première déclaration papier", "Déclarer en ligne les années suivantes et comprendre le prélèvement à la source"]'::jsonb,
   '["Résider fiscalement en France", "Avoir un numéro fiscal (obtenu après une première démarche)"]'::jsonb,
   TRUE,
+  4.8,
   300,
   2500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1467,6 +1471,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Apprendre à lire et comprendre votre Avis de Situation Déclarative (ASDIR)", "Comprendre les principes de la Taxe d''Habitation et qui la paie encore", "Identifier les règles de la Contribution à l''Audiovisuel Public", "Gérer et archiver correctement ces documents fiscaux"]'::jsonb,
   '["Avoir effectué au moins une déclaration de revenus en France"]'::jsonb,
   TRUE,
+  4.8,
   220,
   1800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

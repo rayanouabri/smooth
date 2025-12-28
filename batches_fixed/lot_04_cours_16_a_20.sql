@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Créer une page de garde professionnelle et impactante", "Identifier les documents obligatoires pour un dossier de location", "Connaître les documents interdits par la loi pour protéger vos droits", "Fusionner et organiser son dossier numérique pour un envoi efficace"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   520,
   3900
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -333,6 +334,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le rôle et l''importance d''un garant pour la location", "Identifier les options de garants physiques (familial, amical)", "Découvrir les solutions de garants payants pour étudiants internationaux", "Comprendre le fonctionnement et les limites de la caution bancaire"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   450,
   3200
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -589,6 +591,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le principe et les avantages de la garantie VISALE", "Identifier les conditions d''éligibilité pour les étudiants internationaux", "Maîtriser la création de compte et le dépôt de dossier en ligne", "Obtenir le visa VISALE certifié et le présenter efficacement aux propriétaires"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   950,
   4800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -953,6 +956,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Identifier les arnaques courantes au logement (mandat cash, propriétaire étranger)", "Savoir vérifier la véracité d''une annonce immobilière", "Comprendre la règle d''or : ne jamais payer avant la visite et le bail", "Maîtriser les réflexes de prudence pour protéger son argent et son identité"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   700,
   5500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1328,6 +1332,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la durée légale d''un bail (meublé, non-meublé, étudiant)", "Identifier et comprendre la clause de solidarité en colocation", "Savoir repérer et refuser les clauses abusives", "Maîtriser les spécificités de la signature électronique du bail"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   500,
   3700
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

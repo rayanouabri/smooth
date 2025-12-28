@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''échelle de notation française sur 20 et la signification du 10/20", "Identifier les différentes mentions (Assez Bien, Bien, Très Bien) et leurs critères", "Distinguer les examens "partiels" du "contrôle continu" et leur impact", "Maîtriser les conseils pour optimiser sa réussite aux examens"]'::jsonb,
   '["Être admis(e) dans un établissement d''enseignement supérieur français"]'::jsonb,
   TRUE,
+  4.8,
   550,
   4000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -297,6 +298,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la structure et le design attendus d''un CV français", "Savoir si inclure une photo est recommandé ou non", "Maîtriser la valorisation de ses expériences et diplômes étrangers", "Identifier les erreurs courantes à éviter pour un CV impactant"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   500,
   3500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -563,6 +565,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la structure "Vous, Moi, Nous" d''une lettre de motivation française", "Identifier les formules de politesse adéquates (début et fin de lettre)", "Savoir comment personnaliser sa lettre pour chaque offre d''emploi", "Maîtriser les erreurs classiques à éviter pour une LM percutante"]'::jsonb,
   '["Avoir un CV aux normes françaises"]'::jsonb,
   TRUE,
+  4.8,
   500,
   3500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -849,6 +852,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la limite légale des 964 heures de travail par an pour étudiants non-européens", "Savoir comment déclarer ses heures de travail si l''on est hors UE", "Identifier le montant du SMIC horaire en France et ses implications", "Maîtriser les conseils pour travailler légalement et protéger son statut étudiant"]'::jsonb,
   '["Être titulaire d''un titre de séjour étudiant valide en France"]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1118,6 +1122,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Utiliser les plateformes dédiées à l''emploi étudiant (Jobaviz)", "Identifier les secteurs qui recrutent le plus d''étudiants", "Comprendre les spécificités du contrat de travail étudiant", "Maîtriser les conseils pour optimiser sa recherche de job et concilier études/travail"]'::jsonb,
   '["Être titulaire d''un titre de séjour étudiant valide en France", "Avoir un CV et une lettre de motivation aux normes françaises"]'::jsonb,
   TRUE,
+  4.8,
   650,
   4800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

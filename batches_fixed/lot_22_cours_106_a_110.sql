@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''interdiction de vente d''alcool aux mineurs et les horaires de vente", "Identifier les règles de consommation d''alcool sur la voie publique (zones et restrictions)", "Savoir comment organiser des soirées étudiantes dans le respect de la loi", "Maîtriser les conseils pour une consommation responsable et éviter les problèmes avec la police"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   500,
   3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -227,6 +228,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre que le "service est compris" en France (pas de pourboire obligatoire)", "Identifier les situations où le pourboire est apprécié (qualité du service)", "Savoir quel montant laisser (quelques euros, petite monnaie) et comment", "Maîtriser les conseils pour faire preuve de savoir-vivre et gérer son budget"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   500,
   3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -402,6 +404,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre les droits des personnes LGBTQ+ en France (orientation sexuelle, identité de genre)", "Identifier les lois sur le mariage et l''adoption pour tous", "Savoir où trouver des centres et associations LGBTQ+ pour le soutien", "Maîtriser les conseils pour vivre son identité en sécurité et réagir en cas de discrimination"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   300,
   2000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -508,6 +511,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''importance d''une checklist complète pour son départ de France", "Savoir comment résilier tous ses contrats (logement, énergie, tel, internet)", "Identifier les démarches pour clôturer son affiliation à la Sécurité Sociale", "Maîtriser les étapes pour fermer son compte bancaire français et transférer son solde"]'::jsonb,
   '["Avoir un logement et des contrats en France", "Préparer son départ définitif"]'::jsonb,
   TRUE,
+  4.8,
   650,
   4800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -677,6 +681,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''importance du réseau Alumni pour les diplômés internationaux", "Découvrir la plateforme "France Alumni" et ses avantages", "Savoir comment rester connecté(e) avec son établissement d''origine", "Maîtriser les conseils pour développer son réseau professionnel à l''international grâce à son expérience française"]'::jsonb,
   '["Avoir étudié dans un établissement d''enseignement supérieur français"]'::jsonb,
   TRUE,
+  4.8,
   500,
   3500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

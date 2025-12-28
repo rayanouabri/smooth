@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la nécessité du passeport européen pour animaux de compagnie", "Identifier les vaccins obligatoires (notamment antirabique) et l''identification", "Savoir comment trouver un vétérinaire en France", "Maîtriser les conseils pour voyager et vivre sereinement avec son animal en France"]'::jsonb,
   '["Avoir un animal de compagnie et vouloir l''emmener en France"]'::jsonb,
   TRUE,
+  4.8,
   200,
   1500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -204,6 +205,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le concept et les règles de l''Espace Schengen pour les non-européens", "Identifier les compagnies aériennes low-cost et les compagnies de bus (Flixbus) pour des voyages économiques", "Savoir planifier un voyage en Europe en respectant les règles", "Maîtriser les conseils pour voyager en sécurité et optimiser son budget"]'::jsonb,
   '["Avoir un titre de séjour valide en France (ou VLS-TS validé)"]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -395,6 +397,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le calendrier des jours fériés légaux en France", "Identifier le concept de "pont" et comment il permet de prolonger les week-ends", "Savoir quand les administrations, magasins et services sont fermés", "Maîtriser les conseils pour planifier ses congés, ses voyages, et ses moments de repos"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   450,
   3500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -564,6 +567,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''offre de produits Halal et Casher en France", "Identifier les options végétariennes et véganes en supermarchés et restaurants", "Savoir où trouver des magasins spécialisés et des restaurants adaptés", "Maîtriser les conseils pour une alimentation conforme à ses choix et besoins en France"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   400,
   3000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -671,6 +675,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Découvrir et utiliser des applications gratuites pour apprendre le français", "Comprendre l''intérêt des cafés des langues et tandems linguistiques pour la pratique orale", "Savoir utiliser les médias français (radio, TV) pour l''écoute et la compréhension", "Maîtriser les conseils pour une progression rapide et une immersion réussie"]'::jsonb,
   '["Avoir un niveau de français de base (A1 minimum)"]'::jsonb,
   TRUE,
+  4.8,
   800,
   6000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

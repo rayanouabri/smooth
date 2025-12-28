@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''importance de la rencontre de Français pour l''intégration", "Identifier les lieux et activités propices aux rencontres (SUAPS, associations)", "Savoir comment initier des sorties et proposer des activités", "Maîtriser les conseils pour développer un cercle social et lutter contre l''isolement"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -289,6 +290,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le rôle des associations étudiantes (BDE, sport, culture, humanitaire)", "Identifier les avantages de l''engagement associatif (rencontres, compétences, réseau)", "Savoir comment trouver et rejoindre une association étudiante", "Maîtriser les conseils pour valoriser son engagement sur le CV et dans sa recherche d''emploi"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -557,6 +559,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le fonctionnement et les avantages du Culture Pass (300€ offerts)", "Identifier la gratuité des musées nationaux pour les moins de 26 ans", "Savoir comment accéder aux tarifs réduits pour l''opéra et le théâtre", "Maîtriser les conseils pour profiter pleinement de l''offre culturelle française"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -825,6 +828,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le fonctionnement et la rentabilité des cartes d''abonnement illimité (UGC/CinéPass)", "Distinguer les versions VOSTFR (VO sous-titrée français) et VF (version française)", "Identifier les bons plans (tarifs étudiants, Fête du Cinéma) pour réduire le coût", "Maîtriser les conseils pour profiter du cinéma en France et gérer son budget"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   500,
   3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1075,6 +1079,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''impact des grèves sur les transports et services publics", "Savoir comment vérifier le trafic et les perturbations en temps réel", "Identifier les raisons et les revendications des grèves et manifestations", "Maîtriser les conseils de sécurité en manifestation et les réflexes à adopter"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   550,
   4000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

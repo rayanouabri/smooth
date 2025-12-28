@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le fonctionnement du Pass Navigo et des équivalents régionaux", "Identifier les tarifs spécifiques pour les étudiants (Imagine R)", "Savoir comment valider son titre de transport à chaque passage", "Maîtriser les conseils pour optimiser ses déplacements et éviter les amendes"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -288,6 +289,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Distinguer les offres TGV Inoui (standard) et Ouigo (low cost)", "Comprendre l''intérêt et la rentabilité de la Carte Avantage Jeune", "Savoir utiliser l''application Connect SNCF pour la réservation et les infos trafic", "Maîtriser les conseils pour planifier ses voyages en train et acheter ses billets au meilleur prix"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   500,
   3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -528,6 +530,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le fonctionnement des services de vélos en libre-service (Vélib'') et leurs abonnements", "Identifier les règles du Code de la route spécifiques aux cyclistes", "Savoir comment sécuriser son vélo personnel contre le vol", "Maîtriser les conseils pour une mobilité douce sûre et agréable en ville"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   400,
   3000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -789,6 +792,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la typologie des magasins (hypermarché, supermarché, supérette)", "Identifier les avantages des enseignes hard-discount (Lidl, Aldi) pour les petits budgets", "Savoir comment utiliser les cartes de fidélité pour des réductions", "Maîtriser les conseils pour faire ses courses intelligemment et économiser"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   500,
   3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1023,6 +1027,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre les principes du tri sélectif en France", "Identifier les catégories de déchets pour chaque couleur de poubelle (jaune, verte, marron)", "Savoir où déposer le verre et les autres déchets spécifiques", "Maîtriser les nouvelles règles de tri et les conseils pour une bonne gestion des déchets"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   500,
   3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

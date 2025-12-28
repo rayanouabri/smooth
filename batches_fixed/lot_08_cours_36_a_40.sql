@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la nécessité de déclarer un médecin traitant pour un bon remboursement", "Savoir comment choisir et demander à un médecin de devenir son traitant", "Maîtriser la procédure de déclaration en ligne (ou papier) lors de la consultation", "Identifier les conséquences du non-respect du parcours de soins coordonnés"]'::jsonb,
   '["Avoir votre numéro définitif de Sécurité Sociale (NIR) et votre Carte Vitale"]'::jsonb,
   TRUE,
+  4.8,
   600,
   3900
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -248,6 +249,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la Base de Remboursement de la Sécurité Sociale (BRSS)", "Identifier ce qu''est le Ticket Modérateur et la part qui reste à charge", "Savoir comment utiliser son espace personnel ameli.fr pour suivre ses remboursements", "Maîtriser les conseils pour optimiser la réception de ses remboursements"]'::jsonb,
   '["Avoir votre numéro définitif de Sécurité Sociale (NIR) et une Carte Vitale"]'::jsonb,
   TRUE,
+  4.8,
   650,
   4800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -486,6 +488,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''importance d''une mutuelle complémentaire santé", "Déterminer si une mutuelle est nécessaire pour votre situation", "Identifier l''éligibilité à la Complémentaire Santé Solidaire (CSS) gratuite", "Savoir comparer les offres de mutuelles étudiantes et classiques"]'::jsonb,
   '["Avoir un numéro de Sécurité Sociale (NIR) en France"]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -740,6 +743,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''utilité et le fonctionnement de Doctolib", "Savoir créer et gérer son compte personnel Doctolib", "Maîtriser les filtres de recherche (spécialité, langues parlées, nouveaux patients)", "Découvrir et utiliser la téléconsultation pour un accès rapide aux soins"]'::jsonb,
   '["Avoir un numéro de Sécurité Sociale (NIR) et une adresse en France"]'::jsonb,
   TRUE,
+  4.8,
   800,
   6200
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -987,6 +991,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Connaître les numéros d''urgence essentiels (SAMU, Pompiers, Europe)", "Savoir quand appeler les urgences et comment communiquer", "Identifier les alternatives aux urgences hospitalières (SOS Médecins)", "Maîtriser les conseils pour trouver une pharmacie de garde"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   700,
   5000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

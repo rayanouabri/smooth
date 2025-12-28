@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la distinction entre contrat d''apprentissage et de professionnalisation", "Identifier les avantages majeurs de l''alternance (rémunération, gratuité de la formation)", "Savoir où chercher et comment trouver une entreprise d''accueil", "Maîtriser les conseils pour optimiser sa candidature en alternance"]'::jsonb,
   '["Avoir un titre de séjour étudiant valide en France", "Avoir un niveau de français suffisant pour l''entreprise et la formation"]'::jsonb,
   TRUE,
+  4.8,
   500,
   3500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -326,6 +327,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la nécessité et le contenu de la convention de stage obligatoire", "Identifier les conditions de gratification minimale pour les stages de plus de 2 mois", "Distinguer clairement un stage d''un job étudiant pour éviter l''exploitation", "Maîtriser les conseils pour trouver un stage de qualité et protéger ses droits"]'::jsonb,
   '["Être inscrit(e) dans un établissement d''enseignement supérieur français"]':: κάποιο 
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -608,6 +610,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la compatibilité du statut auto-entrepreneur avec le visa étudiant", "Savoir comment créer son statut sur le site de l''URSSAF", "Maîtriser les obligations de déclaration de chiffre d''affaires (mensuelle/trimestrielle)", "Identifier les avantages et inconvénients de l''auto-entreprise pour les étudiants internationaux"]'::jsonb,
   '["Être titulaire d''un titre de séjour étudiant valide en France", "Avoir une idée d''activité indépendante"]'::jsonb,
   TRUE,
+  4.8,
   350,
   2500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -901,6 +904,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''importance du "réseau" et du networking en France", "Savoir comment optimiser son profil LinkedIn pour les recruteurs", "Maîtriser les techniques pour participer efficacement aux événements professionnels", "Identifier les stratégies pour développer son réseau et créer des opportunités"]'::jsonb,
   '["Avoir un CV aux normes françaises", "Avoir un compte LinkedIn"]'::jsonb,
   TRUE,
+  4.8,
   400,
   2900
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1195,6 +1199,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la flexibilité des forfaits mobiles sans engagement", "Savoir comment conserver son numéro de téléphone (code RIO)", "Identifier l''utilité et l''accès aux cartes SIM prépayées", "Maîtriser les conseils pour choisir le forfait le plus adapté à ses besoins et budget"]'::jsonb,
   '["Avoir un smartphone compatible avec les réseaux français"]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

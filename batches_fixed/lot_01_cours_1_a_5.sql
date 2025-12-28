@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Maîtriser la création et la gestion de son compte Campus France", "Savoir constituer un panier de formations pertinent", "Préparer un dossier de candidature complet et attrayant", "Réussir l''entretien pédagogique Campus France"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   620,
   4800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -396,6 +397,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''urgence de la validation du VLS-TS", "Maîtriser la création de compte sur la plateforme ANEF", "Savoir acheter et utiliser le timbre fiscal électronique", "Obtenir l''attestation de validation de votre visa"]'::jsonb,
   '["Avoir un VLS-TS (Visa Long Séjour valant Titre de Séjour) valide"]'::jsonb,
   TRUE,
+  4.8,
   350,
   2800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -783,6 +785,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Identifier si vous êtes concerné(e) par la visite médicale OFII", "Comprendre le processus de convocation et ses délais", "Préparer les documents et examens pour la visite", "Savoir l''importance de l''attestation médicale finale"]'::jsonb,
   '["Avoir validé ou être en cours de validation de votre VLS-TS"]'::jsonb,
   TRUE,
+  4.8,
   200,
   1200
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1116,6 +1119,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre les délais impératifs pour le renouvellement", "Savoir prendre rendez-vous en préfecture (ou en ligne)", "Rassembler toutes les preuves requises pour votre dossier", "Comprendre les droits offerts par le récépissé et récupérer son nouveau titre"]'::jsonb,
   '["Avoir un titre de séjour temporaire en France", "Avoir validé votre VLS-TS"]'::jsonb,
   TRUE,
+  4.8,
   550,
   4200
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1491,6 +1495,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Connaître la liste exhaustive des documents pour la préfecture", "Identifier les justificatifs de domicile valides", "Comprendre les exigences en matière de ressources financières", "Préparer des photos d''identité aux normes et organiser son dossier"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   700,
   5500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

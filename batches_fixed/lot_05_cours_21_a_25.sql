@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''importance cruciale de l''état des lieux d''entrée", "Savoir comment vérifier l''état des équipements (eau, électricité, ouvertures)", "Maîtriser la prise de photos comme preuve de tous les défauts", "Obtenir impérativement votre copie de l''état des lieux signé"]'::jsonb,
   '["Avoir signé un bail de location"]'::jsonb,
   TRUE,
+  4.8,
   800,
   6000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -352,6 +353,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''obligation légale de souscrire une assurance habitation", "Distinguer la Responsabilité Civile de la garantie Multirisque Habitation", "Savoir comparer les offres et choisir la bonne assurance", "Obtenir rapidement son attestation d''assurance pour le propriétaire"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
   TRUE,
+  4.8,
   550,
   4100
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -724,6 +726,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Savoir relever les compteurs d''électricité et de gaz à votre arrivée", "Comprendre le marché de l''énergie et choisir son fournisseur (EDF, Engie)", "Distinguer les heures creuses/heures pleines pour optimiser sa consommation", "Comprendre le fonctionnement et les avantages du compteur Linky"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
   TRUE,
+  4.8,
   450,
   3400
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1094,6 +1097,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Savoir tester l''éligibilité de son adresse à la fibre optique", "Distinguer les offres "Box" des "Forfaits 4G/5G" et leurs avantages", "Comprendre les étapes et les délais d''installation (technicien)", "Identifier les frais cachés et les pièges lors de la résiliation d''un contrat"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
   TRUE,
+  4.8,
   500,
   3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1427,6 +1431,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre les principes du calcul des APL (loyer, zone, revenus)", "Savoir utiliser le simulateur CAF pour estimer ses droits", "Identifier les conditions d''éligibilité spécifiques aux étrangers (titre de séjour)", "Maîtriser les critères pour optimiser ses chances de bénéficier des APL"]'::jsonb,
   '["Avoir un logement en France", "Avoir un titre de séjour valide (ou VLS-TS validé)"]'::jsonb,
   TRUE,
+  4.8,
   650,
   5100
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

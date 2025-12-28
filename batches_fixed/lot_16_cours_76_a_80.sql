@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le rituel de la "bise" en France et ses conventions sociales", "Identifier les personnes à qui l''on fait la bise (amis, famille, collègues proches)", "Savoir le nombre de bises (2, 3, 4) et les variations régionales", "Maîtriser les conseils pour faire la bise correctement et gérer les situations délicates"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -309,6 +310,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le fonctionnement des Restaurants Universitaires (Resto U) et leur accessibilité", "Identifier le "tarif social" (1€ ou 3,30€) pour les étudiants", "Savoir comment payer ses repas avec la carte Izly (création de compte, rechargement)", "Maîtriser les horaires des repas en France et les astuces pour s''adapter"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   700,
   5000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -563,6 +565,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le concept social de l''apéro (moment de convivialité avant le dîner)", "Identifier ce qu''il faut apporter si vous êtes invité(e) à un apéro", "Savoir comment "trinquer" correctement en France (regard, "tchin-tchin")", "Maîtriser les codes de l''apéro pour une intégration sociale réussie"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -837,6 +840,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Découvrir et utiliser des applications gratuites pour apprendre le français", "Comprendre l''intérêt des cafés des langues et tandems linguistiques pour la pratique orale", "Savoir utiliser les médias français (radio, TV) pour l''écoute et la compréhension", "Maîtriser les conseils pour une progression rapide et une immersion réussie"]'::jsonb,
   '["Avoir un niveau de français de base (A1 minimum)"]'::jsonb,
   TRUE,
+  4.8,
   800,
   6000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1086,6 +1090,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''importance de la rencontre de Français pour l''intégration", "Identifier les lieux et activités propices aux rencontres (SUAPS, associations)", "Savoir comment initier des sorties et proposer des activités", "Maîtriser les conseils pour développer un cercle social et lutter contre l''isolement"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

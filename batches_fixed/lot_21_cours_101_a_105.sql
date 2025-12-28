@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le vocabulaire de base pour une coupe de cheveux ou une taille de barbe", "Identifier les tarifs moyens des coiffeurs/barbiers en France", "Savoir si et comment laisser un pourboire (service compris)", "Maîtriser les conseils pour exprimer clairement ses souhaits et obtenir la coupe désirée"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   350,
   2800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -192,6 +193,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le fonctionnement de Leboncoin pour les annonces généralistes", "Identifier les spécificités de Vinted pour l''achat/vente de vêtements", "Savoir où trouver des bons plans pour les meubles et l''électronique", "Maîtriser les conseils de prudence pour éviter les arnaques à l''achat d''occasion"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   550,
   4000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -394,6 +396,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la distinction entre baguette "tradition" et "classique"", "Identifier les autres types de pains et de viennoiseries courantes", "Savoir comment interagir poliment avec le boulanger/la boulangère", "Maîtriser les conseils pour faire ses achats en boulangerie et profiter du pain français"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -587,6 +590,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la différence de prix entre un café "au comptoir" et "en salle/terrasse"", "Savoir commander son café et s''adapter aux codes du service", "Identifier la tolérance à rester longtemps avec une seule consommation", "Maîtriser les conseils pour profiter de l''expérience café en terrasse et gérer son budget"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   500,
   3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -773,6 +777,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre que la vente de tabac est limitée aux bureaux de tabac", "Identifier les règles d''interdiction de fumer dans les lieux publics (y compris certaines terrasses)", "Savoir le prix élevé du tabac en France et son impact sur le budget", "Maîtriser les conseils pour respecter la législation et protéger sa santé"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   350,
   2500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

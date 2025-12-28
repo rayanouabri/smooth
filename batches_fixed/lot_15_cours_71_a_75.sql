@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre les services d''envoi de lettres et de colis de La Poste", "Identifier l''importance de la lettre recommandée avec accusé de réception (LRAR)", "Savoir comment envoyer un courrier ou un colis depuis un bureau de poste", "Maîtriser les conseils pour récupérer un colis en point relais et suivre ses envois"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   500,
   3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -280,6 +281,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le fonctionnement et les coûts des laveries automatiques", "Identifier les différents types de lessives et adoucissants en France", "Savoir lire et interpréter les étiquettes d''entretien des vêtements", "Maîtriser les conseils pour un lavage efficace, économique et respectueux du linge"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   400,
   3000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -519,6 +521,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre les risques liés aux pickpockets et leurs techniques", "Identifier les bonnes pratiques pour rentrer seul(e) le soir en sécurité", "Savoir utiliser les numéros d''urgence (17 Police/Gendarmerie, 114 SMS)", "Maîtriser les conseils pour prévenir les agressions et réagir en cas de danger"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -780,6 +783,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la différence entre déposer une main courante et porter plainte", "Savoir comment contacter son consulat pour refaire son passeport/titre d''identité", "Identifier le rôle du service des objets trouvés et comment le contacter", "Maîtriser les conseils pour réagir rapidement en cas de perte ou de vol et minimiser les risques"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   550,
   4000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -1029,6 +1033,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la distinction fondamentale entre "Tu" et "Vous" en français", "Identifier la "règle de l''âge et de la hiérarchie" pour le choix du pronom", "Savoir quand et comment passer du "Vous" au "Tu" (proposer, accepter)", "Maîtriser les spécificités du vouvoiement commercial et professionnel"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   700,
   5000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

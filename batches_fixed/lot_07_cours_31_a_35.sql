@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''importance de l''état des lieux de sortie pour le dépôt de garantie", "Connaître le délai légal de restitution de la caution (1 ou 2 mois)", "Identifier les retenues légales (dégradations, impayés) et illégales", "Maîtriser les recours (mise en demeure, conciliation) si la caution n''est pas rendue"]'::jsonb,
   '["Avoir quitté un logement en France", "Avoir réalisé un état des lieux d''entrée précis"]'::jsonb,
   TRUE,
+  4.8,
   700,
   5000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -380,6 +381,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le fonctionnement du système de santé français (Sécurité Sociale + Mutuelle)", "Identifier l''importance du parcours de soins coordonnés pour de meilleurs remboursements", "Maîtriser le mécanisme du tiers-payant et ses avantages", "Accéder aux soins en toute sérénité et optimiser ses dépenses de santé"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -638,6 +640,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''obligation et la gratuité de l''affiliation à la Sécurité Sociale", "Maîtriser la procédure de demande en ligne sur etudiant-etranger.ameli.fr", "Savoir quels documents numériser (titre de séjour, acte de naissance traduit)", "Obtenir et utiliser l''attestation provisoire de Sécurité Sociale"]'::jsonb,
   '["Avoir un titre de séjour valide (ou VLS-TS validé) en France"]'::jsonb,
   TRUE,
+  4.8,
   800,
   6000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -734,6 +737,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la différence entre numéro provisoire et numéro définitif (NIR)", "Identifier les raisons pour lesquelles l''obtention du NIR peut être longue", "Savoir décrypter les chiffres de votre numéro de Sécurité Sociale", "Maîtriser les recours et actions en cas de blocage du dossier d''affiliation"]'::jsonb,
   '["Avoir déposé sa demande d''affiliation à la Sécurité Sociale sur etudiant-etranger.ameli.fr"]'::jsonb,
   TRUE,
+  4.8,
   550,
   4000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -832,6 +836,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le rôle et les avantages de la Carte Vitale", "Savoir comment commander sa Carte Vitale après le NIR définitif", "Maîtriser la mise à jour régulière de la carte (bornes en pharmacie)", "Découvrir l''application "Carte Vitale" (e-carte) et son fonctionnement"]'::jsonb,
   '["Avoir obtenu votre numéro définitif de Sécurité Sociale (NIR)"]'::jsonb,
   TRUE,
+  4.8,
   750,
   5800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;

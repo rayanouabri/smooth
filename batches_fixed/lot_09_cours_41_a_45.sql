@@ -24,6 +24,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre la différence entre médicaments sur ordonnance et automédication", "Identifier les règles de l''automédication responsable en France", "Savoir l''intérêt et l''équivalence des médicaments génériques", "Maîtriser les conseils pour acheter ses médicaments en pharmacie en toute sécurité"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   550,
   4200
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -275,6 +276,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''importance du soutien psychologique pour les étudiants internationaux", "Identifier les Bureaux d''Aide Psychologique Universitaire (BAPU) et leurs services gratuits", "Savoir comment bénéficier du dispositif Santé Psy Étudiant (8 séances gratuites)", "Maîtriser les ressources d''écoute anonymes et confidentielles"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   600,
   4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -523,6 +525,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre l''accès gratuit aux préservatifs pour les jeunes de moins de 26 ans", "Identifier les différentes méthodes de contraception d''urgence et leur accessibilité", "Savoir où se faire dépister gratuitement des IST (CeGIDD)", "Maîtriser les conseils pour une sexualité protégée et responsable en France"]'::jsonb,
   '[]'::jsonb,
   TRUE,
+  4.8,
   450,
   3500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -777,6 +780,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre le principe et les avantages du dispositif "100% Santé"", "Identifier le contenu du panier "100% Santé" pour l''optique et le dentaire", "Savoir comment demander ces équipements à votre opticien ou dentiste", "Maîtriser les délais de carence des mutuelles et l''accès aux équipements"]'::jsonb,
   '["Avoir un numéro de Sécurité Sociale (NIR) et une mutuelle complémentaire (ou la CSS)"]'::jsonb,
   TRUE,
+  4.8,
   500,
   3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
@@ -887,6 +891,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   '["Comprendre les différences entre banques classiques et en ligne/néo-banques", "Identifier les avantages des banques avec agence (conseiller, dépôts espèces)", "Découvrir les atouts des banques en ligne (frais réduits, rapidité)", "Maîtriser les critères pour choisir la banque la plus adaptée à vos besoins d''étudiant"]'::jsonb,
   '["Avoir un passeport et un titre de séjour valide en France"]'::jsonb,
   TRUE,
+  4.8,
   700,
   5500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
