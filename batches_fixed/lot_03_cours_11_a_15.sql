@@ -684,7 +684,7 @@ Une traduction assermentée n''a pas de date de péremption en soi, mais sa vali
 -- COURS 14 : La "Laïcité" et droits civiques
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'd0067a6e-6fa3-44e6-ad83-2db54ca02994',
+  'f8e2d276-b66b-4554-b5d6-a6e3ea08a501',
   'La "Laïcité" et les droits civiques en France : Guide d''intégration',
   'laicite-droits-civiques-france-guide-integration',
   'Ce cours est conçu pour aider les étudiants internationaux à comprendre les concepts fondamentaux de la "Laïcité" et des droits civiques en France, des piliers essentiels de la République française. Nous expliquerons ce qu''est la Laïcité et comment elle s''applique dans l''espace public, notamment dans les institutions scolaires et administratives. Nous aborderons également les droits à la manifestation et à la grève, ainsi que la liberté d''expression et ses limites légales. Maîtriser ces principes est crucial pour une intégration réussie, le respect des lois et des valeurs de la société française, et pour naviguer en toute connaissance de cause dans votre vie quotidienne et citoyenne.',
