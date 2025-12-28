@@ -18,15 +18,15 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'integration_administrative',
   'intermediaire',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1523050854805-4c6e94e50871?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHVuaXZlcnNpdHl8ZW58MHx8MHx8fDA%3D',
   '["Maîtriser la création et la gestion de son compte Campus France", "Savoir constituer un panier de formations pertinent", "Préparer un dossier de candidature complet et attrayant", "Réussir l''entretien pédagogique Campus France"]'::jsonb,
   '[]'::jsonb,
-  NULL,
-  NULL,
   TRUE,
-  4.5,
-  100,
-  500
+  4.8,
+  620,
+  4800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 2
