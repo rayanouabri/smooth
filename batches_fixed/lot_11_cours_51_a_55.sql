@@ -14,24 +14,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Frais bancaires et Agios en France : Comprendre et éviter les coûts cachés',
   'frais-bancaires-agios-france-comprendre-eviter-couts-caches',
   'Ce cours est essentiel pour tous les étudiants internationaux qui gèrent un compte bancaire en France. Les frais bancaires et les "agios" peuvent rapidement grever votre budget s''ils ne sont pas compris et maîtrisés. Nous vous expliquerons les différents types de frais (tenue de compte, carte bancaire, virements internationaux), la distinction cruciale entre le "découvert autorisé" et le "découvert non autorisé", et les fameuses "commissions d''intervention" qui surviennent en cas d''incident. Maîtriser ces coûts cachés est absolument crucial pour protéger votre argent, éviter les pénalités, et gérer votre budget de manière autonome et efficace. C''est la clé pour une relation saine avec votre banque.',
-  'Frais bancaires et agios : tenue de compte,
-  découvert autorisé/non autorisé,
-  commissions d''intervention. Évitez les coûts cachés et protégez votre budget !',
+  'Frais bancaires et agios : tenue de compte, découvert autorisé/non autorisé, commissions d''intervention. Évitez les coûts cachés et protégez votre budget !',
   'budget_finances',
   'intermediaire',
   'fr',
-  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Identifier les frais bancaires courants (tenue de compte, carte, virements)",
-  "Comprendre la différence entre découvert autorisé et non autorisé",
-  "Maîtriser le concept des commissions d''intervention et comment les éviter",
-  "Savoir comment comparer les tarifs bancaires et optimiser son budget"]'::jsonb,
-  '["Avoir un compte bancaire français"]'::jsonb,
+  4,
   0,
+  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
+  '["Identifier les frais bancaires courants (tenue de compte, carte, virements)", "Comprendre la différence entre découvert autorisé et non autorisé", "Maîtriser le concept des commissions d''intervention et comment les éviter", "Savoir comment comparer les tarifs bancaires et optimiser son budget"]'::jsonb,
+  '["Avoir un compte bancaire français"]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  500
+  600,
+  3900
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 52
@@ -97,6 +91,8 @@ Les frais de tenue de compte sont une rémunération pour la banque. Ils varient
 
 Les frais de tenue de compte sont un coût récurrent pour la gestion de votre compte bancaire en France. Ils varient fortement : les banques traditionnelles les facturent généralement (sauf offres étudiants), tandis que les banques en ligne et néo-banques les proposent souvent gratuitement (sous conditions). Lisez attentivement la brochure tarifaire, comparez les offres (notamment les packages étudiants), et utilisez les comparateurs en ligne. Optimiser ces frais est crucial pour maîtriser votre budget. N''hésitez pas à changer de banque si vous trouvez une offre plus avantageuse pour vos besoins.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 52 (suite)
@@ -169,6 +165,8 @@ Lorsque votre solde bancaire devient négatif, on parle de "découvert". En Fran
 
 La distinction entre découvert autorisé (prévu par contrat, moins cher en agios) et non autorisé (pénalisant, commissions d''intervention) est cruciale. Le découvert non autorisé entraîne des frais très élevés et peut nuire à votre historique bancaire. Suivez votre solde en temps réel, anticipez vos dépenses, et contactez votre banque en cas de difficulté. Éviter le découvert non autorisé est fondamental pour protéger votre budget et maintenir une relation saine avec votre banque en France.
 ',
+  2,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 52 (suite)
@@ -258,6 +256,8 @@ Le coût d''un incident bancaire.
 
 Les commissions d''intervention sont des frais coûteux (8€ par opération, plafonnés à 48€ ou 80€ par mois) prélevés par votre banque lorsque vous effectuez des opérations en découvert non autorisé. Pour les éviter, suivez votre solde en temps réel, activez les alertes, et n''ayez jamais de découvert non autorisé (demandez un petit découvert autorisé si besoin). Anticipez vos dépenses et vos rentrées d''argent, et réagissez rapidement en cas de difficulté. Maîtriser ces conseils est absolument crucial pour protéger votre budget et éviter les frais imprévus en France.
 ',
+  3,
+  55,
   NULL,
   '[]'::sql
 
@@ -270,21 +270,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Gérer son budget étudiant en France : Maîtriser ses dépenses',
   'gerer-budget-etudiant-france-maitriser-depenses',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France. Gérer son budget est absolument crucial pour réussir vos études sans stress financier. Le coût de la vie en France peut être élevé, surtout dans les grandes villes, et il est facile de se laisser déborder. Nous vous présenterons des estimations du coût de la vie moyen par ville, des méthodes de gestion budgétaire adaptées aux étudiants (comme la règle 50/30/20), et des applications mobiles pour suivre vos dépenses. Maîtriser ces outils et techniques est fondamental pour équilibrer vos revenus et vos dépenses, éviter les découverts, et profiter pleinement de votre expérience en France sans soucis d''argent.',
-  'Budget étudiant France : coût de la vie (par ville),
-  méthode 50/30/20,
-  applications de gestion. Maîtrisez vos dépenses et vivez sereinement !',
+  'Budget étudiant France : coût de la vie (par ville), méthode 50/30/20, applications de gestion. Maîtrisez vos dépenses et vivez sereinement !',
   'budget_finances',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Estimer le coût de la vie moyen dans différentes villes françaises", "Appliquer des méthodes de gestion budgétaire (règle 50/30/20) à votre situation", "Découvrir et utiliser des applications mobiles pour le suivi de dépenses", "Maîtriser les conseils pour équilibrer ses revenus et dépenses et éviter les difficultés"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  700,
+  5200
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 53
@@ -356,6 +353,8 @@ Le logement est de loin le poste de dépense le plus important. C''est lui qui f
 
 Le coût de la vie en France varie fortement d''une ville à l''autre, Paris étant la plus chère. Pour gérer votre budget étudiant, identifiez vos postes de dépenses (logement, alimentation, transports, santé, études, loisirs) et utilisez des méthodes de gestion (comme la règle 50/30/20). Optimisez chaque dépense en privilégiant les logements abordables, les restaurants universitaires, les transports en commun, et les aides sociales (APL, CSS). Maîtriser ces informations est fondamental pour une gestion financière sereine et pour profiter pleinement de votre expérience en France sans stress d''argent.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 53 (suite)
@@ -420,6 +419,8 @@ Gérer un budget étudiant en France, surtout en tant qu''international(e), peut
 
 La méthode 50/30/20 est un excellent cadre pour gérer votre budget d''étudiant international en France. Allouez 50% de vos revenus aux besoins essentiels (loyer, alimentation, transports), 30% aux envies (loisirs, sorties), et 20% à l''épargne ou au remboursement de dettes. Calculez vos pourcentages, suivez vos dépenses régulièrement (via une application ou un tableau), et ajustez votre budget si nécessaire. Adopter cette méthode est fondamental pour éviter les découverts, anticiper vos dépenses et vivre une vie étudiante sereine et autonome.
 ',
+  2,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 53 (suite)
@@ -495,8 +496,8 @@ Un large choix d''outils.
 
 Les applications de gestion de budget sont des outils indispensables pour les étudiants internationaux en France. Elles vous permettent de suivre, catégoriser et visualiser vos dépenses en temps réel (via les applications bancaires ou agrégatrices comme Bankin''/Linxo) ou manuellement (avec un tableur). Choisissez l''application adaptée à votre niveau d''autonomie, connectez vos comptes bancaires de manière sécurisée, et définissez des objectifs budgétaires. Intégrez cette gestion à votre routine pour maintenir un équilibre financier, éviter les découverts, et vivre une vie étudiante sereine et autonome en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -510,21 +511,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Aides financières d''urgence pour étudiants en France : Où trouver de l''aide',
   'aides-financieres-urgence-etudiants-france',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France qui pourraient faire face à des difficultés financières imprévues. L''isolement, les retards de bourses, ou des événements inattendus peuvent rapidement mettre en péril votre équilibre budgétaire. Connaître les dispositifs d''aides financières d''urgence est absolument crucial pour ne pas rester seul(e) face à ces problèmes. Nous vous présenterons l''aide ponctuelle du CROUS, les bourses au mérite ou régionales, et l''importance de contacter les assistantes sociales. Maîtriser ces ressources est fondamental pour trouver un soutien rapide, éviter les situations de précarité, et poursuivre vos études en France avec plus de sérénité.',
-  'Aides financières urgentes : CROUS (ponctuel),
-  bourses régionales,
-  assistante sociale. Ne restez pas seul face aux difficultés !',
+  'Aides financières urgentes : CROUS (ponctuel), bourses régionales, assistante sociale. Ne restez pas seul face aux difficultés !',
   'budget_finances',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''existence et l''accès aux aides financières d''urgence", "Identifier l''aide ponctuelle du CROUS et ses conditions", "Découvrir les bourses au mérite et les aides des collectivités locales", "Maîtriser la démarche pour contacter une assistante sociale et obtenir de l''aide"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
   500,
-  4,
-  0
+  3500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 54
@@ -611,7 +609,7 @@ Contactez le CROUS via l''assistante sociale.
 L''aide ponctuelle du CROUS (Fonds National d''Aide d''Urgence) est un dispositif précieux pour les étudiants internationaux confrontés à des difficultés financières graves et imprévues. Pour en bénéficier, vous devez contacter une assistante sociale du CROUS, être honnête sur votre situation, et fournir tous les justificatifs (identité, scolarité, ressources, preuves de difficulté). N''attendez pas que la situation devienne critique. Cette aide gratuite est un filet de sécurité crucial pour vous permettre de poursuivre vos études en France avec plus de sérénité.
 ',
   1,
-  60,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -690,8 +688,8 @@ Au-delà des aides classiques, la France soutient aussi les étudiants par des d
 
 En plus de l''aide ponctuelle du CROUS, vous pouvez rechercher l''aide au mérite nationale (si vous êtes boursier et excellent) et les bourses proposées par les Régions ou les Villes. Il existe également des bourses spécifiques (ambassades, fondations). Renseignez-vous très tôt sur les sites des collectivités et de Campus France, et préparez des dossiers de candidature solides. Explorer toutes ces pistes de financement est absolument crucial pour optimiser votre budget et sécuriser la poursuite de vos études en France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -767,8 +765,8 @@ N''hésitez pas, quel que soit le problème.
 
 Contacter l''assistante sociale étudiante (via le CROUS ou votre université) est une démarche essentielle et confidentielle pour les étudiants internationaux confrontés à des difficultés financières, de logement, de santé, administratives ou personnelles. N''ayez aucune honte à demander de l''aide. Préparez votre entretien et vos justificatifs. L''assistante sociale est là pour vous écouter, vous conseiller, vous orienter vers les aides adaptées (y compris l''aide ponctuelle du CROUS) et vous apporter un soutien précieux pour une intégration réussie et sereine en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -782,21 +780,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Clôturer son compte bancaire en France : Démarches et précautions',
   'cloturer-compte-bancaire-france-demarches-precautions',
   'Ce cours est essentiel pour tous les étudiants internationaux qui s''apprêtent à quitter la France ou à changer de banque. La clôture d''un compte bancaire est une démarche administrative qui demande de l''anticipation et de la rigueur. Ne pas la faire correctement peut entraîner des frais de découvert inattendus, des prélèvements non autorisés sur un compte "oublié", ou des difficultés à récupérer vos fonds restants. Nous vous expliquerons comment vérifier qu''il n''y a plus de prélèvements ou de virements à venir, les étapes pour rédiger et envoyer la lettre de clôture, et comment transférer le solde restant. Maîtriser cette procédure est absolument crucial pour un départ serein, en toute conformité et sans mauvaises surprises financières.',
-  'Clôturer votre compte bancaire France : plus de prélèvements,
-  lettre de clôture,
-  transfert du solde. Partez sereinement !',
+  'Clôturer votre compte bancaire France : plus de prélèvements, lettre de clôture, transfert du solde. Partez sereinement !',
   'budget_finances',
   'intermediaire',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la nécessité de clôturer son compte bancaire avant de quitter la France", "Savoir comment vérifier et arrêter tous les prélèvements et virements automatiques", "Maîtriser la rédaction et l''envoi de la lettre de clôture à la banque", "Identifier les étapes pour transférer le solde restant et récupérer son argent"]'::jsonb,
   '["Avoir un compte bancaire en France et envisager de le clôturer"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  400,
+  2800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 55
@@ -858,7 +853,7 @@ Un compte doit être "propre" avant d''être clôturé. Cela signifie qu''il ne 
 Avant de clôturer votre compte bancaire en France, vérifiez impérativement qu''il n''y a plus aucun prélèvement automatique ou virement automatique à venir. Contactez tous les organismes concernés pour les informer de votre départ et annuler les prélèvements, et révoquez les mandats via votre banque. Laissez un petit solde pour les dernières dépenses et transférez le solde restant vers un nouveau compte (français ou étranger) en fournissant votre nouveau RIB. Une préparation rigoureuse de cette étape est cruciale pour un départ serein, sans dettes inattendues ni problèmes financiers.
 ',
   1,
-  60,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -951,8 +946,8 @@ Dans l'attente de votre confirmation, je vous prie d'agréer, Madame, Monsieur, 
 
 L''envoi d''une lettre de clôture par lettre recommandée avec accusé de réception est une étape cruciale pour fermer votre compte bancaire en France. Elle doit inclure les références de votre compte, la demande de transfert du solde restant vers un autre RIB, et la restitution/destruction de vos moyens de paiement. Conservez précieusement toutes les preuves d'envoi et demandez une attestation de clôture. Une bonne gestion de cette démarche est essentielle pour un départ serein, sans frais cachés ni complications financières, et pour récupérer votre argent.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1019,8 +1014,8 @@ Lorsque vous clôturez votre compte bancaire en France, la dernière étape est 
 
 
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1033,27 +1028,21 @@ Lorsque vous clôturez votre compte bancaire en France, la dernière étape est 
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Le système universitaire français : CM,
-  TD,
-  ECTS et examens',
+  'Le système universitaire français : CM, TD, ECTS et examens',
   'systeme-universitaire-francais-cm-td-ects-examens',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux qui s''apprêtent à intégrer l''enseignement supérieur en France. Le système universitaire français, avec ses Cours Magistraux (CM), ses Travaux Dirigés (TD), et son système de crédits ECTS, peut être très différent de ce que vous connaissez. Ne pas comprendre cette organisation, les attentes académiques, et les modalités d''évaluation peut impacter votre réussite et votre adaptation. Nous vous expliquerons la distinction entre CM et TD, le fonctionnement des crédits ECTS pour la validation de vos études, l''importance de la présence et les différentes formes d''examens. Maîtriser ces informations est absolument crucial pour bien démarrer vos études, comprendre vos obligations, et maximiser vos chances de succès académique en France.',
-  'Système universitaire français : CM vs TD,
-  crédits ECTS,
-  présence,
-  examens. Comprenez tout pour réussir vos études !',
+  'Système universitaire français : CM vs TD, crédits ECTS, présence, examens. Comprenez tout pour réussir vos études !',
   'preparation_academique',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Distinguer les Cours Magistraux (CM) des Travaux Dirigés (TD)", "Comprendre le système des crédits ECTS et la validation des études", "Identifier l''importance de la présence aux cours et des règles d''assiduité", "Maîtriser les différentes formes d''examens (partiels, contrôle continu) et leur évaluation"]'::jsonb,
   '["Être admis(e) dans un établissement d''enseignement supérieur français"]'::jsonb,
-  0,
   TRUE,
-  4.5,
-  100,
-  500,
-  500
+  700,
+  5500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 56
@@ -1196,8 +1185,8 @@ L''unité de mesure du travail étudiant.
 
 Les crédits ECTS mesurent la charge de travail de vos études et sont la clé de la validation de vos semestres (30 ECTS) et de vos années (60 ECTS). La validation de vos crédits est cruciale pour votre progression académique et pour le renouvellement de votre titre de séjour étudiant. Suivez attentivement vos résultats, comprenez les mécanismes de compensation et de rattrapage, et n''hésitez pas à demander de l''aide si vous avez des difficultés. Maîtriser le système ECTS est essentiel pour réussir vos études en France et assurer la reconnaissance de votre parcours.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1269,8 +1258,8 @@ Votre statut d''étudiant est lié à votre assiduité et à votre progression d
 
 La présence aux TD et TP est généralement obligatoire et contrôlée à l''université en France. Des absences non justifiées peuvent entraîner des pénalités académiques (perte de points, exclusion d''examen) et des problèmes pour le renouvellement de votre titre de séjour étudiant. En cas d''absence légitime (maladie, événement grave), informez rapidement votre secrétariat pédagogique et fournissez un justificatif. Comprendre et respecter ces règles d''assiduité est absolument crucial pour garantir votre sérieux académique et la régularité de votre séjour en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

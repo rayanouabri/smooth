@@ -14,21 +14,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Ouvrir un compte bancaire en France : Guide pas à pas pour étrangers',
   'ouvrir-compte-bancaire-france-guide-etrangers',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux et nouveaux résidents en France. L''ouverture d''un compte bancaire français est une démarche absolument cruciale : elle est indispensable pour recevoir vos aides sociales (APL de la CAF), vos salaires (job étudiant), payer vos loyers, et gérer votre budget au quotidien. Ne pas avoir de compte français complique considérablement votre installation. Nous vous détaillerons les justificatifs requis (passeport, titre de séjour, domicile), le processus de rendez-vous en agence ou d''inscription en ligne, et le contrat qui vous lie à la banque. Maîtriser cette ouverture de compte est fondamental pour votre autonomie financière et une intégration réussie en France.',
-  'Ouvrir un compte bancaire en France : justificatifs (passeport, titre de séjour),
-  rendez-vous,
-  contrat. Indispensable pour votre argent et vos aides !',
+  'Ouvrir un compte bancaire en France : justificatifs (passeport, titre de séjour), rendez-vous, contrat. Indispensable pour votre argent et vos aides !',
   'budget_finances',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la nécessité d''un compte bancaire français", "Identifier les justificatifs requis pour l''ouverture d''un compte", "Maîtriser les étapes de l''ouverture de compte (en agence ou en ligne)", "Décrypter la convention de compte et ses principales clauses"]'::jsonb,
   '["Avoir un passeport et un titre de séjour valide en France"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  750,
+  5800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 47
@@ -102,6 +99,8 @@ Pour d''éventuels transferts de fonds.
 
 Pour ouvrir un compte bancaire en France, vous devrez fournir des justificatifs d''identité (passeport, titre de séjour validé), de domicile (facture, attestation d''hébergement de moins de 3 mois), et souvent des justificatifs de votre statut étudiant et de vos ressources (bourses, relevés bancaires, attestation parentale). Préparez un dossier complet et conforme, avec des copies de tous les documents. Cette démarche est cruciale pour votre autonomie financière, la réception de vos aides (CAF) et la gestion de votre budget au quotidien en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 47 (suite)
@@ -178,6 +177,8 @@ Rassemblez tous les documents à l''avance.
 
 Le rendez-vous en agence pour l''ouverture d''un compte bancaire est une étape cruciale pour les étudiants internationaux en France. Préparez un dossier complet (pièces d''identité, séjour, domicile, scolarité, ressources) et une liste de questions. Lors du rendez-vous, présentez vos justificatifs, discutez de l''offre étudiante et des frais, et lisez attentivement la convention de compte avant de signer. Après le rendez-vous, vous recevrez votre carte bancaire et vos identifiants. Une bonne préparation et une communication claire sont les clés pour ouvrir un compte adapté à vos besoins et gérer votre argent sereinement en France.
 ',
+  2,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 47 (suite)
@@ -249,6 +250,8 @@ Lorsque vous ouvrez un compte bancaire en France, vous signez un document essent
 
 
 ',
+  3,
+  60,
   NULL,
   '[]'::sql
 
@@ -265,15 +268,14 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'budget_finances',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la composition d''un RIB (IBAN, BIC/SWIFT)", "Savoir où trouver et télécharger son RIB (espace client, chéquier)", "Identifier les situations où le RIB est demandé (salaires, APL, prélèvements)", "Maîtriser les conseils pour transmettre son RIB en toute sécurité"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  700,
+  5500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 48
@@ -355,6 +357,8 @@ L''IBAN est l''identifiant unique de votre compte bancaire.
 
 L''IBAN (numéro de compte) et le BIC/SWIFT (identifiant de la banque) sont les identifiants uniques de votre compte bancaire français, regroupés sur votre RIB. Ils sont indispensables pour recevoir de l''argent (salaires, APL, virements internationaux) et pour autoriser des prélèvements automatiques. Vérifiez toujours la précision de ces numéros et ne transmettez votre RIB qu''en toute sécurité et à des organismes de confiance. Maîtriser l''IBAN et le BIC est fondamental pour gérer vos flux financiers en France et éviter les problèmes de paiement ou les fraudes.
 ',
+  1,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 48 (suite)
@@ -419,6 +423,8 @@ D''autres supports pour le trouver.
 
 Votre RIB (Relevé d''Identité Bancaire) contient l''IBAN et le BIC/SWIFT de votre compte bancaire français. Vous pouvez le trouver facilement sur votre espace client en ligne/application mobile, votre chéquier, ou vos relevés de compte. Il est indispensable pour recevoir de l''argent (salaire, APL, virements) et pour les prélèvements automatiques. Conservez-le numériquement et physiquement, et ne le transmettez qu''à des organismes de confiance. Maîtriser l''accès à votre RIB est crucial pour toutes vos démarches financières en France.
 ',
+  2,
+  50,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 48 (suite)
@@ -484,6 +490,8 @@ Le RIB contient des informations suffisantes pour initier des prélèvements aut
 
 
 ',
+  3,
+  55,
   NULL,
   '[]'::sql
 
@@ -493,25 +501,21 @@ Le RIB contient des informations suffisantes pour initier des prélèvements aut
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Carte bancaire en France : Débit immédiat,
-  différé et plafonds',
+  'Carte bancaire en France : Débit immédiat, différé et plafonds',
   'carte-bancaire-france-debit-immediat-differe-plafonds',
   'Ce cours est essentiel pour tous les étudiants internationaux qui vont utiliser une carte bancaire en France. Le choix de votre carte, notamment entre le "débit immédiat" et le "débit différé", ainsi que la compréhension de vos "plafonds" de paiement et de retrait, ont un impact direct sur la gestion de votre budget. Ne pas maîtriser ces options peut entraîner des découverts bancaires, des paiements refusés, ou des difficultés à retirer de l''argent en cas de besoin. Nous vous expliquerons les différences entre les types de débit, le fonctionnement du paiement "sans contact" et ses limites, et comment gérer vos plafonds. Maîtriser sa carte bancaire est absolument crucial pour une gestion financière autonome et sereine en France.',
-  'Carte bancaire France : débit immédiat/différé,
-  sans contact,
-  plafonds. Maîtrisez votre carte pour un budget serein !',
+  'Carte bancaire France : débit immédiat/différé, sans contact, plafonds. Maîtrisez votre carte pour un budget serein !',
   'budget_finances',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la distinction entre carte à débit immédiat et à débit différé", "Identifier le fonctionnement et les limites du paiement "sans contact"", "Savoir gérer et adapter ses plafonds de paiement et de retrait", "Maîtriser les conseils pour une utilisation sécurisée de sa carte bancaire"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 49
@@ -582,6 +586,8 @@ Le réflexe du "cash".
 
 
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 
@@ -591,24 +597,21 @@ Le réflexe du "cash".
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Le Chéquier en France : Utilisation,
-  remplissage et caution',
+  'Le Chéquier en France : Utilisation, remplissage et caution',
   'chequier-france-utilisation-remplissage-caution',
   'Ce cours est essentiel pour tous les étudiants internationaux en France. Le chèque, bien que moins utilisé qu''avant, reste un moyen de paiement courant pour certaines transactions, notamment pour les dépôts de garantie de location ou les gros achats. Comprendre si l''on utilise encore des chèques en France, comment remplir correctement un chèque, et la spécificité du "chèque de caution" non encaissé, est absolument crucial. Ne pas savoir utiliser un chéquier, ou le faire de manière incorrecte, peut entraîner des paiements refusés ou des problèmes avec des prestataires. Maîtriser le chéquier est fondamental pour compléter vos moyens de paiement et gérer des situations spécifiques en toute sécurité.',
-  'Chéquier en France : encore utilisé ? Comment remplir,
-  chèque de caution non encaissé. Maîtrisez ce moyen de paiement !',
+  'Chéquier en France : encore utilisé ? Comment remplir, chèque de caution non encaissé. Maîtrisez ce moyen de paiement !',
   'budget_finances',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''usage du chèque en France et s''il est encore pertinent", "Savoir comment remplir correctement un chèque (montant, bénéficiaire, date, signature)", "Identifier la spécificité du "chèque de caution" non encaissé (pour le logement)", "Maîtriser les conseils pour commander et utiliser son chéquier en toute sécurité"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  400,
+  3000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 50
@@ -687,6 +690,8 @@ Le chèque a été un moyen de paiement majeur en France pendant des décennies,
 
 Le chèque est un moyen de paiement en déclin en France, largement supplanté par la carte bancaire. Il reste toutefois utilisé pour certaines situations, notamment le dépôt de garantie de location et certains paiements entre particuliers. Si vous êtes locataire, un chéquier est très probablement utile pour le chèque de caution. Vérifiez toujours la provision de votre compte avant d''émettre un chèque, et ne le donnez jamais à des inconnus. Comprendre son usage et ses risques est crucial pour compléter vos moyens de paiement en France.
 ',
+  1,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 50 (suite)
@@ -762,6 +767,8 @@ Un chèque est un ordre de paiement écrit donné par vous (le tireur) à votre 
 
 Remplir correctement un chèque en France est essentiel pour sa validité. Inscrivez précisément le montant en chiffres et en toutes lettres, le nom du bénéficiaire, le lieu et la date d''émission, et signez. Tracez des lignes pour éviter les fraudes. Pour un chèque de caution de logement, assurez-vous qu''il est bien mentionné comme "non encaissable". Ne signez jamais un chèque en blanc et vérifiez toujours la provision de votre compte. Maîtriser le remplissage d''un chèque garantit la sécurité et la validité de vos paiements.
 ',
+  2,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 50 (suite)
@@ -842,6 +849,8 @@ Le chèque de caution est une forme de dépôt de garantie. Sa spécificité est
 
 Le chèque de caution non encaissé est une pratique courante pour le dépôt de garantie de logement en France, mais elle présente des risques d''encaissement abusif. Exigez que la mention "non encaissable" figure sur le chèque lui-même et sur votre bail/état des lieux. Prenez une photo du chèque et assurez-vous d''avoir toujours la provision sur votre compte. En cas d''encaissement abusif, agissez rapidement avec une lettre de mise en demeure et saisissez les instances de conciliation. Maîtriser ces précautions est crucial pour protéger votre argent et éviter les litiges.
 ',
+  3,
+  90,
   NULL,
   '[]'::sql
 
@@ -851,27 +860,21 @@ Le chèque de caution non encaissé est une pratique courante pour le dépôt de
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Virements internationaux : Moins de frais,
-  plus de rapidité',
+  'Virements internationaux : Moins de frais, plus de rapidité',
   'virements-internationaux-moins-frais-plus-rapidite',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui ont besoin d''envoyer ou de recevoir de l''argent depuis ou vers leur pays d''origine. Les virements internationaux peuvent être coûteux et lents avec les banques traditionnelles. Nous vous expliquerons la différence entre les frais bancaires classiques et les services spécialisés (comme Wise ou Remitly) qui offrent des solutions plus avantageuses. Nous ferons une démonstration de l''utilisation de ces plateformes, et nous aborderons les délais de réception et les pièges à éviter. Maîtriser ces outils est absolument crucial pour optimiser vos transferts d''argent, réduire les frais, et gérer votre budget efficacement.',
-  'Virements internationaux : Frais bancaires vs Wise/Remitly. Démo,
-  délais de réception. Économisez sur vos transferts d''argent !',
+  'Virements internationaux : Frais bancaires vs Wise/Remitly. Démo, délais de réception. Économisez sur vos transferts d''argent !',
   'budget_finances',
   'intermediaire',
   'fr',
-  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre les coûts des virements internationaux avec les banques traditionnelles",
-  "Découvrir les avantages des services spécialisés (Wise, Remitly)",
-  "Maîtriser l''utilisation des plateformes de transfert d''argent en ligne",
-  "Identifier les délais de réception et les pièges à éviter lors des virements"]'::jsonb,
-  '["Avoir un compte bancaire en France et/ou dans votre pays d''origine"]'::jsonb,
+  4,
   0,
+  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
+  '["Comprendre les coûts des virements internationaux avec les banques traditionnelles", "Découvrir les avantages des services spécialisés (Wise, Remitly)", "Maîtriser l''utilisation des plateformes de transfert d''argent en ligne", "Identifier les délais de réception et les pièges à éviter lors des virements"]'::jsonb,
+  '["Avoir un compte bancaire en France et/ou dans votre pays d''origine"]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  500
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 51
@@ -938,6 +941,8 @@ Les banques et les services de transfert d''argent ne fonctionnent pas de la mê
 
 Pour vos virements internationaux depuis et vers la France, privilégiez les services spécialisés comme Wise ou Remitly plutôt que les banques traditionnelles. Ces plateformes offrent des frais beaucoup plus bas, des taux de change réels et une meilleure transparence, ainsi qu''une rapidité de transfert. Comparez systématiquement les offres avant chaque virement et assurez-vous de la précision des coordonnées du bénéficiaire. Maîtriser ces outils est absolument crucial pour optimiser vos transferts d''argent et gérer votre budget efficacement en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 51 (suite)
@@ -1013,6 +1018,8 @@ Comprendre la théorie des virements internationaux, c''est bien, mais savoir co
 
 Les plateformes comme Wise et Remitly simplifient grandement les virements internationaux, offrant des frais réduits et une grande rapidité. Créez un compte, effectuez la vérification d''identité, puis suivez la démonstration pour envoyer de l''argent en choisissant les devises, le montant, et en saisissant précisément les coordonnées du bénéficiaire. Vérifiez toutes les informations deux fois et utilisez une carte bancaire pour un paiement rapide. Maîtriser l''utilisation de ces services est absolument crucial pour des transferts d''argent fluides, économiques et sécurisés, essentiels à votre budget d''étudiant international en France.
 ',
+  2,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 51 (suite)
@@ -1091,6 +1098,8 @@ Lorsque vous effectuez ou recevez un virement international (depuis ou vers votr
 
 Les délais de réception des virements internationaux varient : un jour ouvré pour les virements SEPA, 3 à 5 jours ouvrés (voire plus) pour les virements hors SEPA. Les services spécialisés comme Wise et Remitly sont souvent beaucoup plus rapides (instantanés ou en quelques heures). Anticipez vos besoins, planifiez vos transferts, et utilisez les prévisions de délai des plateformes. En cas d''urgence, privilégiez les options les plus rapides. Maîtriser ces délais est absolument crucial pour une gestion financière sereine et pour éviter les problèmes de trésorerie en France.
 ',
+  3,
+  55,
   NULL,
   '[]'::sql
 

@@ -14,20 +14,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'La notation sur 20 en France : Comprendre les examens et mentions',
   'notation-sur-20-france-comprendre-examens-mentions',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre le système d''évaluation académique. La notation sur 20 est la norme, et la signification d''un "10/20 validé" peut être très différente de ce que vous connaissez dans votre pays. Nous vous expliquerons l''échelle de notation française, l''importance du 10/20 pour la validation des matières, la signification des mentions (Assez Bien, Bien, Très Bien) et la différence entre les examens "partiels" et le "contrôle continu". Maîtriser ce système est absolument crucial pour évaluer vos résultats, comprendre les attentes de vos professeurs, et planifier votre progression académique avec succès en France.',
-  'Notation sur 20 : 10/20 = validé ! Mentions (AB, B, TB),
-  partiels vs contrôle continu. Comprenez tout pour réussir vos examens !',
+  'Notation sur 20 : 10/20 = validé ! Mentions (AB, B, TB), partiels vs contrôle continu. Comprenez tout pour réussir vos examens !',
   'preparation_academique',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''échelle de notation française sur 20 et la signification du 10/20", "Identifier les différentes mentions (Assez Bien, Bien, Très Bien) et leurs critères", "Distinguer les examens "partiels" du "contrôle continu" et leur impact", "Maîtriser les conseils pour optimiser sa réussite aux examens"]'::jsonb,
   '["Être admis(e) dans un établissement d''enseignement supérieur français"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  550,
+  4000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 57
@@ -193,8 +191,8 @@ Des distinctions pour récompenser l''excellence.
 
 Les mentions (Assez Bien, Bien, Très Bien) sont des distinctions d''excellence académique attribuées sur la base de votre moyenne générale (12/20, 14/20, 16/20). Elles sont un atout majeur pour la poursuite d''études (Masters sélectifs, Doctorats) et l''insertion professionnelle. Visez la meilleure moyenne possible en travaillant régulièrement et en ne négligeant aucune matière. Comprendre ce système est absolument crucial pour évaluer votre réussite, valoriser votre parcours universitaire français, et optimiser votre future carrière.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -274,8 +272,8 @@ L''évaluation de fin de semestre/année.
 
 Le système d''évaluation universitaire français combine les "partiels" (examens finaux) et le "contrôle continu" (évaluations régulières). La pondération entre les deux varie selon les matières et les formations. Le contrôle continu valorise le travail régulier et l''assiduité, tandis que les partiels évaluent la capacité de synthèse. Lisez le règlement des études, travaillez régulièrement, et anticipez les révisions. Comprendre ces modalités est absolument crucial pour bien vous préparer, optimiser vos notes, et réussir vos examens avec succès en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -288,23 +286,19 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
   'Rédiger un CV français : Le guide pour l''emploi étudiant',
   'rediger-cv-francais-guide-emploi-etudiant',
-  'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui recherchent un job étudiant,
-  un stage ou un premier emploi. Le Curriculum Vitae (CV) français a des codes et des attentes spécifiques qui peuvent être très différents de ceux de votre pays d''origine. Ne pas adapter votre CV, c''est risquer de ne pas être remarqué(e) par les recruteurs français. Nous vous expliquerons la structure et le design attendus (sobriété),
-  la question de la photo (oui ou non ?),
-  et comment valoriser efficacement vos expériences étrangères pour les rendre pertinentes sur le marché français. Maîtriser la rédaction d''un CV aux normes françaises est absolument crucial pour décrocher des entretiens et réussir votre insertion professionnelle en France.',
+  'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui recherchent un job étudiant, un stage ou un premier emploi. Le Curriculum Vitae (CV) français a des codes et des attentes spécifiques qui peuvent être très différents de ceux de votre pays d''origine. Ne pas adapter votre CV, c''est risquer de ne pas être remarqué(e) par les recruteurs français. Nous vous expliquerons la structure et le design attendus (sobriété), la question de la photo (oui ou non ?), et comment valoriser efficacement vos expériences étrangères pour les rendre pertinentes sur le marché français. Maîtriser la rédaction d''un CV aux normes françaises est absolument crucial pour décrocher des entretiens et réussir votre insertion professionnelle en France.',
   'CV français : structure sobre, photo (oui/non ?), valorisation expériences étrangères. Votre passeport pour l''emploi étudiant en France !',
   'insertion_professionnelle',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la structure et le design attendus d''un CV français", "Savoir si inclure une photo est recommandé ou non", "Maîtriser la valorisation de ses expériences et diplômes étrangers", "Identifier les erreurs courantes à éviter pour un CV impactant"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
   500,
-  4,
-  0
+  3500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 58
@@ -459,8 +453,8 @@ La photo sur un CV est une question qui touche à la fois l''esthétique et l''�
 
 En France, la photo sur le CV est une pratique courante mais non obligatoire. Si vous choisissez d''en mettre une, elle doit être de qualité professionnelle (fond neutre, tenue soignée, sourire léger, regard direct) et aux normes d''une photo d''identité. Une mauvaise photo est pire que pas de photo du tout. Pesez les avantages (humanisation, mémorisation) et les inconvénients (risque de discrimination, mauvaise impression). Faire un choix éclairé et utiliser une photo conforme est absolument crucial pour faire bonne impression et maximiser vos chances de succès sur le marché de l''emploi français.
 ',
-  1,
-  60,
+  2,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -544,8 +538,8 @@ Votre parcours international est une richesse, mais il faut savoir le présenter
 
 Adapter vos expériences étrangères sur un CV français est absolument crucial. Traduisez et expliquez vos diplômes et universités selon le système LMD français. Valorisez vos expériences professionnelles en décrivant le contexte, les missions (avec des verbes d''action et des chiffres), et en mettant en avant les compétences transférables et interculturelles (adaptabilité, autonomie). Soyez concis, clair, et faites relire votre CV. Cette adaptation est fondamentale pour rendre votre profil attrayant et maximiser vos chances de réussite sur le marché de l''emploi français.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -558,24 +552,19 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
   'La Lettre de Motivation : L''art de convaincre en France',
   'lettre-motivation-art-convaincre-france',
-  'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui recherchent un job,
-  un stage ou un emploi. La lettre de motivation (LM) française a des codes très spécifiques,
-  souvent différents de ceux de votre pays d''origine, et elle est un complément indispensable à votre CV. Ne pas maîtriser sa structure ("Vous, Moi, Nous"), les formules de politesse incontournables, et les erreurs classiques à éviter, c''est risquer de voir votre candidature écartée. Nous vous expliquerons comment personnaliser votre lettre pour chaque offre,
-  valoriser votre parcours international,
-  et convaincre le recruteur de votre motivation. Maîtriser la rédaction d''une LM impactante est absolument crucial pour décrocher des entretiens et réussir votre insertion professionnelle en France.',
+  'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui recherchent un job, un stage ou un emploi. La lettre de motivation (LM) française a des codes très spécifiques, souvent différents de ceux de votre pays d''origine, et elle est un complément indispensable à votre CV. Ne pas maîtriser sa structure ("Vous, Moi, Nous"), les formules de politesse incontournables, et les erreurs classiques à éviter, c''est risquer de voir votre candidature écartée. Nous vous expliquerons comment personnaliser votre lettre pour chaque offre, valoriser votre parcours international, et convaincre le recruteur de votre motivation. Maîtriser la rédaction d''une LM impactante est absolument crucial pour décrocher des entretiens et réussir votre insertion professionnelle en France.',
   'Lettre de motivation France : structure "Vous, Moi, Nous", formules de politesse, erreurs à éviter. Convainquez le recruteur !',
   'insertion_professionnelle',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la structure "Vous, Moi, Nous" d''une lettre de motivation française", "Identifier les formules de politesse adéquates (début et fin de lettre)", "Savoir comment personnaliser sa lettre pour chaque offre d''emploi", "Maîtriser les erreurs classiques à éviter pour une LM percutante"]'::jsonb,
   '["Avoir un CV aux normes françaises"]'::jsonb,
-  0,
   TRUE,
-  4.5,
-  100,
   500,
-  500
+  3500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 59
@@ -761,8 +750,8 @@ Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distin
 
 L''utilisation des formules de politesse correctes est indispensable dans une lettre de motivation française. Commencez par "Madame, Monsieur," (ou le nom du recruteur si connu) et terminez par "Dans l''attente de votre réponse, je me tiens à votre entière disposition pour un entretien. Je vous prie d''agréer, Madame, Monsieur, l''expression de mes salutations distinguées." Évitez les formules trop familières et les fautes. Maîtriser ces codes est absolument crucial pour faire preuve de professionnalisme, de respect, et maximiser vos chances de faire une impression impeccable auprès des recruteurs en France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -835,8 +824,8 @@ La lettre de motivation (LM) est votre opportunité de vous démarquer et de con
 
 De nombreuses erreurs peuvent desservir votre lettre de motivation en France : une longueur excessive (plus d''une page), des fautes d''orthographe, une absence de personnalisation (lettre générique), la répétition du CV, ou des formules de politesse inappropriées. Adaptez la structure "Vous, Moi, Nous", utilisez un langage professionnel, et faites relire votre lettre par plusieurs personnes. Maîtriser ces pièges est absolument crucial pour présenter une lettre de motivation impeccable, percutante, et maximiser vos chances de décrocher un entretien en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -850,21 +839,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Législation travail étudiant en France : Droits et limites',
   'legislation-travail-etudiant-france-droits-limites',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent travailler pendant leurs études. La législation française encadre strictement le travail étudiant, avec des limites d''heures spécifiques pour les étudiants non-européens et des obligations de déclaration. Ne pas connaître ces règles, c''est risquer des problèmes avec votre titre de séjour, des amendes, ou même de travailler illégalement. Nous vous expliquerons la limite des 964 heures par an (60% d''un temps plein), la nécessité de déclarer ses heures si vous êtes hors UE, et le montant du SMIC horaire. Maîtriser cette législation est absolument crucial pour travailler en toute légalité, protéger vos droits de salarié, et ne pas compromettre votre statut étudiant en France.',
-  'Travail étudiant France : limite 964h/an (60% temps plein),
-  déclaration hors UE,
-  SMIC horaire. Travaillez légalement et protégez votre statut !',
+  'Travail étudiant France : limite 964h/an (60% temps plein), déclaration hors UE, SMIC horaire. Travaillez légalement et protégez votre statut !',
   'insertion_professionnelle',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la limite légale des 964 heures de travail par an pour étudiants non-européens", "Savoir comment déclarer ses heures de travail si l''on est hors UE", "Identifier le montant du SMIC horaire en France et ses implications", "Maîtriser les conseils pour travailler légalement et protéger son statut étudiant"]'::jsonb,
   '["Être titulaire d''un titre de séjour étudiant valide en France"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 60
@@ -1031,8 +1017,8 @@ Le rôle de l''employeur est primordial.
 
 Si vous êtes étudiant(e) international(e) hors UE, votre VLS-TS ou titre de séjour "étudiant" vaut autorisation de travail dans la limite des 964 heures par an (60% d''un temps plein). Vous n''avez pas de démarche spécifique à faire, mais votre employeur a l''obligation de déclarer votre embauche (DPAE) et de respecter cette limite. Exigez un contrat de travail écrit et des bulletins de salaire chaque mois, et suivez attentivement vos heures pour ne pas dépasser la limite. Maîtriser ces règles est absolument crucial pour travailler en toute légalité et protéger votre statut étudiant en France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1107,8 +1093,8 @@ Si vous envisagez de travailler en France pendant vos études, il est absolument
 
 
 ',
-  1,
-  60,
+  3,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1119,26 +1105,21 @@ Si vous envisagez de travailler en France pendant vos études, il est absolument
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Trouver un Job Étudiant en France : Secteurs,
-  sites et contrats',
+  'Trouver un Job Étudiant en France : Secteurs, sites et contrats',
   'trouver-job-etudiant-france-secteurs-sites-contrats',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui recherchent un job étudiant pour compléter leur budget. Le marché de l''emploi étudiant est dynamique, mais il est crucial de savoir où chercher, quels secteurs recrutent le plus, et quels types de contrats sont adaptés à votre statut. Ne pas avoir les bonnes informations, c''est risquer de perdre du temps avec des candidatures inadaptées ou de ne pas trouver d''emploi du tout. Nous vous expliquerons comment utiliser Jobaviz et d''autres sites spécialisés, identifier les secteurs qui recrutent (restauration, garde d''enfants), et comprendre les spécificités du contrat de travail étudiant. Maîtriser cette recherche est absolument crucial pour trouver un emploi légal, protéger vos droits, et concilier efficacement études et travail.',
-  'Job étudiant France : Jobaviz,
-  secteurs (restauration, garde),
-  contrat de travail étudiant. Trouvez un job légal et protégez vos droits !',
+  'Job étudiant France : Jobaviz, secteurs (restauration, garde), contrat de travail étudiant. Trouvez un job légal et protégez vos droits !',
   'insertion_professionnelle',
   'debutant',
   'fr',
-  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Utiliser les plateformes dédiées à l''emploi étudiant (Jobaviz)", "Identifier les secteurs qui recrutent le plus d''étudiants", "Comprendre les spécificités du contrat de travail étudiant", "Maîtriser les conseils pour optimiser sa recherche de job et concilier études/travail"]'::jsonb,
-  '["Être titulaire d''un titre de séjour étudiant valide en France",
-  "Avoir un CV et une lettre de motivation aux normes françaises"]'::jsonb,
   4,
   0,
+  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
+  '["Utiliser les plateformes dédiées à l''emploi étudiant (Jobaviz)", "Identifier les secteurs qui recrutent le plus d''étudiants", "Comprendre les spécificités du contrat de travail étudiant", "Maîtriser les conseils pour optimiser sa recherche de job et concilier études/travail"]'::jsonb,
+  '["Être titulaire d''un titre de séjour étudiant valide en France", "Avoir un CV et une lettre de motivation aux normes françaises"]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500
+  650,
+  4800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 61
@@ -1296,8 +1277,8 @@ Certains secteurs d''activité ont un besoin constant de main-d''œuvre ponctuel
 
 Pour trouver un job étudiant en France, ciblez les secteurs qui recrutent (restauration, hôtellerie, garde d''enfants, soutien scolaire, vente, service client) et utilisez des plateformes spécialisées comme Jobaviz. Ces secteurs offrent souvent des horaires flexibles compatibles avec vos études. Adaptez votre candidature (CV, LM) pour mettre en avant votre disponibilité et vos compétences. Exigez un contrat de travail et des bulletins de salaire, et respectez la limite des 964 heures par an. Maîtriser cette recherche est absolument crucial pour trouver un emploi légal, protéger vos droits, et équilibrer efficacement études et vie professionnelle en France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1381,7 +1362,7 @@ Le contrat de travail étudiant n''est pas un type de contrat spécifique, mais 
 
 Le contrat de travail étudiant est généralement un CDD ou un CDI à temps partiel adapté à vos études. Il doit inclure toutes les informations obligatoires (poste, rémunération au moins au SMIC, heures, durée, etc.). Lisez-le attentivement, vérifiez que le nombre d''heures respecte la limite des 964 heures par an (si hors UE), et posez toutes vos questions avant de signer. Exigez un exemplaire signé et vos bulletins de salaire. Maîtriser son contrat est absolument crucial pour travailler en toute légalité, protéger vos droits de salarié, et concilier efficacement études et emploi en France.
 ',
-  1,
+  3,
   60,
   NULL,
   '[]'::jsonb

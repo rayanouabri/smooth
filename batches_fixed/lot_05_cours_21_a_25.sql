@@ -18,18 +18,14 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'logement',
   'debutant',
   'fr',
-  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance cruciale de l''état des lieux d''entrée",
-  "Savoir comment vérifier l''état des équipements (eau, électricité, ouvertures)",
-  "Maîtriser la prise de photos comme preuve de tous les défauts",
-  "Obtenir impérativement votre copie de l''état des lieux signé"]'::jsonb,
-  '["Avoir signé un bail de location"]'::jsonb,
   4,
   0,
+  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
+  '["Comprendre l''importance cruciale de l''état des lieux d''entrée", "Savoir comment vérifier l''état des équipements (eau, électricité, ouvertures)", "Maîtriser la prise de photos comme preuve de tous les défauts", "Obtenir impérativement votre copie de l''état des lieux signé"]'::jsonb,
+  '["Avoir signé un bail de location"]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500
+  800,
+  6000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 22
@@ -117,7 +113,7 @@ Les risques d''une négligence.
 L''état des lieux d''entrée est le moment le plus important de votre location pour protéger votre dépôt de garantie. Prenez votre temps, soyez extrêmement détaillé(e) en notant tous les défauts, même les plus minimes, et testez tous les équipements. Prenez des photos et des vidéos comme preuves. Ne signez jamais si vous n''êtes pas d''accord ou si vous n''avez pas vérifié le document. Une rigueur absolue à cette étape est la garantie d''une restitution sereine de votre dépôt de garantie à votre départ du logement.
 ',
   1,
-  60,
+  70,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -177,8 +173,8 @@ L''état des lieux n''est pas une simple formalité. C''est une véritable inspe
 
 Tester minutieusement les installations d''eau, d''électricité et toutes les ouvertures du logement est une étape cruciale de l''état des lieux d''entrée. Vérifiez la pression, la température, l''absence de fuites, le fonctionnement des prises et lumières, et l''état de toutes les fenêtres, portes et serrures. Notez chaque défaut, même minime, et photographiez-le. Cette inspection rigoureuse vous protège contre des imputations de dégradations futures et assure votre confort au quotidien. Votre vigilance est votre meilleure garantie.
 ',
-  1,
-  60,
+  2,
+  65,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -257,8 +253,8 @@ L''état des lieux d''entrée est un document écrit, mais la preuve visuelle le
 
 Prendre des photos et des vidéos datées de tous les défauts, même minimes, est une précaution indispensable lors de l''état des lieux d''entrée. Ces preuves visuelles sont votre meilleure défense en cas de litige sur le dépôt de garantie. Soyez méthodique, minutieux, et documentez chaque pièce, chaque mur, chaque équipement. Sauvegardez immédiatement ces preuves numériques. Votre diligence à cette étape est la garantie la plus solide pour protéger votre dépôt de garantie et éviter des frais de réparation injustifiés à votre départ.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -331,8 +327,8 @@ L''état des lieux est un document contradictoire. Cela signifie qu''il doit êt
 
 Signer l''état des lieux d''entrée et récupérer votre copie sont les étapes finales et cruciales pour valider ce document essentiel. Lisez-le attentivement, consignez vos réserves si nécessaire, et ne quittez jamais les lieux sans votre exemplaire signé par toutes les parties. Archivez-le précieusement, accompagné de vos photos/vidéos. Cette diligence vous offre la meilleure protection pour la restitution de votre dépôt de garantie à votre départ et vous assure un séjour serein dans votre logement en France.
 ',
-  1,
-  60,
+  4,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -346,22 +342,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Assurance Habitation en France : Protégez votre logement',
   'assurance-habitation-france-protegez-logement',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux qui s''apprêtent à louer un logement en France. L''assurance habitation est une obligation légale pour le locataire et une protection indispensable pour votre bien-être. Nous vous expliquerons pourquoi cette assurance est obligatoire, la distinction entre la Responsabilité Civile et l''assurance Multirisque Habitation, comment comparer les offres des banques et des assureurs en ligne, et comment obtenir rapidement votre attestation d''assurance. Maîtriser ce sujet est crucial pour être en règle avec la loi, protéger vos biens et ceux du propriétaire, et éviter des frais exorbitants en cas de sinistre. Ne négligez jamais cette protection !',
-  'Assurance habitation obligatoire ! Responsabilité Civile,
-  Multirisque,
-  comparateurs,
-  attestation. Protégez votre logement et votre budget.',
+  'Assurance habitation obligatoire ! Responsabilité Civile, Multirisque, comparateurs, attestation. Protégez votre logement et votre budget.',
   'logement',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''obligation légale de souscrire une assurance habitation", "Distinguer la Responsabilité Civile de la garantie Multirisque Habitation", "Savoir comparer les offres et choisir la bonne assurance", "Obtenir rapidement son attestation d''assurance pour le propriétaire"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  550,
+  4100
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 23
@@ -538,7 +530,7 @@ C''est la garantie de base que vous devez avoir.
 
 La Responsabilité Civile Locative est l''assurance habitation minimum légalement obligatoire en France, couvrant les dommages que vous pourriez causer au logement du propriétaire. Cependant, la garantie Multirisque Habitation (MRH) est fortement recommandée car elle offre une couverture bien plus étendue, protégeant vos propres biens et incluant la Responsabilité Civile Vie privée. Évaluez la valeur de vos biens et votre budget pour choisir le niveau d''assurance adapté. La MRH est un investissement essentiel pour une protection complète et une tranquillité d''esprit durant votre séjour en France.
 ',
-  1,
+  2,
   60,
   NULL,
   '[]'::jsonb
@@ -621,8 +613,8 @@ Choisir son assurance, c''est un peu comme choisir son téléphone portable : de
 
 Comparer les offres d''assurance habitation entre les banques, les assureurs traditionnels et les assureurs en ligne est crucial pour les étudiants internationaux en France. Ne vous limitez pas au prix, mais comparez attentivement les garanties (RC Locative obligatoire, MRH recommandée), les franchises, les plafonds d''indemnisation et les exclusions. Utilisez les comparateurs en ligne, demandez des devis personnalisés et n''hésitez pas à poser des questions. Souscrivez à votre assurance avant la remise des clés et obtenez votre attestation pour être en règle et protégé(e).
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -707,8 +699,8 @@ C''est une formalité obligatoire.
 
 L''obtention rapide et la conservation précieuse de votre attestation d''assurance habitation sont des étapes cruciales pour votre installation en France. Ce document officiel, qui prouve votre couverture pour le logement, vous sera demandé à la remise des clés et chaque année par votre propriétaire. Téléchargez-le depuis votre espace client en ligne, vérifiez toutes les informations, et archivez-le numériquement et physiquement. Votre diligence à cette étape garantit votre conformité légale et votre protection financière en cas de sinistre.
 ',
-  1,
-  60,
+  3,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -722,22 +714,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Ouvrir ses compteurs (Énergie) en France : Électricité et Gaz',
   'ouvrir-compteurs-energie-france-electricite-gaz',
   'Ce cours est un guide essentiel pour les étudiants internationaux s''installant dans un nouveau logement en France et devant gérer leurs contrats d''énergie. L''ouverture des compteurs d''électricité et de gaz est une démarche obligatoire et urgente pour avoir l''énergie dans votre logement. Nous vous expliquerons comment relever les compteurs à l''entrée, comment choisir votre fournisseur (EDF, TotalEnergies, Engie, etc.), la différence entre heures creuses et heures pleines pour optimiser votre consommation, et le fonctionnement du compteur Linky. Maîtriser ces étapes est crucial pour éviter de vous retrouver sans électricité ou gaz, gérer votre consommation et comprendre vos factures.',
-  'Ouvrir vos compteurs énergie : relevé,
-  choix fournisseur (EDF, Engie),
-  heures creuses/pleines,
-  Linky. Guide complet pour votre logement !',
+  'Ouvrir vos compteurs énergie : relevé, choix fournisseur (EDF, Engie), heures creuses/pleines, Linky. Guide complet pour votre logement !',
   'logement',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Savoir relever les compteurs d''électricité et de gaz à votre arrivée", "Comprendre le marché de l''énergie et choisir son fournisseur (EDF, Engie)", "Distinguer les heures creuses/heures pleines pour optimiser sa consommation", "Comprendre le fonctionnement et les avantages du compteur Linky"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  450,
+  3400
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 24
@@ -910,7 +898,7 @@ C''est facile et gratuit.
 
 Choisir son fournisseur d''électricité et de gaz en France est une démarche importante pour votre budget. Le marché est ouvert à la concurrence, avec des fournisseurs historiques (EDF, Engie) et de nombreux alternatifs. Comparez les offres selon le prix (kWh et abonnement, fixe ou indexé), la qualité du service client et les services additionnels (électricité verte). Utilisez les comparateurs officiels, souscrivez votre contrat à l''avance et n''oubliez pas de noter vos index de compteurs. Un choix éclairé vous permettra de maîtriser vos dépenses énergétiques en France.
 ',
-  1,
+  2,
   60,
   NULL,
   '[]'::jsonb
@@ -996,7 +984,7 @@ L''option HP/HC est un mode de tarification de l''électricité qui encourage la
 
 Comprendre le système d''heures creuses et heures pleines est crucial pour optimiser votre facture d''électricité en France. Le prix du kWh est moins cher pendant les 8 heures creuses par jour, souvent la nuit. Si vous avez des appareils énergivores (chauffe-eau, lave-linge), décalez leur utilisation pendant ces périodes. Vérifiez vos plages horaires sur votre facture ou le site d''Enedis et simulez la rentabilité de l''option HP/HC par rapport à l''option Base. Une bonne gestion vous permettra de réaliser des économies significatives sur votre budget énergie.
 ',
-  1,
+  3,
   60,
   NULL,
   '[]'::jsonb
@@ -1081,7 +1069,7 @@ L''écran affiche toutes les informations nécessaires.
 
 Le compteur Linky est le nouveau compteur électrique communicant, qui simplifie de nombreuses démarches (relevés à distance, mise en service rapide) et vous permet un suivi détaillé de votre consommation. Apprenez à lire les index (Base, HP/HC) et la puissance souscrite sur son écran. Créez votre espace client Enedis pour accéder à vos données de consommation et optimiser votre utilisation de l''électricité, notamment en décalant les usages les plus énergivores pendant les heures creuses. Linky est un outil précieux pour maîtriser votre budget énergie en France.
 ',
-  1,
+  4,
   60,
   NULL,
   '[]'::jsonb
@@ -1096,22 +1084,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Internet et Fibre en France : Connectez votre logement',
   'internet-fibre-france-connecter-logement',
   'Ce cours est un guide indispensable pour les étudiants internationaux souhaitant connecter leur logement à Internet en France. Le choix d''un fournisseur d''accès (Orange, Free, SFR, Bouygues Telecom) et du type de connexion (Fibre optique, ADSL, 4G/5G Box) peut être complexe. Nous vous expliquerons comment tester l''éligibilité de votre adresse à la fibre, la distinction entre les offres "Box" et les "Forfaits 4G/5G" (idéaux pour les petits budgets ou les déménagements fréquents), les étapes de l''installation (rendez-vous technicien), et les pièges à éviter lors de la résiliation (frais cachés). Maîtriser ce sujet est crucial pour rester connecté(e) et gérer votre budget Internet efficacement.',
-  'Internet et Fibre en France : éligibilité,
-  Box vs 4G/5G,
-  installation,
-  résiliation. Restez connecté et maîtrisez votre budget !',
+  'Internet et Fibre en France : éligibilité, Box vs 4G/5G, installation, résiliation. Restez connecté et maîtrisez votre budget !',
   'logement',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Savoir tester l''éligibilité de son adresse à la fibre optique", "Distinguer les offres "Box" des "Forfaits 4G/5G" et leurs avantages", "Comprendre les étapes et les délais d''installation (technicien)", "Identifier les frais cachés et les pièges lors de la résiliation d''un contrat"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  500,
+  3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 25
@@ -1257,7 +1241,7 @@ Votre mode de vie et la durée de votre séjour sont les facteurs clés pour ori
 
 Le choix entre une Box Internet (Fibre/ADSL) et un forfait 4G/5G est crucial pour votre connexion en France. La Box fixe offre stabilité, débit illimité et services TV/téléphone, mais demande plus de temps pour l''installation et un engagement. Le forfait 4G/5G est rapide à installer, mobile et souvent sans engagement, idéal pour des séjours courts, mais avec un volume de données limité. Évaluez votre durée de séjour, votre consommation et votre besoin de mobilité pour faire le choix le plus adapté et optimiser votre budget Internet.
 ',
-  1,
+  2,
   60,
   NULL,
   '[]'::jsonb
@@ -1345,8 +1329,8 @@ L''installation de la fibre optique nécessite le raccordement de votre logement
 
 L''installation de votre Box Internet (Fibre ou ADSL) nécessite souvent un rendez-vous avec un technicien. Anticipez les délais (2 à 4 semaines), soyez présent(e) et préparez l''accès au logement. N''hésitez pas à poser des questions et à tester la connexion avant le départ du technicien. Une bonne préparation garantit une installation fluide et un accès rapide à Internet, essentiel pour vos études et votre vie quotidienne en France. En cas de problème, contactez immédiatement votre opérateur.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1418,8 +1402,8 @@ Plusieurs coûts peuvent s''ajouter.
 
 La résiliation de votre contrat Internet en France est une étape importante lors de votre départ, et souvent source de frais. Comprenez l''impact de votre période d''engagement (12 ou 24 mois) sur les frais de résiliation anticipée. Tous les contrats entraînent des frais fixes (environ 49-59€) et des pénalités si le matériel (Box, décodeur) n''est pas restitué en bon état et dans les délais. Envoyez votre lettre de résiliation par recommandé avec accusé de réception et conservez précieusement la preuve de restitution du matériel. Une gestion rigoureuse de cette démarche vous permettra de minimiser les coûts et de quitter votre logement en toute sérénité.
 ',
-  1,
-  60,
+  4,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1433,22 +1417,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'CAF et APL : Comprendre votre éligibilité aux aides au logement',
   'caf-apl-eligibilite-aides-logement',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux et jeunes résidents en France qui souhaitent bénéficier des Aides Personnalisées au Logement (APL) de la CAF. Comprendre les critères d''éligibilité est la première étape cruciale pour s''assurer que vous pouvez prétendre à cette aide précieuse qui allège considérablement le coût de votre loyer. Nous vous détaillerons comment le calcul des APL est effectué (prenant en compte le loyer, la zone géographique et vos revenus), nous ferons une démonstration en direct du simulateur CAF, et nous aborderons les conditions spécifiques pour les étrangers, notamment l''importance de votre titre de séjour. Maîtriser ces informations est fondamental pour optimiser votre budget logement et sécuriser votre situation financière.',
-  'APL CAF : Éligibilité,
-  calcul (loyer, zone, revenus),
-  simulateur et conditions spécifiques pour étrangers. Optimisez votre budget !',
+  'APL CAF : Éligibilité, calcul (loyer, zone, revenus), simulateur et conditions spécifiques pour étrangers. Optimisez votre budget !',
   'logement',
   'intermediaire',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les principes du calcul des APL (loyer, zone, revenus)", "Savoir utiliser le simulateur CAF pour estimer ses droits", "Identifier les conditions d''éligibilité spécifiques aux étrangers (titre de séjour)", "Maîtriser les critères pour optimiser ses chances de bénéficier des APL"]'::jsonb,
-  '["Avoir un logement en France",
-  "Avoir un titre de séjour valide (ou VLS-TS validé)"]'::jsonb,
-  4,
-  0,
+  '["Avoir un logement en France", "Avoir un titre de séjour valide (ou VLS-TS validé)"]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500
+  650,
+  5100
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 26
@@ -1599,8 +1579,8 @@ Comprendre l''estimation.
 
 Le simulateur CAF est un outil essentiel pour les étudiants internationaux afin d''estimer leurs droits aux APL. Utilisez-le sur `caf.fr` en saisissant précisément vos revenus N-2, le montant de votre loyer et les caractéristiques de votre logement. Le résultat est une estimation précieuse, mais non contractuelle. C''est la première étape pour anticiper votre budget et préparer votre demande officielle d''APL. N''hésitez pas à faire plusieurs simulations et à être le plus honnête possible pour des résultats fiables.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1672,8 +1652,8 @@ Votre identifiant auprès de l''administration.
 
 Pour être éligible aux APL de la CAF en tant qu''étranger, la condition principale est de disposer d''un titre de séjour valide (VLS-TS validé, carte de séjour ou récépissé). Vous devrez également avoir fait votre déclaration de revenus N-2 et que votre logement soit conventionné. La demande se fait en ligne sur `caf.fr` en téléversant les justificatifs nécessaires. Maintenez toujours votre situation régulière, déclarez vos revenus chaque année, et transmettez les documents requis pour garantir la continuité de vos droits aux APL. Ce soutien est un pilier de votre budget logement en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

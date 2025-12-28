@@ -14,21 +14,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Le dossier de location en béton : Constituez le parfait candidat',
   'dossier-location-en-beton-parfait-candidat',
   'Ce cours est un guide indispensable pour les étudiants internationaux souhaitant maximiser leurs chances de trouver un logement en France. Constituer un "dossier de location en béton" est la clé pour se démarquer dans un marché immobilier compétitif. Nous vous apprendrons à préparer une page de garde impactante pour faire bonne impression, à identifier les documents obligatoires (identité, ressources) exigés par les propriétaires et agences, à connaître les documents strictement interdits (que l''on ne peut pas vous demander), et à fusionner efficacement vos PDF pour un envoi numérique professionnel. Maîtriser ce dossier est crucial pour présenter votre candidature de manière impeccable et sécurisée.',
-  'Dossier de location béton : page de garde,
-  documents obligatoires/interdits,
-  PDF. Le guide pour votre logement !',
+  'Dossier de location béton : page de garde, documents obligatoires/interdits, PDF. Le guide pour votre logement !',
   'logement',
   'intermediaire',
   'fr',
+  5,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Créer une page de garde professionnelle et impactante", "Identifier les documents obligatoires pour un dossier de location", "Connaître les documents interdits par la loi pour protéger vos droits", "Fusionner et organiser son dossier numérique pour un envoi efficace"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  520,
+  3900
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 17
@@ -176,8 +173,8 @@ La présence d''un garant est souvent exigée.
 
 La constitution d''un dossier de location complet et conforme est essentielle pour trouver un logement en France. Rassemblez tous les documents d''identité (passeport, titre de séjour), de ressources (avis d''imposition, attestations de bourse, relevés bancaires) et ceux de votre garant (si applicable). Ne donnez jamais les originaux, classez et numérisez vos documents avec soin. Un dossier impeccable et bien organisé est votre meilleur atout pour rassurer les bailleurs et maximiser vos chances d''obtenir le logement de vos rêves.
 ',
-  1,
-  60,
+  2,
+  75,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -252,8 +249,8 @@ La loi du 6 juillet 1989, complétée par le décret du 30 janvier 1992 (et modi
 
 La loi française protège les candidats locataires en interdisant aux bailleurs de demander une liste précise de documents (carte Vitale, casier judiciaire, relevés de compte détaillés, etc.). Connaître cette liste est crucial pour protéger votre vie privée, éviter la discrimination et ne pas céder à des demandes illégales. Si l''on vous demande un document interdit, refusez poliment et informez l''ANIL ou le Défenseur des Droits si la situation persiste. La connaissance de vos droits est votre meilleure protection dans la recherche de logement en France.
 ',
-  1,
-  60,
+  3,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -311,8 +308,8 @@ De nombreuses solutions sont disponibles, simples d''utilisation.
 
 Fusionner tous vos documents de location en un seul fichier PDF est une pratique indispensable pour un envoi par e-mail professionnel et efficace. Utilisez des outils en ligne gratuits et fiables, assurez-vous que votre page de garde est en première position, et que tous les documents sont dans un ordre logique. N''oubliez pas de nommer clairement votre fichier et de le compresser si nécessaire. Cette organisation impeccable augmentera considérablement l''attractivité de votre candidature et vos chances de trouver rapidement un logement en France.
 ',
-  1,
-  60,
+  4,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -326,21 +323,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Trouver un garant pour votre logement en France : Solutions et astuces',
   'trouver-garant-logement-france-solutions-astuces',
   'Ce cours est essentiel pour les étudiants internationaux et les jeunes professionnels qui cherchent à louer un logement en France. La plupart des propriétaires exigent un garant, et en tant qu''étranger sans revenus français établis, en trouver un peut être un défi. Nous explorerons les différentes options : le rôle du garant physique (familial ou amical), les solutions de garants payants (comme GarantMe ou Unkle) qui s''adressent spécifiquement aux profils internationaux, et la caution bancaire comme alternative bloquée. Maîtriser ces options est crucial pour constituer un dossier de location solide et rassurer les bailleurs, maximisant ainsi vos chances de trouver votre futur logement en France.',
-  'Trouver un garant pour votre location en France : physique,
-  payant (GarantMe, Unkle),
-  ou caution bancaire. Guide complet !',
+  'Trouver un garant pour votre location en France : physique, payant (GarantMe, Unkle), ou caution bancaire. Guide complet !',
   'logement',
   'intermediaire',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le rôle et l''importance d''un garant pour la location", "Identifier les options de garants physiques (familial, amical)", "Découvrir les solutions de garants payants pour étudiants internationaux", "Comprendre le fonctionnement et les limites de la caution bancaire"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  450,
+  3200
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 18
@@ -424,7 +418,7 @@ Ce document est l''engagement juridique du garant.
 Le garant physique est une personne qui s''engage à payer votre loyer en cas de défaillance. Sa présence est souvent indispensable pour votre dossier de location en France. Comprenez la différence cruciale entre caution simple et solidaire (la solidaire étant préférée par les bailleurs mais plus engageante pour le garant). Votre garant doit prouver sa solvabilité avec des justificatifs de revenus et de domicile. Préparez un dossier complet et un acte de cautionnement conforme à la loi pour rassurer les propriétaires et maximiser vos chances de trouver un logement.
 ',
   1,
-  60,
+  70,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -496,7 +490,7 @@ C''est une entreprise qui se porte caution pour vous.
 
 Les organismes de garantie privés comme GarantMe ou Unkle sont des solutions efficaces et reconnues pour les étudiants internationaux qui n''ont pas de garant physique en France. Ils se portent caution pour vous moyennant un coût annuel (souvent 3-5% du loyer). Ces plateformes offrent une garantie solide aux propriétaires, un processus rapide et une forte reconnaissance. Préparez un dossier de ressources clair, simulez votre éligibilité, et obtenez votre certificat de garantie avant même de commencer vos recherches de logement pour maximiser vos chances.
 ',
-  1,
+  2,
   60,
   NULL,
   '[]'::jsonb
@@ -570,7 +564,7 @@ C''est l''inconvénient majeur de cette solution.
 
 La caution bancaire est une alternative de garantie pour la location, mais elle est souvent peu pratique pour les étudiants internationaux en raison du blocage d''une somme importante (plusieurs mois de loyer) pendant toute la durée du bail. Elle est coûteuse en termes d''immobilisation de capital et moins flexible que d''autres solutions comme VISALE (gratuite) ou les garants privés payants (GarantMe, Unkle). Évaluez bien vos besoins et vos capacités financières avant d''envisager cette option, qui est généralement considérée comme une "alternative bloquée" pour les budgets étudiants.
 ',
-  1,
+  3,
   60,
   NULL,
   '[]'::jsonb
@@ -585,22 +579,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'La garantie VISALE (Tuto) : Votre garant gratuit en France',
   'garantie-visale-tuto-garant-gratuit-france',
   'Ce cours est un tutoriel complet et essentiel sur la garantie VISALE, la solution de garantie locative gratuite la plus avantageuse pour de nombreux étudiants internationaux et jeunes actifs en France. Si vous n''avez pas de garant physique, VISALE est un dispositif public qui se porte caution pour vous. Nous vous détaillerons ce qu''est VISALE et qui est éligible, comment créer votre espace personnel sur le site officiel, télécharger vos justificatifs, obtenir votre visa certifié en moins de 48h, et comment le présenter efficacement à un propriétaire. Maîtriser cette démarche est crucial pour obtenir un garant sans frais et débloquer rapidement votre accès au logement en France.',
-  'VISALE : votre garant gratuit ! Éligibilité,
-  compte,
-  justificatifs,
-  visa certifié 48h. Tuto complet pour trouver votre logement.',
+  'VISALE : votre garant gratuit ! Éligibilité, compte, justificatifs, visa certifié 48h. Tuto complet pour trouver votre logement.',
   'logement',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le principe et les avantages de la garantie VISALE", "Identifier les conditions d''éligibilité pour les étudiants internationaux", "Maîtriser la création de compte et le dépôt de dossier en ligne", "Obtenir le visa VISALE certifié et le présenter efficacement aux propriétaires"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  950,
+  4800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 19
@@ -743,8 +733,8 @@ C''est une étape de sécurité.
 
 La création de votre espace personnel sur `visale.fr` est la première étape indispensable pour bénéficier de la garantie VISALE. Renseignez avec précision toutes vos informations personnelles, sécurisez votre mot de passe, et activez votre compte via l''e-mail de confirmation. Une fois votre compte créé, vous serez prêt(e) à déposer votre dossier et à obtenir votre visa certifié, un atout majeur pour votre recherche de logement en France.
 ',
-  1,
-  60,
+  2,
+  45,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -805,7 +795,7 @@ Une fois votre espace personnel créé sur `visale.fr`, l''étape suivante est d
 
 Le téléchargement de vos justificatifs sur `visale.fr` est une étape critique pour l''obtention de votre garantie. Préparez minutieusement votre passeport, titre de séjour, justificatif de domicile, attestation d''inscription et surtout vos preuves de ressources (bourses, relevés bancaires, attestations de parents). Assurez-vous que tous les documents sont lisibles, au bon format PDF, et bien nommés. Un dossier complet et de qualité garantira un traitement rapide de votre demande et l''obtention de votre visa certifié VISALE.
 ',
-  1,
+  3,
   60,
   NULL,
   '[]'::jsonb
@@ -866,8 +856,8 @@ Après le téléchargement, place à l''analyse.
 
 L''obtention de votre visa certifié VISALE en 48h (ouvrées) est l''aboutissement de votre démarche de garantie gratuite. Ce document PDF, disponible sur votre espace `visale.fr`, est la preuve officielle de votre couverture. Téléchargez-le, vérifiez ses informations, et conservez-le précieusement. En cas de retard ou de demande de compléments, soyez réactif(ve) et contactez le support VISALE. Ce visa est votre meilleur atout pour présenter un dossier de location solide et trouver rapidement un logement en France.
 ',
-  1,
-  60,
+  4,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -938,7 +928,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, v
 
 Présenter votre visa certifié VISALE de manière proactive et convaincante est essentiel pour rassurer les propriétaires et faciliter votre accès au logement. Mentionnez VISALE dès la page de garde et dans votre lettre de motivation, et expliquez ses avantages (gratuité pour le propriétaire, sécurité d''un organisme public, couverture des impayés et dégradations). Soyez confiant(e), informatif(ve) et ayez toujours votre visa certifié à portée de main. VISALE est un atout puissant, utilisez-le à bon escient pour concrétiser votre projet de location en France.
 ',
-  1,
+  5,
   60,
   NULL,
   '[]'::jsonb
@@ -953,23 +943,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Éviter les arnaques au logement : Protégez-vous en France',
   'eviter-arnaques-logement-protegez-vous-france',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en recherche de logement en France. Le marché locatif, surtout dans les grandes villes, est malheureusement propice aux arnaques et aux tentatives d''escroquerie. Nous vous apprendrons à identifier les signaux d''alerte classiques : les demandes de "mandat cash" ou "Western Union", le scénario du "propriétaire à l''étranger", les annonces trop belles pour être vraies, et la règle d''or de ne jamais envoyer d''argent avant la visite et la signature du bail. Maîtriser ces réflexes est crucial pour protéger votre argent, votre identité et éviter de devenir victime de fraudeurs peu scrupuleux.',
-  'Évitez les arnaques au logement : mandat cash,
-  propriétaire à l''étranger, annonces trop belles. Ne payez jamais avant la visite !',
+  'Évitez les arnaques au logement : mandat cash, propriétaire à l''étranger, annonces trop belles. Ne payez jamais avant la visite !',
   'logement',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Identifier les arnaques courantes au logement (mandat cash, propriétaire étranger)",
-  "Savoir vérifier la véracité d''une annonce immobilière",
-  "Comprendre la règle d''or : ne jamais payer avant la visite et le bail",
-  "Maîtriser les réflexes de prudence pour protéger son argent et son identité"]'::jsonb,
+  '["Identifier les arnaques courantes au logement (mandat cash, propriétaire étranger)", "Savoir vérifier la véracité d''une annonce immobilière", "Comprendre la règle d''or : ne jamais payer avant la visite et le bail", "Maîtriser les réflexes de prudence pour protéger son argent et son identité"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  TRUE,
-  4.5
+  700,
+  5500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 20
@@ -1137,7 +1122,7 @@ Tout le monde n''est pas à l''étranger pour louer.
 
 Le scénario du "propriétaire à l''étranger" est une arnaque classique au logement. Méfiez-vous de toute annonce où la rencontre physique est impossible et où l''on vous demande de payer par des moyens non sécurisés (Mandat Cash, Western Union). La règle d''or est de ne jamais envoyer d''argent avant d''avoir visité le logement et signé le bail. Vérifiez toujours la véracité de l''annonce (recherche inversée d''images) et exigez une visite. Votre vigilance est votre meilleure protection contre ces escroqueries.
 ',
-  1,
+  2,
   60,
   NULL,
   '[]'::jsonb
@@ -1226,8 +1211,8 @@ La recherche d''images est une étape, pas la seule.
 
 La recherche inversée d''images est un outil puissant pour vérifier l''authenticité des annonces immobilières et démasquer les arnaques. Si les photos d''un logement apparaissent sur d''autres sites, sont incohérentes avec l''adresse, ou si l''offre est trop belle pour être vraie, méfiez-vous. Complétez cette vérification par un contact direct, des questions précises et une exigence de visite. Votre vigilance et l''utilisation de ces outils numériques sont cruciales pour protéger votre argent et trouver un logement réel et sûr en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1318,8 +1303,8 @@ C''est l''objectif final des escrocs.
 
 La règle d''or absolue pour la recherche de logement en France est de ne **JAMAIS** envoyer d''argent avant d''avoir visité le logement et signé le bail en présence du propriétaire ou de l''agence. Méfiez-vous des prétextes de "propriétaire à l''étranger" ou des demandes de paiement par Mandat Cash/Western Union, qui sont toujours des signaux d''arnaque. Utilisez des moyens de paiement sécurisés comme le virement bancaire ou le chèque une fois toutes les vérifications faites. Votre vigilance est votre meilleure protection contre les fraudes immobilières.
 ',
-  1,
-  60,
+  4,
+  70,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1333,22 +1318,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Comprendre et signer son bail : Votre contrat de location en France',
   'comprendre-signer-bail-contrat-location-france',
   'Ce cours est une étape cruciale pour les étudiants internationaux s''apprêtant à signer leur premier contrat de location en France. Le bail est un document juridique complexe qui engage le locataire et le propriétaire pour plusieurs années. Nous vous guiderons pour comprendre la durée de votre bail (1 an ou 3 ans), la clause de solidarité souvent présente en colocation, les clauses abusives (que vous avez le droit de rayer), et les spécificités de la signature électronique. Maîtriser ce document est absolument essentiel pour connaître vos droits et obligations, éviter les mauvaises surprises, et signer un contrat équilibré et conforme à la loi.',
-  'Comprendre et signer votre bail : durée (1 an, 3 ans),
-  clause de solidarité,
-  clauses abusives,
-  signature électronique. Protégez-vous !',
+  'Comprendre et signer votre bail : durée (1 an, 3 ans), clause de solidarité, clauses abusives, signature électronique. Protégez-vous !',
   'logement',
   'intermediaire',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la durée légale d''un bail (meublé, non-meublé, étudiant)", "Identifier et comprendre la clause de solidarité en colocation", "Savoir repérer et refuser les clauses abusives", "Maîtriser les spécificités de la signature électronique du bail"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
   500,
-  4,
-  0
+  3700
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 21
@@ -1505,8 +1486,8 @@ La solidarité ne s''arrête pas tout de suite.
 
 La clause de solidarité dans un bail de colocation est un engagement financier majeur : chaque colocataire et son garant sont solidairement responsables du paiement de la totalité du loyer et des charges. Cette solidarité persiste 6 mois après le départ d''un colocataire. Choisissez vos colocataires avec soin, assurez-vous de la solvabilité de tous les garants, et communiquez ouvertement sur les aspects financiers. Comprendre et gérer cette clause est crucial pour protéger vos finances et assurer une colocation sereine en France.
 ',
-  1,
-  60,
+  2,
+  65,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1574,8 +1555,8 @@ La loi française (notamment la loi du 6 juillet 1989 sur les rapports locatifs)
 
 De nombreuses clauses dans un bail de location peuvent être abusives et illégales. Il est crucial d''apprendre à les identifier (prélèvement automatique obligatoire, frais de quittance, interdiction d''héberger des proches, etc.) et de demander leur suppression ou de les rayer avant de signer. La loi est de votre côté. N''hésitez pas à vous faire aider par l''ANIL ou des associations de consommateurs. Protégez vos droits et assurez-vous de signer un bail juste et conforme pour votre logement en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1652,8 +1633,8 @@ Elle a la même valeur qu''une signature manuscrite.
 
 La signature électronique des baux est un moyen légal, rapide et sécurisé de conclure un contrat de location en France. Elle a la même valeur juridique qu''une signature manuscrite si elle respecte les normes (règlement eIDAS). Lisez toujours attentivement le bail avant de signer sur une plateforme sécurisée, vérifiez votre identité, et conservez précieusement le document signé et son dossier de preuves. Maîtriser ce processus vous permettra de signer votre bail en toute confiance et d''éviter les problèmes juridiques.
 ',
-  1,
-  60,
+  4,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

@@ -14,24 +14,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Se faire des amis en France : Brisez la bulle et intégrez-vous !',
   'se-faire-amis-france-brisez-bulle-integrez',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de faciliter leur intégration sociale et de nouer des liens d''amitié. L''éloignement familial et le choc culturel peuvent rendre difficile la création de nouvelles relations. Nous vous expliquerons pourquoi il est important de "sortir de la bulle des expatriés" pour rencontrer des Français, les avantages des activités sportives universitaires (SUAPS) pour faire des rencontres, et comment proposer des sorties et des activités. Maîtriser ces stratégies est absolument crucial pour briser l''isolement, développer un cercle social riche, et vivre une expérience étudiante épanouissante et mémorable en France.',
-  'Se faire des amis France : sortez de la bulle expatriée,
-  activités sportives (SUAPS),
-  proposez des sorties. Brisez l''isolement, intégrez-vous !',
+  'Se faire des amis France : sortez de la bulle expatriée, activités sportives (SUAPS), proposez des sorties. Brisez l''isolement, intégrez-vous !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance de la rencontre de Français pour l''intégration",
-  "Identifier les lieux et activités propices aux rencontres (SUAPS, associations)",
-  "Savoir comment initier des sorties et proposer des activités",
-  "Maîtriser les conseils pour développer un cercle social et lutter contre l''isolement"]'::jsonb,
+  '["Comprendre l''importance de la rencontre de Français pour l''intégration", "Identifier les lieux et activités propices aux rencontres (SUAPS, associations)", "Savoir comment initier des sorties et proposer des activités", "Maîtriser les conseils pour développer un cercle social et lutter contre l''isolement"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  TRUE,
-  4.5
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 81
@@ -107,7 +101,7 @@ Le confort de la "bulle" est agréable, mais il peut freiner votre progression.
 Sortir de la "bulle des expatriés" est absolument crucial pour les étudiants internationaux en France afin de développer un cercle social diversifié et de s''intégrer pleinement. Prenez des initiatives pour initier des contacts avec des Français : dans votre université (cours, associations), en dehors (clubs sportifs, activités culturelles), et en proposant des sorties. Parlez français le plus possible, soyez curieux(se) et ouvert(e) d''esprit. Maîtriser ces stratégies est fondamental pour briser l''isolement, pratiquer la langue, comprendre la culture locale, et vivre une expérience étudiante épanouissante et mémorable en France.
 ',
   1,
-  60,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -187,8 +181,8 @@ Une démarche simple en début d''année.
 
 Le Service Universitaire des Activités Physiques et Sportives (SUAPS) offre aux étudiants une multitude de sports à des tarifs très abordables. Participer à ces activités est absolument crucial pour les étudiants internationaux afin de briser l''isolement, rencontrer des Français, pratiquer la langue dans un contexte détendu, et développer un cercle social sain et diversifié. Inscrivez-vous dès la rentrée avec votre carte étudiante et un certificat médical. Maîtriser le SUAPS est fondamental pour votre bien-être, votre intégration, et pour une vie étudiante épanouissante en France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -270,8 +264,8 @@ Les relations sociales se construisent par des échanges et des activités parta
 
 Proposer des sorties et des activités est absolument crucial pour les étudiants internationaux souhaitant se faire des amis en France. N''attendez pas les invitations, soyez proactif en suggérant des activités culturelles (musées, cinéma), sportives (SUAPS), ou gourmandes (café, restaurant). Soyez clair(e) et direct(e) dans vos propositions, et ne vous découragez pas en cas de refus. Maîtriser cette initiative est fondamental pour briser la glace, développer un cercle social riche et diversifié, et vivre une expérience étudiante épanouissante et mémorable en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -282,27 +276,21 @@ Proposer des sorties et des activités est absolument crucial pour les étudiant
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Associations étudiantes en France : BDE,
-  sport,
-  culture et bénévolat',
+  'Associations étudiantes en France : BDE, sport, culture et bénévolat',
   'associations-etudiantes-france-bde-sport-culture-benevolat',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent s''impliquer dans la vie universitaire et sociale. Les associations étudiantes sont un formidable levier d''intégration, de rencontres, et de développement de compétences. Nous vous expliquerons ce qu''est un BDE (Bureau des Élèves) et son rôle d''animation, les avantages des associations sportives ou culturelles pour faire des amis, et la valeur du bénévolat pour votre CV. Maîtriser l''implication associative est absolument crucial pour briser l''isolement, développer votre réseau, enrichir votre expérience étudiante, et valoriser votre engagement sur le marché du travail français.',
-  'Associations étudiantes France : BDE (animation),
-  sport/culture,
-  bénévolat (CV). Intégrez-vous,
-  développez votre réseau et enrichissez votre expérience !',
+  'Associations étudiantes France : BDE (animation), sport/culture, bénévolat (CV). Intégrez-vous, développez votre réseau et enrichissez votre expérience !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le rôle des associations étudiantes (BDE, sport, culture, humanitaire)", "Identifier les avantages de l''engagement associatif (rencontres, compétences, réseau)", "Savoir comment trouver et rejoindre une association étudiante", "Maîtriser les conseils pour valoriser son engagement sur le CV et dans sa recherche d''emploi"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  0,
-  TRUE
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 82
@@ -380,7 +368,7 @@ Plus qu''une simple distraction.
 Le BDE (Bureau des Élèves) est l''association étudiante la plus active en France, organisant événements, soirées, activités sportives et culturelles. S''impliquer dans un BDE, ou simplement participer à ses événements, est absolument crucial pour les étudiants internationaux afin de faciliter l''intégration, se faire des amis, développer des compétences (organisation, communication), et enrichir votre expérience étudiante. Trouvez le BDE de votre formation dès la rentrée et n''hésitez pas à vous lancer. C''est un formidable levier pour une vie étudiante épanouissante en France.
 ',
   1,
-  60,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -458,8 +446,8 @@ Plus qu''un simple loisir.
 
 Les associations étudiantes (humanitaires, sportives, culturelles) sont un formidable levier d''intégration pour les étudiants internationaux en France. S''y impliquer vous permet de rencontrer des Français, de pratiquer la langue, de développer des compétences (gestion de projet, travail en équipe) et d''enrichir votre CV. Trouvez les associations qui correspondent à vos passions via les forums universitaires ou les réseaux sociaux. Maîtriser l''engagement associatif est absolument crucial pour briser l''isolement, construire un réseau, et valoriser votre expérience étudiante pour votre future carrière en France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -544,8 +532,8 @@ Ce que l''engagement vous a apporté.
 
 Valoriser votre engagement associatif (BDE, humanitaire, sportif, culturel) sur votre CV est absolument crucial pour les étudiants internationaux en France. Créez une section dédiée, décrivez vos missions et responsabilités avec des verbes d''action et des chiffres, et mettez en avant les compétences transversales (organisation, travail en équipe, leadership, communication) que vous avez acquises. Cet engagement témoigne de votre dynamisme, de votre intégration, et de votre sens des responsabilités, des atouts très recherchés par les recruteurs. Maîtriser cette valorisation est fondamental pour vous démarquer et réussir votre insertion professionnelle en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -556,24 +544,21 @@ Valoriser votre engagement associatif (BDE, humanitaire, sportif, culturel) sur 
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Culture Pass : Musées gratuits,
-  300€ offerts aux jeunes',
+  'Culture Pass : Musées gratuits, 300€ offerts aux jeunes',
   'culture-pass-musees-gratuits-300-offerts-jeunes',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent accéder à la culture à moindre coût. La France offre des dispositifs avantageux, notamment le **"Culture Pass"** (300€ offerts aux jeunes de 18 ans) et la gratuité des musées nationaux pour les moins de 26 ans. Ne pas connaître ces aides, c''est se priver d''une opportunité fantastique de découvrir le riche patrimoine culturel français sans grever son budget. Nous vous expliquerons comment bénéficier du Culture Pass, la gratuité des musées, et les tarifs réduits pour l''opéra et le théâtre. Maîtriser ces informations est absolument crucial pour vous immerger dans la culture française, faire des découvertes, et enrichir votre expérience étudiante.',
-  'Culture Pass : 300€ offerts à 18 ans ! Musées nationaux gratuits -26 ans,
-  tarifs jeunes opéra/théâtre. Découvrez la culture à petit prix !',
+  'Culture Pass : 300€ offerts à 18 ans ! Musées nationaux gratuits -26 ans, tarifs jeunes opéra/théâtre. Découvrez la culture à petit prix !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement et les avantages du Culture Pass (300€ offerts)", "Identifier la gratuité des musées nationaux pour les moins de 26 ans", "Savoir comment accéder aux tarifs réduits pour l''opéra et le théâtre", "Maîtriser les conseils pour profiter pleinement de l''offre culturelle française"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 83
@@ -733,8 +718,8 @@ C''est une politique culturelle française qui vise à favoriser l''accès des j
 
 L''accès aux musées et monuments nationaux est gratuit en France pour tous les jeunes de moins de 26 ans, quelle que soit leur nationalité. Présentez votre pièce d''identité à l''entrée. Cette gratuité est absolument cruciale pour les étudiants internationaux afin de découvrir gratuitement le riche patrimoine culturel français (Louvre, Orsay, Versailles). Planifiez vos visites, utilisez les audioguides, et profitez de cette opportunité unique pour vous immerger dans la culture française et enrichir votre expérience étudiante à moindre coût.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -815,8 +800,8 @@ La politique culturelle française encourage l''accès du plus grand nombre aux 
 
 L''opéra et le théâtre en France sont accessibles aux étudiants internationaux grâce à de nombreux tarifs jeunes et réductions. L''Opéra National de Paris et la Comédie-Française proposent des offres spécifiques pour les moins de 28 ans, ainsi que des places de dernière minute. Consultez les sites des institutions culturelles, inscrivez-vous à leurs newsletters, et ayez toujours votre carte étudiante valide. Maîtriser ces informations est absolument crucial pour découvrir ces arts vivants prestigieux à moindre coût, enrichir votre expérience, et vous immerger pleinement dans la culture française.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -827,26 +812,21 @@ L''opéra et le théâtre en France sont accessibles aux étudiants internationa
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Le Cinéma en France : UGC Illimité,
-  VOSTFR vs VF et bons plans',
+  'Le Cinéma en France : UGC Illimité, VOSTFR vs VF et bons plans',
   'cinema-france-ugc-illimite-vostfr-vf-bons-plans',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui aiment le cinéma. La France est un pays de cinéphiles, avec une offre riche et variée, et de nombreuses salles de cinéma. Nous vous expliquerons les avantages des cartes d''abonnement illimité (UGC Illimité, CinéPass), la distinction cruciale entre les versions VOSTFR (Version Originale Sous-Titrée en Français) et VF (Version Française), et les bons plans (tarifs étudiants, Fête du Cinéma) pour aller au cinéma à moindre coût. Maîtriser ces informations est absolument crucial pour profiter pleinement du cinéma français et international, gérer votre budget loisirs, et vous immerger dans la culture cinématographique. ',
-  'Cinéma France : UGC Illimité/CinéPass,
-  VOSTFR vs VF,
-  tarifs étudiants,
-  Fête du Cinéma. Profitez du cinéma à petit prix !',
+  'Cinéma France : UGC Illimité/CinéPass, VOSTFR vs VF, tarifs étudiants, Fête du Cinéma. Profitez du cinéma à petit prix !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement et la rentabilité des cartes d''abonnement illimité (UGC/CinéPass)", "Distinguer les versions VOSTFR (VO sous-titrée français) et VF (version française)", "Identifier les bons plans (tarifs étudiants, Fête du Cinéma) pour réduire le coût", "Maîtriser les conseils pour profiter du cinéma en France et gérer son budget"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
   500,
-  4,
-  0
+  3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 84
@@ -993,8 +973,8 @@ L''option préférée des apprenants et cinéphiles.
 
 Le choix entre VOSTFR (Version Originale Sous-Titrée en Français) et VF (Version Française) est crucial lorsque vous allez au cinéma en France. La VOSTFR est l''option idéale pour améliorer votre compréhension orale et votre vocabulaire en français, et pour profiter de l''authenticité du film. La VF offre un confort d''écoute. Vérifiez toujours la version de la séance sur AlloCiné ou le site du cinéma. Maîtriser ce choix est absolument crucial pour votre immersion linguistique, votre plaisir cinématographique, et pour optimiser votre apprentissage du français en France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1070,8 +1050,8 @@ Chaque année en France, un événement majeur du calendrier culturel, la **"Fê
 
 La Fête du Cinéma est un événement annuel crucial en France, proposant des places de cinéma à un tarif exceptionnel (environ 5€) pendant plusieurs jours fin juin/début juillet. C''est une opportunité fantastique pour les étudiants internationaux de voir un grand nombre de films (français et internationaux, en VOSTFR pour pratiquer votre français) à moindre coût. Informez-vous sur les dates, planifiez votre programme, et réservez vos places à l''avance. Maîtriser cette information est absolument crucial pour profiter pleinement du cinéma, gérer votre budget loisirs, et vous immerger dans la culture cinématographique française.
 ',
-  1,
-  60,
+  3,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1084,32 +1064,19 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
   'Grèves et Manifs en France : Comprendre l''impact sur votre quotidien',
   'greves-manifs-france-comprendre-impact-quotidien',
-  'Ce cours est essentiel pour tous les étudiants internationaux en France,
-  afin de comprendre un aspect important de la vie sociale française : les grèves et les manifestations. Ces mouvements sociaux peuvent avoir un impact direct et significatif sur votre quotidien (transports, universités, services publics). Ne pas connaître les raisons des grèves,
-  ne pas savoir comment vérifier le trafic ou les perturbations,
-  et ne pas comprendre comment se comporter en manifestation,
-  c''est risquer des retards importants, des problèmes d''accès,
-  ou des situations délicates. Nous vous expliquerons comment vérifier le trafic les jours de grève,
-  les revendications,
-  et les règles de sécurité. Maîtriser ces informations est absolument crucial pour anticiper les perturbations,
-  vous adapter,
-  et naviguer sereinement dans la vie sociale française.',
+  'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un aspect important de la vie sociale française : les grèves et les manifestations. Ces mouvements sociaux peuvent avoir un impact direct et significatif sur votre quotidien (transports, universités, services publics). Ne pas connaître les raisons des grèves, ne pas savoir comment vérifier le trafic ou les perturbations, et ne pas comprendre comment se comporter en manifestation, c''est risquer des retards importants, des problèmes d''accès, ou des situations délicates. Nous vous expliquerons comment vérifier le trafic les jours de grève, les revendications, et les règles de sécurité. Maîtriser ces informations est absolument crucial pour anticiper les perturbations, vous adapter, et naviguer sereinement dans la vie sociale française.',
   'Grèves et Manifs France : vérifiez trafic, comprenez revendications, sécurité en manifestation. Anticipez les perturbations et adaptez-vous !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''impact des grèves sur les transports et services publics",
-  "Savoir comment vérifier le trafic et les perturbations en temps réel",
-  "Identifier les raisons et les revendications des grèves et manifestations",
-  "Maîtriser les conseils de sécurité en manifestation et les réflexes à adopter"]'::jsonb,
+  '["Comprendre l''impact des grèves sur les transports et services publics", "Savoir comment vérifier le trafic et les perturbations en temps réel", "Identifier les raisons et les revendications des grèves et manifestations", "Maîtriser les conseils de sécurité en manifestation et les réflexes à adopter"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  TRUE,
-  4.5,
-  100,
-  500,
-  500
+  550,
+  4000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 85
@@ -1258,8 +1225,8 @@ L''expression d''un besoin ou d''une protestation.
 
 Comprendre les revendications des grèves et manifestations est absolument crucial pour les étudiants internationaux en France. Ces mouvements sociaux, basés sur des revendications salariales, sur les retraites, les conditions de travail, ou des sujets sociétaux, sont une expression démocratique. Informez-vous via les médias fiables (radio, TV, presse) et les sites des syndicats pour saisir les enjeux. Maîtriser cette compréhension est fondamental pour une intégration culturelle réussie, une vision éclairée de la société française, et pour anticiper l''impact de ces mouvements sur votre quotidien.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1346,8 +1313,8 @@ Savoir quoi faire dans le vif de l''action.
 
 Participer à une manifestation en France exige de connaître et de respecter les règles de sécurité : informez-vous sur l''itinéraire, venez en groupe, protégez vos affaires et évitez les zones de tension. En cas de débordements ou de gaz lacrymogène, éloignez-vous calmement. En cas d''interpellation, restez calme, présentez votre pièce d''identité, et demandez à prévenir un proche ou votre consulat. Votre sécurité est la priorité. Maîtriser ces conseils est absolument crucial pour vous protéger et naviguer sereinement dans les mouvements sociaux français, sans vous mettre en danger ni risquer des problèmes administratifs.
 ',
-  1,
-  60,
+  3,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

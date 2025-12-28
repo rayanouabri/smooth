@@ -13,23 +13,19 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
   'Alternance et Apprentissage en France : La voie de l''insertion pro',
   'alternance-apprentissage-france-voie-insertion-pro',
-  'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui envisagent une formation en alternance ou un contrat d''apprentissage. Ces dispositifs sont des voies privilégiées pour l''insertion professionnelle,
-  combinant études et expérience en entreprise. Nous vous expliquerons la différence cruciale entre un contrat d''apprentissage et un contrat de professionnalisation, les avantages majeurs de l''alternance (salaire, formation payée),
-  et les défis pour trouver une entreprise. Maîtriser ces informations est absolument crucial pour comprendre ce mode de formation,
-  évaluer si l''alternance est faite pour vous, et maximiser vos chances de trouver un contrat pour votre avenir professionnel en France.',
+  'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui envisagent une formation en alternance ou un contrat d''apprentissage. Ces dispositifs sont des voies privilégiées pour l''insertion professionnelle, combinant études et expérience en entreprise. Nous vous expliquerons la différence cruciale entre un contrat d''apprentissage et un contrat de professionnalisation, les avantages majeurs de l''alternance (salaire, formation payée), et les défis pour trouver une entreprise. Maîtriser ces informations est absolument crucial pour comprendre ce mode de formation, évaluer si l''alternance est faite pour vous, et maximiser vos chances de trouver un contrat pour votre avenir professionnel en France.',
   'Alternance/Apprentissage France : différence, salaire + école payée, trouver une entreprise. Votre tremplin pro !',
   'insertion_professionnelle',
   'avance',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la distinction entre contrat d''apprentissage et de professionnalisation", "Identifier les avantages majeurs de l''alternance (rémunération, gratuité de la formation)", "Savoir où chercher et comment trouver une entreprise d''accueil", "Maîtriser les conseils pour optimiser sa candidature en alternance"]'::jsonb,
   '["Avoir un titre de séjour étudiant valide en France", "Avoir un niveau de français suffisant pour l''entreprise et la formation"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  500,
+  3500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 62
@@ -128,6 +124,8 @@ L''alternance est une voie d''excellence qui permet d''acquérir un diplôme et 
 
 Le contrat d''apprentissage et le contrat de professionnalisation sont les deux formes d''alternance en France. L''apprentissage vise l''obtention d''un diplôme d''État (16-29 ans, 6 mois à 3 ans), tandis que la professionnalisation cible l''acquisition d''une qualification (jeunes, demandeurs d''emploi, 6 à 12 mois). Les deux offrent expérience, diplôme et rémunération, avec les frais de formation pris en charge. Comprendre ces différences est absolument crucial pour choisir la voie la plus adaptée à votre projet professionnel et maximiser vos chances de réussite en alternance en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 62 (suite)
@@ -202,7 +200,7 @@ Plus qu''un simple salaire.
 
 L''alternance offre des avantages financiers considérables : vous êtes rémunéré(e) en tant que salarié(e) (pourcentage du SMIC, souvent net de cotisations) et vos frais de formation sont entièrement pris en charge. En plus de cette aide financière cruciale, vous acquérez une expérience professionnelle valorisante, bénéficiez d''une protection sociale complète, et facilitez votre insertion professionnelle. Maîtriser ces bénéfices est fondamental pour alléger votre budget, financer vos études sans endettement, et bâtir une carrière solide en France. C''est une voie d''excellence à considérer sérieusement.
 ',
-  1,
+  2,
   60,
   NULL,
   '[]'::jsonb
@@ -303,8 +301,8 @@ La recherche d''alternance est une recherche d''emploi à part entière. Elle de
 
 Trouver une entreprise d''accueil est le principal défi de l''alternance en France. Comprenez les attentes des recruteurs (motivation, compétences, potentiel), utilisez les sites des établissements de formation, les plateformes spécialisées (La Bonne Alternance) et les réseaux professionnels. Adaptez votre CV et votre lettre de motivation pour mettre en avant votre double projet (études et entreprise) et votre profil international. Commencez votre recherche 6 à 8 mois avant la rentrée. Maîtriser ces techniques est absolument crucial pour décrocher un contrat d''alternance et sécuriser votre insertion professionnelle en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -318,24 +316,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Les stages en France : Convention obligatoire et gratification',
   'stages-france-convention-obligatoire-gratification',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui envisagent d''effectuer un stage. Le stage est une étape cruciale pour acquérir une première expérience professionnelle et faciliter l''insertion, mais il est strictement encadré par la loi (loi de 2014 et de 2021). Ne pas connaître les règles de la "convention de stage obligatoire", les conditions de "gratification minimale" (si le stage dure plus de 2 mois), et la distinction entre stage et job étudiant (pour éviter l''exploitation), c''est risquer de travailler illégalement ou de ne pas être payé(e) correctement. Maîtriser cette législation est absolument crucial pour faire un stage en toute légalité, protéger vos droits, et valoriser cette expérience.',
-  'Stages France : convention obligatoire,
-  gratification minimale (>2 mois),
-  stage vs job. Protégez vos droits et évitez l''exploitation !',
+  'Stages France : convention obligatoire, gratification minimale (>2 mois), stage vs job. Protégez vos droits et évitez l''exploitation !',
   'insertion_professionnelle',
   'debutant',
   'fr',
-  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la nécessité et le contenu de la convention de stage obligatoire",
-  "Identifier les conditions de gratification minimale pour les stages de plus de 2 mois",
-  "Distinguer clairement un stage d''un job étudiant pour éviter l''exploitation",
-  "Maîtriser les conseils pour trouver un stage de qualité et protéger ses droits"]'::jsonb,
-  '["Être inscrit(e) dans un établissement d''enseignement supérieur français"]':: κάποιο,
+  4,
   0,
+  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
+  '["Comprendre la nécessité et le contenu de la convention de stage obligatoire", "Identifier les conditions de gratification minimale pour les stages de plus de 2 mois", "Distinguer clairement un stage d''un job étudiant pour éviter l''exploitation", "Maîtriser les conseils pour trouver un stage de qualité et protéger ses droits"]'::jsonb,
+  '["Être inscrit(e) dans un établissement d''enseignement supérieur français"]':: κάποιο 
   TRUE,
-  4.5,
-  100,
-  500,
-  500
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 63
@@ -496,8 +488,8 @@ La loi a renforcé les droits des stagiaires pour lutter contre les stages non g
 
 La gratification minimale est obligatoire pour tout stage de plus de 2 mois en France, à raison d''environ 4,35€ par heure de présence effective (chiffre indicatif 2025). Ce montant doit figurer sur votre convention de stage et être versé mensuellement. Vérifiez la conformité de votre gratification et n''hésitez pas à la réclamer si elle n''est pas respectée. Maîtriser cette législation est absolument crucial pour un stage équitable, qui contribue positivement à votre budget, et pour protéger vos droits de stagiaire en France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -591,7 +583,7 @@ L''objectif est de produire et d''être rémunéré.
 
 La distinction entre un stage (période de formation pédagogique avec convention obligatoire et gratification minimale au-delà de 2 mois) et un job étudiant (contrat de travail salarié avec salaire au moins au SMIC) est absolument cruciale. Méfiez-vous des "faux stages" qui déguisent un emploi non conforme à la législation. N''acceptez jamais de commencer une activité sans convention ou contrat écrit. Informez votre établissement et contactez l''Inspection du Travail en cas d''exploitation. Maîtriser ces différences est fondamental pour protéger vos droits, éviter l''exploitation, et garantir une expérience professionnelle légale et valorisante en France.
 ',
-  1,
+  3,
   60,
   NULL,
   '[]'::jsonb
@@ -606,21 +598,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Statut Auto-entrepreneur en France : Créer son activité étudiante',
   'statut-auto-entrepreneur-france-creer-activite-etudiante',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui envisagent de créer leur propre activité indépendante sous le régime de la micro-entreprise (anciennement auto-entrepreneur). Cette option offre flexibilité et simplicité administrative, mais elle est soumise à des conditions spécifiques, notamment la compatibilité avec votre visa étudiant. Nous vous expliquerons si le statut est cumulable avec votre titre de séjour, la procédure de création sur le site de l''URSSAF, et les obligations de déclaration de chiffre d''affaires mensuelle ou trimestrielle. Maîtriser le statut d''auto-entrepreneur est absolument crucial pour lancer votre activité en toute légalité, comprendre vos obligations fiscales et sociales, et financer vos études de manière autonome.',
-  'Auto-entrepreneur étudiant : cumulable avec visa ? Création URSSAF,
-  déclaration CA mensuelle. Lancez votre activité légalement !',
+  'Auto-entrepreneur étudiant : cumulable avec visa ? Création URSSAF, déclaration CA mensuelle. Lancez votre activité légalement !',
   'insertion_professionnelle',
   'avance',
   'fr',
-  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la compatibilité du statut auto-entrepreneur avec le visa étudiant", "Savoir comment créer son statut sur le site de l''URSSAF", "Maîtriser les obligations de déclaration de chiffre d''affaires (mensuelle/trimestrielle)", "Identifier les avantages et inconvénients de l''auto-entreprise pour les étudiants internationaux"]'::jsonb,
-  '["Être titulaire d''un titre de séjour étudiant valide en France",
-  "Avoir une idée d''activité indépendante"]'::jsonb,
   4,
   0,
+  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
+  '["Comprendre la compatibilité du statut auto-entrepreneur avec le visa étudiant", "Savoir comment créer son statut sur le site de l''URSSAF", "Maîtriser les obligations de déclaration de chiffre d''affaires (mensuelle/trimestrielle)", "Identifier les avantages et inconvénients de l''auto-entreprise pour les étudiants internationaux"]'::jsonb,
+  '["Être titulaire d''un titre de séjour étudiant valide en France", "Avoir une idée d''activité indépendante"]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500
+  350,
+  2500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 64
@@ -796,7 +785,7 @@ La création d''une micro-entreprise est une démarche simplifiée qui se fait e
 
 La création du statut d''auto-entrepreneur se fait en ligne via le guichet unique de l''INPI, qui transmet ensuite l''information à l''URSSAF. Vous devrez renseigner vos informations d''identité, de statut étudiant, et la nature de votre activité. Vous obtiendrez votre numéro SIRET et une attestation d''affiliation. Maîtriser cette procédure est absolument crucial pour lancer votre activité en toute légalité, obtenir votre identifiant professionnel, et comprendre vos obligations fiscales et sociales en France. Ne démarrez jamais votre activité avant d''avoir effectué cette déclaration.
 ',
-  1,
+  2,
   60,
   NULL,
   '[]'::jsonb
@@ -887,7 +876,7 @@ La déclaration de chiffre d''affaires est la base du régime micro-social et mi
 
 La déclaration de votre chiffre d''affaires (CA) mensuelle ou trimestrielle est une obligation essentielle en tant qu''auto-entrepreneur en France. Elle se fait en ligne sur votre espace URSSAF, même si votre CA est nul. Une déclaration précise et dans les délais est cruciale pour calculer vos cotisations sociales et votre impôt, éviter les pénalités, et maintenir votre statut. Tenez une comptabilité simple et anticipez les dates limites. Maîtriser cette procédure est fondamental pour une gestion légale et sereine de votre activité indépendante et pour protéger votre statut étudiant en France.
 ',
-  1,
+  3,
   60,
   NULL,
   '[]'::jsonb
@@ -902,24 +891,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Networking et LinkedIn en France : Développez votre réseau pro',
   'networking-linkedin-france-developpez-reseau-pro',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent développer leur réseau professionnel et faciliter leur insertion sur le marché de l''emploi. Le "réseau" est une notion très importante en France, et LinkedIn est un outil incontournable pour le développer. Nous vous expliquerons l''importance du networking (rencontres professionnelles), comment optimiser votre profil LinkedIn pour attirer les recruteurs, et les conseils pour participer efficacement à des événements professionnels (salons, conférences). Maîtriser ces stratégies est absolument crucial pour créer des opportunités d''emploi, trouver des stages, et réussir votre carrière en France.',
-  'Networking & LinkedIn France : importance du réseau,
-  optimiser profil LinkedIn,
-  événements pro. Créez vos opportunités d''emploi !',
+  'Networking & LinkedIn France : importance du réseau, optimiser profil LinkedIn, événements pro. Créez vos opportunités d''emploi !',
   'insertion_professionnelle',
   'avance',
   'fr',
-  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance du "réseau" et du networking en France",
-  "Savoir comment optimiser son profil LinkedIn pour les recruteurs",
-  "Maîtriser les techniques pour participer efficacement aux événements professionnels",
-  "Identifier les stratégies pour développer son réseau et créer des opportunités"]'::jsonb,
-  '["Avoir un CV aux normes françaises", "Avoir un compte LinkedIn"]'::jsonb,
+  4,
   0,
+  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
+  '["Comprendre l''importance du "réseau" et du networking en France", "Savoir comment optimiser son profil LinkedIn pour les recruteurs", "Maîtriser les techniques pour participer efficacement aux événements professionnels", "Identifier les stratégies pour développer son réseau et créer des opportunités"]'::jsonb,
+  '["Avoir un CV aux normes françaises", "Avoir un compte LinkedIn"]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  500
+  400,
+  2900
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 65
@@ -1095,7 +1078,7 @@ LinkedIn est bien plus qu''un simple CV en ligne. C''est un outil de veille, de 
 
 
 ',
-  1,
+  2,
   60,
   NULL,
   '[]'::jsonb
@@ -1185,8 +1168,8 @@ L''improvisation n''est pas une option.
 
 Participer à des événements professionnels (salons, forums, conférences) est absolument crucial pour les étudiants internationaux en France. Préparez-vous minutieusement : identifiez vos entreprises cibles, préparez votre "pitch" (présentation rapide), ayez votre CV (papier et numérique) et des questions pertinentes. Interagissez activement, soyez professionnel(le) et faites une relance personnalisée après l''événement. Maîtriser ces stratégies est fondamental pour élargir votre réseau, obtenir des informations clés, et créer des opportunités de stage ou d''emploi pour votre carrière en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1202,21 +1185,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Forfaits mobiles en France : Choisir et gérer sa SIM',
   'forfaits-mobiles-france-choisir-gerer-sim',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui ont besoin de choisir et de gérer leur forfait mobile. Le marché français est riche en offres, avec des opérateurs historiques et des "low cost" sans engagement. Nous vous expliquerons la flexibilité des forfaits sans engagement (Sosh, RED by SFR, Free Mobile), comment conserver votre numéro de téléphone si vous changez d''opérateur (le code RIO), et la solution pratique des cartes SIM prépayées pour une arrivée rapide. Maîtriser ce choix est absolument crucial pour rester connecté(e), communiquer avec vos proches en France et à l''étranger, et optimiser votre budget télécoms sans frais cachés ni engagement contraignant.',
-  'Forfait mobile France : sans engagement (Sosh, RED, Free),
-  conserver son numéro (RIO),
-  carte SIM prépayée. Restez connecté sans vous ruiner !',
+  'Forfait mobile France : sans engagement (Sosh, RED, Free), conserver son numéro (RIO), carte SIM prépayée. Restez connecté sans vous ruiner !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la flexibilité des forfaits mobiles sans engagement", "Savoir comment conserver son numéro de téléphone (code RIO)", "Identifier l''utilité et l''accès aux cartes SIM prépayées", "Maîtriser les conseils pour choisir le forfait le plus adapté à ses besoins et budget"]'::jsonb,
   '["Avoir un smartphone compatible avec les réseaux français"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 66
@@ -1371,8 +1351,8 @@ La portabilité du numéro est un droit pour le consommateur. Elle est garantie 
 
 Le code RIO (Relevé d''Identité Opérateur) est un identifiant unique à 12 caractères indispensable pour conserver votre numéro de téléphone mobile lorsque vous changez d''opérateur en France. Composez le 3179 (gratuit) depuis votre mobile pour l''obtenir par SMS. Le nouvel opérateur se chargera alors de toutes les démarches de portabilité en 3 jours ouvrables. Maîtriser cette procédure est absolument crucial pour garantir la continuité de votre communication, éviter de perdre votre numéro, et simplifier votre changement de forfait mobile sans tracas.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1453,8 +1433,8 @@ Lorsque vous arrivez en France en tant qu''étudiant international, la première
 
 Acheter une carte SIM prépayée est une solution absolument cruciale pour les étudiants internationaux arrivant en France, car elle offre une connectivité immédiate sans engagement ni justificatifs bancaires. Vous pouvez l''acheter dans les boutiques d''opérateurs, les supermarchés, ou les bureaux de tabac. Activez-la avec votre passeport, rechargez-la selon vos besoins, et utilisez-la comme solution temporaire avant de choisir un forfait sans engagement plus économique. Maîtriser cette étape est fondamental pour communiquer dès votre arrivée et faciliter votre installation en France.
 ',
-  1,
-  60,
+  3,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

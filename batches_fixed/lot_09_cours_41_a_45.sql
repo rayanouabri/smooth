@@ -11,25 +11,21 @@
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'La Pharmacie en France : Ordonnance,
-  Automédication et Génériques',
+  'La Pharmacie en France : Ordonnance, Automédication et Génériques',
   'pharmacie-france-ordonnance-automedication-generiques',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre le fonctionnement des pharmacies et l''accès aux médicaments. Les règles concernant la délivrance de médicaments (avec ou sans ordonnance), l''automédication et l''utilisation des génériques peuvent être différentes de celles de votre pays. Nous vous expliquerons la distinction cruciale entre les médicaments sur ordonnance et ceux en libre accès, le concept d''automédication responsable, et l''importance des médicaments génériques (leur équivalence et leur faible coût). Maîtriser ces informations est absolument crucial pour acheter vos médicaments en toute sécurité, comprendre vos ordonnances, et optimiser vos dépenses de santé en pharmacie.',
-  'Pharmacie France : ordonnance vs libre accès,
-  automédication,
-  génériques. Achetez vos médicaments en sécurité et économisez !',
+  'Pharmacie France : ordonnance vs libre accès, automédication, génériques. Achetez vos médicaments en sécurité et économisez !',
   'sante',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la différence entre médicaments sur ordonnance et automédication", "Identifier les règles de l''automédication responsable en France", "Savoir l''intérêt et l''équivalence des médicaments génériques", "Maîtriser les conseils pour acheter ses médicaments en pharmacie en toute sécurité"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  550,
+  4200
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 42
@@ -109,6 +105,8 @@ L''avis du médecin est obligatoire.
 
 En France, de nombreux médicaments nécessitent une ordonnance médicale pour être délivrés et remboursés. L''automédication est possible pour les symptômes bénins, mais doit être responsable et avec l''avis du pharmacien. Ne prenez jamais de médicament sur ordonnance sans prescription. Lisez les notices, respectez les posologies, et n''hésitez pas à demander conseil au pharmacien, qui est un acteur clé de votre santé. Maîtriser cette distinction est essentiel pour une gestion sécurisée et efficace de vos médicaments.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 42 (suite)
@@ -182,6 +180,8 @@ Les médicaments génériques sont des copies de médicaments originaux (appelé
 
 Les médicaments génériques sont des copies de médicaments originaux, avec la même substance active, la même efficacité et la même sécurité, mais à un prix inférieur. En pharmacie, le pharmacien vous proposera systématiquement le générique s''il existe. Acceptez-le, car c''est une opportunité d''économies importantes sur votre budget santé, sans compromettre la qualité des soins. Refuser le générique peut entraîner une pénalisation de votre remboursement. Faites confiance à votre pharmacien et aux autorités de santé françaises sur ce point.
 ',
+  2,
+  50,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 42 (suite)
@@ -251,6 +251,8 @@ En France, les pharmacies vendent des médicaments, mais aussi des produits de p
 
 La parapharmacie regroupe des produits de santé, d''hygiène et de beauté qui ne sont pas des médicaments. Leurs prix sont libres et ils ne sont jamais remboursés par la Sécurité Sociale ni la mutuelle. Comparez les prix entre les différentes enseignes (pharmacies, parapharmacies, supermarchés, sites en ligne) pour optimiser vos achats. N''hésitez pas à demander conseil au personnel, mais soyez vigilant(e) aux allégations marketing, surtout pour les compléments alimentaires. Comprendre la parapharmacie est essentiel pour gérer votre budget bien-être et vos achats au quotidien en France.
 ',
+  3,
+  50,
   NULL,
   '[]'::sql
 
@@ -263,24 +265,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Soutien psychologique : Aides et ressources pour étudiants en France',
   'soutien-psychologique-aides-ressources-etudiants-france',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France. L''éloignement familial, le choc culturel, les difficultés académiques ou financières peuvent générer du stress, de l''anxiété ou de la déprime. Accéder à un soutien psychologique adapté est essentiel pour votre bien-être mental. Nous vous présenterons les Bureaux d''Aide Psychologique Universitaire (BAPU) gratuits, le dispositif "Santé Psy Étudiant" offrant des séances gratuites chez un psychologue, et les lignes d''écoute anonymes et confidentielles. Maîtriser ces ressources est absolument crucial pour prendre soin de votre santé mentale, briser les tabous, et trouver l''aide nécessaire pour traverser les moments difficiles de votre parcours en France.',
-  'Soutien psy étudiant : BAPU gratuit,
-  Santé Psy Étudiant (8 séances gratuites),
-  lignes d''écoute anonymes. Prenez soin de votre santé mentale !',
+  'Soutien psy étudiant : BAPU gratuit, Santé Psy Étudiant (8 séances gratuites), lignes d''écoute anonymes. Prenez soin de votre santé mentale !',
   'sante',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance du soutien psychologique pour les étudiants internationaux",
-  "Identifier les Bureaux d''Aide Psychologique Universitaire (BAPU) et leurs services gratuits",
-  "Savoir comment bénéficier du dispositif Santé Psy Étudiant (8 séances gratuites)",
-  "Maîtriser les ressources d''écoute anonymes et confidentielles"]'::jsonb,
+  '["Comprendre l''importance du soutien psychologique pour les étudiants internationaux", "Identifier les Bureaux d''Aide Psychologique Universitaire (BAPU) et leurs services gratuits", "Savoir comment bénéficier du dispositif Santé Psy Étudiant (8 séances gratuites)", "Maîtriser les ressources d''écoute anonymes et confidentielles"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  TRUE,
-  4.5
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 43
@@ -348,6 +344,8 @@ Les BAPU sont des centres d''aide psychologique spécialisés dans l''accompagne
 
 Les BAPU (Bureaux d''Aide Psychologique Universitaire) offrent un soutien psychologique et psychiatrique gratuit et confidentiel aux étudiants en France. Si vous rencontrez des difficultés (stress, anxiété, déprime), n''hésitez pas à les contacter dès que possible. Trouvez le BAPU le plus proche sur `fn-bapu.fr`, prenez rendez-vous, et ayez votre attestation de Sécurité Sociale. Accéder à ces services est crucial pour votre bien-être mental et votre réussite durant votre parcours étudiant en France.
 ',
+  1,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 43 (suite)
@@ -423,6 +421,8 @@ Lancé en réponse à l''augmentation des troubles psychologiques chez les étud
 
 Le dispositif "Santé Psy Étudiant" vous offre 8 séances gratuites (renouvelables) chez un psychologue partenaire. Pour en bénéficier, vous devez d''abord consulter un médecin généraliste qui vous délivrera une ordonnance/lettre d''orientation. Ce soutien est absolument crucial pour les étudiants internationaux confrontés au stress et à l''anxiété. N''hésitez pas à utiliser cette aide précieuse et accessible pour prendre soin de votre santé mentale et garantir une expérience étudiante épanouissante en France.
 ',
+  2,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 43 (suite)
@@ -499,6 +499,8 @@ Ces lignes sont tenues par des bénévoles formés à l''écoute et au soutien p
 
 Les lignes d''écoute anonymes et confidentielles (SOS Amitié, Fil Santé Jeunes, Suicide Écoute, 3114) sont des ressources précieuses pour les étudiants internationaux en France qui traversent des moments difficiles. Elles offrent un espace sûr pour parler de vos émotions, sans jugement et gratuitement. N''hésitez jamais à les appeler si vous vous sentez seul(e), anxieux(se) ou déprimé(e). Elles constituent un premier pas vers l''aide et peuvent vous orienter vers un soutien plus régulier si nécessaire. Prenez soin de votre santé mentale, elle est aussi importante que votre santé physique.
 ',
+  3,
+  55,
   NULL,
   '[]'::sql
 
@@ -508,27 +510,21 @@ Les lignes d''écoute anonymes et confidentielles (SOS Amitié, Fil Santé Jeune
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Santé sexuelle en France : Contraception,
-  Dépistage et Prévention',
+  'Santé sexuelle en France : Contraception, Dépistage et Prévention',
   'sante-sexuelle-france-contraception-depistage-prevention',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre les enjeux et l''accès aux services de santé sexuelle. En France, la prévention et l''accès aux méthodes contraceptives et au dépistage sont des priorités. Nous vous informerons sur la gratuité des préservatifs en pharmacie pour les moins de 26 ans, les différentes options de contraception d''urgence et leur accessibilité, ainsi que le rôle des CeGIDD (Centres Gratuits d''Information, de Dépistage et de Diagnostic) pour le dépistage des IST. Maîtriser ces informations est absolument crucial pour vivre votre sexualité de manière éclairée, protégée et responsable, et pour garantir votre bien-être et votre santé. ',
-  'Santé sexuelle France : Préservatifs gratuits (-26 ans),
-  contraception d''urgence, dépistage IST CeGIDD. Vivez votre sexualité protégée !',
+  'Santé sexuelle France : Préservatifs gratuits (-26 ans), contraception d''urgence, dépistage IST CeGIDD. Vivez votre sexualité protégée !',
   'sante',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''accès gratuit aux préservatifs pour les jeunes de moins de 26 ans",
-  "Identifier les différentes méthodes de contraception d''urgence et leur accessibilité",
-  "Savoir où se faire dépister gratuitement des IST (CeGIDD)",
-  "Maîtriser les conseils pour une sexualité protégée et responsable en France"]'::jsonb,
+  '["Comprendre l''accès gratuit aux préservatifs pour les jeunes de moins de 26 ans", "Identifier les différentes méthodes de contraception d''urgence et leur accessibilité", "Savoir où se faire dépister gratuitement des IST (CeGIDD)", "Maîtriser les conseils pour une sexualité protégée et responsable en France"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  TRUE,
-  4.5
+  450,
+  3500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 44
@@ -600,6 +596,8 @@ La protection contre les infections sexuellement transmissibles (IST) et les gro
 
 Les préservatifs masculins sont gratuits en pharmacie pour tous les jeunes de moins de 26 ans en France, sur simple présentation d''une pièce d''identité. C''est une mesure cruciale pour la prévention des IST et des grossesses non désirées. Maîtrisez l''utilisation correcte du préservatif et ayez toujours cette protection sur vous. C''est la seule méthode de double protection. N''hésitez jamais à profiter de cette gratuité pour vivre votre sexualité de manière éclairée, protégée et responsable en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 44 (suite)
@@ -687,6 +685,8 @@ La contraception d''urgence est un filet de sécurité, pas une méthode réguli
 
 La contraception d''urgence est un moyen essentiel de prévention des grossesses non désirées, accessible sans ordonnance en pharmacie, et gratuite pour les moins de 26 ans en France. Prenez-la le plus tôt possible après le rapport à risque pour une efficacité maximale. Elle ne protège PAS des IST. Il est fortement recommandé de consulter un médecin ou un gynécologue par la suite pour un dépistage IST et pour discuter d''une contraception régulière. Maîtrisez ces informations pour vivre votre sexualité de manière éclairée et protégée en France.
 ',
+  2,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 44 (suite)
@@ -753,6 +753,8 @@ Un centre d''expertise et de gratuité.
 
 Les CeGIDD (Centres Gratuits d''Information, de Dépistage et de Diagnostic) sont des structures essentielles pour la santé sexuelle en France. Ils offrent un dépistage complet des IST (VIH, chlamydia, etc.), des hépatites, et des vaccinations, le tout gratuitement et de manière anonyme. Trouvez le CeGIDD le plus proche de chez vous et faites-vous dépister régulièrement, surtout après un rapport à risque. Cet accès facile et confidentiel est absolument crucial pour vivre votre sexualité de manière responsable et protéger votre santé en France.
 ',
+  3,
+  55,
   NULL,
   '[]'::sql
 
@@ -765,21 +767,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Lunettes et Dents (100% Santé) : Zéro reste à charge en France',
   'lunettes-dents-100-sante-zero-reste-charge-france',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France qui ont besoin de lunettes, de lentilles ou de soins dentaires. Le dispositif "100% Santé" (anciennement "Reste à charge zéro") est une réforme majeure qui garantit l''accès à des équipements d''optique, des prothèses dentaires et des aides auditives entièrement remboursés, sans aucun reste à charge pour l''assuré. Ne pas connaître ce dispositif, c''est risquer de payer des centaines, voire des milliers d''euros, pour des soins et équipements qui pourraient être gratuits. Nous vous expliquerons le contenu du panier "100% Santé", comment en faire la demande auprès de votre opticien ou dentiste, et les délais de carence des mutuelles. Maîtriser ces informations est absolument crucial pour protéger votre budget et garantir votre accès à des soins essentiels.',
-  '100% Santé : lunettes et dents zéro reste à charge ! Panier "100% Santé",
-  demande,
-  délais de carence mutuelle. Protégez votre budget et votre santé !',
+  '100% Santé : lunettes et dents zéro reste à charge ! Panier "100% Santé", demande, délais de carence mutuelle. Protégez votre budget et votre santé !',
   'sante',
   'intermediaire',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le principe et les avantages du dispositif "100% Santé"", "Identifier le contenu du panier "100% Santé" pour l''optique et le dentaire", "Savoir comment demander ces équipements à votre opticien ou dentiste", "Maîtriser les délais de carence des mutuelles et l''accès aux équipements"]'::jsonb,
   '["Avoir un numéro de Sécurité Sociale (NIR) et une mutuelle complémentaire (ou la CSS)"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  500,
+  3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 45
@@ -863,6 +862,8 @@ Le "100% Santé" est une promesse du gouvernement français d''améliorer l''acc
 
 Le dispositif "100% Santé" vous garantit un remboursement intégral (zéro reste à charge) pour une sélection d''équipements d''optique (lunettes), de prothèses dentaires et d''aides auditives de qualité. Pour en bénéficier, vous devez avoir une mutuelle complémentaire responsable (ou la CSS) et demander un devis "100% Santé" à votre opticien ou dentiste. Anticipez vos besoins, vérifiez les délais de carence de votre mutuelle, et n''hésitez jamais à demander ce panier de soins. C''est une aide précieuse et gratuite qui protège votre budget et garantit votre accès à des soins essentiels en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- PARTIE 4 : Banque & Finances
@@ -876,20 +877,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Banques en ligne vs Classiques : Choisir votre banque en France',
   'banques-en-ligne-vs-classiques-choisir-banque-france',
   'Ce cours est essentiel pour tous les étudiants internationaux qui s''apprêtent à ouvrir un compte bancaire en France. Le choix entre une banque traditionnelle (avec agence physique) et une banque en ligne (ou néo-banque) est une décision importante qui impacte votre gestion financière et votre accès aux services. Nous vous présenterons les avantages et inconvénients des banques avec agence (BNP, LCL), des banques en ligne (Boursorama Banque, Fortuneo) et des néo-banques (Revolut, N26). Vous apprendrez à choisir selon vos besoins spécifiques (dépôt d''espèces, conseiller dédié, frais internationaux). Maîtriser ce comparatif est absolument crucial pour ouvrir le compte bancaire le plus adapté à votre profil et optimiser la gestion de votre argent en France.',
-  'Banques France : Classiques (agences) vs en ligne (Revolut, Bourso). Avantages/inconvénients,
-  choix selon vos besoins (espèces, frais). Votre argent bien géré !',
+  'Banques France : Classiques (agences) vs en ligne (Revolut, Bourso). Avantages/inconvénients, choix selon vos besoins (espèces, frais). Votre argent bien géré !',
   'budget_finances',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les différences entre banques classiques et en ligne/néo-banques", "Identifier les avantages des banques avec agence (conseiller, dépôts espèces)", "Découvrir les atouts des banques en ligne (frais réduits, rapidité)", "Maîtriser les critères pour choisir la banque la plus adaptée à vos besoins d''étudiant"]'::jsonb,
   '["Avoir un passeport et un titre de séjour valide en France"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  700,
+  5500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 46
@@ -963,6 +962,8 @@ Un large choix d''acteurs.
 
 Les banques traditionnelles avec agence (BNP, LCL, Société Générale) offrent des avantages significatifs pour les étudiants internationaux en France, notamment un conseiller dédié (contact humain), la facilité de dépôt d''espèces et de chèques, et la proximité d''agences. Elles proposent souvent des offres spécifiques pour étudiants. Bien que les frais puissent être plus élevés qu''en ligne, la qualité de l''accompagnement est un atout majeur pour les nouveaux arrivants. Comparez les offres étudiantes et préparez vos documents pour ouvrir votre compte sereinement.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 46 (suite)
@@ -1031,6 +1032,8 @@ En complément ou en alternative aux banques traditionnelles, les "néo-banques"
 
 Les banques en ligne (Boursorama, Fortuneo) et néo-banques (Revolut, N26) offrent des avantages considérables pour les étudiants internationaux : frais bancaires réduits/gratuits, rapidité d''ouverture de compte, application mobile intuitive et frais internationaux souvent très faibles. Elles sont idéales pour une gestion autonome et mobile de votre argent. Cependant, elles n''ont pas d''agence physique ni de conseiller dédié et les dépôts d''espèces/chèques peuvent être plus complexes. Envisagez d''ouvrir un compte dans une néo-banque pour vos dépenses quotidiennes, éventuellement en complément d''une banque traditionnelle si vous avez des besoins spécifiques.
 ',
+  2,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 46 (suite)
@@ -1103,6 +1106,8 @@ Il n''y a pas de "meilleure" banque universelle, mais la meilleure banque pour V
 
 Le choix de votre banque en France dépend de vos besoins spécifiques : facilité de dépôt d''espèces/chèques (banque traditionnelle), accompagnement personnalisé (banque traditionnelle), ou frais réduits/gestion mobile (banque en ligne/néo-banque). Évaluez l''importance de chaque critère pour votre mode de vie et votre budget d''étudiant international. N''hésitez pas à comparer les offres "jeunes" des différentes banques et à envisager une combinaison de solutions (banque traditionnelle + néo-banque) pour optimiser votre gestion financière en France.
 ',
+  3,
+  60,
   NULL,
   '[]'::sql
 

@@ -11,26 +11,21 @@
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'La Bise en France : À qui,
-  combien,
-  comment ?',
+  'La Bise en France : À qui, combien, comment ?',
   'bise-france-qui-combien-comment',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un code social emblématique mais complexe : la "bise" (le fait de s''embrasser sur la joue pour se saluer). Les règles concernant "à qui fait-on la bise ?", "combien de bises selon la région ?", et "comment la faire ?" sont très subtiles et peuvent être une source d''embarras ou de malentendus si vous n''êtes pas familier(ère) avec les coutumes françaises. Nous aborderons les conventions, les variations régionales du nombre de bises, et l''impact de la pandémie sur les habitudes. Maîtriser ce rituel est absolument crucial pour des interactions sociales réussies, une bonne intégration, et pour éviter les situations inconfortables.',
-  'La Bise en France : à qui (amis, famille),
-  combien (2, 3, 4 ?),
-  comment faire. Maîtrisez ce rituel social et intégrez-vous !',
+  'La Bise en France : à qui (amis, famille), combien (2, 3, 4 ?), comment faire. Maîtrisez ce rituel social et intégrez-vous !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le rituel de la "bise" en France et ses conventions sociales", "Identifier les personnes à qui l''on fait la bise (amis, famille, collègues proches)", "Savoir le nombre de bises (2, 3, 4) et les variations régionales", "Maîtriser les conseils pour faire la bise correctement et gérer les situations délicates"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 77
@@ -117,7 +112,7 @@ L''observation est la clé.
 La bise est un rituel de salutation qui marque la proximité en France. On la fait généralement à la famille proche, aux amis, et aux camarades de promotion, mais **jamais** aux inconnus, aux professionnels de services, ou aux figures d''autorité. En cas de doute, laissez l''autre personne initier le geste ou optez pour une poignée de main ou un simple "Bonjour". L''observation des coutumes locales est essentielle. Maîtriser à qui faire la bise est absolument crucial pour des interactions sociales réussies, éviter les malentendus, et faciliter votre intégration dans la culture française.
 ',
   1,
-  60,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -201,8 +196,8 @@ L''observation et le mimétisme.
 
 Le nombre de bises pour se saluer varie en France : 2 bises sont la norme la plus courante (Île-de-France), 3 bises sont faites dans certaines zones, et 4 bises sont plus rares (Est). En cas d''incertitude, observez ce que font les autres ou laissez l''autre personne initier le mouvement. Le respect et le tact sont essentiels. Maîtriser ces variations régionales est absolument crucial pour des interactions sociales fluides, une bonne intégration, et pour éviter les situations embarrassantes lors de vos rencontres en France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -289,8 +284,8 @@ L''observation et le respect de l''autre.
 
 La pandémie de COVID-19 a fait évoluer les rituels de salutation en France, avec un retour du "check" et une plus grande acceptation du salut verbal ou de la poignée de main, en complément de la bise. En cas de doute, observez l''autre personne et laissez-la initier le geste. Respectez toujours la préférence de votre interlocuteur pour le contact physique. Maîtriser ces adaptations est absolument crucial pour des interactions sociales respectueuses, fluides, et conformes aux sensibilités actuelles en France, garantissant ainsi une bonne intégration.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -304,20 +299,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Repas et Resto U en France : Manger étudiant et économique',
   'repas-resto-u-france-manger-etudiant-economique',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin d''optimiser leur budget alimentaire. Les restaurants universitaires (Resto U) sont une solution économique et pratique pour se restaurer au quotidien. Nous vous expliquerons le "tarif social" (1€ ou 3,30€) dont vous pouvez bénéficier en tant qu''étudiant, et comment payer vos repas avec la carte **Izly**, le système de paiement des CROUS. Nous aborderons également les horaires des repas en France, souvent plus tôt qu''ailleurs. Maîtriser ces informations est absolument crucial pour manger équilibré à moindre coût, gérer votre budget alimentation efficacement, et vous intégrer aux habitudes culinaires françaises.',
-  'Repas et Resto U France : tarif social (1€/3,30€),
-  payer avec Izly. Mangez économique et adaptez-vous aux horaires français !',
+  'Repas et Resto U France : tarif social (1€/3,30€), payer avec Izly. Mangez économique et adaptez-vous aux horaires français !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement des Restaurants Universitaires (Resto U) et leur accessibilité", "Identifier le "tarif social" (1€ ou 3,30€) pour les étudiants", "Savoir comment payer ses repas avec la carte Izly (création de compte, rechargement)", "Maîtriser les horaires des repas en France et les astuces pour s''adapter"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  700,
+  5000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 78
@@ -390,7 +383,7 @@ Le rôle de l''assistante sociale.
 Les Restaurants Universitaires (Resto U) proposent un tarif social très avantageux : 1€ pour les étudiants boursiers ou précaires (y compris internationaux sur avis d''assistante sociale du CROUS), et 3,30€ pour tous les autres étudiants. Ce dispositif est crucial pour manger équilibré et économique en France. Utilisez votre carte Izly pour payer et renseignez-vous auprès de votre CROUS pour l''éligibilité au repas à 1€. Maîtriser ces informations est fondamental pour optimiser votre budget alimentation et profiter pleinement des services de restauration étudiante.
 ',
   1,
-  60,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -466,8 +459,8 @@ Pour payer vos repas dans les Restaurants Universitaires (Resto U) et cafétéri
 
 Payer vos repas dans les Restaurants Universitaires (Resto U) en France se fait avec la carte ou l''application Izly. Activez votre compte Izly après votre inscription universitaire (via l''e-mail d''activation du CROUS), et rechargez-le en ligne ou en caisse. Votre carte étudiante est votre carte Izly, ou utilisez l''application mobile pour un QR code de paiement. Maîtriser Izly est absolument crucial pour bénéficier du tarif social (1€ ou 3,30€), gérer votre budget alimentation efficacement, et faciliter votre vie quotidienne étudiante en France.
 ',
-  1,
-  60,
+  2,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -545,8 +538,8 @@ Les horaires des repas en France, et notamment le déjeuner, sont souvent plus t
 
 Les horaires des repas en France sont plus tôt qu''ailleurs, avec un déjeuner vers 12h-13h ("midi pile") et un dîner vers 19h30-21h. Les Restaurants Universitaires (Resto U) respectent ces horaires (11h30-14h et 18h30-20h). Adaptez votre rythme, profitez des tarifs sociaux du Resto U (1€/3,30€), et ayez des options de dépannage (snacks, supermarchés) pour les repas en dehors des heures. Maîtriser ces habitudes est absolument crucial pour une intégration sociale réussie, une gestion efficace de votre budget alimentation, et une vie quotidienne sereine en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -559,27 +552,19 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
   'L''Apéro en France : Concept social, convivialité et bonnes manières',
   'apero-france-concept-social-convivialite-bonnes-manieres',
-  'Ce cours est essentiel pour tous les étudiants internationaux en France,
-  afin de comprendre un rituel social profondément ancré dans la culture française : l''"apéro" (apéritif). L''apéro n''est pas un simple "verre" ; c''est un moment de convivialité qui précède le dîner,
-  avec ses propres codes et attentes. Ne pas comprendre son concept social (ni dîner, ni goûter),
-  savoir quoi apporter si vous êtes invité(e),
-  et les règles pour "trinquer" en se regardant dans les yeux,
-  c''est risquer de commettre des impairs, de ne pas participer pleinement, ou de se sentir exclu(e). Maîtriser le rituel de l''apéro est absolument crucial pour une intégration sociale réussie et pour nouer des liens avec les Français.',
-  'L''Apéro en France : concept social,
-  quoi apporter si invité,
-  trinquer en se regardant dans les yeux. Intégrez-vous à la convivialité française !',
+  'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un rituel social profondément ancré dans la culture française : l''"apéro" (apéritif). L''apéro n''est pas un simple "verre" ; c''est un moment de convivialité qui précède le dîner, avec ses propres codes et attentes. Ne pas comprendre son concept social (ni dîner, ni goûter), savoir quoi apporter si vous êtes invité(e), et les règles pour "trinquer" en se regardant dans les yeux, c''est risquer de commettre des impairs, de ne pas participer pleinement, ou de se sentir exclu(e). Maîtriser le rituel de l''apéro est absolument crucial pour une intégration sociale réussie et pour nouer des liens avec les Français.',
+  'L''Apéro en France : concept social, quoi apporter si invité, trinquer en se regardant dans les yeux. Intégrez-vous à la convivialité française !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le concept social de l''apéro (moment de convivialité avant le dîner)", "Identifier ce qu''il faut apporter si vous êtes invité(e) à un apéro", "Savoir comment "trinquer" correctement en France (regard, "tchin-tchin")", "Maîtriser les codes de l''apéro pour une intégration sociale réussie"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  TRUE,
-  4.5
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 79
@@ -664,7 +649,7 @@ Ce que l''on trouve sur la table.
 L''apéro est un rituel social français de convivialité qui précède le dîner, généralement entre 18h et 21h. Il n''est ni un dîner (on y grignote des amuse-bouches) ni un goûter (boissons souvent alcoolisées). Apportez quelque chose si vous êtes invité(e), modérez votre consommation d''alcool, et participez à la conversation. Maîtriser ce concept social est absolument crucial pour une intégration réussie, pour nouer des liens avec les Français, et pour partager un moment clé de la vie quotidienne en France.
 ',
   1,
-  60,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -742,8 +727,8 @@ Adaptez-vous à l''ambiance.
 
 Lorsque vous êtes invité(e) à un apéro en France, il est d''usage d''apporter quelque chose pour partager : une bouteille de vin, des bières spéciales, des jus de fruits originaux, ou des accompagnements salés (chips, olives, légumes à croquer, mini-saucissons). Demandez discrètement à l''hôte si vous n''êtes pas sûr(e), et adaptez votre choix au contexte et à l''ambiance. L''intention de participer à la convivialité compte plus que le prix. Maîtriser cette coutume est absolument crucial pour faire bonne impression, s''intégrer, et partager un moment social clé de la vie française.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -842,23 +827,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Améliorer son français en France : Ressources et astuces pour progresser',
   'ameliorer-francais-france-ressources-astuces-progresser',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent perfectionner leur maîtrise de la langue française. Une bonne connaissance du français est la clé d''une intégration réussie, d''une meilleure réussite académique, et d''une insertion professionnelle facilitée. Nous vous présenterons des applications gratuites pour l''apprentissage (Duolingo, Babbel), les avantages des "cafés des langues" et des "tandems linguistiques" pour la pratique orale, et l''intérêt des médias français (Radio France, Arte) pour l''écoute et la compréhension. Maîtriser ces ressources et ces astuces est absolument crucial pour progresser rapidement, gagner en confiance, et vous immerger pleinement dans la vie française.',
-  'Améliorer votre français : applications gratuites,
-  cafés des langues,
-  tandems,
-  Radio France,
-  Arte. Progressez vite et intégrez-vous !',
+  'Améliorer votre français : applications gratuites, cafés des langues, tandems, Radio France, Arte. Progressez vite et intégrez-vous !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Découvrir et utiliser des applications gratuites pour apprendre le français", "Comprendre l''intérêt des cafés des langues et tandems linguistiques pour la pratique orale", "Savoir utiliser les médias français (radio, TV) pour l''écoute et la compréhension", "Maîtriser les conseils pour une progression rapide et une immersion réussie"]'::jsonb,
   '["Avoir un niveau de français de base (A1 minimum)"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  800,
+  6000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 80
@@ -933,7 +913,7 @@ Les applications mobiles transforment l''apprentissage des langues en une activi
 Les applications mobiles gratuites (Duolingo, Babbel, Memrise, Anki) sont des outils absolument cruciaux pour les étudiants internationaux souhaitant améliorer leur français en France. Elles vous permettent de travailler le vocabulaire, la grammaire, l''écoute et la prononciation de manière ludique et flexible. Fixez-vous des objectifs quotidiens, variez les applications, et complétez vos cours. Maîtriser ces ressources est fondamental pour une progression rapide, une immersion linguistique réussie, et une plus grande confiance au quotidien en France.
 ',
   1,
-  60,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1005,8 +985,8 @@ Ces initiatives reposent sur l''échange et la bienveillance. Elles sont un exce
 
 Les cafés des langues et les tandems linguistiques sont des outils absolument cruciaux pour les étudiants internationaux en France afin d''améliorer leur français oral, de gagner en confiance, et de s''intégrer socialement. Les cafés des langues offrent une pratique décontractée en groupe, tandis que les tandems proposent un échange personnalisé. Trouvez ces opportunités via votre université, des associations ou des plateformes en ligne. Osez parler, n''ayez pas peur des erreurs, et utilisez chaque occasion de pratiquer. Maîtriser ces méthodes est fondamental pour progresser rapidement en français et vivre une immersion linguistique réussie en France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1081,8 +1061,8 @@ Apprendre sans s''en rendre compte.
 
 L''immersion passive via les médias français (Radio France pour l''écoute, Arte pour la télévision avec sous-titres) est absolument cruciale pour les étudiants internationaux souhaitant améliorer leur français. Écoutez la radio régulièrement, regardez Arte avec les sous-titres en français, et lisez la presse. Concentrez-vous sur le sens général, enrichissez votre vocabulaire, et familiarisez-vous avec la culture française. Maîtriser ces ressources est fondamental pour une progression continue de votre compréhension orale et écrite, et pour une immersion réussie dans la vie française.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1096,24 +1076,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Se faire des amis en France : Brisez la bulle et intégrez-vous !',
   'se-faire-amis-france-brisez-bulle-integrez',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de faciliter leur intégration sociale et de nouer des liens d''amitié. L''éloignement familial et le choc culturel peuvent rendre difficile la création de nouvelles relations. Nous vous expliquerons pourquoi il est important de "sortir de la bulle des expatriés" pour rencontrer des Français, les avantages des activités sportives universitaires (SUAPS) pour faire des rencontres, et comment proposer des sorties et des activités. Maîtriser ces stratégies est absolument crucial pour briser l''isolement, développer un cercle social riche, et vivre une expérience étudiante épanouissante et mémorable en France.',
-  'Se faire des amis France : sortez de la bulle expatriée,
-  activités sportives (SUAPS),
-  proposez des sorties. Brisez l''isolement, intégrez-vous !',
+  'Se faire des amis France : sortez de la bulle expatriée, activités sportives (SUAPS), proposez des sorties. Brisez l''isolement, intégrez-vous !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance de la rencontre de Français pour l''intégration",
-  "Identifier les lieux et activités propices aux rencontres (SUAPS, associations)",
-  "Savoir comment initier des sorties et proposer des activités",
-  "Maîtriser les conseils pour développer un cercle social et lutter contre l''isolement"]'::jsonb,
+  '["Comprendre l''importance de la rencontre de Français pour l''intégration", "Identifier les lieux et activités propices aux rencontres (SUAPS, associations)", "Savoir comment initier des sorties et proposer des activités", "Maîtriser les conseils pour développer un cercle social et lutter contre l''isolement"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  TRUE,
-  4.5
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 81
@@ -1189,7 +1163,7 @@ Le confort de la "bulle" est agréable, mais il peut freiner votre progression.
 Sortir de la "bulle des expatriés" est absolument crucial pour les étudiants internationaux en France afin de développer un cercle social diversifié et de s''intégrer pleinement. Prenez des initiatives pour initier des contacts avec des Français : dans votre université (cours, associations), en dehors (clubs sportifs, activités culturelles), et en proposant des sorties. Parlez français le plus possible, soyez curieux(se) et ouvert(e) d''esprit. Maîtriser ces stratégies est fondamental pour briser l''isolement, pratiquer la langue, comprendre la culture locale, et vivre une expérience étudiante épanouissante et mémorable en France.
 ',
   1,
-  60,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1269,8 +1243,8 @@ Une démarche simple en début d''année.
 
 Le Service Universitaire des Activités Physiques et Sportives (SUAPS) offre aux étudiants une multitude de sports à des tarifs très abordables. Participer à ces activités est absolument crucial pour les étudiants internationaux afin de briser l''isolement, rencontrer des Français, pratiquer la langue dans un contexte détendu, et développer un cercle social sain et diversifié. Inscrivez-vous dès la rentrée avec votre carte étudiante et un certificat médical. Maîtriser le SUAPS est fondamental pour votre bien-être, votre intégration, et pour une vie étudiante épanouissante en France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1352,8 +1326,8 @@ Les relations sociales se construisent par des échanges et des activités parta
 
 Proposer des sorties et des activités est absolument crucial pour les étudiants internationaux souhaitant se faire des amis en France. N''attendez pas les invitations, soyez proactif en suggérant des activités culturelles (musées, cinéma), sportives (SUAPS), ou gourmandes (café, restaurant). Soyez clair(e) et direct(e) dans vos propositions, et ne vous découragez pas en cas de refus. Maîtriser cette initiative est fondamental pour briser la glace, développer un cercle social riche et diversifié, et vivre une expérience étudiante épanouissante et mémorable en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

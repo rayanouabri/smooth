@@ -14,21 +14,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Navigo et Transports en France : Guide des transports en commun',
   'navigo-transports-france-guide-transports-commun',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux qui vont utiliser les transports en commun en France, notamment en Île-de-France (Paris). Le Pass Navigo est le titre de transport incontournable, mais les offres et les règles peuvent être complexes. Nous vous expliquerons le fonctionnement du Pass Navigo (Paris) et des équivalents régionaux, les tarifs spécifiques pour les étudiants (Imagine R), et l''importance cruciale de valider votre titre à chaque passage pour éviter les amendes. Maîtriser le système de transports en commun est absolument crucial pour vous déplacer efficacement, optimiser votre budget transports, et vous intégrer sereinement dans votre ville d''études.',
-  'Navigo et Transports en France : Pass Navigo (Paris),
-  tarifs Imagine R étudiants,
-  validez votre titre. Déplacez-vous facilement et sans amende !',
+  'Navigo et Transports en France : Pass Navigo (Paris), tarifs Imagine R étudiants, validez votre titre. Déplacez-vous facilement et sans amende !',
   'transport',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement du Pass Navigo et des équivalents régionaux", "Identifier les tarifs spécifiques pour les étudiants (Imagine R)", "Savoir comment valider son titre de transport à chaque passage", "Maîtriser les conseils pour optimiser ses déplacements et éviter les amendes"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 67
@@ -190,8 +187,8 @@ Si vous êtes étudiant(e) et que vous résidez en Île-de-France (Paris et sa r
 
 Le forfait Imagine R est l''abonnement aux transports en commun le plus avantageux pour les étudiants de moins de 26 ans résidant en Île-de-France. Il offre des tarifs réduits pour des déplacements illimités sur toutes les zones. Faites la demande en ligne avec votre pièce d''identité, justificatif de domicile et certificat de scolarité, et payez par prélèvements mensuels. N''oubliez jamais de valider votre Pass à chaque passage pour éviter les amendes. Maîtriser l''Imagine R est absolument crucial pour optimiser votre budget transports et profiter sereinement de votre vie étudiante à Paris et en Île-de-France.
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -266,8 +263,8 @@ L''amende est immédiate.
 
 
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -278,25 +275,21 @@ L''amende est immédiate.
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Prendre le train (SNCF) en France : TGV,
-  Ouigo et cartes de réduction',
+  'Prendre le train (SNCF) en France : TGV, Ouigo et cartes de réduction',
   'prendre-train-sncf-france-tgv-ouigo-cartes-reduction',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent voyager en train à travers le pays. Le réseau ferroviaire français, opéré principalement par la SNCF, offre différentes options (TGV Inoui, Ouigo, TER), mais les tarifs et les réductions peuvent être complexes. Nous vous expliquerons la distinction entre TGV Inoui (confort, flexibilité) et Ouigo (low cost, restrictions), l''intérêt de la Carte Avantage Jeune (est-elle rentable pour vous ?), et l''application indispensable "Connect SNCF". Maîtriser ces informations est absolument crucial pour planifier vos voyages, trouver les meilleurs prix, et profiter pleinement de la découverte de la France en train.',
-  'Prendre le train SNCF : TGV Inoui vs Ouigo,
-  Carte Avantage Jeune,
-  appli Connect SNCF. Voyagez malin et explorez la France !',
+  'Prendre le train SNCF : TGV Inoui vs Ouigo, Carte Avantage Jeune, appli Connect SNCF. Voyagez malin et explorez la France !',
   'transport',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Distinguer les offres TGV Inoui (standard) et Ouigo (low cost)", "Comprendre l''intérêt et la rentabilité de la Carte Avantage Jeune", "Savoir utiliser l''application Connect SNCF pour la réservation et les infos trafic", "Maîtriser les conseils pour planifier ses voyages en train et acheter ses billets au meilleur prix"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
   500,
-  4,
-  0
+  3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 68
@@ -437,8 +430,8 @@ Si vous êtes un étudiant international en France et que vous prévoyez de voya
 
 
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -510,8 +503,8 @@ SNCF Connect est l''application officielle de la SNCF, qui a regroupé les servi
 
 L''application SNCF Connect est l''outil indispensable pour tous les étudiants internationaux qui voyagent en train en France. Elle vous permet de rechercher, acheter et gérer vos billets (TGV Inoui, Ouigo, TER), d''enregistrer vos cartes de réduction (Carte Avantage Jeune), et de consulter les informations trafic en temps réel. Téléchargez-la, créez votre compte, et utilisez-la pour planifier vos voyages efficacement et au meilleur prix. Maîtriser SNCF Connect est absolument crucial pour une autonomie totale et une expérience de voyage sereine dans le réseau ferroviaire français.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -524,22 +517,19 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
   'Vélib'' et vélos en France : Mobilité douce et sécurité routière',
   'velib-velos-france-mobilite-douce-securite-routiere',
-  'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent adopter la "mobilité douce" et se déplacer à vélo. Le vélo est un moyen de transport écologique,
-  économique et agréable,
-  mais il est crucial de connaître les options disponibles (services de vélos en libre-service comme Vélib'' à Paris) et le Code de la route spécifique aux cyclistes. Nous vous expliquerons comment vous abonner aux services de vélos en libre-service, les règles de circulation pour les cyclistes, et les conseils pour sécuriser votre vélo personnel (antivol, stationnement). Maîtriser ces informations est absolument crucial pour vous déplacer en toute sécurité, éviter les amendes, et profiter pleinement de la ville à vélo.',
+  'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent adopter la "mobilité douce" et se déplacer à vélo. Le vélo est un moyen de transport écologique, économique et agréable, mais il est crucial de connaître les options disponibles (services de vélos en libre-service comme Vélib'' à Paris) et le Code de la route spécifique aux cyclistes. Nous vous expliquerons comment vous abonner aux services de vélos en libre-service, les règles de circulation pour les cyclistes, et les conseils pour sécuriser votre vélo personnel (antivol, stationnement). Maîtriser ces informations est absolument crucial pour vous déplacer en toute sécurité, éviter les amendes, et profiter pleinement de la ville à vélo.',
   'Vélib'' et vélos en France : abonnements libre-service, Code de la route cycliste, sécurité antivol. Déplacez-vous à vélo en sécurité !',
   'transport',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement des services de vélos en libre-service (Vélib'') et leurs abonnements", "Identifier les règles du Code de la route spécifiques aux cyclistes", "Savoir comment sécuriser son vélo personnel contre le vol", "Maîtriser les conseils pour une mobilité douce sûre et agréable en ville"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  400,
+  3000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 69
@@ -692,7 +682,7 @@ Votre sécurité d''abord.
 
 Si vous circulez à vélo en France, il est absolument crucial de connaître et de respecter le Code de la route cycliste. Ayez les équipements obligatoires (feux, sonnette, gilet), roulez sur les pistes cyclables, respectez les feux et les priorités, et ne roulez jamais sur les trottoirs. Soyez visible, attentif(ve) et signalez vos changements de direction. Maîtriser ces règles est fondamental pour votre sécurité, pour éviter les amendes, et pour profiter pleinement d''une mobilité douce sereine et légale en ville.
 ',
-  1,
+  2,
   60,
   NULL,
   '[]'::jsonb
@@ -774,8 +764,8 @@ Si vous possédez un vélo personnel en France, il est absolument crucial de le 
 
 
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -786,26 +776,21 @@ Si vous possédez un vélo personnel en France, il est absolument crucial de le 
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'f0e1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Faire ses courses en France : Hypermarchés,
-  Hard-Discount et astuces',
+  'Faire ses courses en France : Hypermarchés, Hard-Discount et astuces',
   'faire-courses-france-hypermarches-hard-discount-astuces',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France, afin d''optimiser leur budget alimentaire. Faire ses courses est une dépense récurrente, et le choix du magasin peut avoir un impact majeur sur vos dépenses. Nous vous expliquerons la typologie des supermarchés (hypermarché, supermarché, supérette), les avantages des enseignes "hard-discount" (Lidl, Aldi) pour des prix bas, et l''intérêt des cartes de fidélité pour des réductions supplémentaires. Maîtriser ces informations est absolument crucial pour gérer votre budget alimentation efficacement, faire des économies, et découvrir les habitudes de consommation françaises sans vous ruiner.',
-  'Courses en France : hypermarchés,
-  supermarchés,
-  hard-discount (Lidl, Aldi),
-  cartes de fidélité. Économisez sur votre budget alimentation !',
+  'Courses en France : hypermarchés, supermarchés, hard-discount (Lidl, Aldi), cartes de fidélité. Économisez sur votre budget alimentation !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la typologie des magasins (hypermarché, supermarché, supérette)", "Identifier les avantages des enseignes hard-discount (Lidl, Aldi) pour les petits budgets", "Savoir comment utiliser les cartes de fidélité pour des réductions", "Maîtriser les conseils pour faire ses courses intelligemment et économiser"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
   500,
-  4,
-  0
+  3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 70
@@ -930,8 +915,8 @@ Le hard-discount s''est imposé en France en proposant un modèle économique qu
 
 
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1013,8 +998,8 @@ Soyez un "chasseur" de bonnes affaires.
 
 Les cartes de fidélité des supermarchés en France sont un excellent moyen d''économiser sur vos courses alimentaires. Elles vous offrent des réductions immédiates, du cagnottage à utiliser, et des offres personnalisées. Obtenez les cartes des magasins que vous fréquentez régulièrement, consultez leurs catalogues de promotions, et présentez toujours votre carte en caisse. Maîtriser l''utilisation de ces cartes est absolument crucial pour optimiser votre budget alimentation, faire des économies, et gérer vos dépenses intelligemment en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1028,21 +1013,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Tri sélectif en France : Le guide des poubelles (Jaune, Verte, Marron)',
   'tri-selectif-france-guide-poubelles-jaune-verte-marron',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre les règles du tri sélectif des déchets ménagers. Le tri est une pratique quotidienne obligatoire et un geste citoyen important pour l''environnement. Ne pas connaître les consignes de tri, c''est risquer de mal jeter ses déchets, de polluer les filières de recyclage, de recevoir des rappels à l''ordre, ou de générer des nuisances dans votre immeuble. Nous vous expliquerons la distinction entre la poubelle jaune (emballages), la poubelle verte (verre), la poubelle marron/noire (déchets non recyclables), et les points de collecte spécifiques. Maîtriser ces nouvelles règles est absolument crucial pour une intégration respectueuse de l''environnement et du cadre de vie en France.',
-  'Tri sélectif en France : Jaune (emballages),
-  Verte (verre),
-  Marron (non-recyclable). Les nouvelles règles et points de collecte. Un geste éco-citoyen !',
+  'Tri sélectif en France : Jaune (emballages), Verte (verre), Marron (non-recyclable). Les nouvelles règles et points de collecte. Un geste éco-citoyen !',
   'culture_codes_sociaux',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre les principes du tri sélectif en France", "Identifier les catégories de déchets pour chaque couleur de poubelle (jaune, verte, marron)", "Savoir où déposer le verre et les autres déchets spécifiques", "Maîtriser les nouvelles règles de tri et les conseils pour une bonne gestion des déchets"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
   500,
-  4,
-  0
+  3800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 71
@@ -1174,8 +1156,8 @@ Le verre est un matériau 100% recyclable et à l''infini. Il est donc très imp
 
 Le tri du verre en France se fait spécifiquement dans des conteneurs dédiés (souvent verts ou blancs) et non dans la poubelle jaune. Videz vos bouteilles, pots et bocaux, retirez les bouchons, et déposez-les dans le point de collecte le plus proche de chez vous. Vérifiez les consignes de votre commune (sur le site de la mairie) pour localiser ces points. Ne jetez pas de vaisselle ou de miroirs avec le verre d''emballage. Maîtriser cette spécificité est absolument crucial pour un tri efficace, respectueux de l''environnement, et conforme aux règles locales en France.
 ',
-  1,
-  60,
+  2,
+  50,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -1248,8 +1230,8 @@ Le compostage des biodéchets (restes alimentaires, déchets verts) est devenu u
 
 Depuis le 1er janvier 2024, le tri à la source des biodéchets (restes alimentaires, petits déchets verts) est obligatoire en France. Votre commune propose des solutions : composteurs individuels, collectifs d''immeuble, ou points d''apport volontaire. Renseignez-vous auprès de votre mairie pour connaître les dispositifs près de chez vous. Utilisez un seau à biodéchets, respectez l''équilibre des matières (pas de viande, poisson, produits laitiers cuits dans la plupart des composteurs), et ne jetez pas de sacs plastiques. Maîtriser ces nouvelles règles est absolument crucial pour un mode de vie plus écologique et respectueux de l''environnement en France.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;

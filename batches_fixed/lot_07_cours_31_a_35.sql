@@ -14,23 +14,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Récupérer sa caution : État des lieux de sortie et recours',
   'recuperer-caution-etat-des-lieux-sortie-recours',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux qui s''apprêtent à quitter leur logement en France. Le "dépôt de garantie" (ou caution) représente une somme d''argent importante que vous avez versée à votre entrée, et sa restitution est souvent source de litiges. Nous vous guiderons à travers l''étape cruciale de l''état des lieux de sortie, le délai légal de restitution de la caution (1 ou 2 mois), les retenues légales et illégales que le propriétaire peut faire, et les recours possibles (mise en demeure, commission de conciliation) si la caution n''est pas rendue. Maîtriser ces informations est absolument essentiel pour protéger votre argent et assurer la récupération intégrale de votre dépôt de garantie.',
-  'Récupérer votre caution : état des lieux de sortie,
-  délai légal (1 ou 2 mois),
-  retenues légales/illégales,
-  mise en demeure. Protégez votre argent !',
+  'Récupérer votre caution : état des lieux de sortie, délai légal (1 ou 2 mois), retenues légales/illégales, mise en demeure. Protégez votre argent !',
   'logement',
   'intermediaire',
   'fr',
-  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance de l''état des lieux de sortie pour le dépôt de garantie", "Connaître le délai légal de restitution de la caution (1 ou 2 mois)", "Identifier les retenues légales (dégradations, impayés) et illégales", "Maîtriser les recours (mise en demeure, conciliation) si la caution n''est pas rendue"]'::jsonb,
-  '["Avoir quitté un logement en France",
-  "Avoir réalisé un état des lieux d''entrée précis"]'::jsonb,
   4,
   0,
+  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
+  '["Comprendre l''importance de l''état des lieux de sortie pour le dépôt de garantie", "Connaître le délai légal de restitution de la caution (1 ou 2 mois)", "Identifier les retenues légales (dégradations, impayés) et illégales", "Maîtriser les recours (mise en demeure, conciliation) si la caution n''est pas rendue"]'::jsonb,
+  '["Avoir quitté un logement en France", "Avoir réalisé un état des lieux d''entrée précis"]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500
+  700,
+  5000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 32
@@ -126,7 +121,7 @@ Soyez aussi minutieux qu''à l''entrée.
 L''état des lieux de sortie est l''étape la plus importante pour la restitution de votre dépôt de garantie. Préparez minutieusement le logement (nettoyage, petites réparations) et ayez votre état des lieux d''entrée avec vous pour la comparaison. Soyez rigoureux(se) lors de la visite, prenez des photos de tout, et consignez vos désaccords sur le document. Ne signez jamais si vous n''êtes pas d''accord. Une préparation exemplaire de cette étape est la garantie d''un départ serein et d''une récupération intégrale de votre caution en France.
 ',
   1,
-  60,
+  70,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -200,7 +195,7 @@ Le facteur clé est la conformité de l''état des lieux.
 
 Le délai légal de restitution de votre dépôt de garantie est d''un mois si l''état des lieux de sortie est conforme à celui d''entrée, et de deux mois en cas de différences. Ce délai court à partir de la remise des clés et de l''état des lieux. Au-delà, des pénalités de 10% du loyer HC par mois de retard s''appliquent. Préparez un état des lieux de sortie impeccable, conservez toutes vos preuves (états des lieux, photos), et agissez rapidement (mise en demeure, conciliation) si votre caution n''est pas rendue dans les délais. La connaissance de ces règles est cruciale pour protéger votre argent.
 ',
-  1,
+  2,
   60,
   NULL,
   '[]'::jsonb
@@ -275,7 +270,7 @@ Le "dépôt de garantie" (ou caution) que vous avez versé à votre entrée dans
 
 Les retenues sur votre dépôt de garantie sont légales uniquement pour les loyers/charges impayés et les dégradations qui vous sont imputables (hors vétusté normale). Le propriétaire doit toujours justifier ces retenues par l''état des lieux de sortie et des devis/factures. Contestez systématiquement les retenues illégales (vétusté, frais administratifs) en demandant des justificatifs, en vous appuyant sur vos états des lieux et vos photos. Si nécessaire, envoyez une mise en demeure et saisissez la Commission départementale de conciliation. La connaissance de ces règles est cruciale pour protéger votre argent et récupérer votre caution.
 ',
-  1,
+  3,
   60,
   NULL,
   '[]'::jsonb
@@ -358,7 +353,7 @@ Dans l'attente de votre régularisation dans les plus brefs délais, je vous pri
 
 
 ',
-  1,
+  4,
   60,
   NULL,
   '[]'::jsonb
@@ -375,22 +370,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Le système de santé français : Sécurité Sociale et Mutuelle',
   'systeme-sante-francais-securite-sociale-mutuelle',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France, afin de comprendre le système de santé français. Souvent perçu comme complexe, il repose sur un "duo gagnant" : la Sécurité Sociale et la mutuelle complémentaire. Nous vous expliquerons le rôle de chacun, l''importance du "parcours de soins coordonnés" pour un meilleur remboursement, et le mécanisme du "tiers-payant" qui vous permet de ne pas avancer les frais chez le médecin ou à la pharmacie. Maîtriser ces concepts est absolument crucial pour accéder aux soins, optimiser vos remboursements, et garantir votre bien-être tout au long de votre séjour en France.',
-  'Système de santé français : Sécu,
-  mutuelle,
-  parcours de soins,
-  tiers-payant. Comprenez tout pour des soins optimaux !',
+  'Système de santé français : Sécu, mutuelle, parcours de soins, tiers-payant. Comprenez tout pour des soins optimaux !',
   'sante',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le fonctionnement du système de santé français (Sécurité Sociale + Mutuelle)", "Identifier l''importance du parcours de soins coordonnés pour de meilleurs remboursements", "Maîtriser le mécanisme du tiers-payant et ses avantages", "Accéder aux soins en toute sérénité et optimiser ses dépenses de santé"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 33
@@ -541,8 +532,8 @@ Le parcours de soins coordonnés a été mis en place pour responsabiliser les p
 
 
 ',
-  1,
-  60,
+  2,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -622,8 +613,8 @@ Le tiers-payant évite au patient d''avancer la part remboursée par l''Assuranc
 
 Le tiers-payant est un dispositif crucial du système de santé français qui vous permet de ne pas avancer les frais (part Sécurité Sociale et/ou part mutuelle) chez les professionnels de santé. Il est largement disponible en pharmacie, chez le médecin (avec la Carte Vitale et la mutuelle) et à l''hôpital. C''est un avantage considérable pour la gestion de votre budget et l''accès aux soins. Ayez toujours votre Carte Vitale et votre carte de mutuelle sur vous pour en bénéficier pleinement.
 ',
-  1,
-  60,
+  3,
+  55,
   NULL,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
@@ -637,21 +628,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Inscription à la Sécurité Sociale française : Votre accès aux soins',
   'inscription-securite-sociale-francaise-acces-soins',
   'Ce cours est un guide absolument essentiel pour tous les étudiants internationaux en France. L''inscription à la Sécurité Sociale (Assurance Maladie) est une démarche **obligatoire et gratuite** qui vous ouvre les portes du système de santé français et vous permet d''être remboursé(e) de vos frais médicaux. Nous vous détaillerons la procédure de demande en ligne sur le site `etudiant-etranger.ameli.fr`, les documents clés à numériser (visa, acte de naissance), et les étapes pour obtenir votre attestation provisoire. Ne pas s''inscrire à la Sécurité Sociale, c''est risquer de payer la totalité de vos frais de santé et de vous retrouver dans une situation financière précaire en cas de maladie. Maîtriser cette inscription est crucial pour votre bien-être et votre sécurité financière.',
-  'Inscription Sécurité Sociale obligatoire et gratuite ! Tuto etudiant-etranger.ameli.fr,
-  documents (visa, acte de naissance),
-  attestation provisoire. Accédez aux soins !',
+  'Inscription Sécurité Sociale obligatoire et gratuite ! Tuto etudiant-etranger.ameli.fr, documents (visa, acte de naissance), attestation provisoire. Accédez aux soins !',
   'sante',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''obligation et la gratuité de l''affiliation à la Sécurité Sociale", "Maîtriser la procédure de demande en ligne sur etudiant-etranger.ameli.fr", "Savoir quels documents numériser (titre de séjour, acte de naissance traduit)", "Obtenir et utiliser l''attestation provisoire de Sécurité Sociale"]'::jsonb,
   '["Avoir un titre de séjour valide (ou VLS-TS validé) en France"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  800,
+  6000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 34
@@ -722,6 +710,8 @@ Restez informé(e) de l''avancement.
 
 Le site `etudiant-etranger.ameli.fr` est votre portail unique et obligatoire pour l''inscription à la Sécurité Sociale française. Renseignez avec précision vos informations personnelles, téléchargez vos justificatifs (passeport, titre de séjour validé, acte de naissance traduit, certificat de scolarité, RIB français) et suivez l''avancement de votre dossier en ligne. Cette affiliation gratuite est cruciale pour accéder aux soins et être remboursé de vos frais médicaux en France. Ne tardez pas à faire cette démarche essentielle.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 
@@ -734,24 +724,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Numéro de Sécurité Sociale en France : Provisoire et Définitif',
   'numero-securite-sociale-france-provisoire-definitif',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui s''affilient à la Sécurité Sociale. L''obtention d''un numéro de Sécurité Sociale est une étape clé, mais elle passe souvent par un numéro provisoire avant le numéro définitif, et le processus peut être long. Nous vous expliquerons ce qu''est le NIR (Numéro d''Identification au Répertoire) définitif et pourquoi son obtention prend du temps. Nous vous aiderons à comprendre la composition de ce numéro à 13 chiffres, et nous aborderons les démarches à suivre si votre dossier d''affiliation est bloqué ou si l''attente est anormalement longue. Maîtriser cette progression est crucial pour accéder pleinement à vos droits et à la Carte Vitale.',
-  'Numéro Sécu : provisoire,
-  définitif (NIR),
-  pourquoi c''est long, composition. Que faire si ça bloque ? Accédez à tous vos droits !',
+  'Numéro Sécu : provisoire, définitif (NIR), pourquoi c''est long, composition. Que faire si ça bloque ? Accédez à tous vos droits !',
   'sante',
   'intermediaire',
   'fr',
-  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la différence entre numéro provisoire et numéro définitif (NIR)",
-  "Identifier les raisons pour lesquelles l''obtention du NIR peut être longue",
-  "Savoir décrypter les chiffres de votre numéro de Sécurité Sociale",
-  "Maîtriser les recours et actions en cas de blocage du dossier d''affiliation"]'::jsonb,
-  '["Avoir déposé sa demande d''affiliation à la Sécurité Sociale sur etudiant-etranger.ameli.fr"]'::jsonb,
+  4,
   0,
+  'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
+  '["Comprendre la différence entre numéro provisoire et numéro définitif (NIR)", "Identifier les raisons pour lesquelles l''obtention du NIR peut être longue", "Savoir décrypter les chiffres de votre numéro de Sécurité Sociale", "Maîtriser les recours et actions en cas de blocage du dossier d''affiliation"]'::jsonb,
+  '["Avoir déposé sa demande d''affiliation à la Sécurité Sociale sur etudiant-etranger.ameli.fr"]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  500
+  550,
+  4000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 35
@@ -824,6 +808,8 @@ Après avoir déposé votre demande d''affiliation à la Sécurité Sociale, vou
 
 L''obtention de votre Numéro d''Identification au Répertoire (NIR) définitif peut prendre du temps en raison des vérifications administratives. Cependant, avec votre numéro provisoire, vous êtes déjà couvert(e) par la Sécurité Sociale et remboursé(e) de vos frais de santé (en envoyant les feuilles de soins à la CPAM sur votre RIB français). Utilisez votre attestation provisoire comme preuve et suivez l''avancement de votre dossier sur `ameli.fr`. Ne laissez pas l''attente du NIR définitif vous empêcher d''accéder aux soins.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 
@@ -836,21 +822,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'La Carte Vitale en France : Votre accès simplifié aux soins',
   'carte-vitale-france-acces-simplifie-soins',
   'Ce cours est essentiel pour tous les étudiants internationaux affiliés à la Sécurité Sociale française. La Carte Vitale est un document indispensable qui simplifie considérablement l''accès à vos droits à la santé et vos remboursements. Nous vous expliquerons comment commander votre carte (après l''obtention de votre numéro définitif de Sécurité Sociale), les étapes pour la mettre à jour (notamment dans les pharmacies), et l''émergence de l''application "Carte Vitale" dématérialisée. Ne pas avoir de Carte Vitale, c''est devoir avancer tous vos frais et envoyer des feuilles de soins. Maîtriser son utilisation est absolument crucial pour des remboursements rapides, le tiers-payant, et une gestion sereine de votre santé en France.',
-  'Carte Vitale : Commandez,
-  mettez à jour (pharmacie),
-  app e-carte. Simplifiez vos remboursements et accédez au tiers-payant !',
+  'Carte Vitale : Commandez, mettez à jour (pharmacie), app e-carte. Simplifiez vos remboursements et accédez au tiers-payant !',
   'sante',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre le rôle et les avantages de la Carte Vitale", "Savoir comment commander sa Carte Vitale après le NIR définitif", "Maîtriser la mise à jour régulière de la carte (bornes en pharmacie)", "Découvrir l''application "Carte Vitale" (e-carte) et son fonctionnement"]'::jsonb,
   '["Avoir obtenu votre numéro définitif de Sécurité Sociale (NIR)"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  750,
+  5800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 36
@@ -925,6 +908,8 @@ La Carte Vitale est votre "clé" d''accès au système de santé. Une fois votre
 
 La commande de votre Carte Vitale est une étape cruciale après l''obtention de votre numéro définitif de Sécurité Sociale (NIR). La démarche se fait principalement en ligne sur votre espace `ameli.fr`, en téléchargeant une e-photo et une copie de votre pièce d''identité. Comptez 2 à 3 semaines pour la recevoir par courrier. En attendant, votre attestation de droits vous assure la couverture maladie. Maîtriser cette commande est essentiel pour bénéficier des remboursements rapides et du tiers-payant, simplifiant ainsi votre accès aux soins en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 36 (suite)
@@ -985,6 +970,8 @@ Votre Carte Vitale n''est pas une simple carte d''identité. Elle contient des i
 
 Mettre à jour votre Carte Vitale est un geste simple, rapide et gratuit à faire au minimum une fois par an, ou après chaque changement important de situation. Les bornes multiservices disponibles dans la plupart des pharmacies sont le moyen le plus pratique. Cette mise à jour garantit que vos droits à l''Assurance Maladie sont à jour, assure le bon fonctionnement du tiers-payant, et vous évite des retards de remboursement. Intégrez ce réflexe à votre routine pour une gestion sereine de votre santé en France.
 ',
+  2,
+  50,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 36 (suite)
@@ -1071,6 +1058,8 @@ Simplicité d''usage.
 
 L''application "Carte Vitale" (e-carte Vitale) dématérialise votre carte d''Assurance Maladie sur votre smartphone. Après avoir obtenu votre NIR définitif et votre Carte Vitale physique, vous pouvez l''installer et l''activer. Elle offre praticité (toujours sur soi), sécurité (code PIN), et facilite le tiers-payant. Elle est une solution moderne pour accéder à vos soins. Gardez toujours votre carte physique en secours et n''oubliez pas votre carte de mutuelle. L''e-carte Vitale est un pas de plus vers la simplification de votre parcours de santé en France.
 ',
+  3,
+  55,
   NULL,
   '[]'::sql
 

@@ -14,21 +14,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Déclarer son Médecin Traitant : Le guide pour être bien remboursé',
   'declarer-medecin-traitant-guide-bien-rembourse',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux affiliés à la Sécurité Sociale française. Déclarer un "médecin traitant" est un geste simple, mais absolument crucial pour être bien remboursé de vos frais de santé et bénéficier du "parcours de soins coordonnés". Ne pas le faire entraîne une pénalisation systématique de vos remboursements, vous faisant payer plus cher chaque consultation. Nous vous expliquerons pourquoi c''est obligatoire pour un remboursement optimal, comment demander à un médecin de devenir votre traitant, et la procédure de déclaration en ligne lors de la consultation. Maîtriser cette démarche est essentiel pour optimiser votre budget santé et accéder aux soins au meilleur coût en France.',
-  'Déclarez votre médecin traitant : obligatoire pour un bon remboursement Sécu ! Comment choisir,
-  demander,
-  déclarer en ligne. Optimisez vos frais de santé.',
+  'Déclarez votre médecin traitant : obligatoire pour un bon remboursement Sécu ! Comment choisir, demander, déclarer en ligne. Optimisez vos frais de santé.',
   'sante',
   'debutant',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la nécessité de déclarer un médecin traitant pour un bon remboursement", "Savoir comment choisir et demander à un médecin de devenir son traitant", "Maîtriser la procédure de déclaration en ligne (ou papier) lors de la consultation", "Identifier les conséquences du non-respect du parcours de soins coordonnés"]'::jsonb,
   '["Avoir votre numéro définitif de Sécurité Sociale (NIR) et votre Carte Vitale"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  600,
+  3900
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 37
@@ -94,6 +91,8 @@ Déclarer un "médecin traitant" est une condition fondamentale du "parcours de 
 
 Déclarer un médecin traitant est une obligation cruciale en France pour bénéficier du taux maximal de remboursement de la Sécurité Sociale et respecter le parcours de soins coordonnés. Sans médecin traitant, vos remboursements seront fortement réduits. Choisissez un médecin généraliste près de chez vous, demandez-lui de vous déclarer comme son patient traitant (c''est lui qui fait la démarche), et ayez votre Carte Vitale à jour. Cette simple démarche vous assure un suivi médical optimal et une gestion économique de votre santé en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 37 (suite)
@@ -158,6 +157,8 @@ C''est le médecin qui fait la démarche.
 
 Demander à un médecin généraliste de devenir votre médecin traitant est une démarche cruciale pour être bien remboursé de vos frais de santé en France. Cherchez un médecin sur Doctolib.fr ou l''annuaire Ameli, abordez le sujet lors de la première consultation, et le médecin effectuera la déclaration directement auprès de la CPAM (souvent avec votre Carte Vitale). N''attendez pas d''être malade pour faire cette démarche et vérifiez que votre déclaration est bien enregistrée sur `ameli.fr`. C''est un pilier de votre parcours de soins coordonnés.
 ',
+  2,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 37 (suite)
@@ -223,6 +224,8 @@ C''est le médecin qui gère la partie technique.
 
 La déclaration de votre médecin traitant se fait généralement en ligne par le médecin lui-même lors de votre consultation, en utilisant votre Carte Vitale à jour. C''est un geste simple et rapide qui garantit votre meilleur remboursement par la Sécurité Sociale. Assurez-vous de demander au médecin d''effectuer cette déclaration et vérifiez qu''elle est bien enregistrée sur votre espace `ameli.fr` dans les jours qui suivent. Cette diligence vous assure un accès fluide et économique à votre parcours de soins en France.
 ',
+  3,
+  50,
   NULL,
   '[]'::sql
 
@@ -232,26 +235,21 @@ La déclaration de votre médecin traitant se fait généralement en ligne par l
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
   'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
-  'Comprendre les remboursements de santé : Base,
-  Ticket Modérateur,
-  Ameli',
+  'Comprendre les remboursements de santé : Base, Ticket Modérateur, Ameli',
   'comprendre-remboursements-sante-base-ticket-moderateur-ameli',
   'Ce cours est essentiel pour tous les étudiants internationaux affiliés à la Sécurité Sociale française. Comprendre comment vos frais de santé sont remboursés, quelles sont les parts prises en charge par l''Assurance Maladie et la mutuelle, et comment suivre ces remboursements est absolument crucial. Nous vous expliquerons les notions de "Base de Remboursement de la Sécu" (BRSS), de "Ticket Modérateur" (la partie qui reste à votre charge), et comment utiliser votre espace `ameli.fr` pour suivre vos paiements. Une bonne compréhension de ce processus est fondamentale pour gérer votre budget santé, éviter les surprises et vous assurer que vous bénéficiez pleinement de vos droits. ',
-  'Remboursements santé : BRSS,
-  Ticket Modérateur,
-  Ameli.fr. Suivez vos remboursements et maîtrisez votre budget santé !',
+  'Remboursements santé : BRSS, Ticket Modérateur, Ameli.fr. Suivez vos remboursements et maîtrisez votre budget santé !',
   'sante',
   'intermediaire',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre la Base de Remboursement de la Sécurité Sociale (BRSS)", "Identifier ce qu''est le Ticket Modérateur et la part qui reste à charge", "Savoir comment utiliser son espace personnel ameli.fr pour suivre ses remboursements", "Maîtriser les conseils pour optimiser la réception de ses remboursements"]'::jsonb,
   '["Avoir votre numéro définitif de Sécurité Sociale (NIR) et une Carte Vitale"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  650,
+  4800
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 38
@@ -326,6 +324,8 @@ La BRSS s''applique partout.
 
 La Base de Remboursement de la Sécurité Sociale (BRSS) est le tarif de référence sur lequel la Sécurité Sociale française calcule vos remboursements, pas sur le prix réel payé. Comprenez que les médecins du secteur 2 peuvent pratiquer des dépassements d''honoraires (non remboursés par la Sécu au-delà de la BRSS). Pour optimiser vos remboursements, privilégiez les médecins secteur 1, déclarez un médecin traitant, et ayez une mutuelle complémentaire. Maîtriser cette notion est la clé pour comprendre vos décomptes et gérer efficacement votre budget santé en France.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 38 (suite)
@@ -397,6 +397,8 @@ Plusieurs frais peuvent s''ajouter.
 
 Le ticket modérateur est la part de vos frais de santé qui reste à votre charge après le remboursement de la Sécurité Sociale. Il est complété par la participation forfaitaire (1€ chez le médecin) et les franchises médicales, et peut s''ajouter aux dépassements d''honoraires des médecins secteur 2. Pour réduire votre reste à charge, déclarez un médecin traitant, privilégiez les médecins secteur 1, et souscrivez une mutuelle complémentaire. Comprendre ces notions est essentiel pour gérer efficacement votre budget santé et optimiser vos remboursements en France.
 ',
+  2,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 38 (suite)
@@ -460,6 +462,8 @@ Une fois que vous avez consulté un professionnel de santé et que vous avez pr�
 
 Suivre vos remboursements sur votre espace personnel `ameli.fr` est une démarche essentielle pour les étudiants internationaux. Vous y accéderez à tous vos décomptes, détaillant la date de l''acte, le montant payé, la BRSS, le taux et le montant remboursé par la Sécurité Sociale. Vérifiez attentivement chaque ligne. En cas d''absence ou d''erreur de remboursement, réagissez rapidement en contactant votre CPAM via la messagerie sécurisée. Cette vigilance vous assure une gestion autonome et efficace de votre budget santé en France.
 ',
+  3,
+  55,
   NULL,
   '[]'::sql
 
@@ -476,15 +480,14 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'sante',
   'intermediaire',
   'fr',
+  4,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''importance d''une mutuelle complémentaire santé", "Déterminer si une mutuelle est nécessaire pour votre situation", "Identifier l''éligibilité à la Complémentaire Santé Solidaire (CSS) gratuite", "Savoir comparer les offres de mutuelles étudiantes et classiques"]'::jsonb,
   '["Avoir un numéro de Sécurité Sociale (NIR) en France"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  600,
+  4500
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 39
@@ -557,6 +560,8 @@ Le système de santé français est un "duo gagnant" (Sécu + Mutuelle). La Séc
 
 Oui, vous avez besoin d''une mutuelle complémentaire santé en France, même si vous êtes jeune et en bonne santé. La Sécurité Sociale ne rembourse qu''une partie de vos frais, et le "ticket modérateur" peut vite peser sur votre budget. Une mutuelle couvre ce reste à charge, les dépassements d''honoraires, et des postes de dépenses importants comme l''optique ou le dentaire. C''est un investissement essentiel pour protéger vos finances, accéder aux soins sans contrainte, et garantir votre tranquillité d''esprit durant votre séjour étudiant.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 39 (suite)
@@ -639,6 +644,8 @@ Pour de nombreux étudiants internationaux ayant des ressources financières lim
 
 La Complémentaire Santé Solidaire (CSS) est une mutuelle gratuite (ou à faible coût) accessible sous conditions de ressources, idéale pour de nombreux étudiants internationaux. Elle offre un tiers-payant intégral et des remboursements optimaux, y compris le "100% Santé" pour lunettes et dentaire. Vérifiez votre éligibilité sur `ameli.fr` avec vos ressources N-2 et votre numéro de Sécurité Sociale définitif. Faire cette demande est absolument crucial pour accéder à des soins de qualité sans contrainte financière et optimiser votre budget santé en France.
 ',
+  2,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 39 (suite)
@@ -709,6 +716,8 @@ Le choix d''une mutuelle est une décision importante. Prenez le temps de compar
 
 Comparer les offres de mutuelles étudiantes (LMDE, HEYME) et classiques est une démarche cruciale après votre affiliation à la Sécurité Sociale. Ne vous limitez pas au prix, mais analysez attentivement les garanties (optique, dentaire, dépassements d''honoraires, hospitalisation) dans le tableau de garanties. Tenez compte des délais de carence et des exclusions. Utilisez les comparateurs en ligne et demandez des devis personnalisés. Choisir la mutuelle la plus adaptée à vos besoins et à votre budget est essentiel pour une protection santé optimale en France.
 ',
+  3,
+  60,
   '[]'::jsonb
 ) ON CONFLICT (id) DO NOTHING;
 
@@ -721,21 +730,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Doctolib et prise de RDV : Facilitez votre accès aux soins en France',
   'doctolib-prise-rdv-facilitez-acces-soins-france',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui ont besoin de consulter un médecin ou un spécialiste. Doctolib est la plateforme de prise de rendez-vous médicaux en ligne la plus utilisée, simplifiant considérablement l''accès aux soins. Nous vous expliquerons comment créer votre compte Doctolib, utiliser les filtres de recherche (par langue parlée, spécialité), et comment fonctionne la téléconsultation, une option pratique et de plus en plus courante. Maîtriser Doctolib est absolument crucial pour trouver un professionnel de santé rapidement, prendre rendez-vous efficacement, et gérer votre suivi médical en toute autonomie et sérénité.',
-  'Doctolib : Créez votre compte,
-  filtrez par langue,
-  téléconsultation. Prenez RDV médecin et simplifiez votre accès aux soins en France !',
+  'Doctolib : Créez votre compte, filtrez par langue, téléconsultation. Prenez RDV médecin et simplifiez votre accès aux soins en France !',
   'sante',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Comprendre l''utilité et le fonctionnement de Doctolib", "Savoir créer et gérer son compte personnel Doctolib", "Maîtriser les filtres de recherche (spécialité, langues parlées, nouveaux patients)", "Découvrir et utiliser la téléconsultation pour un accès rapide aux soins"]'::jsonb,
   '["Avoir un numéro de Sécurité Sociale (NIR) et une adresse en France"]'::jsonb,
-  4,
-  0,
   TRUE,
-  4.5,
-  100,
-  500
+  800,
+  6200
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 40
@@ -802,6 +808,8 @@ C''est une étape de sécurité.
 
 
 ',
+  1,
+  50,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 40 (suite)
@@ -886,6 +894,8 @@ La barrière de la langue peut être un frein majeur pour l''accès aux soins. D
 
 Le filtre "Langues parlées" sur Doctolib est un outil indispensable pour les étudiants internationaux afin de trouver un professionnel de santé avec qui vous pourrez communiquer efficacement. Utilisez-le pour rechercher des médecins parlant l''anglais ou votre langue maternelle. Préparez vos symptômes et vos questions à l''avance, et n''hésitez pas à demander des précisions. Une bonne communication avec votre médecin est cruciale pour une prise en charge adaptée et une gestion sereine de votre santé en France.
 ',
+  2,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 40 (suite)
@@ -953,6 +963,8 @@ La téléconsultation fait partie du parcours de soins coordonnés et est rembou
 
 La téléconsultation est un mode d''accès aux soins flexible et rapide en France, particulièrement utile pour les étudiants internationaux. Elle est remboursée par la Sécurité Sociale (si parcours de soins respecté) et permet d''obtenir des avis médicaux et des ordonnances à distance. Utilisez des plateformes sécurisées comme Doctolib, assurez-vous d''avoir le matériel requis (smartphone, webcam, micro), et préparez vos questions. La téléconsultation est un excellent complément aux consultations physiques, mais ne remplace pas les urgences vitales ni les examens physiques nécessaires. Maîtrisez-la pour une gestion optimisée de votre santé.
 ',
+  3,
+  55,
   NULL,
   '[]'::sql
 
@@ -965,22 +977,18 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'Urgences et Numéros utiles en France : Votre guide de sécurité',
   'urgences-numeros-utiles-france-guide-securite',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France. Connaître les numéros d''urgence et savoir comment réagir en cas d''urgence médicale, d''accident, de détresse ou de danger est absolument crucial pour votre sécurité et celle de votre entourage. Nous vous détaillerons les numéros essentiels (15 SAMU, 18 Pompiers, 112 Europe), les alternatives aux urgences (SOS Médecins pour les consultations à domicile), et l''importance de connaître la pharmacie de garde. Maîtriser ces informations est fondamental pour réagir efficacement en cas de situation critique et garantir votre sécurité et votre bien-être sur le territoire français.',
-  'Urgences France : 15 SAMU,
-  18 Pompiers,
-  112 Europe. SOS Médecins,
-  pharmacie de garde. Votre guide pour agir vite et en sécurité !',
+  'Urgences France : 15 SAMU, 18 Pompiers, 112 Europe. SOS Médecins, pharmacie de garde. Votre guide pour agir vite et en sécurité !',
   'sante',
   'debutant',
   'fr',
+  3,
+  0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
   '["Connaître les numéros d''urgence essentiels (SAMU, Pompiers, Europe)", "Savoir quand appeler les urgences et comment communiquer", "Identifier les alternatives aux urgences hospitalières (SOS Médecins)", "Maîtriser les conseils pour trouver une pharmacie de garde"]'::jsonb,
   '[]'::jsonb,
   TRUE,
-  4.5,
-  100,
-  500,
-  4,
-  0
+  700,
+  5000
 ) ON CONFLICT (slug) DO UPDATE SET title = EXCLUDED.title;
 
 -- LEÇONS pour COURS 41
@@ -1063,6 +1071,8 @@ Les numéros d''urgence sont gratuits et accessibles 24h/24, 7j/7 depuis n''impo
 
 Connaître les numéros d''urgence (15 SAMU pour urgences médicales graves, 18 Pompiers pour incendies et accidents, 112 numéro européen pour toutes les urgences) est absolument crucial pour votre sécurité en France. En cas d''appel, restez calme, donnez votre adresse précise, la nature de l''urgence, et écoutez attentivement les instructions de l''opérateur. Ces numéros gratuits sont votre première ligne de défense en situation critique. Enregistrez-les dans votre téléphone et sachez comment réagir efficacement.
 ',
+  1,
+  60,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 41 (suite)
@@ -1132,6 +1142,8 @@ SOS Médecins est une association de médecins libéraux qui assure des visites 
 
 SOS Médecins est une excellente alternative aux urgences hospitalières pour les problèmes de santé qui nécessitent une intervention rapide mais qui ne sont pas vitaux. Ils proposent des consultations à domicile ou en cabinet, y compris la nuit et le week-end, et sont remboursés par l''Assurance Maladie. Contactez-les par téléphone (36 24 ou numéro local) et ayez votre Carte Vitale et vos informations médicales à portée de main. Connaître SOS Médecins est crucial pour accéder à des soins adaptés et efficaces en dehors des horaires habituels de consultation.
 ',
+  2,
+  55,
   NULL,
   '[]'::sql
 -- LEÇONS pour COURS 41 (suite)
@@ -1208,6 +1220,8 @@ Le service d''urgence des médicaments.
 
 La pharmacie de garde est un service essentiel en France pour accéder à des médicaments en dehors des horaires d''ouverture habituels. Vous pouvez la trouver via le 32 37 (payant), les sites internet (MonPharmacien.fr) ou l''affichage en pharmacie. Ayez toujours sur vous votre ordonnance (si nécessaire), votre Carte Vitale et votre carte de mutuelle pour le tiers-payant. Connaître ce service est crucial pour obtenir des médicaments d''urgence et éviter de vous rendre inutilement aux urgences hospitalières, assurant ainsi votre accès aux soins à tout moment.
 ',
+  3,
+  50,
   NULL,
   '[]'::sql
 
