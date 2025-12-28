@@ -13,7 +13,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
   'L''État des lieux d''entrée : Protégez votre dépôt de garantie',
   'etat-des-lieux-entree-protegez-depot-garantie',
-  'Ce cours est d''une importance capitale pour tout locataire en France, et particulièrement pour les étudiants internationaux. L'''état des lieux d''entrée est le document qui décrit précisément l''état du logement au moment de votre emménagement. Il est la preuve de l''état initial du bien et conditionne directement la restitution de votre dépôt de garantie à votre départ. Ne pas le réaliser avec la plus grande rigueur, ou le signer sans attention, peut vous coûter cher. Nous vous expliquerons pourquoi c''est le moment le plus important, comment tester l''eau et l''électricité, l''impératif de prendre des photos de tout défaut, et de récupérer votre copie signée. Maîtriser cette étape est crucial pour protéger vos finances.',
+  'Ce cours est d''une importance capitale pour tout locataire en France, et particulièrement pour les étudiants internationaux. L''état des lieux d''entrée est le document qui décrit précisément l''état du logement au moment de votre emménagement. Il est la preuve de l''état initial du bien et conditionne directement la restitution de votre dépôt de garantie à votre départ. Ne pas le réaliser avec la plus grande rigueur, ou le signer sans attention, peut vous coûter cher. Nous vous expliquerons pourquoi c''est le moment le plus important, comment tester l''eau et l''électricité, l''impératif de prendre des photos de tout défaut, et de récupérer votre copie signée. Maîtriser cette étape est crucial pour protéger vos finances.',
   'État des lieux d''entrée : le moment clé ! Testez, photographiez les défauts, obtenez votre copie. Protégez votre dépôt de garantie !',
   'logement',
   'debutant',
@@ -39,7 +39,7 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, v
 
 ## Pourquoi c''est important ?
 
-L'''état des lieux d''entrée est sans conteste le document le plus crucial que vous allez signer en tant que locataire, après le bail lui-même. Ce document, qui décrit minutieusement l''état du logement pièce par pièce et équipement par équipement, est la preuve juridique de l''état initial du bien. Il constitue la référence unique qui sera utilisée lors de l''état des lieux de sortie pour comparer l''état du logement et déterminer les éventuelles réparations à votre charge. Une négligence à cette étape peut vous coûter très cher : des retenues injustifiées sur votre dépôt de garantie pour des dégradations préexistantes. Comprendre son importance capitale est le premier pas pour protéger vos finances et assurer la restitution intégrale de votre dépôt de garantie.
+L''état des lieux d''entrée est sans conteste le document le plus crucial que vous allez signer en tant que locataire, après le bail lui-même. Ce document, qui décrit minutieusement l''état du logement pièce par pièce et équipement par équipement, est la preuve juridique de l''état initial du bien. Il constitue la référence unique qui sera utilisée lors de l''état des lieux de sortie pour comparer l''état du logement et déterminer les éventuelles réparations à votre charge. Une négligence à cette étape peut vous coûter très cher : des retenues injustifiées sur votre dépôt de garantie pour des dégradations préexistantes. Comprendre son importance capitale est le premier pas pour protéger vos finances et assurer la restitution intégrale de votre dépôt de garantie.
 
 
 -   Comprendre le rôle juridique de l''état des lieux d''entrée.
@@ -47,9 +47,9 @@ L'''état des lieux d''entrée est sans conteste le document le plus crucial que
 -   Connaître les conséquences d''une absence d''état des lieux ou d''un document imprécis.
 
 
-L'''état des lieux est une photographie de l''appartement au moment où vous en prenez possession. Il est établi contradictoirement, c''est-à-dire en présence du locataire et du propriétaire (ou de son représentant, l''agence).
+L''état des lieux est une photographie de l''appartement au moment où vous en prenez possession. Il est établi contradictoirement, c''est-à-dire en présence du locataire et du propriétaire (ou de son représentant, l''agence).
 
-🔗 [Service-Public.fr : L'''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - La page officielle sur l''état des lieux.
+🔗 [Service-Public.fr : L''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - La page officielle sur l''état des lieux.
 
 
 ### 1. Le rôle juridique de l''état des lieux d''entrée
@@ -57,7 +57,7 @@ L'''état des lieux est une photographie de l''appartement au moment où vous en
 C''est la base de toute comparaison.
 
 #### a) Preuve de l''état du logement
--   L'''état des lieux d''entrée est le seul document qui prouve l''état réel du logement au moment où vous emménagez.
+-   L''état des lieux d''entrée est le seul document qui prouve l''état réel du logement au moment où vous emménagez.
 -   Il décrit la propreté, l''état des peintures, des sols, des équipements (cuisine, salle de bain), le bon fonctionnement des installations (électricité, eau, chauffage).
 -   Il doit être le plus détaillé possible : "mur salon : trou de cheville", "peinture chambre : écaillée sur 10 cm", "robinet salle de bain : fuit légèrement".
 
@@ -65,7 +65,7 @@ C''est la base de toute comparaison.
 -   À votre départ, un nouvel état des lieux (de sortie) sera réalisé. Le document d''entrée servira de référence pour comparer l''état du logement.
 -   **Les dégradations constatées à la sortie qui ne figuraient pas sur l''état des lieux d''entrée sont considérées comme étant de votre responsabilité** (sauf vétusté normale).
 
-🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Explications détaillées.
+🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Explications détaillées.
 
 
 
@@ -87,7 +87,7 @@ Les risques d''une négligence.
 
 
 
--   **Prenez votre temps** : L'''état des lieux peut durer longtemps, ne vous précipitez pas, même si le propriétaire est pressé.
+-   **Prenez votre temps** : L''état des lieux peut durer longtemps, ne vous précipitez pas, même si le propriétaire est pressé.
 -   **Utilisez des termes précis** : "Propre" ou "très propre" est différent de "neuf".
 -   **Testez tout** : Les robinets (eau chaude/froide), la chasse d''eau, les lumières, les interrupteurs, les plaques de cuisson, le four, les volets, les serrures, les fenêtres.
 -   **Prenez des photos et des vidéos** : C''est votre preuve visuelle. (Voir leçon suivante).
@@ -104,14 +104,14 @@ Les risques d''une négligence.
 -   **Se sentir intimidé par le propriétaire/l''agence** : Vos droits doivent être respectés.
 
 
--   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - La référence principale.
--   🔗 [Service-Public.fr : L'''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - Guide officiel.
+-   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - La référence principale.
+-   🔗 [Service-Public.fr : L''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - Guide officiel.
 -   🔗 [Légifrance : Décret n° 2016-382 du 30 mars 2016 fixant les modalités d''établissement de l''état des lieux et de l''inventaire de mobilier](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032338575/) - Texte de loi.
--   🔗 [UFC-Que Choisir : L'''état des lieux : un document crucial](https://www.quechoisir.org/fiche-pratique-etat-des-lieux-un-document-crucial-n100507/) - Conseils aux consommateurs.
--   🔗 [PAP (Particulier à Particulier) : L'''état des lieux de location](https://www.pap.fr/conseils/location/l-etat-des-lieux-de-location-a1314) - Conseils pratiques.
+-   🔗 [UFC-Que Choisir : L''état des lieux : un document crucial](https://www.quechoisir.org/fiche-pratique-etat-des-lieux-un-document-crucial-n100507/) - Conseils aux consommateurs.
+-   🔗 [PAP (Particulier à Particulier) : L''état des lieux de location](https://www.pap.fr/conseils/location/l-etat-des-lieux-de-location-a1314) - Conseils pratiques.
 
 
-L'''état des lieux d''entrée est le moment le plus important de votre location pour protéger votre dépôt de garantie. Prenez votre temps, soyez extrêmement détaillé(e) en notant tous les défauts, même les plus minimes, et testez tous les équipements. Prenez des photos et des vidéos comme preuves. Ne signez jamais si vous n''êtes pas d''accord ou si vous n''avez pas vérifié le document. Une rigueur absolue à cette étape est la garantie d''une restitution sereine de votre dépôt de garantie à votre départ du logement.
+L''état des lieux d''entrée est le moment le plus important de votre location pour protéger votre dépôt de garantie. Prenez votre temps, soyez extrêmement détaillé(e) en notant tous les défauts, même les plus minimes, et testez tous les équipements. Prenez des photos et des vidéos comme preuves. Ne signez jamais si vous n''êtes pas d''accord ou si vous n''avez pas vérifié le document. Une rigueur absolue à cette étape est la garantie d''une restitution sereine de votre dépôt de garantie à votre départ du logement.
 ',
   1,
   70,
@@ -134,16 +134,16 @@ Lors de l''état des lieux d''entrée, au moment où vous prenez possession de v
 -   Savoir comment tester efficacement toutes les installations d''eau (robinets, chasse d''eau).
 
 
-L'''état des lieux n''est pas une simple formalité. C''est une véritable inspection que vous devez mener avec rigueur et méthode. Munissez-vous d''une feuille et d''un stylo (ou de votre smartphone) et soyez prêt(e) à tout vérifier.
+L''état des lieux n''est pas une simple formalité. C''est une véritable inspection que vous devez mener avec rigueur et méthode. Munissez-vous d''une feuille et d''un stylo (ou de votre smartphone) et soyez prêt(e) à tout vérifier.
 
-🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Guide pour l''état des lieux.
+🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Guide pour l''état des lieux.
 
 
 ### 1. Vérification des installations d''eau
 
 
 -   **Robinet de l''évier** : Ouvrez l''eau chaude et froide. Vérifiez la pression, la température. Y a-t-il des fuites sous l''évier ou au niveau du robinet ?
--   **Évacuation** : L'''eau s''écoule-t-elle correctement ? Le siphon est-il propre ?
+-   **Évacuation** : L''eau s''écoule-t-elle correctement ? Le siphon est-il propre ?
 -   **Raccordements** : Si une machine à laver ou un lave-vaisselle sont prévus, vérifiez la présence des arrivées et évacuations d''eau, et leur état.
 
 -   **Chasse d''eau** : Tirez la chasse d''eau plusieurs fois. Est-ce qu''elle remplit correctement ? Y a-t-il des fuites au niveau du mécanisme ?
@@ -166,9 +166,9 @@ L'''état des lieux n''est pas une simple formalité. C''est une véritable insp
 -   **Ne pas mentionner une faible pression d''eau** ou un écoulement lent.
 
 
--   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Conseils détaillés pour l''inspection.
--   🔗 [Service-Public.fr : L'''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - Guide officiel.
--   🔗 [UFC-Que Choisir : L'''état des lieux : un document crucial](https://www.quechoisir.org/fiche-pratique-etat-des-lieux-un-document-crucial-n100507/) - Conseils aux consommateurs.
+-   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Conseils détaillés pour l''inspection.
+-   🔗 [Service-Public.fr : L''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - Guide officiel.
+-   🔗 [UFC-Que Choisir : L''état des lieux : un document crucial](https://www.quechoisir.org/fiche-pratique-etat-des-lieux-un-document-crucial-n100507/) - Conseils aux consommateurs.
 -   🔗 [QualiDiag (diagnostiqueurs immobiliers)](https://www.qualidiag.fr/) - Pour comprendre le rôle du diagnostiqueur, même si c''est le DPE qui vous est remis.
 
 
@@ -194,9 +194,9 @@ Lors de l''état des lieux d''entrée, votre mémoire et la description écrite 
 
 
 
-L'''état des lieux d''entrée est un document écrit, mais la preuve visuelle le complète et le renforce de manière irremplaçable. Votre smartphone est votre meilleur ami pour cette étape.
+L''état des lieux d''entrée est un document écrit, mais la preuve visuelle le complète et le renforce de manière irremplaçable. Votre smartphone est votre meilleur ami pour cette étape.
 
-🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Conseils sur les preuves.
+🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Conseils sur les preuves.
 
 
 
@@ -246,9 +246,9 @@ L'''état des lieux d''entrée est un document écrit, mais la preuve visuelle l
 -   **Ne pas prendre de photos des "petits" défauts** : Ce sont souvent eux qui sont sources de retenues sur le dépôt de garantie.
 
 
--   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - La référence principale pour l''état des lieux.
--   🔗 [Service-Public.fr : L'''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - Guide officiel du service public.
--   🔗 [UFC-Que Choisir : L'''état des lieux : un document crucial](https://www.quechoisir.org/fiche-pratique-etat-des-lieux-un-document-crucial-n100507/) - Conseils très pratiques aux consommateurs, souvent avec des modèles.
+-   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - La référence principale pour l''état des lieux.
+-   🔗 [Service-Public.fr : L''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - Guide officiel du service public.
+-   🔗 [UFC-Que Choisir : L''état des lieux : un document crucial](https://www.quechoisir.org/fiche-pratique-etat-des-lieux-un-document-crucial-n100507/) - Conseils très pratiques aux consommateurs, souvent avec des modèles.
 -   🔗 [Légifrance : Décret n° 2016-382 du 30 mars 2016 fixant les modalités d''établissement de l''état des lieux](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000032338575/) - Le texte de loi qui encadre l''état des lieux.
 
 
@@ -275,9 +275,9 @@ La signature de l''état des lieux d''entrée est l''acte qui rend ce document o
 -   Comprendre la valeur juridique de la signature de l''état des lieux.
 
 
-L'''état des lieux est un document contradictoire. Cela signifie qu''il doit être établi et signé par toutes les parties (locataire et propriétaire/agence) pour avoir pleine valeur juridique.
+L''état des lieux est un document contradictoire. Cela signifie qu''il doit être établi et signé par toutes les parties (locataire et propriétaire/agence) pour avoir pleine valeur juridique.
 
-🔗 [Service-Public.fr : L'''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - Guide officiel sur la signature et la remise du document.
+🔗 [Service-Public.fr : L''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - Guide officiel sur la signature et la remise du document.
 
 
 ### 1. La signature de l''état des lieux : Un engagement formel
@@ -290,7 +290,7 @@ L'''état des lieux est un document contradictoire. Cela signifie qu''il doit ê
     -   Exemple : "Je soussigné(e) [Votre Nom] conteste l''état [bon état] du mur du salon et signale une fissure de 10cm non mentionnée."
 -   **Si désaccord persistant** : Si un désaccord majeur persiste et que le propriétaire/agence refuse de modifier le document ou d''ajouter vos réserves, vous pouvez refuser de signer. Dans ce cas, vous disposez de 10 jours calendaires à compter de la date d''établissement de l''état des lieux pour adresser un courrier recommandé avec accusé de réception au propriétaire/agence listant les défauts non constatés (avec photos à l''appui).
 
-🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Détails sur les désaccords.
+🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Détails sur les désaccords.
 
 
 
@@ -320,9 +320,9 @@ L'''état des lieux est un document contradictoire. Cela signifie qu''il doit ê
 -   **Se précipiter parce que le bailleur est pressé** : C''est votre droit de prendre le temps nécessaire.
 
 
--   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - La référence principale.
--   🔗 [Service-Public.fr : L'''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - Guide officiel.
--   🔗 [UFC-Que Choisir : L'''état des lieux : un document crucial](https://www.quechoisir.org/fiche-pratique-etat-des-lieux-un-document-crucial-n100507/) - Conseils aux consommateurs.
+-   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - La référence principale.
+-   🔗 [Service-Public.fr : L''état des lieux](https://www.service-public.fr/particuliers/vosdroits/F31169) - Guide officiel.
+-   🔗 [UFC-Que Choisir : L''état des lieux : un document crucial](https://www.quechoisir.org/fiche-pratique-etat-des-lieux-un-document-crucial-n100507/) - Conseils aux consommateurs.
 -   🔗 [Modeles-types.fr : Modèle de lettre de contestation de l''état des lieux](https://www.modeles-types.fr/location/modele-lettre-contestation-etat-des-lieux-n142) - Si vous devez émettre des réserves après coup.
 
 
@@ -342,7 +342,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
   'Assurance Habitation en France : Protégez votre logement',
   'assurance-habitation-france-protegez-logement',
-  'Ce cours est un guide essentiel pour tous les étudiants internationaux qui s''apprêtent à louer un logement en France. L'''assurance habitation est une obligation légale pour le locataire et une protection indispensable pour votre bien-être. Nous vous expliquerons pourquoi cette assurance est obligatoire, la distinction entre la Responsabilité Civile et l''assurance Multirisque Habitation, comment comparer les offres des banques et des assureurs en ligne, et comment obtenir rapidement votre attestation d''assurance. Maîtriser ce sujet est crucial pour être en règle avec la loi, protéger vos biens et ceux du propriétaire, et éviter des frais exorbitants en cas de sinistre. Ne négligez jamais cette protection !',
+  'Ce cours est un guide essentiel pour tous les étudiants internationaux qui s''apprêtent à louer un logement en France. L''assurance habitation est une obligation légale pour le locataire et une protection indispensable pour votre bien-être. Nous vous expliquerons pourquoi cette assurance est obligatoire, la distinction entre la Responsabilité Civile et l''assurance Multirisque Habitation, comment comparer les offres des banques et des assureurs en ligne, et comment obtenir rapidement votre attestation d''assurance. Maîtriser ce sujet est crucial pour être en règle avec la loi, protéger vos biens et ceux du propriétaire, et éviter des frais exorbitants en cas de sinistre. Ne négligez jamais cette protection !',
   'Assurance habitation obligatoire ! Responsabilité Civile, Multirisque, comparateurs, attestation. Protégez votre logement et votre budget.',
   'logement',
   'debutant',
@@ -363,8 +363,8 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, v
 (
   'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
   'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'L'''obligation légale d''assurance',
-  '# L'''obligation légale d''assurance
+  'L''obligation légale d''assurance',
+  '# L''obligation légale d''assurance
 
 ## Pourquoi c''est important ?
 
@@ -375,16 +375,16 @@ En France, la souscription à une assurance habitation est une **obligation lég
 -   Identifier les risques et les conséquences de l''absence d''assurance.
 
 
-L'''assurance habitation a pour but de vous protéger contre les risques liés à votre logement et de protéger les tiers (propriétaire, voisins) contre les dommages que vous pourriez causer. C''est une sécurité indispensable pour une vie sereine en France.
+L''assurance habitation a pour but de vous protéger contre les risques liés à votre logement et de protéger les tiers (propriétaire, voisins) contre les dommages que vous pourriez causer. C''est une sécurité indispensable pour une vie sereine en France.
 
-🔗 [Service-Public.fr : L'''assurance habitation est-elle obligatoire ?](https://www.service-public.fr/particuliers/vosdroits/F31169) - La page officielle qui affirme l''obligation.
+🔗 [Service-Public.fr : L''assurance habitation est-elle obligatoire ?](https://www.service-public.fr/particuliers/vosdroits/F31169) - La page officielle qui affirme l''obligation.
 
 
 ### 1. Le caractère obligatoire de l''assurance habitation pour le locataire
 
 C''est une exigence légale et contractuelle.
 
--   L'''article 7 de la loi du 6 juillet 1989 sur les rapports locatifs stipule que "le locataire est obligé de s''assurer contre les risques dont il doit répondre en sa qualité de locataire".
+-   L''article 7 de la loi du 6 juillet 1989 sur les rapports locatifs stipule que "le locataire est obligé de s''assurer contre les risques dont il doit répondre en sa qualité de locataire".
 
 #### b) Exigence du propriétaire / de l''agence
 -   Le propriétaire ou l''agence vous demandera systématiquement une attestation d''assurance habitation au moment de la signature du bail et chaque année lors du renouvellement.
@@ -408,11 +408,11 @@ C''est la base de votre protection.
 
 -   Elle est souvent incluse dans les contrats d''assurance habitation ou peut être souscrite séparément. Elle vous couvre pour les dommages que vous pourriez causer à des tiers dans votre vie quotidienne (ex: casser un objet dans un magasin, blesser quelqu''un).
 
-🔗 [France Assureurs : L'''assurance habitation](https://www.franceassureurs.fr/les-assurances/lassurance-habitation) - Informations des assureurs.
+🔗 [France Assureurs : L''assurance habitation](https://www.franceassureurs.fr/les-assurances/lassurance-habitation) - Informations des assureurs.
 
 
 
-#### a) L'''attestation d''assurance
+#### a) L''attestation d''assurance
 -   Une fois votre contrat souscrit, votre assureur vous délivrera une "attestation d''assurance habitation".
 -   Ce document prouve que vous êtes couvert(e) pour votre logement, mentionne l''adresse du logement, les garanties souscrites (au minimum la RC locative) et la période de validité.
 
@@ -433,14 +433,14 @@ C''est la base de votre protection.
 -   **Fournir une fausse attestation** : C''est une fraude.
 
 
--   🔗 [Service-Public.fr : L'''assurance habitation est-elle obligatoire ?](https://www.service-public.fr/particuliers/vosdroits/F31169) - La page de référence.
--   🔗 [France Assureurs : L'''assurance habitation](https://www.franceassureurs.fr/les-assurances/lassurance-habitation) - Le site de la fédération des assureurs.
+-   🔗 [Service-Public.fr : L''assurance habitation est-elle obligatoire ?](https://www.service-public.fr/particuliers/vosdroits/F31169) - La page de référence.
+-   🔗 [France Assureurs : L''assurance habitation](https://www.franceassureurs.fr/les-assurances/lassurance-habitation) - Le site de la fédération des assureurs.
 -   🔗 [Légifrance : Loi n° 89-462 du 6 juillet 1989 (Article 7)](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000806456/) - Le texte de loi sur l''obligation.
--   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Informations détaillées pour les locataires.
+-   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Informations détaillées pour les locataires.
 -   🔗 [LeLynx.fr / LesFurets.com](https://www.lelynx.fr/) - Comparateurs d''assurances habitation.
 
 
-L'''assurance habitation est une obligation légale et une nécessité absolue pour tout locataire en France. Elle vous protège contre les risques financiers liés aux dommages que vous pourriez causer au logement ou aux voisins (Responsabilité Civile Locative, le minimum requis). Souscrivez-y avant de prendre possession de votre logement et fournissez l''attestation à votre propriétaire. Ne jamais négliger cette protection, elle est cruciale pour votre sécurité financière et votre tranquillité d''esprit durant votre séjour en France.
+L''assurance habitation est une obligation légale et une nécessité absolue pour tout locataire en France. Elle vous protège contre les risques financiers liés aux dommages que vous pourriez causer au logement ou aux voisins (Responsabilité Civile Locative, le minimum requis). Souscrivez-y avant de prendre possession de votre logement et fournissez l''attestation à votre propriétaire. Ne jamais négliger cette protection, elle est cruciale pour votre sécurité financière et votre tranquillité d''esprit durant votre séjour en France.
 ',
   1,
   60,
@@ -478,18 +478,18 @@ C''est la garantie de base que vous devez avoir.
 
 -   C''est le minimum exigé par la loi du 6 juillet 1989.
 
-🔗 [France Assureurs : L'''assurance habitation - Les garanties](https://www.franceassureurs.fr/les-assurances/lassurance-habitation) - Détails sur les garanties de base.
+🔗 [France Assureurs : L''assurance habitation - Les garanties](https://www.franceassureurs.fr/les-assurances/lassurance-habitation) - Détails sur les garanties de base.
 
 
 
 #### a) Ce qu''elle couvre (en plus de la RC Locative)
 -   **Vos propres biens** : La MRH couvre les dommages subis par vos meubles, vos vêtements, vos appareils électroniques, vos objets personnels, etc., en cas d''incendie, dégât des eaux, vol, bris de glace, catastrophes naturelles, etc.
 -   **Responsabilité Civile Vie privée (RC Vie privée)** : C''est une garantie très importante. Elle vous couvre pour les dommages que vous pourriez causer accidentellement à des tiers (voisins, amis, passants) dans votre vie quotidienne, en dehors du logement (ex: votre sac tombe et casse un objet dans un magasin, vous blessez quelqu''un en faisant du sport).
--   **Garantie recours des voisins et des tiers** : L'''assureur se charge de défendre vos intérêts si des voisins ou des tiers vous réclament des dommages.
+-   **Garantie recours des voisins et des tiers** : L''assureur se charge de défendre vos intérêts si des voisins ou des tiers vous réclament des dommages.
 
 -   **Tranquillité d''esprit** : Une couverture plus complète réduit le stress en cas de problème.
 
-🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Informations sur les garanties.
+🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Informations sur les garanties.
 
 
 
@@ -524,10 +524,10 @@ C''est la garantie de base que vous devez avoir.
 -   **Oublier d''inclure la Responsabilité Civile Vie privée** : C''est une protection importante.
 
 
--   🔗 [France Assureurs : L'''assurance habitation](https://www.franceassureurs.fr/les-assurances/lassurance-habitation) - La fédération des assureurs.
+-   🔗 [France Assureurs : L''assurance habitation](https://www.franceassureurs.fr/les-assurances/lassurance-habitation) - La fédération des assureurs.
 -   🔗 [Service-Public.fr : Garanties de l''assurance habitation](https://www.service-public.fr/particuliers/vosdroits/F31169) - Informations détaillées sur les différentes garanties.
--   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Guide pour le locataire.
--   🔗 [Autorité de Contrôle Prudentiel et de Résolution (ACPR)](https://acpr.banque-france.fr/) - L'''organisme qui supervise les banques et assureurs.
+-   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Guide pour le locataire.
+-   🔗 [Autorité de Contrôle Prudentiel et de Résolution (ACPR)](https://acpr.banque-france.fr/) - L''organisme qui supervise les banques et assureurs.
 
 
 La Responsabilité Civile Locative est l''assurance habitation minimum légalement obligatoire en France, couvrant les dommages que vous pourriez causer au logement du propriétaire. Cependant, la garantie Multirisque Habitation (MRH) est fortement recommandée car elle offre une couverture bien plus étendue, protégeant vos propres biens et incluant la Responsabilité Civile Vie privée. Évaluez la valeur de vos biens et votre budget pour choisir le niveau d''assurance adapté. La MRH est un investissement essentiel pour une protection complète et une tranquillité d''esprit durant votre séjour en France.
@@ -564,7 +564,7 @@ Choisir son assurance, c''est un peu comme choisir son téléphone portable : de
 
 
 
-🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Mentions sur les fournisseurs.
+🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Mentions sur les fournisseurs.
 
 
 
@@ -608,7 +608,7 @@ Choisir son assurance, c''est un peu comme choisir son téléphone portable : de
 -   **Choisir un assureur non agréé en France** : Vérifiez toujours l''agrément de l''entreprise.
 
 
--   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Conseils pour les locataires.
+-   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Conseils pour les locataires.
 -   🔗 [LeLynx.fr / LesFurets.com](https://www.lelynx.fr/) - Comparateurs d''assurances.
 -   🔗 [Autorité de Contrôle Prudentiel et de Résolution (ACPR)](https://acpr.banque-france.fr/) - Pour vérifier l''agrément des assureurs.
 
@@ -630,14 +630,14 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, v
 
 ## Pourquoi c''est important ?
 
-L'''attestation d''assurance habitation est le document officiel qui prouve que vous êtes bien assuré(e) pour votre logement. Elle est **obligatoire** et vous sera systématiquement demandée par le propriétaire ou l''agence immobilière avant de vous remettre les clés, et chaque année à la date anniversaire de votre bail. Ne pas pouvoir la fournir signifie que vous n''êtes pas en règle avec la loi et votre contrat de location, ce qui peut entraîner le refus de vous donner accès au logement, ou même la résiliation de votre bail. En tant qu''étudiant international, il est absolument crucial de savoir comment obtenir rapidement cette attestation et de la conserver précieusement.
+L''attestation d''assurance habitation est le document officiel qui prouve que vous êtes bien assuré(e) pour votre logement. Elle est **obligatoire** et vous sera systématiquement demandée par le propriétaire ou l''agence immobilière avant de vous remettre les clés, et chaque année à la date anniversaire de votre bail. Ne pas pouvoir la fournir signifie que vous n''êtes pas en règle avec la loi et votre contrat de location, ce qui peut entraîner le refus de vous donner accès au logement, ou même la résiliation de votre bail. En tant qu''étudiant international, il est absolument crucial de savoir comment obtenir rapidement cette attestation et de la conserver précieusement.
 
 
 -   Comprendre la finalité et l''importance de l''attestation d''assurance habitation.
 -   Identifier les informations clés qui doivent figurer sur l''attestation.
 
 
-L'''attestation d''assurance est la preuve que vous avez rempli votre obligation légale d''être assuré(e). C''est un document simple, mais indispensable.
+L''attestation d''assurance est la preuve que vous avez rempli votre obligation légale d''être assuré(e). C''est un document simple, mais indispensable.
 
 🔗 [Service-Public.fr : Assurance habitation - Attestation](https://www.service-public.fr/particuliers/vosdroits/F31169) - Informations sur l''attestation.
 
@@ -647,8 +647,8 @@ L'''attestation d''assurance est la preuve que vous avez rempli votre obligation
 
 -   **Document officiel** : C''est un document délivré par votre compagnie d''assurance.
 -   **Preuve de garantie** : Il atteste que vous avez souscrit un contrat d''assurance habitation pour un logement précis et pour une période donnée.
--   **Informations clés** : L'''attestation doit mentionner :
-    -   L'''adresse exacte du logement assuré.
+-   **Informations clés** : L''attestation doit mentionner :
+    -   L''adresse exacte du logement assuré.
     -   La période de validité de l''assurance (date de début et de fin).
 
 
@@ -694,12 +694,12 @@ C''est une formalité obligatoire.
 
 -   🔗 [Service-Public.fr : Attestation d''assurance habitation](https://www.service-public.fr/particuliers/vosdroits/F31169) - La page de référence.
 -   🔗 [France Assureurs : Questions/Réponses sur l''attestation](https://www.franceassureurs.fr/les-assurances/lassurance-habitation/questions-reponses-assurance-habitation) - Réponses aux questions fréquentes.
--   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Informations pour les locataires.
--   🔗 [UFC-Que Choisir : L'''attestation d''assurance](https://www.quechoisir.org/fiche-pratique-location-l-assurance-habitation-n100507/) - Conseils aux consommateurs.
+-   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''assurance du logement](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-assurance-du-logement/) - Informations pour les locataires.
+-   🔗 [UFC-Que Choisir : L''attestation d''assurance](https://www.quechoisir.org/fiche-pratique-location-l-assurance-habitation-n100507/) - Conseils aux consommateurs.
 -   🔗 [Ministère de la Justice : Que faire en cas de non-respect du bail](https://www.justice.gouv.fr/justice-au-quotidien/vie-pratique-et-conflits/conflit-logement) - Conséquences du défaut d''assurance.
 
 
-L'''obtention rapide et la conservation précieuse de votre attestation d''assurance habitation sont des étapes cruciales pour votre installation en France. Ce document officiel, qui prouve votre couverture pour le logement, vous sera demandé à la remise des clés et chaque année par votre propriétaire. Téléchargez-le depuis votre espace client en ligne, vérifiez toutes les informations, et archivez-le numériquement et physiquement. Votre diligence à cette étape garantit votre conformité légale et votre protection financière en cas de sinistre.
+L''obtention rapide et la conservation précieuse de votre attestation d''assurance habitation sont des étapes cruciales pour votre installation en France. Ce document officiel, qui prouve votre couverture pour le logement, vous sera demandé à la remise des clés et chaque année par votre propriétaire. Téléchargez-le depuis votre espace client en ligne, vérifiez toutes les informations, et archivez-le numériquement et physiquement. Votre diligence à cette étape garantit votre conformité légale et votre protection financière en cas de sinistre.
 ',
   3,
   50,
@@ -715,7 +715,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
   'Ouvrir ses compteurs (Énergie) en France : Électricité et Gaz',
   'ouvrir-compteurs-energie-france-electricite-gaz',
-  'Ce cours est un guide essentiel pour les étudiants internationaux s''installant dans un nouveau logement en France et devant gérer leurs contrats d''énergie. L'''ouverture des compteurs d''électricité et de gaz est une démarche obligatoire et urgente pour avoir l''énergie dans votre logement. Nous vous expliquerons comment relever les compteurs à l''entrée, comment choisir votre fournisseur (EDF, TotalEnergies, Engie, etc.), la différence entre heures creuses et heures pleines pour optimiser votre consommation, et le fonctionnement du compteur Linky. Maîtriser ces étapes est crucial pour éviter de vous retrouver sans électricité ou gaz, gérer votre consommation et comprendre vos factures.',
+  'Ce cours est un guide essentiel pour les étudiants internationaux s''installant dans un nouveau logement en France et devant gérer leurs contrats d''énergie. L''ouverture des compteurs d''électricité et de gaz est une démarche obligatoire et urgente pour avoir l''énergie dans votre logement. Nous vous expliquerons comment relever les compteurs à l''entrée, comment choisir votre fournisseur (EDF, TotalEnergies, Engie, etc.), la différence entre heures creuses et heures pleines pour optimiser votre consommation, et le fonctionnement du compteur Linky. Maîtriser ces étapes est crucial pour éviter de vous retrouver sans électricité ou gaz, gérer votre consommation et comprendre vos factures.',
   'Ouvrir vos compteurs énergie : relevé, choix fournisseur (EDF, Engie), heures creuses/pleines, Linky. Guide complet pour votre logement !',
   'logement',
   'debutant',
@@ -784,14 +784,14 @@ Le relevé de compteur est la "photographie" de votre consommation à un instant
 -   **Ancien compteur électronique** : Appuyez plusieurs fois sur le bouton "D" pour faire défiler les informations et afficher l''index (ou les deux index HP/HC).
 -   **Compteur Linky** : Appuyez sur le bouton "+" pour faire défiler les informations. Il affichera directement "BASE" (si option base) ou "HEURES PLEINES" et "HEURES CREUSES". Notez les chiffres.
 
--   **Compteur Gazpar ou ancien compteur** : Notez les chiffres sur fond noir (ou blanc) qui défilent, avant la virgule (les chiffres rouges après la virgule ne sont pas à prendre en compte pour le relevé). L'''unité est le m3 (mètre cube).
+-   **Compteur Gazpar ou ancien compteur** : Notez les chiffres sur fond noir (ou blanc) qui défilent, avant la virgule (les chiffres rouges après la virgule ne sont pas à prendre en compte pour le relevé). L''unité est le m3 (mètre cube).
 
 #### c) Pour l''eau
 
 
 
 #### a) Noter sur l''état des lieux
--   **Impératif** : L'''agent immobilier ou le propriétaire doit noter les index des compteurs sur l''état des lieux d''entrée. Assurez-vous qu''ils sont écrits et que vous les vérifiez.
+-   **Impératif** : L''agent immobilier ou le propriétaire doit noter les index des compteurs sur l''état des lieux d''entrée. Assurez-vous qu''ils sont écrits et que vous les vérifiez.
 
 -   Lorsque vous souscrirez votre contrat d''électricité et/ou de gaz, le fournisseur vous demandera le "numéro PDL" (Point De Livraison pour l''électricité) ou "PCE" (Point de Comptage et d''Estimation pour le gaz) du logement. Vous le trouverez sur l''ancienne facture d''énergie du logement, ou le fournisseur peut le trouver avec l''adresse et le nom de l''ancien occupant.
 
@@ -812,7 +812,7 @@ Le relevé de compteur est la "photographie" de votre consommation à un instant
 
 
 -   🔗 [Service-Public.fr : Ouverture de compteur d''électricité](https://www.service-public.fr/particuliers/vosdroits/F31405) - Guide pour l''électricité.
--   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L'''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Mentionne le relevé des compteurs.
+-   🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : L''état des lieux](https://www.anil.org/votre-projet/vous-etes-locataire/le-logement-loue/l-etat-des-lieux/) - Mentionne le relevé des compteurs.
 -   🔗 [Energie-info.fr (Médiateur National de l''Énergie)](https://www.energie-info.fr/) - Pour des informations neutres sur les fournisseurs et les démarches.
 
 
@@ -860,7 +860,7 @@ Depuis 2007, vous êtes libre de choisir votre fournisseur d''électricité et d
 
 -   **Disponibilité** : Horaires d''ouverture, par téléphone, e-mail, chat.
 
-#### c) L'''origine de l''électricité (offres vertes)
+#### c) L''origine de l''électricité (offres vertes)
 -   De nombreux fournisseurs proposent de l''électricité "verte", c''est-à-dire provenant de sources d''énergies renouvelables (éolien, solaire, hydraulique). C''est un critère écologique.
 
 
@@ -922,7 +922,7 @@ Le système d''heures creuses et heures pleines (HP/HC) est une option tarifaire
 -   Savoir comment identifier vos plages horaires d''heures creuses.
 
 
-L'''option HP/HC est un mode de tarification de l''électricité qui encourage la consommation en dehors des pics de demande, généralement la nuit et en milieu de journée. Cela contribue à l''équilibre du réseau électrique.
+L''option HP/HC est un mode de tarification de l''électricité qui encourage la consommation en dehors des pics de demande, généralement la nuit et en milieu de journée. Cela contribue à l''équilibre du réseau électrique.
 
 
 
@@ -974,7 +974,7 @@ L'''option HP/HC est un mode de tarification de l''électricité qui encourage l
 
 -   **Choisir l''option HP/HC sans pouvoir décaler sa consommation** : Le prix des heures pleines est plus cher que l''option Base, vous paierez plus cher.
 -   **Ignorer ses plages horaires d''heures creuses** : Vous ne pourrez pas optimiser.
--   **Ne pas tenir compte de l''abonnement** : L'''abonnement en HP/HC est plus cher qu''en option Base. Il faut que les économies sur le kWh compensent cet abonnement.
+-   **Ne pas tenir compte de l''abonnement** : L''abonnement en HP/HC est plus cher qu''en option Base. Il faut que les économies sur le kWh compensent cet abonnement.
 -   **Oublier d''activer le contacteur jour/nuit pour le chauffe-eau** : S''il est présent.
 
 
@@ -1025,14 +1025,14 @@ Le nouveau compteur électrique "intelligent".
 
 ### 2. Lire sa consommation et ses options tarifaires sur l''écran Linky
 
-L'''écran affiche toutes les informations nécessaires.
+L''écran affiche toutes les informations nécessaires.
 
     -   **Bouton "+" (plus)** : Permet de faire défiler les informations sur l''écran.
     -   **Bouton "-" (moins)** : Permet de revenir en arrière ou d''afficher certaines informations spécifiques.
 
 #### b) Informations affichées (en faisant défiler avec le bouton "+")
-    -   Si vous êtes en option "Base" : L'''écran affichera "BASE" suivi de votre consommation en kWh.
-    -   Si vous êtes en option "Heures Pleines / Heures Creuses" : L'''écran affichera "HEURES PLEINES" puis "HEURES CREUSES" suivies des consommations correspondantes en kWh.
+    -   Si vous êtes en option "Base" : L''écran affichera "BASE" suivi de votre consommation en kWh.
+    -   Si vous êtes en option "Heures Pleines / Heures Creuses" : L''écran affichera "HEURES PLEINES" puis "HEURES CREUSES" suivies des consommations correspondantes en kWh.
 -   **Puissance souscrite** : Affiche la puissance de votre compteur en kVA (kilovoltampère), par exemple "P SOUSCRITE 6 kVA".
 -   **Puissance instantanée** : "P MAX" ou "P APP" (puissance appelée) : Affiche votre consommation électrique en temps réel à un instant T (en watts). Utile pour voir quels appareils consomment le plus.
 -   **Numéro de PDL** (Point De Livraison) : C''est le numéro unique de votre compteur (14 chiffres). Il est utile pour souscrire un contrat d''électricité.
@@ -1062,7 +1062,7 @@ L'''écran affiche toutes les informations nécessaires.
 
 
 -   **Ne pas consulter son espace client Enedis** : Vous perdriez l''opportunité de suivre et d''optimiser votre consommation.
--   **Penser que le Linky coûte cher au locataire** : L'''installation est gratuite, et les interventions à distance sont moins chères.
+-   **Penser que le Linky coûte cher au locataire** : L''installation est gratuite, et les interventions à distance sont moins chères.
 -   **Ignorer les informations sur les données** : Vous êtes propriétaire de vos données de consommation. C''est vous qui autorisez Enedis à les communiquer à votre fournisseur.
 
 
@@ -1255,8 +1255,8 @@ INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, v
 (
   'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
   'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'L'''installation : Rendez-vous technicien',
-  '# L'''installation : Rendez-vous technicien
+  'L''installation : Rendez-vous technicien',
+  '# L''installation : Rendez-vous technicien
 
 ## Pourquoi c''est important ?
 
@@ -1268,7 +1268,7 @@ Si vous avez opté pour une Box Internet fixe (Fibre ou ADSL/VDSL) pour votre lo
 -   Maîtriser les conseils pour faciliter l''installation et résoudre les problèmes éventuels.
 
 
-L'''installation de la fibre optique nécessite le raccordement de votre logement au réseau optique, tandis que l''ADSL peut nécessiter l''activation d''une ligne téléphonique. Dans les deux cas, une intervention technique est souvent requise.
+L''installation de la fibre optique nécessite le raccordement de votre logement au réseau optique, tandis que l''ADSL peut nécessiter l''activation d''une ligne téléphonique. Dans les deux cas, une intervention technique est souvent requise.
 
 🔗 [Orange : Préparer mon rendez-vous d''installation fibre](https://assistance.orange.fr/livebox-modem/toutes-les-livebox/installer-et-utiliser/preparer-mon-rdv-d-installation-fibre_212004-796525) - Exemple de guide d''un opérateur.
 
@@ -1277,7 +1277,7 @@ L'''installation de la fibre optique nécessite le raccordement de votre logemen
 
 
 -   **Raccordement au logement** : Même si la fibre est déployée dans votre immeuble ou quartier, elle doit être raccordée de l''extérieur jusqu''à l''intérieur de votre appartement. C''est le rôle du technicien.
--   **Durée** : L'''intervention peut durer entre 1h et 4h, selon la complexité du raccordement.
+-   **Durée** : L''intervention peut durer entre 1h et 4h, selon la complexité du raccordement.
 
 #### b) Pour l''ADSL / VDSL
 -   **Activation de la ligne** : Si la ligne téléphonique est inactive (car l''ancien locataire a résilié), un technicien peut devoir intervenir pour la réactiver au niveau du répartiteur.
@@ -1326,12 +1326,12 @@ L'''installation de la fibre optique nécessite le raccordement de votre logemen
 
 
 -   🔗 [Orange : Préparer mon rendez-vous d''installation fibre](https://assistance.orange.fr/livebox-modem/toutes-les-livebox/installer-et-utiliser/preparer-mon-rdv-d-installation-fibre_212004-796525) - Exemple de guide d''un opérateur.
--   🔗 [Arcep (Autorité de régulation des communications électroniques, des postes et de la distribution de la presse)](https://www.arcep.fr/) - L'''autorité régulatrice des télécoms.
+-   🔗 [Arcep (Autorité de régulation des communications électroniques, des postes et de la distribution de la presse)](https://www.arcep.fr/) - L''autorité régulatrice des télécoms.
 -   🔗 [UFC-Que Choisir : Problèmes avec son fournisseur d''accès internet](https://www.quechoisir.org/fiche-pratique-internet-comment-resoudre-un-litige-avec-son-fai-n100508/) - Conseils en cas de problème.
 -   🔗 [Les sites des opérateurs (Orange, Free, SFR, Bouygues Telecom)](https://www.orange.fr/) - Pour leurs propres guides d''installation.
 
 
-L'''installation de votre Box Internet (Fibre ou ADSL) nécessite souvent un rendez-vous avec un technicien. Anticipez les délais (2 à 4 semaines), soyez présent(e) et préparez l''accès au logement. N''hésitez pas à poser des questions et à tester la connexion avant le départ du technicien. Une bonne préparation garantit une installation fluide et un accès rapide à Internet, essentiel pour vos études et votre vie quotidienne en France. En cas de problème, contactez immédiatement votre opérateur.
+L''installation de votre Box Internet (Fibre ou ADSL) nécessite souvent un rendez-vous avec un technicien. Anticipez les délais (2 à 4 semaines), soyez présent(e) et préparez l''accès au logement. N''hésitez pas à poser des questions et à tester la connexion avant le départ du technicien. Une bonne préparation garantit une installation fluide et un accès rapide à Internet, essentiel pour vos études et votre vie quotidienne en France. En cas de problème, contactez immédiatement votre opérateur.
 ',
   3,
   55,
@@ -1359,7 +1359,7 @@ Lorsque vous quittez un logement en France, la résiliation de votre contrat Int
 
 ### 1. Comprendre l''engagement et son impact sur les frais de résiliation
 
-L'''engagement est la clé des frais.
+L''engagement est la clé des frais.
 
 -   **Frais en cas de résiliation anticipée** : Si vous résiliez avant la fin de la période d''engagement, l''opérateur vous facturera :
     -   La totalité des mensualités restantes jusqu''au 12ème mois d''abonnement.
@@ -1385,7 +1385,7 @@ Plusieurs coûts peuvent s''ajouter.
 -   **Contenu** : Indiquez votre numéro de client, l''adresse du logement, et la date souhaitée de fin de contrat.
 -   **Préavis** : Un préavis de 10 jours est souvent appliqué à compter de la réception de votre lettre par l''opérateur.
 
--   L'''opérateur vous enverra un bon de retour (souvent prépayé) pour renvoyer le matériel par colis, généralement via un point relais.
+-   L''opérateur vous enverra un bon de retour (souvent prépayé) pour renvoyer le matériel par colis, généralement via un point relais.
 -   **Conservez la preuve de dépôt du colis** : C''est votre seule preuve de restitution.
 
 
@@ -1465,7 +1465,7 @@ Ce n''est pas le loyer "brut" qui compte.
 🔗 [ANIL (Agence Nationale pour l''Information sur le Logement) : Les aides au logement](https://www.anil.org/votre-projet/vous-etes-locataire/les-aides-au-logement/les-aides-au-logement/) - Guide sur les APL.
 
 
-L'''emplacement a un impact majeur.
+L''emplacement a un impact majeur.
 
 
 
@@ -1479,7 +1479,7 @@ L'''emplacement a un impact majeur.
 
 -   Pour les étudiants, la CAF peut appliquer une "ressource forfaitaire" si vous êtes à la charge fiscale de vos parents, même si vous n''avez pas de revenus propres. Cependant, cette ressource forfaitaire est souvent basse pour les étudiants et ne pénalise pas trop le calcul.
 
-🔗 [Impots.gouv.fr : L'''avis d''imposition (ASDIR)](https://www.impots.gouv.fr/portail/particulier/avis-de-situation-declarative-limpot-sur-le-revenu-asdir) - C''est le document que la CAF utilise.
+🔗 [Impots.gouv.fr : L''avis d''imposition (ASDIR)](https://www.impots.gouv.fr/portail/particulier/avis-de-situation-declarative-limpot-sur-le-revenu-asdir) - C''est le document que la CAF utilise.
 
 
 
@@ -1566,7 +1566,7 @@ Comprendre l''estimation.
 
 -   Si l''estimation est positive, rassemblez tous les documents nécessaires pour votre demande officielle d''APL (voir cours sur la demande d''APL) :
     -   Votre RIB (Relevé d''Identité Bancaire) d''un compte bancaire français.
-    -   L'''attestation de loyer remplie et signée par votre propriétaire.
+    -   L''attestation de loyer remplie et signée par votre propriétaire.
     -   Votre avis d''imposition N-2 (même de non-imposition).
 
 
@@ -1612,7 +1612,7 @@ En tant qu''étudiant international, votre statut d''étranger en France est un 
 C''est le point de départ de votre éligibilité.
 
 
--   **VLS-TS validé** : Si vous êtes en première année avec un Visa Long Séjour valant Titre de Séjour (VLS-TS), vous devez avoir effectué la validation en ligne sur l''ANEF. L'''attestation de validation téléchargeable fait office de titre de séjour pour la première année.
+-   **VLS-TS validé** : Si vous êtes en première année avec un Visa Long Séjour valant Titre de Séjour (VLS-TS), vous devez avoir effectué la validation en ligne sur l''ANEF. L''attestation de validation téléchargeable fait office de titre de séjour pour la première année.
 
 
 ### 2. Le numéro d''identification étranger
@@ -1623,7 +1623,7 @@ Votre identifiant auprès de l''administration.
 
 
 
--   **Aucune discrimination** : L'''accès aux APL n''est pas discriminatoire en fonction de la nationalité, tant que vous remplissez les conditions de régularité de séjour.
+-   **Aucune discrimination** : L''accès aux APL n''est pas discriminatoire en fonction de la nationalité, tant que vous remplissez les conditions de régularité de séjour.
 
 -   **Revenus N-2** : (Voir leçon précédente) : Vos revenus (ou l''absence de revenus) de l''année N-2 sont pris en compte. Assurez-vous d''avoir fait votre déclaration de revenus annuelle (même si non imposable) pour obtenir votre avis d''imposition (ASDIR), indispensable pour la CAF.
 

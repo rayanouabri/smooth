@@ -29,8 +29,9 @@ def fix_triple_apostrophes(content):
         # Chercher les patterns comme L'''État, d'''Information, etc.
         # et les remplacer par L''État, d''Information, etc.
         
-        # Pattern: une lettre minuscule ou majuscule, suivie de trois apostrophes, suivie d'une majuscule
-        pattern = r"([a-zA-Z])'''([A-ZÉÈÊÀÂÇÔÙÛÎÏ])"
+        # Pattern: une lettre minuscule ou majuscule, suivie de trois apostrophes, suivie d'une lettre (majuscule ou minuscule)
+        # Corriger L'''État -> L''État et L'''état -> L''état
+        pattern = r"([a-zA-Z])'''([a-zA-ZÉÈÊÀÂÇÔÙÛÎÏéèêàâçôùûîï])"
         
         def replace_triple_apostrophe(match):
             letter = match.group(1)
@@ -61,11 +62,11 @@ for sql_file in sql_files:
         f.write(content_fixed)
     
     # Compter les corrections
-    original_count = len(re.findall(r"[a-zA-Z]'''[A-ZÉÈÊÀÂÇÔÙÛÎÏ]", content))
-    fixed_count = len(re.findall(r"[a-zA-Z]'''[A-ZÉÈÊÀÂÇÔÙÛÎÏ]", content_fixed))
+    original_count = len(re.findall(r"[a-zA-Z]'''[a-zA-ZÉÈÊÀÂÇÔÙÛÎÏéèêàâçôùûîï]", content))
+    fixed_count = len(re.findall(r"[a-zA-Z]'''[a-zA-ZÉÈÊÀÂÇÔÙÛÎÏéèêàâçôùûîï]", content_fixed))
     
     if original_count > fixed_count:
-        print(f"  ✓ Corrigé {original_count - fixed_count} occurrence(s)")
+        print(f"  Corrige {original_count - fixed_count} occurrence(s)")
 
 print("\n✓ Correction terminée pour tous les fichiers !")
 
