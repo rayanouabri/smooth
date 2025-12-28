@@ -360,8 +360,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 23
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'L''obligation légale d''assurance',
   '# L''obligation légale d''assurance
 
