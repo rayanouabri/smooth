@@ -507,7 +507,7 @@ Savoir lire les étiquettes d''entretien des vêtements est absolument crucial p
 -- COURS 74 : Sécurité urbaine
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '2a36855d-3a66-458a-94c8-51018b1ab40f',
+  'bf3146c1-2a84-4957-a43d-e99ea5c8fc7e',
   'Sécurité urbaine en France : Pickpockets, agressions et numéros d''urgence',
   'securite-urbaine-france-pickpockets-agressions-numeros-urgence',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France, afin de garantir leur sécurité en ville. Les grandes villes peuvent présenter des risques (pickpockets, petites agressions), et il est crucial de connaître les réflexes de prudence et les numéros d''urgence. Nous vous expliquerons les techniques courantes des pickpockets et comment vous en prémunir, les conseils pour rentrer seul(e) le soir en toute sécurité, et les numéros d''urgence spécifiques (114 par SMS pour les personnes malentendantes ou ne pouvant pas parler). Maîtriser ces informations est absolument crucial pour prévenir les dangers, réagir efficacement en cas de problème, et vivre votre séjour en France en toute sérénité. Votre sécurité est notre priorité absolue.',
@@ -769,7 +769,7 @@ Le numéro 114, accessible par SMS ou fax, est un numéro d''urgence absolument 
 -- COURS 75 : Objets trouvés / Papiers volés
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '2a36855d-3a66-458a-94c8-51018b1ab40f',
+  'e5aa2980-0f48-4447-926e-f344ba602900',
   'Objets trouvés / Papiers volés en France : Démarches et réflexes',
   'objets-trouves-papiers-voles-france-demarches-reflexes',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France. Perdre ses papiers (passeport, titre de séjour, carte bancaire) ou se les faire voler est une situation très stressante qui nécessite des démarches administratives urgentes. Ne pas savoir comment réagir, où faire la déclaration, et qui contacter peut entraîner des problèmes majeurs (financiers, juridiques, de séjour). Nous vous expliquerons la distinction entre "main courante" et "plainte", comment contacter votre consulat pour refaire votre passeport, et le rôle du service des objets trouvés. Maîtriser ces réflexes est absolument crucial pour minimiser les conséquences d''une perte ou d''un vol, protéger votre identité et vos biens, et régulariser votre situation au plus vite.',
@@ -1019,7 +1019,7 @@ Si vous perdez un objet ou vos papiers en France, contactez rapidement le servic
 -- COURS 76 : Tu ou Vous ?
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '2a36855d-3a66-458a-94c8-51018b1ab40f',
+  'ce97dc71-852b-4833-b323-7ec29bd3e6ba',
   'Tu ou Vous ? Le guide des règles de politesse en français',
   'tu-vous-guide-regles-politesse-francais',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de maîtriser les codes sociaux fondamentaux de la langue française : la distinction entre l''utilisation du "Tu" et du "Vous". Cette règle de politesse est cruciale dans toutes vos interactions (administrations, professeurs, commerçants, amis). Ne pas la comprendre, c''est risquer de paraître irrespectueux(se) ou trop familier(ère), ce qui peut impacter vos relations. Nous vous expliquerons la "règle de l''âge et de la hiérarchie", quand passer au "Tu" (et avec qui), et les spécificités du vouvoiement commercial. Maîtriser ces nuances est absolument crucial pour une communication fluide, respectueuse, et une intégration réussie dans la société française.',

@@ -822,7 +822,7 @@ L''obtention de votre Numéro d''Identification au Répertoire (NIR) définitif 
 -- COURS 36 : La Carte Vitale
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  '2e208c5b-4b47-4212-af6c-992528ea7e12',
   'La Carte Vitale en France : Votre accès simplifié aux soins',
   'carte-vitale-france-acces-simplifie-soins',
   'Ce cours est essentiel pour tous les étudiants internationaux affiliés à la Sécurité Sociale française. La Carte Vitale est un document indispensable qui simplifie considérablement l''accès à vos droits à la santé et vos remboursements. Nous vous expliquerons comment commander votre carte (après l''obtention de votre numéro définitif de Sécurité Sociale), les étapes pour la mettre à jour (notamment dans les pharmacies), et l''émergence de l''application "Carte Vitale" dématérialisée. Ne pas avoir de Carte Vitale, c''est devoir avancer tous vos frais et envoyer des feuilles de soins. Maîtriser son utilisation est absolument crucial pour des remboursements rapides, le tiers-payant, et une gestion sereine de votre santé en France.',

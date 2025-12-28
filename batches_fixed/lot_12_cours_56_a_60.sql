@@ -551,7 +551,7 @@ Adapter vos expériences étrangères sur un CV français est absolument crucial
 -- COURS 59 : La Lettre de Motivation
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '94f170f6-8132-482a-8ab0-f3921a6b6454',
+  '9d52dd12-a410-4f12-9b8b-ebc70cc39ea5',
   'La Lettre de Motivation : L''art de convaincre en France',
   'lettre-motivation-art-convaincre-france',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui recherchent un job, un stage ou un emploi. La lettre de motivation (LM) française a des codes très spécifiques, souvent différents de ceux de votre pays d''origine, et elle est un complément indispensable à votre CV. Ne pas maîtriser sa structure ("Vous, Moi, Nous"), les formules de politesse incontournables, et les erreurs classiques à éviter, c''est risquer de voir votre candidature écartée. Nous vous expliquerons comment personnaliser votre lettre pour chaque offre, valoriser votre parcours international, et convaincre le recruteur de votre motivation. Maîtriser la rédaction d''une LM impactante est absolument crucial pour décrocher des entretiens et réussir votre insertion professionnelle en France.',
@@ -838,7 +838,7 @@ De nombreuses erreurs peuvent desservir votre lettre de motivation en France : u
 -- COURS 60 : Législation travail étudiant
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '94f170f6-8132-482a-8ab0-f3921a6b6454',
+  '2f99ccee-18a9-4794-9af3-54e6bf1ec4cb',
   'Législation travail étudiant en France : Droits et limites',
   'legislation-travail-etudiant-france-droits-limites',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent travailler pendant leurs études. La législation française encadre strictement le travail étudiant, avec des limites d''heures spécifiques pour les étudiants non-européens et des obligations de déclaration. Ne pas connaître ces règles, c''est risquer des problèmes avec votre titre de séjour, des amendes, ou même de travailler illégalement. Nous vous expliquerons la limite des 964 heures par an (60% d''un temps plein), la nécessité de déclarer ses heures si vous êtes hors UE, et le montant du SMIC horaire. Maîtriser cette législation est absolument crucial pour travailler en toute légalité, protéger vos droits de salarié, et ne pas compromettre votre statut étudiant en France.',
@@ -1108,7 +1108,7 @@ Si vous envisagez de travailler en France pendant vos études, il est absolument
 -- COURS 61 : Trouver un Job Étudiant
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '94f170f6-8132-482a-8ab0-f3921a6b6454',
+  '04abbad0-737f-4f7b-86c6-b4a2875ff695',
   'Trouver un Job Étudiant en France : Secteurs, sites et contrats',
   'trouver-job-etudiant-france-secteurs-sites-contrats',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui recherchent un job étudiant pour compléter leur budget. Le marché de l''emploi étudiant est dynamique, mais il est crucial de savoir où chercher, quels secteurs recrutent le plus, et quels types de contrats sont adaptés à votre statut. Ne pas avoir les bonnes informations, c''est risquer de perdre du temps avec des candidatures inadaptées ou de ne pas trouver d''emploi du tout. Nous vous expliquerons comment utiliser Jobaviz et d''autres sites spécialisés, identifier les secteurs qui recrutent (restauration, garde d''enfants), et comprendre les spécificités du contrat de travail étudiant. Maîtriser cette recherche est absolument crucial pour trouver un emploi légal, protéger vos droits, et concilier efficacement études et travail.',

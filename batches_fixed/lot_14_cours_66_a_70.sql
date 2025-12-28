@@ -516,7 +516,7 @@ L''application SNCF Connect est l''outil indispensable pour tous les étudiants 
 -- COURS 69 : Vélib' et vélos
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8a570c6e-fbbf-4808-bc40-d1ad8265fbf5',
+  '55d6f9de-15cf-4438-be37-80a5038af549',
   'Vélib'' et vélos en France : Mobilité douce et sécurité routière',
   'velib-velos-france-mobilite-douce-securite-routiere',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent adopter la "mobilité douce" et se déplacer à vélo. Le vélo est un moyen de transport écologique, économique et agréable, mais il est crucial de connaître les options disponibles (services de vélos en libre-service comme Vélib'' à Paris) et le Code de la route spécifique aux cyclistes. Nous vous expliquerons comment vous abonner aux services de vélos en libre-service, les règles de circulation pour les cyclistes, et les conseils pour sécuriser votre vélo personnel (antivol, stationnement). Maîtriser ces informations est absolument crucial pour vous déplacer en toute sécurité, éviter les amendes, et profiter pleinement de la ville à vélo.',
@@ -778,7 +778,7 @@ Si vous possédez un vélo personnel en France, il est absolument crucial de le 
 -- COURS 70 : Faire ses courses
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8a570c6e-fbbf-4808-bc40-d1ad8265fbf5',
+  'e4f24845-4289-4533-bbed-e5de645d62c2',
   'Faire ses courses en France : Hypermarchés, Hard-Discount et astuces',
   'faire-courses-france-hypermarches-hard-discount-astuces',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France, afin d''optimiser leur budget alimentaire. Faire ses courses est une dépense récurrente, et le choix du magasin peut avoir un impact majeur sur vos dépenses. Nous vous expliquerons la typologie des supermarchés (hypermarché, supermarché, supérette), les avantages des enseignes "hard-discount" (Lidl, Aldi) pour des prix bas, et l''intérêt des cartes de fidélité pour des réductions supplémentaires. Maîtriser ces informations est absolument crucial pour gérer votre budget alimentation efficacement, faire des économies, et découvrir les habitudes de consommation françaises sans vous ruiner.',
@@ -1013,7 +1013,7 @@ Les cartes de fidélité des supermarchés en France sont un excellent moyen d''
 -- COURS 71 : Tri sélectif
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8a570c6e-fbbf-4808-bc40-d1ad8265fbf5',
+  '1ee3932a-4e97-43fd-a038-e7142771964f',
   'Tri sélectif en France : Le guide des poubelles (Jaune, Verte, Marron)',
   'tri-selectif-france-guide-poubelles-jaune-verte-marron',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre les règles du tri sélectif des déchets ménagers. Le tri est une pratique quotidienne obligatoire et un geste citoyen important pour l''environnement. Ne pas connaître les consignes de tri, c''est risquer de mal jeter ses déchets, de polluer les filières de recyclage, de recevoir des rappels à l''ordre, ou de générer des nuisances dans votre immeuble. Nous vous expliquerons la distinction entre la poubelle jaune (emballages), la poubelle verte (verre), la poubelle marron/noire (déchets non recyclables), et les points de collecte spécifiques. Maîtriser ces nouvelles règles est absolument crucial pour une intégration respectueuse de l''environnement et du cadre de vie en France.',

@@ -474,7 +474,7 @@ Suivre vos remboursements sur votre espace personnel `ameli.fr` est une démarch
 -- COURS 39 : La Mutuelle (Complémentaire)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
+  '7b034aac-2b61-4527-8e88-df1aea5c126a',
   'La Mutuelle (Complémentaire Santé) en France : Votre protection renforcée',
   'mutuelle-complementaire-sante-france-protection-renforcee',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, après leur affiliation à la Sécurité Sociale. La "mutuelle" (ou complémentaire santé) est le deuxième pilier de votre couverture santé, elle complète les remboursements de l''Assurance Maladie et peut réduire considérablement votre "reste à charge". Nous vous aiderons à déterminer si vous avez besoin d''une mutuelle (la réponse est presque toujours oui !), à comprendre le fonctionnement de la Complémentaire Santé Solidaire (CSS) gratuite pour les faibles revenus, et à comparer les offres spécifiques pour étudiants (LMDE, HEYME...) ou les mutuelles classiques. Maîtriser le choix et la souscription d''une mutuelle est absolument crucial pour optimiser vos remboursements, accéder à tous les soins, et protéger votre budget contre les dépenses imprévues.',
@@ -729,7 +729,7 @@ Comparer les offres de mutuelles étudiantes (LMDE, HEYME) et classiques est une
 -- COURS 40 : Doctolib et prise de RDV
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
+  '24d0016d-b75f-49aa-9afb-6f2574f82933',
   'Doctolib et prise de RDV : Facilitez votre accès aux soins en France',
   'doctolib-prise-rdv-facilitez-acces-soins-france',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui ont besoin de consulter un médecin ou un spécialiste. Doctolib est la plateforme de prise de rendez-vous médicaux en ligne la plus utilisée, simplifiant considérablement l''accès aux soins. Nous vous expliquerons comment créer votre compte Doctolib, utiliser les filtres de recherche (par langue parlée, spécialité), et comment fonctionne la téléconsultation, une option pratique et de plus en plus courante. Maîtriser Doctolib est absolument crucial pour trouver un professionnel de santé rapidement, prendre rendez-vous efficacement, et gérer votre suivi médical en toute autonomie et sérénité.',
@@ -977,7 +977,7 @@ La téléconsultation est un mode d''accès aux soins flexible et rapide en Fran
 -- COURS 41 : Urgences et Numéros utiles
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'c4d5c2aa-6b48-4814-af8a-d60dc4372ba4',
+  'a794d362-d78f-4396-b77a-653cd83fa523',
   'Urgences et Numéros utiles en France : Votre guide de sécurité',
   'urgences-numeros-utiles-france-guide-securite',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France. Connaître les numéros d''urgence et savoir comment réagir en cas d''urgence médicale, d''accident, de détresse ou de danger est absolument crucial pour votre sécurité et celle de votre entourage. Nous vous détaillerons les numéros essentiels (15 SAMU, 18 Pompiers, 112 Europe), les alternatives aux urgences (SOS Médecins pour les consultations à domicile), et l''importance de connaître la pharmacie de garde. Maîtriser ces informations est fondamental pour réagir efficacement en cas de situation critique et garantir votre sécurité et votre bien-être sur le territoire français.',

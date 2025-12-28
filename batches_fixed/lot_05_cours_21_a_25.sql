@@ -31,8 +31,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 22
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Pourquoi c''est le moment le plus important',
   '# Pourquoi c''est le moment le plus important
 
@@ -120,8 +120,8 @@ L''état des lieux d''entrée est le moment le plus important de votre location 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Tester l''eau, l''électricité et les ouvertures',
   '# Tester l''eau, l''électricité et les ouvertures
 
@@ -181,8 +181,8 @@ Tester minutieusement les installations d''eau, d''électricité et toutes les o
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Prendre des photos de tout (défauts)',
   '# Prendre des photos de tout (défauts)
 
@@ -261,8 +261,8 @@ Prendre des photos et des vidéos datées de tous les défauts, même minimes, e
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Signer et récupérer sa copie',
   '# Signer et récupérer sa copie
 
@@ -338,7 +338,7 @@ Signer l''état des lieux d''entrée et récupérer votre copie sont les étapes
 -- COURS 23 : Assurance Habitation
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Assurance Habitation en France : Protégez votre logement',
   'assurance-habitation-france-protegez-logement',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux qui s''apprêtent à louer un logement en France. L''assurance habitation est une obligation légale pour le locataire et une protection indispensable pour votre bien-être. Nous vous expliquerons pourquoi cette assurance est obligatoire, la distinction entre la Responsabilité Civile et l''assurance Multirisque Habitation, comment comparer les offres des banques et des assureurs en ligne, et comment obtenir rapidement votre attestation d''assurance. Maîtriser ce sujet est crucial pour être en règle avec la loi, protéger vos biens et ceux du propriétaire, et éviter des frais exorbitants en cas de sinistre. Ne négligez jamais cette protection !',
@@ -360,8 +360,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 23
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'L''obligation légale d''assurance',
   '# L''obligation légale d''assurance
 
@@ -449,8 +449,8 @@ L''assurance habitation est une obligation légale et une nécessité absolue po
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Responsabilité Civile vs Multirisque',
   '# Responsabilité Civile vs Multirisque
 
@@ -539,8 +539,8 @@ La Responsabilité Civile Locative est l''assurance habitation minimum légaleme
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Comparer les offres (Banques vs Assureurs en ligne)',
   '# Comparer les offres (Banques vs Assureurs en ligne)
 
@@ -622,8 +622,8 @@ Comparer les offres d''assurance habitation entre les banques, les assureurs tra
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Obtenir son attestation',
   '# Obtenir son attestation d''assurance habitation
 
@@ -711,7 +711,7 @@ L''obtention rapide et la conservation précieuse de votre attestation d''assura
 -- COURS 24 : Ouvrir ses compteurs (Énergie)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'b2c3d4e5-f6a7-4890-b1c2-d3e4f5a6b7c8',
   'Ouvrir ses compteurs (Énergie) en France : Électricité et Gaz',
   'ouvrir-compteurs-energie-france-electricite-gaz',
   'Ce cours est un guide essentiel pour les étudiants internationaux s''installant dans un nouveau logement en France et devant gérer leurs contrats d''énergie. L''ouverture des compteurs d''électricité et de gaz est une démarche obligatoire et urgente pour avoir l''énergie dans votre logement. Nous vous expliquerons comment relever les compteurs à l''entrée, comment choisir votre fournisseur (EDF, TotalEnergies, Engie, etc.), la différence entre heures creuses et heures pleines pour optimiser votre consommation, et le fonctionnement du compteur Linky. Maîtriser ces étapes est crucial pour éviter de vous retrouver sans électricité ou gaz, gérer votre consommation et comprendre vos factures.',
@@ -733,8 +733,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 24
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Relever les compteurs à l''entrée',
   '# Relever les compteurs à l''entrée
 
@@ -825,8 +825,8 @@ Relever les compteurs d''électricité et de gaz (et eau si individualisée) à 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Choisir son fournisseur (EDF, Total, Engie...)',
   '# Choisir son fournisseur (EDF, Total, Engie...)
 
@@ -908,8 +908,8 @@ Choisir son fournisseur d''électricité et de gaz en France est une démarche i
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Comprendre les heures creuses / heures pleines',
   '# Comprendre les heures creuses / heures pleines
 
@@ -994,8 +994,8 @@ Comprendre le système d''heures creuses et heures pleines est crucial pour opti
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Le compteur Linky : Comment ça marche',
   '# Le compteur Linky : Comment ça marche
 
@@ -1104,8 +1104,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 25
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Tester l''éligibilité de son adresse',
   '# Tester l''éligibilité de son adresse
 
@@ -1181,8 +1181,8 @@ Tester l''éligibilité de votre adresse est la première étape indispensable p
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Box vs Forfait 4G/5G',
   '# Box vs Forfait 4G/5G
 
@@ -1252,8 +1252,8 @@ Le choix entre une Box Internet (Fibre/ADSL) et un forfait 4G/5G est crucial pou
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'L''installation : Rendez-vous technicien',
   '# L''installation : Rendez-vous technicien
 
@@ -1340,8 +1340,8 @@ L''installation de votre Box Internet (Fibre ou ADSL) nécessite souvent un rend
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
   'Résiliation : Attention aux frais',
   '# Résiliation : Attention aux frais
 

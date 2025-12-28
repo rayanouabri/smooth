@@ -511,7 +511,7 @@ Les lignes d''écoute anonymes et confidentielles (SOS Amitié, Fil Santé Jeune
 -- COURS 44 : Santé sexuelle
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  '5369a0ee-e681-4232-8af1-46b5a9e780d4',
   'Santé sexuelle en France : Contraception, Dépistage et Prévention',
   'sante-sexuelle-france-contraception-depistage-prevention',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre les enjeux et l''accès aux services de santé sexuelle. En France, la prévention et l''accès aux méthodes contraceptives et au dépistage sont des priorités. Nous vous informerons sur la gratuité des préservatifs en pharmacie pour les moins de 26 ans, les différentes options de contraception d''urgence et leur accessibilité, ainsi que le rôle des CeGIDD (Centres Gratuits d''Information, de Dépistage et de Diagnostic) pour le dépistage des IST. Maîtriser ces informations est absolument crucial pour vivre votre sexualité de manière éclairée, protégée et responsable, et pour garantir votre bien-être et votre santé. ',
@@ -766,7 +766,7 @@ Les CeGIDD (Centres Gratuits d''Information, de Dépistage et de Diagnostic) son
 -- COURS 45 : Lunettes et Dents (100% Santé)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  '6e3eb556-1118-4a75-9014-07eca704d9e0',
   'Lunettes et Dents (100% Santé) : Zéro reste à charge en France',
   'lunettes-dents-100-sante-zero-reste-charge-france',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France qui ont besoin de lunettes, de lentilles ou de soins dentaires. Le dispositif "100% Santé" (anciennement "Reste à charge zéro") est une réforme majeure qui garantit l''accès à des équipements d''optique, des prothèses dentaires et des aides auditives entièrement remboursés, sans aucun reste à charge pour l''assuré. Ne pas connaître ce dispositif, c''est risquer de payer des centaines, voire des milliers d''euros, pour des soins et équipements qui pourraient être gratuits. Nous vous expliquerons le contenu du panier "100% Santé", comment en faire la demande auprès de votre opticien ou dentiste, et les délais de carence des mutuelles. Maîtriser ces informations est absolument crucial pour protéger votre budget et garantir votre accès à des soins essentiels.',

@@ -596,7 +596,7 @@ La distinction entre un stage (période de formation pédagogique avec conventio
 -- COURS 64 : Statut Auto-entrepreneur
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '536d583b-52d1-4925-9f3c-c3368b5b10ee',
+  '05da0c51-d1af-414c-964c-2f192e22095c',
   'Statut Auto-entrepreneur en France : Créer son activité étudiante',
   'statut-auto-entrepreneur-france-creer-activite-etudiante',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui envisagent de créer leur propre activité indépendante sous le régime de la micro-entreprise (anciennement auto-entrepreneur). Cette option offre flexibilité et simplicité administrative, mais elle est soumise à des conditions spécifiques, notamment la compatibilité avec votre visa étudiant. Nous vous expliquerons si le statut est cumulable avec votre titre de séjour, la procédure de création sur le site de l''URSSAF, et les obligations de déclaration de chiffre d''affaires mensuelle ou trimestrielle. Maîtriser le statut d''auto-entrepreneur est absolument crucial pour lancer votre activité en toute légalité, comprendre vos obligations fiscales et sociales, et financer vos études de manière autonome.',
@@ -890,7 +890,7 @@ La déclaration de votre chiffre d''affaires (CA) mensuelle ou trimestrielle est
 -- COURS 65 : Networking et LinkedIn
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '536d583b-52d1-4925-9f3c-c3368b5b10ee',
+  '18498137-3cce-417c-9e91-5da72e71d0d4',
   'Networking et LinkedIn en France : Développez votre réseau pro',
   'networking-linkedin-france-developpez-reseau-pro',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent développer leur réseau professionnel et faciliter leur insertion sur le marché de l''emploi. Le "réseau" est une notion très importante en France, et LinkedIn est un outil incontournable pour le développer. Nous vous expliquerons l''importance du networking (rencontres professionnelles), comment optimiser votre profil LinkedIn pour attirer les recruteurs, et les conseils pour participer efficacement à des événements professionnels (salons, conférences). Maîtriser ces stratégies est absolument crucial pour créer des opportunités d''emploi, trouver des stages, et réussir votre carrière en France.',
@@ -1185,7 +1185,7 @@ Participer à des événements professionnels (salons, forums, conférences) est
 -- COURS 66 : Forfaits mobiles
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '536d583b-52d1-4925-9f3c-c3368b5b10ee',
+  '1391d6c7-64b4-4093-b9ae-7fbdb0f6a4d0',
   'Forfaits mobiles en France : Choisir et gérer sa SIM',
   'forfaits-mobiles-france-choisir-gerer-sim',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui ont besoin de choisir et de gérer leur forfait mobile. Le marché français est riche en offres, avec des opérateurs historiques et des "low cost" sans engagement. Nous vous expliquerons la flexibilité des forfaits sans engagement (Sosh, RED by SFR, Free Mobile), comment conserver votre numéro de téléphone si vous changez d''opérateur (le code RIO), et la solution pratique des cartes SIM prépayées pour une arrivée rapide. Maîtriser ce choix est absolument crucial pour rester connecté(e), communiquer avec vos proches en France et à l''étranger, et optimiser votre budget télécoms sans frais cachés ni engagement contraignant.',

@@ -383,7 +383,7 @@ Pour voyager à travers l''Europe à petit prix depuis la France, privilégiez l
 -- COURS 89 : Jours fériés et Ponts
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '92eade32-fe77-4334-a586-8f00989b2b5f',
+  '0d291f92-9399-4ffb-bbac-49306ddb6437',
   'Jours fériés et Ponts en France : Planifiez vos congés !',
   'jours-feries-ponts-france-planifiez-conges',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre le calendrier des jours fériés et la tradition des "ponts". Les jours fériés sont des jours de repos légaux, et un "pont" est un jour de congé supplémentaire pour relier un jour férié au week-end. Ne pas connaître ces dates, c''est risquer de se retrouver face à des administrations ou des magasins fermés, de ne pas pouvoir planifier ses voyages, ou de manquer des opportunités de repos. Nous vous présenterons le calendrier des jours fériés, et l''art de "faire le pont" en posant ses congés intelligemment. Maîtriser ces informations est absolument crucial pour planifier votre emploi du temps, vos voyages, et profiter pleinement des fêtes nationales et des jours de repos en France.',
@@ -553,7 +553,7 @@ Le "faire le pont" est une tradition française qui permet de prolonger les week
 -- COURS 90 : Manger Spécifique
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '92eade32-fe77-4334-a586-8f00989b2b5f',
+  '8cccfedb-fa28-4b47-b115-328aa262003f',
   'Manger Spécifique en France : Halal, Casher, Végé, Vegan',
   'manger-specifique-france-halal-casher-vege-vegan',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui ont des régimes alimentaires spécifiques (religieux, éthiques, de santé). Le marché alimentaire français offre de plus en plus d''options, mais il est crucial de savoir où trouver des produits **Halal, Casher, Végétariens ou Végans**, et comment identifier les restaurants adaptés. Ne pas connaître ces ressources, c''est risquer des difficultés pour vous alimenter selon vos convictions ou vos besoins, et de ne pas profiter pleinement de l''offre culinaire. Nous vous expliquerons comment trouver ces produits en supermarché et en magasins spécialisés, et les astuces pour repérer les restaurants proposant ces options. Maîtriser ces informations est absolument crucial pour une alimentation conforme et un mode de vie respectueux de vos choix en France.',
@@ -661,7 +661,7 @@ Trinquer en se regardant dans les yeux est un rituel social absolument crucial e
 -- COURS 80 : Améliorer son français
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '92eade32-fe77-4334-a586-8f00989b2b5f',
+  '8d860487-8a77-41d4-a4e2-3a360690824e',
   'Améliorer son français en France : Ressources et astuces pour progresser',
   'ameliorer-francais-france-ressources-astuces-progresser',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent perfectionner leur maîtrise de la langue française. Une bonne connaissance du français est la clé d''une intégration réussie, d''une meilleure réussite académique, et d''une insertion professionnelle facilitée. Nous vous présenterons des applications gratuites pour l''apprentissage (Duolingo, Babbel), les avantages des "cafés des langues" et des "tandems linguistiques" pour la pratique orale, et l''intérêt des médias français (Radio France, Arte) pour l''écoute et la compréhension. Maîtriser ces ressources et ces astuces est absolument crucial pour progresser rapidement, gagner en confiance, et vous immerger pleinement dans la vie française.',

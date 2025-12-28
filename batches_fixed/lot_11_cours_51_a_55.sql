@@ -779,7 +779,7 @@ Contacter l''assistante sociale étudiante (via le CROUS ou votre université) e
 -- COURS 55 : Clôturer son compte
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  '9835cc69-808f-4ab9-aab0-6ad7aab94d77',
   'Clôturer son compte bancaire en France : Démarches et précautions',
   'cloturer-compte-bancaire-france-demarches-precautions',
   'Ce cours est essentiel pour tous les étudiants internationaux qui s''apprêtent à quitter la France ou à changer de banque. La clôture d''un compte bancaire est une démarche administrative qui demande de l''anticipation et de la rigueur. Ne pas la faire correctement peut entraîner des frais de découvert inattendus, des prélèvements non autorisés sur un compte "oublié", ou des difficultés à récupérer vos fonds restants. Nous vous expliquerons comment vérifier qu''il n''y a plus de prélèvements ou de virements à venir, les étapes pour rédiger et envoyer la lettre de clôture, et comment transférer le solde restant. Maîtriser cette procédure est absolument crucial pour un départ serein, en toute conformité et sans mauvaises surprises financières.',
@@ -1031,7 +1031,7 @@ Lorsque vous clôturez votre compte bancaire en France, la dernière étape est 
 -- COURS 56 : Le système universitaire
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'cf576c3d-66ec-4bb3-a9ae-7ed8ecb73d1f',
+  '48b4aac1-a9dc-4c08-82bc-ae08793eccc1',
   'Le système universitaire français : CM, TD, ECTS et examens',
   'systeme-universitaire-francais-cm-td-ects-examens',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux qui s''apprêtent à intégrer l''enseignement supérieur en France. Le système universitaire français, avec ses Cours Magistraux (CM), ses Travaux Dirigés (TD), et son système de crédits ECTS, peut être très différent de ce que vous connaissez. Ne pas comprendre cette organisation, les attentes académiques, et les modalités d''évaluation peut impacter votre réussite et votre adaptation. Nous vous expliquerons la distinction entre CM et TD, le fonctionnement des crédits ECTS pour la validation de vos études, l''importance de la présence et les différentes formes d''examens. Maîtriser ces informations est absolument crucial pour bien démarrer vos études, comprendre vos obligations, et maximiser vos chances de succès académique en France.',

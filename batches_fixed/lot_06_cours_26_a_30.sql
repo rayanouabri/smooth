@@ -934,7 +934,7 @@ Le logement chez l''habitant ou intergénérationnel offre des avantages économ
 -- COURS 30 : Vie en copropriété
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '9d4cd5b4-23d8-4d4b-aed4-761ed0a69a14',
+  '12747c40-6668-4375-b6b2-6d9677eeb76f',
   'Vie en copropriété : Règles et respect du voisinage en France',
   'vie-copropriete-regles-respect-voisinage-france',
   'Ce cours est essentiel pour tous les étudiants internationaux qui louent un logement dans un immeuble en France. Vivre en copropriété implique le respect de règles spécifiques pour assurer une bonne cohabitation entre voisins. Nous vous expliquerons ce qu''est le règlement de copropriété et comment il encadre la vie de l''immeuble. Nous aborderons la gestion des poubelles et des parties communes, ainsi que les règles concernant le tapage nocturne et le respect du voisinage, des points souvent sources de conflits. Maîtriser ces règles est absolument crucial pour une intégration harmonieuse, éviter les problèmes avec vos voisins ou le syndic, et profiter sereinement de votre logement en France.',
@@ -1184,7 +1184,7 @@ Le respect de la tranquillité du voisinage est essentiel en France. Le tapage n
 -- COURS 31 : Quitter son logement
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '9d4cd5b4-23d8-4d4b-aed4-761ed0a69a14',
+  'b784a231-8f13-4127-996e-ef973f0e62fb',
   'Quitter son logement en France : Préavis et état des lieux de sortie',
   'quitter-logement-france-preavis-etat-des-lieux-sortie',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux qui s''apprêtent à quitter leur logement en France. La procédure de départ est encadrée par des règles strictes concernant le préavis et l''état des lieux de sortie, et une mauvaise gestion de ces étapes peut entraîner des frais imprévus ou la perte de votre dépôt de garantie. Nous vous expliquerons comment déterminer la durée de votre préavis (1 mois en zone tendue/meublé, 3 mois sinon), comment rédiger et envoyer votre lettre de congé (modèle fourni), et l''importance cruciale de l''état des lieux de sortie pour récupérer votre caution. Maîtriser ces étapes est absolument crucial pour un départ serein, en conformité avec la loi, et pour protéger vos finances.',
