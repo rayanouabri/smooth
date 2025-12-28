@@ -29,8 +29,9 @@ def fix_invalid_uuids_in_file(file_path):
     original = content
     
     # Pattern pour trouver les UUID : format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-    # On cherche tous les patterns qui ressemblent à des UUID, même s'ils sont invalides
-    uuid_pattern = r"'([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})'"
+    # On cherche tous les patterns qui ressemblent à des UUID (avec n'importe quels caractères alphanumériques)
+    # Format: 8 caractères - 4 caractères - 4 caractères - 4 caractères - 12 caractères
+    uuid_pattern = r"'([0-9a-zA-Z]{8}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{12})'"
     
     # Trouver tous les patterns UUID (y compris invalides)
     matches = re.finditer(uuid_pattern, content)

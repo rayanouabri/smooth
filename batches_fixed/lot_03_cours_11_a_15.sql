@@ -106,7 +106,7 @@ L''échange de votre permis de conduire étranger en France dépend de l''existe
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '7e8f9a0b-1c2d-4012-p3q4-r5s6t7u8v9w0',
+  '7a6a6290-61f8-4ca1-aa8c-5a02c7d28c0c',
   'c5d6e7f8-a9b0-4012-e1f2-a3b4c5d6e7f8',
   'Le délai fatal d''un an pour faire la demande',
   '# Le délai fatal d''un an pour faire la demande
@@ -190,7 +190,7 @@ Le délai d''un an pour déposer votre demande d''échange de permis de conduire
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '8e9f0a1b-2c3d-4012-x5y6-z7a8b9c0d1e2',
+  '2c541963-b0c6-4fee-a922-8222c17c2688',
   'c5d6e7f8-a9b0-4012-e1f2-a3b4c5d6e7f8',
   'La procédure sur l''ANTS',
   '# La procédure sur l''ANTS
@@ -277,7 +277,7 @@ La procédure d''échange de votre permis de conduire étranger se fait entière
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '9f0a1b2c-3d4e-4012-y7z8-a9b0c1d2e3f4',
+  '2fa9f53f-e9ab-42cb-a3b6-49205b8a0c37',
   'c5d6e7f8-a9b0-4012-e1f2-a3b4c5d6e7f8',
   'Conduire avec son permis étranger : Les règles',
   '# Conduire avec son permis étranger : Les règles
@@ -454,7 +454,7 @@ Une traduction assermentée est une traduction à valeur légale, réalisée par
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '0g1h2i3j-4k5l-4012-m3n4-o5p6q7r8s9t0',
+  '82361fa8-1298-498d-b32c-f9be3360e64f',
   'e1f2a3b4-c5d6-4012-e7f8-a9b0c1d2e3f4',
   'Trouver un traducteur agréé près de chez soi',
   '# Trouver un traducteur agréé près de chez soi
@@ -526,7 +526,7 @@ Trouver un traducteur agréé par une Cour d''appel française est une étape cr
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '1h2i3j4k-5l6m-4012-n7o8-p9q0r1s2t3u4',
+  'e3556f3e-5cdc-44f5-8e67-a37300a23cb7',
   'e1f2a3b4-c5d6-4012-e7f8-a9b0c1d2e3f4',
   'Apostille et Légalisation : La différence',
   '# Apostille et Légalisation : La différence
@@ -608,7 +608,7 @@ L''apostille et la légalisation sont des certifications d''authenticité de doc
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '2i3j4k5l-6m7n-4012-o8p9-q0r1s2t3u4v5',
+  '3ecd4e4b-6cb0-4b3d-b051-02aa83e5c5be',
   'e1f2a3b4-c5d6-4012-e7f8-a9b0c1d2e3f4',
   'Durée de validité des traductions',
   '# Durée de validité des traductions
@@ -787,7 +787,7 @@ La Laïcité est un principe fondamental français qui garantit la neutralité d
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e7f8a9b0-c1d2-4012-g3h4-i5j6k7l8m9n0',
+  'bc7f24bd-51b3-4b7b-a450-33fb0d027f06',
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
   'Droits à la manifestation et à la grève',
   '# Droits à la manifestation et à la grève
@@ -854,7 +854,7 @@ Le droit de manifester et de faire grève sont des droits fondamentaux en France
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e6f7a8b9-c0d1-4012-h3i4-j5k6l7m8n9o0',
+  'ff6cee77-7a13-450d-a69a-8fa1bc5bf091',
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
   'Liberté d''expression et ses limites légales',
   '# Liberté d''expression et ses limites légales
@@ -1048,7 +1048,7 @@ FranceConnect est un dispositif gouvernemental qui simplifie et sécurise l''acc
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'd1e2f3g4-h5i6-4012-j7k8-l9m0n1o2p3q4',
+  'eb33c6f5-b7f8-451f-b7dd-52ac8f7ccc34',
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
   'Naviguer dans les fiches pratiques',
   '# Naviguer dans les fiches pratiques
@@ -1209,7 +1209,7 @@ Les simulateurs de droits en ligne sont des outils indispensables pour les étud
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e3f4a5b6-c7d8-4012-g9h0-i1j2k3l4m5n6',
+  '8bb5ea54-53cb-4319-ad93-c943c2bfd55f',
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
   'Contacter l''administration via le site',
   '# Contacter l''administration via le site
@@ -1457,7 +1457,7 @@ Le choix entre un logement meublé et non-meublé a des répercussions majeures 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '4e5f6a7b-8c9d-4012-g0h1-i2j3k4l5m6n7',
+  '3644e0c7-4447-4e85-9a9c-b028ff9e9fdc',
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
   'Repérer les frais d''agence cachés',
   '# Repérer les frais d''agence cachés
@@ -1546,7 +1546,7 @@ Les frais d''agence immobilière pour le locataire sont strictement encadrés et
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '5e6f7a8b-c9d0-4012-h1i2-j3k4l5m6n7o8',
+  '06d56fea-ead9-4c38-a5de-2aae8df11a04',
   'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
   'Analyser la performance énergétique (DPE)',
   '# Analyser la performance énergétique (DPE)

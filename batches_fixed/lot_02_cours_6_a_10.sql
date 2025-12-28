@@ -115,7 +115,7 @@ La promesse d''embauche est le document fondateur de votre changement de statut 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e5f6a7b8-c9d0-4012-q3r4-s5t6u7v8w9x0',
+  '446bb4be-e25a-437e-9150-8556caffc586',
   'c3d4e5f6-a7b8-4901-d9e0-f1a2b3c4d5e6',
   'La procédure de changement de statut',
   '# La procédure de changement de statut
@@ -199,7 +199,7 @@ Le changement de statut d''étudiant à salarié est une procédure en deux temp
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-r6s7-t8u9v0w1x2y3',
+  'bace146c-bdbb-48d9-89ef-4e29aebea1d3',
   'c3d4e5f6-a7b8-4901-d9e0-f1a2b3c4d5e6',
   'Opposabilité de l''emploi : Comprendre le concept',
   '# Opposabilité de l''emploi : Comprendre le concept
@@ -287,7 +287,7 @@ L''opposabilité de l''emploi est un principe fondamental pour le changement de 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '0g1h2i3j-4k5l-4012-s9t0-u1v2w3x4y5z6',
+  'b7881b11-9659-4c79-9a6c-7af547784735',
   'c3d4e5f6-a7b8-4901-d9e0-f1a2b3c4d5e6',
   'Les délais de traitement et le maintien des droits',
   '# Les délais de traitement et le maintien des droits
@@ -461,7 +461,7 @@ L''éligibilité à l''APS "recherche d''emploi/création d''entreprise" est str
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f8a9b0c1-d2e3-4012-s4t5-u6v7w8x9y0z1',
+  'e8bbd654-c4ea-4d07-88f4-7e0cae4e4b87',
   'd5e6f7a8-b9c0-4012-e1f2-a3b4c5d6e7f8',
   'Faire la demande avant l''expiration du titre étudiant',
   '# Faire la demande avant l''expiration du titre étudiant
@@ -541,7 +541,7 @@ Le dépôt de votre demande d''APS doit être effectué impérativement avant la
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '0g1h2i3j-4k5l-4012-v6w7-x8y9z0a1b2c3',
+  'ac1c30e5-0ddb-4f92-ae80-5b1230c45740',
   'd5e6f7a8-b9c0-4012-e1f2-a3b4c5d6e7f8',
   'Droits ouverts par l''APS (Création d''entreprise, travail)',
   '# Droits ouverts par l''APS (Création d''entreprise, travail)
@@ -627,7 +627,7 @@ L''APS "recherche d''emploi / création d''entreprise" est un droit précieux d'
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '1m2n3o4p-5q6r-4012-z7a8-b9c0d1e2f3g4',
+  'bcd62043-cb99-4adc-9f05-dbf22081b1a7',
   'd5e6f7a8-b9c0-4012-e1f2-a3b4c5d6e7f8',
   'Renouvellement de l''APS : Possible ou non ?',
   '# Renouvellement de l''APS : Possible ou non ?
@@ -808,7 +808,7 @@ La CVEC est une contribution obligatoire qui finance des services essentiels pou
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '3e4f5a6b-7c8d-4012-g9h0-i1j2k3l4m5n6',
+  '76fa8ad3-77b0-4465-919b-7129cb0aa6ff',
   'e7f8a9b0-c1d2-4012-e3f4-a5b6c7d8e9f0',
   'Cas d''exonération (Boursiers, Réfugiés)',
   '# Cas d''exonération (Boursiers, Réfugiés)
@@ -883,7 +883,7 @@ De nombreux étudiants, notamment les boursiers du gouvernement français, les b
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '4e5f6a7b-8c9d-4012-h0i1-j2k3l4m5n6o7',
+  '5fee0fc1-6b28-4297-acb1-8462195108cb',
   'e7f8a9b0-c1d2-4012-e3f4-a5b6c7d8e9f0',
   'Tuto : Payer sur messervices.etudiant.gouv.fr',
   '# Tuto : Payer sur messervices.etudiant.gouv.fr
@@ -965,7 +965,7 @@ Le paiement ou l''attestation d''exonération de la CVEC est une formalité admi
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '5f6a7b8c-9d0e-4012-p1q2-r3s4t5u6v7w8',
+  '10d13acb-0ce5-4e0c-939a-9155343c6e75',
   'e7f8a9b0-c1d2-4012-e3f4-a5b6c7d8e9f0',
   'Obtenir et transmettre son attestation',
   '# Obtenir et transmettre son attestation
@@ -1044,7 +1044,7 @@ L''obtention et la transmission de votre attestation CVEC à votre établissemen
 -- COURS 10 : Déclarer ses impôts (Important)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f9a0b1c2-d3e4-4012-g5h6-i7j8k9l0m1n2',
+  'e4676cc7-5d7a-49b3-9186-046ec0991197',
   'Déclarer ses impôts en France : Un guide pour les étrangers',
   'declarer-ses-impots-france-guide-etrangers',
   'Ce cours brise le mythe courant que "je ne gagne rien, je ne déclare rien" pour les étudiants ou les nouveaux arrivants en France. Il est crucial de comprendre que même avec de faibles revenus, ou si vous recevez des aides (logement, CAF), la déclaration de revenus est souvent obligatoire. Nous vous guiderons sur pourquoi déclarer vos revenus est important, comment effectuer votre première déclaration papier, et comment gérer les déclarations suivantes entièrement en ligne. Vous apprendrez également les bases du prélèvement à la source. Une bonne gestion fiscale est essentielle pour votre intégration et pour éviter des problèmes avec l''administration française.',
@@ -1066,8 +1066,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 10
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '6h7i8j9k-0l1m-4012-n2o3-p4q5r6s7t8u9',
-  'f9a0b1c2-d3e4-4012-g5h6-i7j8k9l0m1n2',
+  '9b82c273-863f-43fc-a5d4-312e4a479bc5',
+  'e4676cc7-5d7a-49b3-9186-046ec0991197',
   'Le mythe : "Je ne gagne rien, je ne déclare rien"',
   '# Le mythe : "Je ne gagne rien, je ne déclare rien"
 
@@ -1140,8 +1140,8 @@ Le mythe "je ne gagne rien, je ne déclare rien" est à proscrire absolument. Si
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '7i8j9k0l-1m2n-4012-o3p4-q5r6s7t8u9v0',
-  'f9a0b1c2-d3e4-4012-g5h6-i7j8k9l0m1n2',
+  '1d97d23f-cb66-4e06-b7e3-2af6cb224c69',
+  'e4676cc7-5d7a-49b3-9186-046ec0991197',
   'Pourquoi déclarer aide pour le logement et la CAF',
   '# Pourquoi déclarer aide pour le logement et la CAF
 
@@ -1218,8 +1218,8 @@ Déclarer vos revenus en France est essentiel, même avec de faibles revenus, ca
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '8j9k0l1m-2n3o-4012-p4q5-r6s7t8u9v0w1',
-  'f9a0b1c2-d3e4-4012-g5h6-i7j8k9l0m1n2',
+  '9d5b9df2-b18b-461a-96fc-280cad8a26ad',
+  'e4676cc7-5d7a-49b3-9186-046ec0991197',
   'Première déclaration : Le formulaire papier',
   '# Première déclaration : Le formulaire papier
 
@@ -1292,8 +1292,8 @@ Votre première déclaration de revenus en France se fait obligatoirement via le
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '9k0l1m2n-3o4p-4012-q5r6-s7t8u9v0w1x2',
-  'f9a0b1c2-d3e4-4012-g5h6-i7j8k9l0m1n2',
+  '0f0ff913-59a3-418b-915f-e62eb1fa094a',
+  'e4676cc7-5d7a-49b3-9186-046ec0991197',
   'Déclarations suivantes : Tout en ligne',
   '# Déclarations suivantes : Tout en ligne
 
@@ -1369,8 +1369,8 @@ Après votre première déclaration papier et l''obtention de votre numéro fisc
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a0b1c2d3-e4f5-4012-z7a8-b9c0d1e2f3g4',
-  'f9a0b1c2-d3e4-4012-g5h6-i7j8k9l0m1n2',
+  '0cc9d5c6-86e8-49ba-b704-3dcc6146a27c',
+  'e4676cc7-5d7a-49b3-9186-046ec0991197',
   'Comprendre le Prélèvement à la Source',
   '# Comprendre le Prélèvement à la Source
 
@@ -1457,7 +1457,7 @@ Le prélèvement à la source est le mode de collecte de l''impôt sur le revenu
 -- COURS 11 : Avis d'imposition et Taxe d'habitation
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'b1c2d3e4-f5a6-4012-g7h8-i9j0k1l2m3n4',
+  '5eff07ab-115f-4066-96e6-f2afc3bfd982',
   'Avis d''imposition et Taxe d''habitation : Tout comprendre',
   'avis-imposition-taxe-habitation-comprendre',
   'Ce cours vous aidera à décrypter deux documents fiscaux fondamentaux en France : l''avis d''imposition (ou ASDIR) et la taxe d''habitation. Vous apprendrez à lire et à comprendre votre Avis de Situation Déclarative à l''Impôt sur le Revenu (ASDIR), un document essentiel pour de nombreuses démarches. Nous explorerons également la Taxe d''Habitation, son fonctionnement, qui la paie encore (car elle a été supprimée pour beaucoup), et la Contri bution à l''Audiovisuel Public (la "redevance télé"). Une bonne compréhension de ces aspects fiscaux est cruciale pour votre intégration et la bonne gestion de votre budget en France.',
@@ -1479,8 +1479,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 11
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '2m3n4o5p-6q7r-4012-s8t9-u0v1w2x3y4z5',
-  'b1c2d3e4-f5a6-4012-g7h8-i9j0k1l2m3n4',
+  'd6fd133d-3d00-4e30-a432-ffdfe368c7ad',
+  '5eff07ab-115f-4066-96e6-f2afc3bfd982',
   'Lire son Avis de Situation Déclarative (ASDIR)',
   '# Lire son Avis de Situation Déclarative (ASDIR)
 
@@ -1561,8 +1561,8 @@ L''Avis de Situation Déclarative à l''Impôt sur le Revenu (ASDIR) est un docu
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '3n4o5p6q-7r8s-4012-t9u0-v1w2x3y4z5a6',
-  'b1c2d3e4-f5a6-4012-g7h8-i9j0k1l2m3n4',
+  '6502c102-9306-4f70-9062-03ceb044013f',
+  '5eff07ab-115f-4066-96e6-f2afc3bfd982',
   'La Taxe d''Habitation : Qui paie encore ?',
   '# La Taxe d''Habitation : Qui paie encore ?
 
@@ -1662,8 +1662,8 @@ La Taxe d''Habitation sur la résidence principale a été supprimée pour tous 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '4o5p6q7r-8s9t-4012-u0v1-w2x3y4z5a6b7',
-  'b1c2d3e4-f5a6-4012-g7h8-i9j0k1l2m3n4',
+  '3829c2b7-21b6-4990-b869-3101193fbbc4',
+  '5eff07ab-115f-4066-96e6-f2afc3bfd982',
   'La Contribution à l''Audiovisuel Public (Télé)',
   '# La Contribution à l''Audiovisuel Public (Télé)
 

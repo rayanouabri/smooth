@@ -1269,7 +1269,7 @@ La prise de rendez-vous en préfecture ou le dépôt de dossier en ligne via l''
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '6d7e8f9a-0b1c-4012-g3h4-i5j6k7l8m9n0',
+  '49106d5f-c19a-43e1-8ac3-8c379ec16c0c',
   'a3b4c5d6-e7f8-4901-b2c3-d4e5f6a7b8c9',
   'Rassemblez les preuves de "sérieux des études"',
   '# Rassemblez les preuves de "sérieux des études"
@@ -1342,7 +1342,7 @@ Prouver le "sérieux de vos études" est une condition sine qua non pour le reno
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '7e8f9a0b-1c2d-4012-h3i4-j5k6l7m8n9o0',
+  '837f1cdd-6aef-42f8-affc-a3213145e89a',
   'a3b4c5d6-e7f8-4901-b2c3-d4e5f6a7b8c9',
   'Le récépissé : Vos droits en attendant',
   '# Le récépissé : Vos droits en attendant
@@ -1408,7 +1408,7 @@ Le récépissé est un document provisoire essentiel qui atteste de la régulari
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '8f9a0b1c-2d3e-4012-p5q6-r7s8t9u0v1w2',
+  'e54a4b1c-542f-4487-9cf2-efc721c18617',
   'a3b4c5d6-e7f8-4901-b2c3-d4e5f6a7b8c9',
   'Retirer son nouveau titre de séjour',
   '# Retirer son nouveau titre de séjour
@@ -1503,7 +1503,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 6
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '9a0b1c2d-3e4f-4012-j5k6-l7m8n9o0p1q2',
+  '6eae16cc-8db7-434d-a413-da6abbe3221c',
   'b2c3d4e5-f6a7-4901-c8d9-e0f1a2b3c4d5',
   'Justificatifs de domicile : Lesquels sont acceptés ?',
   '# Justificatifs de domicile : Lesquels sont acceptés ?
@@ -1576,7 +1576,7 @@ Le justificatif de domicile est une pièce indispensable pour votre dossier de p
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a0b1c2d3-e4f5-4012-k6l7-m8n9o0p1q2r3',
+  '814ef499-e34f-42e0-b954-ceaa537c74a6',
   'b2c3d4e5-f6a7-4901-c8d9-e0f1a2b3c4d5',
   'Justificatifs de ressources (615€/mois)',
   '# Justificatifs de ressources (615€/mois)
@@ -1637,7 +1637,7 @@ La preuve de ressources suffisantes (environ 615€/mois) est un pilier de votre
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'b1c2d3e4-f5a6-4012-l7m8-n9o0p1q2r3s4',
+  '7d6e5f4c-c2f0-475e-8f71-77f34187c21c',
   'b2c3d4e5-f6a7-4901-c8d9-e0f1a2b3c4d5',
   'Photos d''identité aux normes e-photo',
   '# Photos d''identité aux normes e-photo
@@ -1708,7 +1708,7 @@ Des photos d''identité conformes aux normes sont un élément non négociable d
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c2d3e4f5-a6b7-4012-m8n9-o0p1q2r3s4t5',
+  'b8d5d13f-e33b-42e3-9e9f-e3c59c3f9351',
   'b2c3d4e5-f6a7-4901-c8d9-e0f1a2b3c4d5',
   'Organiser son classeur physique et numérique',
   '# Organiser son classeur physique et numérique

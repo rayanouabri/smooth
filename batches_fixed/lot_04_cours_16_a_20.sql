@@ -10,7 +10,7 @@
 -- COURS 17 : Le dossier de location en béton
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'a6b7c8d9-e0f1-4012-g3h4-i5j6k7l8m9n0',
+  '63871dc4-470f-4f58-9fac-43e8769cc02a',
   'Le dossier de location en béton : Constituez le parfait candidat',
   'dossier-location-en-beton-parfait-candidat',
   'Ce cours est un guide indispensable pour les étudiants internationaux souhaitant maximiser leurs chances de trouver un logement en France. Constituer un "dossier de location en béton" est la clé pour se démarquer dans un marché immobilier compétitif. Nous vous apprendrons à préparer une page de garde impactante pour faire bonne impression, à identifier les documents obligatoires (identité, ressources) exigés par les propriétaires et agences, à connaître les documents strictement interdits (que l''on ne peut pas vous demander), et à fusionner efficacement vos PDF pour un envoi numérique professionnel. Maîtriser ce dossier est crucial pour présenter votre candidature de manière impeccable et sécurisée.',
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 17
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '7c8d9e0f-1a2b-4012-i3j4-k5l6m7n8o9p0',
-  'a6b7c8d9-e0f1-4012-g3h4-i5j6k7l8m9n0',
+  '1a67722f-f54a-4059-a6fc-5ea37273ca3b',
+  '63871dc4-470f-4f58-9fac-43e8769cc02a',
   'La page de garde : Faire bonne impression',
   '# La page de garde : Faire bonne impression
 
@@ -102,8 +102,8 @@ Une page de garde professionnelle et bien structurée est essentielle pour faire
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '8d9e0f1a-2b3c-4012-j4k5-l6m7n8o9p0q1',
-  'a6b7c8d9-e0f1-4012-g3h4-i5j6k7l8m9n0',
+  '8009cd26-cca1-4f03-b298-41dde9b718b3',
+  '63871dc4-470f-4f58-9fac-43e8769cc02a',
   'Les documents obligatoires (Identité, Ressources)',
   '# Les documents obligatoires (Identité, Ressources)
 
@@ -182,8 +182,8 @@ La constitution d''un dossier de location complet et conforme est essentielle po
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '9e0f1a2b-3c4d-4012-k5l6-m7n8o9p0q1r2',
-  'a6b7c8d9-e0f1-4012-g3h4-i5j6k7l8m9n0',
+  '94bc767f-26a1-4710-876c-f4fd7289248f',
+  '63871dc4-470f-4f58-9fac-43e8769cc02a',
   'Les documents interdits (Ce qu''on ne peut pas vous demander)',
   '# Les documents interdits (Ce qu''on ne peut pas vous demander)
 
@@ -258,8 +258,8 @@ La loi française protège les candidats locataires en interdisant aux bailleurs
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a0b1c2d3-e4f5-4012-z7a8-b9c0d1e2f3g4',
-  'a6b7c8d9-e0f1-4012-g3h4-i5j6k7l8m9n0',
+  'd45c8408-afb4-4517-96c1-864282e46971',
+  '63871dc4-470f-4f58-9fac-43e8769cc02a',
   'Fusionner son PDF pour l''envoi mail',
   '# Fusionner son PDF pour l''envoi mail
 
@@ -427,7 +427,7 @@ Le garant physique est une personne qui s''engage à payer votre loyer en cas de
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '9f0e1a2b-3c4d-4012-o5p6-q7r8s9t0u1v2',
+  '531c27f5-215f-473e-a4da-430936bd326f',
   'c7d8e9f0-a1b2-4012-e3f4-a5b6c7d8e9f0',
   'GarantMe / Unkle : Les garants payants',
   '# GarantMe / Unkle : Les garants payants
@@ -500,7 +500,7 @@ Les organismes de garantie privés comme GarantMe ou Unkle sont des solutions ef
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a0b1c2d3-e4f5-4012-z7a8-b9c0d1e2f3g4',
+  'd45c8408-afb4-4517-96c1-864282e46971',
   'c7d8e9f0-a1b2-4012-e3f4-a5b6c7d8e9f0',
   'La caution bancaire : Une alternative bloquée',
   '# La caution bancaire : Une alternative bloquée
