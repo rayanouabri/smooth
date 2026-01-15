@@ -68,9 +68,36 @@ export default function Teachers() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Validation des champs obligatoires
+    if (!formData.name || !formData.email || !formData.subject || !formData.level || 
+        !formData.frequency || !formData.duration || !formData.availability || !formData.needs) {
+      toast({
+        title: "Champs manquants",
+        description: "Veuillez remplir tous les champs obligatoires (marqués d'un *).",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validation de l'email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Email invalide",
+        description: "Veuillez entrer une adresse email valide.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     // Vérifier l'authentification
     const authenticated = await isAuthenticated();
     if (!authenticated) {
+      toast({
+        title: "Connexion requise",
+        description: "Vous devez être connecté pour soumettre une demande.",
+        variant: "destructive",
+      });
       redirectToLogin(window.location.href);
       return;
     }
@@ -78,24 +105,76 @@ export default function Teachers() {
     setIsSubmitting(true);
 
     try {
+      const emailSubject = `Demande de cours particulier - ${formData.subject}`;
+      const emailHtml = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #06b6d4;">Nouvelle demande de cours particulier</h2>
+          <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1f2937; margin-top: 0;">Informations du client</h3>
+            <p><strong>Nom:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Téléphone:</strong> ${formData.phone || 'Non renseigné'}</p>
+          </div>
+          <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1f2937; margin-top: 0;">Détails de la demande</h3>
+            <p><strong>Matière:</strong> ${formData.subject}</p>
+            <p><strong>Niveau:</strong> ${formData.level}</p>
+            <p><strong>Fréquence:</strong> ${formData.frequency}</p>
+            <p><strong>Durée:</strong> ${formData.duration}</p>
+            <p><strong>Budget:</strong> ${formData.budget ? formData.budget + '€' : 'Non renseigné'}</p>
+            <p><strong>Disponibilités:</strong> ${formData.availability}</p>
+            <p><strong>Ville:</strong> ${formData.city || 'Non renseigné'}</p>
+          </div>
+          <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1f2937; margin-top: 0;">Besoins spécifiques</h3>
+            <p style="white-space: pre-wrap;">${formData.needs}</p>
+          </div>
+          <p style="color: #6b7280; font-size: 12px; margin-top: 30px;">
+            Cette demande a été soumise depuis le formulaire de cours particuliers de FrancePrep Academy.
+          </p>
+        </div>
+      `;
+
+      const emailText = `
+Nouvelle demande de cours particulier
+
+Informations du client:
+- Nom: ${formData.name}
+- Email: ${formData.email}
+- Téléphone: ${formData.phone || 'Non renseigné'}
+
+Détails de la demande:
+- Matière: ${formData.subject}
+- Niveau: ${formData.level}
+- Fréquence: ${formData.frequency}
+- Durée: ${formData.duration}
+- Budget: ${formData.budget ? formData.budget + '€' : 'Non renseigné'}
+- Disponibilités: ${formData.availability}
+- Ville: ${formData.city || 'Non renseigné'}
+
+Besoins spécifiques:
+${formData.needs}
+      `;
+
       await SendEmail({
         to: "contact@franceprepacademy.fr",
-        subject: `Demande de cours particulier - ${formData.subject}`,
-        html: `
-          <h2>Nouvelle demande de cours particulier</h2>
-          <p><strong>Nom:</strong> ${formData.name}</p>
-          <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Téléphone:</strong> ${formData.phone || 'Non renseigné'}</p>
-          <p><strong>Matière:</strong> ${formData.subject}</p>
-          <p><strong>Niveau:</strong> ${formData.level}</p>
-          <p><strong>Fréquence:</strong> ${formData.frequency}</p>
-          <p><strong>Durée:</strong> ${formData.duration}</p>
-          <p><strong>Budget:</strong> ${formData.budget ? formData.budget + '€' : 'Non renseigné'}</p>
-          <p><strong>Disponibilités:</strong> ${formData.availability}</p>
-          <p><strong>Ville:</strong> ${formData.city || 'Non renseigné'}</p>
-          <p><strong>Besoins spécifiques:</strong></p>
-          <p>${formData.needs}</p>
-        `,
+        subject: emailSubject,
+        html: emailHtml,
+        text: emailText,
+        requestType: 'private_course',
+        formData: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          level: formData.level,
+          frequency: formData.frequency,
+          duration: formData.duration,
+          budget: formData.budget,
+          availability: formData.availability,
+          city: formData.city,
+          needs: formData.needs,
+        },
       });
 
       setRequestSent(true);
@@ -113,14 +192,27 @@ export default function Teachers() {
         needs: "",
       });
       toast({
-        title: "Demande envoyée !",
-        description: "Nous vous contacterons sous 24-48h.",
+        title: "✅ Demande envoyée avec succès !",
+        description: "Notre équipe vous contactera sous 24-48h pour discuter de vos besoins.",
       });
     } catch (error) {
       console.error("Error sending request:", error);
+      
+      let errorMessage = "Une erreur s'est produite lors de l'envoi. Veuillez réessayer.";
+      
+      if (error?.message) {
+        if (error.message.includes('Email service not configured')) {
+          errorMessage = "Le service d'email n'est pas configuré. Veuillez contacter l'administrateur.";
+        } else if (error.message.includes('RESEND_API_KEY')) {
+          errorMessage = "Configuration email manquante. Veuillez contacter le support.";
+        } else {
+          errorMessage = error.message;
+        }
+      }
+
       toast({
-        title: "Erreur",
-        description: "Une erreur s'est produite. Veuillez réessayer.",
+        title: "❌ Erreur lors de l'envoi",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {

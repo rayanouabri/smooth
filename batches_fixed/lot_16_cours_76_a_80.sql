@@ -10,7 +10,7 @@
 -- COURS 77 : La Bise
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '59baab58-aa39-4a40-916e-9e210d097ca8',
+  'f820ef52-9660-45ad-8c49-a7410b9d1dcf',
   'La Bise en France : À qui, combien, comment ?',
   'bise-france-qui-combien-comment',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un code social emblématique mais complexe : la "bise" (le fait de s''embrasser sur la joue pour se saluer). Les règles concernant "à qui fait-on la bise ?", "combien de bises selon la région ?", et "comment la faire ?" sont très subtiles et peuvent être une source d''embarras ou de malentendus si vous n''êtes pas familier(ère) avec les coutumes françaises. Nous aborderons les conventions, les variations régionales du nombre de bises, et l''impact de la pandémie sur les habitudes. Maîtriser ce rituel est absolument crucial pour des interactions sociales réussies, une bonne intégration, et pour éviter les situations inconfortables.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le rituel de la "bise" en France et ses conventions sociales", "Identifier les personnes à qui l''on fait la bise (amis, famille, collègues proches)", "Savoir le nombre de bises (2, 3, 4) et les variations régionales", "Maîtriser les conseils pour faire la bise correctement et gérer les situations délicates"]'::jsonb,
+  E'["Comprendre le rituel de la \\"bise\\" en France et ses conventions sociales", "Identifier les personnes à qui l''on fait la bise (amis, famille, collègues proches)", "Savoir le nombre de bises (2, 3, 4) et les variations régionales", "Maîtriser les conseils pour faire la bise correctement et gérer les situations délicates"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 77
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'af2ce7fe-f8c8-49ea-ba55-c0b2b167a960',
+  'f820ef52-9660-45ad-8c49-a7410b9d1dcf',
   'À qui fait-on la bise ?',
   '# À qui fait-on la bise ?
 
@@ -120,8 +120,8 @@ La bise est un rituel de salutation qui marque la proximité en France. On la fa
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '2fa0bde8-0418-4a29-9b29-6efc20cfb795',
+  'f820ef52-9660-45ad-8c49-a7410b9d1dcf',
   'Combien de bises selon la région',
   '# Combien de bises selon la région
 
@@ -205,8 +205,8 @@ Le nombre de bises pour se saluer varie en France : 2 bises sont la norme la plu
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '6f083813-f5f0-441a-9784-4ada53add259',
+  'f820ef52-9660-45ad-8c49-a7410b9d1dcf',
   'Covid/Grippe : Le retour du check',
   '# Covid/Grippe : Le retour du check (Salutations)
 
@@ -296,7 +296,7 @@ La pandémie de COVID-19 a fait évoluer les rituels de salutation en France, av
 -- COURS 78 : Repas et Resto U
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '0ac89cea-c51f-40b2-bdf5-0e11804cad30',
+  'a5c980d6-667b-4450-8159-ee5e743f1d53',
   'Repas et Resto U en France : Manger étudiant et économique',
   'repas-resto-u-france-manger-etudiant-economique',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin d''optimiser leur budget alimentaire. Les restaurants universitaires (Resto U) sont une solution économique et pratique pour se restaurer au quotidien. Nous vous expliquerons le "tarif social" (1€ ou 3,30€) dont vous pouvez bénéficier en tant qu''étudiant, et comment payer vos repas avec la carte **Izly**, le système de paiement des CROUS. Nous aborderons également les horaires des repas en France, souvent plus tôt qu''ailleurs. Maîtriser ces informations est absolument crucial pour manger équilibré à moindre coût, gérer votre budget alimentation efficacement, et vous intégrer aux habitudes culinaires françaises.',
@@ -307,7 +307,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le fonctionnement des Restaurants Universitaires (Resto U) et leur accessibilité", "Identifier le "tarif social" (1€ ou 3,30€) pour les étudiants", "Savoir comment payer ses repas avec la carte Izly (création de compte, rechargement)", "Maîtriser les horaires des repas en France et les astuces pour s''adapter"]'::jsonb,
+  E'["Comprendre le fonctionnement des Restaurants Universitaires (Resto U) et leur accessibilité", "Identifier le \\"tarif social\\" (1€ ou 3,30€) pour les étudiants", "Savoir comment payer ses repas avec la carte Izly (création de compte, rechargement)", "Maîtriser les horaires des repas en France et les astuces pour s''adapter"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -318,8 +318,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 78
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '54f0d7a0-16ac-4472-8eca-5c7577512ab2',
+  'a5c980d6-667b-4450-8159-ee5e743f1d53',
   'Le tarif social (1€ ou 3,30€)',
   '# Le tarif social (1€ ou 3,30€) en Restaurant Universitaire
 
@@ -392,8 +392,8 @@ Les Restaurants Universitaires (Resto U) proposent un tarif social très avantag
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '9d22c9cf-4a00-4572-b43f-825eb17bbecf',
+  'a5c980d6-667b-4450-8159-ee5e743f1d53',
   'Payer avec Izly',
   '# Payer avec Izly (Restaurants Universitaires)
 
@@ -469,8 +469,8 @@ Payer vos repas dans les Restaurants Universitaires (Resto U) en France se fait 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'b47f1ac7-4047-465e-8ca4-ee4b71fbe17a',
+  'a5c980d6-667b-4450-8159-ee5e743f1d53',
   'Horaires des repas en France (Midi pile !)',
   '# Horaires des repas en France (Midi pile !)
 
@@ -551,7 +551,7 @@ Les horaires des repas en France sont plus tôt qu''ailleurs, avec un déjeuner 
 -- COURS 79 : L'Apéro
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'bd5f66b0-db33-46b5-b3f5-0e2adca6acd3',
+  'cd153204-52c8-46cc-8bb4-6dbbbc8262e8',
   'L''Apéro en France : Concept social, convivialité et bonnes manières',
   'apero-france-concept-social-convivialite-bonnes-manieres',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un rituel social profondément ancré dans la culture française : l''"apéro" (apéritif). L''apéro n''est pas un simple "verre" ; c''est un moment de convivialité qui précède le dîner, avec ses propres codes et attentes. Ne pas comprendre son concept social (ni dîner, ni goûter), savoir quoi apporter si vous êtes invité(e), et les règles pour "trinquer" en se regardant dans les yeux, c''est risquer de commettre des impairs, de ne pas participer pleinement, ou de se sentir exclu(e). Maîtriser le rituel de l''apéro est absolument crucial pour une intégration sociale réussie et pour nouer des liens avec les Français.',
@@ -562,7 +562,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le concept social de l''apéro (moment de convivialité avant le dîner)", "Identifier ce qu''il faut apporter si vous êtes invité(e) à un apéro", "Savoir comment "trinquer" correctement en France (regard, "tchin-tchin")", "Maîtriser les codes de l''apéro pour une intégration sociale réussie"]'::jsonb,
+  E'["Comprendre le concept social de l''apéro (moment de convivialité avant le dîner)", "Identifier ce qu''il faut apporter si vous êtes invité(e) à un apéro", "Savoir comment \\"trinquer\\" correctement en France (regard, \\"tchin-tchin\\")", "Maîtriser les codes de l''apéro pour une intégration sociale réussie"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -573,8 +573,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 79
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'ed687e30-7279-4ed5-808c-2208e0beb9cb',
+  'cd153204-52c8-46cc-8bb4-6dbbbc8262e8',
   'Concept social : Ni dîner, ni goûter',
   '# Concept social : Ni dîner, ni goûter (L''Apéro en France)
 
@@ -659,8 +659,8 @@ L''apéro est un rituel social français de convivialité qui précède le dîne
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'c20d0996-347c-476e-85da-0faf670b4d94',
+  'cd153204-52c8-46cc-8bb4-6dbbbc8262e8',
   'Quoi apporter si on est invité ?',
   '# Quoi apporter si on est invité à un apéro en France ?
 
@@ -738,8 +738,8 @@ Lorsque vous êtes invité(e) à un apéro en France, il est d''usage d''apporte
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '8a26365d-84bc-4543-98ab-8a65581a5e1f',
+  'cd153204-52c8-46cc-8bb4-6dbbbc8262e8',
   'Trinquer en se regardant dans les yeux',
   '# Trinquer en se regardant dans les yeux
 
@@ -820,13 +820,19 @@ Ce que l''on dit en trinquant.
 
 
 Trinquer en se regardant dans les yeux est un rituel social absolument crucial en France, marquant le respect et la convivialité. Au moment d''entrechoquer votre verre, regardez chaque personne dans les yeux et prononcez une formule comme "Tchin-tchin !" ou "À la vôtre !". Évitez de ne pas regarder, car cela peut être perçu comme un manque de respect. Maîtriser ce geste est fondamental pour des interactions sociales réussies, une bonne intégration, et pour partager pleinement les moments de détente et de fête avec les Français.
+',
+  3,
+  55,
+  NULL,
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 
 -- --- Cours 79 ---
 
 -- COURS 80 : Améliorer son français
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '5c996ddd-4e58-42b0-8262-a5c126579611',
+  'd57317f2-be6f-49ff-83a9-f842ffec0b01',
   'Améliorer son français en France : Ressources et astuces pour progresser',
   'ameliorer-francais-france-ressources-astuces-progresser',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent perfectionner leur maîtrise de la langue française. Une bonne connaissance du français est la clé d''une intégration réussie, d''une meilleure réussite académique, et d''une insertion professionnelle facilitée. Nous vous présenterons des applications gratuites pour l''apprentissage (Duolingo, Babbel), les avantages des "cafés des langues" et des "tandems linguistiques" pour la pratique orale, et l''intérêt des médias français (Radio France, Arte) pour l''écoute et la compréhension. Maîtriser ces ressources et ces astuces est absolument crucial pour progresser rapidement, gagner en confiance, et vous immerger pleinement dans la vie française.',
@@ -837,7 +843,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Découvrir et utiliser des applications gratuites pour apprendre le français", "Comprendre l''intérêt des cafés des langues et tandems linguistiques pour la pratique orale", "Savoir utiliser les médias français (radio, TV) pour l''écoute et la compréhension", "Maîtriser les conseils pour une progression rapide et une immersion réussie"]'::jsonb,
+  E'["Découvrir et utiliser des applications gratuites pour apprendre le français", "Comprendre l''intérêt des cafés des langues et tandems linguistiques pour la pratique orale", "Savoir utiliser les médias français (radio, TV) pour l''écoute et la compréhension", "Maîtriser les conseils pour une progression rapide et une immersion réussie"]'::jsonb,
   '["Avoir un niveau de français de base (A1 minimum)"]'::jsonb,
   TRUE,
   4.8,
@@ -848,8 +854,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 80
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '3b529feb-5047-4091-b438-33e1d348be68',
+  'd57317f2-be6f-49ff-83a9-f842ffec0b01',
   'Applications gratuites',
   '# Applications gratuites pour améliorer son français
 
@@ -924,8 +930,8 @@ Les applications mobiles gratuites (Duolingo, Babbel, Memrise, Anki) sont des ou
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '4bc90400-8044-480a-9058-063ced9542ae',
+  'd57317f2-be6f-49ff-83a9-f842ffec0b01',
   'Cafés des langues et Tandems',
   '# Cafés des langues et Tandems (Pratique orale du français)
 
@@ -997,8 +1003,8 @@ Les cafés des langues et les tandems linguistiques sont des outils absolument c
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '03c75264-c4b9-4e9c-ae0b-3a19af7aa170',
+  'd57317f2-be6f-49ff-83a9-f842ffec0b01',
   'Médias (Radio France, Arte)',
   '# Médias (Radio France, Arte) pour améliorer son français
 
@@ -1076,7 +1082,7 @@ L''immersion passive via les médias français (Radio France pour l''écoute, Ar
 -- COURS 81 : Se faire des amis
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '9b01a8f1-a71e-4a00-b730-a95f0a671011',
+  '15c2175d-0ba1-45ab-843c-40cbfcc803f6',
   'Se faire des amis en France : Brisez la bulle et intégrez-vous !',
   'se-faire-amis-france-brisez-bulle-integrez',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de faciliter leur intégration sociale et de nouer des liens d''amitié. L''éloignement familial et le choc culturel peuvent rendre difficile la création de nouvelles relations. Nous vous expliquerons pourquoi il est important de "sortir de la bulle des expatriés" pour rencontrer des Français, les avantages des activités sportives universitaires (SUAPS) pour faire des rencontres, et comment proposer des sorties et des activités. Maîtriser ces stratégies est absolument crucial pour briser l''isolement, développer un cercle social riche, et vivre une expérience étudiante épanouissante et mémorable en France.',
@@ -1087,7 +1093,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance de la rencontre de Français pour l''intégration", "Identifier les lieux et activités propices aux rencontres (SUAPS, associations)", "Savoir comment initier des sorties et proposer des activités", "Maîtriser les conseils pour développer un cercle social et lutter contre l''isolement"]'::jsonb,
+  E'["Comprendre l''importance de la rencontre de Français pour l''intégration", "Identifier les lieux et activités propices aux rencontres (SUAPS, associations)", "Savoir comment initier des sorties et proposer des activités", "Maîtriser les conseils pour développer un cercle social et lutter contre l''isolement"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -1098,8 +1104,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 81
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '2d64ccf2-da75-4c5a-a84c-f0904f27a6b0',
+  '15c2175d-0ba1-45ab-843c-40cbfcc803f6',
   'Sortir de la bulle des expatriés',
   '# Sortir de la bulle des expatriés
 
@@ -1175,8 +1181,8 @@ Sortir de la "bulle des expatriés" est absolument crucial pour les étudiants i
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '1c21fb0e-9575-4ed9-9132-553cf51f2415',
+  '15c2175d-0ba1-45ab-843c-40cbfcc803f6',
   'Activités sportives (SUAPS)',
   '# Activités sportives (SUAPS) pour se faire des amis
 
@@ -1197,7 +1203,7 @@ Faire du sport est un excellent moyen de maintenir votre bien-être physique et 
 
 
 
-#### b) Offre d'activités
+#### b) Offre d''activités
 
 -   L''accès au SUAPS est très économique pour les étudiants, souvent via un forfait annuel unique qui donne accès à toutes les activités.
 
@@ -1256,8 +1262,8 @@ Le Service Universitaire des Activités Physiques et Sportives (SUAPS) offre aux
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '95f3809c-2267-4f9b-be69-591a343aa8d4',
+  '15c2175d-0ba1-45ab-843c-40cbfcc803f6',
   'Proposer des sorties',
   '# Proposer des sorties pour se faire des amis
 

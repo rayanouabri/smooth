@@ -10,7 +10,7 @@
 -- COURS 67 : Navigo et Transports
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '09ab9020-6cdc-45e4-805b-f0c9645f8853',
+  '3ada6779-d9fc-483c-b148-7e1d3df1fdf4',
   'Navigo et Transports en France : Guide des transports en commun',
   'navigo-transports-france-guide-transports-commun',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux qui vont utiliser les transports en commun en France, notamment en Île-de-France (Paris). Le Pass Navigo est le titre de transport incontournable, mais les offres et les règles peuvent être complexes. Nous vous expliquerons le fonctionnement du Pass Navigo (Paris) et des équivalents régionaux, les tarifs spécifiques pour les étudiants (Imagine R), et l''importance cruciale de valider votre titre à chaque passage pour éviter les amendes. Maîtriser le système de transports en commun est absolument crucial pour vous déplacer efficacement, optimiser votre budget transports, et vous intégrer sereinement dans votre ville d''études.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le fonctionnement du Pass Navigo et des équivalents régionaux", "Identifier les tarifs spécifiques pour les étudiants (Imagine R)", "Savoir comment valider son titre de transport à chaque passage", "Maîtriser les conseils pour optimiser ses déplacements et éviter les amendes"]'::jsonb,
+  E'["Comprendre le fonctionnement du Pass Navigo et des équivalents régionaux", "Identifier les tarifs spécifiques pour les étudiants (Imagine R)", "Savoir comment valider son titre de transport à chaque passage", "Maîtriser les conseils pour optimiser ses déplacements et éviter les amendes"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 67
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '4429657b-8297-4f10-b620-219dc6b76eec',
+  '3ada6779-d9fc-483c-b148-7e1d3df1fdf4',
   'Le Pass Navigo (Paris) et équivalents régionaux',
   '# Le Pass Navigo (Paris) et équivalents régionaux
 
@@ -110,8 +110,8 @@ Le Pass Navigo en Île-de-France et ses équivalents régionaux sont des titres 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '99c48d0b-7b71-428d-bb6b-9e530965ad2d',
+  '3ada6779-d9fc-483c-b148-7e1d3df1fdf4',
   'Tarifs Imagine R (Étudiants)',
   '# Tarifs Imagine R (Étudiants)
 
@@ -196,8 +196,8 @@ Le forfait Imagine R est l''abonnement aux transports en commun le plus avantage
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '304dddd0-e27d-4ed4-b22e-fdac0da9f6ca',
+  '3ada6779-d9fc-483c-b148-7e1d3df1fdf4',
   'Valider son titre : Attention aux contrôleurs',
   '# Valider son titre : Attention aux contrôleurs
 
@@ -275,7 +275,7 @@ L''amende est immédiate.
 -- COURS 68 : Prendre le train (SNCF)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8a570c6e-fbbf-4808-bc40-d1ad8265fbf5',
+  'd891eb92-3735-4fce-9f61-1ab24d0b2252',
   'Prendre le train (SNCF) en France : TGV, Ouigo et cartes de réduction',
   'prendre-train-sncf-france-tgv-ouigo-cartes-reduction',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent voyager en train à travers le pays. Le réseau ferroviaire français, opéré principalement par la SNCF, offre différentes options (TGV Inoui, Ouigo, TER), mais les tarifs et les réductions peuvent être complexes. Nous vous expliquerons la distinction entre TGV Inoui (confort, flexibilité) et Ouigo (low cost, restrictions), l''intérêt de la Carte Avantage Jeune (est-elle rentable pour vous ?), et l''application indispensable "Connect SNCF". Maîtriser ces informations est absolument crucial pour planifier vos voyages, trouver les meilleurs prix, et profiter pleinement de la découverte de la France en train.',
@@ -286,7 +286,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Distinguer les offres TGV Inoui (standard) et Ouigo (low cost)", "Comprendre l''intérêt et la rentabilité de la Carte Avantage Jeune", "Savoir utiliser l''application Connect SNCF pour la réservation et les infos trafic", "Maîtriser les conseils pour planifier ses voyages en train et acheter ses billets au meilleur prix"]'::jsonb,
+  E'["Distinguer les offres TGV Inoui (standard) et Ouigo (low cost)", "Comprendre l''intérêt et la rentabilité de la Carte Avantage Jeune", "Savoir utiliser l''application Connect SNCF pour la réservation et les infos trafic", "Maîtriser les conseils pour planifier ses voyages en train et acheter ses billets au meilleur prix"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -297,8 +297,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 68
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '41b423c2-65f9-4012-9da6-73943a698d13',
+  'd891eb92-3735-4fce-9f61-1ab24d0b2252',
   'TGV Inoui vs Ouigo (Low cost)',
   '# TGV Inoui vs Ouigo (Low cost) : Choisir son train en France
 
@@ -369,8 +369,8 @@ Pour voyager en train en France, la SNCF propose TGV Inoui (confort, flexibilit�
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '2ef6a4b0-db41-4539-bb48-d2b239d03692',
+  'd891eb92-3735-4fce-9f61-1ab24d0b2252',
   'La Carte Avantage Jeune : Rentable ?',
   '# La Carte Avantage Jeune : Est-elle rentable pour vous ?
 
@@ -440,8 +440,8 @@ Si vous êtes un étudiant international en France et que vous prévoyez de voya
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '4896b6af-adf0-4258-82bc-c72e63735097',
+  'd891eb92-3735-4fce-9f61-1ab24d0b2252',
   'Connect SNCF : L''appli indispensable',
   '# SNCF Connect : L''appli indispensable
 
@@ -516,7 +516,7 @@ L''application SNCF Connect est l''outil indispensable pour tous les étudiants 
 -- COURS 69 : Vélib' et vélos
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '55d6f9de-15cf-4438-be37-80a5038af549',
+  'a67bc4e0-60c6-4d2c-a46e-6e16a4db88da',
   'Vélib'' et vélos en France : Mobilité douce et sécurité routière',
   'velib-velos-france-mobilite-douce-securite-routiere',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent adopter la "mobilité douce" et se déplacer à vélo. Le vélo est un moyen de transport écologique, économique et agréable, mais il est crucial de connaître les options disponibles (services de vélos en libre-service comme Vélib'' à Paris) et le Code de la route spécifique aux cyclistes. Nous vous expliquerons comment vous abonner aux services de vélos en libre-service, les règles de circulation pour les cyclistes, et les conseils pour sécuriser votre vélo personnel (antivol, stationnement). Maîtriser ces informations est absolument crucial pour vous déplacer en toute sécurité, éviter les amendes, et profiter pleinement de la ville à vélo.',
@@ -527,7 +527,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le fonctionnement des services de vélos en libre-service (Vélib'') et leurs abonnements", "Identifier les règles du Code de la route spécifiques aux cyclistes", "Savoir comment sécuriser son vélo personnel contre le vol", "Maîtriser les conseils pour une mobilité douce sûre et agréable en ville"]'::jsonb,
+  E'["Comprendre le fonctionnement des services de vélos en libre-service (Vélib'') et leurs abonnements", "Identifier les règles du Code de la route spécifiques aux cyclistes", "Savoir comment sécuriser son vélo personnel contre le vol", "Maîtriser les conseils pour une mobilité douce sûre et agréable en ville"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -538,8 +538,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 69
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '9b8e9b28-b029-42a9-a580-f0e97c309b4c',
+  'a67bc4e0-60c6-4d2c-a46e-6e16a4db88da',
   'S''abonner aux vélos en libre-service',
   '# S''abonner aux vélos en libre-service (Vélib'', etc.)
 
@@ -619,8 +619,8 @@ S''abonner aux services de vélos en libre-service (comme Vélib'' Métropole à
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '5621ae11-d484-4822-8aae-f378fd562b2c',
+  'a67bc4e0-60c6-4d2c-a46e-6e16a4db88da',
   'Code de la route pour cyclistes',
   '# Code de la route pour cyclistes
 
@@ -693,8 +693,8 @@ Si vous circulez à vélo en France, il est absolument crucial de connaître et 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '9bbce60f-bd50-4d59-a03f-235b9bc94de1',
+  'a67bc4e0-60c6-4d2c-a46e-6e16a4db88da',
   'Sécuriser son vélo personnel',
   '# Sécuriser son vélo personnel
 
@@ -778,7 +778,7 @@ Si vous possédez un vélo personnel en France, il est absolument crucial de le 
 -- COURS 70 : Faire ses courses
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e4f24845-4289-4533-bbed-e5de645d62c2',
+  '37f520aa-6653-4308-b583-a30104291e0a',
   'Faire ses courses en France : Hypermarchés, Hard-Discount et astuces',
   'faire-courses-france-hypermarches-hard-discount-astuces',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France, afin d''optimiser leur budget alimentaire. Faire ses courses est une dépense récurrente, et le choix du magasin peut avoir un impact majeur sur vos dépenses. Nous vous expliquerons la typologie des supermarchés (hypermarché, supermarché, supérette), les avantages des enseignes "hard-discount" (Lidl, Aldi) pour des prix bas, et l''intérêt des cartes de fidélité pour des réductions supplémentaires. Maîtriser ces informations est absolument crucial pour gérer votre budget alimentation efficacement, faire des économies, et découvrir les habitudes de consommation françaises sans vous ruiner.',
@@ -789,7 +789,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la typologie des magasins (hypermarché, supermarché, supérette)", "Identifier les avantages des enseignes hard-discount (Lidl, Aldi) pour les petits budgets", "Savoir comment utiliser les cartes de fidélité pour des réductions", "Maîtriser les conseils pour faire ses courses intelligemment et économiser"]'::jsonb,
+  E'["Comprendre la typologie des magasins (hypermarché, supermarché, supérette)", "Identifier les avantages des enseignes hard-discount (Lidl, Aldi) pour les petits budgets", "Savoir comment utiliser les cartes de fidélité pour des réductions", "Maîtriser les conseils pour faire ses courses intelligemment et économiser"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -800,8 +800,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 70
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '515c464e-b024-4cd1-b8cf-789436e771b1',
+  '37f520aa-6653-4308-b583-a30104291e0a',
   'Typologie : Hypermarché, Super, Supérette',
   '# Typologie : Hypermarché, Supermarché, Supérette (Faire ses courses)
 
@@ -866,8 +866,8 @@ En France, il existe différentes tailles et types de magasins pour faire vos co
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '07d311bf-74e3-4bbb-a0fb-5aef719feb00',
+  '37f520aa-6653-4308-b583-a30104291e0a',
   'Les enseignes Hard-Discount (Lidl, Aldi)',
   '# Les enseignes Hard-Discount (Lidl, Aldi)
 
@@ -927,8 +927,8 @@ Le hard-discount s''est imposé en France en proposant un modèle économique qu
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '9d066112-fe39-4921-9818-6c56477720ec',
+  '37f520aa-6653-4308-b583-a30104291e0a',
   'Les cartes de fidélité',
   '# Les cartes de fidélité (Supermarchés)
 
@@ -1013,7 +1013,7 @@ Les cartes de fidélité des supermarchés en France sont un excellent moyen d''
 -- COURS 71 : Tri sélectif
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '1ee3932a-4e97-43fd-a038-e7142771964f',
+  '1c3cd8f7-15f9-497b-ba49-b90d053c0ea3',
   'Tri sélectif en France : Le guide des poubelles (Jaune, Verte, Marron)',
   'tri-selectif-france-guide-poubelles-jaune-verte-marron',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre les règles du tri sélectif des déchets ménagers. Le tri est une pratique quotidienne obligatoire et un geste citoyen important pour l''environnement. Ne pas connaître les consignes de tri, c''est risquer de mal jeter ses déchets, de polluer les filières de recyclage, de recevoir des rappels à l''ordre, ou de générer des nuisances dans votre immeuble. Nous vous expliquerons la distinction entre la poubelle jaune (emballages), la poubelle verte (verre), la poubelle marron/noire (déchets non recyclables), et les points de collecte spécifiques. Maîtriser ces nouvelles règles est absolument crucial pour une intégration respectueuse de l''environnement et du cadre de vie en France.',
@@ -1024,7 +1024,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre les principes du tri sélectif en France", "Identifier les catégories de déchets pour chaque couleur de poubelle (jaune, verte, marron)", "Savoir où déposer le verre et les autres déchets spécifiques", "Maîtriser les nouvelles règles de tri et les conseils pour une bonne gestion des déchets"]'::jsonb,
+  E'["Comprendre les principes du tri sélectif en France", "Identifier les catégories de déchets pour chaque couleur de poubelle (jaune, verte, marron)", "Savoir où déposer le verre et les autres déchets spécifiques", "Maîtriser les nouvelles règles de tri et les conseils pour une bonne gestion des déchets"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -1035,8 +1035,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 71
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '63b5b2e9-39a5-49d6-b043-123e7b1d0818',
+  '1c3cd8f7-15f9-497b-ba49-b90d053c0ea3',
   'Poubelle Jaune, Verte, Marron : Le guide',
   '# Poubelle Jaune, Verte, Marron : Le guide du tri sélectif
 
@@ -1100,8 +1100,8 @@ Le tri sélectif en France est un geste citoyen essentiel. Comprenez la distinct
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '01b2d42c-b062-48e9-9e19-0732467757f1',
+  '1c3cd8f7-15f9-497b-ba49-b90d053c0ea3',
   'Le verre : Points de collecte',
   '# Le verre : Points de collecte
 
@@ -1169,8 +1169,8 @@ Le tri du verre en France se fait spécifiquement dans des conteneurs dédiés (
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'd28f4023-972f-4b55-9338-447efa9317b7',
+  '1c3cd8f7-15f9-497b-ba49-b90d053c0ea3',
   'Compostage : Nouvelles règles',
   '# Compostage : Nouvelles règles
 

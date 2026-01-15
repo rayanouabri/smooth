@@ -10,7 +10,7 @@
 -- COURS 17 : Le dossier de location en béton
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '63871dc4-470f-4f58-9fac-43e8769cc02a',
+  '79d6d434-1575-4c4b-92a8-c11336bf7f23',
   'Le dossier de location en béton : Constituez le parfait candidat',
   'dossier-location-en-beton-parfait-candidat',
   'Ce cours est un guide indispensable pour les étudiants internationaux souhaitant maximiser leurs chances de trouver un logement en France. Constituer un "dossier de location en béton" est la clé pour se démarquer dans un marché immobilier compétitif. Nous vous apprendrons à préparer une page de garde impactante pour faire bonne impression, à identifier les documents obligatoires (identité, ressources) exigés par les propriétaires et agences, à connaître les documents strictement interdits (que l''on ne peut pas vous demander), et à fusionner efficacement vos PDF pour un envoi numérique professionnel. Maîtriser ce dossier est crucial pour présenter votre candidature de manière impeccable et sécurisée.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   5,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Créer une page de garde professionnelle et impactante", "Identifier les documents obligatoires pour un dossier de location", "Connaître les documents interdits par la loi pour protéger vos droits", "Fusionner et organiser son dossier numérique pour un envoi efficace"]'::jsonb,
+  E'["Créer une page de garde professionnelle et impactante", "Identifier les documents obligatoires pour un dossier de location", "Connaître les documents interdits par la loi pour protéger vos droits", "Fusionner et organiser son dossier numérique pour un envoi efficace"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 17
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '1a67722f-f54a-4059-a6fc-5ea37273ca3b',
-  '63871dc4-470f-4f58-9fac-43e8769cc02a',
+  'ddea24a4-cbea-4575-abc8-bdf2b586d09c',
+  '79d6d434-1575-4c4b-92a8-c11336bf7f23',
   'La page de garde : Faire bonne impression',
   '# La page de garde : Faire bonne impression
 
@@ -102,8 +102,8 @@ Une page de garde professionnelle et bien structurée est essentielle pour faire
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '8009cd26-cca1-4f03-b298-41dde9b718b3',
-  '63871dc4-470f-4f58-9fac-43e8769cc02a',
+  '25bffb08-d539-4f2d-9815-1d81885d0160',
+  '79d6d434-1575-4c4b-92a8-c11336bf7f23',
   'Les documents obligatoires (Identité, Ressources)',
   '# Les documents obligatoires (Identité, Ressources)
 
@@ -182,8 +182,8 @@ La constitution d''un dossier de location complet et conforme est essentielle po
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '94bc767f-26a1-4710-876c-f4fd7289248f',
-  '63871dc4-470f-4f58-9fac-43e8769cc02a',
+  '578556c8-b562-4a57-93a7-2f33ce85ce88',
+  '79d6d434-1575-4c4b-92a8-c11336bf7f23',
   'Les documents interdits (Ce qu''on ne peut pas vous demander)',
   '# Les documents interdits (Ce qu''on ne peut pas vous demander)
 
@@ -258,8 +258,8 @@ La loi française protège les candidats locataires en interdisant aux bailleurs
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'd45c8408-afb4-4517-96c1-864282e46971',
-  '63871dc4-470f-4f58-9fac-43e8769cc02a',
+  '03435dcc-b98d-4b4b-8007-621759e2cb8a',
+  '79d6d434-1575-4c4b-92a8-c11336bf7f23',
   'Fusionner son PDF pour l''envoi mail',
   '# Fusionner son PDF pour l''envoi mail
 
@@ -320,7 +320,7 @@ Fusionner tous vos documents de location en un seul fichier PDF est une pratique
 -- COURS 18 : Trouver un garant
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'c7d8e9f0-a1b2-4012-e3f4-a5b6c7d8e9f0',
+  '4d144f6d-8d73-4cae-b94e-bdcd7499c1c3',
   'Trouver un garant pour votre logement en France : Solutions et astuces',
   'trouver-garant-logement-france-solutions-astuces',
   'Ce cours est essentiel pour les étudiants internationaux et les jeunes professionnels qui cherchent à louer un logement en France. La plupart des propriétaires exigent un garant, et en tant qu''étranger sans revenus français établis, en trouver un peut être un défi. Nous explorerons les différentes options : le rôle du garant physique (familial ou amical), les solutions de garants payants (comme GarantMe ou Unkle) qui s''adressent spécifiquement aux profils internationaux, et la caution bancaire comme alternative bloquée. Maîtriser ces options est crucial pour constituer un dossier de location solide et rassurer les bailleurs, maximisant ainsi vos chances de trouver votre futur logement en France.',
@@ -331,7 +331,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le rôle et l''importance d''un garant pour la location", "Identifier les options de garants physiques (familial, amical)", "Découvrir les solutions de garants payants pour étudiants internationaux", "Comprendre le fonctionnement et les limites de la caution bancaire"]'::jsonb,
+  E'["Comprendre le rôle et l''importance d''un garant pour la location", "Identifier les options de garants physiques (familial, amical)", "Découvrir les solutions de garants payants pour étudiants internationaux", "Comprendre le fonctionnement et les limites de la caution bancaire"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -342,8 +342,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 18
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '8e9f0a1b-2c3d-4012-f4a5-b6c7d8e9f0a1',
-  'c7d8e9f0-a1b2-4012-e3f4-a5b6c7d8e9f0',
+  'f6ad2e62-8def-4056-806d-6f8210a6b644',
+  '4d144f6d-8d73-4cae-b94e-bdcd7499c1c3',
   'Le rôle du garant physique',
   '# Le rôle du garant physique
 
@@ -427,8 +427,8 @@ Le garant physique est une personne qui s''engage à payer votre loyer en cas de
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '531c27f5-215f-473e-a4da-430936bd326f',
-  'c7d8e9f0-a1b2-4012-e3f4-a5b6c7d8e9f0',
+  'e23e665d-d01b-4134-b02d-2392e8bd62d1',
+  '4d144f6d-8d73-4cae-b94e-bdcd7499c1c3',
   'GarantMe / Unkle : Les garants payants',
   '# GarantMe / Unkle : Les garants payants
 
@@ -500,8 +500,8 @@ Les organismes de garantie privés comme GarantMe ou Unkle sont des solutions ef
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'd45c8408-afb4-4517-96c1-864282e46971',
-  'c7d8e9f0-a1b2-4012-e3f4-a5b6c7d8e9f0',
+  '0ff45c8d-4879-4208-a294-2bc76cbcf430',
+  '4d144f6d-8d73-4cae-b94e-bdcd7499c1c3',
   'La caution bancaire : Une alternative bloquée',
   '# La caution bancaire : Une alternative bloquée
 
@@ -577,7 +577,7 @@ La caution bancaire est une alternative de garantie pour la location, mais elle 
 -- COURS 19 : La garantie VISALE (Tuto)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'd9e0f1a2-b3c4-4012-e5f6-a7b8c9d0e1f2',
+  'd7314013-b445-4ded-af9d-1d0888d16d17',
   'La garantie VISALE (Tuto) : Votre garant gratuit en France',
   'garantie-visale-tuto-garant-gratuit-france',
   'Ce cours est un tutoriel complet et essentiel sur la garantie VISALE, la solution de garantie locative gratuite la plus avantageuse pour de nombreux étudiants internationaux et jeunes actifs en France. Si vous n''avez pas de garant physique, VISALE est un dispositif public qui se porte caution pour vous. Nous vous détaillerons ce qu''est VISALE et qui est éligible, comment créer votre espace personnel sur le site officiel, télécharger vos justificatifs, obtenir votre visa certifié en moins de 48h, et comment le présenter efficacement à un propriétaire. Maîtriser cette démarche est crucial pour obtenir un garant sans frais et débloquer rapidement votre accès au logement en France.',
@@ -588,7 +588,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le principe et les avantages de la garantie VISALE", "Identifier les conditions d''éligibilité pour les étudiants internationaux", "Maîtriser la création de compte et le dépôt de dossier en ligne", "Obtenir le visa VISALE certifié et le présenter efficacement aux propriétaires"]'::jsonb,
+  E'["Comprendre le principe et les avantages de la garantie VISALE", "Identifier les conditions d''éligibilité pour les étudiants internationaux", "Maîtriser la création de compte et le dépôt de dossier en ligne", "Obtenir le visa VISALE certifié et le présenter efficacement aux propriétaires"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -599,8 +599,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 19
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e0f1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'd9e0f1a2-b3c4-4012-e5f6-a7b8c9d0e1f2',
+  '8e3dbef9-b0e4-4933-a891-f0062bcdc115',
+  'd7314013-b445-4ded-af9d-1d0888d16d17',
   'Visale : C''est quoi et pour qui ?',
   '# Visale : C''est quoi et pour qui ?
 
@@ -675,8 +675,8 @@ VISALE est une garantie locative gratuite et très avantageuse pour les étudian
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e6f7a8b9-c0d1-4012-e3f4-a5b6c7d8e9f0',
-  'd9e0f1a2-b3c4-4012-e5f6-a7b8c9d0e1f2',
+  '26ecada9-ac9a-4fb5-ab3e-5bba5566b5af',
+  'd7314013-b445-4ded-af9d-1d0888d16d17',
   'Créer son espace personnel',
   '# Créer son espace personnel Visale
 
@@ -744,8 +744,8 @@ La création de votre espace personnel sur `visale.fr` est la première étape i
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'd9e0f1a2-b3c4-4012-e5f6-a7b8c9d0e1f2',
+  'e4b9ba29-0771-43d7-a2cc-a31fc1d45451',
+  'd7314013-b445-4ded-af9d-1d0888d16d17',
   'Télécharger ses justificatifs',
   '# Télécharger ses justificatifs Visale
 
@@ -806,8 +806,8 @@ Le téléchargement de vos justificatifs sur `visale.fr` est une étape critique
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e6f7a8b9-c0d1-4012-e3f4-a5b6c7d8e9f0',
-  'd9e0f1a2-b3c4-4012-e5f6-a7b8c9d0e1f2',
+  '768a7dc8-6a77-4864-803f-d8b0730efb62',
+  'd7314013-b445-4ded-af9d-1d0888d16d17',
   'Obtenir son visa certifié en 48h',
   '# Obtenir son visa certifié en 48h
 
@@ -867,8 +867,8 @@ L''obtention de votre visa certifié VISALE en 48h (ouvrées) est l''aboutisseme
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e6f7a8b9-c0d1-4012-e3f4-a5b6c7d8e9f0',
-  'd9e0f1a2-b3c4-4012-e5f6-a7b8c9d0e1f2',
+  'e02e2aaf-eaa0-4faa-b620-23fe1f9ada39',
+  'd7314013-b445-4ded-af9d-1d0888d16d17',
   'Présenter Visale au propriétaire',
   '# Présenter Visale au propriétaire
 
@@ -942,7 +942,7 @@ Présenter votre visa certifié VISALE de manière proactive et convaincante est
 -- COURS 20 : Éviter les arnaques au logement
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e0f1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  '05658305-9089-46ab-b1b1-0945aee7d755',
   'Éviter les arnaques au logement : Protégez-vous en France',
   'eviter-arnaques-logement-protegez-vous-france',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en recherche de logement en France. Le marché locatif, surtout dans les grandes villes, est malheureusement propice aux arnaques et aux tentatives d''escroquerie. Nous vous apprendrons à identifier les signaux d''alerte classiques : les demandes de "mandat cash" ou "Western Union", le scénario du "propriétaire à l''étranger", les annonces trop belles pour être vraies, et la règle d''or de ne jamais envoyer d''argent avant la visite et la signature du bail. Maîtriser ces réflexes est crucial pour protéger votre argent, votre identité et éviter de devenir victime de fraudeurs peu scrupuleux.',
@@ -953,7 +953,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Identifier les arnaques courantes au logement (mandat cash, propriétaire étranger)", "Savoir vérifier la véracité d''une annonce immobilière", "Comprendre la règle d''or : ne jamais payer avant la visite et le bail", "Maîtriser les réflexes de prudence pour protéger son argent et son identité"]'::jsonb,
+  E'["Identifier les arnaques courantes au logement (mandat cash, propriétaire étranger)", "Savoir vérifier la véracité d''une annonce immobilière", "Comprendre la règle d''or : ne jamais payer avant la visite et le bail", "Maîtriser les réflexes de prudence pour protéger son argent et son identité"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -964,8 +964,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 20
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'd0141e69-1265-4284-91f3-2d2e6222d343',
+  '05658305-9089-46ab-b1b1-0945aee7d755',
   'Mandat Cash / Western Union : Fuyez !',
   '# Mandat Cash / Western Union : Fuyez !
 
@@ -1038,8 +1038,8 @@ Toute demande de paiement par Mandat Cash, Western Union, Transcash ou tout autr
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  '13ce0d29-3e82-49ad-9dc5-0600b412096e',
+  '05658305-9089-46ab-b1b1-0945aee7d755',
   'Le propriétaire est à l''étranger : Le script classique',
   '# Le propriétaire est à l''étranger : Le script classique
 
@@ -1134,8 +1134,8 @@ Le scénario du "propriétaire à l''étranger" est une arnaque classique au log
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  '7af928c2-fc86-4cb3-9232-08f65362cae4',
+  '05658305-9089-46ab-b1b1-0945aee7d755',
   'Vérifier si une annonce est réelle (Recherche image)',
   '# Vérifier si une annonce est réelle (Recherche image)
 
@@ -1223,8 +1223,8 @@ La recherche inversée d''images est un outil puissant pour vérifier l''authent
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'cae590a2-1701-4244-9e05-c43456f47355',
+  '05658305-9089-46ab-b1b1-0945aee7d755',
   'Ne jamais envoyer d''argent avant la visite',
   '# Ne jamais envoyer d''argent avant la visite
 
@@ -1318,7 +1318,7 @@ La règle d''or absolue pour la recherche de logement en France est de ne **JAMA
 -- COURS 21 : Comprendre et signer son bail
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  '0ab5533b-8a2f-463d-b40e-c9a4ee17b51d',
   'Comprendre et signer son bail : Votre contrat de location en France',
   'comprendre-signer-bail-contrat-location-france',
   'Ce cours est une étape cruciale pour les étudiants internationaux s''apprêtant à signer leur premier contrat de location en France. Le bail est un document juridique complexe qui engage le locataire et le propriétaire pour plusieurs années. Nous vous guiderons pour comprendre la durée de votre bail (1 an ou 3 ans), la clause de solidarité souvent présente en colocation, les clauses abusives (que vous avez le droit de rayer), et les spécificités de la signature électronique. Maîtriser ce document est absolument essentiel pour connaître vos droits et obligations, éviter les mauvaises surprises, et signer un contrat équilibré et conforme à la loi.',
@@ -1329,7 +1329,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la durée légale d''un bail (meublé, non-meublé, étudiant)", "Identifier et comprendre la clause de solidarité en colocation", "Savoir repérer et refuser les clauses abusives", "Maîtriser les spécificités de la signature électronique du bail"]'::jsonb,
+  E'["Comprendre la durée légale d''un bail (meublé, non-meublé, étudiant)", "Identifier et comprendre la clause de solidarité en colocation", "Savoir repérer et refuser les clauses abusives", "Maîtriser les spécificités de la signature électronique du bail"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -1340,8 +1340,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 21
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  '5188c650-fd76-4879-8602-81fb60acb66d',
+  '0ab5533b-8a2f-463d-b40e-c9a4ee17b51d',
   'Durée du bail (1 an vs 3 ans)',
   '# Durée du bail (1 an vs 3 ans)
 
@@ -1414,8 +1414,8 @@ La durée de votre bail est un élément essentiel à comprendre avant de signer
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  '55b2c376-bad3-435c-869d-52b9ccdaf3d4',
+  '0ab5533b-8a2f-463d-b40e-c9a4ee17b51d',
   'Clause de solidarité (Colocation)',
   '# Clause de solidarité (Colocation)
 
@@ -1499,8 +1499,8 @@ La clause de solidarité dans un bail de colocation est un engagement financier 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'fa519b19-9815-4e61-b5d4-fdc74e6f58ed',
+  '0ab5533b-8a2f-463d-b40e-c9a4ee17b51d',
   'Les clauses abusives à rayer',
   '# Les clauses abusives à rayer
 
@@ -1568,8 +1568,8 @@ De nombreuses clauses dans un bail de location peuvent être abusives et illéga
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
+  'eda1660f-2676-4a0b-a51c-1f10da6cb186',
+  '0ab5533b-8a2f-463d-b40e-c9a4ee17b51d',
   'La signature électronique',
   '# La signature électronique
 

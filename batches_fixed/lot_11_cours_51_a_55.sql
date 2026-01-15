@@ -10,7 +10,7 @@
 -- COURS 52 : Frais bancaires et Agios
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'df1a50ec-c779-4704-af71-15a03a54ed6c',
+  '2db29f14-d87a-4ccc-9b69-94dd4d83a824',
   'Frais bancaires et Agios en France : Comprendre et éviter les coûts cachés',
   'frais-bancaires-agios-france-comprendre-eviter-couts-caches',
   'Ce cours est essentiel pour tous les étudiants internationaux qui gèrent un compte bancaire en France. Les frais bancaires et les "agios" peuvent rapidement grever votre budget s''ils ne sont pas compris et maîtrisés. Nous vous expliquerons les différents types de frais (tenue de compte, carte bancaire, virements internationaux), la distinction cruciale entre le "découvert autorisé" et le "découvert non autorisé", et les fameuses "commissions d''intervention" qui surviennent en cas d''incident. Maîtriser ces coûts cachés est absolument crucial pour protéger votre argent, éviter les pénalités, et gérer votre budget de manière autonome et efficace. C''est la clé pour une relation saine avec votre banque.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Identifier les frais bancaires courants (tenue de compte, carte, virements)", "Comprendre la différence entre découvert autorisé et non autorisé", "Maîtriser le concept des commissions d''intervention et comment les éviter", "Savoir comment comparer les tarifs bancaires et optimiser son budget"]'::jsonb,
+  E'["Identifier les frais bancaires courants (tenue de compte, carte, virements)", "Comprendre la différence entre découvert autorisé et non autorisé", "Maîtriser le concept des commissions d''intervention et comment les éviter", "Savoir comment comparer les tarifs bancaires et optimiser son budget"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 52
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '4296c668-8c6e-41ce-b008-23ea1def9380',
+  'ba9c2ddd-274a-41de-86ab-87d973125980',
+  '2db29f14-d87a-4ccc-9b69-94dd4d83a824',
   'Frais de tenue de compte',
   '# Frais de tenue de compte
 
@@ -95,12 +95,12 @@ Les frais de tenue de compte sont un coût récurrent pour la gestion de votre c
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 52 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  '204acf63-7a14-4940-bcfd-02722a8b4fe8',
+  '2db29f14-d87a-4ccc-9b69-94dd4d83a824',
   'Le découvert autorisé vs non-autorisé',
   '# Le découvert autorisé vs non-autorisé
 
@@ -169,12 +169,12 @@ La distinction entre découvert autorisé (prévu par contrat, moins cher en agi
   2,
   55,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 52 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  'cda1beaa-774c-489b-a8fe-8e75e71f146b',
+  '2db29f14-d87a-4ccc-9b69-94dd4d83a824',
   'Commissions d''intervention : Comment les éviter',
   '# Commissions d''intervention : Comment les éviter
 
@@ -260,14 +260,14 @@ Les commissions d''intervention sont des frais coûteux (8€ par opération, pl
   3,
   55,
   NULL,
-  '[]'::sql
-
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 -- --- Cours 52 ---
 
 -- COURS 53 : Gérer son budget étudiant
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'cf576c3d-66ec-4bb3-a9ae-7ed8ecb73d1f',
+  '592874f4-9a46-46c6-af75-9614a87cdf24',
   'Gérer son budget étudiant en France : Maîtriser ses dépenses',
   'gerer-budget-etudiant-france-maitriser-depenses',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France. Gérer son budget est absolument crucial pour réussir vos études sans stress financier. Le coût de la vie en France peut être élevé, surtout dans les grandes villes, et il est facile de se laisser déborder. Nous vous présenterons des estimations du coût de la vie moyen par ville, des méthodes de gestion budgétaire adaptées aux étudiants (comme la règle 50/30/20), et des applications mobiles pour suivre vos dépenses. Maîtriser ces outils et techniques est fondamental pour équilibrer vos revenus et vos dépenses, éviter les découverts, et profiter pleinement de votre expérience en France sans soucis d''argent.',
@@ -278,7 +278,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Estimer le coût de la vie moyen dans différentes villes françaises", "Appliquer des méthodes de gestion budgétaire (règle 50/30/20) à votre situation", "Découvrir et utiliser des applications mobiles pour le suivi de dépenses", "Maîtriser les conseils pour équilibrer ses revenus et dépenses et éviter les difficultés"]'::jsonb,
+  E'["Estimer le coût de la vie moyen dans différentes villes françaises", "Appliquer des méthodes de gestion budgétaire (règle 50/30/20) à votre situation", "Découvrir et utiliser des applications mobiles pour le suivi de dépenses", "Maîtriser les conseils pour équilibrer ses revenus et dépenses et éviter les difficultés"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -289,8 +289,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 53
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  'd30ca726-4608-4583-b403-461eaf5462e7',
+  '592874f4-9a46-46c6-af75-9614a87cdf24',
   'Coût de la vie moyen par ville',
   '# Coût de la vie moyen par ville en France
 
@@ -358,12 +358,12 @@ Le coût de la vie en France varie fortement d''une ville à l''autre, Paris ét
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 53 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  'ba32453c-b245-4b35-8677-97aaccd61657',
+  '592874f4-9a46-46c6-af75-9614a87cdf24',
   'Méthode 50/30/20 adaptée étudiant',
   '# Méthode 50/30/20 adaptée étudiant
 
@@ -424,12 +424,12 @@ La méthode 50/30/20 est un excellent cadre pour gérer votre budget d''étudian
   2,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 53 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  '06766cda-2776-4b83-b639-1101c237db02',
+  '592874f4-9a46-46c6-af75-9614a87cdf24',
   'Applications de gestion de budget',
   '# Applications de gestion de budget
 
@@ -509,7 +509,7 @@ Les applications de gestion de budget sont des outils indispensables pour les é
 -- COURS 54 : Aides financières d'urgence
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  '7036a8e0-9d43-4c3d-b95e-552a9b0d09b3',
   'Aides financières d''urgence pour étudiants en France : Où trouver de l''aide',
   'aides-financieres-urgence-etudiants-france',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France qui pourraient faire face à des difficultés financières imprévues. L''isolement, les retards de bourses, ou des événements inattendus peuvent rapidement mettre en péril votre équilibre budgétaire. Connaître les dispositifs d''aides financières d''urgence est absolument crucial pour ne pas rester seul(e) face à ces problèmes. Nous vous présenterons l''aide ponctuelle du CROUS, les bourses au mérite ou régionales, et l''importance de contacter les assistantes sociales. Maîtriser ces ressources est fondamental pour trouver un soutien rapide, éviter les situations de précarité, et poursuivre vos études en France avec plus de sérénité.',
@@ -520,7 +520,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''existence et l''accès aux aides financières d''urgence", "Identifier l''aide ponctuelle du CROUS et ses conditions", "Découvrir les bourses au mérite et les aides des collectivités locales", "Maîtriser la démarche pour contacter une assistante sociale et obtenir de l''aide"]'::jsonb,
+  E'["Comprendre l''existence et l''accès aux aides financières d''urgence", "Identifier l''aide ponctuelle du CROUS et ses conditions", "Découvrir les bourses au mérite et les aides des collectivités locales", "Maîtriser la démarche pour contacter une assistante sociale et obtenir de l''aide"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -531,8 +531,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 54
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  'ac962cdf-6d0e-400e-adc5-396a1d6900a6',
+  '7036a8e0-9d43-4c3d-b95e-552a9b0d09b3',
   'L''aide ponctuelle du CROUS',
   '# L''aide ponctuelle du CROUS
 
@@ -619,8 +619,8 @@ L''aide ponctuelle du CROUS (Fonds National d''Aide d''Urgence) est un dispositi
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  '6bbf3f36-17b7-4232-8abc-716902362dc5',
+  '7036a8e0-9d43-4c3d-b95e-552a9b0d09b3',
   'L''aide au mérite et bourses régionales',
   '# L''aide au mérite et bourses régionales
 
@@ -699,8 +699,8 @@ En plus de l''aide ponctuelle du CROUS, vous pouvez rechercher l''aide au mérit
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  '25a379e3-85e2-470a-a9ce-42f753746a57',
+  '7036a8e0-9d43-4c3d-b95e-552a9b0d09b3',
   'Contacter l''assistante sociale',
   '# Contacter l''assistante sociale
 
@@ -779,7 +779,7 @@ Contacter l''assistante sociale étudiante (via le CROUS ou votre université) e
 -- COURS 55 : Clôturer son compte
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '9835cc69-808f-4ab9-aab0-6ad7aab94d77',
+  '1fcdc8a8-1682-44df-991b-d568f3a5c6d1',
   'Clôturer son compte bancaire en France : Démarches et précautions',
   'cloturer-compte-bancaire-france-demarches-precautions',
   'Ce cours est essentiel pour tous les étudiants internationaux qui s''apprêtent à quitter la France ou à changer de banque. La clôture d''un compte bancaire est une démarche administrative qui demande de l''anticipation et de la rigueur. Ne pas la faire correctement peut entraîner des frais de découvert inattendus, des prélèvements non autorisés sur un compte "oublié", ou des difficultés à récupérer vos fonds restants. Nous vous expliquerons comment vérifier qu''il n''y a plus de prélèvements ou de virements à venir, les étapes pour rédiger et envoyer la lettre de clôture, et comment transférer le solde restant. Maîtriser cette procédure est absolument crucial pour un départ serein, en toute conformité et sans mauvaises surprises financières.',
@@ -790,7 +790,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la nécessité de clôturer son compte bancaire avant de quitter la France", "Savoir comment vérifier et arrêter tous les prélèvements et virements automatiques", "Maîtriser la rédaction et l''envoi de la lettre de clôture à la banque", "Identifier les étapes pour transférer le solde restant et récupérer son argent"]'::jsonb,
+  E'["Comprendre la nécessité de clôturer son compte bancaire avant de quitter la France", "Savoir comment vérifier et arrêter tous les prélèvements et virements automatiques", "Maîtriser la rédaction et l''envoi de la lettre de clôture à la banque", "Identifier les étapes pour transférer le solde restant et récupérer son argent"]'::jsonb,
   '["Avoir un compte bancaire en France et envisager de le clôturer"]'::jsonb,
   TRUE,
   4.8,
@@ -801,8 +801,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 55
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  '69eccfed-f29b-4c30-843f-ca788c18ad7d',
+  '1fcdc8a8-1682-44df-991b-d568f3a5c6d1',
   'Vérifier qu''il n''y a plus de prélèvements',
   '# Vérifier qu''il n''y a plus de prélèvements
 
@@ -847,7 +847,7 @@ Un compte doit être "propre" avant d''être clôturé. Cela signifie qu''il ne 
 
 
 
--   **Clôturer son compte sans avoir arrêté tous les prélèvements** : Risque de frais d'incidents.
+-   **Clôturer son compte sans avoir arrêté tous les prélèvements** : Risque de frais d''incidents.
 -   **Oublier d''annuler un virement permanent**.
 
 
@@ -864,8 +864,8 @@ Avant de clôturer votre compte bancaire en France, vérifiez impérativement qu
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  '08a9bd59-041b-4fc2-9b8c-888f4068dcc8',
+  '1fcdc8a8-1682-44df-991b-d568f3a5c6d1',
   'La lettre de clôture',
   '# La lettre de clôture d''un compte bancaire
 
@@ -906,7 +906,7 @@ La clôture d''un compte bancaire est un droit pour le client. La banque ne peut
 
 
 
-[Votre nouvelle adresse (si départ à l'étranger)]
+[Votre nouvelle adresse (si départ à l''étranger)]
 
 
 
@@ -914,12 +914,12 @@ La clôture d''un compte bancaire est un droit pour le client. La banque ne peut
 
 
 
-Vous trouverez ci-joint l'intégralité de mes moyens de paiement associés à ce compte :
+Vous trouverez ci-joint l''intégralité de mes moyens de paiement associés à ce compte :
 (OU : Je vous confirme avoir détruit ma carte bancaire et annulé les chèques non utilisés.)
 
-Je vous remercie de bien vouloir me confirmer la date de clôture effective de mon compte et de m'adresser un relevé de clôture.
+Je vous remercie de bien vouloir me confirmer la date de clôture effective de mon compte et de m''adresser un relevé de clôture.
 
-Dans l'attente de votre confirmation, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+Dans l''attente de votre confirmation, je vous prie d''agréer, Madame, Monsieur, l''expression de mes salutations distinguées.
 
 
 ### 4. L''envoi et les étapes suivantes
@@ -948,7 +948,7 @@ Dans l'attente de votre confirmation, je vous prie d'agréer, Madame, Monsieur, 
 -   🔗 [La Poste : Envoi d''une lettre recommandée avec accusé de réception](https://www.laposte.fr/particulier/produits/envoyer-une-lettre-recommandee) - Pour la preuve d''envoi.
 
 
-L''envoi d''une lettre de clôture par lettre recommandée avec accusé de réception est une étape cruciale pour fermer votre compte bancaire en France. Elle doit inclure les références de votre compte, la demande de transfert du solde restant vers un autre RIB, et la restitution/destruction de vos moyens de paiement. Conservez précieusement toutes les preuves d'envoi et demandez une attestation de clôture. Une bonne gestion de cette démarche est essentielle pour un départ serein, sans frais cachés ni complications financières, et pour récupérer votre argent.
+L''envoi d''une lettre de clôture par lettre recommandée avec accusé de réception est une étape cruciale pour fermer votre compte bancaire en France. Elle doit inclure les références de votre compte, la demande de transfert du solde restant vers un autre RIB, et la restitution/destruction de vos moyens de paiement. Conservez précieusement toutes les preuves d''envoi et demandez une attestation de clôture. Une bonne gestion de cette démarche est essentielle pour un départ serein, sans frais cachés ni complications financières, et pour récupérer votre argent.
 ',
   3,
   55,
@@ -958,8 +958,8 @@ L''envoi d''une lettre de clôture par lettre recommandée avec accusé de réce
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  'cd6c50ae-66fe-4c6a-87d9-6f470496efd1',
+  '1fcdc8a8-1682-44df-991b-d568f3a5c6d1',
   'Transférer le solde restant',
   '# Transférer le solde restant
 
@@ -1031,7 +1031,7 @@ Lorsque vous clôturez votre compte bancaire en France, la dernière étape est 
 -- COURS 56 : Le système universitaire
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '48b4aac1-a9dc-4c08-82bc-ae08793eccc1',
+  '3893fa8d-2b7c-4b95-85a9-207da4ca19fe',
   'Le système universitaire français : CM, TD, ECTS et examens',
   'systeme-universitaire-francais-cm-td-ects-examens',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux qui s''apprêtent à intégrer l''enseignement supérieur en France. Le système universitaire français, avec ses Cours Magistraux (CM), ses Travaux Dirigés (TD), et son système de crédits ECTS, peut être très différent de ce que vous connaissez. Ne pas comprendre cette organisation, les attentes académiques, et les modalités d''évaluation peut impacter votre réussite et votre adaptation. Nous vous expliquerons la distinction entre CM et TD, le fonctionnement des crédits ECTS pour la validation de vos études, l''importance de la présence et les différentes formes d''examens. Maîtriser ces informations est absolument crucial pour bien démarrer vos études, comprendre vos obligations, et maximiser vos chances de succès académique en France.',
@@ -1042,7 +1042,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Distinguer les Cours Magistraux (CM) des Travaux Dirigés (TD)", "Comprendre le système des crédits ECTS et la validation des études", "Identifier l''importance de la présence aux cours et des règles d''assiduité", "Maîtriser les différentes formes d''examens (partiels, contrôle continu) et leur évaluation"]'::jsonb,
+  E'["Distinguer les Cours Magistraux (CM) des Travaux Dirigés (TD)", "Comprendre le système des crédits ECTS et la validation des études", "Identifier l''importance de la présence aux cours et des règles d''assiduité", "Maîtriser les différentes formes d''examens (partiels, contrôle continu) et leur évaluation"]'::jsonb,
   '["Être admis(e) dans un établissement d''enseignement supérieur français"]'::jsonb,
   TRUE,
   4.8,
@@ -1053,8 +1053,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 56
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  '8cfd91f9-d54c-4d03-a58c-e1d53cf937bc',
+  '3893fa8d-2b7c-4b95-85a9-207da4ca19fe',
   'CM (Cours Magistral) vs TD (Travaux Dirigés)',
   '# CM (Cours Magistral) vs TD (Travaux Dirigés)
 
@@ -1126,8 +1126,8 @@ Le système universitaire français distingue les Cours Magistraux (CM) pour l''
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  'af87e23d-cf4c-41d3-9e02-583bef348dfb',
+  '3893fa8d-2b7c-4b95-85a9-207da4ca19fe',
   'Les crédits ECTS',
   '# Les crédits ECTS
 
@@ -1198,8 +1198,8 @@ Les crédits ECTS mesurent la charge de travail de vos études et sont la clé d
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '54dc31e0-b23a-4df0-9c59-eaab44b67870',
+  '3e4cb448-e6a9-4c3b-8598-703df1ffc22b',
+  '3893fa8d-2b7c-4b95-85a9-207da4ca19fe',
   'Présence obligatoire et absences',
   '# Présence obligatoire et absences (Université)
 

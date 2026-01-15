@@ -10,7 +10,7 @@
 -- COURS 7 : Changer de statut : Étudiant vers Salarié
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'c3d4e5f6-a7b8-4901-d9e0-f1a2b3c4d5e6',
+  '1a3cfd7d-b8b3-45f8-9c3f-0b4a98f2052f',
   'Changer de statut : D''étudiant à Salarié en France',
   'changer-statut-etudiant-salarie-france',
   'Ce cours est conçu pour les étudiants internationaux souhaitant passer du statut étudiant à celui de salarié en France, une étape clé mais complexe. Nous vous guiderons à travers le moment idéal pour initier la démarche (dès la promesse d''embauche), la procédure détaillée de changement de statut, la cruciale notion d''"opposabilité de l''emploi" et les critères à remplir, ainsi que les délais de traitement et le maintien de vos droits. C''est un parcours semé d''embûches administratives, mais avec une bonne préparation, la transition est tout à fait réalisable. Maîtrisez ces informations pour sécuriser votre avenir professionnel en France.',
@@ -21,8 +21,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   5,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Identifier le moment opportun pour initier le changement de statut", "Comprendre la procédure de demande de titre de séjour salarié", "Maîtriser la notion d''opposabilité de l''emploi et ses critères", "Connaître les délais de traitement et le maintien des droits"]'::jsonb,
-  '["Être titulaire d''un titre de séjour étudiant", "Avoir obtenu un diplôme de l''enseignement supérieur français (Master ou équivalent)"]'::jsonb,
+  E'["Identifier le moment opportun pour initier le changement de statut", "Comprendre la procédure de demande de titre de séjour salarié", "Maîtriser la notion d''opposabilité de l''emploi et ses critères", "Connaître les délais de traitement et le maintien des droits"]'::jsonb,
+  E'["Être titulaire d''un titre de séjour étudiant", "Avoir obtenu un diplôme de l''enseignement supérieur français (Master ou équivalent)"]'::jsonb,
   TRUE,
   4.8,
   380,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 7
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'd4e5f6a7-b8c9-4012-e0f1-a2b3c4d5e6f7',
-  'c3d4e5f6-a7b8-4901-d9e0-f1a2b3c4d5e6',
+  '725eb638-072f-4c27-9c17-b82b3aa6f2b9',
+  '1a3cfd7d-b8b3-45f8-9c3f-0b4a98f2052f',
   'Le moment clé : Promesse d''embauche',
   '# Le moment clé : Promesse d''embauche
 
@@ -115,8 +115,8 @@ La promesse d''embauche est le document fondateur de votre changement de statut 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '446bb4be-e25a-437e-9150-8556caffc586',
-  'c3d4e5f6-a7b8-4901-d9e0-f1a2b3c4d5e6',
+  '4d07ed91-f006-47eb-a257-2bb07d847656',
+  '1a3cfd7d-b8b3-45f8-9c3f-0b4a98f2052f',
   'La procédure de changement de statut',
   '# La procédure de changement de statut
 
@@ -199,8 +199,8 @@ Le changement de statut d''étudiant à salarié est une procédure en deux temp
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'bace146c-bdbb-48d9-89ef-4e29aebea1d3',
-  'c3d4e5f6-a7b8-4901-d9e0-f1a2b3c4d5e6',
+  'c9a7194f-5363-4445-9112-0f80960b421e',
+  '1a3cfd7d-b8b3-45f8-9c3f-0b4a98f2052f',
   'Opposabilité de l''emploi : Comprendre le concept',
   '# Opposabilité de l''emploi : Comprendre le concept
 
@@ -287,8 +287,8 @@ L''opposabilité de l''emploi est un principe fondamental pour le changement de 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'b7881b11-9659-4c79-9a6c-7af547784735',
-  'c3d4e5f6-a7b8-4901-d9e0-f1a2b3c4d5e6',
+  '4a623708-5e41-48bc-988e-df1a8ae36fdd',
+  '1a3cfd7d-b8b3-45f8-9c3f-0b4a98f2052f',
   'Les délais de traitement et le maintien des droits',
   '# Les délais de traitement et le maintien des droits
 
@@ -362,7 +362,7 @@ Les délais de traitement pour un changement de statut peuvent être longs. Le r
 -- COURS 8 : L'APS / Carte Recherche d'Emploi
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'd5e6f7a8-b9c0-4012-e1f2-a3b4c5d6e7f8',
+  '56f58246-30e6-4f22-82ee-44bc8cd2cf0e',
   'L''APS / Carte Recherche d''Emploi : Après vos études en France',
   'aps-carte-recherche-emploi-apres-etudes-france',
   'Ce cours est dédié aux étudiants internationaux diplômés en France qui souhaitent rester sur le territoire pour chercher un emploi ou créer leur entreprise. Nous explorerons l''éligibilité à l''Autorisation Provisoire de Séjour (APS) ou la "carte recherche d''emploi/création d''entreprise", les délais impératifs pour effectuer la demande avant l''expiration de votre titre étudiant, les droits ouverts par ce statut transitoire (recherche d''emploi, création d''entreprise, travail sous certaines conditions), et les possibilités de renouvellement. L''APS est un tremplin crucial pour votre insertion professionnelle post-études en France. Maîtrisez cette démarche pour transformer votre expérience étudiante en carrière.',
@@ -373,8 +373,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1557804506-6691459a933f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGpvYiUyMHNlYXJjaHxlbnwwfHwwfHx8MA%3D%3D',
-  '["Comprendre l''éligibilité à l''APS après l''obtention de votre diplôme", "Savoir quand et comment faire la demande avant l''expiration de votre titre étudiant", "Connaître les droits spécifiques liés à l''APS (travail, création d''entreprise)", "Identifier les conditions de renouvellement de ce statut temporaire"]'::jsonb,
-  '["Être titulaire d''un titre de séjour étudiant", "Être diplômé(e) d''un Master ou d''un diplôme équivalent en France"]'::jsonb,
+  E'["Comprendre l''éligibilité à l''APS après l''obtention de votre diplôme", "Savoir quand et comment faire la demande avant l''expiration de votre titre étudiant", "Connaître les droits spécifiques liés à l''APS (travail, création d''entreprise)", "Identifier les conditions de renouvellement de ce statut temporaire"]'::jsonb,
+  E'["Être titulaire d''un titre de séjour étudiant", "Être diplômé(e) d''un Master ou d''un diplôme équivalent en France"]'::jsonb,
   TRUE,
   4.8,
   410,
@@ -384,8 +384,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 8
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e6f7a8b9-c0d1-4012-e3f4-a5b6c7d8e9f0',
-  'd5e6f7a8-b9c0-4012-e1f2-a3b4c5d6e7f8',
+  'f9749381-66b1-4bde-bda0-a703cd8d8d2f',
+  '56f58246-30e6-4f22-82ee-44bc8cd2cf0e',
   'Éligibilité : Diplômes concernés',
   '# Éligibilité : Diplômes concernés
 
@@ -461,8 +461,8 @@ L''éligibilité à l''APS "recherche d''emploi/création d''entreprise" est str
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e8bbd654-c4ea-4d07-88f4-7e0cae4e4b87',
-  'd5e6f7a8-b9c0-4012-e1f2-a3b4c5d6e7f8',
+  'a666496e-56dd-4fc0-88f3-e3b3dbe35c72',
+  '56f58246-30e6-4f22-82ee-44bc8cd2cf0e',
   'Faire la demande avant l''expiration du titre étudiant',
   '# Faire la demande avant l''expiration du titre étudiant
 
@@ -541,8 +541,8 @@ Le dépôt de votre demande d''APS doit être effectué impérativement avant la
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'ac1c30e5-0ddb-4f92-ae80-5b1230c45740',
-  'd5e6f7a8-b9c0-4012-e1f2-a3b4c5d6e7f8',
+  '7ae93d0e-f219-4e23-9980-d410132e10d9',
+  '56f58246-30e6-4f22-82ee-44bc8cd2cf0e',
   'Droits ouverts par l''APS (Création d''entreprise, travail)',
   '# Droits ouverts par l''APS (Création d''entreprise, travail)
 
@@ -627,8 +627,8 @@ L''APS "recherche d''emploi / création d''entreprise" est un droit précieux d'
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'bcd62043-cb99-4adc-9f05-dbf22081b1a7',
-  'd5e6f7a8-b9c0-4012-e1f2-a3b4c5d6e7f8',
+  '18ef9a78-a38b-4b7a-ad30-4702f8adfbd5',
+  '56f58246-30e6-4f22-82ee-44bc8cd2cf0e',
   'Renouvellement de l''APS : Possible ou non ?',
   '# Renouvellement de l''APS : Possible ou non ?
 
@@ -709,7 +709,7 @@ L''APS "recherche d''emploi / création d''entreprise" est un tremplin précieux
 -- COURS 9 : CVEC : Comprendre et payer
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e7f8a9b0-c1d2-4012-e3f4-a5b6c7d8e9f0',
+  'a5031468-3888-49d0-840b-0669df9fd95b',
   'CVEC : Comprendre et payer la Contribution Vie Étudiante et de Campus',
   'cvec-comprendre-payer-contribution-vie-etudiante-campus',
   'Ce cours est un guide essentiel pour tous les étudiants inscrits dans l''enseignement supérieur en France, qu''ils soient français ou internationaux. La Contribution Vie Étudiante et de Campus (CVEC) est une taxe obligatoire, mais elle finance des services cruciaux pour votre vie étudiante. Nous vous expliquerons à quoi sert la CVEC, les cas d''exonération pour lesquels vous pourriez être exempté de paiement, un tutoriel pas à pas pour la payer en ligne sur messervices.etudiant.gouv.fr, et comment obtenir et transmettre votre attestation de paiement. Une bonne compréhension de la CVEC est indispensable pour finaliser votre inscription administrative et profiter pleinement de vos services étudiants.',
@@ -720,7 +720,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la finalité et l''utilité de la CVEC", "Identifier les cas d''exonération pour ne pas payer inutilement", "Maîtriser la procédure de paiement en ligne sur messervices.etudiant.gouv.fr", "Savoir obtenir et transmettre l''attestation CVEC à votre établissement"]'::jsonb,
+  E'["Comprendre la finalité et l''utilité de la CVEC", "Identifier les cas d''exonération pour ne pas payer inutilement", "Maîtriser la procédure de paiement en ligne sur messervices.etudiant.gouv.fr", "Savoir obtenir et transmettre l''attestation CVEC à votre établissement"]'::jsonb,
   '["Être admis(e) dans un établissement d''enseignement supérieur en France"]'::jsonb,
   TRUE,
   4.8,
@@ -731,8 +731,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 9
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '2d3e4f5a-6b7c-4012-f8a9-b0c1d2e3f4a5',
-  'e7f8a9b0-c1d2-4012-e3f4-a5b6c7d8e9f0',
+  '5767eddc-d2d3-4c84-9eb4-b7acbb1f74ef',
+  'a5031468-3888-49d0-840b-0669df9fd95b',
   'À quoi sert la CVEC ?',
   '# À quoi sert la CVEC ?
 
@@ -808,8 +808,8 @@ La CVEC est une contribution obligatoire qui finance des services essentiels pou
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '76fa8ad3-77b0-4465-919b-7129cb0aa6ff',
-  'e7f8a9b0-c1d2-4012-e3f4-a5b6c7d8e9f0',
+  '87cee503-1b1d-4d56-98d4-696b2a934278',
+  'a5031468-3888-49d0-840b-0669df9fd95b',
   'Cas d''exonération (Boursiers, Réfugiés)',
   '# Cas d''exonération (Boursiers, Réfugiés)
 
@@ -883,8 +883,8 @@ De nombreux étudiants, notamment les boursiers du gouvernement français, les b
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '5fee0fc1-6b28-4297-acb1-8462195108cb',
-  'e7f8a9b0-c1d2-4012-e3f4-a5b6c7d8e9f0',
+  '25b4a21e-aa3c-42a6-b9e0-c1057f4b62cf',
+  'a5031468-3888-49d0-840b-0669df9fd95b',
   'Tuto : Payer sur messervices.etudiant.gouv.fr',
   '# Tuto : Payer sur messervices.etudiant.gouv.fr
 
@@ -965,8 +965,8 @@ Le paiement ou l''attestation d''exonération de la CVEC est une formalité admi
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '10d13acb-0ce5-4e0c-939a-9155343c6e75',
-  'e7f8a9b0-c1d2-4012-e3f4-a5b6c7d8e9f0',
+  'e777a747-1a67-4b85-b066-f5231bd13116',
+  'a5031468-3888-49d0-840b-0669df9fd95b',
   'Obtenir et transmettre son attestation',
   '# Obtenir et transmettre son attestation
 
@@ -1044,7 +1044,7 @@ L''obtention et la transmission de votre attestation CVEC à votre établissemen
 -- COURS 10 : Déclarer ses impôts (Important)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e4676cc7-5d7a-49b3-9186-046ec0991197',
+  '6b1b10f4-2170-42b2-b218-048a3b3437c0',
   'Déclarer ses impôts en France : Un guide pour les étrangers',
   'declarer-ses-impots-france-guide-etrangers',
   'Ce cours brise le mythe courant que "je ne gagne rien, je ne déclare rien" pour les étudiants ou les nouveaux arrivants en France. Il est crucial de comprendre que même avec de faibles revenus, ou si vous recevez des aides (logement, CAF), la déclaration de revenus est souvent obligatoire. Nous vous guiderons sur pourquoi déclarer vos revenus est important, comment effectuer votre première déclaration papier, et comment gérer les déclarations suivantes entièrement en ligne. Vous apprendrez également les bases du prélèvement à la source. Une bonne gestion fiscale est essentielle pour votre intégration et pour éviter des problèmes avec l''administration française.',
@@ -1055,8 +1055,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1554902409-9b9a6b1e6e9b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
-  '["Comprendre l''obligation de la déclaration de revenus, même avec de faibles revenus", "Savoir pourquoi déclarer est important pour les aides sociales", "Maîtriser la procédure de la première déclaration papier", "Déclarer en ligne les années suivantes et comprendre le prélèvement à la source"]'::jsonb,
-  '["Résider fiscalement en France", "Avoir un numéro fiscal (obtenu après une première démarche)"]'::jsonb,
+  E'["Comprendre l''obligation de la déclaration de revenus, même avec de faibles revenus", "Savoir pourquoi déclarer est important pour les aides sociales", "Maîtriser la procédure de la première déclaration papier", "Déclarer en ligne les années suivantes et comprendre le prélèvement à la source"]'::jsonb,
+  E'["Résider fiscalement en France", "Avoir un numéro fiscal (obtenu après une première démarche)"]'::jsonb,
   TRUE,
   4.8,
   300,
@@ -1066,8 +1066,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 10
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '9b82c273-863f-43fc-a5d4-312e4a479bc5',
-  'e4676cc7-5d7a-49b3-9186-046ec0991197',
+  '980c0357-b507-42e6-b5b9-21993c7670fe',
+  '6b1b10f4-2170-42b2-b218-048a3b3437c0',
   'Le mythe : "Je ne gagne rien, je ne déclare rien"',
   '# Le mythe : "Je ne gagne rien, je ne déclare rien"
 
@@ -1140,8 +1140,8 @@ Le mythe "je ne gagne rien, je ne déclare rien" est à proscrire absolument. Si
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '1d97d23f-cb66-4e06-b7e3-2af6cb224c69',
-  'e4676cc7-5d7a-49b3-9186-046ec0991197',
+  'dde3164d-04a8-4aeb-b2d2-0da346d0d67f',
+  '6b1b10f4-2170-42b2-b218-048a3b3437c0',
   'Pourquoi déclarer aide pour le logement et la CAF',
   '# Pourquoi déclarer aide pour le logement et la CAF
 
@@ -1218,8 +1218,8 @@ Déclarer vos revenus en France est essentiel, même avec de faibles revenus, ca
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '9d5b9df2-b18b-461a-96fc-280cad8a26ad',
-  'e4676cc7-5d7a-49b3-9186-046ec0991197',
+  '260fe773-fbfa-4cb2-a3dd-eebfdaf82c0c',
+  '6b1b10f4-2170-42b2-b218-048a3b3437c0',
   'Première déclaration : Le formulaire papier',
   '# Première déclaration : Le formulaire papier
 
@@ -1292,8 +1292,8 @@ Votre première déclaration de revenus en France se fait obligatoirement via le
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '0f0ff913-59a3-418b-915f-e62eb1fa094a',
-  'e4676cc7-5d7a-49b3-9186-046ec0991197',
+  'ba173d00-579b-4012-9c6a-258d9d2ccad7',
+  '6b1b10f4-2170-42b2-b218-048a3b3437c0',
   'Déclarations suivantes : Tout en ligne',
   '# Déclarations suivantes : Tout en ligne
 
@@ -1369,8 +1369,8 @@ Après votre première déclaration papier et l''obtention de votre numéro fisc
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '0cc9d5c6-86e8-49ba-b704-3dcc6146a27c',
-  'e4676cc7-5d7a-49b3-9186-046ec0991197',
+  'f9e430ef-0e85-41f9-94a1-287f947b16e5',
+  '6b1b10f4-2170-42b2-b218-048a3b3437c0',
   'Comprendre le Prélèvement à la Source',
   '# Comprendre le Prélèvement à la Source
 
@@ -1457,7 +1457,7 @@ Le prélèvement à la source est le mode de collecte de l''impôt sur le revenu
 -- COURS 11 : Avis d'imposition et Taxe d'habitation
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '5eff07ab-115f-4066-96e6-f2afc3bfd982',
+  'abe4fe59-9a32-468d-856a-dd877daa3ec4',
   'Avis d''imposition et Taxe d''habitation : Tout comprendre',
   'avis-imposition-taxe-habitation-comprendre',
   'Ce cours vous aidera à décrypter deux documents fiscaux fondamentaux en France : l''avis d''imposition (ou ASDIR) et la taxe d''habitation. Vous apprendrez à lire et à comprendre votre Avis de Situation Déclarative à l''Impôt sur le Revenu (ASDIR), un document essentiel pour de nombreuses démarches. Nous explorerons également la Taxe d''Habitation, son fonctionnement, qui la paie encore (car elle a été supprimée pour beaucoup), et la Contri bution à l''Audiovisuel Public (la "redevance télé"). Une bonne compréhension de ces aspects fiscaux est cruciale pour votre intégration et la bonne gestion de votre budget en France.',
@@ -1468,7 +1468,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1554902409-9b9a6b1e6e9b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
-  '["Apprendre à lire et comprendre votre Avis de Situation Déclarative (ASDIR)", "Comprendre les principes de la Taxe d''Habitation et qui la paie encore", "Identifier les règles de la Contribution à l''Audiovisuel Public", "Gérer et archiver correctement ces documents fiscaux"]'::jsonb,
+  E'["Apprendre à lire et comprendre votre Avis de Situation Déclarative (ASDIR)", "Comprendre les principes de la Taxe d''Habitation et qui la paie encore", "Identifier les règles de la Contribution à l''Audiovisuel Public", "Gérer et archiver correctement ces documents fiscaux"]'::jsonb,
   '["Avoir effectué au moins une déclaration de revenus en France"]'::jsonb,
   TRUE,
   4.8,
@@ -1479,8 +1479,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 11
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'd6fd133d-3d00-4e30-a432-ffdfe368c7ad',
-  '5eff07ab-115f-4066-96e6-f2afc3bfd982',
+  '6e718d0e-399a-4162-85c8-403fa09a584d',
+  'abe4fe59-9a32-468d-856a-dd877daa3ec4',
   'Lire son Avis de Situation Déclarative (ASDIR)',
   '# Lire son Avis de Situation Déclarative (ASDIR)
 
@@ -1561,8 +1561,8 @@ L''Avis de Situation Déclarative à l''Impôt sur le Revenu (ASDIR) est un docu
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '6502c102-9306-4f70-9062-03ceb044013f',
-  '5eff07ab-115f-4066-96e6-f2afc3bfd982',
+  '300ac7c8-43f2-48bc-a608-007cea89af63',
+  'abe4fe59-9a32-468d-856a-dd877daa3ec4',
   'La Taxe d''Habitation : Qui paie encore ?',
   '# La Taxe d''Habitation : Qui paie encore ?
 
@@ -1662,8 +1662,8 @@ La Taxe d''Habitation sur la résidence principale a été supprimée pour tous 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '3829c2b7-21b6-4990-b869-3101193fbbc4',
-  '5eff07ab-115f-4066-96e6-f2afc3bfd982',
+  '327db6a0-65a2-4dfc-a941-f1fb61765e71',
+  'abe4fe59-9a32-468d-856a-dd877daa3ec4',
   'La Contribution à l''Audiovisuel Public (Télé)',
   '# La Contribution à l''Audiovisuel Public (Télé)
 

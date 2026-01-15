@@ -10,7 +10,7 @@
 -- COURS 87 : Animaux de compagnie
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '260ffd90-e492-440f-8cfa-d3d714346d90',
+  '58b2ab4a-8086-4038-bc85-036b978444fc',
   'Animaux de compagnie en France : Passeport européen et vétérinaire',
   'animaux-compagnie-france-passeport-europeen-veterinaire',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui voyagent avec un animal de compagnie (chien, chat, furet). L''arrivée en France avec un animal est soumise à des règles sanitaires et administratives strictes (passeport européen, vaccination). Ne pas les respecter, c''est risquer de voir votre animal refoulé à la frontière ou mis en quarantaine, ce qui serait une épreuve coûteuse et douloureuse. Nous vous expliquerons la nécessité du passeport européen et des vaccins (notamment antirabique), et comment trouver un vétérinaire en France. Maîtriser ces informations est absolument crucial pour voyager sereinement avec votre animal, garantir sa santé, et respecter la législation française.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la nécessité du passeport européen pour animaux de compagnie", "Identifier les vaccins obligatoires (notamment antirabique) et l''identification", "Savoir comment trouver un vétérinaire en France", "Maîtriser les conseils pour voyager et vivre sereinement avec son animal en France"]'::jsonb,
+  E'["Comprendre la nécessité du passeport européen pour animaux de compagnie", "Identifier les vaccins obligatoires (notamment antirabique) et l''identification", "Savoir comment trouver un vétérinaire en France", "Maîtriser les conseils pour voyager et vivre sereinement avec son animal en France"]'::jsonb,
   '["Avoir un animal de compagnie et vouloir l''emmener en France"]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 87
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '4ff834a9-36b2-4dab-9f46-2e093c1010fe',
+  '58b2ab4a-8086-4038-bc85-036b978444fc',
   'Passeport européen et vaccins',
   '# Passeport européen et vaccins pour animaux de compagnie
 
@@ -112,8 +112,8 @@ Si vous venez en France avec votre animal de compagnie, il est absolument crucia
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '830515d1-09dc-4b73-b91c-377d6d641014',
+  '58b2ab4a-8086-4038-bc85-036b978444fc',
   'Trouver un vétérinaire',
   '# Trouver un vétérinaire en France
 
@@ -191,7 +191,7 @@ Trouver un vétérinaire en France est absolument crucial pour la santé de votr
 -- COURS 88 : Voyager en Europe
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '92eade32-fe77-4334-a586-8f00989b2b5f',
+  'e849508d-e91c-4ac9-a27d-832cddf8d5b8',
   'Voyager en Europe : Espace Schengen, low-cost et Flixbus',
   'voyager-europe-espace-schengen-low-cost-flixbus',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent voyager à travers l''Europe. L''Europe offre une grande liberté de circulation grâce à l''Espace Schengen, mais il est crucial de connaître les règles d''entrée et de séjour, ainsi que les options de transport économiques. Nous vous expliquerons le concept de l''Espace Schengen et ses implications pour votre titre de séjour, les avantages des compagnies aériennes "low-cost" et des bus (Flixbus) pour des voyages à petit prix. Maîtriser ces informations est absolument crucial pour planifier vos voyages, respecter la législation, et profiter pleinement de l''opportunité unique de découvrir l''Europe pendant votre séjour en France.',
@@ -202,7 +202,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le concept et les règles de l''Espace Schengen pour les non-européens", "Identifier les compagnies aériennes low-cost et les compagnies de bus (Flixbus) pour des voyages économiques", "Savoir planifier un voyage en Europe en respectant les règles", "Maîtriser les conseils pour voyager en sécurité et optimiser son budget"]'::jsonb,
+  E'["Comprendre le concept et les règles de l''Espace Schengen pour les non-européens", "Identifier les compagnies aériennes low-cost et les compagnies de bus (Flixbus) pour des voyages économiques", "Savoir planifier un voyage en Europe en respectant les règles", "Maîtriser les conseils pour voyager en sécurité et optimiser son budget"]'::jsonb,
   '["Avoir un titre de séjour valide en France (ou VLS-TS validé)"]'::jsonb,
   TRUE,
   4.8,
@@ -213,8 +213,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 88
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'c600909c-2248-47a4-8161-37ef374eb062',
+  'e849508d-e91c-4ac9-a27d-832cddf8d5b8',
   'Espace Schengen : Pas de frontières',
   '# Espace Schengen : Pas de frontières (Voyager en Europe)
 
@@ -302,8 +302,8 @@ L''Espace Schengen permet aux étudiants internationaux titulaires d''un titre d
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'b537c416-03e5-4381-ab6b-49e5444dc669',
+  'e849508d-e91c-4ac9-a27d-832cddf8d5b8',
   'Compagnies low-cost et bus (Flixbus)',
   '# Compagnies low-cost et bus (Flixbus) pour voyager en Europe
 
@@ -383,7 +383,7 @@ Pour voyager à travers l''Europe à petit prix depuis la France, privilégiez l
 -- COURS 89 : Jours fériés et Ponts
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '0d291f92-9399-4ffb-bbac-49306ddb6437',
+  '5dd79713-cf3c-4ae8-893d-92294f079b7f',
   'Jours fériés et Ponts en France : Planifiez vos congés !',
   'jours-feries-ponts-france-planifiez-conges',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre le calendrier des jours fériés et la tradition des "ponts". Les jours fériés sont des jours de repos légaux, et un "pont" est un jour de congé supplémentaire pour relier un jour férié au week-end. Ne pas connaître ces dates, c''est risquer de se retrouver face à des administrations ou des magasins fermés, de ne pas pouvoir planifier ses voyages, ou de manquer des opportunités de repos. Nous vous présenterons le calendrier des jours fériés, et l''art de "faire le pont" en posant ses congés intelligemment. Maîtriser ces informations est absolument crucial pour planifier votre emploi du temps, vos voyages, et profiter pleinement des fêtes nationales et des jours de repos en France.',
@@ -394,7 +394,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le calendrier des jours fériés légaux en France", "Identifier le concept de "pont" et comment il permet de prolonger les week-ends", "Savoir quand les administrations, magasins et services sont fermés", "Maîtriser les conseils pour planifier ses congés, ses voyages, et ses moments de repos"]'::jsonb,
+  E'["Comprendre le calendrier des jours fériés légaux en France", "Identifier le concept de \\"pont\\" et comment il permet de prolonger les week-ends", "Savoir quand les administrations, magasins et services sont fermés", "Maîtriser les conseils pour planifier ses congés, ses voyages, et ses moments de repos"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -405,8 +405,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 89
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'ddcf8088-c9c7-4517-bc1d-d5d8fb6561b1',
+  '5dd79713-cf3c-4ae8-893d-92294f079b7f',
   'Calendrier des jours fériés',
   '# Calendrier des jours fériés en France
 
@@ -476,8 +476,8 @@ Le calendrier des 11 jours fériés légaux en France doit être maîtrisé par 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'c1d951f7-0a7c-4fe1-be8f-823bcca0eafb',
+  '5dd79713-cf3c-4ae8-893d-92294f079b7f',
   'Le "Faire le pont" : Poser ses congés intelligemment',
   '# Le "Faire le pont" : Poser ses congés intelligemment
 
@@ -553,7 +553,7 @@ Le "faire le pont" est une tradition française qui permet de prolonger les week
 -- COURS 90 : Manger Spécifique
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8cccfedb-fa28-4b47-b115-328aa262003f',
+  'd67b95ee-4d5e-43bd-963e-a4a031cdd716',
   'Manger Spécifique en France : Halal, Casher, Végé, Vegan',
   'manger-specifique-france-halal-casher-vege-vegan',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui ont des régimes alimentaires spécifiques (religieux, éthiques, de santé). Le marché alimentaire français offre de plus en plus d''options, mais il est crucial de savoir où trouver des produits **Halal, Casher, Végétariens ou Végans**, et comment identifier les restaurants adaptés. Ne pas connaître ces ressources, c''est risquer des difficultés pour vous alimenter selon vos convictions ou vos besoins, et de ne pas profiter pleinement de l''offre culinaire. Nous vous expliquerons comment trouver ces produits en supermarché et en magasins spécialisés, et les astuces pour repérer les restaurants proposant ces options. Maîtriser ces informations est absolument crucial pour une alimentation conforme et un mode de vie respectueux de vos choix en France.',
@@ -564,7 +564,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''offre de produits Halal et Casher en France", "Identifier les options végétariennes et véganes en supermarchés et restaurants", "Savoir où trouver des magasins spécialisés et des restaurants adaptés", "Maîtriser les conseils pour une alimentation conforme à ses choix et besoins en France"]'::jsonb,
+  E'["Comprendre l''offre de produits Halal et Casher en France", "Identifier les options végétariennes et véganes en supermarchés et restaurants", "Savoir où trouver des magasins spécialisés et des restaurants adaptés", "Maîtriser les conseils pour une alimentation conforme à ses choix et besoins en France"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -575,8 +575,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 90
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '7679cb35-10da-4eb6-8bc9-fb52ac7e09bb',
+  'd67b95ee-4d5e-43bd-963e-a4a031cdd716',
   'Trouver du Halal / Casher',
   '# Trouver du Halal / Casher en France
 
@@ -643,25 +643,26 @@ La France, pays laïc, respecte les pratiques religieuses de chacun, y compris e
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '2f1dbd43-2a7c-46c5-af4a-1b087a58d505',
+  'd67b95ee-4d5e-43bd-963e-a4a031cdd716',
   'Options Végé/Vegan aux restaurants',
   '# Options Végé/Vegan aux restaurants en France
 
 ## Pourquoi c''est important ?
 
 Si vous suivez un régime alimentaire végétarien ou végan, il est absolument crucial de savoir comment trouver des options adaptées aux restaurants en France. Le marché français est de plus en plus ouvert à ces régimes, mais les restaurants n''affichent pas toujours clairement leurs options. Ne pas connaître les astuces pour repérer les établissements adaptés, comprendre le vocabulaire, ou savoir comment interagir avec les restaurateurs, c''est risquer de ne pas pouvoir manger en dehors de chez vous, de vous sentir frustré(e), ou de ne pas profiter de l''offre culinaire française.
-
-
-
-Trinquer en se regardant dans les yeux est un rituel social absolument crucial en France, marquant le respect et la convivialité. Au moment d''entrechoquer votre verre, regardez chaque personne dans les yeux et prononcez une formule comme "Tchin-tchin !" ou "À la vôtre !". Évitez de ne pas regarder, car cela peut être perçu comme un manque de respect. Maîtriser ce geste est fondamental pour des interactions sociales réussies, une bonne intégration, et pour partager pleinement les moments de détente et de fête avec les Français.
-
+',
+  1,
+  55,
+  NULL,
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 -- --- Cours 90 ---
 
 -- COURS 80 : Améliorer son français
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8d860487-8a77-41d4-a4e2-3a360690824e',
+  'd57317f2-be6f-49ff-83a9-f842ffec0b01',
   'Améliorer son français en France : Ressources et astuces pour progresser',
   'ameliorer-francais-france-ressources-astuces-progresser',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent perfectionner leur maîtrise de la langue française. Une bonne connaissance du français est la clé d''une intégration réussie, d''une meilleure réussite académique, et d''une insertion professionnelle facilitée. Nous vous présenterons des applications gratuites pour l''apprentissage (Duolingo, Babbel), les avantages des "cafés des langues" et des "tandems linguistiques" pour la pratique orale, et l''intérêt des médias français (Radio France, Arte) pour l''écoute et la compréhension. Maîtriser ces ressources et ces astuces est absolument crucial pour progresser rapidement, gagner en confiance, et vous immerger pleinement dans la vie française.',
@@ -672,7 +673,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Découvrir et utiliser des applications gratuites pour apprendre le français", "Comprendre l''intérêt des cafés des langues et tandems linguistiques pour la pratique orale", "Savoir utiliser les médias français (radio, TV) pour l''écoute et la compréhension", "Maîtriser les conseils pour une progression rapide et une immersion réussie"]'::jsonb,
+  E'["Découvrir et utiliser des applications gratuites pour apprendre le français", "Comprendre l''intérêt des cafés des langues et tandems linguistiques pour la pratique orale", "Savoir utiliser les médias français (radio, TV) pour l''écoute et la compréhension", "Maîtriser les conseils pour une progression rapide et une immersion réussie"]'::jsonb,
   '["Avoir un niveau de français de base (A1 minimum)"]'::jsonb,
   TRUE,
   4.8,
@@ -683,8 +684,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 80
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '7b0bbfd5-7f8b-40db-947f-78eda64cf6e3',
+  'd57317f2-be6f-49ff-83a9-f842ffec0b01',
   'Applications gratuites',
   '# Applications gratuites pour améliorer son français
 
@@ -759,8 +760,8 @@ Les applications mobiles gratuites (Duolingo, Babbel, Memrise, Anki) sont des ou
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'f6b38363-462d-4ac2-8284-7d9d7d3c6eff',
+  'd57317f2-be6f-49ff-83a9-f842ffec0b01',
   'Cafés des langues et Tandems',
   '# Cafés des langues et Tandems (Pratique orale du français)
 
@@ -832,8 +833,8 @@ Les cafés des langues et les tandems linguistiques sont des outils absolument c
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '64244bd0-ec68-4114-b0f1-9a33bd9287bf',
+  'd57317f2-be6f-49ff-83a9-f842ffec0b01',
   'Médias (Radio France, Arte)',
   '# Médias (Radio France, Arte) pour améliorer son français
 

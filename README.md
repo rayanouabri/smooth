@@ -45,31 +45,44 @@ VITE_SUPABASE_ANON_KEY=votre-anon-key
 npm run dev
 ```
 
-## 📚 Configuration Supabase
+## 🔒 Sécurité
 
-Consultez le fichier `MIGRATION_GUIDE.md` pour les instructions complètes de configuration de Supabase, y compris :
-- Création des tables
-- Configuration de l'authentification
-- Configuration des Edge Functions (optionnel)
-- Configuration du Storage (optionnel)
+Le projet utilise :
+- Variables d'environnement pour toutes les clés API
+- Row Level Security (RLS) activé sur Supabase
+- Secrets stockés via Supabase Secrets (Edge Functions)
+- HTTPS forcé en production
 
-## 🚢 Déploiement sur Vercel
+**⚠️ Important** : Ne commitez jamais de fichiers `.env` ou contenant des clés API.
 
-1. Connectez votre repository GitHub à Vercel
-2. Ajoutez les variables d'environnement dans les paramètres du projet
-3. Déployez !
+Consultez `SECURITY_AUDIT_REPORT.md` pour plus de détails sur la sécurité.
 
-Vercel détectera automatiquement que c'est un projet Vite.
+## 📚 Documentation
 
-## 📖 Documentation
+- `SECURITY_AUDIT_REPORT.md` - Audit de sécurité complet
+- `supabase-schema.sql` - Schéma de base de données
+- `enable-rls-security.sql` - Configuration RLS
 
-- `MIGRATION_GUIDE.md` - Guide complet de migration et configuration
-- `SETUP_GITHUB.md` - Instructions pour créer le repository GitHub
+## 🚀 Déploiement
 
-## 📝 License
+Le projet est configuré pour se déployer automatiquement sur Vercel via GitHub.
 
-Propriétaire - Tous droits réservés
+**Variables d'environnement requises sur Vercel** :
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+- `GEMINI_API_KEY` (pour l'assistant IA)
 
-## 👥 Contributeurs
+## 📝 Scripts SQL Utiles
 
-- Développé avec ❤️ pour les étudiants internationaux en France
+- `enable-rls-security.sql` - Active RLS sur toutes les tables
+- `create_contact_requests_table.sql` - Crée la table pour les demandes de contact
+- `supprimer_cours.sql` - Script pour supprimer des cours avec gestion des contraintes
+- `assign_category_images.sql` - Assigne des images par catégorie aux cours
+
+## 📞 Support
+
+Pour toute question ou problème, contactez l'équipe de développement.
+
+---
+
+**Note** : Ce projet est en développement actif. Les fonctionnalités peuvent évoluer.

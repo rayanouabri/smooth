@@ -10,7 +10,7 @@
 -- COURS 47 : Ouvrir un compte bancaire
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '180a995f-8ca6-4831-8c45-4f53d557a681',
+  '96019df2-e01a-4f39-8955-40c76d97bc6f',
   'Ouvrir un compte bancaire en France : Guide pas à pas pour étrangers',
   'ouvrir-compte-bancaire-france-guide-etrangers',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux et nouveaux résidents en France. L''ouverture d''un compte bancaire français est une démarche absolument cruciale : elle est indispensable pour recevoir vos aides sociales (APL de la CAF), vos salaires (job étudiant), payer vos loyers, et gérer votre budget au quotidien. Ne pas avoir de compte français complique considérablement votre installation. Nous vous détaillerons les justificatifs requis (passeport, titre de séjour, domicile), le processus de rendez-vous en agence ou d''inscription en ligne, et le contrat qui vous lie à la banque. Maîtriser cette ouverture de compte est fondamental pour votre autonomie financière et une intégration réussie en France.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la nécessité d''un compte bancaire français", "Identifier les justificatifs requis pour l''ouverture d''un compte", "Maîtriser les étapes de l''ouverture de compte (en agence ou en ligne)", "Décrypter la convention de compte et ses principales clauses"]'::jsonb,
+  E'["Comprendre la nécessité d''un compte bancaire français", "Identifier les justificatifs requis pour l''ouverture d''un compte", "Maîtriser les étapes de l''ouverture de compte (en agence ou en ligne)", "Décrypter la convention de compte et ses principales clauses"]'::jsonb,
   '["Avoir un passeport et un titre de séjour valide en France"]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 47
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'cce70c67-a071-43e1-b892-d4fadf6e97f5',
+  '96019df2-e01a-4f39-8955-40c76d97bc6f',
   'Justificatifs requis',
   '# Justificatifs requis pour ouvrir un compte bancaire en France
 
@@ -103,12 +103,12 @@ Pour ouvrir un compte bancaire en France, vous devrez fournir des justificatifs 
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 47 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '5cfd9f72-d79e-41c3-a773-dbfb3b518c8c',
+  '96019df2-e01a-4f39-8955-40c76d97bc6f',
   'Le rendez-vous en agence',
   '# Le rendez-vous en agence pour l''ouverture d''un compte bancaire
 
@@ -181,12 +181,12 @@ Le rendez-vous en agence pour l''ouverture d''un compte bancaire est une étape 
   2,
   55,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 47 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'e76ab35a-9ff2-4d60-85d9-5ef1263eebec',
+  '96019df2-e01a-4f39-8955-40c76d97bc6f',
   'La convention de compte',
   '# La convention de compte
 
@@ -254,14 +254,14 @@ Lorsque vous ouvrez un compte bancaire en France, vous signez un document essent
   3,
   60,
   NULL,
-  '[]'::sql
-
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 -- --- Cours 47 ---
 
 -- COURS 48 : Le RIB (Relevé d'Identité Bancaire)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '6c80a9dd-1d8f-46a4-9c16-9d4627f35fb0',
+  '9b739ac1-db20-4dd8-a950-30c533839ad2',
   'Le RIB (Relevé d''Identité Bancaire) : Votre identifiant financier en France',
   'rib-releve-identite-bancaire-identifiant-financier-france',
   'Ce cours est essentiel pour tous les étudiants internationaux en France. Le Relevé d''Identité Bancaire (RIB) est un document omniprésent dans votre vie financière. Il contient les informations uniques de votre compte bancaire français et est indispensable pour recevoir de l''argent (salaires, bourses, APL) et pour autoriser des prélèvements automatiques (loyer, électricité, téléphone). Nous vous expliquerons la différence entre l''IBAN et le BIC/SWIFT, où trouver votre RIB (en ligne, sur chéquier), et les règles pour le transmettre en toute sécurité, sans risque. Maîtriser le RIB est absolument crucial pour gérer vos flux financiers, automatiser vos paiements, et interagir sereinement avec l''administration et les prestataires de services en France.',
@@ -272,7 +272,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la composition d''un RIB (IBAN, BIC/SWIFT)", "Savoir où trouver et télécharger son RIB (espace client, chéquier)", "Identifier les situations où le RIB est demandé (salaires, APL, prélèvements)", "Maîtriser les conseils pour transmettre son RIB en toute sécurité"]'::jsonb,
+  E'["Comprendre la composition d''un RIB (IBAN, BIC/SWIFT)", "Savoir où trouver et télécharger son RIB (espace client, chéquier)", "Identifier les situations où le RIB est demandé (salaires, APL, prélèvements)", "Maîtriser les conseils pour transmettre son RIB en toute sécurité"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
   TRUE,
   4.8,
@@ -283,8 +283,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 48
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'd3566efe-31f7-487c-9651-3f4d269f98a3',
+  '9b739ac1-db20-4dd8-a950-30c533839ad2',
   'IBAN vs BIC/SWIFT',
   '# IBAN vs BIC/SWIFT : Les identifiants de votre compte bancaire
 
@@ -362,12 +362,12 @@ L''IBAN (numéro de compte) et le BIC/SWIFT (identifiant de la banque) sont les 
   1,
   55,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 48 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'bf1fa8da-014a-4c62-bd8e-c90d13d76fec',
+  '9b739ac1-db20-4dd8-a950-30c533839ad2',
   'Où trouver son RIB ?',
   '# Où trouver son RIB ?
 
@@ -428,12 +428,12 @@ Votre RIB (Relevé d''Identité Bancaire) contient l''IBAN et le BIC/SWIFT de vo
   2,
   50,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 48 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '27aa38e3-eef9-48d6-96f9-140e77f06800',
+  '9b739ac1-db20-4dd8-a950-30c533839ad2',
   'Transmettre son RIB sans risque',
   '# Transmettre son RIB sans risque
 
@@ -495,14 +495,14 @@ Le RIB contient des informations suffisantes pour initier des prélèvements aut
   3,
   55,
   NULL,
-  '[]'::sql
-
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 -- --- Cours 48 ---
 
 -- COURS 49 : Carte bancaire : Les options
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'b4f7f34a-f3af-40e4-a3bc-42e6793b2e93',
+  '6057a326-179d-489d-a724-66caa2e1e2c9',
   'Carte bancaire en France : Débit immédiat, différé et plafonds',
   'carte-bancaire-france-debit-immediat-differe-plafonds',
   'Ce cours est essentiel pour tous les étudiants internationaux qui vont utiliser une carte bancaire en France. Le choix de votre carte, notamment entre le "débit immédiat" et le "débit différé", ainsi que la compréhension de vos "plafonds" de paiement et de retrait, ont un impact direct sur la gestion de votre budget. Ne pas maîtriser ces options peut entraîner des découverts bancaires, des paiements refusés, ou des difficultés à retirer de l''argent en cas de besoin. Nous vous expliquerons les différences entre les types de débit, le fonctionnement du paiement "sans contact" et ses limites, et comment gérer vos plafonds. Maîtriser sa carte bancaire est absolument crucial pour une gestion financière autonome et sereine en France.',
@@ -513,7 +513,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la distinction entre carte à débit immédiat et à débit différé", "Identifier le fonctionnement et les limites du paiement "sans contact"", "Savoir gérer et adapter ses plafonds de paiement et de retrait", "Maîtriser les conseils pour une utilisation sécurisée de sa carte bancaire"]'::jsonb,
+  E'["Comprendre la distinction entre carte à débit immédiat et à débit différé", "Identifier le fonctionnement et les limites du paiement \\"sans contact\\"", "Savoir gérer et adapter ses plafonds de paiement et de retrait", "Maîtriser les conseils pour une utilisation sécurisée de sa carte bancaire"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
   TRUE,
   4.8,
@@ -524,8 +524,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 49
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '7f10efd6-8058-43cc-bfc0-809431cb3bde',
+  '6057a326-179d-489d-a724-66caa2e1e2c9',
   'Débit immédiat vs Débit différé',
   '# Débit immédiat vs Débit différé (Carte bancaire)
 
@@ -592,14 +592,14 @@ Le réflexe du "cash".
   1,
   60,
   NULL,
-  '[]'::sql
-
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 -- --- Cours 49 ---
 
 -- COURS 50 : Le Chéquier
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '31d59ed8-380a-4071-838d-cd34ef6d7f85',
+  '79c15890-6cea-4d12-96eb-ecae24b12c68',
   'Le Chéquier en France : Utilisation, remplissage et caution',
   'chequier-france-utilisation-remplissage-caution',
   'Ce cours est essentiel pour tous les étudiants internationaux en France. Le chèque, bien que moins utilisé qu''avant, reste un moyen de paiement courant pour certaines transactions, notamment pour les dépôts de garantie de location ou les gros achats. Comprendre si l''on utilise encore des chèques en France, comment remplir correctement un chèque, et la spécificité du "chèque de caution" non encaissé, est absolument crucial. Ne pas savoir utiliser un chéquier, ou le faire de manière incorrecte, peut entraîner des paiements refusés ou des problèmes avec des prestataires. Maîtriser le chéquier est fondamental pour compléter vos moyens de paiement et gérer des situations spécifiques en toute sécurité.',
@@ -610,7 +610,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''usage du chèque en France et s''il est encore pertinent", "Savoir comment remplir correctement un chèque (montant, bénéficiaire, date, signature)", "Identifier la spécificité du "chèque de caution" non encaissé (pour le logement)", "Maîtriser les conseils pour commander et utiliser son chéquier en toute sécurité"]'::jsonb,
+  E'["Comprendre l''usage du chèque en France et s''il est encore pertinent", "Savoir comment remplir correctement un chèque (montant, bénéficiaire, date, signature)", "Identifier la spécificité du \\"chèque de caution\\" non encaissé (pour le logement)", "Maîtriser les conseils pour commander et utiliser son chéquier en toute sécurité"]'::jsonb,
   '["Avoir un compte bancaire français"]'::jsonb,
   TRUE,
   4.8,
@@ -621,8 +621,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 50
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '26eca1dd-861a-414e-bc37-20f9d6ca1837',
+  '79c15890-6cea-4d12-96eb-ecae24b12c68',
   'Utilise-t-on encore des chèques ?',
   '# Utilise-t-on encore des chèques ?
 
@@ -697,12 +697,12 @@ Le chèque est un moyen de paiement en déclin en France, largement supplanté p
   1,
   55,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 50 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '568c0494-22f9-484b-bf79-3badb7564d8e',
+  '79c15890-6cea-4d12-96eb-ecae24b12c68',
   'Comment remplir un chèque (Tuto)',
   '# Comment remplir un chèque (Tuto)
 
@@ -774,12 +774,12 @@ Remplir correctement un chèque en France est essentiel pour sa validité. Inscr
   2,
   55,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 50 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '43fc5a20-6d13-45d6-ad45-1179049f5ce4',
+  '79c15890-6cea-4d12-96eb-ecae24b12c68',
   'Le chèque de caution (non encaissé)',
   '# Le chèque de caution (non encaissé)
 
@@ -856,14 +856,14 @@ Le chèque de caution non encaissé est une pratique courante pour le dépôt de
   3,
   90,
   NULL,
-  '[]'::sql
-
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 -- --- Cours 50 ---
 
 -- COURS 51 : Virements internationaux
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '322fbd37-9e4f-4ad9-96e5-66555d6c93a0',
+  '2d6489be-6503-4936-80cd-c5fbcb4ad0c2',
   'Virements internationaux : Moins de frais, plus de rapidité',
   'virements-internationaux-moins-frais-plus-rapidite',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui ont besoin d''envoyer ou de recevoir de l''argent depuis ou vers leur pays d''origine. Les virements internationaux peuvent être coûteux et lents avec les banques traditionnelles. Nous vous expliquerons la différence entre les frais bancaires classiques et les services spécialisés (comme Wise ou Remitly) qui offrent des solutions plus avantageuses. Nous ferons une démonstration de l''utilisation de ces plateformes, et nous aborderons les délais de réception et les pièges à éviter. Maîtriser ces outils est absolument crucial pour optimiser vos transferts d''argent, réduire les frais, et gérer votre budget efficacement.',
@@ -874,7 +874,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre les coûts des virements internationaux avec les banques traditionnelles", "Découvrir les avantages des services spécialisés (Wise, Remitly)", "Maîtriser l''utilisation des plateformes de transfert d''argent en ligne", "Identifier les délais de réception et les pièges à éviter lors des virements"]'::jsonb,
+  E'["Comprendre les coûts des virements internationaux avec les banques traditionnelles", "Découvrir les avantages des services spécialisés (Wise, Remitly)", "Maîtriser l''utilisation des plateformes de transfert d''argent en ligne", "Identifier les délais de réception et les pièges à éviter lors des virements"]'::jsonb,
   '["Avoir un compte bancaire en France et/ou dans votre pays d''origine"]'::jsonb,
   TRUE,
   4.8,
@@ -885,8 +885,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 51
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'b0add274-b443-4194-959c-53e3040a50f3',
+  '2d6489be-6503-4936-80cd-c5fbcb4ad0c2',
   'Frais bancaires classiques vs Services spécialisés',
   '# Frais bancaires classiques vs Services spécialisés (Virements internationaux)
 
@@ -949,12 +949,12 @@ Pour vos virements internationaux depuis et vers la France, privilégiez les ser
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 51 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'd961aecb-82a7-48c3-a3d7-7e5d38b5e2d9',
+  '2d6489be-6503-4936-80cd-c5fbcb4ad0c2',
   'Utiliser Wise / Remitly (Démonstration)',
   '# Utiliser Wise / Remitly (Démonstration)
 
@@ -1026,12 +1026,12 @@ Les plateformes comme Wise et Remitly simplifient grandement les virements inter
   2,
   55,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 51 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '2c405ce1-aba1-4419-8f60-36eabd0e7227',
+  '2d6489be-6503-4936-80cd-c5fbcb4ad0c2',
   'Délais de réception',
   '# Délais de réception des virements internationaux
 
@@ -1106,5 +1106,6 @@ Les délais de réception des virements internationaux varient : un jour ouvré 
   3,
   55,
   NULL,
-  '[]'::sql
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 

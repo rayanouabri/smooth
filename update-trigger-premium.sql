@@ -2,8 +2,13 @@
 -- Exécutez ce SQL dans l'éditeur SQL de Supabase
 
 -- Fonction pour créer un profil utilisateur automatiquement avec colonnes premium
+-- Fix sécurité : search_path défini explicitement
 CREATE OR REPLACE FUNCTION public.handle_new_user()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER 
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public, pg_temp
+AS $$
 BEGIN
   INSERT INTO public.user_profiles (
     id,
@@ -24,7 +29,7 @@ BEGIN
   ON CONFLICT (id) DO NOTHING;
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
 
 -- Le trigger existe déjà, pas besoin de le recréer
 -- Mais on peut vérifier qu'il est bien configuré

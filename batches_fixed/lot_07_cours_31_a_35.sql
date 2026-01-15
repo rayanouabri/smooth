@@ -10,7 +10,7 @@
 -- COURS 32 : Récupérer sa caution
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8094cd61-8060-4b2a-abf3-cd7ad4b64c29',
+  'c905b754-5d8f-4bd1-bff7-0ccdd4f83bc0',
   'Récupérer sa caution : État des lieux de sortie et recours',
   'recuperer-caution-etat-des-lieux-sortie-recours',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux qui s''apprêtent à quitter leur logement en France. Le "dépôt de garantie" (ou caution) représente une somme d''argent importante que vous avez versée à votre entrée, et sa restitution est souvent source de litiges. Nous vous guiderons à travers l''étape cruciale de l''état des lieux de sortie, le délai légal de restitution de la caution (1 ou 2 mois), les retenues légales et illégales que le propriétaire peut faire, et les recours possibles (mise en demeure, commission de conciliation) si la caution n''est pas rendue. Maîtriser ces informations est absolument essentiel pour protéger votre argent et assurer la récupération intégrale de votre dépôt de garantie.',
@@ -21,8 +21,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance de l''état des lieux de sortie pour le dépôt de garantie", "Connaître le délai légal de restitution de la caution (1 ou 2 mois)", "Identifier les retenues légales (dégradations, impayés) et illégales", "Maîtriser les recours (mise en demeure, conciliation) si la caution n''est pas rendue"]'::jsonb,
-  '["Avoir quitté un logement en France", "Avoir réalisé un état des lieux d''entrée précis"]'::jsonb,
+  E'["Comprendre l''importance de l''état des lieux de sortie pour le dépôt de garantie", "Connaître le délai légal de restitution de la caution (1 ou 2 mois)", "Identifier les retenues légales (dégradations, impayés) et illégales", "Maîtriser les recours (mise en demeure, conciliation) si la caution n''est pas rendue"]'::jsonb,
+  E'["Avoir quitté un logement en France", "Avoir réalisé un état des lieux d''entrée précis"]'::jsonb,
   TRUE,
   4.8,
   700,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 32
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  '8b88b807-6e70-480f-b602-be9bdf58ce58',
+  'c905b754-5d8f-4bd1-bff7-0ccdd4f83bc0',
   'L''état des lieux de sortie',
   '# L''état des lieux de sortie
 
@@ -129,8 +129,8 @@ L''état des lieux de sortie est l''étape la plus importante pour la restitutio
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  '74ccd0f6-a6a1-4485-854c-cf88fc7f39b3',
+  'c905b754-5d8f-4bd1-bff7-0ccdd4f83bc0',
   'Le délai légal de restitution (1 ou 2 mois)',
   '# Le délai légal de restitution (1 ou 2 mois)
 
@@ -204,8 +204,8 @@ Le délai légal de restitution de votre dépôt de garantie est d''un mois si l
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  '939b44dc-24f9-4056-aa75-a84e37a650e9',
+  'c905b754-5d8f-4bd1-bff7-0ccdd4f83bc0',
   'Retenues sur caution : Ce qui est légal ou non',
   '# Retenues sur caution : Ce qui est légal ou non
 
@@ -279,8 +279,8 @@ Les retenues sur votre dépôt de garantie sont légales uniquement pour les loy
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  'a4b6cc3a-66ae-49a3-94e9-c9a0a4a36b21',
+  'c905b754-5d8f-4bd1-bff7-0ccdd4f83bc0',
   'Mise en demeure : Que faire si le proprio ne rend pas l''argent',
   '# Mise en demeure : Que faire si le proprio ne rend pas l''argent
 
@@ -312,25 +312,25 @@ La mise en demeure est un acte formel qui prouve que vous avez interpellé votre
 
 
 
-[Nom et Prénom du Propriétaire ou Dénomination de l'Agence]
-[Adresse complète du Propriétaire ou de l'Agence]
+[Nom et Prénom du Propriétaire ou Dénomination de l''Agence]
+[Adresse complète du Propriétaire ou de l''Agence]
 
 
 
 
-Je fais suite au contrat de location du logement situé au [Adresse complète du logement], que j'ai occupé du [Date de début du bail] au [Date de fin de bail].
+Je fais suite au contrat de location du logement situé au [Adresse complète du logement], que j''ai occupé du [Date de début du bail] au [Date de fin de bail].
 
-L'état des lieux de sortie a été établi le [Date de l'état des lieux de sortie] et les clés vous ont été remises le [Date de remise des clés].
+L''état des lieux de sortie a été établi le [Date de l''état des lieux de sortie] et les clés vous ont été remises le [Date de remise des clés].
 
-Conformément à l'article 22 de la loi du 6 juillet 1989, le délai légal de restitution du dépôt de garantie, qui s'élève à [Montant du dépôt de garantie] euros, était de [mentionner "un mois" ou "deux mois"] à compter de la remise des clés. Ce délai a expiré le [Date limite de restitution].
+Conformément à l''article 22 de la loi du 6 juillet 1989, le délai légal de restitution du dépôt de garantie, qui s''élève à [Montant du dépôt de garantie] euros, était de [mentionner "un mois" ou "deux mois"] à compter de la remise des clés. Ce délai a expiré le [Date limite de restitution].
 
-À ce jour, je constate que le dépôt de garantie ne m'a pas été restitué (OU : ne m'a été restitué qu'à hauteur de [Montant restitué], les retenues de [Montant des retenues contestées] étant infondées / non justifiées par des pièces probantes).
+À ce jour, je constate que le dépôt de garantie ne m''a pas été restitué (OU : ne m''a été restitué qu''à hauteur de [Montant restitué], les retenues de [Montant des retenues contestées] étant infondées / non justifiées par des pièces probantes).
 
-En conséquence, je vous mets en demeure de me restituer l'intégralité du dépôt de garantie de [Montant total dû] euros (OU : le reliquat de [Montant du reliquat dû] euros) sous un délai de jours à compter de la réception de la présente.
+En conséquence, je vous mets en demeure de me restituer l''intégralité du dépôt de garantie de [Montant total dû] euros (OU : le reliquat de [Montant du reliquat dû] euros) sous un délai de jours à compter de la réception de la présente.
 
 
 
-Dans l'attente de votre régularisation dans les plus brefs délais, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+Dans l''attente de votre régularisation dans les plus brefs délais, je vous prie d''agréer, Madame, Monsieur, l''expression de mes salutations distinguées.
 
 
 ### 4. L''envoi et les étapes suivantes
@@ -367,7 +367,7 @@ Dans l'attente de votre régularisation dans les plus brefs délais, je vous pri
 -- COURS 33 : Le système de santé français
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '4a2bf82e-0ba8-479c-96fe-8d87c95ee250',
+  '87606535-558c-4aaf-bc54-b0fe30a254e7',
   'Le système de santé français : Sécurité Sociale et Mutuelle',
   'systeme-sante-francais-securite-sociale-mutuelle',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France, afin de comprendre le système de santé français. Souvent perçu comme complexe, il repose sur un "duo gagnant" : la Sécurité Sociale et la mutuelle complémentaire. Nous vous expliquerons le rôle de chacun, l''importance du "parcours de soins coordonnés" pour un meilleur remboursement, et le mécanisme du "tiers-payant" qui vous permet de ne pas avancer les frais chez le médecin ou à la pharmacie. Maîtriser ces concepts est absolument crucial pour accéder aux soins, optimiser vos remboursements, et garantir votre bien-être tout au long de votre séjour en France.',
@@ -378,7 +378,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le fonctionnement du système de santé français (Sécurité Sociale + Mutuelle)", "Identifier l''importance du parcours de soins coordonnés pour de meilleurs remboursements", "Maîtriser le mécanisme du tiers-payant et ses avantages", "Accéder aux soins en toute sérénité et optimiser ses dépenses de santé"]'::jsonb,
+  E'["Comprendre le fonctionnement du système de santé français (Sécurité Sociale + Mutuelle)", "Identifier l''importance du parcours de soins coordonnés pour de meilleurs remboursements", "Maîtriser le mécanisme du tiers-payant et ses avantages", "Accéder aux soins en toute sérénité et optimiser ses dépenses de santé"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -389,8 +389,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 33
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  'f6b7102d-00c2-46bb-a7c4-fc2810c649b0',
+  '87606535-558c-4aaf-bc54-b0fe30a254e7',
   'Sécu vs Mutuelle : Le duo gagnant',
   '# Sécu vs Mutuelle : Le duo gagnant
 
@@ -466,8 +466,8 @@ Le système de santé français repose sur le "duo gagnant" Sécurité Sociale (
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  'ba567476-1d8a-4674-ad8b-ed68a91d6d68',
+  '87606535-558c-4aaf-bc54-b0fe30a254e7',
   'Le parcours de soins coordonnés',
   '# Le parcours de soins coordonnés
 
@@ -542,8 +542,8 @@ Le parcours de soins coordonnés a été mis en place pour responsabiliser les p
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  'a1fac3ba-5b18-40f3-b507-86f8eb24fae2',
+  '87606535-558c-4aaf-bc54-b0fe30a254e7',
   'Tiers-payant : Ne pas avancer les frais',
   '# Tiers-payant : Ne pas avancer les frais
 
@@ -626,7 +626,7 @@ Le tiers-payant est un dispositif crucial du système de santé français qui vo
 -- COURS 34 : Inscription Sécurité Sociale
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'bc78a03d-df75-4667-81e1-353a1b6e5173',
+  'fd6fd465-e5d0-4de8-9ee7-49553e943d42',
   'Inscription à la Sécurité Sociale française : Votre accès aux soins',
   'inscription-securite-sociale-francaise-acces-soins',
   'Ce cours est un guide absolument essentiel pour tous les étudiants internationaux en France. L''inscription à la Sécurité Sociale (Assurance Maladie) est une démarche **obligatoire et gratuite** qui vous ouvre les portes du système de santé français et vous permet d''être remboursé(e) de vos frais médicaux. Nous vous détaillerons la procédure de demande en ligne sur le site `etudiant-etranger.ameli.fr`, les documents clés à numériser (visa, acte de naissance), et les étapes pour obtenir votre attestation provisoire. Ne pas s''inscrire à la Sécurité Sociale, c''est risquer de payer la totalité de vos frais de santé et de vous retrouver dans une situation financière précaire en cas de maladie. Maîtriser cette inscription est crucial pour votre bien-être et votre sécurité financière.',
@@ -637,7 +637,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''obligation et la gratuité de l''affiliation à la Sécurité Sociale", "Maîtriser la procédure de demande en ligne sur etudiant-etranger.ameli.fr", "Savoir quels documents numériser (titre de séjour, acte de naissance traduit)", "Obtenir et utiliser l''attestation provisoire de Sécurité Sociale"]'::jsonb,
+  E'["Comprendre l''obligation et la gratuité de l''affiliation à la Sécurité Sociale", "Maîtriser la procédure de demande en ligne sur etudiant-etranger.ameli.fr", "Savoir quels documents numériser (titre de séjour, acte de naissance traduit)", "Obtenir et utiliser l''attestation provisoire de Sécurité Sociale"]'::jsonb,
   '["Avoir un titre de séjour valide (ou VLS-TS validé) en France"]'::jsonb,
   TRUE,
   4.8,
@@ -648,8 +648,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 34
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  'd9e0a5e4-3bb3-4901-907f-94bf23137386',
+  'fd6fd465-e5d0-4de8-9ee7-49553e943d42',
   'Le site etudiant-etranger.ameli.fr',
   '# Le site etudiant-etranger.ameli.fr : Votre portail Sécurité Sociale
 
@@ -716,14 +716,15 @@ Le site `etudiant-etranger.ameli.fr` est votre portail unique et obligatoire pou
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 
 -- --- Cours 34 ---
 
 -- COURS 35 : Numéro de Sécurité Sociale
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  'fb5f1708-95b4-403f-ae8d-ea0b18ad7611',
   'Numéro de Sécurité Sociale en France : Provisoire et Définitif',
   'numero-securite-sociale-france-provisoire-definitif',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui s''affilient à la Sécurité Sociale. L''obtention d''un numéro de Sécurité Sociale est une étape clé, mais elle passe souvent par un numéro provisoire avant le numéro définitif, et le processus peut être long. Nous vous expliquerons ce qu''est le NIR (Numéro d''Identification au Répertoire) définitif et pourquoi son obtention prend du temps. Nous vous aiderons à comprendre la composition de ce numéro à 13 chiffres, et nous aborderons les démarches à suivre si votre dossier d''affiliation est bloqué ou si l''attente est anormalement longue. Maîtriser cette progression est crucial pour accéder pleinement à vos droits et à la Carte Vitale.',
@@ -734,7 +735,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la différence entre numéro provisoire et numéro définitif (NIR)", "Identifier les raisons pour lesquelles l''obtention du NIR peut être longue", "Savoir décrypter les chiffres de votre numéro de Sécurité Sociale", "Maîtriser les recours et actions en cas de blocage du dossier d''affiliation"]'::jsonb,
+  E'["Comprendre la différence entre numéro provisoire et numéro définitif (NIR)", "Identifier les raisons pour lesquelles l''obtention du NIR peut être longue", "Savoir décrypter les chiffres de votre numéro de Sécurité Sociale", "Maîtriser les recours et actions en cas de blocage du dossier d''affiliation"]'::jsonb,
   '["Avoir déposé sa demande d''affiliation à la Sécurité Sociale sur etudiant-etranger.ameli.fr"]'::jsonb,
   TRUE,
   4.8,
@@ -745,8 +746,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 35
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  '7709b287-d7f5-49ea-aaba-5b64000f4ead',
+  'fb5f1708-95b4-403f-ae8d-ea0b18ad7611',
   'Le NIR (Numéro définitif) : Pourquoi c''est long ?',
   '# Le NIR (Numéro définitif) : Pourquoi c''est long ?
 
@@ -815,14 +816,15 @@ L''obtention de votre Numéro d''Identification au Répertoire (NIR) définitif 
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 
 -- --- Cours 35 ---
 
 -- COURS 36 : La Carte Vitale
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '2e208c5b-4b47-4212-af6c-992528ea7e12',
+  'c504f7ea-1b54-4140-9817-3b6689ae2a56',
   'La Carte Vitale en France : Votre accès simplifié aux soins',
   'carte-vitale-france-acces-simplifie-soins',
   'Ce cours est essentiel pour tous les étudiants internationaux affiliés à la Sécurité Sociale française. La Carte Vitale est un document indispensable qui simplifie considérablement l''accès à vos droits à la santé et vos remboursements. Nous vous expliquerons comment commander votre carte (après l''obtention de votre numéro définitif de Sécurité Sociale), les étapes pour la mettre à jour (notamment dans les pharmacies), et l''émergence de l''application "Carte Vitale" dématérialisée. Ne pas avoir de Carte Vitale, c''est devoir avancer tous vos frais et envoyer des feuilles de soins. Maîtriser son utilisation est absolument crucial pour des remboursements rapides, le tiers-payant, et une gestion sereine de votre santé en France.',
@@ -833,7 +835,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le rôle et les avantages de la Carte Vitale", "Savoir comment commander sa Carte Vitale après le NIR définitif", "Maîtriser la mise à jour régulière de la carte (bornes en pharmacie)", "Découvrir l''application "Carte Vitale" (e-carte) et son fonctionnement"]'::jsonb,
+  E'["Comprendre le rôle et les avantages de la Carte Vitale", "Savoir comment commander sa Carte Vitale après le NIR définitif", "Maîtriser la mise à jour régulière de la carte (bornes en pharmacie)", "Découvrir l''application \"Carte Vitale\" (e-carte) et son fonctionnement"]'::jsonb,
   '["Avoir obtenu votre numéro définitif de Sécurité Sociale (NIR)"]'::jsonb,
   TRUE,
   4.8,
@@ -844,8 +846,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 36
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  '83f91315-1831-4d50-a56d-188d7db98a4d',
+  'c504f7ea-1b54-4140-9817-3b6689ae2a56',
   'Commander sa carte (Photo, Formulaire)',
   '# Commander sa Carte Vitale (Photo, Formulaire)
 
@@ -916,12 +918,13 @@ La commande de votre Carte Vitale est une étape cruciale après l''obtention de
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 -- LEÇONS pour COURS 36 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  '6dca91dc-9234-452e-9e61-d7a85ac7e92c',
+  'c504f7ea-1b54-4140-9817-3b6689ae2a56',
   'Mettre à jour sa carte (Bornes en pharmacie)',
   '# Mettre à jour sa Carte Vitale (Bornes en pharmacie)
 
@@ -978,12 +981,13 @@ Mettre à jour votre Carte Vitale est un geste simple, rapide et gratuit à fair
   2,
   50,
   NULL,
-  '[]'::sql
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 -- LEÇONS pour COURS 36 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'dd87e55e-ca78-42d5-9ee3-9dc874f19e4f',
+  '3194a069-025d-4f90-a0d0-fc6ea61cf7b4',
+  'c504f7ea-1b54-4140-9817-3b6689ae2a56',
   'L''appli Carte Vitale (e-carte)',
   '# L''appli Carte Vitale (e-carte)
 
@@ -1066,5 +1070,6 @@ L''application "Carte Vitale" (e-carte Vitale) dématérialise votre carte d''As
   3,
   55,
   NULL,
-  '[]'::sql
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 

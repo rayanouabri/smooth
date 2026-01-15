@@ -9,7 +9,7 @@
 -- COURS 22 : L''État des lieux d'entrée
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  '1869575c-5168-4ab6-af29-935c9fffc3d8',
   'L''État des lieux d''entrée : Protégez votre dépôt de garantie',
   'etat-des-lieux-entree-protegez-depot-garantie',
   'Ce cours est d''une importance capitale pour tout locataire en France, et particulièrement pour les étudiants internationaux. L''état des lieux d''entrée est le document qui décrit précisément l''état du logement au moment de votre emménagement. Il est la preuve de l''état initial du bien et conditionne directement la restitution de votre dépôt de garantie à votre départ. Ne pas le réaliser avec la plus grande rigueur, ou le signer sans attention, peut vous coûter cher. Nous vous expliquerons pourquoi c''est le moment le plus important, comment tester l''eau et l''électricité, l''impératif de prendre des photos de tout défaut, et de récupérer votre copie signée. Maîtriser cette étape est crucial pour protéger vos finances.',
@@ -20,7 +20,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance cruciale de l''état des lieux d''entrée", "Savoir comment vérifier l''état des équipements (eau, électricité, ouvertures)", "Maîtriser la prise de photos comme preuve de tous les défauts", "Obtenir impérativement votre copie de l''état des lieux signé"]'::jsonb,
+  E'["Comprendre l''importance cruciale de l''état des lieux d''entrée", "Savoir comment vérifier l''état des équipements (eau, électricité, ouvertures)", "Maîtriser la prise de photos comme preuve de tous les défauts", "Obtenir impérativement votre copie de l''état des lieux signé"]'::jsonb,
   '["Avoir signé un bail de location"]'::jsonb,
   TRUE,
   4.8,
@@ -31,8 +31,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 22
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  '4cc6ac22-ae9d-4a50-b16d-2a0dc2e287c1',
+  '1869575c-5168-4ab6-af29-935c9fffc3d8',
   'Pourquoi c''est le moment le plus important',
   '# Pourquoi c''est le moment le plus important
 
@@ -120,8 +120,8 @@ L''état des lieux d''entrée est le moment le plus important de votre location 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  '3fff917c-d465-43e9-9f16-116471137f77',
+  '1869575c-5168-4ab6-af29-935c9fffc3d8',
   'Tester l''eau, l''électricité et les ouvertures',
   '# Tester l''eau, l''électricité et les ouvertures
 
@@ -181,8 +181,8 @@ Tester minutieusement les installations d''eau, d''électricité et toutes les o
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  '1e62e858-b99f-4eb6-9322-9d743beb5166',
+  '1869575c-5168-4ab6-af29-935c9fffc3d8',
   'Prendre des photos de tout (défauts)',
   '# Prendre des photos de tout (défauts)
 
@@ -261,8 +261,8 @@ Prendre des photos et des vidéos datées de tous les défauts, même minimes, e
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'aaaa2f08-7976-4945-8cef-78900b991021',
+  '1869575c-5168-4ab6-af29-935c9fffc3d8',
   'Signer et récupérer sa copie',
   '# Signer et récupérer sa copie
 
@@ -338,7 +338,7 @@ Signer l''état des lieux d''entrée et récupérer votre copie sont les étapes
 -- COURS 23 : Assurance Habitation
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'de45be46-b082-4548-ad1d-6effefc66ed0',
   'Assurance Habitation en France : Protégez votre logement',
   'assurance-habitation-france-protegez-logement',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux qui s''apprêtent à louer un logement en France. L''assurance habitation est une obligation légale pour le locataire et une protection indispensable pour votre bien-être. Nous vous expliquerons pourquoi cette assurance est obligatoire, la distinction entre la Responsabilité Civile et l''assurance Multirisque Habitation, comment comparer les offres des banques et des assureurs en ligne, et comment obtenir rapidement votre attestation d''assurance. Maîtriser ce sujet est crucial pour être en règle avec la loi, protéger vos biens et ceux du propriétaire, et éviter des frais exorbitants en cas de sinistre. Ne négligez jamais cette protection !',
@@ -349,7 +349,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''obligation légale de souscrire une assurance habitation", "Distinguer la Responsabilité Civile de la garantie Multirisque Habitation", "Savoir comparer les offres et choisir la bonne assurance", "Obtenir rapidement son attestation d''assurance pour le propriétaire"]'::jsonb,
+  E'["Comprendre l''obligation légale de souscrire une assurance habitation", "Distinguer la Responsabilité Civile de la garantie Multirisque Habitation", "Savoir comparer les offres et choisir la bonne assurance", "Obtenir rapidement son attestation d''assurance pour le propriétaire"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
   TRUE,
   4.8,
@@ -360,8 +360,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 23
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
-  'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  'd188b5bc-d007-4299-a87b-9d309b223f7e',
+  'de45be46-b082-4548-ad1d-6effefc66ed0',
   'L''obligation légale d''assurance',
   '# L''obligation légale d''assurance
 
@@ -449,8 +449,8 @@ L''assurance habitation est une obligation légale et une nécessité absolue po
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'd99c69ce-dbb3-43ba-a28b-6d80b5ed24ed',
+  'de45be46-b082-4548-ad1d-6effefc66ed0',
   'Responsabilité Civile vs Multirisque',
   '# Responsabilité Civile vs Multirisque
 
@@ -539,8 +539,8 @@ La Responsabilité Civile Locative est l''assurance habitation minimum légaleme
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  '5a0cde40-aa3e-4c6a-8353-bbd70c0138e2',
+  'de45be46-b082-4548-ad1d-6effefc66ed0',
   'Comparer les offres (Banques vs Assureurs en ligne)',
   '# Comparer les offres (Banques vs Assureurs en ligne)
 
@@ -622,8 +622,8 @@ Comparer les offres d''assurance habitation entre les banques, les assureurs tra
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  'f06cddca-802e-4f97-a2ab-7c5945377f3d',
+  'de45be46-b082-4548-ad1d-6effefc66ed0',
   'Obtenir son attestation',
   '# Obtenir son attestation d''assurance habitation
 
@@ -711,7 +711,7 @@ L''obtention rapide et la conservation précieuse de votre attestation d''assura
 -- COURS 24 : Ouvrir ses compteurs (Énergie)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'b2c3d4e5-f6a7-4890-b1c2-d3e4f5a6b7c8',
+  'd4477e6f-5bee-4908-80b1-31bae5a3038d',
   'Ouvrir ses compteurs (Énergie) en France : Électricité et Gaz',
   'ouvrir-compteurs-energie-france-electricite-gaz',
   'Ce cours est un guide essentiel pour les étudiants internationaux s''installant dans un nouveau logement en France et devant gérer leurs contrats d''énergie. L''ouverture des compteurs d''électricité et de gaz est une démarche obligatoire et urgente pour avoir l''énergie dans votre logement. Nous vous expliquerons comment relever les compteurs à l''entrée, comment choisir votre fournisseur (EDF, TotalEnergies, Engie, etc.), la différence entre heures creuses et heures pleines pour optimiser votre consommation, et le fonctionnement du compteur Linky. Maîtriser ces étapes est crucial pour éviter de vous retrouver sans électricité ou gaz, gérer votre consommation et comprendre vos factures.',
@@ -722,7 +722,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Savoir relever les compteurs d''électricité et de gaz à votre arrivée", "Comprendre le marché de l''énergie et choisir son fournisseur (EDF, Engie)", "Distinguer les heures creuses/heures pleines pour optimiser sa consommation", "Comprendre le fonctionnement et les avantages du compteur Linky"]'::jsonb,
+  E'["Savoir relever les compteurs d''électricité et de gaz à votre arrivée", "Comprendre le marché de l''énergie et choisir son fournisseur (EDF, Engie)", "Distinguer les heures creuses/heures pleines pour optimiser sa consommation", "Comprendre le fonctionnement et les avantages du compteur Linky"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
   TRUE,
   4.8,
@@ -733,8 +733,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 24
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'b2c3d4e5-f6a7-4890-b1c2-d3e4f5a6b7c8',
-  'b2c3d4e5-f6a7-4890-b1c2-d3e4f5a6b7c8',
+  '15e46536-e86b-48a5-a3e8-8f91ddc4ccfb',
+  'd4477e6f-5bee-4908-80b1-31bae5a3038d',
   'Relever les compteurs à l''entrée',
   '# Relever les compteurs à l''entrée
 
@@ -825,8 +825,8 @@ Relever les compteurs d''électricité et de gaz (et eau si individualisée) à 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  '6b83aa40-4344-428d-9bda-60f1b943f038',
+  'd4477e6f-5bee-4908-80b1-31bae5a3038d',
   'Choisir son fournisseur (EDF, Total, Engie...)',
   '# Choisir son fournisseur (EDF, Total, Engie...)
 
@@ -908,8 +908,8 @@ Choisir son fournisseur d''électricité et de gaz en France est une démarche i
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  '733fdf22-e1bf-4b13-b90f-8ee5c2180527',
+  'd4477e6f-5bee-4908-80b1-31bae5a3038d',
   'Comprendre les heures creuses / heures pleines',
   '# Comprendre les heures creuses / heures pleines
 
@@ -994,8 +994,8 @@ Comprendre le système d''heures creuses et heures pleines est crucial pour opti
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
-  'f656f10e-25f0-4c3a-afa2-5d2dd6b8ec7f',
+  '40f1dbd6-85b9-4800-b531-bb871f3c589c',
+  'd4477e6f-5bee-4908-80b1-31bae5a3038d',
   'Le compteur Linky : Comment ça marche',
   '# Le compteur Linky : Comment ça marche
 
@@ -1082,7 +1082,7 @@ Le compteur Linky est le nouveau compteur électrique communicant, qui simplifie
 -- COURS 25 : Internet et Fibre
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  '6da17b05-0fc1-4ec4-a017-ceb302e28e59',
   'Internet et Fibre en France : Connectez votre logement',
   'internet-fibre-france-connecter-logement',
   'Ce cours est un guide indispensable pour les étudiants internationaux souhaitant connecter leur logement à Internet en France. Le choix d''un fournisseur d''accès (Orange, Free, SFR, Bouygues Telecom) et du type de connexion (Fibre optique, ADSL, 4G/5G Box) peut être complexe. Nous vous expliquerons comment tester l''éligibilité de votre adresse à la fibre, la distinction entre les offres "Box" et les "Forfaits 4G/5G" (idéaux pour les petits budgets ou les déménagements fréquents), les étapes de l''installation (rendez-vous technicien), et les pièges à éviter lors de la résiliation (frais cachés). Maîtriser ce sujet est crucial pour rester connecté(e) et gérer votre budget Internet efficacement.',
@@ -1093,7 +1093,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Savoir tester l''éligibilité de son adresse à la fibre optique", "Distinguer les offres "Box" des "Forfaits 4G/5G" et leurs avantages", "Comprendre les étapes et les délais d''installation (technicien)", "Identifier les frais cachés et les pièges lors de la résiliation d''un contrat"]'::jsonb,
+  E'["Savoir tester l''éligibilité de son adresse à la fibre optique", "Distinguer les offres \"Box" des "Forfaits 4G/5G" et leurs avantages", "Comprendre les étapes et les délais d''installation (technicien)", "Identifier les frais cachés et les pièges lors de la résiliation d''un contrat"]'::jsonb,
   '["Avoir trouvé un logement en France"]'::jsonb,
   TRUE,
   4.8,
@@ -1104,8 +1104,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 25
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c3d4e5f6-a7b8-4901-c2d3-e4f5a6b7c8d9',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  '0d49d480-3bff-4360-9763-7ff8c9cf158f',
+  '6da17b05-0fc1-4ec4-a017-ceb302e28e59',
   'Tester l''éligibilité de son adresse',
   '# Tester l''éligibilité de son adresse
 
@@ -1181,8 +1181,8 @@ Tester l''éligibilité de votre adresse est la première étape indispensable p
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'd4e5f6a7-b8c9-4012-d3e4-f5a6b7c8d9e0',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'd05c375b-adc2-4fd7-879c-2171f2ca8101',
+  '6da17b05-0fc1-4ec4-a017-ceb302e28e59',
   'Box vs Forfait 4G/5G',
   '# Box vs Forfait 4G/5G
 
@@ -1252,8 +1252,8 @@ Le choix entre une Box Internet (Fibre/ADSL) et un forfait 4G/5G est crucial pou
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e5f6a7b8-c9d0-4012-e4f5-a6b7c8d9e0f1',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  'de8bfa10-e8f6-46be-821f-b625c70d8937',
+  '6da17b05-0fc1-4ec4-a017-ceb302e28e59',
   'L''installation : Rendez-vous technicien',
   '# L''installation : Rendez-vous technicien
 
@@ -1340,8 +1340,8 @@ L''installation de votre Box Internet (Fibre ou ADSL) nécessite souvent un rend
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f6a7b8c9-d0e1-4012-f5a6-b7c8d9e0f1a2',
-  'c9c32fa2-828a-4e9a-b493-366cd37af9d0',
+  '71483e37-5cbd-4147-8ff3-bb6e40aeb195',
+  '6da17b05-0fc1-4ec4-a017-ceb302e28e59',
   'Résiliation : Attention aux frais',
   '# Résiliation : Attention aux frais
 
@@ -1416,7 +1416,7 @@ La résiliation de votre contrat Internet en France est une étape importante lo
 -- COURS 26 : La CAF et les APL : Éligibilité
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '4a5b6c7d-8e9f-4102-a3b4-c5d6e7f8a9b0',
+  '77a892b3-ea32-49f1-b64f-e16f8d093e13',
   'CAF et APL : Comprendre votre éligibilité aux aides au logement',
   'caf-apl-eligibilite-aides-logement',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux et jeunes résidents en France qui souhaitent bénéficier des Aides Personnalisées au Logement (APL) de la CAF. Comprendre les critères d''éligibilité est la première étape cruciale pour s''assurer que vous pouvez prétendre à cette aide précieuse qui allège considérablement le coût de votre loyer. Nous vous détaillerons comment le calcul des APL est effectué (prenant en compte le loyer, la zone géographique et vos revenus), nous ferons une démonstration en direct du simulateur CAF, et nous aborderons les conditions spécifiques pour les étrangers, notamment l''importance de votre titre de séjour. Maîtriser ces informations est fondamental pour optimiser votre budget logement et sécuriser votre situation financière.',
@@ -1427,8 +1427,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre les principes du calcul des APL (loyer, zone, revenus)", "Savoir utiliser le simulateur CAF pour estimer ses droits", "Identifier les conditions d''éligibilité spécifiques aux étrangers (titre de séjour)", "Maîtriser les critères pour optimiser ses chances de bénéficier des APL"]'::jsonb,
-  '["Avoir un logement en France", "Avoir un titre de séjour valide (ou VLS-TS validé)"]'::jsonb,
+  E'["Comprendre les principes du calcul des APL (loyer, zone, revenus)", "Savoir utiliser le simulateur CAF pour estimer ses droits", "Identifier les conditions d''éligibilité spécifiques aux étrangers (titre de séjour)", "Maîtriser les critères pour optimiser ses chances de bénéficier des APL"]'::jsonb,
+  E'["Avoir un logement en France", "Avoir un titre de séjour valide (ou VLS-TS validé)"]'::jsonb,
   TRUE,
   4.8,
   650,
@@ -1438,8 +1438,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 26
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'b5c6d7e8-9f0a-4102-b3c4-d5e6f7a8b9c0',
-  '4a5b6c7d-8e9f-4102-a3b4-c5d6e7f8a9b0',
+  '744fd254-a54f-400c-a44a-db3351cf02f3',
+  '77a892b3-ea32-49f1-b64f-e16f8d093e13',
   'Comprendre le calcul (Loyer, Zone, Revenus)',
   '# Comprendre le calcul (Loyer, Zone, Revenus)
 
@@ -1514,8 +1514,8 @@ Le calcul des APL par la CAF repose sur trois piliers : le montant de votre loye
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c5d6e7f8-a9b0-4102-b3c4-d5e6f7a8b9c0',
-  '4a5b6c7d-8e9f-4102-a3b4-c5d6e7f8a9b0',
+  'd8105e04-c20e-47ff-be1a-d41f12a56dc1',
+  '77a892b3-ea32-49f1-b64f-e16f8d093e13',
   'Le simulateur CAF : Démo en direct',
   '# Le simulateur CAF : Démo en direct
 
@@ -1591,8 +1591,8 @@ Le simulateur CAF est un outil essentiel pour les étudiants internationaux afin
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e6f7a8b9-c0d1-4012-e3f4-a5b6c7d8e9f0',
-  '4a5b6c7d-8e9f-4102-a3b4-c5d6e7f8a9b0',
+  '69731bbe-06f4-416b-aedb-464ea004a1d5',
+  '77a892b3-ea32-49f1-b64f-e16f8d093e13',
   'Conditions pour les étrangers (Titre de séjour)',
   '# Conditions pour les étrangers (Titre de séjour)
 

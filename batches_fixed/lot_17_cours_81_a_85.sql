@@ -10,7 +10,7 @@
 -- COURS 82 : Associations étudiantes
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'd6d8515a-bd9c-4e67-bb81-ce8d5e87e68a',
+  'f093ec18-77b1-4b52-ba22-8729218dbd44',
   'Associations étudiantes en France : BDE, sport, culture et bénévolat',
   'associations-etudiantes-france-bde-sport-culture-benevolat',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent s''impliquer dans la vie universitaire et sociale. Les associations étudiantes sont un formidable levier d''intégration, de rencontres, et de développement de compétences. Nous vous expliquerons ce qu''est un BDE (Bureau des Élèves) et son rôle d''animation, les avantages des associations sportives ou culturelles pour faire des amis, et la valeur du bénévolat pour votre CV. Maîtriser l''implication associative est absolument crucial pour briser l''isolement, développer votre réseau, enrichir votre expérience étudiante, et valoriser votre engagement sur le marché du travail français.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le rôle des associations étudiantes (BDE, sport, culture, humanitaire)", "Identifier les avantages de l''engagement associatif (rencontres, compétences, réseau)", "Savoir comment trouver et rejoindre une association étudiante", "Maîtriser les conseils pour valoriser son engagement sur le CV et dans sa recherche d''emploi"]'::jsonb,
+  E'["Comprendre le rôle des associations étudiantes (BDE, sport, culture, humanitaire)", "Identifier les avantages de l''engagement associatif (rencontres, compétences, réseau)", "Savoir comment trouver et rejoindre une association étudiante", "Maîtriser les conseils pour valoriser son engagement sur le CV et dans sa recherche d''emploi"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 82
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '22dee3fe-1fef-4d29-a7f4-2f512664b028',
+  'f093ec18-77b1-4b52-ba22-8729218dbd44',
   'BDE (Bureau des Élèves) : C''est quoi ?',
   '# BDE (Bureau des Élèves) : C''est quoi ?
 
@@ -111,8 +111,8 @@ Le BDE (Bureau des Élèves) est l''association étudiante la plus active en Fra
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '12595007-8fe6-4e5d-b21f-e48e6e2a7774',
+  'f093ec18-77b1-4b52-ba22-8729218dbd44',
   'Associations humanitaires ou sportives',
   '# Associations humanitaires ou sportives (Vie étudiante)
 
@@ -190,8 +190,8 @@ Les associations étudiantes (humanitaires, sportives, culturelles) sont un form
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '267d61f4-2f6d-46fe-a055-98090081bde4',
+  'f093ec18-77b1-4b52-ba22-8729218dbd44',
   'Valoriser son engagement sur le CV',
   '# Valoriser son engagement sur le CV
 
@@ -279,7 +279,7 @@ Valoriser votre engagement associatif (BDE, humanitaire, sportif, culturel) sur 
 -- COURS 83 : Culture Pass
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '30541717-d284-4d1e-871e-7e1c47015a9c',
+  'ec7b6087-f004-4977-81ca-c8fe0cd14659',
   'Culture Pass : Musées gratuits, 300€ offerts aux jeunes',
   'culture-pass-musees-gratuits-300-offerts-jeunes',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent accéder à la culture à moindre coût. La France offre des dispositifs avantageux, notamment le **"Culture Pass"** (300€ offerts aux jeunes de 18 ans) et la gratuité des musées nationaux pour les moins de 26 ans. Ne pas connaître ces aides, c''est se priver d''une opportunité fantastique de découvrir le riche patrimoine culturel français sans grever son budget. Nous vous expliquerons comment bénéficier du Culture Pass, la gratuité des musées, et les tarifs réduits pour l''opéra et le théâtre. Maîtriser ces informations est absolument crucial pour vous immerger dans la culture française, faire des découvertes, et enrichir votre expérience étudiante.',
@@ -290,7 +290,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le fonctionnement et les avantages du Culture Pass (300€ offerts)", "Identifier la gratuité des musées nationaux pour les moins de 26 ans", "Savoir comment accéder aux tarifs réduits pour l''opéra et le théâtre", "Maîtriser les conseils pour profiter pleinement de l''offre culturelle française"]'::jsonb,
+  E'["Comprendre le fonctionnement et les avantages du Culture Pass (300€ offerts)", "Identifier la gratuité des musées nationaux pour les moins de 26 ans", "Savoir comment accéder aux tarifs réduits pour l''opéra et le théâtre", "Maîtriser les conseils pour profiter pleinement de l''offre culturelle française"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -301,8 +301,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 83
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '992c3904-9456-47f9-b617-bddd8b1b324f',
+  'ec7b6087-f004-4977-81ca-c8fe0cd14659',
   '300€ offerts à 18 ans : Comment l''avoir',
   '# Culture Pass : 300€ offerts à 18 ans - Comment l''avoir
 
@@ -386,8 +386,8 @@ Le Culture Pass offre 300€ aux jeunes de 18 ans résidant en France (y compris
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'aadfea53-3781-49ca-a49c-b24e3f9c3c59',
+  'ec7b6087-f004-4977-81ca-c8fe0cd14659',
   'Musées nationaux gratuits -26 ans',
   '# Musées nationaux gratuits (-26 ans)
 
@@ -463,8 +463,8 @@ L''accès aux musées et monuments nationaux est gratuit en France pour tous les
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '5cbeb643-29d6-453b-89cd-3954367c1757',
+  'ec7b6087-f004-4977-81ca-c8fe0cd14659',
   'Opéra et Théâtre : Tarifs jeunes',
   '# Opéra et Théâtre : Tarifs jeunes
 
@@ -548,7 +548,7 @@ L''opéra et le théâtre en France sont accessibles aux étudiants internationa
 -- COURS 84 : Le Cinéma
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '2503fc46-bda5-43b0-b27c-814ade380ffb',
+  '63dc19f5-4f0c-4fe6-8c06-24d0414077ce',
   'Le Cinéma en France : UGC Illimité, VOSTFR vs VF et bons plans',
   'cinema-france-ugc-illimite-vostfr-vf-bons-plans',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui aiment le cinéma. La France est un pays de cinéphiles, avec une offre riche et variée, et de nombreuses salles de cinéma. Nous vous expliquerons les avantages des cartes d''abonnement illimité (UGC Illimité, CinéPass), la distinction cruciale entre les versions VOSTFR (Version Originale Sous-Titrée en Français) et VF (Version Française), et les bons plans (tarifs étudiants, Fête du Cinéma) pour aller au cinéma à moindre coût. Maîtriser ces informations est absolument crucial pour profiter pleinement du cinéma français et international, gérer votre budget loisirs, et vous immerger dans la culture cinématographique. ',
@@ -559,7 +559,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le fonctionnement et la rentabilité des cartes d''abonnement illimité (UGC/CinéPass)", "Distinguer les versions VOSTFR (VO sous-titrée français) et VF (version française)", "Identifier les bons plans (tarifs étudiants, Fête du Cinéma) pour réduire le coût", "Maîtriser les conseils pour profiter du cinéma en France et gérer son budget"]'::jsonb,
+  E'["Comprendre le fonctionnement et la rentabilité des cartes d''abonnement illimité (UGC/CinéPass)", "Distinguer les versions VOSTFR (VO sous-titrée français) et VF (version française)", "Identifier les bons plans (tarifs étudiants, Fête du Cinéma) pour réduire le coût", "Maîtriser les conseils pour profiter du cinéma en France et gérer son budget"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -570,8 +570,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 84
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '5be1cb4f-22d4-4dfd-bbd7-bda6c9032898',
+  '63dc19f5-4f0c-4fe6-8c06-24d0414077ce',
   'UGC Illimité / CinéPass',
   '# UGC Illimité / CinéPass (Abonnements cinéma)
 
@@ -638,8 +638,8 @@ Les cartes d''abonnement illimité cinéma (UGC Illimité, CinéPass) sont des o
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'f674b83b-dd51-4445-a28f-ddadde33c52a',
+  '63dc19f5-4f0c-4fe6-8c06-24d0414077ce',
   'VOSTFR vs VF : Bien choisir sa séance',
   '# VOSTFR vs VF : Bien choisir sa séance au cinéma
 
@@ -719,8 +719,8 @@ Le choix entre VOSTFR (Version Originale Sous-Titrée en Français) et VF (Versi
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '504aa8ec-2d20-4a0f-acfd-aa977de68034',
+  '63dc19f5-4f0c-4fe6-8c06-24d0414077ce',
   'La Fête du Cinéma',
   '# La Fête du Cinéma
 
@@ -799,7 +799,7 @@ La Fête du Cinéma est un événement annuel crucial en France, proposant des p
 -- COURS 85 : Grèves et Manifs
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'b97d7969-cea3-448e-8fce-0a50e8be8c35',
+  '10c1e842-07b6-4937-a752-2b190dc378c9',
   'Grèves et Manifs en France : Comprendre l''impact sur votre quotidien',
   'greves-manifs-france-comprendre-impact-quotidien',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un aspect important de la vie sociale française : les grèves et les manifestations. Ces mouvements sociaux peuvent avoir un impact direct et significatif sur votre quotidien (transports, universités, services publics). Ne pas connaître les raisons des grèves, ne pas savoir comment vérifier le trafic ou les perturbations, et ne pas comprendre comment se comporter en manifestation, c''est risquer des retards importants, des problèmes d''accès, ou des situations délicates. Nous vous expliquerons comment vérifier le trafic les jours de grève, les revendications, et les règles de sécurité. Maîtriser ces informations est absolument crucial pour anticiper les perturbations, vous adapter, et naviguer sereinement dans la vie sociale française.',
@@ -810,7 +810,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''impact des grèves sur les transports et services publics", "Savoir comment vérifier le trafic et les perturbations en temps réel", "Identifier les raisons et les revendications des grèves et manifestations", "Maîtriser les conseils de sécurité en manifestation et les réflexes à adopter"]'::jsonb,
+  E'["Comprendre l''impact des grèves sur les transports et services publics", "Savoir comment vérifier le trafic et les perturbations en temps réel", "Identifier les raisons et les revendications des grèves et manifestations", "Maîtriser les conseils de sécurité en manifestation et les réflexes à adopter"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -821,8 +821,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 85
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '4676cdb8-9c74-46fc-9d04-437ee92006c0',
+  '10c1e842-07b6-4937-a752-2b190dc378c9',
   'Vérifier le trafic les jours de grève',
   '# Vérifier le trafic les jours de grève
 
@@ -891,8 +891,8 @@ Où chercher l''info.
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'f6280c5f-26a3-497b-8c2c-28378c170f26',
+  '10c1e842-07b6-4937-a752-2b190dc378c9',
   'Comprendre les revendications',
   '# Comprendre les revendications (Grèves et Manifestations)
 
@@ -972,8 +972,8 @@ Comprendre les revendications des grèves et manifestations est absolument cruci
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'aa0bde49-e971-4430-967a-74e8063bb6bc',
+  '10c1e842-07b6-4937-a752-2b190dc378c9',
   'Sécurité en manifestation',
   '# Sécurité en manifestation
 
@@ -1065,7 +1065,7 @@ Participer à une manifestation en France exige de connaître et de respecter le
 -- COURS 86 : Venir en famille
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'ec89579c-fe1d-4005-b99e-ee9a7621c742',
+  '56d451b5-c95b-4488-9c41-2f0b75967a09',
   'Venir en famille en France : Scolarisation et aides CAF',
   'venir-famille-france-scolarisation-aides-caf',
   'Ce cours est essentiel pour tous les étudiants internationaux ou les professionnels qui s''installent en France avec leur famille (conjoint, enfants). Venir en famille implique des démarches administratives spécifiques, notamment pour la scolarisation des enfants et l''accès aux aides sociales. Ne pas connaître ces procédures, c''est risquer des difficultés pour l''intégration de vos enfants, ou de ne pas bénéficier des prestations de la CAF (allocations familiales, aides au logement). Nous vous expliquerons comment inscrire vos enfants à l''école ou à la crèche, et les conditions pour demander les allocations familiales de la CAF. Maîtriser ces informations est absolument crucial pour une installation familiale sereine et une bonne intégration de tous les membres de votre foyer en France.',
@@ -1076,8 +1076,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la procédure d''inscription scolaire/crèche pour les enfants d''étrangers", "Identifier les documents requis pour la scolarisation des enfants", "Savoir comment demander les allocations familiales et autres aides de la CAF", "Maîtriser les conseils pour une installation familiale réussie et l''intégration de vos enfants"]'::jsonb,
-  '["Avoir un titre de séjour valide en France", "Avoir des enfants à charge et/ou un conjoint"]'::jsonb,
+  E'["Comprendre la procédure d''inscription scolaire/crèche pour les enfants d''étrangers", "Identifier les documents requis pour la scolarisation des enfants", "Savoir comment demander les allocations familiales et autres aides de la CAF", "Maîtriser les conseils pour une installation familiale réussie et l''intégration de vos enfants"]'::jsonb,
+  E'["Avoir un titre de séjour valide en France", "Avoir des enfants à charge et/ou un conjoint"]'::jsonb,
   TRUE,
   4.8,
   300,
@@ -1087,8 +1087,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 86
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '7105b597-c6ed-452a-ba1e-c617cffeef9f',
+  '56d451b5-c95b-4488-9c41-2f0b75967a09',
   'Inscription scolaire/crèche',
   '# Inscription scolaire/crèche pour les enfants d''étrangers en France
 
@@ -1179,8 +1179,8 @@ L''inscription scolaire (à partir de 3 ans en maternelle, 6 ans en primaire) ou
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '64562a34-ac3e-4f82-8c04-4b178e9b4229',
+  '56d451b5-c95b-4488-9c41-2f0b75967a09',
   'Allocations familiales (CAF)',
   '# Allocations familiales (CAF) pour les familles étrangères
 

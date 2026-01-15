@@ -10,7 +10,7 @@
 -- COURS 86 : Venir en famille
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e0ed19e6-afd4-43ce-a360-4d79926a4adb',
+  '56d451b5-c95b-4488-9c41-2f0b75967a09',
   'Venir en famille en France : Scolarisation et aides CAF',
   'venir-famille-france-scolarisation-aides-caf',
   'Ce cours est essentiel pour tous les étudiants internationaux ou les professionnels qui s''installent en France avec leur famille (conjoint, enfants). Venir en famille implique des démarches administratives spécifiques, notamment pour la scolarisation des enfants et l''accès aux aides sociales. Ne pas connaître ces procédures, c''est risquer des difficultés pour l''intégration de vos enfants, ou de ne pas bénéficier des prestations de la CAF (allocations familiales, aides au logement). Nous vous expliquerons comment inscrire vos enfants à l''école ou à la crèche, et les conditions pour demander les allocations familiales de la CAF. Maîtriser ces informations est absolument crucial pour une installation familiale sereine et une bonne intégration de tous les membres de votre foyer en France.',
@@ -21,8 +21,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la procédure d''inscription scolaire/crèche pour les enfants d''étrangers", "Identifier les documents requis pour la scolarisation des enfants", "Savoir comment demander les allocations familiales et autres aides de la CAF", "Maîtriser les conseils pour une installation familiale réussie et l''intégration de vos enfants"]'::jsonb,
-  '["Avoir un titre de séjour valide en France", "Avoir des enfants à charge et/ou un conjoint"]'::jsonb,
+  E'["Comprendre la procédure d''inscription scolaire/crèche pour les enfants d''étrangers", "Identifier les documents requis pour la scolarisation des enfants", "Savoir comment demander les allocations familiales et autres aides de la CAF", "Maîtriser les conseils pour une installation familiale réussie et l''intégration de vos enfants"]'::jsonb,
+  E'["Avoir un titre de séjour valide en France", "Avoir des enfants à charge et/ou un conjoint"]'::jsonb,
   TRUE,
   4.8,
   300,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 86
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '5d5a1adf-fda1-46a9-81a0-37687c7c0cec',
+  '56d451b5-c95b-4488-9c41-2f0b75967a09',
   'Inscription scolaire/crèche',
   '# Inscription scolaire/crèche pour les enfants d''étrangers en France
 
@@ -124,8 +124,8 @@ L''inscription scolaire (à partir de 3 ans en maternelle, 6 ans en primaire) ou
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'e9f5ccb9-3b22-4731-84dd-1a38e0888d8a',
+  '56d451b5-c95b-4488-9c41-2f0b75967a09',
   'Allocations familiales (CAF)',
   '# Allocations familiales (CAF) pour les familles étrangères
 
@@ -213,7 +213,7 @@ Si vous venez en France avec au moins deux enfants à charge, vous pouvez béné
 -- COURS 87 : Animaux de compagnie
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '2dd8fde8-1136-41ad-a516-3d347fab96f5',
+  '58b2ab4a-8086-4038-bc85-036b978444fc',
   'Animaux de compagnie en France : Passeport européen et vétérinaire',
   'animaux-compagnie-france-passeport-europeen-veterinaire',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui voyagent avec un animal de compagnie (chien, chat, furet). L''arrivée en France avec un animal est soumise à des règles sanitaires et administratives strictes (passeport européen, vaccination). Ne pas les respecter, c''est risquer de voir votre animal refoulé à la frontière ou mis en quarantaine, ce qui serait une épreuve coûteuse et douloureuse. Nous vous expliquerons la nécessité du passeport européen et des vaccins (notamment antirabique), et comment trouver un vétérinaire en France. Maîtriser ces informations est absolument crucial pour voyager sereinement avec votre animal, garantir sa santé, et respecter la législation française.',
@@ -224,7 +224,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la nécessité du passeport européen pour animaux de compagnie", "Identifier les vaccins obligatoires (notamment antirabique) et l''identification", "Savoir comment trouver un vétérinaire en France", "Maîtriser les conseils pour voyager et vivre sereinement avec son animal en France"]'::jsonb,
+  E'["Comprendre la nécessité du passeport européen pour animaux de compagnie", "Identifier les vaccins obligatoires (notamment antirabique) et l''identification", "Savoir comment trouver un vétérinaire en France", "Maîtriser les conseils pour voyager et vivre sereinement avec son animal en France"]'::jsonb,
   '["Avoir un animal de compagnie et vouloir l''emmener en France"]'::jsonb,
   TRUE,
   4.8,
@@ -235,8 +235,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 87
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'bfcee22b-2fc3-40ef-9bcb-ed64b1ce893b',
+  '58b2ab4a-8086-4038-bc85-036b978444fc',
   'Passeport européen et vaccins',
   '# Passeport européen et vaccins pour animaux de compagnie
 
@@ -315,8 +315,8 @@ Si vous venez en France avec votre animal de compagnie, il est absolument crucia
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'b987f1fa-b817-4087-84f1-4343e95589bd',
+  '58b2ab4a-8086-4038-bc85-036b978444fc',
   'Trouver un vétérinaire',
   '# Trouver un vétérinaire en France
 
@@ -394,7 +394,7 @@ Trouver un vétérinaire en France est absolument crucial pour la santé de votr
 -- COURS 88 : Voyager en Europe
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '5846b4f6-0690-4c60-934f-6b253af667fe',
+  'e849508d-e91c-4ac9-a27d-832cddf8d5b8',
   'Voyager en Europe : Espace Schengen, low-cost et Flixbus',
   'voyager-europe-espace-schengen-low-cost-flixbus',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent voyager à travers l''Europe. L''Europe offre une grande liberté de circulation grâce à l''Espace Schengen, mais il est crucial de connaître les règles d''entrée et de séjour, ainsi que les options de transport économiques. Nous vous expliquerons le concept de l''Espace Schengen et ses implications pour votre titre de séjour, les avantages des compagnies aériennes "low-cost" et des bus (Flixbus) pour des voyages à petit prix. Maîtriser ces informations est absolument crucial pour planifier vos voyages, respecter la législation, et profiter pleinement de l''opportunité unique de découvrir l''Europe pendant votre séjour en France.',
@@ -405,7 +405,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le concept et les règles de l''Espace Schengen pour les non-européens", "Identifier les compagnies aériennes low-cost et les compagnies de bus (Flixbus) pour des voyages économiques", "Savoir planifier un voyage en Europe en respectant les règles", "Maîtriser les conseils pour voyager en sécurité et optimiser son budget"]'::jsonb,
+  E'["Comprendre le concept et les règles de l''Espace Schengen pour les non-européens", "Identifier les compagnies aériennes low-cost et les compagnies de bus (Flixbus) pour des voyages économiques", "Savoir planifier un voyage en Europe en respectant les règles", "Maîtriser les conseils pour voyager en sécurité et optimiser son budget"]'::jsonb,
   '["Avoir un titre de séjour valide en France (ou VLS-TS validé)"]'::jsonb,
   TRUE,
   4.8,
@@ -416,8 +416,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 88
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '8dd5f3e8-ff35-4572-9cc1-de4db8837d1b',
+  'e849508d-e91c-4ac9-a27d-832cddf8d5b8',
   'Espace Schengen : Pas de frontières',
   '# Espace Schengen : Pas de frontières (Voyager en Europe)
 
@@ -505,8 +505,8 @@ L''Espace Schengen permet aux étudiants internationaux titulaires d''un titre d
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '263fe3d9-f0bc-4447-a9c5-5545c794ca18',
+  'e849508d-e91c-4ac9-a27d-832cddf8d5b8',
   'Compagnies low-cost et bus (Flixbus)',
   '# Compagnies low-cost et bus (Flixbus) pour voyager en Europe
 
@@ -586,7 +586,7 @@ Pour voyager à travers l''Europe à petit prix depuis la France, privilégiez l
 -- COURS 89 : Jours fériés et Ponts
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'bcc83ac4-ba7e-448f-a8dc-dafc9cbaa1fd',
+  '5dd79713-cf3c-4ae8-893d-92294f079b7f',
   'Jours fériés et Ponts en France : Planifiez vos congés !',
   'jours-feries-ponts-france-planifiez-conges',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre le calendrier des jours fériés et la tradition des "ponts". Les jours fériés sont des jours de repos légaux, et un "pont" est un jour de congé supplémentaire pour relier un jour férié au week-end. Ne pas connaître ces dates, c''est risquer de se retrouver face à des administrations ou des magasins fermés, de ne pas pouvoir planifier ses voyages, ou de manquer des opportunités de repos. Nous vous présenterons le calendrier des jours fériés, et l''art de "faire le pont" en posant ses congés intelligemment. Maîtriser ces informations est absolument crucial pour planifier votre emploi du temps, vos voyages, et profiter pleinement des fêtes nationales et des jours de repos en France.',
@@ -597,7 +597,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le calendrier des jours fériés légaux en France", "Identifier le concept de "pont" et comment il permet de prolonger les week-ends", "Savoir quand les administrations, magasins et services sont fermés", "Maîtriser les conseils pour planifier ses congés, ses voyages, et ses moments de repos"]'::jsonb,
+  E'["Comprendre le calendrier des jours fériés légaux en France", "Identifier le concept de \\"pont\\" et comment il permet de prolonger les week-ends", "Savoir quand les administrations, magasins et services sont fermés", "Maîtriser les conseils pour planifier ses congés, ses voyages, et ses moments de repos"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -608,8 +608,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 89
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '76631c1a-0a17-4a83-aaff-ba95a36b3eb7',
+  '5dd79713-cf3c-4ae8-893d-92294f079b7f',
   'Calendrier des jours fériés',
   '# Calendrier des jours fériés en France
 
@@ -679,8 +679,8 @@ Le calendrier des 11 jours fériés légaux en France doit être maîtrisé par 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '97e67abf-6fe0-45b7-aac1-adfada218d60',
+  '5dd79713-cf3c-4ae8-893d-92294f079b7f',
   'Le "Faire le pont" : Poser ses congés intelligemment',
   '# Le "Faire le pont" : Poser ses congés intelligemment
 
@@ -756,7 +756,7 @@ Le "faire le pont" est une tradition française qui permet de prolonger les week
 -- COURS 90 : Manger Spécifique
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '1dd5aac6-f72e-4b95-8b24-2e95a192629e',
+  'd67b95ee-4d5e-43bd-963e-a4a031cdd716',
   'Manger Spécifique en France : Halal, Casher, Végé, Vegan',
   'manger-specifique-france-halal-casher-vege-vegan',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui ont des régimes alimentaires spécifiques (religieux, éthiques, de santé). Le marché alimentaire français offre de plus en plus d''options, mais il est crucial de savoir où trouver des produits **Halal, Casher, Végétariens ou Végans**, et comment identifier les restaurants adaptés. Ne pas connaître ces ressources, c''est risquer des difficultés pour vous alimenter selon vos convictions ou vos besoins, et de ne pas profiter pleinement de l''offre culinaire. Nous vous expliquerons comment trouver ces produits en supermarché et en magasins spécialisés, et les astuces pour repérer les restaurants proposant ces options. Maîtriser ces informations est absolument crucial pour une alimentation conforme et un mode de vie respectueux de vos choix en France.',
@@ -767,7 +767,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''offre de produits Halal et Casher en France", "Identifier les options végétariennes et véganes en supermarchés et restaurants", "Savoir où trouver des magasins spécialisés et des restaurants adaptés", "Maîtriser les conseils pour une alimentation conforme à ses choix et besoins en France"]'::jsonb,
+  E'["Comprendre l''offre de produits Halal et Casher en France", "Identifier les options végétariennes et véganes en supermarchés et restaurants", "Savoir où trouver des magasins spécialisés et des restaurants adaptés", "Maîtriser les conseils pour une alimentation conforme à ses choix et besoins en France"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -778,8 +778,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 90
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '978e1547-8e90-43e0-9946-686f061aaf6c',
+  'd67b95ee-4d5e-43bd-963e-a4a031cdd716',
   'Trouver du Halal / Casher',
   '# Trouver du Halal / Casher en France
 
@@ -846,8 +846,8 @@ La France, pays laïc, respecte les pratiques religieuses de chacun, y compris e
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '30477fad-1f2c-47ea-89f9-edac39187c2f',
+  'd67b95ee-4d5e-43bd-963e-a4a031cdd716',
   'Options Végé/Vegan aux restaurants',
   '# Options Végé/Vegan aux restaurants en France
 

@@ -28,14 +28,40 @@ export default function Courses() {
     queryFn: async () => {
       try {
         const result = await Course.filter({ is_published: true }, '-created_date');
-        // Pour chaque cours, compter les leçons
+        // Pour chaque cours, compter les leçons et charger le contenu pour la recherche
         const coursesWithLessons = await Promise.all(result.map(async (course) => {
           try {
             const { Lesson } = await import('@/api/entities');
             const lessons = await Lesson.filter({ course_id: course.id });
-            return { ...course, lessons_count: lessons.length };
+            // Récupérer les titres et contenus des leçons pour la recherche améliorée
+            const lessonTexts = lessons.map(lesson => 
+              `${lesson.title || ''} ${lesson.content || ''}`.toLowerCase()
+            ).join(' ');
+            return { 
+              ...course, 
+              lessons_count: lessons.length,
+              // Créer un index de recherche combinant tous les champs pertinents
+              searchable_text: [
+                course.title,
+                course.short_description,
+                course.description,
+                Array.isArray(course.objectives) ? course.objectives.join(' ') : '',
+                Array.isArray(course.prerequisites) ? course.prerequisites.join(' ') : '',
+                lessonTexts
+              ].filter(Boolean).join(' ').toLowerCase()
+            };
           } catch (err) {
-            return { ...course, lessons_count: 0 };
+            return { 
+              ...course, 
+              lessons_count: 0,
+              searchable_text: [
+                course.title,
+                course.short_description,
+                course.description,
+                Array.isArray(course.objectives) ? course.objectives.join(' ') : '',
+                Array.isArray(course.prerequisites) ? course.prerequisites.join(' ') : ''
+              ].filter(Boolean).join(' ').toLowerCase()
+            };
           }
         }));
         return coursesWithLessons || [];
@@ -75,8 +101,50 @@ export default function Courses() {
     
     if (isExcluded) return false;
     
-    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         course.short_description?.toLowerCase().includes(searchTerm.toLowerCase());
+    // Recherche améliorée : chercher dans tous les champs pertinents
+    let matchesSearch = true;
+    if (searchTerm.trim()) {
+      const searchLower = searchTerm.toLowerCase().trim();
+      // Mots-clés de correspondance (pour liens sémantiques comme "logement" -> "Visale")
+      const semanticMatches = {
+        'logement': ['visale', 'visa', 'caution', 'garantie', 'apartement', 'appartement', 'location', 'loyer', 'bail', 'logement', 'hébergement', 'colocation'],
+        'loger': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail'],
+        'loger': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail'],
+        'habitation': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail', 'appartement'],
+        'maison': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail'],
+        'santé': ['cpam', 'sécu', 'sécurité sociale', 'mutuelle', 'carte vitale', 'médecin', 'remboursement'],
+        'sante': ['cpam', 'sécu', 'sécurité sociale', 'mutuelle', 'carte vitale', 'médecin', 'remboursement'],
+        'argent': ['caf', 'aide', 'allocation', 'bourse', 'budget', 'banque', 'compte', 'prélèvement'],
+        'travail': ['emploi', 'job', 'cdi', 'cdd', 'alternance', 'stage', 'cv', 'entretien', 'salaire'],
+        'université': ['campus france', 'études', 'inscription', 'université', 'formation', 'diplôme'],
+        'universite': ['campus france', 'études', 'inscription', 'université', 'formation', 'diplôme'],
+        'études': ['campus france', 'université', 'formation', 'diplôme', 'inscription'],
+        'etudes': ['campus france', 'université', 'formation', 'diplôme', 'inscription']
+      };
+
+      // Recherche directe dans le texte indexé
+      const searchableText = course.searchable_text || [
+        course.title,
+        course.short_description,
+        course.description,
+        Array.isArray(course.objectives) ? course.objectives.join(' ') : '',
+        Array.isArray(course.prerequisites) ? course.prerequisites.join(' ') : ''
+      ].filter(Boolean).join(' ').toLowerCase();
+
+      const directMatch = searchableText.includes(searchLower);
+      
+      // Recherche sémantique : si le terme de recherche correspond à un mot-clé, chercher aussi les termes liés
+      let semanticMatch = false;
+      for (const [keyword, relatedTerms] of Object.entries(semanticMatches)) {
+        if (searchLower.includes(keyword)) {
+          semanticMatch = relatedTerms.some(term => searchableText.includes(term));
+          if (semanticMatch) break;
+        }
+      }
+
+      matchesSearch = directMatch || semanticMatch;
+    }
+    
     const matchesCategory = categoryFilter === "all" || course.category === categoryFilter;
     const matchesLevel = levelFilter === "all" || course.level === levelFilter;
     

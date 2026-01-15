@@ -10,7 +10,7 @@
 -- COURS 91 : Coiffeur / Barbier
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'ab419afb-9677-4aad-9485-1493480ec2f0',
+  '6b82bf85-3d39-4418-ae29-acb79ee46ad1',
   'Coiffeur / Barbier en France : Vocabulaire, tarifs et pourboires',
   'coiffeur-barbier-france-vocabulaire-tarifs-pourboires',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui ont besoin de se couper les cheveux ou de se faire tailler la barbe. Se rendre chez le coiffeur ou le barbier dans un pays étranger peut être intimidant, surtout si l''on ne maîtrise pas le vocabulaire spécifique. Ne pas savoir exprimer ses souhaits, ou ne pas comprendre les tarifs et l''usage du pourboire, peut entraîner des déceptions (coupe non désirée) ou des coûts inattendus. Nous vous expliquerons le vocabulaire de base pour une coupe, les tarifs moyens, et les règles concernant le pourboire. Maîtriser ces informations est absolument crucial pour obtenir la coupe que vous souhaitez, gérer votre budget, et vivre une expérience sereine chez le coiffeur ou le barbier en France.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le vocabulaire de base pour une coupe de cheveux ou une taille de barbe", "Identifier les tarifs moyens des coiffeurs/barbiers en France", "Savoir si et comment laisser un pourboire (service compris)", "Maîtriser les conseils pour exprimer clairement ses souhaits et obtenir la coupe désirée"]'::jsonb,
+  E'["Comprendre le vocabulaire de base pour une coupe de cheveux ou une taille de barbe", "Identifier les tarifs moyens des coiffeurs/barbiers en France", "Savoir si et comment laisser un pourboire (service compris)", "Maîtriser les conseils pour exprimer clairement ses souhaits et obtenir la coupe désirée"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 91
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'fbde6146-4b2d-4b3b-91b5-37bbd153dacb',
+  '6b82bf85-3d39-4418-ae29-acb79ee46ad1',
   'Vocabulaire de la coupe',
   '# Vocabulaire de la coupe (Coiffeur / Barbier)
 
@@ -101,8 +101,8 @@ Maîtriser le vocabulaire de la coupe est absolument crucial pour communiquer ef
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'ebe360c3-975b-47c9-8895-869cea6c83d1',
+  '6b82bf85-3d39-4418-ae29-acb79ee46ad1',
   'Tarifs moyens et pourboires',
   '# Tarifs moyens et pourboires (Coiffeur / Barbier)
 
@@ -179,7 +179,7 @@ Les tarifs moyens des coiffeurs/barbiers en France varient de 15€ à 30€ pou
 -- COURS 92 : Acheter d'occasion
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '3c51bfcf-830a-4ec2-af81-379653cbbfce',
+  '63294b3e-84d7-483e-a39d-f0e55b8aa843',
   'Acheter d''occasion en France : Leboncoin, Vinted et bons plans',
   'acheter-occasion-france-leboncoin-vinted-bons-plans',
   'Ce cours est essentiel pour tous les étudiants internationaux en France qui souhaitent faire des économies en achetant des biens d''occasion. Le marché de l''occasion est très développé et offre de nombreuses opportunités (meubles, vêtements, livres, électronique). Ne pas connaître les plateformes fiables et les réflexes de prudence, c''est risquer des arnaques ou des déceptions. Nous vous expliquerons le fonctionnement de Leboncoin (le site de référence), les spécificités de Vinted pour les vêtements, et les bons plans pour trouver des meubles ou de l''électronique à petit prix. Maîtriser l''achat d''occasion est absolument crucial pour optimiser votre budget, équiper votre logement, et adopter un mode de consommation plus durable en France.',
@@ -190,7 +190,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le fonctionnement de Leboncoin pour les annonces généralistes", "Identifier les spécificités de Vinted pour l''achat/vente de vêtements", "Savoir où trouver des bons plans pour les meubles et l''électronique", "Maîtriser les conseils de prudence pour éviter les arnaques à l''achat d''occasion"]'::jsonb,
+  E'["Comprendre le fonctionnement de Leboncoin pour les annonces généralistes", "Identifier les spécificités de Vinted pour l''achat/vente de vêtements", "Savoir où trouver des bons plans pour les meubles et l''électronique", "Maîtriser les conseils de prudence pour éviter les arnaques à l''achat d''occasion"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -201,8 +201,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 92
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'd8bec5db-18a3-45b3-983f-e2cd7b19d2d8',
+  '63294b3e-84d7-483e-a39d-f0e55b8aa843',
   'Leboncoin : Bonnes affaires et pièges',
   '# Leboncoin : Bonnes affaires et pièges (Achat d''occasion)
 
@@ -293,8 +293,8 @@ Leboncoin est une excellente plateforme pour acheter d''occasion en France (meub
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '73ec1706-6aba-4651-a81a-93c6b557ec23',
+  '63294b3e-84d7-483e-a39d-f0e55b8aa843',
   'Vinted pour les vêtements',
   '# Vinted pour les vêtements (Achat / Vente d''occasion)
 
@@ -382,7 +382,7 @@ Vinted est une plateforme incontournable pour acheter et vendre des vêtements d
 -- COURS 93 : La Boulangerie
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '87d96e76-0982-4a36-a596-f91838e0e8fe',
+  'cf154fee-3246-4e7a-8d6d-d35207ded15d',
   'La Boulangerie en France : Types de pain et politesse',
   'boulangerie-france-types-pain-politesse',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un lieu emblématique de la vie quotidienne : la boulangerie. Le pain est un pilier de la gastronomie française, et le choix est vaste. Ne pas connaître les différents "types de pain" (tradition, baguette classique) ou les codes de politesse en boutique, c''est risquer des malentendus ou de ne pas se sentir à l''aise. Nous vous expliquerons la distinction entre la baguette "tradition" (qualité supérieure) et la baguette "classique", les autres pains, et les règles de politesse (bonjour, s''il vous plaît, merci) à utiliser. Maîtriser ces informations est absolument crucial pour faire vos achats sereinement, profiter du bon pain français, et vous intégrer aux habitudes locales.',
@@ -393,7 +393,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la distinction entre baguette "tradition" et "classique"", "Identifier les autres types de pains et de viennoiseries courantes", "Savoir comment interagir poliment avec le boulanger/la boulangère", "Maîtriser les conseils pour faire ses achats en boulangerie et profiter du pain français"]'::jsonb,
+  E'["Comprendre la distinction entre baguette \\"tradition\\" et \\"classique\\"", "Identifier les autres types de pains et de viennoiseries courantes", "Savoir comment interagir poliment avec le boulanger/la boulangère", "Maîtriser les conseils pour faire ses achats en boulangerie et profiter du pain français"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -404,8 +404,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 93
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '8a22b5ed-8a40-4cec-8da0-7b688b91a846',
+  'cf154fee-3246-4e7a-8d6d-d35207ded15d',
   'Types de pain (Tradition vs Classique)',
   '# Types de pain (Tradition vs Classique) en Boulangerie
 
@@ -479,8 +479,8 @@ En boulangerie en France, la distinction entre la baguette "tradition" (ingrédi
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'f2375315-4cf6-4b39-9eea-cf2fce88ac1c',
+  'cf154fee-3246-4e7a-8d6d-d35207ded15d',
   'La politesse en boutique',
   '# La politesse en boutique (Boulangerie)
 
@@ -576,7 +576,7 @@ La politesse en boulangerie (et en commerce) est essentielle en France. Dites to
 -- COURS 94 : Le Café en terrasse
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '60ef1787-fbf2-4008-9690-41e06326b58f',
+  'eef6ad1b-4636-4d92-8fd8-92e9a9461901',
   'Le Café en terrasse en France : Prix, savoir-vivre et culture',
   'cafe-terrasse-france-prix-savoir-vivre-culture',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre un rituel social emblématique : prendre un café en terrasse. Ce moment de détente est une institution, mais il a ses propres codes, notamment en matière de prix (différents si "au comptoir" ou "en salle"). Ne pas connaître ces nuances, c''est risquer de payer plus cher, de ne pas se sentir à l''aise, ou de ne pas profiter pleinement de l''expérience. Nous vous expliquerons la distinction entre les prix "au comptoir" et "en salle", et la tolérance à "rester deux heures avec un seul café". Maîtriser ces informations est absolument crucial pour faire vos choix de consommation intelligemment, gérer votre budget, et vous intégrer à une pratique culturelle française. ',
@@ -587,7 +587,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la différence de prix entre un café "au comptoir" et "en salle/terrasse"", "Savoir commander son café et s''adapter aux codes du service", "Identifier la tolérance à rester longtemps avec une seule consommation", "Maîtriser les conseils pour profiter de l''expérience café en terrasse et gérer son budget"]'::jsonb,
+  E'["Comprendre la différence de prix entre un café \\"au comptoir\\" et \\"en salle/terrasse\\"", "Savoir commander son café et s''adapter aux codes du service", "Identifier la tolérance à rester longtemps avec une seule consommation", "Maîtriser les conseils pour profiter de l''expérience café en terrasse et gérer son budget"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -598,8 +598,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 94
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '634df73c-ca27-46d7-9b80-b38c37da5c4e',
+  'eef6ad1b-4636-4d92-8fd8-92e9a9461901',
   'Prix au comptoir vs en salle',
   '# Prix au comptoir vs en salle (Le Café en terrasse)
 
@@ -680,8 +680,8 @@ Lorsque vous prenez un café en France, le prix varie selon que vous le consomme
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '5aeed013-1523-4cbc-bdad-3b37d81e273f',
+  'eef6ad1b-4636-4d92-8fd8-92e9a9461901',
   'Rester 2h avec un seul café : C''est possible',
   '# Rester 2h avec un seul café : C''est possible (Café en terrasse)
 
@@ -763,7 +763,7 @@ En France, il est tout à fait possible et acceptable de rester longtemps (une o
 -- COURS 95 : Tabac
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '3d475fb2-066e-46d3-84b2-38499775ec3c',
+  '56e7eb6f-0e66-4e1c-90c9-c99b4a602d34',
   'Tabac en France : Où acheter et interdictions de fumer',
   'tabac-france-acheter-interdictions-fumer',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre les règles et les lieux d''achat du tabac. La législation française concernant le tabac est stricte (interdiction de fumer dans les lieux publics, vente limitée) et les prix sont élevés. Ne pas connaître ces règles, c''est risquer des amendes, des problèmes de santé, ou de ne pas savoir où se procurer ses cigarettes. Nous vous expliquerons que la vente est réservée aux "bureaux de tabac", et l''interdiction de fumer dans les lieux publics (y compris les terrasses couvertes). Maîtriser ces informations est absolument crucial pour respecter la loi, protéger votre santé et celle des autres, et éviter les désagréments. ',
@@ -774,7 +774,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre que la vente de tabac est limitée aux bureaux de tabac", "Identifier les règles d''interdiction de fumer dans les lieux publics (y compris certaines terrasses)", "Savoir le prix élevé du tabac en France et son impact sur le budget", "Maîtriser les conseils pour respecter la législation et protéger sa santé"]'::jsonb,
+  E'["Comprendre que la vente de tabac est limitée aux bureaux de tabac", "Identifier les règles d''interdiction de fumer dans les lieux publics (y compris certaines terrasses)", "Savoir le prix élevé du tabac en France et son impact sur le budget", "Maîtriser les conseils pour respecter la législation et protéger sa santé"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -785,8 +785,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 95
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '03b8ca07-0547-4a4b-8744-8b4ae2f01ca9',
+  '56e7eb6f-0e66-4e1c-90c9-c99b4a602d34',
   'Bureaux de tabac uniquement',
   '# Bureaux de tabac uniquement (Achat de tabac en France)
 
@@ -855,8 +855,8 @@ En France, la vente de tabac est un monopole d''État, réservée exclusivement 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '299a65dd-e1bb-473f-9ed7-299b9cc5b87e',
+  '56e7eb6f-0e66-4e1c-90c9-c99b4a602d34',
   'Interdiction de fumer dans les lieux publics',
   '# Interdiction de fumer dans les lieux publics
 

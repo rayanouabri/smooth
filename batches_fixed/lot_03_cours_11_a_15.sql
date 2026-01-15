@@ -10,7 +10,7 @@
 -- COURS 12 : Échanger son permis de conduire
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'c5d6e7f8-a9b0-4012-e1f2-a3b4c5d6e7f8',
+  '206e69bc-f566-4b69-8f0a-15b045dac589',
   'Échanger son permis de conduire étranger en France : Le guide',
   'echanger-permis-conduire-etranger-france',
   'Ce cours est un guide essentiel pour les étrangers en France qui souhaitent échanger leur permis de conduire obtenu à l''étranger contre un permis français. La procédure est soumise à des conditions strictes, notamment l''existence d''un accord de réciprocité entre la France et votre pays d''origine, et un délai impératif d''un an après votre installation. Nous détaillerons la liste des pays avec accords, l''importance cruciale du délai d''un an, la procédure de demande entièrement dématérialisée sur l''ANTS, et les règles pour conduire avec votre permis étranger en attendant l''échange. Une bonne compréhension de ces règles est indispensable pour circuler légalement sur les routes françaises.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   5,
   0,
   'https://images.unsplash.com/photo-1594967399343-982d1c68615c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBhc3Nwb3J0JTIwdHJhdmVsfGVufDB8fDB8fHww',
-  '["Connaître les pays ayant un accord de réciprocité avec la France", "Comprendre l''importance du délai d''un an pour l''échange", "Maîtriser la procédure de demande sur la plateforme ANTS", "Identifier les règles pour conduire avec son permis étranger en France"]'::jsonb,
+  E'["Connaître les pays ayant un accord de réciprocité avec la France", "Comprendre l''importance du délai d''un an pour l''échange", "Maîtriser la procédure de demande sur la plateforme ANTS", "Identifier les règles pour conduire avec son permis étranger en France"]'::jsonb,
   '["Avoir un permis de conduire valide délivré par un pays étranger"]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 12
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '6d7e8f9a-0b1c-4012-e3f4-a5b6c7d8e9f0',
-  'c5d6e7f8-a9b0-4012-e1f2-a3b4c5d6e7f8',
+  '7210381a-eeed-4b3c-af43-96b2ec744ad4',
+  '206e69bc-f566-4b69-8f0a-15b045dac589',
   'Pays avec accord de réciprocité : La liste',
   '# Pays avec accord de réciprocité : La liste
 
@@ -106,8 +106,8 @@ L''échange de votre permis de conduire étranger en France dépend de l''existe
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '7a6a6290-61f8-4ca1-aa8c-5a02c7d28c0c',
-  'c5d6e7f8-a9b0-4012-e1f2-a3b4c5d6e7f8',
+  'f8cc1c3b-d928-4f1c-992b-0ec39c9e2719',
+  '206e69bc-f566-4b69-8f0a-15b045dac589',
   'Le délai fatal d''un an pour faire la demande',
   '# Le délai fatal d''un an pour faire la demande
 
@@ -190,8 +190,8 @@ Le délai d''un an pour déposer votre demande d''échange de permis de conduire
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '2c541963-b0c6-4fee-a922-8222c17c2688',
-  'c5d6e7f8-a9b0-4012-e1f2-a3b4c5d6e7f8',
+  '834af35a-1e34-4129-aeff-c6162b512896',
+  '206e69bc-f566-4b69-8f0a-15b045dac589',
   'La procédure sur l''ANTS',
   '# La procédure sur l''ANTS
 
@@ -277,8 +277,8 @@ La procédure d''échange de votre permis de conduire étranger se fait entière
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '2fa9f53f-e9ab-42cb-a3b6-49205b8a0c37',
-  'c5d6e7f8-a9b0-4012-e1f2-a3b4c5d6e7f8',
+  'cb430100-e851-491d-9e9e-7b57b502ef57',
+  '206e69bc-f566-4b69-8f0a-15b045dac589',
   'Conduire avec son permis étranger : Les règles',
   '# Conduire avec son permis étranger : Les règles
 
@@ -355,7 +355,7 @@ Vous pouvez conduire en France avec votre permis étranger pendant un an à part
 -- COURS 13 : Légalisation et traduction
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e1f2a3b4-c5d6-4012-e7f8-a9b0c1d2e3f4',
+  '91597792-a317-4839-a1f6-6e04a835df60',
   'Légalisation et traduction : Vos documents pour l''administration française',
   'legalisation-traduction-documents-administration-francaise',
   'Ce cours est essentiel pour tout étranger s''installant en France et devant présenter des documents officiels de son pays d''origine à l''administration française. Les exigences en matière de traduction et de légalisation (ou apostille) sont strictes et peuvent varier. Nous détaillerons ce qu''est une traduction assermentée, comment trouver un traducteur agréé en France, la différence cruciale entre l''apostille et la légalisation, et les informations sur la durée de validité des traductions. Une bonne compréhension de ces procédures est indispensable pour éviter les rejets de dossier et assurer la validité de vos documents officiels.',
@@ -366,7 +366,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1554902409-9b9a6b1e6e9b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
-  '["Comprendre la définition et la nécessité d''une traduction assermentée", "Savoir trouver un traducteur agréé en France", "Distinguer l''apostille de la légalisation et leur utilité", "Maîtriser les règles de validité des traductions pour l''administration"]'::jsonb,
+  E'["Comprendre la définition et la nécessité d''une traduction assermentée", "Savoir trouver un traducteur agréé en France", "Distinguer l''apostille de la légalisation et leur utilité", "Maîtriser les règles de validité des traductions pour l''administration"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -377,8 +377,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 13
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f2a3b4c5-d6e7-4012-f8a9-b0c1d2e3f4a5',
-  'e1f2a3b4-c5d6-4012-e7f8-a9b0c1d2e3f4',
+  'ef5189c0-98e5-4224-a41c-5835084f36b6',
+  '91597792-a317-4839-a1f6-6e04a835df60',
   'Traduction assermentée : C''est quoi ?',
   '# Traduction assermentée : C''est quoi ?
 
@@ -454,8 +454,8 @@ Une traduction assermentée est une traduction à valeur légale, réalisée par
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '82361fa8-1298-498d-b32c-f9be3360e64f',
-  'e1f2a3b4-c5d6-4012-e7f8-a9b0c1d2e3f4',
+  'fe215c90-060b-401e-8a0a-691275ac0af3',
+  '91597792-a317-4839-a1f6-6e04a835df60',
   'Trouver un traducteur agréé près de chez soi',
   '# Trouver un traducteur agréé près de chez soi
 
@@ -526,8 +526,8 @@ Trouver un traducteur agréé par une Cour d''appel française est une étape cr
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e3556f3e-5cdc-44f5-8e67-a37300a23cb7',
-  'e1f2a3b4-c5d6-4012-e7f8-a9b0c1d2e3f4',
+  '556de2c6-f70f-4ebe-98b2-38125c24bbbd',
+  '91597792-a317-4839-a1f6-6e04a835df60',
   'Apostille et Légalisation : La différence',
   '# Apostille et Légalisation : La différence
 
@@ -608,8 +608,8 @@ L''apostille et la légalisation sont des certifications d''authenticité de doc
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '3ecd4e4b-6cb0-4b3d-b051-02aa83e5c5be',
-  'e1f2a3b4-c5d6-4012-e7f8-a9b0c1d2e3f4',
+  '3b9cc0f0-7ae7-4dd3-8df5-c3f86cc60876',
+  '91597792-a317-4839-a1f6-6e04a835df60',
   'Durée de validité des traductions',
   '# Durée de validité des traductions
 
@@ -684,7 +684,7 @@ Une traduction assermentée n''a pas de date de péremption en soi, mais sa vali
 -- COURS 14 : La "Laïcité" et droits civiques
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f8e2d276-b66b-4554-b5d6-a6e3ea08a501',
+  'dc056334-8d2a-4f1d-b89f-721647a87161',
   'La "Laïcité" et les droits civiques en France : Guide d''intégration',
   'laicite-droits-civiques-france-guide-integration',
   'Ce cours est conçu pour aider les étudiants internationaux à comprendre les concepts fondamentaux de la "Laïcité" et des droits civiques en France, des piliers essentiels de la République française. Nous expliquerons ce qu''est la Laïcité et comment elle s''applique dans l''espace public, notamment dans les institutions scolaires et administratives. Nous aborderons également les droits à la manifestation et à la grève, ainsi que la liberté d''expression et ses limites légales. Maîtriser ces principes est crucial pour une intégration réussie, le respect des lois et des valeurs de la société française, et pour naviguer en toute connaissance de cause dans votre vie quotidienne et citoyenne.',
@@ -695,7 +695,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le principe de la Laïcité et ses applications", "Identifier les droits fondamentaux de manifestation et de grève", "Maîtriser les limites légales de la liberté d''expression", "Favoriser une intégration respectueuse des valeurs républicaines françaises"]'::jsonb,
+  E'["Comprendre le principe de la Laïcité et ses applications", "Identifier les droits fondamentaux de manifestation et de grève", "Maîtriser les limites légales de la liberté d''expression", "Favoriser une intégration respectueuse des valeurs républicaines françaises"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -706,8 +706,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 14
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c5d6e7f8-a9b0-4012-e3f4-a5b6c7d8e9f0',
-  'f8e2d276-b66b-4554-b5d6-a6e3ea08a501',
+  '145b792f-cc2d-4339-ac1d-b1f853093cdf',
+  'dc056334-8d2a-4f1d-b89f-721647a87161',
   'La Laïcité expliquée aux étrangers',
   '# La Laïcité expliquée aux étrangers
 
@@ -787,8 +787,8 @@ La Laïcité est un principe fondamental français qui garantit la neutralité d
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'bc7f24bd-51b3-4b7b-a450-33fb0d027f06',
-  'f8e2d276-b66b-4554-b5d6-a6e3ea08a501',
+  '9fa615d4-fa1e-4b46-980c-3f3e0b4a2211',
+  'dc056334-8d2a-4f1d-b89f-721647a87161',
   'Droits à la manifestation et à la grève',
   '# Droits à la manifestation et à la grève
 
@@ -854,8 +854,8 @@ Le droit de manifester et de faire grève sont des droits fondamentaux en France
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'ff6cee77-7a13-450d-a69a-8fa1bc5bf091',
-  'f8e2d276-b66b-4554-b5d6-a6e3ea08a501',
+  '86fc7ed5-f9c2-4c0c-ae5f-6dd504d05d2a',
+  'dc056334-8d2a-4f1d-b89f-721647a87161',
   'Liberté d''expression et ses limites légales',
   '# Liberté d''expression et ses limites légales
 
@@ -947,7 +947,7 @@ La liberté d''expression est un droit fondamental en France, mais elle est stri
 -- COURS 15 : Service-Public.fr : Le portail
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  'c3552e91-7ab5-4790-a85c-28f4f749b9ce',
   'Service-Public.fr : Votre portail pour l''administration française',
   'service-public-fr-portail-administration-francaise',
   'Ce cours est un guide essentiel pour les étudiants internationaux souhaitant naviguer efficacement dans le labyrinthe de l''administration française. `Service-Public.fr` est le portail officiel de l''administration, centralisant une quantité inestimable d''informations et de démarches. Nous vous expliquerons comment créer votre compte FranceConnect pour simplifier vos accès, comment utiliser les fiches pratiques pour comprendre vos droits et obligations, comment utiliser les simulateurs de droits pour estimer vos aides (CAF, logement), et comment contacter l''administration via le site. Maîtriser ce portail est une compétence clé pour gérer toutes vos démarches administratives en France avec autonomie et sérénité.',
@@ -958,7 +958,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''utilité et la richesse du portail Service-Public.fr", "Savoir créer et utiliser son compte FranceConnect", "Maîtriser la recherche et l''utilisation des fiches pratiques", "Utiliser les simulateurs de droits et contacter l''administration efficacement"]'::jsonb,
+  E'["Comprendre l''utilité et la richesse du portail Service-Public.fr", "Savoir créer et utiliser son compte FranceConnect", "Maîtriser la recherche et l''utilisation des fiches pratiques", "Utiliser les simulateurs de droits et contacter l''administration efficacement"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -969,8 +969,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 15
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'c5d6e7f8-a9b0-4012-e3f4-a5b6c7d8e9f0',
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  '79aa61dd-0d88-4685-8cb0-d8b31cd49beb',
+  'c3552e91-7ab5-4790-a85c-28f4f749b9ce',
   'Créer son compte France Connect',
   '# Créer son compte FranceConnect
 
@@ -1048,8 +1048,8 @@ FranceConnect est un dispositif gouvernemental qui simplifie et sécurise l''acc
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'eb33c6f5-b7f8-451f-b7dd-52ac8f7ccc34',
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  '61d75d13-fa2f-4d49-9976-2897067b2b4f',
+  'c3552e91-7ab5-4790-a85c-28f4f749b9ce',
   'Naviguer dans les fiches pratiques',
   '# Naviguer dans les fiches pratiques
 
@@ -1135,8 +1135,8 @@ Naviguer dans les fiches pratiques de Service-Public.fr est une compétence indi
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e3f4a5b6-c7d8-4012-f9a0-b1c2d3e4f5a6',
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  '2877e2f7-0281-44ab-a100-32fc0e38ffa1',
+  'c3552e91-7ab5-4790-a85c-28f4f749b9ce',
   'Utiliser les simulateurs de droits',
   '# Utiliser les simulateurs de droits
 
@@ -1209,8 +1209,8 @@ Les simulateurs de droits en ligne sont des outils indispensables pour les étud
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '8bb5ea54-53cb-4319-ad93-c943c2bfd55f',
-  'ece6527d-c212-45cf-b808-db155003bf18',
+  '22d0ae36-1947-4d5d-ad60-8c923d19904c',
+  'c3552e91-7ab5-4790-a85c-28f4f749b9ce',
   'Contacter l''administration via le site',
   '# Contacter l''administration via le site
 
@@ -1288,7 +1288,7 @@ Contacter l''administration française via leurs sites internet est un moyen eff
 -- COURS 16 : Décoder les annonces immobilières
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e4c583d0-c247-45a0-80bb-f1682f2464c3',
+  'c429f824-104a-4256-a6ac-f374c5e1565a',
   'Décoder les annonces immobilières en France : Votre guide logement',
   'decoder-annonces-immobilieres-france',
   'Ce cours est un guide indispensable pour les étudiants internationaux en recherche de logement en France. Les annonces immobilières françaises regorgent d''abréviations et de termes spécifiques qui peuvent être difficiles à comprendre. Nous vous aiderons à décoder le lexique (CC, HC, F1, T2, Bis), à comprendre les différences cruciales entre logement meublé et non-meublé et leur impact sur le bail, à repérer les éventuels frais d''agence cachés, et à analyser l''importance de la performance énergétique (DPE). Maîtriser ce langage est crucial pour identifier rapidement les logements qui correspondent à vos critères, éviter les arnaques et comprendre ce que vous louez réellement.',
@@ -1302,7 +1302,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 
 
 #M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
-  '["Décoder les abréviations courantes (CC, HC, F1, T2, Bis)", "Comprendre les différences entre logement meublé et non-meublé", "Repérer et évaluer les frais d''agence immobilière", "Interpréter le Diagnostic de Performance Énergétique (DPE)"]'::jsonb,
+  E'["Décoder les abréviations courantes (CC, HC, F1, T2, Bis)", "Comprendre les différences entre logement meublé et non-meublé", "Repérer et évaluer les frais d''agence immobilière", "Interpréter le Diagnostic de Performance Énergétique (DPE)"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -1313,8 +1313,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 16
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '2d3e4f5a-6b7c-4012-f8a9-b0c1d2e3f4a5',
-  'e4c583d0-c247-45a0-80bb-f1682f2464c3',
+  '2eafe2a5-7d4d-4076-a86f-5bd01e3dbecb',
+  'c429f824-104a-4256-a6ac-f374c5e1565a',
   'Lexique : CC, HC, F1, T2, Bis',
   '# Lexique : CC, HC, F1, T2, Bis
 
@@ -1382,8 +1382,8 @@ Le lexique des annonces immobilières françaises est spécifique. Maîtrisez le
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '3e4f5a6b-7c8d-4012-e9f0-a1b2c3d4e5f6',
-  'e4c583d0-c247-45a0-80bb-f1682f2464c3',
+  '6b17f9ca-725d-4ca1-9db3-85d58cb28c64',
+  'c429f824-104a-4256-a6ac-f374c5e1565a',
   'Meublé vs Non-meublé : Impact sur le bail',
   '# Meublé vs Non-meublé : Impact sur le bail
 
@@ -1457,8 +1457,8 @@ Le choix entre un logement meublé et non-meublé a des répercussions majeures 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '3644e0c7-4447-4e85-9a9c-b028ff9e9fdc',
-  'e4c583d0-c247-45a0-80bb-f1682f2464c3',
+  'ca5ee7a5-8e3d-4eda-b083-13f7a81150d6',
+  'c429f824-104a-4256-a6ac-f374c5e1565a',
   'Repérer les frais d''agence cachés',
   '# Repérer les frais d''agence cachés
 
@@ -1546,8 +1546,8 @@ Les frais d''agence immobilière pour le locataire sont strictement encadrés et
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '06d56fea-ead9-4c38-a5de-2aae8df11a04',
-  'e4c583d0-c247-45a0-80bb-f1682f2464c3',
+  '2e621f1f-f0da-4e02-81a8-afd2e8a0f60b',
+  'c429f824-104a-4256-a6ac-f374c5e1565a',
   'Analyser la performance énergétique (DPE)',
   '# Analyser la performance énergétique (DPE)
 

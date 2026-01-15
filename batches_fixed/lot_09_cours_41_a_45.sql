@@ -10,7 +10,7 @@
 -- COURS 42 : La Pharmacie en France
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '8fdc059d-5acb-41b3-8f20-08c61a0bb998',
+  '6eb0ee7e-0e30-4c53-87d5-14412d77781c',
   'La Pharmacie en France : Ordonnance, Automédication et Génériques',
   'pharmacie-france-ordonnance-automedication-generiques',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre le fonctionnement des pharmacies et l''accès aux médicaments. Les règles concernant la délivrance de médicaments (avec ou sans ordonnance), l''automédication et l''utilisation des génériques peuvent être différentes de celles de votre pays. Nous vous expliquerons la distinction cruciale entre les médicaments sur ordonnance et ceux en libre accès, le concept d''automédication responsable, et l''importance des médicaments génériques (leur équivalence et leur faible coût). Maîtriser ces informations est absolument crucial pour acheter vos médicaments en toute sécurité, comprendre vos ordonnances, et optimiser vos dépenses de santé en pharmacie.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la différence entre médicaments sur ordonnance et automédication", "Identifier les règles de l''automédication responsable en France", "Savoir l''intérêt et l''équivalence des médicaments génériques", "Maîtriser les conseils pour acheter ses médicaments en pharmacie en toute sécurité"]'::jsonb,
+  E'["Comprendre la différence entre médicaments sur ordonnance et automédication", "Identifier les règles de l''automédication responsable en France", "Savoir l''intérêt et l''équivalence des médicaments génériques", "Maîtriser les conseils pour acheter ses médicaments en pharmacie en toute sécurité"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 42
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  'd8338bad-15c7-4fc6-8758-7851868a107d',
+  '6eb0ee7e-0e30-4c53-87d5-14412d77781c',
   'Ordonnance vs Automédication',
   '# Ordonnance vs Automédication
 
@@ -109,12 +109,12 @@ En France, de nombreux médicaments nécessitent une ordonnance médicale pour �
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 42 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  '07a31be9-8630-4082-ab2b-4295c5db82b6',
+  '6eb0ee7e-0e30-4c53-87d5-14412d77781c',
   'Les génériques : "C''est la même chose"',
   '# Les génériques : "C''est la même chose"
 
@@ -184,12 +184,12 @@ Les médicaments génériques sont des copies de médicaments originaux, avec la
   2,
   50,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 42 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  'f1a2b3c4-d5e6-4789-a0b1-c2d3e4f5a6b7',
+  '6eb0ee7e-0e30-4c53-87d5-14412d77781c',
   'La parapharmacie',
   '# La parapharmacie
 
@@ -255,14 +255,15 @@ La parapharmacie regroupe des produits de santé, d''hygiène et de beauté qui 
   3,
   50,
   NULL,
-  '[]'::sql
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 
 -- --- Cours 42 ---
 
 -- COURS 43 : Soutien psychologique
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  '99ea5e87-0069-4831-9dc2-5616f1195449',
   'Soutien psychologique : Aides et ressources pour étudiants en France',
   'soutien-psychologique-aides-ressources-etudiants-france',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France. L''éloignement familial, le choc culturel, les difficultés académiques ou financières peuvent générer du stress, de l''anxiété ou de la déprime. Accéder à un soutien psychologique adapté est essentiel pour votre bien-être mental. Nous vous présenterons les Bureaux d''Aide Psychologique Universitaire (BAPU) gratuits, le dispositif "Santé Psy Étudiant" offrant des séances gratuites chez un psychologue, et les lignes d''écoute anonymes et confidentielles. Maîtriser ces ressources est absolument crucial pour prendre soin de votre santé mentale, briser les tabous, et trouver l''aide nécessaire pour traverser les moments difficiles de votre parcours en France.',
@@ -273,7 +274,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance du soutien psychologique pour les étudiants internationaux", "Identifier les Bureaux d''Aide Psychologique Universitaire (BAPU) et leurs services gratuits", "Savoir comment bénéficier du dispositif Santé Psy Étudiant (8 séances gratuites)", "Maîtriser les ressources d''écoute anonymes et confidentielles"]'::jsonb,
+  E'["Comprendre l''importance du soutien psychologique pour les étudiants internationaux", "Identifier les Bureaux d''Aide Psychologique Universitaire (BAPU) et leurs services gratuits", "Savoir comment bénéficier du dispositif Santé Psy Étudiant (8 séances gratuites)", "Maîtriser les ressources d''écoute anonymes et confidentielles"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -284,8 +285,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 43
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  'd41e0f93-cb7e-48b1-ba3d-d7f1fb9910c0',
+  '99ea5e87-0069-4831-9dc2-5616f1195449',
   'Les BAPU (Bureaux d''Aide Psychologique)',
   '# Les BAPU (Bureaux d''Aide Psychologique Universitaire)
 
@@ -349,12 +350,12 @@ Les BAPU (Bureaux d''Aide Psychologique Universitaire) offrent un soutien psycho
   1,
   55,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 43 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  'b2ebada8-bdea-46a4-9c6f-5a60e558eff2',
+  '99ea5e87-0069-4831-9dc2-5616f1195449',
   'Santé Psy Étudiant : 8 séances gratuites',
   '# Santé Psy Étudiant : 8 séances gratuites
 
@@ -426,12 +427,12 @@ Le dispositif "Santé Psy Étudiant" vous offre 8 séances gratuites (renouvelab
   2,
   55,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 43 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  '87e91be7-9193-426a-98b9-41ae9440fe23',
+  '99ea5e87-0069-4831-9dc2-5616f1195449',
   'Lignes d''écoute anonymes',
   '# Lignes d''écoute anonymes
 
@@ -504,14 +505,14 @@ Les lignes d''écoute anonymes et confidentielles (SOS Amitié, Fil Santé Jeune
   3,
   55,
   NULL,
-  '[]'::sql
-
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 -- --- Cours 43 ---
 
 -- COURS 44 : Santé sexuelle
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '5369a0ee-e681-4232-8af1-46b5a9e780d4',
+  '95e008d2-6fb3-40ba-9292-f0c5c2a5c649',
   'Santé sexuelle en France : Contraception, Dépistage et Prévention',
   'sante-sexuelle-france-contraception-depistage-prevention',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre les enjeux et l''accès aux services de santé sexuelle. En France, la prévention et l''accès aux méthodes contraceptives et au dépistage sont des priorités. Nous vous informerons sur la gratuité des préservatifs en pharmacie pour les moins de 26 ans, les différentes options de contraception d''urgence et leur accessibilité, ainsi que le rôle des CeGIDD (Centres Gratuits d''Information, de Dépistage et de Diagnostic) pour le dépistage des IST. Maîtriser ces informations est absolument crucial pour vivre votre sexualité de manière éclairée, protégée et responsable, et pour garantir votre bien-être et votre santé. ',
@@ -522,7 +523,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''accès gratuit aux préservatifs pour les jeunes de moins de 26 ans", "Identifier les différentes méthodes de contraception d''urgence et leur accessibilité", "Savoir où se faire dépister gratuitement des IST (CeGIDD)", "Maîtriser les conseils pour une sexualité protégée et responsable en France"]'::jsonb,
+  E'["Comprendre l''accès gratuit aux préservatifs pour les jeunes de moins de 26 ans", "Identifier les différentes méthodes de contraception d''urgence et leur accessibilité", "Savoir où se faire dépister gratuitement des IST (CeGIDD)", "Maîtriser les conseils pour une sexualité protégée et responsable en France"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -533,8 +534,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 44
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  '3bf2154c-a4e1-421c-af7e-a099160bf978',
+  '95e008d2-6fb3-40ba-9292-f0c5c2a5c649',
   'Préservatifs gratuits en pharmacie (-26 ans)',
   '# Préservatifs gratuits en pharmacie (-26 ans)
 
@@ -602,12 +603,12 @@ Les préservatifs masculins sont gratuits en pharmacie pour tous les jeunes de m
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 44 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  'ead71772-4c36-4b61-beab-4470d33434e2',
+  '95e008d2-6fb3-40ba-9292-f0c5c2a5c649',
   'Contraception d''urgence',
   '# Contraception d''urgence
 
@@ -691,12 +692,12 @@ La contraception d''urgence est un moyen essentiel de prévention des grossesses
   2,
   55,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 44 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  '0fbf5ea5-185a-469e-b972-212cc96ff44e',
+  '95e008d2-6fb3-40ba-9292-f0c5c2a5c649',
   'Les CeGIDD (Dépistage gratuit)',
   '# Les CeGIDD (Dépistage gratuit)
 
@@ -759,14 +760,14 @@ Les CeGIDD (Centres Gratuits d''Information, de Dépistage et de Diagnostic) son
   3,
   55,
   NULL,
-  '[]'::sql
-
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 -- --- Cours 44 ---
 
 -- COURS 45 : Lunettes et Dents (100% Santé)
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '6e3eb556-1118-4a75-9014-07eca704d9e0',
+  'c8c99c55-a98f-455c-9467-a3e376bd544c',
   'Lunettes et Dents (100% Santé) : Zéro reste à charge en France',
   'lunettes-dents-100-sante-zero-reste-charge-france',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France qui ont besoin de lunettes, de lentilles ou de soins dentaires. Le dispositif "100% Santé" (anciennement "Reste à charge zéro") est une réforme majeure qui garantit l''accès à des équipements d''optique, des prothèses dentaires et des aides auditives entièrement remboursés, sans aucun reste à charge pour l''assuré. Ne pas connaître ce dispositif, c''est risquer de payer des centaines, voire des milliers d''euros, pour des soins et équipements qui pourraient être gratuits. Nous vous expliquerons le contenu du panier "100% Santé", comment en faire la demande auprès de votre opticien ou dentiste, et les délais de carence des mutuelles. Maîtriser ces informations est absolument crucial pour protéger votre budget et garantir votre accès à des soins essentiels.',
@@ -777,7 +778,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le principe et les avantages du dispositif "100% Santé"", "Identifier le contenu du panier "100% Santé" pour l''optique et le dentaire", "Savoir comment demander ces équipements à votre opticien ou dentiste", "Maîtriser les délais de carence des mutuelles et l''accès aux équipements"]'::jsonb,
+  E'["Comprendre le principe et les avantages du dispositif \\"100% Santé\\"", "Identifier le contenu du panier \\"100% Santé\\" pour l''optique et le dentaire", "Savoir comment demander ces équipements à votre opticien ou dentiste", "Maîtriser les délais de carence des mutuelles et l''accès aux équipements"]'::jsonb,
   '["Avoir un numéro de Sécurité Sociale (NIR) et une mutuelle complémentaire (ou la CSS)"]'::jsonb,
   TRUE,
   4.8,
@@ -788,8 +789,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 45
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  '1431bbe0-e0cc-4978-8d7d-0b224e2a606e',
+  'c8c99c55-a98f-455c-9467-a3e376bd544c',
   'Le panier "100% Santé" : Zéro reste à charge',
   '# Le panier "100% Santé" : Zéro reste à charge
 
@@ -869,7 +870,9 @@ Le dispositif "100% Santé" vous garantit un remboursement intégral (zéro rest
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
+
 -- PARTIE 4 : Banque & Finances
 
 -- --- Cours 45 ---
@@ -877,7 +880,7 @@ Le dispositif "100% Santé" vous garantit un remboursement intégral (zéro rest
 -- COURS 46 : Banques en ligne vs Classiques
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'ea17e7f1-b907-4a93-af9a-73ef18d0d3b0',
+  'a571fb06-5626-4993-b256-81e1a3622ee4',
   'Banques en ligne vs Classiques : Choisir votre banque en France',
   'banques-en-ligne-vs-classiques-choisir-banque-france',
   'Ce cours est essentiel pour tous les étudiants internationaux qui s''apprêtent à ouvrir un compte bancaire en France. Le choix entre une banque traditionnelle (avec agence physique) et une banque en ligne (ou néo-banque) est une décision importante qui impacte votre gestion financière et votre accès aux services. Nous vous présenterons les avantages et inconvénients des banques avec agence (BNP, LCL), des banques en ligne (Boursorama Banque, Fortuneo) et des néo-banques (Revolut, N26). Vous apprendrez à choisir selon vos besoins spécifiques (dépôt d''espèces, conseiller dédié, frais internationaux). Maîtriser ce comparatif est absolument crucial pour ouvrir le compte bancaire le plus adapté à votre profil et optimiser la gestion de votre argent en France.',
@@ -888,7 +891,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre les différences entre banques classiques et en ligne/néo-banques", "Identifier les avantages des banques avec agence (conseiller, dépôts espèces)", "Découvrir les atouts des banques en ligne (frais réduits, rapidité)", "Maîtriser les critères pour choisir la banque la plus adaptée à vos besoins d''étudiant"]'::jsonb,
+  E'["Comprendre les différences entre banques classiques et en ligne/néo-banques", "Identifier les avantages des banques avec agence (conseiller, dépôts espèces)", "Découvrir les atouts des banques en ligne (frais réduits, rapidité)", "Maîtriser les critères pour choisir la banque la plus adaptée à vos besoins d''étudiant"]'::jsonb,
   '["Avoir un passeport et un titre de séjour valide en France"]'::jsonb,
   TRUE,
   4.8,
@@ -899,8 +902,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 46
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  '7b008678-2bf0-4003-9afd-0c48c4f253e2',
+  'a571fb06-5626-4993-b256-81e1a3622ee4',
   'Banque avec agence (BNP, LCL...) : Avantages',
   '# Banque avec agence (BNP, LCL...) : Avantages
 
@@ -970,12 +973,12 @@ Les banques traditionnelles avec agence (BNP, LCL, Société Générale) offrent
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 46 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  '2b305e4b-7516-4d0c-8c08-1533c8c6148c',
+  'a571fb06-5626-4993-b256-81e1a3622ee4',
   'Néo-banques (Revolut, Bourso) : Avantages',
   '# Néo-banques (Revolut, Boursorama, N26...) : Avantages
 
@@ -1040,12 +1043,12 @@ Les banques en ligne (Boursorama, Fortuneo) et néo-banques (Revolut, N26) offre
   2,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 46 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  '2e49a995-c983-4e84-a3f4-181df2c712fb',
+  '08b5ad07-53c7-4408-bbe0-7b1bb7ffbcd3',
+  'a571fb06-5626-4993-b256-81e1a3622ee4',
   'Choisir selon ses besoins (Dépôt d''espèces ?)',
   '# Choisir selon ses besoins (Dépôt d''espèces ?)
 
@@ -1114,5 +1117,6 @@ Le choix de votre banque en France dépend de vos besoins spécifiques : facilit
   3,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb
+) ON CONFLICT (id) DO NOTHING;
 

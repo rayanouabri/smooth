@@ -33,6 +33,14 @@ DROP POLICY IF EXISTS "Users can view their own profile" ON user_profiles;
 DROP POLICY IF EXISTS "Users can update their own profile" ON user_profiles;
 DROP POLICY IF EXISTS "Users can view their own enrollments" ON enrollments;
 DROP POLICY IF EXISTS "Users can create their own enrollments" ON enrollments;
+DROP POLICY IF EXISTS "Users can update their own enrollments" ON enrollments;
+DROP POLICY IF EXISTS "Users can view their own progress" ON progress;
+DROP POLICY IF EXISTS "Users can create their own progress" ON progress;
+DROP POLICY IF EXISTS "Users can view their own assessments" ON assessments;
+DROP POLICY IF EXISTS "Users can create their own assessments" ON assessments;
+DROP POLICY IF EXISTS "Users can update their own assessments" ON assessments;
+DROP POLICY IF EXISTS "Users can view their own certificates" ON certificates;
+DROP POLICY IF EXISTS "Users can create their own certificates" ON certificates;
 
 -- Politiques pour les cours (lecture publique des cours publiés)
 CREATE POLICY "Courses are viewable by everyone"
@@ -173,4 +181,120 @@ CREATE POLICY "Teacher profiles are viewable by everyone"
 ON teacher_profiles FOR SELECT
 TO public
 USING (true);
+
+-- Politiques pour les évaluations (assessments)
+CREATE POLICY "Users can view their own assessments"
+ON assessments FOR SELECT
+TO public
+USING (
+  auth.uid()::text = (
+    SELECT user_id::text FROM user_profiles 
+    WHERE user_email = assessments.user_email
+  )
+);
+
+CREATE POLICY "Users can create their own assessments"
+ON assessments FOR INSERT
+TO public
+WITH CHECK (
+  auth.uid()::text = (
+    SELECT user_id::text FROM user_profiles 
+    WHERE user_email = assessments.user_email
+  )
+);
+
+CREATE POLICY "Users can update their own assessments"
+ON assessments FOR UPDATE
+TO public
+USING (
+  auth.uid()::text = (
+    SELECT user_id::text FROM user_profiles 
+    WHERE user_email = assessments.user_email
+  )
+);
+
+-- Politiques pour les certificats (certificates)
+CREATE POLICY "Users can view their own certificates"
+ON certificates FOR SELECT
+TO public
+USING (
+  auth.uid()::text = (
+    SELECT user_id::text FROM user_profiles 
+    WHERE user_email = certificates.user_email
+  )
+);
+
+        CREATE POLICY "Users can create their own certificates"
+        ON certificates FOR INSERT
+        TO public
+        WITH CHECK (
+          auth.uid()::text = (
+            SELECT user_id::text FROM user_profiles 
+            WHERE user_email = certificates.user_email
+          )
+        );
+
+        -- Politiques pour contact_requests (si la table existe)
+        -- Note: Ces politiques seront créées automatiquement par create_contact_requests_table.sql
+        -- On les ajoute ici pour référence
+        ALTER TABLE IF EXISTS contact_requests ENABLE ROW LEVEL SECURITY;
+
+        DROP POLICY IF EXISTS "Users can view their own contact requests" ON contact_requests;
+        DROP POLICY IF EXISTS "Users can insert their own contact requests" ON contact_requests;
+        DROP POLICY IF EXISTS "Admins can view all contact requests" ON contact_requests;
+        DROP POLICY IF EXISTS "Admins can update contact requests" ON contact_requests;
+
+        CREATE POLICY "Users can view their own contact requests"
+        ON contact_requests FOR SELECT
+        TO public
+        USING (
+          auth.uid()::text = (
+            SELECT user_id::text FROM user_profiles 
+            WHERE user_email = contact_requests.email
+          )
+        );
+
+        CREATE POLICY "Users can insert their own contact requests"
+        ON contact_requests FOR INSERT
+        TO public
+        WITH CHECK (
+          auth.uid()::text = (
+            SELECT user_id::text FROM user_profiles 
+            WHERE user_email = contact_requests.email
+          )
+        );
+
+        CREATE POLICY "Admins can view all contact requests"
+        ON contact_requests FOR SELECT
+        TO public
+        USING (
+          EXISTS (
+            SELECT 1 FROM auth.users 
+            WHERE id = auth.uid() 
+            AND email = 'contact@franceprepacademy.fr'
+          )
+          OR
+          EXISTS (
+            SELECT 1 FROM user_profiles 
+            WHERE user_id = auth.uid() 
+            AND user_email LIKE '%@franceprepacademy.fr'
+          )
+        );
+
+        CREATE POLICY "Admins can update contact requests"
+        ON contact_requests FOR UPDATE
+        TO public
+        USING (
+          EXISTS (
+            SELECT 1 FROM auth.users 
+            WHERE id = auth.uid() 
+            AND email = 'contact@franceprepacademy.fr'
+          )
+          OR
+          EXISTS (
+            SELECT 1 FROM user_profiles 
+            WHERE user_id = auth.uid() 
+            AND user_email LIKE '%@franceprepacademy.fr'
+          )
+        );
 

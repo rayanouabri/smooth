@@ -10,7 +10,7 @@
 -- COURS 57 : La notation sur 20
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '50de40e6-a9b6-4370-bdc9-4dfff5d24203',
+  'ecba90be-e91e-4d6f-8ff2-b1623a37d419',
   'La notation sur 20 en France : Comprendre les examens et mentions',
   'notation-sur-20-france-comprendre-examens-mentions',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre le système d''évaluation académique. La notation sur 20 est la norme, et la signification d''un "10/20 validé" peut être très différente de ce que vous connaissez dans votre pays. Nous vous expliquerons l''échelle de notation française, l''importance du 10/20 pour la validation des matières, la signification des mentions (Assez Bien, Bien, Très Bien) et la différence entre les examens "partiels" et le "contrôle continu". Maîtriser ce système est absolument crucial pour évaluer vos résultats, comprendre les attentes de vos professeurs, et planifier votre progression académique avec succès en France.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''échelle de notation française sur 20 et la signification du 10/20", "Identifier les différentes mentions (Assez Bien, Bien, Très Bien) et leurs critères", "Distinguer les examens "partiels" du "contrôle continu" et leur impact", "Maîtriser les conseils pour optimiser sa réussite aux examens"]'::jsonb,
+  E'["Comprendre l''échelle de notation française sur 20 et la signification du 10/20", "Identifier les différentes mentions (Assez Bien, Bien, Très Bien) et leurs critères", "Distinguer les examens \\"partiels\\" du \\"contrôle continu\\" et leur impact", "Maîtriser les conseils pour optimiser sa réussite aux examens"]'::jsonb,
   '["Être admis(e) dans un établissement d''enseignement supérieur français"]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 57
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '570aea88-e3be-4393-b0fd-6ec49b2d0a66',
+  'ecba90be-e91e-4d6f-8ff2-b1623a37d419',
   'Échelle de notation : 10/20 c''est validé !',
   '# Échelle de notation : 10/20 c''est validé !
 
@@ -116,8 +116,8 @@ L''échelle de notation française est sur 20, avec 10/20 comme seuil de validat
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '0cfb0736-885f-4d69-9831-ba93c59f8284',
+  'ecba90be-e91e-4d6f-8ff2-b1623a37d419',
   'Mention Assez Bien, Bien, Très Bien',
   '# Mention Assez Bien, Bien, Très Bien
 
@@ -200,8 +200,8 @@ Les mentions (Assez Bien, Bien, Très Bien) sont des distinctions d''excellence 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'a882a711-0ffa-47c7-b9ea-0a1806c5e6ba',
+  'ecba90be-e91e-4d6f-8ff2-b1623a37d419',
   'Les partiels et le contrôle continu',
   '# Les partiels et le contrôle continu (Examens universitaires)
 
@@ -284,7 +284,7 @@ Le système d''évaluation universitaire français combine les "partiels" (exame
 -- COURS 58 : Rédiger un CV français
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '94f170f6-8132-482a-8ab0-f3921a6b6454',
+  'e756e96f-8240-4113-8afe-a2d2374abf6f',
   'Rédiger un CV français : Le guide pour l''emploi étudiant',
   'rediger-cv-francais-guide-emploi-etudiant',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui recherchent un job étudiant, un stage ou un premier emploi. Le Curriculum Vitae (CV) français a des codes et des attentes spécifiques qui peuvent être très différents de ceux de votre pays d''origine. Ne pas adapter votre CV, c''est risquer de ne pas être remarqué(e) par les recruteurs français. Nous vous expliquerons la structure et le design attendus (sobriété), la question de la photo (oui ou non ?), et comment valoriser efficacement vos expériences étrangères pour les rendre pertinentes sur le marché français. Maîtriser la rédaction d''un CV aux normes françaises est absolument crucial pour décrocher des entretiens et réussir votre insertion professionnelle en France.',
@@ -295,7 +295,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la structure et le design attendus d''un CV français", "Savoir si inclure une photo est recommandé ou non", "Maîtriser la valorisation de ses expériences et diplômes étrangers", "Identifier les erreurs courantes à éviter pour un CV impactant"]'::jsonb,
+  E'["Comprendre la structure et le design attendus d''un CV français", "Savoir si inclure une photo est recommandé ou non", "Maîtriser la valorisation de ses expériences et diplômes étrangers", "Identifier les erreurs courantes à éviter pour un CV impactant"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -306,8 +306,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 58
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'c3c40c74-addf-4fef-a7e4-0074230c391c',
+  'e756e96f-8240-4113-8afe-a2d2374abf6f',
   'Structure et Design (Sobriété)',
   '# Structure et Design (Sobriété) pour un CV français
 
@@ -387,8 +387,8 @@ La rédaction d''un CV français exige une structure claire, un design sobre et 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '463de104-1538-4143-b960-2d5c8efec688',
+  'e756e96f-8240-4113-8afe-a2d2374abf6f',
   'La photo : Oui ou Non ?',
   '# La photo sur un CV français : Oui ou Non ?
 
@@ -463,8 +463,8 @@ En France, la photo sur le CV est une pratique courante mais non obligatoire. Si
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '3f5f5645-daa3-4188-89a4-f84852d2023d',
+  'e756e96f-8240-4113-8afe-a2d2374abf6f',
   'Adapter ses expériences étrangères',
   '# Adapter ses expériences étrangères sur un CV français
 
@@ -551,7 +551,7 @@ Adapter vos expériences étrangères sur un CV français est absolument crucial
 -- COURS 59 : La Lettre de Motivation
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '9d52dd12-a410-4f12-9b8b-ebc70cc39ea5',
+  '1abcf97b-802e-46e1-83ff-bc4e87c068ab',
   'La Lettre de Motivation : L''art de convaincre en France',
   'lettre-motivation-art-convaincre-france',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui recherchent un job, un stage ou un emploi. La lettre de motivation (LM) française a des codes très spécifiques, souvent différents de ceux de votre pays d''origine, et elle est un complément indispensable à votre CV. Ne pas maîtriser sa structure ("Vous, Moi, Nous"), les formules de politesse incontournables, et les erreurs classiques à éviter, c''est risquer de voir votre candidature écartée. Nous vous expliquerons comment personnaliser votre lettre pour chaque offre, valoriser votre parcours international, et convaincre le recruteur de votre motivation. Maîtriser la rédaction d''une LM impactante est absolument crucial pour décrocher des entretiens et réussir votre insertion professionnelle en France.',
@@ -562,7 +562,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la structure "Vous, Moi, Nous" d''une lettre de motivation française", "Identifier les formules de politesse adéquates (début et fin de lettre)", "Savoir comment personnaliser sa lettre pour chaque offre d''emploi", "Maîtriser les erreurs classiques à éviter pour une LM percutante"]'::jsonb,
+  E'["Comprendre la structure \\"Vous, Moi, Nous\\" d''une lettre de motivation française", "Identifier les formules de politesse adéquates (début et fin de lettre)", "Savoir comment personnaliser sa lettre pour chaque offre d''emploi", "Maîtriser les erreurs classiques à éviter pour une LM percutante"]'::jsonb,
   '["Avoir un CV aux normes françaises"]'::jsonb,
   TRUE,
   4.8,
@@ -573,8 +573,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 59
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '8cc7d6c1-0ecf-4407-b249-a7d118214ae5',
+  '1abcf97b-802e-46e1-83ff-bc4e87c068ab',
   'Structure "Vous, Moi, Nous"',
   '# Structure "Vous, Moi, Nous" (Lettre de Motivation)
 
@@ -664,8 +664,8 @@ La structure "Vous, Moi, Nous" est la méthode la plus efficace pour rédiger un
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '10f19c90-245e-483e-b5a2-8c416c2037d1',
+  '1abcf97b-802e-46e1-83ff-bc4e87c068ab',
   'Formules de politesse incontournables',
   '# Formules de politesse incontournables (Lettre de Motivation)
 
@@ -712,24 +712,24 @@ La lettre de motivation (LM) en France est un document formel qui suit des codes
 
 
 
-[Nom et Prénom du Recruteur, ou Dénomination de l'Entreprise / Service]
-[Adresse complète de l'Entreprise]
+[Nom et Prénom du Recruteur, ou Dénomination de l''Entreprise / Service]
+[Adresse complète de l''Entreprise]
 
 
 
 (OU : Madame Dupont, OU : Monsieur Martin,)
 
 [Premier paragraphe : Le "Vous"]
-Je suis particulièrement intéressé(e) par votre entreprise [Nom de l'entreprise] et le poste de [Intitulé du poste] que vous proposez, comme j'ai pu le découvrir sur [Source de l'annonce, ex: LinkedIn, votre site carrière]. Votre engagement envers [mentionner une valeur de l'entreprise ou une actualité] a particulièrement retenu mon attention.
+Je suis particulièrement intéressé(e) par votre entreprise [Nom de l''entreprise] et le poste de [Intitulé du poste] que vous proposez, comme j''ai pu le découvrir sur [Source de l''annonce, ex: LinkedIn, votre site carrière]. Votre engagement envers [mentionner une valeur de l''entreprise ou une actualité] a particulièrement retenu mon attention.
 
 [Deuxième paragraphe : Le "Moi"]
-Mon parcours en [Votre formation, ex: Master 2 Marketing] à [Nom de l'université] m'a permis de développer [Compétence 1] et [Compétence 2]. Lors de mon stage chez [Nom de l'entreprise de stage], j'ai [décrire une réalisation concrète], ce qui correspond aux compétences que vous recherchez. Ma capacité à [mentionner une soft skill, ex: m'adapter à de nouveaux environnements] est un atout pour votre équipe.
+Mon parcours en [Votre formation, ex: Master 2 Marketing] à [Nom de l''université] m''a permis de développer [Compétence 1] et [Compétence 2]. Lors de mon stage chez [Nom de l''entreprise de stage], j''ai [décrire une réalisation concrète], ce qui correspond aux compétences que vous recherchez. Ma capacité à [mentionner une soft skill, ex: m''adapter à de nouveaux environnements] est un atout pour votre équipe.
 
 [Troisième paragraphe : Le "Nous"]
-Je suis convaincu(e) que mes compétences et ma motivation me permettront de contribuer activement au développement de [Nom de l'entreprise] et d'apporter une valeur ajoutée à votre équipe. Je serais ravi(e) de mettre mes qualités au service de vos projets.
+Je suis convaincu(e) que mes compétences et ma motivation me permettront de contribuer activement au développement de [Nom de l''entreprise] et d''apporter une valeur ajoutée à votre équipe. Je serais ravi(e) de mettre mes qualités au service de vos projets.
 
-Dans l'attente de votre réponse, je me tiens à votre entière disposition pour un entretien.
-Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+Dans l''attente de votre réponse, je me tiens à votre entière disposition pour un entretien.
+Je vous prie d''agréer, Madame, Monsieur, l''expression de mes salutations distinguées.
 
 
 
@@ -761,8 +761,8 @@ L''utilisation des formules de politesse correctes est indispensable dans une le
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '930acae5-8cee-4db6-b2b1-b836acce6baf',
+  '1abcf97b-802e-46e1-83ff-bc4e87c068ab',
   'Erreurs classiques à éviter',
   '# Erreurs classiques à éviter (Lettre de Motivation)
 
@@ -838,7 +838,7 @@ De nombreuses erreurs peuvent desservir votre lettre de motivation en France : u
 -- COURS 60 : Législation travail étudiant
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '2f99ccee-18a9-4794-9af3-54e6bf1ec4cb',
+  '0abba102-8a51-4bc6-9270-1188bbae37c3',
   'Législation travail étudiant en France : Droits et limites',
   'legislation-travail-etudiant-france-droits-limites',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent travailler pendant leurs études. La législation française encadre strictement le travail étudiant, avec des limites d''heures spécifiques pour les étudiants non-européens et des obligations de déclaration. Ne pas connaître ces règles, c''est risquer des problèmes avec votre titre de séjour, des amendes, ou même de travailler illégalement. Nous vous expliquerons la limite des 964 heures par an (60% d''un temps plein), la nécessité de déclarer ses heures si vous êtes hors UE, et le montant du SMIC horaire. Maîtriser cette législation est absolument crucial pour travailler en toute légalité, protéger vos droits de salarié, et ne pas compromettre votre statut étudiant en France.',
@@ -849,7 +849,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la limite légale des 964 heures de travail par an pour étudiants non-européens", "Savoir comment déclarer ses heures de travail si l''on est hors UE", "Identifier le montant du SMIC horaire en France et ses implications", "Maîtriser les conseils pour travailler légalement et protéger son statut étudiant"]'::jsonb,
+  E'["Comprendre la limite légale des 964 heures de travail par an pour étudiants non-européens", "Savoir comment déclarer ses heures de travail si l''on est hors UE", "Identifier le montant du SMIC horaire en France et ses implications", "Maîtriser les conseils pour travailler légalement et protéger son statut étudiant"]'::jsonb,
   '["Être titulaire d''un titre de séjour étudiant valide en France"]'::jsonb,
   TRUE,
   4.8,
@@ -860,8 +860,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 60
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'f36e8a49-932b-4146-95b9-d4a9f861acd8',
+  '0abba102-8a51-4bc6-9270-1188bbae37c3',
   'La limite des 964 heures par an (60%)',
   '# La limite des 964 heures par an (60%) pour les étudiants étrangers
 
@@ -936,8 +936,8 @@ La limite des 964 heures de travail par an (60% d''un temps plein) est une règl
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'efe92b72-3a13-4cf5-a3da-7d76fd003d47',
+  '0abba102-8a51-4bc6-9270-1188bbae37c3',
   'Déclarer ses heures si on est hors UE',
   '# Déclarer ses heures si on est hors UE
 
@@ -1029,8 +1029,8 @@ Si vous êtes étudiant(e) international(e) hors UE, votre VLS-TS ou titre de s�
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'e0db2fad-aa03-4bbd-a362-fba4c08288d5',
+  '0abba102-8a51-4bc6-9270-1188bbae37c3',
   'Le SMIC horaire : Combien allez-vous gagner ?',
   '# Le SMIC horaire : Combien allez-vous gagner ?
 
@@ -1108,7 +1108,7 @@ Si vous envisagez de travailler en France pendant vos études, il est absolument
 -- COURS 61 : Trouver un Job Étudiant
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '04abbad0-737f-4f7b-86c6-b4a2875ff695',
+  '9e3f6945-1b66-46c1-ab03-0c129cc45886',
   'Trouver un Job Étudiant en France : Secteurs, sites et contrats',
   'trouver-job-etudiant-france-secteurs-sites-contrats',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui recherchent un job étudiant pour compléter leur budget. Le marché de l''emploi étudiant est dynamique, mais il est crucial de savoir où chercher, quels secteurs recrutent le plus, et quels types de contrats sont adaptés à votre statut. Ne pas avoir les bonnes informations, c''est risquer de perdre du temps avec des candidatures inadaptées ou de ne pas trouver d''emploi du tout. Nous vous expliquerons comment utiliser Jobaviz et d''autres sites spécialisés, identifier les secteurs qui recrutent (restauration, garde d''enfants), et comprendre les spécificités du contrat de travail étudiant. Maîtriser cette recherche est absolument crucial pour trouver un emploi légal, protéger vos droits, et concilier efficacement études et travail.',
@@ -1119,8 +1119,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Utiliser les plateformes dédiées à l''emploi étudiant (Jobaviz)", "Identifier les secteurs qui recrutent le plus d''étudiants", "Comprendre les spécificités du contrat de travail étudiant", "Maîtriser les conseils pour optimiser sa recherche de job et concilier études/travail"]'::jsonb,
-  '["Être titulaire d''un titre de séjour étudiant valide en France", "Avoir un CV et une lettre de motivation aux normes françaises"]'::jsonb,
+  E'["Utiliser les plateformes dédiées à l''emploi étudiant (Jobaviz)", "Identifier les secteurs qui recrutent le plus d''étudiants", "Comprendre les spécificités du contrat de travail étudiant", "Maîtriser les conseils pour optimiser sa recherche de job et concilier études/travail"]'::jsonb,
+  E'["Être titulaire d''un titre de séjour étudiant valide en France", "Avoir un CV et une lettre de motivation aux normes françaises"]'::jsonb,
   TRUE,
   4.8,
   650,
@@ -1130,8 +1130,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 61
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '58eb2716-e393-4dd1-9689-6b66a98cd22b',
+  '9e3f6945-1b66-46c1-ab03-0c129cc45886',
   'Jobaviz et sites spécialisés',
   '# Jobaviz et sites spécialisés pour trouver un Job Étudiant
 
@@ -1205,8 +1205,8 @@ Pour trouver un job étudiant en France, utilisez des plateformes spécialisées
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '056b18d1-063c-478b-a2d9-dd176df76d88',
+  '9e3f6945-1b66-46c1-ab03-0c129cc45886',
   'Les secteurs qui recrutent (Restauration, Garde)',
   '# Les secteurs qui recrutent (Restauration, Garde d''enfants) pour les étudiants
 
@@ -1290,8 +1290,8 @@ Pour trouver un job étudiant en France, ciblez les secteurs qui recrutent (rest
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '5c766ae9-d17c-4a9f-ac17-9ea6fb3f652f',
+  '9e3f6945-1b66-46c1-ab03-0c129cc45886',
   'Le contrat de travail étudiant',
   '# Le contrat de travail étudiant
 

@@ -10,7 +10,7 @@
 -- COURS 2 : La procédure "Études en France"
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e2d1c0b9-a8f7-4654-b3c2-d1e0f9a8b7c6',
+  '94cbedf8-047b-44bf-af78-c33fedc98ee4',
   'La procédure "Études en France" : Votre guide Campus France',
   'procedure-etudes-en-france-campus-france',
   'Ce cours est un guide exhaustif pour les étudiants internationaux qui doivent passer par la procédure "Études en France" de Campus France. Nous vous accompagnerons pas à pas, de la création de votre compte à la préparation de l''entretien pédagogique, en passant par la sélection de vos formations et la soumission de votre dossier. Comprendre cette plateforme et ses exigences est vital, car elle est le point de passage obligé pour l''obtention de votre visa étudiant dans de nombreux pays. Maîtrisez chaque étape pour maximiser vos chances de succès et réaliser votre rêve d''étudier en France.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1523050854805-4c6e94e50871?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHVuaXZlcnNpdHl8ZW58MHx8MHx8fDA%3D',
-  '["Maîtriser la création et la gestion de son compte Campus France", "Savoir constituer un panier de formations pertinent", "Préparer un dossier de candidature complet et attrayant", "Réussir l''entretien pédagogique Campus France"]'::jsonb,
+  E'["Maîtriser la création et la gestion de son compte Campus France", "Savoir constituer un panier de formations pertinent", "Préparer un dossier de candidature complet et attrayant", "Réussir l''entretien pédagogique Campus France"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 2
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1d2c3-b4a5-4789-a0b1-c2d3e4f5a6b7',
-  'e2d1c0b9-a8f7-4654-b3c2-d1e0f9a8b7c6',
+  '56466e5b-d5cc-45f1-8ad2-634b2d691610',
+  '94cbedf8-047b-44bf-af78-c33fedc98ee4',
   'Créer son compte Campus France',
   '# Créer son compte Campus France
 
@@ -107,8 +107,8 @@ La création de votre compte Campus France est une étape primordiale et obligat
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '0e1d2c3b-4a5f-4890-a1b2-c3d4e5f6a7b8',
-  'e2d1c0b9-a8f7-4654-b3c2-d1e0f9a8b7c6',
+  'ed86f62b-dfcb-428b-a49b-8857df5269ce',
+  '94cbedf8-047b-44bf-af78-c33fedc98ee4',
   'Remplir son panier de formations',
   '# Remplir son panier de formations
 
@@ -175,8 +175,8 @@ La constitution de votre panier de formations sur Campus France est une étape s
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '1f2e3d4c-5b6a-4901-b2c3-d4e5f6a7b8c9',
-  'e2d1c0b9-a8f7-4654-b3c2-d1e0f9a8b7c6',
+  'b38b7a1a-60c8-4e84-9e56-0845af71060d',
+  '94cbedf8-047b-44bf-af78-c33fedc98ee4',
   'Soumettre le dossier de candidature',
   '# Soumettre le dossier de candidature
 
@@ -240,8 +240,8 @@ La soumission de votre dossier de candidature sur Campus France est une étape d
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '2a3b4c5d-6e7f-4890-c1d2-e3f4a5b6c7d8',
-  'e2d1c0b9-a8f7-4654-b3c2-d1e0f9a8b7c6',
+  'c1cb5a98-7098-42c8-acca-7becb73f143b',
+  '94cbedf8-047b-44bf-af78-c33fedc98ee4',
   'Préparer l''entretien pédagogique',
   '# Préparer l''entretien pédagogique
 
@@ -315,8 +315,8 @@ L''entretien pédagogique est une étape cruciale qui met en lumière votre moti
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '3b4c5d6e-7f8a-4901-d2e3-f4a5b6c7d8e9',
-  'e2d1c0b9-a8f7-4654-b3c2-d1e0f9a8b7c6',
+  '0144818a-f483-4258-8d4d-a58246bdc1cf',
+  '94cbedf8-047b-44bf-af78-c33fedc98ee4',
   'Payer les frais de dossier',
   '# Payer les frais de dossier Campus France
 
@@ -383,7 +383,7 @@ Le paiement des frais de dossier Campus France est une étape administrative cru
 -- COURS 3 : Valider son visa VLS-TS à l'arrivée
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'f0e1d2c3-b4a5-4789-b0c1-d2e3f4a5b6c7',
+  '72226904-e990-48fb-bc94-7177a565df6d',
   'Valider son visa VLS-TS à l''arrivée en France : Guide ANEF',
   'valider-visa-vls-ts-anef',
   'Ce cours est un guide essentiel pour tous les étudiants et professionnels arrivant en France avec un Visa Long Séjour valant Titre de Séjour (VLS-TS). La validation de ce visa en ligne sur la plateforme de l''ANEF est une démarche obligatoire et urgente (à faire dans les 3 mois suivant votre arrivée) pour légaliser votre séjour. Nous vous détaillerons chaque étape : de la création de votre compte ANEF à l''obtention de l''attestation de validation, en passant par l''achat du timbre fiscal. Maîtrisez cette procédure pour éviter les complications et profiter pleinement de votre installation en France.',
@@ -394,7 +394,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1543699564-88404f2f4c39?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG9mZmNpYWwlMjBwYXBlcnN8ZW58MHx8MHx8fDA%3D',
-  '["Comprendre l''urgence de la validation du VLS-TS", "Maîtriser la création de compte sur la plateforme ANEF", "Savoir acheter et utiliser le timbre fiscal électronique", "Obtenir l''attestation de validation de votre visa"]'::jsonb,
+  E'["Comprendre l''urgence de la validation du VLS-TS", "Maîtriser la création de compte sur la plateforme ANEF", "Savoir acheter et utiliser le timbre fiscal électronique", "Obtenir l''attestation de validation de votre visa"]'::jsonb,
   '["Avoir un VLS-TS (Visa Long Séjour valant Titre de Séjour) valide"]'::jsonb,
   TRUE,
   4.8,
@@ -405,8 +405,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 3
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '4a5b6c7d-8e9f-4012-a3b4-c5d6e7f8a9b0',
-  'f0e1d2c3-b4a5-4789-b0c1-d2e3f4a5b6c7',
+  '8039924f-0020-498e-9df0-76f901643313',
+  '72226904-e990-48fb-bc94-7177a565df6d',
   'Pourquoi la validation est urgente (3 mois)',
   '# Pourquoi la validation est urgente (3 mois)
 
@@ -478,8 +478,8 @@ La validation de votre VLS-TS en ligne dans les 3 mois suivant votre arrivée en
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '5b6c7d8e-9f0a-4012-b3c4-d5e6f7a8b9c0',
-  'f0e1d2c3-b4a5-4789-b0c1-d2e3f4a5b6c7',
+  'a7113af6-9fc5-4da7-a628-001c1ee06c38',
+  '72226904-e990-48fb-bc94-7177a565df6d',
   'Le site ANEF : Création de compte',
   '# Le site ANEF : Création de compte
 
@@ -547,8 +547,8 @@ La création de votre compte sur le site ANEF est l''étape préalable indispens
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '6c7d8e9f-0a1b-4234-c5d6-e7f8a9b0c1d2',
-  'f0e1d2c3-b4a5-4789-b0c1-d2e3f4a5b6c7',
+  '07747ee9-be05-46af-977a-6c0c6e314bf7',
+  '72226904-e990-48fb-bc94-7177a565df6d',
   'Acheter le timbre fiscal en ligne',
   '# Acheter le timbre fiscal en ligne
 
@@ -618,8 +618,8 @@ L''achat du timbre fiscal électronique est une étape indispensable et payante 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '7d8e9f0a-1b2c-4345-d6e7-f8a9b0c1d2e3',
-  'f0e1d2c3-b4a5-4789-b0c1-d2e3f4a5b6c7',
+  '4c3231be-122f-4e2f-bbc5-fc754174c04c',
+  '72226904-e990-48fb-bc94-7177a565df6d',
   'Télécharger l''attestation de validation',
   '# Télécharger l''attestation de validation
 
@@ -687,8 +687,8 @@ L''attestation de validation est la preuve de la légalité de votre séjour en 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '8e9f0a1b-2c3d-4456-e7f8-a9b0c1d2e3f4',
-  'f0e1d2c3-b4a5-4789-b0c1-d2e3f4a5b6c7',
+  '4047b030-e9b2-45ac-8cec-e8b72ccb66c9',
+  '72226904-e990-48fb-bc94-7177a565df6d',
   'Que faire en cas de bug technique ?',
   '# Que faire en cas de bug technique ?
 
@@ -771,7 +771,7 @@ Les bugs techniques sur la plateforme ANEF peuvent être frustrants, mais ils ne
 -- COURS 4 : La visite médicale OFII
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '9f0e1d2c-3b4a-4567-c8d9-e0f1a2b3c4d5',
+  'e8f5a23a-2d84-45ee-985a-222616582bd1',
   'La visite médicale OFII : Ce qu''il faut savoir',
   'visite-medicale-ofii',
   'Ce cours vous guidera à travers la procédure de la visite médicale auprès de l''OFII (Office Français de l''Immigration et de l''Intégration), une étape obligatoire pour certains titulaires de VLS-TS. Nous aborderons qui est concerné, comment et quand recevoir votre convocation, les examens à prévoir le jour J, les documents à apporter, et l''importance de l''attestation médicale délivrée. Cette visite est cruciale pour la validation définitive de votre séjour. Une bonne préparation est indispensable pour éviter tout stress inutile et assurer la conformité de votre dossier.',
@@ -782,7 +782,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1576091160550-2173167b2d56?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1lZGljYWwlMjBjaGVja3VwfGVufDB8fDB8fHww',
-  '["Identifier si vous êtes concerné(e) par la visite médicale OFII", "Comprendre le processus de convocation et ses délais", "Préparer les documents et examens pour la visite", "Savoir l''importance de l''attestation médicale finale"]'::jsonb,
+  E'["Identifier si vous êtes concerné(e) par la visite médicale OFII", "Comprendre le processus de convocation et ses délais", "Préparer les documents et examens pour la visite", "Savoir l''importance de l''attestation médicale finale"]'::jsonb,
   '["Avoir validé ou être en cours de validation de votre VLS-TS"]'::jsonb,
   TRUE,
   4.8,
@@ -793,8 +793,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 4
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '0a1b2c3d-4e5f-4678-d9e0-f1a2b3c4d5e6',
-  '9f0e1d2c-3b4a-4567-c8d9-e0f1a2b3c4d5',
+  '1a69ca0a-5280-4322-9b8a-a5167f46dd90',
+  'e8f5a23a-2d84-45ee-985a-222616582bd1',
   'Qui est concerné par la visite médicale OFII ?',
   '# Qui est concerné par la visite médicale OFII ?
 
@@ -871,8 +871,8 @@ La visite médicale OFII est une étape administrative obligatoire pour certains
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '1b2c3d4e-5f6a-4678-e9f0-a1b2c3d4e5f6',
-  '9f0e1d2c-3b4a-4567-c8d9-e0f1a2b3c4d5',
+  'e11ee1e7-e679-4e53-aa52-0a8e75edbcda',
+  'e8f5a23a-2d84-45ee-985a-222616582bd1',
   'La convocation : Délais et réception',
   '# La convocation : Délais et réception
 
@@ -948,8 +948,8 @@ La réception de la convocation OFII est une étape clé pour les personnes soum
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '2c3d4e5f-6a7b-4678-f90a-1b2c3d4e5f6a',
-  '9f0e1d2c-3b4a-4567-c8d9-e0f1a2b3c4d5',
+  'b77de8ec-dc95-4068-9360-7a369bad6f19',
+  'e8f5a23a-2d84-45ee-985a-222616582bd1',
   'Le jour J : Examens et documents à apporter',
   '# Le jour J : Examens et documents à apporter
 
@@ -1026,8 +1026,8 @@ Le jour de votre visite médicale OFII, la clé est une préparation minutieuse.
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '3d4e5f6a-7b8c-4678-f90a-1b2c3d4e5f6a',
-  '9f0e1d2c-3b4a-4567-c8d9-e0f1a2b3c4d5',
+  'b93cf51a-fa72-4909-a087-efeaa09463fb',
+  'e8f5a23a-2d84-45ee-985a-222616582bd1',
   'L''attestation médicale : À conserver précieusement',
   '# L''attestation médicale : À conserver précieusement
 
@@ -1105,7 +1105,7 @@ L''attestation médicale de l''OFII est le document qui finalise votre obligatio
 -- COURS 5 : Renouvellement de titre de séjour
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'a3b4c5d6-e7f8-4901-b2c3-d4e5f6a7b8c9',
+  '041a2254-13a1-4a86-8eb9-9f072795c9e6',
   'Renouvellement de titre de séjour : Guide complet',
   'renouvellement-titre-sejour-guide-complet',
   'Ce cours est un guide indispensable pour les étudiants internationaux et autres résidents temporaires en France devant renouveler leur titre de séjour. La procédure de renouvellement est aussi cruciale que la première demande et doit être anticipée pour éviter les interruptions de droits. Nous vous détaillerons le calendrier, les démarches pour prendre rendez-vous en préfecture, les preuves de "sérieux des études" ou d''activité professionnelle à fournir, le rôle et les droits conférés par le récépissé, et les étapes pour récupérer votre nouveau titre. Une préparation minutieuse est la clé d''un renouvellement réussi et d''un séjour ininterrompu en France.',
@@ -1116,8 +1116,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   6,
   0,
   'https://images.unsplash.com/photo-1554902409-9b9a6b1e6e9b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBhcGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D',
-  '["Comprendre les délais impératifs pour le renouvellement", "Savoir prendre rendez-vous en préfecture (ou en ligne)", "Rassembler toutes les preuves requises pour votre dossier", "Comprendre les droits offerts par le récépissé et récupérer son nouveau titre"]'::jsonb,
-  '["Avoir un titre de séjour temporaire en France", "Avoir validé votre VLS-TS"]'::jsonb,
+  E'["Comprendre les délais impératifs pour le renouvellement", "Savoir prendre rendez-vous en préfecture (ou en ligne)", "Rassembler toutes les preuves requises pour votre dossier", "Comprendre les droits offerts par le récépissé et récupérer son nouveau titre"]'::jsonb,
+  E'["Avoir un titre de séjour temporaire en France", "Avoir validé votre VLS-TS"]'::jsonb,
   TRUE,
   4.8,
   550,
@@ -1127,8 +1127,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 5
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '4e5f6a7b-8c9d-4012-e3f4-a5b6c7d8e9f0',
-  'a3b4c5d6-e7f8-4901-b2c3-d4e5f6a7b8c9',
+  'cd496113-8fa8-42c7-9a48-009a64c90cb0',
+  '041a2254-13a1-4a86-8eb9-9f072795c9e6',
   'Quand s''y prendre (La règle des 2 mois)',
   '# Quand s''y prendre (La règle des 2 mois)
 
@@ -1198,8 +1198,8 @@ Anticiper la demande de renouvellement de votre titre de séjour est fondamental
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '5f6a7b8c-9d0e-4012-f3a4-b5c6d7e8f9a0',
-  'a3b4c5d6-e7f8-4901-b2c3-d4e5f6a7b8c9',
+  '33298054-90ae-4a07-9e0e-66ae1e5995eb',
+  '041a2254-13a1-4a86-8eb9-9f072795c9e6',
   'Prendre rendez-vous en préfecture (ou en ligne)',
   '# Prendre rendez-vous en préfecture (ou en ligne)
 
@@ -1269,8 +1269,8 @@ La prise de rendez-vous en préfecture ou le dépôt de dossier en ligne via l''
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '49106d5f-c19a-43e1-8ac3-8c379ec16c0c',
-  'a3b4c5d6-e7f8-4901-b2c3-d4e5f6a7b8c9',
+  '922c5c4e-3611-4f8c-8d9b-c50a1af097cd',
+  '041a2254-13a1-4a86-8eb9-9f072795c9e6',
   'Rassemblez les preuves de "sérieux des études"',
   '# Rassemblez les preuves de "sérieux des études"
 
@@ -1342,8 +1342,8 @@ Prouver le "sérieux de vos études" est une condition sine qua non pour le reno
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '837f1cdd-6aef-42f8-affc-a3213145e89a',
-  'a3b4c5d6-e7f8-4901-b2c3-d4e5f6a7b8c9',
+  '63e47766-679e-41d5-8b21-8d94652d9a7a',
+  '041a2254-13a1-4a86-8eb9-9f072795c9e6',
   'Le récépissé : Vos droits en attendant',
   '# Le récépissé : Vos droits en attendant
 
@@ -1408,8 +1408,8 @@ Le récépissé est un document provisoire essentiel qui atteste de la régulari
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'e54a4b1c-542f-4487-9cf2-efc721c18617',
-  'a3b4c5d6-e7f8-4901-b2c3-d4e5f6a7b8c9',
+  'c57cd4d3-cad3-46d8-81d7-ca033834dc0d',
+  '041a2254-13a1-4a86-8eb9-9f072795c9e6',
   'Retirer son nouveau titre de séjour',
   '# Retirer son nouveau titre de séjour
 
@@ -1481,7 +1481,7 @@ Le retrait de votre nouveau titre de séjour est l''étape finale de votre renou
 -- COURS 6 : Dossier Préfecture : La liste ultime
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'b2c3d4e5-f6a7-4901-c8d9-e0f1a2b3c4d5',
+  'a232455e-a243-4337-8d32-854a89bd4633',
   'Dossier Préfecture : La liste ultime des documents à fournir',
   'dossier-prefecture-liste-ultime-documents',
   'Ce cours compile la liste exhaustive et cruciale des documents à préparer pour toutes vos démarches en préfecture, que ce soit pour une première demande de titre de séjour, un renouvellement ou un changement de statut. Un dossier incomplet est la cause numéro un des retards et des refus. Nous détaillerons les justificatifs de domicile acceptés, les preuves de ressources (le fameux seuil des 615€/mois), les normes spécifiques pour les photos d''identité, et l''organisation optimale de votre classeur physique et numérique. Maîtriser cette préparation est essentiel pour garantir la réussite de votre dossier administratif.',
@@ -1492,7 +1492,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   5,
   0,
   'https://images.unsplash.com/photo-1518655282711-d9774656ee43?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGFkbWluaXN0cmF0aW9uJTIwcGFwZXJzJTIwfGVufDB8fDB8fHww',
-  '["Connaître la liste exhaustive des documents pour la préfecture", "Identifier les justificatifs de domicile valides", "Comprendre les exigences en matière de ressources financières", "Préparer des photos d''identité aux normes et organiser son dossier"]'::jsonb,
+  E'["Connaître la liste exhaustive des documents pour la préfecture", "Identifier les justificatifs de domicile valides", "Comprendre les exigences en matière de ressources financières", "Préparer des photos d''identité aux normes et organiser son dossier"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -1503,8 +1503,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 6
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '6eae16cc-8db7-434d-a413-da6abbe3221c',
-  'b2c3d4e5-f6a7-4901-c8d9-e0f1a2b3c4d5',
+  '9e03c14f-1c45-46de-bf4c-cf6bdada1d92',
+  'a232455e-a243-4337-8d32-854a89bd4633',
   'Justificatifs de domicile : Lesquels sont acceptés ?',
   '# Justificatifs de domicile : Lesquels sont acceptés ?
 
@@ -1576,8 +1576,8 @@ Le justificatif de domicile est une pièce indispensable pour votre dossier de p
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '814ef499-e34f-42e0-b954-ceaa537c74a6',
-  'b2c3d4e5-f6a7-4901-c8d9-e0f1a2b3c4d5',
+  '49822d45-ae91-4de6-9bda-e188252bbf5f',
+  'a232455e-a243-4337-8d32-854a89bd4633',
   'Justificatifs de ressources (615€/mois)',
   '# Justificatifs de ressources (615€/mois)
 
@@ -1637,8 +1637,8 @@ La preuve de ressources suffisantes (environ 615€/mois) est un pilier de votre
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  '7d6e5f4c-c2f0-475e-8f71-77f34187c21c',
-  'b2c3d4e5-f6a7-4901-c8d9-e0f1a2b3c4d5',
+  '546c3b79-e2d7-4333-975d-7de3280bfc46',
+  'a232455e-a243-4337-8d32-854a89bd4633',
   'Photos d''identité aux normes e-photo',
   '# Photos d''identité aux normes e-photo
 
@@ -1708,8 +1708,8 @@ Des photos d''identité conformes aux normes sont un élément non négociable d
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'b8d5d13f-e33b-42e3-9e9f-e3c59c3f9351',
-  'b2c3d4e5-f6a7-4901-c8d9-e0f1a2b3c4d5',
+  '0058c21c-f29d-489d-b1f1-59195a23506a',
+  'a232455e-a243-4337-8d32-854a89bd4633',
   'Organiser son classeur physique et numérique',
   '# Organiser son classeur physique et numérique
 

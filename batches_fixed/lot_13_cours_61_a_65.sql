@@ -10,7 +10,7 @@
 -- COURS 62 : Alternance et Apprentissage
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '4ccd0266-f9d3-4e48-9058-248a276668c3',
+  'bc7fec75-9674-4175-bc63-425c82ff92d4',
   'Alternance et Apprentissage en France : La voie de l''insertion pro',
   'alternance-apprentissage-france-voie-insertion-pro',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui envisagent une formation en alternance ou un contrat d''apprentissage. Ces dispositifs sont des voies privilégiées pour l''insertion professionnelle, combinant études et expérience en entreprise. Nous vous expliquerons la différence cruciale entre un contrat d''apprentissage et un contrat de professionnalisation, les avantages majeurs de l''alternance (salaire, formation payée), et les défis pour trouver une entreprise. Maîtriser ces informations est absolument crucial pour comprendre ce mode de formation, évaluer si l''alternance est faite pour vous, et maximiser vos chances de trouver un contrat pour votre avenir professionnel en France.',
@@ -21,8 +21,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la distinction entre contrat d''apprentissage et de professionnalisation", "Identifier les avantages majeurs de l''alternance (rémunération, gratuité de la formation)", "Savoir où chercher et comment trouver une entreprise d''accueil", "Maîtriser les conseils pour optimiser sa candidature en alternance"]'::jsonb,
-  '["Avoir un titre de séjour étudiant valide en France", "Avoir un niveau de français suffisant pour l''entreprise et la formation"]'::jsonb,
+  E'["Comprendre la distinction entre contrat d''apprentissage et de professionnalisation", "Identifier les avantages majeurs de l''alternance (rémunération, gratuité de la formation)", "Savoir où chercher et comment trouver une entreprise d''accueil", "Maîtriser les conseils pour optimiser sa candidature en alternance"]'::jsonb,
+  E'["Avoir un titre de séjour étudiant valide en France", "Avoir un niveau de français suffisant pour l''entreprise et la formation"]'::jsonb,
   TRUE,
   4.8,
   500,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 62
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '50db4017-3832-430f-9aba-aeb0314a5cd2',
+  'bc7fec75-9674-4175-bc63-425c82ff92d4',
   'Différence Apprentissage vs Professionnalisation',
   '# Différence Apprentissage vs Professionnalisation (Alternance)
 
@@ -128,12 +128,12 @@ Le contrat d''apprentissage et le contrat de professionnalisation sont les deux 
   1,
   60,
   NULL,
-  '[]'::sql
+  '[]'::jsonb);
 -- LEÇONS pour COURS 62 (suite)
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '9df8b5a6-d6c5-495f-9242-8d52b728fd11',
+  'bc7fec75-9674-4175-bc63-425c82ff92d4',
   'Avantages : Salaire + École payée',
   '# Avantages : Salaire + École payée (Alternance)
 
@@ -209,8 +209,8 @@ L''alternance offre des avantages financiers considérables : vous êtes rémun�
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '695717f8-9eb3-415b-ac4d-d0d141c873d0',
+  'bc7fec75-9674-4175-bc63-425c82ff92d4',
   'Trouver une entreprise : Le défi',
   '# Trouver une entreprise : Le défi de l''alternance
 
@@ -313,7 +313,7 @@ Trouver une entreprise d''accueil est le principal défi de l''alternance en Fra
 -- COURS 63 : Les stages en France
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '536d583b-52d1-4925-9f3c-c3368b5b10ee',
+  'fa91fbb6-b2ec-453c-bf54-923a390676a3',
   'Les stages en France : Convention obligatoire et gratification',
   'stages-france-convention-obligatoire-gratification',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui envisagent d''effectuer un stage. Le stage est une étape cruciale pour acquérir une première expérience professionnelle et faciliter l''insertion, mais il est strictement encadré par la loi (loi de 2014 et de 2021). Ne pas connaître les règles de la "convention de stage obligatoire", les conditions de "gratification minimale" (si le stage dure plus de 2 mois), et la distinction entre stage et job étudiant (pour éviter l''exploitation), c''est risquer de travailler illégalement ou de ne pas être payé(e) correctement. Maîtriser cette législation est absolument crucial pour faire un stage en toute légalité, protéger vos droits, et valoriser cette expérience.',
@@ -324,8 +324,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la nécessité et le contenu de la convention de stage obligatoire", "Identifier les conditions de gratification minimale pour les stages de plus de 2 mois", "Distinguer clairement un stage d''un job étudiant pour éviter l''exploitation", "Maîtriser les conseils pour trouver un stage de qualité et protéger ses droits"]'::jsonb,
-  '["Être inscrit(e) dans un établissement d''enseignement supérieur français"]':: κάποιο 
+  E'["Comprendre la nécessité et le contenu de la convention de stage obligatoire", "Identifier les conditions de gratification minimale pour les stages de plus de 2 mois", "Distinguer clairement un stage d''un job étudiant pour éviter l''exploitation", "Maîtriser les conseils pour trouver un stage de qualité et protéger ses droits"]'::jsonb,
+  '["Être inscrit(e) dans un établissement d''enseignement supérieur français"]'::jsonb,
   TRUE,
   4.8,
   600,
@@ -335,8 +335,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 63
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '8adf9f92-e5ea-4dce-85f9-72d4a8c2592f',
+  'fa91fbb6-b2ec-453c-bf54-923a390676a3',
   'La convention de stage obligatoire',
   '# La convention de stage obligatoire
 
@@ -418,8 +418,8 @@ La convention de stage est un document tripartite obligatoire qui encadre tout s
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '2947d7cc-f98b-4f5f-bf3a-c074825e5cc9',
+  'fa91fbb6-b2ec-453c-bf54-923a390676a3',
   'Gratification minimale (>2 mois)',
   '# Gratification minimale (>2 mois) pour les stages
 
@@ -498,8 +498,8 @@ La gratification minimale est obligatoire pour tout stage de plus de 2 mois en F
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'bfcf2852-058c-499c-8f4e-aa3080535b95',
+  'fa91fbb6-b2ec-453c-bf54-923a390676a3',
   'Stage vs Job : Ne pas se faire exploiter',
   '# Stage vs Job : Ne pas se faire exploiter
 
@@ -596,7 +596,7 @@ La distinction entre un stage (période de formation pédagogique avec conventio
 -- COURS 64 : Statut Auto-entrepreneur
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '05da0c51-d1af-414c-964c-2f192e22095c',
+  '020ac143-527e-4213-a275-9cbf1baa6d22',
   'Statut Auto-entrepreneur en France : Créer son activité étudiante',
   'statut-auto-entrepreneur-france-creer-activite-etudiante',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui envisagent de créer leur propre activité indépendante sous le régime de la micro-entreprise (anciennement auto-entrepreneur). Cette option offre flexibilité et simplicité administrative, mais elle est soumise à des conditions spécifiques, notamment la compatibilité avec votre visa étudiant. Nous vous expliquerons si le statut est cumulable avec votre titre de séjour, la procédure de création sur le site de l''URSSAF, et les obligations de déclaration de chiffre d''affaires mensuelle ou trimestrielle. Maîtriser le statut d''auto-entrepreneur est absolument crucial pour lancer votre activité en toute légalité, comprendre vos obligations fiscales et sociales, et financer vos études de manière autonome.',
@@ -607,8 +607,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la compatibilité du statut auto-entrepreneur avec le visa étudiant", "Savoir comment créer son statut sur le site de l''URSSAF", "Maîtriser les obligations de déclaration de chiffre d''affaires (mensuelle/trimestrielle)", "Identifier les avantages et inconvénients de l''auto-entreprise pour les étudiants internationaux"]'::jsonb,
-  '["Être titulaire d''un titre de séjour étudiant valide en France", "Avoir une idée d''activité indépendante"]'::jsonb,
+  E'["Comprendre la compatibilité du statut auto-entrepreneur avec le visa étudiant", "Savoir comment créer son statut sur le site de l''URSSAF", "Maîtriser les obligations de déclaration de chiffre d''affaires (mensuelle/trimestrielle)", "Identifier les avantages et inconvénients de l''auto-entreprise pour les étudiants internationaux"]'::jsonb,
+  E'["Être titulaire d''un titre de séjour étudiant valide en France", "Avoir une idée d''activité indépendante"]'::jsonb,
   TRUE,
   4.8,
   350,
@@ -618,8 +618,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 64
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'e9f0d38b-cc53-4ffe-b4fe-6c3408062595',
+  '020ac143-527e-4213-a275-9cbf1baa6d22',
   'Cumulable avec visa étudiant ?',
   '# Statut Auto-entrepreneur : Cumulable avec visa étudiant ?
 
@@ -710,8 +710,8 @@ Le statut d''auto-entrepreneur est cumulable avec votre visa étudiant en France
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'c9b55fab-6c6f-4663-8ca2-e3989ef45af8',
+  '020ac143-527e-4213-a275-9cbf1baa6d22',
   'Création du statut sur l''URSSAF',
   '# Création du statut Auto-entrepreneur sur l''URSSAF
 
@@ -796,10 +796,10 @@ La création du statut d''auto-entrepreneur se fait en ligne via le guichet uniq
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'e8380b0b-8782-49b3-90ef-06b6ab7e38eb',
+  '020ac143-527e-4213-a275-9cbf1baa6d22',
   'Déclaration de chiffre d''affaires mensuelle',
-  # Déclaration de chiffre d''affaires mensuelle ou trimestrielle (Auto-entrepreneur)
+  '# Déclaration de chiffre d''affaires mensuelle ou trimestrielle (Auto-entrepreneur)
 
 ## Pourquoi c''est important ?
 
@@ -890,7 +890,7 @@ La déclaration de votre chiffre d''affaires (CA) mensuelle ou trimestrielle est
 -- COURS 65 : Networking et LinkedIn
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '18498137-3cce-417c-9e91-5da72e71d0d4',
+  '11b5870d-ecf3-4077-abeb-b471e45e9dbf',
   'Networking et LinkedIn en France : Développez votre réseau pro',
   'networking-linkedin-france-developpez-reseau-pro',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui souhaitent développer leur réseau professionnel et faciliter leur insertion sur le marché de l''emploi. Le "réseau" est une notion très importante en France, et LinkedIn est un outil incontournable pour le développer. Nous vous expliquerons l''importance du networking (rencontres professionnelles), comment optimiser votre profil LinkedIn pour attirer les recruteurs, et les conseils pour participer efficacement à des événements professionnels (salons, conférences). Maîtriser ces stratégies est absolument crucial pour créer des opportunités d''emploi, trouver des stages, et réussir votre carrière en France.',
@@ -901,8 +901,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance du "réseau" et du networking en France", "Savoir comment optimiser son profil LinkedIn pour les recruteurs", "Maîtriser les techniques pour participer efficacement aux événements professionnels", "Identifier les stratégies pour développer son réseau et créer des opportunités"]'::jsonb,
-  '["Avoir un CV aux normes françaises", "Avoir un compte LinkedIn"]'::jsonb,
+  E'["Comprendre l''importance du \\"réseau\\" et du networking en France", "Savoir comment optimiser son profil LinkedIn pour les recruteurs", "Maîtriser les techniques pour participer efficacement aux événements professionnels", "Identifier les stratégies pour développer son réseau et créer des opportunités"]'::jsonb,
+  E'["Avoir un CV aux normes françaises", "Avoir un compte LinkedIn"]'::jsonb,
   TRUE,
   4.8,
   400,
@@ -912,8 +912,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 65
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'cf060460-4bc7-42e8-a6e8-3f1c7b496aae',
+  '11b5870d-ecf3-4077-abeb-b471e45e9dbf',
   'L''importance du "Réseau" en France',
   '# L''importance du "Réseau" en France
 
@@ -1005,9 +1005,10 @@ Le "réseau" est un facteur clé de succès pour la recherche d''emploi en Franc
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '8a308b08-70df-4ffc-a205-2eacbef454d0',
+  '11b5870d-ecf3-4077-abeb-b471e45e9dbf',
   'Optimiser son profil LinkedIn',
+  '# Optimiser son profil LinkedIn
 
 ## Pourquoi c''est important ?
 
@@ -1090,8 +1091,8 @@ LinkedIn est bien plus qu''un simple CV en ligne. C''est un outil de veille, de 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '8e94a55a-17e3-48db-8060-8a61e41fa050',
+  '11b5870d-ecf3-4077-abeb-b471e45e9dbf',
   'Participer à des événements pro',
   '# Participer à des événements pro
 
@@ -1185,7 +1186,7 @@ Participer à des événements professionnels (salons, forums, conférences) est
 -- COURS 66 : Forfaits mobiles
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '1391d6c7-64b4-4093-b9ae-7fbdb0f6a4d0',
+  'cff7624a-2f46-4be1-afbc-8ff9ce7df620',
   'Forfaits mobiles en France : Choisir et gérer sa SIM',
   'forfaits-mobiles-france-choisir-gerer-sim',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui ont besoin de choisir et de gérer leur forfait mobile. Le marché français est riche en offres, avec des opérateurs historiques et des "low cost" sans engagement. Nous vous expliquerons la flexibilité des forfaits sans engagement (Sosh, RED by SFR, Free Mobile), comment conserver votre numéro de téléphone si vous changez d''opérateur (le code RIO), et la solution pratique des cartes SIM prépayées pour une arrivée rapide. Maîtriser ce choix est absolument crucial pour rester connecté(e), communiquer avec vos proches en France et à l''étranger, et optimiser votre budget télécoms sans frais cachés ni engagement contraignant.',
@@ -1196,7 +1197,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la flexibilité des forfaits mobiles sans engagement", "Savoir comment conserver son numéro de téléphone (code RIO)", "Identifier l''utilité et l''accès aux cartes SIM prépayées", "Maîtriser les conseils pour choisir le forfait le plus adapté à ses besoins et budget"]'::jsonb,
+  E'["Comprendre la flexibilité des forfaits mobiles sans engagement", "Savoir comment conserver son numéro de téléphone (code RIO)", "Identifier l''utilité et l''accès aux cartes SIM prépayées", "Maîtriser les conseils pour choisir le forfait le plus adapté à ses besoins et budget"]'::jsonb,
   '["Avoir un smartphone compatible avec les réseaux français"]'::jsonb,
   TRUE,
   4.8,
@@ -1207,8 +1208,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 66
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '1bade325-be37-4583-b4f6-03fd920f578a',
+  'cff7624a-2f46-4be1-afbc-8ff9ce7df620',
   'Forfaits sans engagement (Sosh, RED, Free)',
   '# Forfaits sans engagement (Sosh, RED, Free Mobile)
 
@@ -1295,8 +1296,8 @@ Les forfaits mobiles sans engagement (Sosh, RED by SFR, B&You, Free Mobile) sont
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '72beea53-60e1-4485-a5b0-b604c49a58be',
+  'cff7624a-2f46-4be1-afbc-8ff9ce7df620',
   'Conserver son numéro (RIO)',
   '# Conserver son numéro (code RIO)
 
@@ -1364,9 +1365,10 @@ Le code RIO (Relevé d''Identité Opérateur) est un identifiant unique à 12 ca
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '2ef6670e-9f8b-45a3-9948-01f3a7fc91c1',
+  'cff7624a-2f46-4be1-afbc-8ff9ce7df620',
   'Acheter une carte SIM prépayée',
+  '# Acheter une carte SIM prépayée
 
 ## Pourquoi c''est important ?
 

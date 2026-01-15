@@ -10,7 +10,7 @@
 -- COURS 96 : Alcool et Soirées
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'd9ebf366-c641-4ba9-80f8-5d5f2ed79415',
+  'e195b05b-59f8-444d-baf8-29e6838f2135',
   'Alcool et Soirées en France : Règles de vente et consommation',
   'alcool-soirees-france-regles-vente-consommation',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre la législation concernant l''alcool et les soirées. Les règles de vente et de consommation d''alcool sont strictes, notamment l''interdiction de vente après une certaine heure et les restrictions de consommation sur la voie publique. Ne pas connaître ces règles, c''est risquer des amendes, des problèmes avec la police, ou de se retrouver sans moyen d''acheter de l''alcool. Nous vous expliquerons les horaires de vente, les interdictions de consommation sur la voie publique dans certaines zones, et les conseils pour des soirées responsables. Maîtriser ces informations est absolument crucial pour respecter la loi, éviter les ennuis, et profiter pleinement de la vie étudiante et sociale en France en toute sécurité.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''interdiction de vente d''alcool aux mineurs et les horaires de vente", "Identifier les règles de consommation d''alcool sur la voie publique (zones et restrictions)", "Savoir comment organiser des soirées étudiantes dans le respect de la loi", "Maîtriser les conseils pour une consommation responsable et éviter les problèmes avec la police"]'::jsonb,
+  E'["Comprendre l''interdiction de vente d''alcool aux mineurs et les horaires de vente", "Identifier les règles de consommation d''alcool sur la voie publique (zones et restrictions)", "Savoir comment organiser des soirées étudiantes dans le respect de la loi", "Maîtriser les conseils pour une consommation responsable et éviter les problèmes avec la police"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 96
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '96813015-4abe-4357-88ac-c24fa8a743aa',
+  'e195b05b-59f8-444d-baf8-29e6838f2135',
   'Vente interdite après 22h (certaines zones)',
   '# Vente interdite après 22h (certaines zones) - Alcool en France
 
@@ -124,8 +124,8 @@ En France, la vente d''alcool est interdite aux moins de 18 ans et souvent restr
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'd3f790b4-f689-4bb9-8364-623d97fafd0f',
+  'e195b05b-59f8-444d-baf8-29e6838f2135',
   'Consommation sur la voie publique',
   '# Consommation d''alcool sur la voie publique
 
@@ -214,7 +214,7 @@ La consommation d''alcool sur la voie publique en France est généralement tol�
 -- COURS 97 : Le Pourboire
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'aa157f00-7489-41ba-9e68-1848f7dcc0ab',
+  '6cb9b863-da14-468f-acc5-0e780bc1ab9b',
   'Le Pourboire en France : Service compris, un geste apprécié',
   'pourboire-france-service-compris-geste-apprecie',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre la culture du "pourboire" dans les restaurants, cafés, taxis et autres services. Contrairement à de nombreux pays où le pourboire est obligatoire, en France, le "service est compris" dans le prix. Ne pas connaître cette règle, c''est risquer de payer deux fois ou de laisser un pourboire inapproprié. Nous vous expliquerons que le service est inclus dans le prix final, et quand (et comment) il est apprécié de laisser quelques pièces en signe de satisfaction. Maîtriser cette nuance est absolument crucial pour gérer votre budget, faire preuve de savoir-vivre, et vivre des interactions fluides et agréables avec le personnel de service en France.',
@@ -225,7 +225,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre que le "service est compris" en France (pas de pourboire obligatoire)", "Identifier les situations où le pourboire est apprécié (qualité du service)", "Savoir quel montant laisser (quelques euros, petite monnaie) et comment", "Maîtriser les conseils pour faire preuve de savoir-vivre et gérer son budget"]'::jsonb,
+  E'["Comprendre que le \\"service est compris\\" en France (pas de pourboire obligatoire)", "Identifier les situations où le pourboire est apprécié (qualité du service)", "Savoir quel montant laisser (quelques euros, petite monnaie) et comment", "Maîtriser les conseils pour faire preuve de savoir-vivre et gérer son budget"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -236,8 +236,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 97
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '37a5e0a5-7328-43d8-a10a-f9f42e528f96',
+  '6cb9b863-da14-468f-acc5-0e780bc1ab9b',
   'Service compris : Pas d''obligation',
   '# Service compris : Pas d''obligation de pourboire en France
 
@@ -318,8 +318,8 @@ En France, le "service est compris" dans le prix des prestations (restaurants, c
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'e13856a0-95de-4bd1-b24e-6c189d694efb',
+  '6cb9b863-da14-468f-acc5-0e780bc1ab9b',
   'Quand laisser quelques pièces ?',
   '# Quand laisser quelques pièces ? (Le Pourboire en France)
 
@@ -390,7 +390,7 @@ Bien que le "service soit compris" en France et que le pourboire ne soit pas obl
 -- COURS 98 : LGBTQ+ en France
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'd05501c4-f051-4e73-a8f3-4216205d67df',
+  'ffa04326-8fbb-4bc4-ac49-5c4bc1fbb39c',
   'LGBTQ+ en France : Droits, mariage pour tous et associations',
   'lgbtq-france-droits-mariage-tous-associations',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de comprendre la situation des personnes LGBTQ+ (Lesbiennes, Gays, Bisexuels, Transgenres, Queers et autres). La France est un pays qui reconnaît de nombreux droits aux personnes LGBTQ+, notamment le mariage et l''adoption pour tous. Cependant, il est crucial de connaître ces droits, de comprendre le cadre légal et social, et de savoir où trouver du soutien si nécessaire. Nous vous expliquerons les principaux droits des personnes LGBTQ+, la loi sur le "mariage pour tous", et le rôle des centres et associations LGBTQ+. Maîtriser ces informations est absolument crucial pour vivre votre identité en toute sécurité, vous intégrer dans la société française, et savoir comment réagir en cas de discrimination ou de problème.',
@@ -401,7 +401,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre les droits des personnes LGBTQ+ en France (orientation sexuelle, identité de genre)", "Identifier les lois sur le mariage et l''adoption pour tous", "Savoir où trouver des centres et associations LGBTQ+ pour le soutien", "Maîtriser les conseils pour vivre son identité en sécurité et réagir en cas de discrimination"]'::jsonb,
+  E'["Comprendre les droits des personnes LGBTQ+ en France (orientation sexuelle, identité de genre)", "Identifier les lois sur le mariage et l''adoption pour tous", "Savoir où trouver des centres et associations LGBTQ+ pour le soutien", "Maîtriser les conseils pour vivre son identité en sécurité et réagir en cas de discrimination"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -412,8 +412,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 98
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'f14b1f36-12df-4fd8-b045-2bb70fdc88c8',
+  'ffa04326-8fbb-4bc4-ac49-5c4bc1fbb39c',
   'Droits et Mariage pour tous',
   '# Droits et Mariage pour tous (LGBTQ+ en France)
 
@@ -497,7 +497,7 @@ La France reconnaît de nombreux droits aux personnes LGBTQ+ (non-discrimination
 -- COURS 99 : Checklist Départ
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '36a749e8-8bc0-4945-be4c-0703a8611b35',
+  '47ef372e-42a5-4c4a-ba3d-1b0ec04a2c8f',
   'Checklist Départ de France : Résilier contrats, Sécu et banque',
   'checklist-depart-france-resilier-contrats-secu-banque',
   'Ce cours est un guide absolument essentiel pour tous les étudiants internationaux qui s''apprêtent à quitter la France. Un départ réussi ne se limite pas à faire ses valises : il implique une série de démarches administratives et financières cruciales pour résilier tous vos contrats et éviter les frais inattendus ou les dettes. Nous vous fournirons une checklist complète pour résilier tous vos contrats (logement, énergie, internet, téléphone), pour clôturer votre affiliation à la Sécurité Sociale, et pour fermer votre compte bancaire français. Maîtriser cette checklist est fondamental pour un départ serein, en toute conformité, et sans mauvaises surprises qui pourraient impacter votre avenir. Ne laissez rien au hasard !',
@@ -508,8 +508,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance d''une checklist complète pour son départ de France", "Savoir comment résilier tous ses contrats (logement, énergie, tel, internet)", "Identifier les démarches pour clôturer son affiliation à la Sécurité Sociale", "Maîtriser les étapes pour fermer son compte bancaire français et transférer son solde"]'::jsonb,
-  '["Avoir un logement et des contrats en France", "Préparer son départ définitif"]'::jsonb,
+  E'["Comprendre l''importance d''une checklist complète pour son départ de France", "Savoir comment résilier tous ses contrats (logement, énergie, tel, internet)", "Identifier les démarches pour clôturer son affiliation à la Sécurité Sociale", "Maîtriser les étapes pour fermer son compte bancaire français et transférer son solde"]'::jsonb,
+  E'["Avoir un logement et des contrats en France", "Préparer son départ définitif"]'::jsonb,
   TRUE,
   4.8,
   650,
@@ -519,8 +519,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 99
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'bac6071f-b7a7-4aae-81b5-67adf96bb3e5',
+  '47ef372e-42a5-4c4a-ba3d-1b0ec04a2c8f',
   'Résilier tous les contrats (2 mois avant)',
   '# Résilier tous les contrats (2 mois avant)
 
@@ -587,8 +587,8 @@ Un départ bien préparé évite les mauvaises surprises financières. L''antici
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '1e846f39-6d69-4c1a-9c13-6da4aa5cf757',
+  '47ef372e-42a5-4c4a-ba3d-1b0ec04a2c8f',
   'Résilier la sécu et la banque',
   '# Résilier la Sécu et la Banque (Checklist Départ de France)
 
@@ -667,7 +667,7 @@ S''assurer que vous n''êtes plus affilié(e).
 -- COURS 100 : Réseau Alumni
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '01ac49dd-ee89-4d62-9305-1a9f48a05b7b',
+  '4596e0dd-e7da-404b-ba22-8539d29d9cf5',
   'Réseau Alumni : Garder un lien professionnel avec la France',
   'reseau-alumni-garder-lien-professionnel-france',
   'Ce cours est essentiel pour tous les étudiants internationaux qui ont étudié en France et s''apprêtent à repartir dans leur pays d''origine (ou ailleurs). Votre expérience en France est un atout précieux, et le **réseau Alumni** est le moyen le plus efficace de garder un lien professionnel avec la France et de valoriser votre parcours à l''international. Ne pas le connaître, c''est se priver d''opportunités de carrière, d''échanges, et de soutien. Nous vous expliquerons le rôle de "France Alumni" (le réseau mondial des anciens élèves de l''enseignement supérieur français), comment rester connecté(e) avec votre établissement, et les avantages de maintenir un lien professionnel. Maîtriser ces outils est absolument crucial pour développer votre carrière à l''international et faire rayonner votre expérience française.',
@@ -678,7 +678,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre l''importance du réseau Alumni pour les diplômés internationaux", "Découvrir la plateforme "France Alumni" et ses avantages", "Savoir comment rester connecté(e) avec son établissement d''origine", "Maîtriser les conseils pour développer son réseau professionnel à l''international grâce à son expérience française"]'::jsonb,
+  E'["Comprendre l''importance du réseau Alumni pour les diplômés internationaux", "Découvrir la plateforme \\"France Alumni\\" et ses avantages", "Savoir comment rester connecté(e) avec son établissement d''origine", "Maîtriser les conseils pour développer son réseau professionnel à l''international grâce à son expérience française"]'::jsonb,
   '["Avoir étudié dans un établissement d''enseignement supérieur français"]'::jsonb,
   TRUE,
   4.8,
@@ -689,8 +689,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 100
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '04f0de3c-76dc-421c-bc94-7ef613b9cb2c',
+  '4596e0dd-e7da-404b-ba22-8539d29d9cf5',
   'France Alumni : Le réseau mondial',
   '# France Alumni : Le réseau mondial des diplômés de France
 
@@ -779,8 +779,8 @@ France Alumni est le réseau mondial officiel des diplômés de l''enseignement 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'a30632f0-4c98-4368-9666-ccd9e38b06dc',
+  '4596e0dd-e7da-404b-ba22-8539d29d9cf5',
   'Garder un lien professionnel avec la France',
   '# Garder un lien professionnel avec la France
 
@@ -868,8 +868,8 @@ Garder un lien professionnel avec la France est absolument crucial pour les étu
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'ced4c034-8e58-4ea4-b32f-0cdc8dfb7755',
+  '4596e0dd-e7da-404b-ba22-8539d29d9cf5',
   'Garder un lien professionnel avec la France',
   '# Garder un lien professionnel avec la France
 

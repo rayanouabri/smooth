@@ -133,20 +133,68 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
 
 /**
  * SendEmail - Envoyer un email
- * Utilise une Edge Function Supabase ou un service externe (Resend, SendGrid, etc.)
+ * Option 1: Utilise une Edge Function Supabase (si configurée avec Resend/SendGrid)
+ * Option 2: Stocke la demande dans Supabase (solution sans service externe)
  */
-export const SendEmail = async ({ to, subject, html, text }) => {
-  const { data, error } = await supabase.functions.invoke('send-email', {
-    body: {
-      to,
-      subject,
-      html,
-      text,
-    },
-  });
+export const SendEmail = async ({ to, subject, html, text, requestType, formData }) => {
+  // Si une Edge Function send-email existe et est configurée, l'utiliser
+  try {
+    const { data, error } = await supabase.functions.invoke('send-email', {
+      body: {
+        to,
+        subject,
+        html,
+        text,
+      },
+    });
 
-  if (error) throw error;
-  return data;
+    if (!error && data?.success) {
+      return data;
+    }
+    // Si erreur, continuer avec le fallback
+  } catch (err) {
+    console.log('Edge Function send-email non disponible, utilisation du fallback');
+  }
+
+  // Fallback: Stocker dans Supabase (solution sans service externe)
+  if (requestType && formData) {
+    const { data, error } = await supabase
+      .from('contact_requests')
+      .insert({
+        request_type: requestType,
+        name: formData.name || 'N/A',
+        email: formData.email || to,
+        phone: formData.phone || null,
+        form_data: {
+          ...formData,
+          email_subject: subject,
+          email_html: html,
+          email_text: text,
+        },
+        status: 'pending',
+      })
+      .select()
+      .single();
+
+    if (error) {
+      // Si la table n'existe pas, lancer une erreur explicite
+      if (error.message.includes('relation "contact_requests" does not exist')) {
+        throw new Error(
+          'La table contact_requests n\'existe pas. Exécutez le script create_contact_requests_table.sql dans Supabase SQL Editor.'
+        );
+      }
+      throw error;
+    }
+
+    return {
+      success: true,
+      message: 'Demande enregistrée avec succès dans la base de données',
+      requestId: data.id,
+    };
+  }
+
+  // Si pas de requestType/formData, essayer quand même l'Edge Function
+  throw new Error('Email service non configuré. Configurez Resend ou utilisez les formulaires de contact.');
 };
 
 /**

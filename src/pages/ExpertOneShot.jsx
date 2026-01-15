@@ -122,17 +122,35 @@ export default function ExpertOneShot() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!isAuthenticatedUser) {
-      redirectToLogin(window.location.href);
-      return;
-    }
-
+    // Validation des champs obligatoires
     if (!formData.name || !formData.email || !formData.serviceType || !formData.description) {
       toast({
         title: "Champs manquants",
-        description: "Veuillez remplir tous les champs obligatoires.",
+        description: "Veuillez remplir tous les champs obligatoires (marqués d'un *).",
         variant: "destructive",
       });
+      return;
+    }
+
+    // Validation de l'email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Email invalide",
+        description: "Veuillez entrer une adresse email valide.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Vérifier l'authentification
+    if (!isAuthenticatedUser) {
+      toast({
+        title: "Connexion requise",
+        description: "Vous devez être connecté pour soumettre une demande.",
+        variant: "destructive",
+      });
+      redirectToLogin(window.location.href);
       return;
     }
 
@@ -140,23 +158,35 @@ export default function ExpertOneShot() {
 
     try {
       const selectedService = SERVICE_TYPES.find(s => s.value === formData.serviceType);
+      const urgencyLabels = {
+        'urgent': 'Urgent (sous 48h)',
+        'normal': 'Normal (souhaitable sous 1 semaine)',
+        'non-urgent': 'Non urgent'
+      };
       
-      const emailContent = `
-        <h2>Nouvelle demande de Service Expert 'Clé en main'</h2>
-        <h3>Informations du client</h3>
-        <ul>
-          <li><strong>Nom :</strong> ${formData.name}</li>
-          <li><strong>Email :</strong> ${formData.email}</li>
-          <li><strong>Téléphone :</strong> ${formData.phone || 'Non renseigné'}</li>
-        </ul>
-        <h3>Détails de la demande</h3>
-        <ul>
-          <li><strong>Type de service :</strong> ${selectedService?.label || formData.serviceType}</li>
-          <li><strong>Urgence :</strong> ${formData.urgency === 'urgent' ? 'Urgent' : formData.urgency === 'normal' ? 'Normal' : 'Non urgent'}</li>
-          <li><strong>Budget estimé :</strong> ${formData.budget || 'Non renseigné'}€</li>
-        </ul>
-        <h3>Description</h3>
-        <p>${formData.description}</p>
+      const emailHtml = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #7c3aed;">Nouvelle demande de Service Expert 'Clé en main'</h2>
+          <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1f2937; margin-top: 0;">Informations du client</h3>
+            <p><strong>Nom :</strong> ${formData.name}</p>
+            <p><strong>Email :</strong> ${formData.email}</p>
+            <p><strong>Téléphone :</strong> ${formData.phone || 'Non renseigné'}</p>
+          </div>
+          <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1f2937; margin-top: 0;">Détails de la demande</h3>
+            <p><strong>Type de service :</strong> ${selectedService?.label || formData.serviceType}</p>
+            <p><strong>Urgence :</strong> ${urgencyLabels[formData.urgency] || 'Non renseigné'}</p>
+            <p><strong>Budget estimé :</strong> ${formData.budget ? formData.budget + '€' : 'Non renseigné'}</p>
+          </div>
+          <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1f2937; margin-top: 0;">Description</h3>
+            <p style="white-space: pre-wrap;">${formData.description}</p>
+          </div>
+          <p style="color: #6b7280; font-size: 12px; margin-top: 30px;">
+            Cette demande a été soumise depuis le formulaire Service Expert de FrancePrep Academy.
+          </p>
+        </div>
       `;
 
       const textContent = `
@@ -169,7 +199,7 @@ Informations du client:
 
 Détails de la demande:
 - Type de service: ${selectedService?.label || formData.serviceType}
-- Urgence: ${formData.urgency === 'urgent' ? 'Urgent' : formData.urgency === 'normal' ? 'Normal' : 'Non urgent'}
+- Urgence: ${urgencyLabels[formData.urgency] || 'Non renseigné'}
 - Budget estimé: ${formData.budget || 'Non renseigné'}€
 
 Description:
@@ -179,20 +209,43 @@ ${formData.description}
       await SendEmail({
         to: "contact@franceprepacademy.fr",
         subject: `[Service Expert] Nouvelle demande - ${selectedService?.label || formData.serviceType}`,
-        html: emailContent,
+        html: emailHtml,
         text: textContent,
+        requestType: 'expert_service',
+        formData: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          serviceType: formData.serviceType,
+          urgency: formData.urgency,
+          budget: formData.budget,
+          description: formData.description,
+        },
       });
 
       setSubmitted(true);
       toast({
-        title: "Demande envoyée avec succès !",
-        description: "Notre équipe vous contactera dans les plus brefs délais.",
+        title: "✅ Demande envoyée avec succès !",
+        description: "Notre équipe vous contactera dans les 24 heures pour discuter de vos besoins et vous proposer un devis.",
       });
     } catch (error) {
       console.error("Erreur lors de l'envoi:", error);
+      
+      let errorMessage = "Une erreur est survenue lors de l'envoi. Veuillez réessayer.";
+      
+      if (error?.message) {
+        if (error.message.includes('Email service not configured')) {
+          errorMessage = "Le service d'email n'est pas configuré. Veuillez contacter l'administrateur ou nous écrire directement à contact@franceprepacademy.fr";
+        } else if (error.message.includes('RESEND_API_KEY')) {
+          errorMessage = "Configuration email manquante. Veuillez contacter le support à contact@franceprepacademy.fr";
+        } else {
+          errorMessage = error.message;
+        }
+      }
+
       toast({
-        title: "Erreur",
-        description: "Une erreur est survenue. Veuillez réessayer ou nous contacter directement à contact@franceprepacademy.fr",
+        title: "❌ Erreur lors de l'envoi",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {

@@ -10,7 +10,7 @@
 -- COURS 72 : La Poste
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '378a3239-7926-4866-8618-0f46b0407d39',
+  'eb18bd7e-6976-4d4e-b876-569ca1f9405d',
   'La Poste en France : Envoyer une lettre, un colis et le recommandé',
   'poste-france-envoyer-lettre-colis-recommande',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui auront besoin d''utiliser les services postaux. La Poste est un acteur central pour l''envoi de courrier, de colis, et surtout pour les démarches administratives importantes (lettre recommandée avec accusé de réception). Nous vous expliquerons comment envoyer une lettre simple, les différentes options pour l''envoi de colis, l''importance cruciale de la lettre recommandée avec accusé de réception (LRAR) comme preuve juridique, et comment récupérer un colis en point relais. Maîtriser ces services est absolument crucial pour communiquer, gérer vos démarches administratives, et recevoir/envoyer des biens en toute sécurité en France.',
@@ -21,7 +21,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre les services d''envoi de lettres et de colis de La Poste", "Identifier l''importance de la lettre recommandée avec accusé de réception (LRAR)", "Savoir comment envoyer un courrier ou un colis depuis un bureau de poste", "Maîtriser les conseils pour récupérer un colis en point relais et suivre ses envois"]'::jsonb,
+  E'["Comprendre les services d''envoi de lettres et de colis de La Poste", "Identifier l''importance de la lettre recommandée avec accusé de réception (LRAR)", "Savoir comment envoyer un courrier ou un colis depuis un bureau de poste", "Maîtriser les conseils pour récupérer un colis en point relais et suivre ses envois"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -32,8 +32,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 72
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '18c53543-cffd-4441-b8b4-5c76a955bad4',
+  'eb18bd7e-6976-4d4e-b876-569ca1f9405d',
   'Envoyer une lettre',
   '# Envoyer une lettre en France
 
@@ -111,8 +111,8 @@ Envoyer une lettre simple en France implique de bien la préparer (contenu, enve
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '753a67fe-42be-4072-ad77-363762ee085d',
+  'eb18bd7e-6976-4d4e-b876-569ca1f9405d',
   'Le Recommandé (LRAR) : Preuve juridique',
   '# Le Recommandé (LRAR) : Preuve juridique
 
@@ -196,8 +196,8 @@ L''envoi de documents importants par lettre recommandée avec accusé de récept
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'c8f62a74-141f-4806-b5d0-e21c9530294f',
+  'eb18bd7e-6976-4d4e-b876-569ca1f9405d',
   'Récupérer un colis en point relais',
   '# Récupérer un colis en point relais
 
@@ -267,7 +267,7 @@ Récupérer un colis en point relais est un mode de livraison très courant et p
 -- COURS 73 : Laver son linge
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  '2a36855d-3a66-458a-94c8-51018b1ab40f',
+  '138365d9-7408-423f-a79a-8a8d9beff9c9',
   'Laver son linge en France : Laveries automatiques et étiquettes',
   'laver-linge-france-laveries-automatiques-etiquettes',
   'Ce cours est un guide essentiel pour tous les étudiants internationaux en France qui doivent gérer leur linge. Si vous n''avez pas de machine à laver dans votre logement, les laveries automatiques sont une solution pratique et économique, mais leur fonctionnement peut être nouveau pour vous. Nous vous expliquerons le fonctionnement des laveries automatiques (prix, lessive), les types de lessives et adoucissants à acheter, et comment lire les étiquettes des vêtements pour ne pas abîmer votre linge. Maîtriser ces informations est absolument crucial pour gérer votre linge efficacement, faire des économies, et prendre soin de vos vêtements sans mauvaise surprise.',
@@ -278,7 +278,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre le fonctionnement et les coûts des laveries automatiques", "Identifier les différents types de lessives et adoucissants en France", "Savoir lire et interpréter les étiquettes d''entretien des vêtements", "Maîtriser les conseils pour un lavage efficace, économique et respectueux du linge"]'::jsonb,
+  E'["Comprendre le fonctionnement et les coûts des laveries automatiques", "Identifier les différents types de lessives et adoucissants en France", "Savoir lire et interpréter les étiquettes d''entretien des vêtements", "Maîtriser les conseils pour un lavage efficace, économique et respectueux du linge"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -289,8 +289,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 73
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '98dadc7c-d75b-49df-b843-84dada9c5901',
+  '138365d9-7408-423f-a79a-8a8d9beff9c9',
   'Fonctionnement des laveries automatiques',
   '# Fonctionnement des laveries automatiques
 
@@ -356,8 +356,8 @@ Si votre logement étudiant en France n''est pas équipé d''une machine à lave
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '59b37dcc-fa41-4256-ae12-05d8a84e87e4',
+  '138365d9-7408-423f-a79a-8a8d9beff9c9',
   'Lessive et adoucissant : Quoi acheter ?',
   '# Lessive et adoucissant : Quoi acheter ?
 
@@ -433,8 +433,8 @@ Le choix de votre lessive (liquide pour couleurs/froid, poudre pour blanc/chaud,
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '59309848-a216-42ff-9f4c-5d955e1fc488',
+  '138365d9-7408-423f-a79a-8a8d9beff9c9',
   'Lire les étiquettes des vêtements',
   '# Lire les étiquettes des vêtements
 
@@ -507,7 +507,7 @@ Savoir lire les étiquettes d''entretien des vêtements est absolument crucial p
 -- COURS 74 : Sécurité urbaine
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'bf3146c1-2a84-4957-a43d-e99ea5c8fc7e',
+  '521187a6-19f1-46aa-a751-6de0e7e7e224',
   'Sécurité urbaine en France : Pickpockets, agressions et numéros d''urgence',
   'securite-urbaine-france-pickpockets-agressions-numeros-urgence',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France, afin de garantir leur sécurité en ville. Les grandes villes peuvent présenter des risques (pickpockets, petites agressions), et il est crucial de connaître les réflexes de prudence et les numéros d''urgence. Nous vous expliquerons les techniques courantes des pickpockets et comment vous en prémunir, les conseils pour rentrer seul(e) le soir en toute sécurité, et les numéros d''urgence spécifiques (114 par SMS pour les personnes malentendantes ou ne pouvant pas parler). Maîtriser ces informations est absolument crucial pour prévenir les dangers, réagir efficacement en cas de problème, et vivre votre séjour en France en toute sérénité. Votre sécurité est notre priorité absolue.',
@@ -518,7 +518,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre les risques liés aux pickpockets et leurs techniques", "Identifier les bonnes pratiques pour rentrer seul(e) le soir en sécurité", "Savoir utiliser les numéros d''urgence (17 Police/Gendarmerie, 114 SMS)", "Maîtriser les conseils pour prévenir les agressions et réagir en cas de danger"]'::jsonb,
+  E'["Comprendre les risques liés aux pickpockets et leurs techniques", "Identifier les bonnes pratiques pour rentrer seul(e) le soir en sécurité", "Savoir utiliser les numéros d''urgence (17 Police/Gendarmerie, 114 SMS)", "Maîtriser les conseils pour prévenir les agressions et réagir en cas de danger"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -529,8 +529,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 74
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '0645baf6-7edc-4403-927b-dfcec1d24fc0',
+  '521187a6-19f1-46aa-a751-6de0e7e7e224',
   'Pickpockets : Techniques courantes',
   '# Pickpockets : Techniques courantes
 
@@ -598,8 +598,8 @@ Les pickpockets sont une réalité, surtout dans les grandes villes touristiques
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'c279ac4d-0df3-4b0a-901c-15644af848f6',
+  '521187a6-19f1-46aa-a751-6de0e7e7e224',
   'Rentrer seul(e) le soir',
   '# Rentrer seul(e) le soir
 
@@ -683,8 +683,8 @@ Rentrer seul(e) le soir en France exige des réflexes de prudence : planifiez vo
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'b380b030-df9c-44e0-a8e0-de8ef868b37a',
+  '521187a6-19f1-46aa-a751-6de0e7e7e224',
   'Numéros d''urgence via SMS (114)',
   '# Numéros d''urgence via SMS (114)
 
@@ -769,7 +769,7 @@ Le numéro 114, accessible par SMS ou fax, est un numéro d''urgence absolument 
 -- COURS 75 : Objets trouvés / Papiers volés
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'e5aa2980-0f48-4447-926e-f344ba602900',
+  '9f50fadc-ff92-48cb-8ca5-97cd0c78732b',
   'Objets trouvés / Papiers volés en France : Démarches et réflexes',
   'objets-trouves-papiers-voles-france-demarches-reflexes',
   'Ce cours est d''une importance capitale pour tous les étudiants internationaux en France. Perdre ses papiers (passeport, titre de séjour, carte bancaire) ou se les faire voler est une situation très stressante qui nécessite des démarches administratives urgentes. Ne pas savoir comment réagir, où faire la déclaration, et qui contacter peut entraîner des problèmes majeurs (financiers, juridiques, de séjour). Nous vous expliquerons la distinction entre "main courante" et "plainte", comment contacter votre consulat pour refaire votre passeport, et le rôle du service des objets trouvés. Maîtriser ces réflexes est absolument crucial pour minimiser les conséquences d''une perte ou d''un vol, protéger votre identité et vos biens, et régulariser votre situation au plus vite.',
@@ -780,7 +780,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   4,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la différence entre déposer une main courante et porter plainte", "Savoir comment contacter son consulat pour refaire son passeport/titre d''identité", "Identifier le rôle du service des objets trouvés et comment le contacter", "Maîtriser les conseils pour réagir rapidement en cas de perte ou de vol et minimiser les risques"]'::jsonb,
+  E'["Comprendre la différence entre déposer une main courante et porter plainte", "Savoir comment contacter son consulat pour refaire son passeport/titre d''identité", "Identifier le rôle du service des objets trouvés et comment le contacter", "Maîtriser les conseils pour réagir rapidement en cas de perte ou de vol et minimiser les risques"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -791,8 +791,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 75
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '36c1e1e2-3fba-4989-b3d0-aa832b9e5a72',
+  '9f50fadc-ff92-48cb-8ca5-97cd0c78732b',
   'Faire une main courante vs porter plainte',
   '# Faire une main courante vs porter plainte
 
@@ -867,8 +867,8 @@ Comprendre la différence entre faire une "main courante" (trace officielle sans
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '44a33c4f-d02b-4268-b54e-cb2af0f25263',
+  '9f50fadc-ff92-48cb-8ca5-97cd0c78732b',
   'Contacter le consulat pour refaire le passeport',
   '# Contacter le consulat pour refaire le passeport
 
@@ -946,8 +946,8 @@ Si votre passeport est perdu ou volé en France, vous devez d''abord le déclare
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '2e96f5a4-cf67-4168-b797-9c74460f9dd6',
+  '9f50fadc-ff92-48cb-8ca5-97cd0c78732b',
   'Service des objets trouvés',
   '# Service des objets trouvés
 
@@ -1019,7 +1019,7 @@ Si vous perdez un objet ou vos papiers en France, contactez rapidement le servic
 -- COURS 76 : Tu ou Vous ?
 INSERT INTO courses (id, title, slug, description, short_description, category, level, language, duration_hours, price, thumbnail_url, objectives, prerequisites, is_published, rating, reviews_count, enrolled_count) VALUES
 (
-  'ce97dc71-852b-4833-b323-7ec29bd3e6ba',
+  '2da74f74-4359-4376-9c96-54f14377906f',
   'Tu ou Vous ? Le guide des règles de politesse en français',
   'tu-vous-guide-regles-politesse-francais',
   'Ce cours est essentiel pour tous les étudiants internationaux en France, afin de maîtriser les codes sociaux fondamentaux de la langue française : la distinction entre l''utilisation du "Tu" et du "Vous". Cette règle de politesse est cruciale dans toutes vos interactions (administrations, professeurs, commerçants, amis). Ne pas la comprendre, c''est risquer de paraître irrespectueux(se) ou trop familier(ère), ce qui peut impacter vos relations. Nous vous expliquerons la "règle de l''âge et de la hiérarchie", quand passer au "Tu" (et avec qui), et les spécificités du vouvoiement commercial. Maîtriser ces nuances est absolument crucial pour une communication fluide, respectueuse, et une intégration réussie dans la société française.',
@@ -1030,7 +1030,7 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
   3,
   0,
   'https://images.unsplash.com/photo-1549419137-b93892019409?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHZpc2FzfGVufDB8fDB8fHww',
-  '["Comprendre la distinction fondamentale entre "Tu" et "Vous" en français", "Identifier la "règle de l''âge et de la hiérarchie" pour le choix du pronom", "Savoir quand et comment passer du "Vous" au "Tu" (proposer, accepter)", "Maîtriser les spécificités du vouvoiement commercial et professionnel"]'::jsonb,
+  E'["Comprendre la distinction fondamentale entre \\"Tu\\" et \\"Vous\\" en français", "Identifier la \\"règle de l''âge et de la hiérarchie\\" pour le choix du pronom", "Savoir quand et comment passer du \\"Vous\\" au \\"Tu\\" (proposer, accepter)", "Maîtriser les spécificités du vouvoiement commercial et professionnel"]'::jsonb,
   '[]'::jsonb,
   TRUE,
   4.8,
@@ -1041,8 +1041,8 @@ INSERT INTO courses (id, title, slug, description, short_description, category, 
 -- LEÇONS pour COURS 76
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '35ad8f9b-ad85-40c9-98c2-fa308b502fe7',
+  '2da74f74-4359-4376-9c96-54f14377906f',
   'La règle de l''âge et de la hiérarchie',
   '# La règle de l''âge et de la hiérarchie (Tu ou Vous)
 
@@ -1127,8 +1127,8 @@ La "règle de l''âge et de la hiérarchie" est fondamentale pour choisir entre 
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4102-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  '74aabfa2-98e3-4a3a-9cca-e451d2dc46dd',
+  '2da74f74-4359-4376-9c96-54f14377906f',
   'Quand passer au "Tu" ?',
   '# Quand passer au "Tu" ?
 
@@ -1223,8 +1223,8 @@ Le passage du "Vous" au "Tu" marque un rapprochement dans les relations en Franc
 
 INSERT INTO lessons (id, course_id, title, content, "order", duration_minutes, video_url, resources) VALUES
 (
-  'f0e1a2b3-c4d5-4012-e6f7-a8b9c0d1e2f3',
-  'e0f1d2c3-b4a5-4102-e6f7-a8b9c0d1e2f3',
+  'a5d43f3e-63a7-42b2-be58-2350ce51ccaa',
+  '2da74f74-4359-4376-9c96-54f14377906f',
   'Le vouvoiement de politesse commerciale',
   '# Le vouvoiement de politesse commerciale
 
