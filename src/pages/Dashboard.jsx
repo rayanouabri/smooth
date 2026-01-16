@@ -95,7 +95,7 @@ export default function Dashboard() {
     }
   };
 
-  const { data: enrollments = [] } = useQuery({
+  const { data: enrollments = [], isLoading: enrollmentsLoading } = useQuery({
     queryKey: ['enrollments', user?.email],
     queryFn: () => {
       if (!user?.email) return [];
@@ -210,58 +210,74 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 py-4 sm:py-6 lg:py-8">
         {/* Gamification Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
-          {[
-            {
-              icon: BookOpen,
-              labelKey: "dashboard.coursesFollowed",
-              value: enrollments.length,
-              color: "from-blue-500 to-cyan-500",
-              badge: "🎯 Explorer"
-            },
-            {
-              icon: Flame,
-              labelKey: "dashboard.activeStreak",
-              value: `${Math.min(7, enrollments.length)} jours`,
-              color: "from-orange-500 to-red-500",
-              badge: "🔥 Continue!"
-            },
-            {
-              icon: Trophy,
-              labelKey: "dashboard.badgesEarned",
-              value: completedEnrollments.length + Math.floor(avgProgress / 25),
-              color: "from-yellow-500 to-orange-500",
-              badge: "⭐ Top!"
-            },
-            {
-              icon: Zap,
-              labelKey: "dashboard.xpPoints",
-              value: (completedEnrollments.length * 100) + Math.floor(avgProgress * 10),
-              color: "from-purple-500 to-pink-500",
-              badge: "🚀 Level " + Math.floor(1 + enrollments.length / 3)
-            }
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <Card className="border-2 hover:shadow-2xl transition-all group hover:scale-105">
+          {enrollmentsLoading ? (
+            // Skeleton loaders pendant le chargement
+            Array.from({ length: 4 }).map((_, index) => (
+              <Card key={index} className="border-2">
                 <CardContent className="p-5">
-                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${stat.color} mb-3 shadow-lg group-hover:scale-110 transition-transform`}>
-                    <stat.icon className="w-5 h-5 text-white" />
+                  <div className="inline-flex p-3 rounded-xl bg-gray-200 mb-3 animate-pulse">
+                    <div className="w-5 h-5"></div>
                   </div>
-                  <div className="text-2xl font-bold text-gray-900 mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs text-gray-600 mb-2">{t(stat.labelKey)}</div>
-                  <Badge className="text-xs bg-gray-100 text-gray-700 border-0">
-                    {stat.badge}
-                  </Badge>
+                  <div className="h-8 bg-gray-200 rounded mb-1 animate-pulse"></div>
+                  <div className="h-4 bg-gray-200 rounded mb-2 animate-pulse"></div>
+                  <div className="h-5 bg-gray-200 rounded animate-pulse"></div>
                 </CardContent>
               </Card>
-            </motion.div>
-          ))}
+            ))
+          ) : (
+            [
+              {
+                icon: BookOpen,
+                labelKey: "dashboard.coursesFollowed",
+                value: enrollments.length,
+                color: "from-blue-500 to-cyan-500",
+                badge: "🎯 Explorer"
+              },
+              {
+                icon: Flame,
+                labelKey: "dashboard.activeStreak",
+                value: `${Math.min(7, enrollments.length)} jours`,
+                color: "from-orange-500 to-red-500",
+                badge: "🔥 Continue!"
+              },
+              {
+                icon: Trophy,
+                labelKey: "dashboard.badgesEarned",
+                value: completedEnrollments.length + Math.floor(avgProgress / 25),
+                color: "from-yellow-500 to-orange-500",
+                badge: "⭐ Top!"
+              },
+              {
+                icon: Zap,
+                labelKey: "dashboard.xpPoints",
+                value: (completedEnrollments.length * 100) + Math.floor(avgProgress * 10),
+                color: "from-purple-500 to-pink-500",
+                badge: "🚀 Level " + Math.floor(1 + enrollments.length / 3)
+              }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="border-2 hover:shadow-2xl transition-all group hover:scale-105">
+                  <CardContent className="p-5">
+                    <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${stat.color} mb-3 shadow-lg group-hover:scale-110 transition-transform`}>
+                      <stat.icon className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="text-2xl font-bold text-gray-900 mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs text-gray-600 mb-2">{t(stat.labelKey)}</div>
+                    <Badge className="text-xs bg-gray-100 text-gray-700 border-0">
+                      {stat.badge}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))
+          )}
         </div>
 
         {/* Level Progress */}
@@ -312,11 +328,23 @@ export default function Dashboard() {
             <div className="mt-4 flex items-center gap-4 text-sm text-gray-600">
               <div className="flex items-center gap-2">
                 <BarChart3 className="w-4 h-4" />
-                <span>{enrollments.length} cours actifs</span>
+                <span>
+                  {enrollmentsLoading ? (
+                    <span className="inline-block w-20 h-4 bg-gray-200 rounded animate-pulse"></span>
+                  ) : (
+                    `${enrollments.length} cours actifs`
+                  )}
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <Target className="w-4 h-4" />
-                <span>{completedEnrollments.length} objectifs atteints</span>
+                <span>
+                  {enrollmentsLoading ? (
+                    <span className="inline-block w-24 h-4 bg-gray-200 rounded animate-pulse"></span>
+                  ) : (
+                    `${completedEnrollments.length} objectifs atteints`
+                  )}
+                </span>
               </div>
             </div>
           </CardContent>

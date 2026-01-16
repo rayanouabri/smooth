@@ -26,35 +26,41 @@ export default function DashboardSidebar({ currentPage }) {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [enrollments, setEnrollments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     loadData();
   }, []);
 
   const loadData = async () => {
-    // Utiliser me() pour obtenir le profil avec is_premium
-    const userData = await me();
-    setUser(userData);
-    
-    // Charger le profil depuis la base de données pour être sûr
-    if (userData?.id) {
-      const { data: profileData } = await supabase
-        .from('user_profiles')
-        .select('*')
-        .eq('id', userData.id)
-        .single();
+    setIsLoading(true);
+    try {
+      // Utiliser me() pour obtenir le profil avec is_premium
+      const userData = await me();
+      setUser(userData);
       
-      if (profileData) {
-        setProfile(profileData);
-        console.log('DashboardSidebar - Profile loaded, is_premium:', profileData.is_premium);
-      } else {
-        // Fallback: utiliser les données de me()
-        setProfile(userData);
+      // Charger le profil depuis la base de données pour être sûr
+      if (userData?.id) {
+        const { data: profileData } = await supabase
+          .from('user_profiles')
+          .select('*')
+          .eq('id', userData.id)
+          .single();
+        
+        if (profileData) {
+          setProfile(profileData);
+          console.log('DashboardSidebar - Profile loaded, is_premium:', profileData.is_premium);
+        } else {
+          // Fallback: utiliser les données de me()
+          setProfile(userData);
+        }
       }
-    }
 
-    const userEnrollments = await Enrollment.filter({ user_email: userData.email });
-    setEnrollments(userEnrollments);
+      const userEnrollments = await Enrollment.filter({ user_email: userData.email });
+      setEnrollments(userEnrollments);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Utiliser is_premium au lieu de subscription_plan
@@ -101,7 +107,11 @@ export default function DashboardSidebar({ currentPage }) {
                   {user.full_name?.[0] || user.email?.[0] || "U"}
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-white shadow-lg">
-                  {Math.floor(1 + enrollments.length / 3)}
+                  {isLoading ? (
+                    <span className="inline-block w-3 h-3 bg-white/50 rounded animate-pulse"></span>
+                  ) : (
+                    Math.floor(1 + enrollments.length / 3)
+                  )}
                 </div>
               </div>
               <div className="flex-1 min-w-0">
@@ -117,7 +127,11 @@ export default function DashboardSidebar({ currentPage }) {
                     {plan === 'premium' ? '⭐ Premium' : '🎓 Gratuit'}
                   </Badge>
                   <Badge className="bg-indigo-100 text-indigo-700 text-xs">
-                    Niv. {Math.floor(1 + enrollments.length / 3)}
+                    {isLoading ? (
+                      <span className="inline-block w-8 h-3 bg-indigo-200 rounded animate-pulse"></span>
+                    ) : (
+                      `Niv. ${Math.floor(1 + enrollments.length / 3)}`
+                    )}
                   </Badge>
                 </div>
               </div>
@@ -129,20 +143,42 @@ export default function DashboardSidebar({ currentPage }) {
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-semibold text-gray-700">Points XP</span>
                   <span className="text-sm font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    {(enrollments.filter(e => e.completed).length * 100) + Math.floor(avgProgress * 10)}
+                    {isLoading ? (
+                      <span className="inline-block w-12 h-3 bg-gray-200 rounded animate-pulse"></span>
+                    ) : (
+                      (enrollments.filter(e => e.completed).length * 100) + Math.floor(avgProgress * 10)
+                    )}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="flex-1 bg-gray-200 rounded-full h-2">
-                    <div 
-                      className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all"
-                      style={{ width: `${(enrollments.length % 3) * 33.33}%` }}
-                    ></div>
+                    {isLoading ? (
+                      <div className="bg-gray-300 h-2 rounded-full animate-pulse"></div>
+                    ) : (
+                      <div 
+                        className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all"
+                        style={{ width: `${(enrollments.length % 3) * 33.33}%` }}
+                      ></div>
+                    )}
                   </div>
                 </div>
               </div>
 
-              {enrollments.length > 0 && (
+              {isLoading ? (
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-semibold text-gray-600">Progression</span>
+                    <span className="text-xs font-bold text-indigo-600">
+                      <span className="inline-block w-8 h-3 bg-gray-200 rounded animate-pulse"></span>
+                    </span>
+                  </div>
+                  <Progress value={0} className="h-2 bg-gray-200" />
+                  <div className="flex items-center justify-between mt-2 text-xs text-gray-500">
+                    <span className="inline-block w-16 h-3 bg-gray-200 rounded animate-pulse"></span>
+                    <span className="inline-block w-20 h-3 bg-gray-200 rounded animate-pulse"></span>
+                  </div>
+                </div>
+              ) : enrollments.length > 0 ? (
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-semibold text-gray-600">Progression</span>
@@ -154,7 +190,7 @@ export default function DashboardSidebar({ currentPage }) {
                     <span>🔥 {Math.min(7, enrollments.length)}j série</span>
                   </div>
                 </div>
-              )}
+              ) : null}
             </div>
           </div>
         )}
