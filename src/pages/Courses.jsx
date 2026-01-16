@@ -15,6 +15,7 @@ import { Search, Filter, TrendingUp, Star, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import CourseCard from "../components/CourseCard";
+import CourseCardSkeleton from "../components/CourseCardSkeleton";
 import ChatBot from "../components/ChatBot";
 
 export default function Courses() {
@@ -154,12 +155,19 @@ export default function Courses() {
   const freeCourses = filteredCourses.filter(c => c.price === 0);
   const premiumCourses = filteredCourses.filter(c => c.price > 0);
 
-  const coursesByCategory = Object.keys(categoryLabels)
-    .filter(cat => cat !== "all")
-    .reduce((acc, category) => {
-      acc[category] = filteredCourses.filter(c => c.category === category);
-      return acc;
-    }, {});
+  // Ordre personnalisé des catégories : Préparation Académique en avant-dernière
+  const categoryOrder = [
+    'integration_administrative',
+    'culture_codes_sociaux',
+    'insertion_professionnelle',
+    'formations_professionnelles',
+    'preparation_academique' // Avant-dernière
+  ];
+
+  const coursesByCategory = categoryOrder.reduce((acc, category) => {
+    acc[category] = filteredCourses.filter(c => c.category === category);
+    return acc;
+  }, {});
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
@@ -241,17 +249,28 @@ export default function Courses() {
           </div>
 
           <div className="mt-3 sm:mt-4 lg:mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 lg:gap-4">
-            <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-              <p className="text-gray-700 font-bold text-sm sm:text-base lg:text-lg">
-                <span className="text-xl sm:text-2xl lg:text-3xl text-indigo-600">{filteredCourses.length}</span> {t('courses.coursesFound')}
-              </p>
-              <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm">
-                ✓ {freeCourses.length} {t('courses.freeCourses')}
-              </Badge>
-              <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm">
-                ⭐ {premiumCourses.length} {t('courses.premiumCourses')}
-              </Badge>
-            </div>
+            {isLoading ? (
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <div className="h-6 sm:h-7 lg:h-8 w-24 sm:w-32 bg-gray-200 animate-pulse rounded-lg"></div>
+                  <div className="h-4 w-32 sm:w-40 bg-gray-200 animate-pulse rounded"></div>
+                </div>
+                <div className="h-6 sm:h-7 w-28 sm:w-32 bg-gray-200 animate-pulse rounded-full"></div>
+                <div className="h-6 sm:h-7 w-32 sm:w-36 bg-gray-200 animate-pulse rounded-full"></div>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                <p className="text-gray-700 font-bold text-sm sm:text-base lg:text-lg">
+                  <span className="text-xl sm:text-2xl lg:text-3xl text-indigo-600">{filteredCourses.length}</span> {t('courses.coursesFound')}
+                </p>
+                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm">
+                  ✓ {freeCourses.length} {t('courses.freeCourses')}
+                </Badge>
+                <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm">
+                  ⭐ {premiumCourses.length} {t('courses.premiumCourses')}
+                </Badge>
+              </div>
+            )}
             {(categoryFilter !== "all" || levelFilter !== "all" || searchTerm) && (
               <Button
                 variant="outline"
@@ -273,10 +292,26 @@ export default function Courses() {
       {/* Courses */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {isLoading ? (
-          <div className="text-center py-20">
-            <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-indigo-200 border-t-indigo-600 mb-4"></div>
-            <p className="text-xl font-semibold text-gray-700">Chargement des cours...</p>
-            <p className="text-gray-500 mt-2">Préparation de votre catalogue</p>
+          <div>
+            {/* Skeleton Loader - Afficher des cartes de chargement */}
+            <div className="mb-12">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="h-2 w-16 bg-gray-200 rounded-full animate-pulse"></div>
+                <div className="h-10 w-64 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {[...Array(8)].map((_, index) => (
+                  <CourseCardSkeleton key={index} />
+                ))}
+              </div>
+            </div>
+            {/* Message de chargement */}
+            <div className="text-center py-8">
+              <div className="inline-flex items-center gap-3 text-indigo-600">
+                <div className="inline-block animate-spin rounded-full h-5 w-5 border-2 border-indigo-200 border-t-indigo-600"></div>
+                <p className="text-base font-medium">Chargement des cours...</p>
+              </div>
+            </div>
           </div>
         ) : filteredCourses.length === 0 ? (
           <div className="text-center py-20">

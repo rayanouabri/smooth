@@ -1,0 +1,62 @@
+name: Update Course Images
+
+on:
+  # Déclencher manuellement depuis GitHub
+  workflow_dispatch:
+  
+  # Déclencher automatiquement tous les jours à 3h du matin UTC
+  schedule:
+    - cron: '0 3 * * *'
+  
+  # Déclencher après chaque push sur main (optionnel - décommentez si besoin)
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'src/pages/Courses.jsx'
+  #     - 'assign_category_images.sql'
+
+jobs:
+  update-images:
+    runs-on: ubuntu-latest
+    name: Update Course Images via Supabase
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Update course images via Supabase Edge Function
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          echo "🔄 Calling Supabase Edge Function to update course images..."
+          
+          response=$(curl -s -X POST \
+            "$SUPABASE_URL/functions/v1/update-course-images" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            -H "Content-Type: application/json")
+          
+          echo "📊 Response: $response"
+          
+          # Vérifier si la réponse contient "success"
+          if echo "$response" | grep -q '"success":true'; then
+            echo "✅ Course images updated successfully"
+            exit 0
+          else
+            echo "❌ Failed to update course images"
+            echo "$response"
+            exit 1
+          fi
+
+      - name: Notify on success
+        if: success()
+        run: |
+          echo "✅ Course images updated successfully!"
+          echo "You can add Slack/Discord notifications here if needed"
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ Failed to update course images"
+          echo "Check the logs above for details"

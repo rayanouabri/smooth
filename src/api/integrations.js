@@ -117,15 +117,21 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
   } catch (error) {
     console.error('[InvokeLLM] Fatal error:', error.message);
     
-    if (error.message.includes('GEMINI_API_KEY not configured')) {
-      throw new Error('⚠️ Clé Gemini non configurée sur le serveur.');
-    }
-    if (error.message.includes('quota')) {
-      throw new Error('⚠️ Quota API dépassé.');
-    }
-    if (error.message.includes('network') || error.message.includes('fetch')) {
-      throw new Error('⚠️ Erreur de connexion réseau.');
-    }
+      if (error.message.includes('GEMINI_API_KEY not configured') || error.message.includes('not configured')) {
+        throw new Error('⚠️ Clé Gemini non configurée sur le serveur.');
+      }
+      if (error.message.includes('API key expired') || error.message.includes('key expired') || error.message.includes('expired')) {
+        throw new Error('⚠️ Votre clé Gemini a expiré. Veuillez la renouveler dans Vercel et redéployer.');
+      }
+      if (error.message.includes('Invalid API key') || error.message.includes('Invalid')) {
+        throw new Error('⚠️ Clé API invalide. Vérifiez la configuration dans Vercel.');
+      }
+      if (error.message.includes('quota')) {
+        throw new Error('⚠️ Quota API dépassé.');
+      }
+      if (error.message.includes('network') || error.message.includes('fetch')) {
+        throw new Error('⚠️ Erreur de connexion réseau.');
+      }
     
     throw error;
   }

@@ -83,13 +83,24 @@ export default async function handler(req, res) {
     }
 
     if (!response.ok) {
-      const errorMsg = json.error?.message || json.error || 'Gemini API error';
-      console.error('[Gemini] API error:', response.status, errorMsg);
+      const errorMsg = json.error?.message || json.error?.message || json.error || 'Gemini API error';
+      const errorStatus = json.error?.status || response.status;
+      console.error('[Gemini] API error:', errorStatus, errorMsg);
       
-      if (response.status === 401 || response.status === 403) {
+      // Détection spécifique de l'erreur "API key expired"
+      if (errorMsg.toLowerCase().includes('api key expired') || 
+          errorMsg.toLowerCase().includes('key expired') ||
+          errorMsg.toLowerCase().includes('expired')) {
+        return res.status(500).json({ 
+          error: 'API key expired',
+          message: 'Votre clé Gemini a expiré. Veuillez la renouveler dans Vercel Environment Variables et redéployer l\'application.'
+        });
+      }
+      
+      if (response.status === 401 || response.status === 403 || errorStatus === 401 || errorStatus === 403) {
         return res.status(500).json({ 
           error: 'Invalid API key',
-          message: 'Check GEMINI_API_KEY in Vercel'
+          message: 'Clé API invalide. Vérifiez GEMINI_API_KEY dans Vercel Environment Variables et redéployez l\'application.'
         });
       }
       if (response.status === 429) {

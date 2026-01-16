@@ -23,8 +23,29 @@ dist-ssr
 *.sln
 *.sw?
 
-.env
 # Fichiers d'environnement avec clés API sensibles
 .env
 .env.local
 .env*.local
+.env.production
+.env.development
+*.env
+
+# Fichiers de test avec clés (ne doivent jamais être commités)
+test-*.js
+*-test.js
+*_test.js
+
+# Clés API et secrets
+*.key
+*.pem
+*.p12
+secrets.json
+config.json
+
+# Fichiers temporaires
+*.tmp
+*.temp
+.cache# OS files
+Thumbs.db
+.DS_Store

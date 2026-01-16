@@ -85,16 +85,18 @@ Réponds maintenant de manière utile et bienveillante :`,
       let errorMessage = "😔 Désolée, une erreur s'est produite.";
       
       // Messages d'erreur personnalisés
-      if (error.message.includes('Clé Gemini non configurée')) {
+      if (error.message.includes('Clé Gemini non configurée') || error.message.includes('non configurée')) {
         errorMessage = "🔧 L'IA n'est pas configurée sur le serveur. Contactez l'administrateur.";
+      } else if (error.message.includes('expiré') || error.message.includes('expired') || error.message.includes('key expired')) {
+        errorMessage = "⚠️ La clé API a expiré. L'administrateur doit la renouveler dans Vercel et redéployer l'application.";
+      } else if (error.message.includes('invalide') || error.message.includes('Invalid')) {
+        errorMessage = "⚠️ Clé API invalide. L'administrateur doit vérifier la configuration dans Vercel.";
       } else if (error.message.includes('quota')) {
         errorMessage = "⚠️ Quota API dépassé. Veuillez réessayer dans quelques minutes.";
-      } else if (error.message.includes('connexion')) {
-        errorMessage = "🌐 Erreur de connexion. Vérifiez votre connexion internet.";
+      } else if (error.message.includes('connexion') || error.message.includes('réseau') || error.message.includes('network')) {
+        errorMessage = "🌐 Erreur de connexion. Vérifiez votre connexion internet et réessayez.";
       } else if (error.message.includes('Gemini')) {
         errorMessage = "🤖 Le service IA est temporairement indisponible. Veuillez réessayer.";
-      } else if (error.message.includes('réseau')) {
-        errorMessage = "🌐 Erreur réseau. Vérifiez votre connexion et réessayez.";
       } else if (error.message) {
         errorMessage = `⚠️ ${error.message}`;
       } else {
