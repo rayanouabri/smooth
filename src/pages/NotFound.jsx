@@ -5,6 +5,11 @@ import { Home, Search, ArrowLeft, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function NotFound() {
+  // Debug: vérifier que le composant est bien rendu
+  React.useEffect(() => {
+    console.log('404 Page - NotFound component rendered');
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center px-4">
         <div className="max-w-2xl mx-auto text-center">
