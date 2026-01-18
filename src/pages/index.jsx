@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Layout from "./Layout.jsx";
 
 import Dashboard from "./Dashboard";
@@ -149,10 +149,10 @@ function _getCurrentPage(url) {
 // Create a wrapper component that uses useLocation inside the Router context
 function PagesContent() {
     const location = useLocation();
-    const [isReady, setIsReady] = React.useState(false);
-    const [hasError, setHasError] = React.useState(false);
+    const [isReady, setIsReady] = useState(false);
+    const [hasError, setHasError] = useState(false);
     
-    React.useEffect(() => {
+    useEffect(() => {
         // S'assurer que le composant est prêt avant de rendre
         // Utiliser setTimeout pour éviter les problèmes de compatibilité avec Opera
         const timer = setTimeout(() => {
@@ -168,7 +168,7 @@ function PagesContent() {
     }, []);
     
     // Mettre à jour currentPage quand location change
-    const currentPage = React.useMemo(() => {
+    const currentPage = useMemo(() => {
         return _getCurrentPage(location.pathname);
     }, [location.pathname]);
     
