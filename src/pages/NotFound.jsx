@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Home, Search, ArrowLeft, AlertCircle } from "lucide-react";
@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function NotFound() {
   // Debug: vérifier que le composant est bien rendu
-  React.useEffect(() => {
+  useEffect(() => {
     console.log('404 Page - NotFound component rendered');
   }, []);
 
