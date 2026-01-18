@@ -406,8 +406,8 @@ export default function Community() {
             </div>
           </>
         ) : (
-          /* Thread View */
           <div>
+            {/* Thread View */}
             <Button
               variant="outline"
               className="mb-6"
