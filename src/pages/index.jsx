@@ -167,7 +167,10 @@ function PagesContent() {
         return () => clearTimeout(timer);
     }, []);
     
-    const currentPage = _getCurrentPage(location.pathname);
+    // Mettre à jour currentPage quand location change
+    const currentPage = React.useMemo(() => {
+        return _getCurrentPage(location.pathname);
+    }, [location.pathname]);
     
     // Afficher un loader pendant le chargement initial pour éviter les pages blanches
     if (!isReady || hasError) {
