@@ -198,15 +198,20 @@ ${formData.needs}
     } catch (error) {
       console.error("Error sending request:", error);
       
-      let errorMessage = "Une erreur s'est produite lors de l'envoi. Veuillez réessayer.";
+      let errorMessage = "Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou contacter le support à contact@franceprepacademy.fr";
       
       if (error?.message) {
         if (error.message.includes('Email service not configured')) {
           errorMessage = "Le service d'email n'est pas configuré. Veuillez contacter l'administrateur.";
         } else if (error.message.includes('RESEND_API_KEY')) {
           errorMessage = "Configuration email manquante. Veuillez contacter le support.";
+        } else if (error.message.includes('permission denied') || error.message.includes('does not exist')) {
+          errorMessage = "Une erreur technique s'est produite. Veuillez contacter directement contact@franceprepacademy.fr avec les détails de votre demande.";
+        } else if (error.message.includes('contact_requests')) {
+          errorMessage = "La base de données n'est pas configurée. Veuillez contacter le support à contact@franceprepacademy.fr";
         } else {
-          errorMessage = error.message;
+          // Ne pas afficher les erreurs techniques brutes à l'utilisateur
+          errorMessage = "Une erreur s'est produite. Veuillez réessayer ou nous contacter directement à contact@franceprepacademy.fr";
         }
       }
 
@@ -247,8 +252,8 @@ ${formData.needs}
     },
     {
       icon: Shield,
-      title: "Garantie satisfaction",
-      description: "Si le professeur ne vous convient pas, changement gratuit",
+      title: "Accompagnement personnalisé",
+      description: "Suivi régulier et ajustement du programme selon vos progrès",
       color: "from-indigo-500 to-blue-500"
     },
     {
@@ -272,11 +277,11 @@ ${formData.needs}
   const faqItems = [
     {
       question: "Comment fonctionnent les cours particuliers ?",
-      answer: "Nos cours particuliers sont adaptés à vos besoins spécifiques. Vous remplissez le formulaire ci-dessus avec vos besoins, votre niveau et vos disponibilités. Notre équipe vous contacte sous 24-48h pour vous proposer un professeur adapté et planifier votre première séance de diagnostic gratuite."
+      answer: "Nos cours particuliers sont adaptés à vos besoins spécifiques. Vous remplissez le formulaire ci-dessus avec vos besoins, votre niveau et vos disponibilités. Notre équipe vous contacte sous 24-48h pour vous proposer un professeur adapté et planifier votre première séance."
     },
     {
       question: "Quels sont les tarifs ?",
-      answer: "Les tarifs varient selon la matière, le niveau et la fréquence des cours. En moyenne, comptez entre 25€ et 50€ de l'heure selon ces critères. Des forfaits mensuels sont également disponibles avec des tarifs dégressifs. Le premier cours est toujours gratuit pour évaluer votre niveau et vos besoins."
+      answer: "Les tarifs varient selon la matière, le niveau et la fréquence des cours. En moyenne, comptez entre 25€ et 50€ de l'heure selon ces critères. Des forfaits mensuels sont également disponibles avec des tarifs dégressifs. Contactez-nous pour obtenir un devis personnalisé adapté à vos besoins."
     },
     {
       question: "Puis-je prendre des cours en ligne ?",
@@ -288,7 +293,7 @@ ${formData.needs}
     },
     {
       question: "Puis-je changer de professeur si ça ne me convient pas ?",
-      answer: "Absolument ! Votre satisfaction est notre priorité. Si le premier professeur ne correspond pas à vos attentes, nous vous proposons gratuitement un autre professeur jusqu'à trouver celui qui vous convient parfaitement. Nous avons un large réseau de professeurs qualifiés."
+      answer: "Oui, vous pouvez demander un changement de professeur si nécessaire. Notre équipe vous aidera à trouver un autre professeur qui correspond mieux à vos attentes parmi notre réseau de professeurs qualifiés."
     },
     {
       question: "Les cours sont-ils adaptés aux étudiants étrangers ?",
@@ -300,7 +305,7 @@ ${formData.needs}
     },
     {
       question: "Comment se déroule le premier cours ?",
-      answer: "Le premier cours est une séance de diagnostic gratuite (30-45 minutes). Le professeur évalue votre niveau actuel, discute de vos objectifs, de vos difficultés et établit avec vous un plan d'apprentissage personnalisé. C'est également l'occasion de vérifier que le courant passe bien entre vous."
+      answer: "Lors du premier cours, le professeur évalue votre niveau actuel, discute de vos objectifs, de vos difficultés et établit avec vous un plan d'apprentissage personnalisé. C'est également l'occasion de vérifier que le courant passe bien entre vous."
     },
     {
       question: "Quels sont les moyens de paiement acceptés ?",
@@ -372,11 +377,11 @@ ${formData.needs}
             <div className="flex flex-wrap justify-center gap-4">
               <Badge className="bg-white/20 text-white border-white/30 px-4 py-2">
                 <CheckCircle className="w-4 h-4 mr-2" />
-                Premier cours gratuit
+                Professeurs certifiés
               </Badge>
               <Badge className="bg-white/20 text-white border-white/30 px-4 py-2">
                 <Users className="w-4 h-4 mr-2" />
-                Professeurs certifiés
+                Cours sur mesure
               </Badge>
               <Badge className="bg-white/20 text-white border-white/30 px-4 py-2">
                 <Video className="w-4 h-4 mr-2" />
