@@ -122,6 +122,8 @@ const PAGES = {
     
     ResetPassword: ResetPassword,
     
+    NotFound: NotFound,
+    
 }
 
 function _getCurrentPage(url) {
@@ -139,7 +141,9 @@ function _getCurrentPage(url) {
     }
 
     const pageName = Object.keys(PAGES).find(page => page.toLowerCase() === urlLastPart.toLowerCase());
-    return pageName || 'Home'; // Retourner "Home" par défaut au lieu de Dashboard
+    // Si la page n'existe pas, retourner "NotFound" pour que le Layout l'affiche correctement
+    // (mais React Router gérera toujours la route 404)
+    return pageName || 'NotFound';
 }
 
 // Create a wrapper component that uses useLocation inside the Router context
