@@ -143,26 +143,8 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
  * Option 2: Stocke la demande dans Supabase (solution sans service externe)
  */
 export const SendEmail = async ({ to, subject, html, text, requestType, formData }) => {
-  // Si une Edge Function send-email existe et est configurée, l'utiliser
-  try {
-    const { data, error } = await supabase.functions.invoke('send-email', {
-      body: {
-        to,
-        subject,
-        html,
-        text,
-      },
-    });
-
-    if (!error && data?.success) {
-      return data;
-    }
-    // Si erreur, continuer avec le fallback
-  } catch (err) {
-    console.log('Edge Function send-email non disponible, utilisation du fallback');
-  }
-
-  // Fallback: Stocker dans Supabase (solution sans service externe)
+  // Si requestType et formData sont fournis, utiliser directement le stockage Supabase (pas d'Edge Function)
+  // Cela évite les erreurs CORS et les problèmes de permissions
   if (requestType && formData) {
     const { data, error } = await supabase
       .from('contact_requests')

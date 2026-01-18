@@ -49,6 +49,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+DROP TRIGGER IF EXISTS update_contact_requests_timestamp ON contact_requests;
+
 CREATE TRIGGER update_contact_requests_timestamp
 BEFORE UPDATE ON contact_requests
 FOR EACH ROW
@@ -78,6 +80,12 @@ ORDER BY created_at DESC;
 -- RLS (Row Level Security) - Les utilisateurs peuvent voir leurs propres demandes
 ALTER TABLE contact_requests ENABLE ROW LEVEL SECURITY;
 
+-- Supprimer les politiques existantes si elles existent
+DROP POLICY IF EXISTS "Users can view their own contact requests" ON contact_requests;
+DROP POLICY IF EXISTS "Users can insert their own contact requests" ON contact_requests;
+DROP POLICY IF EXISTS "Admins can view all contact requests" ON contact_requests;
+DROP POLICY IF EXISTS "Admins can update contact requests" ON contact_requests;
+
 CREATE POLICY "Users can view their own contact requests"
 ON contact_requests FOR SELECT
 TO authenticated
@@ -92,12 +100,7 @@ USING (
 CREATE POLICY "Users can insert their own contact requests"
 ON contact_requests FOR INSERT
 TO authenticated
-WITH CHECK (
-  email = (
-    SELECT email FROM auth.users 
-    WHERE id = auth.uid()
-  )
-);
+WITH CHECK (true);
 
 -- Les admins peuvent tout voir (ajustez l'email selon vos besoins)
 CREATE POLICY "Admins can view all contact requests"
