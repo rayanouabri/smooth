@@ -66,7 +66,7 @@ export default function Layout({ children, currentPageName }) {
       {/* Navigation */}
       <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8">
-          <div className="flex justify-between items-center h-14 sm:h-16 gap-1 sm:gap-2 md:gap-4 overflow-hidden">
+          <div className="flex justify-between items-center h-14 sm:h-16 gap-1 sm:gap-2 md:gap-4 overflow-x-auto">
             {/* Logo */}
             <Link to={createPageUrl("Home")} className="flex items-center space-x-1 md:space-x-2 flex-shrink-0">
               <GraduationCap className="w-6 h-6 md:w-7 md:h-7 text-cyan-500 flex-shrink-0" />
@@ -117,27 +117,27 @@ export default function Layout({ children, currentPageName }) {
             </div>
 
             {/* Right Section: Auth */}
-            <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
+            <div className="flex items-center space-x-1 sm:space-x-1.5 md:space-x-2 flex-shrink-0 ml-auto">
               {/* Auth Buttons */}
               {isAuthenticated ? (
                 <>
-                  <Link to={createPageUrl("Dashboard")} className="hidden sm:inline-block">
-                    <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg" size="sm">
+                  <Link to={createPageUrl("Dashboard")} className="hidden md:inline-block">
+                    <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg text-xs sm:text-sm px-2 sm:px-3" size="sm">
                       🎓 Mon Espace
                     </Button>
                   </Link>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm" className="flex items-center space-x-2 relative">
-                        <div className="w-7 h-7 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      <Button variant="outline" size="sm" className="flex items-center space-x-1 sm:space-x-1.5 relative px-1.5 sm:px-2">
+                        <div className="w-6 h-6 sm:w-7 sm:h-7 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm flex-shrink-0">
                           {user?.full_name?.[0] || user?.email?.[0] || "U"}
                         </div>
                         {user?.is_premium && (
-                          <Badge className="absolute -right-2 -top-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-0 text-[10px]">
+                          <Badge className="absolute -right-1 -top-1 sm:-right-2 sm:-top-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-1 sm:px-2 py-0 text-[9px] sm:text-[10px]">
                             Premium
                           </Badge>
                         )}
-                        <ChevronDown className="w-3 h-3" />
+                        <ChevronDown className="w-3 h-3 flex-shrink-0 hidden sm:block" />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
@@ -170,12 +170,13 @@ export default function Layout({ children, currentPageName }) {
                     variant="outline"
                     size="sm"
                     onClick={() => redirectToLogin(window.location.href)}
+                    className="text-xs sm:text-sm px-2 sm:px-3 hidden xs:inline-flex"
                   >
                     Connexion
                   </Button>
                   <Button
                     size="sm"
-                    className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-semibold"
+                    className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-semibold text-xs sm:text-sm px-2 sm:px-3"
                     onClick={() => redirectToLogin(window.location.href)}
                   >
                     Commencer
