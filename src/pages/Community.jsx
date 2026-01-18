@@ -262,7 +262,7 @@ export default function Community() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {!selectedPost ? (
-          <React.Fragment>
+          <div>
             {/* Filter */}
             <div className="mb-6">
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
@@ -404,7 +404,7 @@ export default function Community() {
                 </div>
               )}
             </div>
-          </React.Fragment>
+          </div>
         ) : (
           <div>
             {/* Thread View */}
