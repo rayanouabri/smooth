@@ -57,7 +57,7 @@ export default function Community() {
     }
   };
 
-  const { data: posts = [] } = useQuery({
+  const { data: posts = [], isLoading: isLoadingPosts } = useQuery({
     queryKey: ['forum-posts', categoryFilter],
     queryFn: async () => {
       try {
@@ -71,6 +71,8 @@ export default function Community() {
         return [];
       }
     },
+    retry: 2,
+    retryDelay: 1000,
   });
 
   const { data: replies = [] } = useQuery({
@@ -174,7 +176,14 @@ export default function Community() {
               <div className="flex items-center gap-6 text-lg">
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full">
                   <MessageSquare className="w-5 h-5" />
-                  <span>{posts.length} discussions</span>
+                  {isLoadingPosts ? (
+                    <span className="flex items-center gap-2">
+                      <div className="inline-block animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                      Chargement...
+                    </span>
+                  ) : (
+                    <span>{posts.length} discussions</span>
+                  )}
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full">
                   <Eye className="w-5 h-5" />
@@ -269,8 +278,37 @@ export default function Community() {
             </div>
 
             {/* Posts List */}
-            <div className="space-y-6">
-              {posts.map((post) => (
+            {isLoadingPosts ? (
+              <div className="space-y-6">
+                <div className="text-center py-12">
+                  <div className="inline-flex items-center gap-3 text-indigo-600 mb-4">
+                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-indigo-200 border-t-indigo-600"></div>
+                    <p className="text-lg font-medium">Chargement des discussions...</p>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    Veuillez patienter pendant le chargement des sujets du forum
+                  </p>
+                </div>
+                {/* Skeleton loaders */}
+                {[...Array(3)].map((_, index) => (
+                  <Card key={index} className="animate-pulse">
+                    <CardContent className="p-8">
+                      <div className="flex items-start space-x-6">
+                        <div className="w-16 h-16 bg-gray-200 rounded-2xl"></div>
+                        <div className="flex-1 space-y-3">
+                          <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+                          <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+                          <div className="h-4 bg-gray-200 rounded w-full"></div>
+                          <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {posts.map((post) => (
                 <Card
                   key={post.id}
                   className="hover:shadow-2xl hover:border-blue-300 transition-all duration-300 cursor-pointer border-2 group"

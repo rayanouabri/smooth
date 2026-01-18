@@ -11,92 +11,72 @@ import { supabase } from './supabaseClient';
  * @returns {Object} Service avec méthodes filter, get, create, update, delete
  */
 export const createEntityService = (tableName) => {
+  /**
+   * Filtrer les entités (remplace base44.entities.EntityName.filter)
+   * @param {Object} filters - Filtres à appliquer { field: value }
+   * @param {string} orderBy - Champ de tri (préfixé par '-' pour ordre décroissant)
+   * @param {number} limit - Nombre maximum de résultats
+   * @returns {Promise<Array>} Liste des entités
+   */
+  const filter = async (filters = {}, orderBy = null, limit = null) => {
+    let query = supabase.from(tableName).select('*');
+
+    // Appliquer les filtres
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        if (Array.isArray(value)) {
+          if (value.length > 0) {
+            query = query.in(key, value);
+          }
+        } else {
+          query = query.eq(key, value);
+        }
+      }
+    });
+
+    // Appliquer le tri
+    if (orderBy) {
+      const isDescending = orderBy.startsWith('-');
+      const field = isDescending ? orderBy.slice(1) : orderBy;
+      query = query.order(field, { ascending: !isDescending });
+    }
+
+    // Appliquer la limite
+    if (limit) {
+      query = query.limit(limit);
+    }
+
+    const { data, error } = await query;
+    if (error) {
+      console.error(`Error filtering ${tableName}:`, error);
+      console.error(`Table: ${tableName}`, `Filters:`, filters, `Error details:`, error);
+      throw error;
+    }
+    return data || [];
+  };
+
   return {
     /**
      * Lister toutes les entités (remplace base44.entities.EntityName.list)
      * @param {string} orderBy - Champ de tri (préfixé par '-' pour ordre décroissant)
-     * @param {boolean} ascending - Ordre croissant ou décroissant
+     * @param {number} limit - Nombre maximum de résultats
      * @returns {Promise<Array>} Liste des entités
      */
-    all: async (orderBy = null, ascending = false) => {
-      let query = supabase.from(tableName).select('*');
-      
-      if (orderBy) {
-        const isDescending = orderBy.startsWith('-');
-        const field = isDescending ? orderBy.slice(1) : orderBy;
-        query = query.order(field, { ascending: !isDescending && ascending });
-      }
-      
-      const { data, error } = await query;
-      if (error) {
-        console.error(`Error listing ${tableName}:`, error);
-        throw error;
-      }
-      return data || [];
+    all: async (orderBy = null, limit = null) => {
+      return filter({}, orderBy, limit);
     },
 
     /**
      * Alias pour all() (compatibilité avec base44)
      */
-    list: async (orderBy = null, ascending = false) => {
-      let query = supabase.from(tableName).select('*');
-      
-      if (orderBy) {
-        const isDescending = orderBy.startsWith('-');
-        const field = isDescending ? orderBy.slice(1) : orderBy;
-        query = query.order(field, { ascending: !isDescending && ascending });
-      }
-      
-      const { data, error } = await query;
-      if (error) {
-        console.error(`Error listing ${tableName}:`, error);
-        throw error;
-      }
-      return data || [];
+    list: async (orderBy = null, limit = null) => {
+      return filter({}, orderBy, limit);
     },
 
     /**
-     * Filtrer les entités (remplace base44.entities.EntityName.filter)
-     * @param {Object} filters - Filtres à appliquer { field: value }
-     * @param {string} orderBy - Champ de tri (préfixé par '-' pour ordre décroissant)
-     * @param {number} limit - Nombre maximum de résultats
-     * @returns {Promise<Array>} Liste des entités
+     * Filtrer les entités
      */
-    filter: async (filters = {}, orderBy = null, limit = null) => {
-      let query = supabase.from(tableName).select('*');
-
-      // Appliquer les filtres
-      Object.entries(filters).forEach(([key, value]) => {
-        if (value !== undefined && value !== null && value !== '') {
-          if (Array.isArray(value)) {
-            if (value.length > 0) {
-              query = query.in(key, value);
-            }
-          } else {
-            query = query.eq(key, value);
-          }
-        }
-      });
-
-      // Appliquer le tri
-      if (orderBy) {
-        const isDescending = orderBy.startsWith('-');
-        const field = isDescending ? orderBy.slice(1) : orderBy;
-        query = query.order(field, { ascending: !isDescending });
-      }
-
-      // Appliquer la limite
-      if (limit) {
-        query = query.limit(limit);
-      }
-
-      const { data, error } = await query;
-      if (error) {
-        console.error(`Error filtering ${tableName}:`, error);
-        throw error;
-      }
-      return data || [];
-    },
+    filter,
 
     /**
      * Obtenir une entité par ID
@@ -107,7 +87,10 @@ export const createEntityService = (tableName) => {
         .select('*')
         .eq('id', id)
         .single();
-      if (error) throw error;
+      if (error) {
+        console.error(`Error getting ${tableName} by id ${id}:`, error);
+        throw error;
+      }
       return data;
     },
 
@@ -120,7 +103,10 @@ export const createEntityService = (tableName) => {
         .insert(entity)
         .select()
         .single();
-      if (error) throw error;
+      if (error) {
+        console.error(`Error creating ${tableName}:`, error);
+        throw error;
+      }
       return data;
     },
 
@@ -134,7 +120,10 @@ export const createEntityService = (tableName) => {
         .eq('id', id)
         .select()
         .single();
-      if (error) throw error;
+      if (error) {
+        console.error(`Error updating ${tableName} ${id}:`, error);
+        throw error;
+      }
       return data;
     },
 
@@ -146,14 +135,10 @@ export const createEntityService = (tableName) => {
         .from(tableName)
         .delete()
         .eq('id', id);
-      if (error) throw error;
-    },
-
-    /**
-     * Obtenir toutes les entités
-     */
-    all: async (orderBy = null, limit = null) => {
-      return this.filter({}, orderBy, limit);
+      if (error) {
+        console.error(`Error deleting ${tableName} ${id}:`, error);
+        throw error;
+      }
     },
   };
 };

@@ -58,6 +58,7 @@ import AdminCourses from "./AdminCourses";
 import Login from "./Login";
 import ResetPassword from "./ResetPassword";
 import AuthCallback from "./AuthCallback";
+import NotFound from "./NotFound";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
@@ -196,6 +197,7 @@ function PagesContent() {
                 <Route path="/Chatbot" element={<Chatbot />} />
                 
                 <Route path="/Courses" element={<Courses />} />
+                <Route path="/courses" element={<Courses />} />
                 
                 <Route path="/NotesGenerator" element={<NotesGenerator />} />
                 
@@ -248,6 +250,9 @@ function PagesContent() {
                 <Route path="/reset-password" element={<ResetPassword />} />
                 
                 <Route path="/auth/callback" element={<AuthCallback />} />
+                
+                {/* Catch-all route for 404 */}
+                <Route path="*" element={<NotFound />} />
                 
             </Routes>
         </Layout>

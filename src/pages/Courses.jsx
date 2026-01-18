@@ -24,11 +24,19 @@ export default function Courses() {
   const [levelFilter, setLevelFilter] = useState("all");
   const { t } = useLanguage();
 
-  const { data: courses = [], isLoading } = useQuery({
+  const { data: courses = [], isLoading, error: coursesError } = useQuery({
     queryKey: ['courses'],
     queryFn: async () => {
       try {
+        console.log('Chargement des cours...');
         const result = await Course.filter({ is_published: true }, '-created_date');
+        console.log(`Cours chargés: ${result.length} cours trouvés`);
+        
+        if (!result || result.length === 0) {
+          console.warn('Aucun cours publié trouvé dans la base de données');
+          return [];
+        }
+
         // Pour chaque cours, compter les leçons et charger le contenu pour la recherche
         const coursesWithLessons = await Promise.all(result.map(async (course) => {
           try {
@@ -52,6 +60,7 @@ export default function Courses() {
               ].filter(Boolean).join(' ').toLowerCase()
             };
           } catch (err) {
+            console.warn(`Erreur lors du chargement des leçons pour le cours ${course.id}:`, err);
             return { 
               ...course, 
               lessons_count: 0,
@@ -68,9 +77,22 @@ export default function Courses() {
         return coursesWithLessons || [];
       } catch (error) {
         console.error("Erreur lors du chargement des cours:", error);
+        console.error("Détails de l'erreur:", {
+          message: error.message,
+          code: error.code,
+          details: error.details,
+          hint: error.hint,
+          status: error.status
+        });
+        // Afficher une alerte pour l'utilisateur
+        if (error.code === 'PGRST116' || error.status === 404) {
+          console.error('Erreur 404: La table courses n\'existe pas ou n\'est pas accessible. Vérifiez la configuration Supabase.');
+        }
         return [];
       }
     },
+    retry: 2,
+    retryDelay: 1000,
   });
 
   const categoryLabels = {
@@ -188,7 +210,14 @@ export default function Courses() {
           >
             <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-pink-400 text-white border-0 text-base px-6 py-2 shadow-2xl animate-bounce">
               <Sparkles className="w-4 h-4 mr-2 inline" />
-              {courses.length}+ {t('courses.availableCourses')} • 70% {t('courses.freeCourses')}
+              {isLoading ? (
+                <span className="flex items-center gap-2">
+                  <div className="inline-block animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                  Chargement...
+                </span>
+              ) : (
+                <>{courses.length}+ {t('courses.availableCourses')} • 70% {t('courses.freeCourses')}</>
+              )}
             </Badge>
             <h1 className="text-5xl md:text-7xl font-extrabold mb-6 drop-shadow-2xl">
               {t('courses.title')}
@@ -291,7 +320,25 @@ export default function Courses() {
 
       {/* Courses */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {isLoading ? (
+        {coursesError ? (
+          <div className="text-center py-20">
+            <div className="text-8xl mb-6">⚠️</div>
+            <h3 className="text-3xl font-bold text-red-600 mb-4">Erreur de chargement</h3>
+            <p className="text-xl text-gray-600 mb-2">
+              Impossible de charger les cours depuis la base de données.
+            </p>
+            <p className="text-sm text-gray-500 mb-6">
+              {coursesError.message || 'Erreur inconnue'}
+            </p>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-full px-8"
+              onClick={() => window.location.reload()}
+            >
+              Recharger la page
+            </Button>
+          </div>
+        ) : isLoading ? (
           <div>
             {/* Skeleton Loader - Afficher des cartes de chargement */}
             <div className="mb-12">
