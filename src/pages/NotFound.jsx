@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Home, Search, ArrowLeft, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import Layout from "./Layout";
 
 export default function NotFound() {
   return (
-    <Layout currentPageName="NotFound">
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center px-4">
         <div className="max-w-2xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -110,6 +108,5 @@ export default function NotFound() {
           </motion.div>
         </div>
       </div>
-    </Layout>
   );
 }
