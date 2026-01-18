@@ -12,13 +12,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Layout({ children, currentPageName }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     checkAuth();
@@ -54,33 +52,13 @@ export default function Layout({ children, currentPageName }) {
     await logout();
   };
 
-  const languages = [
-    { code: "fr", name: "Français", flag: "🇫🇷" },
-    { code: "en", name: "English", flag: "🇬🇧" },
-    { code: "es", name: "Español", flag: "🇪🇸" },
-    { code: "ar", name: "العربية", flag: "🇸🇦" },
-    { code: "zh", name: "中文", flag: "🇨🇳" },
-    { code: "pt", name: "Português", flag: "🇵🇹" },
-    { code: "ru", name: "Русский", flag: "🇷🇺" },
-    { code: "de", name: "Deutsch", flag: "🇩🇪" },
-    { code: "it", name: "Italiano", flag: "🇮🇹" },
-    { code: "ja", name: "日本語", flag: "🇯🇵" },
-    { code: "ko", name: "한국어", flag: "🇰🇷" },
-    { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
-    { code: "tr", name: "Türkçe", flag: "🇹🇷" },
-    { code: "vi", name: "Tiếng Việt", flag: "🇻🇳" },
-    { code: "pl", name: "Polski", flag: "🇵🇱" },
-  ];
-
-  const currentLang = languages.find(l => l.code === language) || languages[0];
-
   const navLinks = [
-    { name: t('nav.home'), page: "Home" },
-    { name: t('nav.courses'), page: "Courses" },
-    { name: t('nav.teachers'), page: "Teachers" },
-    { name: t('nav.dashboard'), page: "Dashboard" },
-    { name: t('nav.community'), page: "Community" },
-    { name: t('nav.pricing'), page: "Pricing" },
+    { name: "Accueil", page: "Home" },
+    { name: "Cours", page: "Courses" },
+    { name: "Cours particuliers", page: "Teachers" },
+    { name: "Dashboard", page: "Dashboard" },
+    { name: "Communauté", page: "Community" },
+    { name: "Tarifs", page: "Pricing" },
   ];
 
   return (
@@ -138,40 +116,14 @@ export default function Layout({ children, currentPageName }) {
               ))}
             </div>
 
-            {/* Right Section: Language + Auth */}
+            {/* Right Section: Auth */}
             <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
-              {/* Language Selector - Visible on all screens */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="flex items-center gap-1.5 px-2 sm:px-3">
-                    <span className="text-lg sm:text-xl">{currentLang.flag}</span>
-                    <span className="hidden sm:inline text-sm font-medium">{currentLang.code.toUpperCase()}</span>
-                    <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 max-h-96 overflow-y-auto">
-                  {languages.map((lang) => (
-                    <DropdownMenuItem
-                      key={lang.code}
-                      onClick={() => setLanguage(lang.code)}
-                      className="cursor-pointer flex items-center gap-2 py-2.5"
-                    >
-                      <span className="text-xl">{lang.flag}</span>
-                      <span className="font-medium">{lang.name}</span>
-                      {lang.code === language && (
-                        <span className="ml-auto text-blue-600">✓</span>
-                      )}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-
               {/* Auth Buttons */}
               {isAuthenticated ? (
                 <>
                   <Link to={createPageUrl("Dashboard")} className="hidden sm:inline-block">
                     <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg" size="sm">
-                      🎓 {t('common.mySpace')}
+                      🎓 Mon Espace
                     </Button>
                   </Link>
                   <DropdownMenu>

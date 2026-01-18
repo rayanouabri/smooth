@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Home, Search, ArrowLeft, AlertCircle } from "lucide-react";
+import { Home, ArrowLeft, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function NotFound() {
@@ -46,9 +46,9 @@ export default function NotFound() {
               </div>
               <div className="relative">
                 <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-4 rounded-full shadow-lg border border-gray-200">
-                  <Search className="w-6 h-6 text-indigo-600" />
+                  <AlertCircle className="w-6 h-6 text-indigo-600" />
                   <span className="text-gray-700 font-medium">
-                    Vérifiez l'URL ou utilisez les liens ci-dessous
+                    Utilisez les liens ci-dessous pour naviguer
                   </span>
                 </div>
               </div>

@@ -4,7 +4,21 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { MessageCircle, X, Send, Loader2 } from "lucide-react";
 import { InvokeLLM } from "@/api/integrations";
+import { Course } from "@/api/entities";
 import { motion, AnimatePresence } from "framer-motion";
+
+// Fonction pour nettoyer le markdown (enlever **, ##, etc.)
+const cleanMarkdown = (text) => {
+  if (!text) return text;
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '$1') // Enlever **gras**
+    .replace(/\*(.*?)\*/g, '$1') // Enlever *italique*
+    .replace(/##+\s*(.*?)$/gm, '$1') // Enlever les titres ##
+    .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Enlever les liens [texte](url)
+    .replace(/`(.*?)`/g, '$1') // Enlever le code `
+    .replace(/---+/g, '') // Enlever les séparateurs ---
+    .trim();
+};
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +30,21 @@ export default function ChatBot() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [coursesContext, setCoursesContext] = useState([]);
   const messagesEndRef = useRef(null);
+
+  // Charger les cours pour le contexte de l'IA
+  useEffect(() => {
+    const loadCourses = async () => {
+      try {
+        const courses = await Course.filter({ is_published: true }, '-created_date');
+        setCoursesContext(courses || []);
+      } catch (error) {
+        console.log('Impossible de charger les cours pour le contexte IA:', error);
+      }
+    };
+    loadCourses();
+  }, []);
 
   const quickReplies = [
     { icon: "📋", text: "Aide CAF", query: "Comment faire ma demande CAF ?" },
@@ -41,6 +69,16 @@ export default function ChatBot() {
     setIsLoading(true);
 
     try {
+      // Construire le contexte des cours disponibles
+      const coursesList = coursesContext.slice(0, 20).map(course => {
+        const isPremium = course.is_premium ? 'Premium' : 'Gratuit';
+        return `- "${course.title}" (${isPremium}) - ${course.short_description || course.description || ''}`;
+      }).join('\n');
+
+      const coursesContextText = coursesContext.length > 0 
+        ? `\n\nCOURS DISPONIBLES SUR LA PLATEFORME (à recommander si pertinent) :\n${coursesList}\n\nPour accéder aux cours, l'utilisateur peut aller sur /Courses. Les cours Premium nécessitent un abonnement (voir /Pricing).`
+        : '';
+
       const response = await InvokeLLM({
         prompt: `Tu es Sophie, l'assistante IA de FrancePrepAcademy, une plateforme d'apprentissage spécialisée dans l'intégration des étudiants internationaux en France.
 
@@ -53,32 +91,38 @@ FrancePrepAcademy est une plateforme éducative qui propose :
 - Des cours sur la culture française et les codes sociaux
 - De l'aide à l'insertion professionnelle (CV, entretiens, recherche d'emploi)
 - Des cours particuliers sur demande
-- Une communauté d'entraide via un forum
+- Une communauté d'entraide via un forum${coursesContextText}
 
 TON RÔLE :
 Tu es une experte bienveillante qui aide les étudiants internationaux avec :
 1. Les démarches administratives en France (CAF, CPAM, carte Vitale, Visale, titre de séjour, préfecture, etc.)
-2. Les cours et formations disponibles sur la plateforme
+2. Les cours et formations disponibles sur la plateforme - REDIRIGE VERS LES COURS PERTINENTS
 3. La culture française et les codes sociaux
 4. L'insertion professionnelle en France
 5. Les questions pratiques de vie quotidienne (logement, banque, santé, transports)
 
-RÈGLES DE RÉPONSE :
+RÈGLES DE RÉPONSE IMPORTANTES :
 - Réponds TOUJOURS en français, de manière claire, concise et bienveillante
-- Utilise des émojis pertinents pour rendre tes réponses engageantes : 📚 (cours), ✅ (confirmation), 🎓 (études), 💼 (travail), 🏠 (logement), 📋 (démarches), 💡 (conseil), 🔗 (lien), etc.
+- NE JAMAIS utiliser de formatage markdown (**gras**, ##titres, etc.) - réponds en texte simple avec emojis
+- Utilise des émojis pertinents : 📚 (cours), ✅ (confirmation), 🎓 (études), 💼 (travail), 🏠 (logement), 📋 (démarches), 💡 (conseil), 🔗 (lien), 💎 (premium), etc.
+- Quand tu mentionnes un cours, redirige l'utilisateur vers /Courses avec le nom du cours
+- MENTIONNE les avantages Premium quand pertinent (accès complet, certificats, support prioritaire) et redirige vers /Pricing
 - Donne des informations précises et pratiques
 - Si tu ne connais pas une réponse spécifique, guide l'utilisateur vers les ressources appropriées ou recommande de contacter le support
 - Pour le contact support, utilise toujours : contact@franceprepacademy.fr
 - Sois empathique et compréhensive envers les difficultés des étudiants internationaux
-- Encourage l'utilisation des ressources de la plateforme (cours, forum communautaire)
+- Encourage l'utilisation des ressources de la plateforme (cours gratuits et premium, forum communautaire)
 
 Question de l'utilisateur : ${userMessage}
 
-Réponds maintenant de manière utile et bienveillante :`,
+Réponds maintenant de manière utile et bienveillante, SANS formatage markdown, en texte simple avec emojis :`,
         add_context_from_internet: false
       });
 
-      setMessages(prev => [...prev, { role: "assistant", content: response }]);
+      // Nettoyer le markdown de la réponse
+      const cleanedResponse = cleanMarkdown(response);
+
+      setMessages(prev => [...prev, { role: "assistant", content: cleanedResponse }]);
     } catch (error) {
       console.error("Erreur ChatBot:", error);
       
