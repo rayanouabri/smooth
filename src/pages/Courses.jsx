@@ -132,7 +132,6 @@ export default function Courses() {
       const semanticMatches = {
         'logement': ['visale', 'visa', 'caution', 'garantie', 'apartement', 'appartement', 'location', 'loyer', 'bail', 'logement', 'hébergement', 'colocation'],
         'loger': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail'],
-        'loger': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail'],
         'habitation': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail', 'appartement'],
         'maison': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail'],
         'santé': ['cpam', 'sécu', 'sécurité sociale', 'mutuelle', 'carte vitale', 'médecin', 'remboursement'],
