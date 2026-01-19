@@ -92,8 +92,14 @@ async function main() {
     console.log('✅ Dossier créé\n');
   }
 
-  // Générer un nom de migration unique
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+  // Générer un nom de migration unique (format Supabase: YYYYMMDDHHMMSS_name.sql)
+  const now = new Date();
+  const timestamp = now.getFullYear().toString() +
+    String(now.getMonth() + 1).padStart(2, '0') +
+    String(now.getDate()).padStart(2, '0') +
+    String(now.getHours()).padStart(2, '0') +
+    String(now.getMinutes()).padStart(2, '0') +
+    String(now.getSeconds()).padStart(2, '0');
   const baseName = basename(sqlFile, '.sql').replace(/[^a-z0-9]/gi, '_');
   const migrationName = `${timestamp}_${baseName}`;
   const migrationFile = join(migrationsDir, `${migrationName}.sql`);
@@ -104,17 +110,12 @@ async function main() {
   writeFileSync(migrationFile, sqlContent);
   console.log(`✅ Migration créée: ${migrationFile}\n`);
 
-  // Demander confirmation
-  console.log('⚠️  Vous êtes sur le point d\'exécuter cette migration sur votre base de données.');
-  console.log('   Voulez-vous continuer ? (Appuyez sur Ctrl+C pour annuler)\n');
-  console.log('   Appuyez sur Entrée pour continuer...');
-  
-  // En mode automatique, on continue directement
-  // Pour une version interactive, utilisez readline
-
-  // Appliquer la migration
-  console.log('\n🚀 Application de la migration...\n');
-  const { success, error, output } = runCommand('supabase db push');
+  // Appliquer la migration (avec réponse automatique "Y")
+  console.log('🚀 Application de la migration...\n');
+  const { success, error, output } = runCommand('echo Y | supabase db push', { 
+    shell: true,
+    stdio: 'inherit'
+  });
 
   if (success) {
     console.log('\n✅ Migration appliquée avec succès !');
