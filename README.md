@@ -57,12 +57,6 @@ Le projet utilise :
 
 Consultez `SECURITY_AUDIT_REPORT.md` pour plus de détails sur la sécurité.
 
-## 📚 Documentation
-
-- `SECURITY_AUDIT_REPORT.md` - Audit de sécurité complet
-- `supabase-schema.sql` - Schéma de base de données
-- `enable-rls-security.sql` - Configuration RLS
-
 ## 🚀 Déploiement
 
 Le projet est configuré pour se déployer automatiquement sur Vercel via GitHub.
@@ -74,10 +68,14 @@ Le projet est configuré pour se déployer automatiquement sur Vercel via GitHub
 
 ## 📝 Scripts SQL Utiles
 
-- `enable-rls-security.sql` - Active RLS sur toutes les tables
-- `create_contact_requests_table.sql` - Crée la table pour les demandes de contact
-- `supprimer_cours.sql` - Script pour supprimer des cours avec gestion des contraintes
-- `assign_category_images.sql` - Assigne des images par catégorie aux cours
+Les migrations sont gérées automatiquement via Supabase CLI. Les fichiers SQL à la racine servent de référence :
+- `create_ai_messages_table.sql` - Table pour limiter les messages IA (5/mois pour gratuit)
+- `create_contact_requests_table.sql` - Table pour les demandes de contact
+- `fix_premium_courses_business_model.sql` - Correction du modèle premium
+- `update_courses_ratings_and_duration.sql` - Mise à jour des évaluations et durées
+- `set_30_percent_courses_premium.sql` - Définit 30% des cours en premium
+
+Pour exécuter un script SQL : `node scripts/run-sql-cli.js <fichier.sql>`
 
 ## 📞 Support
 
