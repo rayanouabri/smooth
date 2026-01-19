@@ -78,20 +78,50 @@ const ensureUserProfile = async (user) => {
         .single();
       
       if (insertError) {
-        // Si l'insertion échoue (peut-être une contrainte), essayer la mise à jour
-        console.warn('me() - Insert failed, trying upsert:', insertError);
-        const { data: upsertedProfile, error: upsertError } = await supabase
-          .from('user_profiles')
-          .upsert(profileData, { onConflict: 'id' })
-          .select()
-          .single();
-        
-        if (upsertError) {
-          console.error('me() - Upsert also failed:', upsertError);
-          return null;
+        // Si l'insertion échoue à cause d'une contrainte (profil existe déjà), essayer de le récupérer
+        if (insertError.code === '23505' || insertError.message?.includes('duplicate key')) {
+          console.log('me() - Profile already exists, fetching it');
+          // Le profil existe déjà, le récupérer
+          const { data: existingProfile } = await supabase
+            .from('user_profiles')
+            .select('*')
+            .eq('id', user.id)
+            .maybeSingle();
+          
+          if (existingProfile) {
+            profile = existingProfile;
+          } else {
+            // Essayer par email
+            const { data: byEmail } = await supabase
+              .from('user_profiles')
+              .select('*')
+              .eq('user_email', user.email)
+              .maybeSingle();
+            
+            if (byEmail) {
+              profile = byEmail;
+            } else {
+              console.error('me() - Profile should exist but not found:', insertError);
+              return null;
+            }
+          }
+        } else {
+          // Autre erreur (RLS, etc.)
+          console.error('me() - Insert failed:', insertError);
+          // Essayer upsert comme dernier recours
+          const { data: upsertedProfile, error: upsertError } = await supabase
+            .from('user_profiles')
+            .upsert(profileData, { onConflict: 'id' })
+            .select()
+            .single();
+          
+          if (upsertError) {
+            console.error('me() - Upsert also failed:', upsertError);
+            return null;
+          }
+          
+          profile = upsertedProfile;
         }
-        
-        profile = upsertedProfile;
       } else {
         profile = newProfile;
       }
