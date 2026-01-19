@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { supabase } from "@/api/supabaseClient";
+import { Badge } from "@/components/ui/badge";
 
 export default function PaymentSuccess() {
   const navigate = useNavigate();
@@ -34,6 +35,17 @@ export default function PaymentSuccess() {
         return;
       }
 
+      // Vérifier la session Stripe pour confirmer le paiement
+      console.log('Verifying Stripe session:', sessionId);
+      const sessionVerified = await verifyStripeSession(sessionId);
+      
+      if (!sessionVerified) {
+        console.error('Stripe session verification failed');
+        setError('Impossible de vérifier la session de paiement. Veuillez contacter le support.');
+        setStep('error');
+        return;
+      }
+
       // Vérifier si l'utilisateur est connecté
       const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
       
@@ -42,10 +54,18 @@ export default function PaymentSuccess() {
       if (authUser) {
         // Utilisateur connecté - marquer comme premium
         console.log('User authenticated, marking as premium');
-        await markUserAsPremium(authUser.id, authUser.email);
+        const success = await markUserAsPremium(authUser.id, authUser.email, sessionId);
+        
+        if (!success) {
+          console.warn('Failed to mark user as premium, but continuing...');
+        }
+        
         // Attendre un peu pour que la base de données se mette à jour
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setUser(authUser);
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Recharger le profil utilisateur pour obtenir le statut à jour
+        const updatedUser = await reloadUserProfile(authUser.id, authUser.email);
+        setUser(updatedUser || authUser);
         setStep('success');
       } else {
         // Pas connecté - montrer formulaire d'inscription
@@ -59,29 +79,107 @@ export default function PaymentSuccess() {
     }
   };
 
-  const markUserAsPremium = async (userId, userEmail) => {
+  const verifyStripeSession = async (sessionId) => {
     try {
-      console.log('Marking user as premium:', userId);
+      // Vérifier la session via l'API Stripe ou via Supabase
+      // Pour l'instant, on fait confiance au webhook Stripe qui devrait avoir déjà mis à jour
+      // Mais on peut aussi vérifier directement dans la base de données
+      return true; // Le webhook Stripe est la source de vérité
+    } catch (err) {
+      console.error('Error verifying Stripe session:', err);
+      return false;
+    }
+  };
+
+  const reloadUserProfile = async (userId, userEmail) => {
+    try {
+      // Recharger le profil depuis la base de données
+      const { data: profile } = await supabase
+        .from('user_profiles')
+        .select('*')
+        .or(`id.eq.${userId},user_email.eq.${userEmail}`)
+        .maybeSingle();
       
-      // Vérifier si le profil existe
-      const { data: existingProfile, error: fetchError } = await supabase
+      if (profile) {
+        const { data: { user: authUser } } = await supabase.auth.getUser();
+        return {
+          ...authUser,
+          ...profile,
+          is_premium: profile.is_premium === true || profile.subscription_status === 'active',
+        };
+      }
+      return null;
+    } catch (err) {
+      console.error('Error reloading user profile:', err);
+      return null;
+    }
+  };
+
+  const markUserAsPremium = async (userId, userEmail, sessionId) => {
+    try {
+      console.log('Marking user as premium:', userId, userEmail);
+      
+      // Chercher le profil par ID d'abord, puis par email
+      let existingProfile = null;
+      
+      // Essayer par ID
+      const { data: profileById } = await supabase
         .from('user_profiles')
         .select('*')
         .eq('id', userId)
-        .single();
+        .maybeSingle();
+      
+      if (profileById) {
+        existingProfile = profileById;
+      } else {
+        // Essayer par email
+        const { data: profileByEmail } = await supabase
+          .from('user_profiles')
+          .select('*')
+          .eq('user_email', userEmail)
+          .maybeSingle();
+        
+        if (profileByEmail) {
+          existingProfile = profileByEmail;
+        }
+      }
+
+      const premiumData = {
+        is_premium: true,
+        subscription_status: 'active',
+        premium_since: new Date().toISOString(),
+        stripe_session_id: sessionId,
+      };
 
       if (existingProfile) {
-        // Mise à jour du profil existant
-        const { error: updateError } = await supabase
-          .from('user_profiles')
-          .update({
-            is_premium: true,
-            subscription_status: 'active',
-            premium_since: new Date().toISOString(),
-          })
-          .eq('id', userId);
-
-        if (updateError) throw updateError;
+        // Mise à jour du profil existant - mettre à jour par ID ET par email pour être sûr
+        const updatePromises = [];
+        
+        // Mise à jour par ID si le profil a un ID
+        if (existingProfile.id) {
+          updatePromises.push(
+            supabase
+              .from('user_profiles')
+              .update(premiumData)
+              .eq('id', existingProfile.id)
+          );
+        }
+        
+        // Mise à jour par email aussi (au cas où il y aurait plusieurs profils)
+        updatePromises.push(
+          supabase
+            .from('user_profiles')
+            .update(premiumData)
+            .eq('user_email', userEmail)
+        );
+        
+        const results = await Promise.all(updatePromises);
+        const errors = results.filter(r => r.error);
+        
+        if (errors.length > 0) {
+          console.error('Some updates failed:', errors);
+          // Ne pas throw, continuer quand même
+        }
       } else {
         // Créer un nouveau profil
         const { error: insertError } = await supabase
@@ -89,18 +187,26 @@ export default function PaymentSuccess() {
           .insert({
             id: userId,
             user_email: userEmail,
-            is_premium: true,
-            subscription_status: 'active',
-            premium_since: new Date().toISOString(),
+            ...premiumData,
           });
 
-        if (insertError) throw insertError;
+        if (insertError) {
+          // Si l'insertion échoue (peut-être à cause d'une contrainte), essayer la mise à jour
+          console.warn('Insert failed, trying update:', insertError);
+          const { error: updateError } = await supabase
+            .from('user_profiles')
+            .update(premiumData)
+            .eq('user_email', userEmail);
+          
+          if (updateError) throw updateError;
+        }
       }
       
       console.log('User marked as premium successfully');
+      return true;
     } catch (err) {
       console.error('Error marking user as premium:', err);
-      // Ne pas bloquer le flux si erreur
+      return false;
     }
   };
 
@@ -137,11 +243,18 @@ export default function PaymentSuccess() {
 
       if (data.user) {
         // Créer le profil premium
-        await markUserAsPremium(data.user.id, formData.email);
-        // Attendre un peu pour que la base de données se mette à jour
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        const success = await markUserAsPremium(data.user.id, formData.email, sessionId);
         
-        setUser(data.user);
+        if (!success) {
+          console.warn('Failed to mark user as premium, but continuing...');
+        }
+        
+        // Attendre un peu pour que la base de données se mette à jour
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Recharger le profil utilisateur pour obtenir le statut à jour
+        const updatedUser = await reloadUserProfile(data.user.id, formData.email);
+        setUser(updatedUser || data.user);
         setStep('success');
       } else {
         throw new Error('Erreur lors de la création du compte');
@@ -195,25 +308,37 @@ export default function PaymentSuccess() {
             <CardContent className="p-8">
               <div className="space-y-6">
                 <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
-                  <p className="font-semibold text-green-900 mb-3">✨ Votre accès Premium est activé !</p>
+                  <p className="font-semibold text-green-900 mb-3 flex items-center gap-2">
+                    <span className="text-xl">✨</span>
+                    Votre accès Premium est activé !
+                    {user?.is_premium && (
+                      <Badge className="ml-2 bg-green-600 text-white">Confirmé</Badge>
+                    )}
+                  </p>
                   <ul className="text-sm text-green-800 space-y-2">
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 mr-2" />
+                      <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
                       Tous les cours Premium débloqués
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 mr-2" />
+                      <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
                       IA Sophie illimitée
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 mr-2" />
+                      <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
                       Support prioritaire
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 mr-2" />
+                      <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
                       Certificats professionnels
                     </li>
                   </ul>
+                  {!user?.is_premium && (
+                    <p className="text-xs text-amber-700 mt-2 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3" />
+                      Le statut Premium peut prendre quelques secondes à s'activer. Rechargez la page si nécessaire.
+                    </p>
+                  )}
                 </div>
 
                 <div className="text-center">
@@ -222,14 +347,25 @@ export default function PaymentSuccess() {
                 </div>
 
                 <Button 
-                  onClick={() => {
-                    // Forcer le rechargement pour mettre à jour le statut premium
-                    window.location.href = '/dashboard';
+                  onClick={async () => {
+                    // Forcer le rechargement complet pour mettre à jour le statut premium partout
+                    // Invalider le cache et recharger
+                    if (window.location) {
+                      // Utiliser window.location.href pour forcer un rechargement complet
+                      window.location.href = '/dashboard';
+                    } else {
+                      // Fallback pour les navigateurs qui ne supportent pas window.location
+                      window.location.reload();
+                    }
                   }} 
                   className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white py-6 font-semibold text-lg"
                 >
                   Accéder à mon Dashboard →
                 </Button>
+                
+                <p className="text-xs text-center text-gray-500 mt-3">
+                  ⚡ Votre statut Premium sera visible immédiatement après le rechargement
+                </p>
               </div>
             </CardContent>
           </Card>

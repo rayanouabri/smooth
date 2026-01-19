@@ -46,14 +46,32 @@ serve(async (req) => {
         }
 
         if (existingProfile) {
-          // Mise à jour du profil existant
-          const { error } = await supabase
-            .from('user_profiles')
-            .update(premiumData)
-            .eq('user_email', session.customer_email)
-
-          if (error) {
-            console.error('Error updating user:', error)
+          // Mise à jour du profil existant - mettre à jour par ID ET par email pour être sûr
+          const updatePromises = []
+          
+          // Mise à jour par ID si le profil a un ID
+          if (existingProfile.id) {
+            updatePromises.push(
+              supabase
+                .from('user_profiles')
+                .update(premiumData)
+                .eq('id', existingProfile.id)
+            )
+          }
+          
+          // Mise à jour par email aussi (au cas où il y aurait plusieurs profils)
+          updatePromises.push(
+            supabase
+              .from('user_profiles')
+              .update(premiumData)
+              .eq('user_email', session.customer_email)
+          )
+          
+          const results = await Promise.all(updatePromises)
+          const errors = results.filter(r => r.error)
+          
+          if (errors.length > 0) {
+            console.error('Error updating user:', errors)
           } else {
             console.log('User upgraded to Premium:', session.customer_email)
           }

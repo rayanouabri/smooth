@@ -25,9 +25,21 @@ export default function Layout({ children, currentPageName }) {
       if (isAuthenticated) {
         checkAuth();
       }
-    }, 30000); // Toutes les 30 secondes
+    }, 10000); // Toutes les 10 secondes (plus rapide pour détecter les changements de premium)
     
-    return () => clearInterval(interval);
+    // Écouter les événements de navigation depuis PaymentSuccess
+    const handleFocus = () => {
+      if (isAuthenticated) {
+        checkAuth();
+      }
+    };
+    
+    window.addEventListener('focus', handleFocus);
+    
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('focus', handleFocus);
+    };
   }, [isAuthenticated]);
 
   const checkAuth = async () => {
