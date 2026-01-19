@@ -432,11 +432,11 @@ export default function Pricing() {
                     ) : (
                       <>
                         <span className="block">
-                          {plan.name === "Ultimate VIP" && userIsPremium && !isUltimateVIP 
+                          {plan.name === "Ultimate VIP" && userIsPremium && !userIsUltimateVIP 
                             ? "Passer à Ultimate VIP" 
-                            : plan.name === "Premium" && userIsPremium && !isUltimateVIP 
+                            : plan.name === "Premium" && userIsPremium && !userIsUltimateVIP 
                             ? plan.ctaPremium 
-                            : plan.name === "Ultimate VIP" && isUltimateVIP
+                            : plan.name === "Ultimate VIP" && userIsUltimateVIP
                             ? plan.ctaPremium
                             : plan.price > 0 && !plan.isOneShot && userIsPremium 
                             ? plan.ctaPremium 
