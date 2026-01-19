@@ -10,12 +10,6 @@
       "memory": 512
     }
   },
-  "crons": [
-    {
-      "path": "/api/cron/update-images",
-      "schedule": "0 2 * * *"
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
