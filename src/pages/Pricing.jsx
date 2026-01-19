@@ -179,7 +179,7 @@ export default function Pricing() {
     }
 
     // Si utilisateur a Premium et clique sur Premium
-    if (plan.name === "Premium" && isPremium && !isUltimateVIP) {
+    if (plan.name === "Premium" && userIsPremium && !isUltimateVIP) {
       window.location.href = '/profile?tab=subscription';
       return;
     }
