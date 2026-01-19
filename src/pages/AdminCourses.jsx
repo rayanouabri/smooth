@@ -452,7 +452,7 @@ export default function AdminCourses() {
                         <span>📚 {course.category}</span>
                         <span>⏱️ {course.duration_hours}h</span>
                         <span className="font-bold text-indigo-600">
-                          {course.price === 0 ? "Gratuit" : `${course.price}€`}
+                          {course.is_premium ? "⭐ Premium" : "Gratuit"}
                         </span>
                       </div>
 
