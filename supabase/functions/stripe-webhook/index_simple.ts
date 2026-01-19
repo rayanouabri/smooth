@@ -29,9 +29,65 @@ serve(async (req) => {
         console.log('👤 Customer ID:', session.customer)
         console.log('📝 Subscription ID:', session.subscription)
 
+        // DÉTECTION DU PLAN: Récupérer la subscription pour obtenir le Price ID
+        let subscriptionPlan = 'premium' // Par défaut
+        let priceId = null
+        
+        if (session.subscription) {
+          try {
+            // Récupérer la subscription depuis Stripe API pour obtenir le Price ID
+            const stripeKey = Deno.env.get('STRIPE_SECRET_KEY')
+            if (stripeKey) {
+              const subscriptionResponse = await fetch(
+                `https://api.stripe.com/v1/subscriptions/${session.subscription}`,
+                {
+                  headers: {
+                    'Authorization': `Bearer ${stripeKey}`,
+                  },
+                }
+              )
+              
+              if (subscriptionResponse.ok) {
+                const subscriptionData = await subscriptionResponse.json()
+                priceId = subscriptionData?.items?.data?.[0]?.price?.id
+                
+                // Déterminer le plan depuis le Price ID
+                const STRIPE_PRICE_IDS = {
+                  premium: {
+                    monthly: 'price_1ShgKyEKmsqeO7fH3eOB1TV5',
+                    annual: 'price_1SiEWLEKmsqeO7fH2UqWhy0L',
+                  },
+                  ultimate: {
+                    monthly: 'price_1SieSjEKmsqeO7fHFiHhd2g6',
+                    annual: 'price_1SieV1EKmsqeO7fHo3wLXwo7',
+                  },
+                }
+                
+                if (Object.values(STRIPE_PRICE_IDS.ultimate).includes(priceId)) {
+                  subscriptionPlan = 'ultimate'
+                  console.log('👑 Plan détecté: Ultimate VIP')
+                } else if (Object.values(STRIPE_PRICE_IDS.premium).includes(priceId)) {
+                  subscriptionPlan = 'premium'
+                  console.log('⚡ Plan détecté: Premium')
+                } else {
+                  console.log('⚠️ Plan non reconnu, utilisation Premium par défaut. Price ID:', priceId)
+                }
+              } else {
+                console.warn('⚠️ Impossible de récupérer la subscription depuis Stripe')
+              }
+            } else {
+              console.warn('⚠️ STRIPE_SECRET_KEY non configuré, utilisation Premium par défaut')
+            }
+          } catch (err) {
+            console.error('❌ Erreur lors de la récupération de la subscription:', err)
+            // Continuer avec Premium par défaut
+          }
+        }
+
         const premiumData = {
           is_premium: true,
           subscription_status: 'active',
+          subscription_plan: subscriptionPlan, // Ajouter le plan détecté
           stripe_customer_id: session.customer,
           stripe_subscription_id: session.subscription,
           stripe_session_id: session.id,
@@ -170,36 +226,70 @@ serve(async (req) => {
 
       case 'customer.subscription.updated': {
         const subscription = event.data.object
-        console.log('Subscription updated:', subscription.id)
+        console.log('🔄 Subscription updated - ID:', subscription.id)
+        console.log('📊 Status:', subscription.status)
+
+        // Détecter le plan depuis le Price ID de la subscription
+        let subscriptionPlan = 'premium' // Par défaut
+        const priceId = subscription?.items?.data?.[0]?.price?.id
+        
+        if (priceId) {
+          const STRIPE_PRICE_IDS = {
+            premium: {
+              monthly: 'price_1ShgKyEKmsqeO7fH3eOB1TV5',
+              annual: 'price_1SiEWLEKmsqeO7fH2UqWhy0L',
+            },
+            ultimate: {
+              monthly: 'price_1SieSjEKmsqeO7fHFiHhd2g6',
+              annual: 'price_1SieV1EKmsqeO7fHo3wLXwo7',
+            },
+          }
+          
+          if (Object.values(STRIPE_PRICE_IDS.ultimate).includes(priceId)) {
+            subscriptionPlan = 'ultimate'
+            console.log('👑 Plan détecté: Ultimate VIP')
+          } else if (Object.values(STRIPE_PRICE_IDS.premium).includes(priceId)) {
+            subscriptionPlan = 'premium'
+            console.log('⚡ Plan détecté: Premium')
+          }
+        }
+
+        const isActive = subscription.status === 'active'
 
         const { error } = await supabase
           .from('user_profiles')
           .update({
             subscription_status: subscription.status,
-            is_premium: subscription.status === 'active',
+            subscription_plan: subscriptionPlan, // Mettre à jour le plan
+            is_premium: isActive,
           })
           .eq('stripe_subscription_id', subscription.id)
 
         if (error) {
-          console.error('Error updating subscription:', error)
+          console.error('❌ Error updating subscription:', error)
+        } else {
+          console.log('✅ Subscription updated successfully')
         }
         break
       }
 
       case 'customer.subscription.deleted': {
         const subscription = event.data.object
-        console.log('Subscription cancelled:', subscription.id)
+        console.log('❌ Subscription cancelled - ID:', subscription.id)
 
         const { error } = await supabase
           .from('user_profiles')
           .update({
             is_premium: false,
             subscription_status: 'cancelled',
+            subscription_plan: null, // Réinitialiser le plan
           })
           .eq('stripe_subscription_id', subscription.id)
 
         if (error) {
-          console.error('Error cancelling:', error)
+          console.error('❌ Error cancelling subscription:', error)
+        } else {
+          console.log('✅ Subscription cancelled successfully')
         }
         break
       }
@@ -228,6 +318,31 @@ serve(async (req) => {
         const invoice = event.data.object
         console.log('✅ Payment succeeded - Invoice ID:', invoice.id)
 
+        // Détecter le plan depuis le Price ID de l'invoice
+        let subscriptionPlan = 'premium' // Par défaut
+        const priceId = invoice?.lines?.data?.[0]?.price?.id
+        
+        if (priceId) {
+          const STRIPE_PRICE_IDS = {
+            premium: {
+              monthly: 'price_1ShgKyEKmsqeO7fH3eOB1TV5',
+              annual: 'price_1SiEWLEKmsqeO7fH2UqWhy0L',
+            },
+            ultimate: {
+              monthly: 'price_1SieSjEKmsqeO7fHFiHhd2g6',
+              annual: 'price_1SieV1EKmsqeO7fHo3wLXwo7',
+            },
+          }
+          
+          if (Object.values(STRIPE_PRICE_IDS.ultimate).includes(priceId)) {
+            subscriptionPlan = 'ultimate'
+            console.log('👑 Plan détecté: Ultimate VIP')
+          } else if (Object.values(STRIPE_PRICE_IDS.premium).includes(priceId)) {
+            subscriptionPlan = 'premium'
+            console.log('⚡ Plan détecté: Premium')
+          }
+        }
+
         // S'assurer que l'utilisateur est Premium si le paiement réussit
         if (invoice.customer && invoice.subscription) {
           const { error: updateError } = await supabase
@@ -235,13 +350,14 @@ serve(async (req) => {
             .update({
               is_premium: true,
               subscription_status: 'active',
+              subscription_plan: subscriptionPlan, // Mettre à jour le plan
             })
             .eq('stripe_customer_id', invoice.customer)
 
           if (updateError) {
             console.error('❌ Error updating after successful payment:', updateError)
           } else {
-            console.log('✅ User confirmed Premium after successful payment')
+            console.log(`✅ User confirmed ${subscriptionPlan} after successful payment`)
           }
         }
         break

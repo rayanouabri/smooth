@@ -152,8 +152,9 @@ export default function Pricing() {
   ];
 
   const { isPremium } = require('@/utils/premium');
+  const { isUltimateVIP, hasPlan } = require('@/utils/subscription-plans');
   const userIsPremium = isPremium(user);
-  const isUltimateVIP = user?.subscription_plan === 'ultimate' || (userIsPremium && user?.stripe_subscription_id?.includes('ultimate'));
+  const userIsUltimateVIP = isUltimateVIP(user);
 
   const handlePlanClick = async (plan) => {
     if (plan.isOneShot) {
@@ -173,19 +174,19 @@ export default function Pricing() {
     }
 
     // Si utilisateur a déjà Ultimate VIP et clique sur Ultimate VIP
-    if (plan.name === "Ultimate VIP" && isUltimateVIP) {
+    if (plan.name === "Ultimate VIP" && userIsUltimateVIP) {
       window.location.href = '/profile?tab=subscription';
       return;
     }
 
     // Si utilisateur a Premium et clique sur Premium
-    if (plan.name === "Premium" && userIsPremium && !isUltimateVIP) {
+    if (plan.name === "Premium" && userIsPremium && !userIsUltimateVIP) {
       window.location.href = '/profile?tab=subscription';
       return;
     }
 
     // Permettre à un Premium de passer à Ultimate VIP
-    if (plan.name === "Ultimate VIP" && userIsPremium && !isUltimateVIP) {
+    if (plan.name === "Ultimate VIP" && userIsPremium && !userIsUltimateVIP) {
       // Continuera avec le checkout pour passer à Ultimate VIP
     }
 
