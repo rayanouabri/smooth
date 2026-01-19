@@ -56,6 +56,8 @@ CREATE TABLE IF NOT EXISTS user_profiles (
   bio TEXT,
   phone TEXT,
   subscription_plan TEXT DEFAULT 'gratuit',
+  ai_messages_used INTEGER DEFAULT 0,
+  ai_messages_month DATE DEFAULT (DATE_TRUNC('month', NOW())::date),
   created_date TIMESTAMPTZ DEFAULT NOW(),
   updated_date TIMESTAMPTZ DEFAULT NOW(),
   UNIQUE(user_id),

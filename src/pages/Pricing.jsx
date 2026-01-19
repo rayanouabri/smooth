@@ -67,7 +67,7 @@ export default function Pricing() {
       features: [
         { text: "Accès limité à une sélection de cours", included: true },
         { text: "Accès au Forum communautaire", included: true },
-        { text: "Max 10 messages avec l'IA Assistant", included: true },
+        { text: "5 messages/mois avec l'IA Assistant", included: true },
         { text: "Accès illimité aux 200+ formations", included: false },
         { text: "IA Assistante illimitée 24h/24", included: false },
         { text: "Accès prioritaire au Forum & Centre d'aide", included: false },
@@ -471,7 +471,7 @@ export default function Pricing() {
                 </div>
                 <p className="text-gray-600 mb-4">
                   Parfait pour découvrir la plateforme sans engagement. Accédez à une sélection de cours gratuits, 
-                  participez au forum communautaire et testez notre IA Assistant avec 10 messages gratuits.
+                  participez au forum communautaire et testez notre IA Assistant avec 5 messages gratuits par mois.
                 </p>
                 <p className="text-sm text-gray-500">
                   <strong>Idéal pour :</strong> Les nouveaux arrivants qui souhaitent explorer nos services avant de s'engager.

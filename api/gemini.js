@@ -1,3 +1,38 @@
+import { createClient } from '@supabase/supabase-js';
+
+const ASSISTANT_USAGE_SCOPE = 'assistant';
+const FREE_ASSISTANT_MESSAGES_PER_MONTH = 5;
+
+const getMonthKey = (date = new Date()) => {
+  const year = date.getUTCFullYear();
+  const month = date.getUTCMonth();
+  return new Date(Date.UTC(year, month, 1)).toISOString().slice(0, 10);
+};
+
+const getSupabaseConfig = () => {
+  const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const anonKey = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+  return {
+    url,
+    key: serviceRoleKey || anonKey,
+    hasServiceRole: Boolean(serviceRoleKey),
+  };
+};
+
+const createSupabaseClient = (token) => {
+  const { url, key, hasServiceRole } = getSupabaseConfig();
+  if (!url || !key) {
+    return null;
+  }
+  if (token && !hasServiceRole) {
+    return createClient(url, key, {
+      global: { headers: { Authorization: `Bearer ${token}` } },
+    });
+  }
+  return createClient(url, key);
+};
+
 export default async function handler(req, res) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -39,6 +74,111 @@ export default async function handler(req, res) {
     const prompt = body.prompt;
     if (!prompt) {
       return res.status(400).json({ error: 'Missing prompt' });
+    }
+
+    const usageScope = body.usage_scope || body.feature || null;
+    let usage = null;
+    let shouldCountUsage = false;
+    let usageMonthKey = null;
+    let usageToken = null;
+    let usageUserId = null;
+    let usageUserEmail = null;
+    let usageUserName = null;
+    let usageUsed = 0;
+    let usageIsPremium = false;
+
+    if (usageScope === ASSISTANT_USAGE_SCOPE) {
+      const authHeader = req.headers.authorization || req.headers.Authorization || '';
+      const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+      usageMonthKey = getMonthKey();
+      usageToken = token;
+
+      if (!token) {
+        return res.status(401).json({
+          error: "Connectez-vous pour utiliser l'assistant IA.",
+          code: 'authentication_required',
+          usage: {
+            isPremium: false,
+            limit: FREE_ASSISTANT_MESSAGES_PER_MONTH,
+            used: 0,
+            remaining: FREE_ASSISTANT_MESSAGES_PER_MONTH,
+            month: usageMonthKey,
+          },
+        });
+      }
+
+      const supabaseAdmin = createSupabaseClient();
+      if (!supabaseAdmin) {
+        return res.status(500).json({
+          error: 'supabase_not_configured',
+          message: 'Configuration Supabase manquante pour contrôler le quota IA.',
+        });
+      }
+
+      const { data: userData, error: userError } = await supabaseAdmin.auth.getUser(token);
+      if (userError || !userData?.user) {
+        return res.status(401).json({
+          error: "Votre session a expiré. Connectez-vous pour utiliser l'assistant IA.",
+          code: 'authentication_required',
+          usage: {
+            isPremium: false,
+            limit: FREE_ASSISTANT_MESSAGES_PER_MONTH,
+            used: 0,
+            remaining: FREE_ASSISTANT_MESSAGES_PER_MONTH,
+            month: usageMonthKey,
+          },
+        });
+      }
+
+      const currentUser = userData.user;
+      usageUserId = currentUser.id;
+      usageUserEmail = currentUser.email;
+      usageUserName = currentUser.user_metadata?.full_name || currentUser.email?.split('@')[0];
+
+      const supabaseUser = createSupabaseClient(token) || supabaseAdmin;
+      const { data: profile, error: profileError } = await supabaseUser
+        .from('user_profiles')
+        .select('user_id, user_email, full_name, is_premium, subscription_status, subscription_plan, ai_messages_used, ai_messages_month')
+        .eq('user_id', usageUserId)
+        .maybeSingle();
+
+      if (profileError) {
+        console.error('[Gemini] Profil utilisateur introuvable:', profileError);
+      }
+
+      const plan = profile?.subscription_plan;
+      usageIsPremium = profile?.is_premium === true ||
+        profile?.is_premium === 'true' ||
+        profile?.subscription_status === 'active' ||
+        plan === 'premium' ||
+        plan === 'intensif' ||
+        plan === 'ultimate';
+
+      const storedMonth = profile?.ai_messages_month
+        ? new Date(profile.ai_messages_month).toISOString().slice(0, 10)
+        : null;
+      const storedUsed = Number.isFinite(profile?.ai_messages_used)
+        ? profile.ai_messages_used
+        : Number.parseInt(profile?.ai_messages_used || 0, 10);
+      usageUsed = storedMonth === usageMonthKey ? storedUsed : 0;
+
+      usage = {
+        isPremium: usageIsPremium,
+        limit: usageIsPremium ? null : FREE_ASSISTANT_MESSAGES_PER_MONTH,
+        used: usageUsed,
+        remaining: usageIsPremium ? null : Math.max(FREE_ASSISTANT_MESSAGES_PER_MONTH - usageUsed, 0),
+        month: usageMonthKey,
+      };
+
+      if (!usageIsPremium && usage.remaining <= 0) {
+        return res.status(429).json({
+          error: "Limite mensuelle atteinte : 5 messages pour l'assistant IA.",
+          code: 'free_plan_limit_reached',
+          usage,
+        });
+      }
+
+      shouldCountUsage = !usageIsPremium;
     }
 
     // UTILISER UNIQUEMENT gemini-2.5-flash
@@ -128,8 +268,35 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'No content from Gemini' });
     }
     
+    if (shouldCountUsage && usageUserId && usageMonthKey) {
+      const supabaseUpdater = createSupabaseClient(usageToken);
+      if (supabaseUpdater) {
+        const nextUsed = usageUsed + 1;
+        const upsertPayload = {
+          user_id: usageUserId,
+          user_email: usageUserEmail,
+          full_name: usageUserName,
+          ai_messages_used: nextUsed,
+          ai_messages_month: usageMonthKey,
+        };
+        const { error: updateError } = await supabaseUpdater
+          .from('user_profiles')
+          .upsert(upsertPayload, { onConflict: 'user_id' });
+
+        if (updateError) {
+          console.error('[Gemini] Usage update failed:', updateError);
+        } else if (usage) {
+          usage = {
+            ...usage,
+            used: nextUsed,
+            remaining: Math.max(FREE_ASSISTANT_MESSAGES_PER_MONTH - nextUsed, 0),
+          };
+        }
+      }
+    }
+
     console.log('[Gemini] Success! Content length:', content.length);
-    return res.status(200).json({ content });
+    return res.status(200).json({ content, usage });
     
   } catch (err) {
     console.error('[Gemini] Error:', err.message);

@@ -79,7 +79,7 @@ export default function Home() {
       name: "Découverte",
       price: "0€",
       description: "Pour explorer la plateforme",
-      features: ["10 messages IA", "Tutoriels de base", "Accès Forum"],
+      features: ["5 messages IA / mois", "Tutoriels de base", "Accès Forum"],
       icon: "🎓",
       color: "from-gray-500 to-gray-600"
     },

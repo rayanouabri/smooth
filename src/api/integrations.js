@@ -10,17 +10,33 @@ import { supabase } from './supabaseClient';
  * Pour l'instant, utilise une Edge Function Supabase
  * Vous pouvez aussi utiliser directement une API OpenAI/Anthropic
  */
-export const InvokeLLM = async ({ prompt, add_context_from_internet = false, model = 'gpt-4', response_json_schema = null }) => {
+export const InvokeLLM = async ({
+  prompt,
+  add_context_from_internet = false,
+  model = 'gpt-4',
+  response_json_schema = null,
+  usage_scope = null,
+  return_usage = false,
+}) => {
   try {
     // Utiliser TOUJOURS le proxy /api/gemini (clé backend sûre)
     try {
       console.log('[InvokeLLM] Calling /api/gemini proxy');
+      const { data: { session } } = await supabase.auth.getSession();
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+      if (session?.access_token) {
+        headers.Authorization = `Bearer ${session.access_token}`;
+      }
+      const payload = { prompt };
+      if (usage_scope) {
+        payload.usage_scope = usage_scope;
+      }
       const response = await fetch('/api/gemini', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ prompt }),
+        headers,
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -33,7 +49,11 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
         }
         console.error('[InvokeLLM] Gemini proxy error:', response.status, errorData);
         const errorMessage = errorData.error || errorData.message || `Gemini API error (${response.status})`;
-        throw new Error(errorMessage);
+        const error = new Error(errorMessage);
+        if (errorData?.usage) {
+          error.usage = errorData.usage;
+        }
+        throw error;
       }
 
       const json = await response.json();
@@ -44,11 +64,12 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
         throw new Error('Réponse vide de Gemini');
       }
 
+      let finalContent = content;
       if (response_json_schema && content) {
         try {
           const jsonMatch = content.match(/\{[\s\S]*\}/);
           if (jsonMatch) {
-            return JSON.parse(jsonMatch[0]);
+            finalContent = JSON.parse(jsonMatch[0]);
           }
         } catch (e) {
           console.warn('[InvokeLLM] JSON parsing failed, returning raw content');
@@ -56,7 +77,7 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
       }
 
       console.log('[InvokeLLM] Gemini success, content length:', content.length);
-      return content;
+      return return_usage ? { content: finalContent, usage: json.usage } : finalContent;
     } catch (err) {
       console.error('[InvokeLLM] Gemini proxy failed:', err.message);
       if (!import.meta.env.VITE_OPENAI_API_KEY) {
