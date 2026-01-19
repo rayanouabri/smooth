@@ -60,7 +60,7 @@ export default function DashboardSidebar({ currentPage }) {
   // Utiliser is_premium au lieu de subscription_plan
   const { isPremium } = require('@/utils/premium');
   const userIsPremium = isPremium(profile);
-  const plan = isPremium ? 'premium' : 'gratuit';
+  const plan = userIsPremium ? 'premium' : 'gratuit';
   const avgProgress = enrollments.length > 0 
     ? enrollments.reduce((sum, e) => sum + e.progress_percentage, 0) / enrollments.length 
     : 0;

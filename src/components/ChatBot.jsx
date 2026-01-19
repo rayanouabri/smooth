@@ -311,7 +311,7 @@ Réponds maintenant de manière utile et bienveillante, SANS formatage markdown,
                     <div>
                       <div className="font-bold flex items-center gap-2">
                         Sophie
-                        {user?.is_premium && (
+                        {userIsPremium && (
                           <Crown className="w-4 h-4 text-yellow-300" />
                         )}
                       </div>
@@ -328,7 +328,7 @@ Réponds maintenant de manière utile et bienveillante, SANS formatage markdown,
                   </Button>
                 </div>
                 {/* Compteur de messages */}
-                {!user?.is_premium && (
+                {!userIsPremium && (
                   <div className="mt-2 pt-2 border-t border-white/20">
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-blue-100">Messages ce mois</span>
@@ -346,7 +346,7 @@ Réponds maintenant de manière utile et bienveillante, SANS formatage markdown,
                     )}
                   </div>
                 )}
-                {user?.is_premium && (
+                {userIsPremium && (
                   <div className="mt-2 pt-2 border-t border-white/20">
                     <div className="flex items-center gap-1 text-xs text-yellow-200">
                       <Crown className="w-3 h-3" />
@@ -414,7 +414,7 @@ Réponds maintenant de manière utile et bienveillante, SANS formatage markdown,
 
               {/* Input */}
               <div className="p-4 border-t border-gray-200 bg-white rounded-b-lg">
-                {!user?.is_premium && messagesCount >= FREE_MESSAGE_LIMIT ? (
+                {!userIsPremium && messagesCount >= FREE_MESSAGE_LIMIT ? (
                   <div className="space-y-3">
                     <div className="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-3 text-center">
                       <AlertCircle className="w-5 h-5 text-yellow-600 mx-auto mb-2" />
@@ -444,7 +444,7 @@ Réponds maintenant de manière utile et bienveillante, SANS formatage markdown,
                     />
                     <Button
                       onClick={() => handleSend()}
-                      disabled={!input.trim() || isLoading || isCheckingLimit || (!user?.is_premium && messagesCount >= FREE_MESSAGE_LIMIT)}
+                      disabled={!input.trim() || isLoading || isCheckingLimit || (!userIsPremium && messagesCount >= FREE_MESSAGE_LIMIT)}
                       className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 rounded-full w-10 h-10 p-0"
                     >
                       <Send className="w-4 h-4" />

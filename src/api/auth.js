@@ -188,7 +188,7 @@ export const me = async () => {
   
   console.log('me() - User:', user.id, 'Email:', user.email);
   console.log('me() - Profile found:', !!profile, 'Profile ID:', profile?.id);
-  console.log('me() - is_premium (raw):', profile?.is_premium, 'is_premium (computed):', isPremium);
+  console.log('me() - is_premium (raw):', profile?.is_premium, 'is_premium (computed):', computedIsPremium);
   console.log('me() - subscription_status:', profile?.subscription_status);
   
   // Construire l'objet utilisateur avec le profil
@@ -197,7 +197,7 @@ export const me = async () => {
     id: user.id,
     email: user.email,
     full_name: profile?.full_name || user.user_metadata?.full_name || user.email?.split('@')[0],
-    is_premium: isPremium,
+    is_premium: computedIsPremium,
     subscription_status: profile?.subscription_status || 'inactive',
     // Inclure toutes les données du profil
     ...(profile || {}),

@@ -151,8 +151,9 @@ export default function Pricing() {
     }
   ];
 
-  const isPremium = user?.is_premium === true || user?.subscription_status === 'active';
-  const isUltimateVIP = user?.subscription_plan === 'ultimate' || user?.subscription_status === 'active' && user?.stripe_subscription_id?.includes('ultimate');
+  const { isPremium } = require('@/utils/premium');
+  const userIsPremium = isPremium(user);
+  const isUltimateVIP = user?.subscription_plan === 'ultimate' || (userIsPremium && user?.stripe_subscription_id?.includes('ultimate'));
 
   const handlePlanClick = async (plan) => {
     if (plan.isOneShot) {
@@ -184,7 +185,7 @@ export default function Pricing() {
     }
 
     // Permettre à un Premium de passer à Ultimate VIP
-    if (plan.name === "Ultimate VIP" && isPremium && !isUltimateVIP) {
+    if (plan.name === "Ultimate VIP" && userIsPremium && !isUltimateVIP) {
       // Continuera avec le checkout pour passer à Ultimate VIP
     }
 
@@ -302,7 +303,7 @@ export default function Pricing() {
                     : "border-2 border-gray-200 hover:shadow-xl transition-shadow"
                 }`}
               >
-                {plan.popular && !isPremium && (
+                {plan.popular && !userIsPremium && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
                     <Badge className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-1 shadow-lg">
                       <Star className="w-3 h-3 mr-1 inline" />
@@ -320,7 +321,7 @@ export default function Pricing() {
                   </div>
                 )}
                 
-                {plan.price > 0 && !plan.isOneShot && isPremium && (
+                {plan.price > 0 && !plan.isOneShot && userIsPremium && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
                     <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-1 shadow-lg">
                       <Check className="w-3 h-3 mr-1 inline" />
