@@ -2,10 +2,40 @@ import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { MessageCircle, X, Send, Loader2, Crown, Lock } from "lucide-react";
 import { InvokeLLM } from "@/api/integrations";
-import { Course } from "@/api/entities";
+import { Course, User } from "@/api/entities";
 import { motion, AnimatePresence } from "framer-motion";
+
+const FREE_ASSISTANT_MESSAGES_PER_MONTH = 5;
+
+const getMonthKey = (date = new Date()) => {
+  const year = date.getUTCFullYear();
+  const month = date.getUTCMonth();
+  return new Date(Date.UTC(year, month, 1)).toISOString().slice(0, 10);
+};
+
+const buildUsageFromProfile = (profile) => {
+  if (!profile) return null;
+  const monthKey = getMonthKey();
+  const storedMonth = profile.ai_messages_month
+    ? new Date(profile.ai_messages_month).toISOString().slice(0, 10)
+    : null;
+  const storedUsed = Number.isFinite(profile.ai_messages_used)
+    ? profile.ai_messages_used
+    : Number.parseInt(profile.ai_messages_used || 0, 10);
+  const used = storedMonth === monthKey ? storedUsed : 0;
+  const isPremium = profile.is_premium === true || profile.subscription_status === "active";
+  return {
+    isPremium,
+    limit: isPremium ? null : FREE_ASSISTANT_MESSAGES_PER_MONTH,
+    used,
+    remaining: isPremium ? null : Math.max(FREE_ASSISTANT_MESSAGES_PER_MONTH - used, 0),
+    month: monthKey,
+  };
+};
 
 // Fonction pour nettoyer le markdown (enlever **, ##, etc.)
 const cleanMarkdown = (text) => {
@@ -31,6 +61,9 @@ export default function ChatBot() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [coursesContext, setCoursesContext] = useState([]);
+  const [user, setUser] = useState(null);
+  const [usage, setUsage] = useState(null);
+  const [isAuthReady, setIsAuthReady] = useState(false);
   const messagesEndRef = useRef(null);
 
   // Charger les cours pour le contexte de l'IA
@@ -46,11 +79,43 @@ export default function ChatBot() {
     loadCourses();
   }, []);
 
+  const loadUserProfile = async () => {
+    try {
+      const userData = await User.me();
+      setUser(userData);
+      setUsage(buildUsageFromProfile(userData));
+    } catch (error) {
+      console.log("Utilisateur non authentifié");
+      setUser(null);
+      setUsage(null);
+    } finally {
+      setIsAuthReady(true);
+    }
+  };
+
+  useEffect(() => {
+    loadUserProfile();
+  }, [isOpen]);
+
   const quickReplies = [
     { icon: "📋", text: "Aide CAF", query: "Comment faire ma demande CAF ?" },
     { icon: "🎓", text: "Cours français", query: "Quels cours de français proposez-vous ?" },
     { icon: "💬", text: "Contact support", query: "Comment contacter le support ? Email: contact@franceprepacademy.fr" }
   ];
+
+  const isPremium = usage?.isPremium || user?.is_premium === true || user?.subscription_status === "active";
+  const isLimitReached = Boolean(usage && !isPremium && usage.remaining <= 0);
+  const isLockedByAuth = isAuthReady && !user;
+  const usageProgress = usage && !isPremium
+    ? Math.min(100, Math.round((usage.used / FREE_ASSISTANT_MESSAGES_PER_MONTH) * 100))
+    : 0;
+  const remainingMessages = usage?.remaining ?? FREE_ASSISTANT_MESSAGES_PER_MONTH;
+  const isQuickReplyDisabled = isLoading || isLockedByAuth || isLimitReached;
+  const inputPlaceholder = isLockedByAuth
+    ? "Connectez-vous pour discuter avec Sophie..."
+    : isLimitReached
+      ? "Limite mensuelle atteinte — passez Premium."
+      : "Écrivez votre message...";
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -63,6 +128,22 @@ export default function ChatBot() {
   const handleSend = async (messageText) => {
     const userMessage = messageText || input.trim();
     if (!userMessage || isLoading) return;
+
+    if (isLockedByAuth) {
+      setMessages(prev => [...prev, { 
+        role: "assistant", 
+        content: "🔐 Connectez-vous pour utiliser l'assistante IA. Vous avez 5 messages gratuits par mois en plan découverte." 
+      }]);
+      return;
+    }
+
+    if (isLimitReached) {
+      setMessages(prev => [...prev, { 
+        role: "assistant", 
+        content: "🚫 Vous avez atteint la limite mensuelle de 5 messages. Passez Premium pour continuer sans limite." 
+      }]);
+      return;
+    }
 
     setInput("");
     setMessages(prev => [...prev, { role: "user", content: userMessage }]);
@@ -115,12 +196,19 @@ RÈGLES DE RÉPONSE IMPORTANTES :
 
 Question de l'utilisateur : ${userMessage}
 
-Réponds maintenant de manière utile et bienveillante, SANS formatage markdown, en texte simple avec emojis :`,
-        add_context_from_internet: false
+        Réponds maintenant de manière utile et bienveillante, SANS formatage markdown, en texte simple avec emojis :`,
+        add_context_from_internet: false,
+        usage_scope: "assistant",
+        return_usage: true
       });
 
       // Nettoyer le markdown de la réponse
-      const cleanedResponse = cleanMarkdown(response);
+      const content = response?.content || response;
+      const cleanedResponse = cleanMarkdown(content);
+
+      if (response?.usage) {
+        setUsage(response.usage);
+      }
 
       setMessages(prev => [...prev, { role: "assistant", content: cleanedResponse }]);
     } catch (error) {
@@ -145,6 +233,10 @@ Réponds maintenant de manière utile et bienveillante, SANS formatage markdown,
         errorMessage = `⚠️ ${error.message}`;
       } else {
         errorMessage += " Veuillez réessayer ou contacter le support : contact@franceprepacademy.fr";
+      }
+
+      if (error?.usage) {
+        setUsage(error.usage);
       }
       
       setMessages(prev => [...prev, { 
@@ -225,6 +317,60 @@ Réponds maintenant de manière utile et bienveillante, SANS formatage markdown,
                 </Button>
               </div>
 
+              {/* Plan & Usage */}
+              <div className="border-b border-blue-100 bg-white/90 px-4 py-3">
+                {!isAuthReady ? (
+                  <div className="text-xs text-gray-500">Chargement du profil...</div>
+                ) : isLockedByAuth ? (
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2 text-xs text-gray-600">
+                      <Lock className="w-4 h-4 text-blue-500" />
+                      <span>Connectez-vous pour 5 messages gratuits / mois</span>
+                    </div>
+                    <Button
+                      size="sm"
+                      onClick={() => window.location.href = "/login"}
+                      className="h-8 px-3 text-xs rounded-full bg-blue-600 hover:bg-blue-700 text-white"
+                    >
+                      Se connecter
+                    </Button>
+                  </div>
+                ) : isPremium ? (
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Badge className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white">
+                        Premium
+                      </Badge>
+                      <span className="text-xs text-gray-600">IA illimitée</span>
+                    </div>
+                    <Crown className="w-4 h-4 text-yellow-500" />
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Badge className="bg-blue-50 text-blue-700 border border-blue-100">
+                        Plan gratuit
+                      </Badge>
+                      <span className="text-xs text-gray-600">
+                        {remainingMessages} message{remainingMessages > 1 ? "s" : ""} restant{remainingMessages > 1 ? "s" : ""}
+                      </span>
+                    </div>
+                    <Progress value={usageProgress} className="h-1.5" />
+                    <div className="flex items-center justify-between text-[11px] text-gray-500">
+                      <span>Réinitialisation le 1er du mois</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => window.location.href = "/pricing"}
+                        className="h-6 px-2 text-[11px] text-blue-600 hover:text-blue-700"
+                      >
+                        Passer Premium
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* Messages */}
               <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-gray-50 to-white">
                 {messages.map((message, index) => (
@@ -272,7 +418,10 @@ Réponds maintenant de manière utile et bienveillante, SANS formatage markdown,
                     <button
                       key={index}
                       onClick={() => handleQuickReply(reply.query)}
-                      className="text-xs bg-blue-100 text-blue-700 px-3 py-2 rounded-full hover:bg-blue-200 transition-colors flex items-center gap-1"
+                      disabled={isQuickReplyDisabled}
+                      className={`text-xs bg-blue-100 text-blue-700 px-3 py-2 rounded-full transition-colors flex items-center gap-1 ${
+                        isQuickReplyDisabled ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-200"
+                      }`}
                     >
                       <span>{reply.icon}</span>
                       <span>{reply.text}</span>
@@ -288,13 +437,13 @@ Réponds maintenant de manière utile et bienveillante, SANS formatage markdown,
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Écrivez votre message..."
-                    disabled={isLoading}
+                    placeholder={inputPlaceholder}
+                    disabled={isLoading || isLockedByAuth || isLimitReached}
                     className="flex-1 border-2 border-gray-200 focus:border-blue-400 rounded-full"
                   />
                   <Button
                     onClick={() => handleSend()}
-                    disabled={!input.trim() || isLoading}
+                    disabled={!input.trim() || isLoading || isLockedByAuth || isLimitReached}
                     className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 rounded-full w-10 h-10 p-0"
                   >
                     <Send className="w-4 h-4" />
