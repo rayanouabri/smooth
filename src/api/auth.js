@@ -115,37 +115,42 @@ export const me = async () => {
     return null;
   }
   
-  // S'assurer que le profil existe (création automatique si nécessaire)
-  let profile = await ensureUserProfile(user);
-  
-  // Si ensureUserProfile a échoué, essayer quand même de récupérer le profil
-  if (!profile) {
-    try {
-      // Essayer d'abord par ID
-      const { data: byId } = await supabase
+  // Récupérer le profil utilisateur depuis la table user_profiles
+  // Le profil devrait être créé automatiquement par le trigger SQL on_auth_user_created
+  // Si le profil n'existe pas, utiliser ensureUserProfile comme backup (pour anciens utilisateurs)
+  let profile = null;
+  try {
+    // Essayer d'abord par ID
+    const { data: byId } = await supabase
+      .from('user_profiles')
+      .select('*')
+      .eq('id', user.id)
+      .maybeSingle();
+    
+    if (byId) {
+      profile = byId;
+    } else {
+      // Essayer par email (pour compatibilité avec anciens profils)
+      const { data: byEmail } = await supabase
         .from('user_profiles')
         .select('*')
-        .eq('id', user.id)
+        .eq('user_email', user.email)
         .maybeSingle();
       
-      if (byId) {
-        profile = byId;
+      if (byEmail) {
+        profile = byEmail;
       } else {
-        // Essayer par email
-        const { data: byEmail } = await supabase
-          .from('user_profiles')
-          .select('*')
-          .eq('user_email', user.email)
-          .maybeSingle();
-        
-        if (byEmail) {
-          profile = byEmail;
-        }
+        // Si aucun profil trouvé, créer un profil (pour les anciens utilisateurs)
+        // Le trigger devrait normalement le créer, mais on le fait comme backup
+        profile = await ensureUserProfile(user);
       }
-    } catch (err) {
-      console.error('me() profile fetch error:', err);
     }
+  } catch (err) {
+    console.error('me() profile fetch error:', err);
+    // Si erreur, essayer de créer le profil comme backup
+    profile = await ensureUserProfile(user);
   }
+  
   
   // Forcer is_premium à être un boolean
   const isPremium = profile?.is_premium === true || profile?.is_premium === 'true' || profile?.subscription_status === 'active';
@@ -193,9 +198,24 @@ export const signInWithEmail = async (email, password) => {
   });
   if (error) throw error;
   
-  // S'assurer que le profil existe après connexion
+  // Note: Le profil devrait déjà exister grâce au trigger SQL on_auth_user_created
+  // On vérifie seulement pour les anciens utilisateurs qui n'ont peut-être pas de profil
   if (data.user) {
-    await ensureUserProfile(data.user);
+    try {
+      const { data: profile } = await supabase
+        .from('user_profiles')
+        .select('id')
+        .eq('id', data.user.id)
+        .maybeSingle();
+      
+      // Si le profil n'existe pas (ancien utilisateur), le créer
+      if (!profile) {
+        await ensureUserProfile(data.user);
+      }
+    } catch (err) {
+      console.warn('Could not verify user profile on login:', err);
+      // Ne pas bloquer la connexion
+    }
   }
   
   return data;
@@ -211,6 +231,37 @@ export const signUpWithEmail = async (email, password, metadata = {}) => {
     },
   });
   if (error) throw error;
+  
+  // Note: Le profil user_profiles est créé automatiquement par le trigger SQL
+  // on_auth_user_created dans Supabase. On n'a pas besoin de le créer manuellement.
+  // Mais on peut quand même vérifier/créer pour les anciens utilisateurs.
+  if (data.user) {
+    // Vérifier que le profil existe (backup pour les anciens utilisateurs)
+    try {
+      const { data: profile } = await supabase
+        .from('user_profiles')
+        .select('id')
+        .eq('id', data.user.id)
+        .maybeSingle();
+      
+      if (!profile) {
+        // Si le trigger n'a pas fonctionné (ancien système), créer manuellement
+        await supabase
+          .from('user_profiles')
+          .insert({
+            id: data.user.id,
+            user_email: data.user.email,
+            full_name: metadata.full_name || data.user.email?.split('@')[0],
+            is_premium: false,
+            subscription_status: 'inactive',
+          });
+      }
+    } catch (err) {
+      console.warn('Could not verify/create user profile:', err);
+      // Ne pas bloquer l'inscription si le profil n'est pas créé
+    }
+  }
+  
   return data;
 };
 
