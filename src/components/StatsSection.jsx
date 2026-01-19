@@ -6,7 +6,7 @@ export default function StatsSection() {
   const stats = [
     {
       icon: Users,
-      value: "15,000+",
+      value: "Communauté",
       label: "Étudiants accompagnés",
       color: "text-blue-600"
     },

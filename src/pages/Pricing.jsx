@@ -626,7 +626,7 @@ export default function Pricing() {
               Prêt à transformer votre vie en France ? 🇫🇷
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Rejoignez 15,000+ étudiants qui ont déjà réussi leur installation
+              Rejoignez notre communauté d'étudiants qui réussissent leur installation en France
             </p>
             <Button
               size="lg"
