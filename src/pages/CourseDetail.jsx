@@ -75,13 +75,21 @@ export default function CourseDetail() {
     }
   };
 
-  const { data: course, isLoading } = useQuery({
+  const { data: course, isLoading, isError, error } = useQuery({
     queryKey: ['course', courseId],
     queryFn: async () => {
+      if (!courseId) return null;
       const courses = await Course.filter({ id: courseId });
+      if (!courses || courses.length === 0) {
+        return null; // Retourner null au lieu de undefined pour éviter les erreurs
+      }
       return courses[0];
     },
     enabled: !!courseId,
+    retry: 2,
+    retryDelay: 1000,
+    // Ne pas afficher d'erreur pendant le chargement initial
+    throwOnError: false,
   });
 
   const { data: lessons = [] } = useQuery({
@@ -173,12 +181,54 @@ export default function CourseDetail() {
     return acc;
   }, {});
 
-  if (isLoading || !course) {
+  // Afficher le chargement uniquement si on est vraiment en train de charger
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-200 border-t-blue-900 mb-4"></div>
           <p className="text-xl font-semibold text-gray-700">Chargement du cours...</p>
+          <p className="text-sm text-gray-500 mt-2">Veuillez patienter</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Afficher une erreur seulement si la requête a échoué ET qu'on n'est plus en chargement
+  if (isError && !isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="text-center max-w-md px-4">
+          <div className="text-6xl mb-4">⚠️</div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Erreur de chargement</h2>
+          <p className="text-gray-600 mb-6">
+            Impossible de charger ce cours. Veuillez réessayer plus tard.
+          </p>
+          <Link to={createPageUrl("Courses")}>
+            <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+              Retour aux cours
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // Si le cours n'existe pas (mais pas d'erreur de requête)
+  if (!course && !isLoading && !isError) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="text-center max-w-md px-4">
+          <div className="text-6xl mb-4">🔍</div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Cours introuvable</h2>
+          <p className="text-gray-600 mb-6">
+            Ce cours n'existe pas ou n'est plus disponible.
+          </p>
+          <Link to={createPageUrl("Courses")}>
+            <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+              Retour aux cours
+            </Button>
+          </Link>
         </div>
       </div>
     );

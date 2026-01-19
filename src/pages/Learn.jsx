@@ -78,13 +78,21 @@ export default function Learn() {
     }
   };
 
-  const { data: course, isLoading: courseLoading } = useQuery({
+  const { data: course, isLoading: courseLoading, isError: courseError } = useQuery({
     queryKey: ['course', courseId],
     queryFn: async () => {
+      if (!courseId) return null;
       const courses = await Course.filter({ id: courseId });
+      if (!courses || courses.length === 0) {
+        return null; // Retourner null au lieu de undefined
+      }
       return courses[0];
     },
     enabled: !!courseId,
+    retry: 2,
+    retryDelay: 1000,
+    // Ne pas afficher d'erreur pendant le chargement initial
+    throwOnError: false,
   });
 
   // Check access when course and profile are loaded
@@ -209,6 +217,7 @@ export default function Learn() {
     navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lessonId}`);
   };
 
+  // Afficher le chargement uniquement si on est vraiment en train de charger
   if (courseLoading || lessonsLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50">
@@ -221,12 +230,37 @@ export default function Learn() {
     );
   }
 
-  if (!course || !enrollment) {
+  // Afficher une erreur seulement si la requête a échoué ET qu'on n'est plus en chargement
+  if (courseError && !courseLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <Card className="max-w-md">
           <CardContent className="p-8 text-center">
-            <div className="text-6xl mb-4">❌</div>
+            <div className="text-6xl mb-4">⚠️</div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Erreur de chargement
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Impossible de charger ce cours. Veuillez réessayer plus tard.
+            </p>
+            <Link to={createPageUrl("Courses")}>
+              <Button className="w-full bg-blue-900 hover:bg-blue-800">
+                {t('learn.backToCourses')}
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Si le cours n'existe pas (mais pas d'erreur de requête)
+  if (!course && !courseLoading && !courseError) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Card className="max-w-md">
+          <CardContent className="p-8 text-center">
+            <div className="text-6xl mb-4">🔍</div>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
               {t('learn.courseNotFound')}
             </h2>
@@ -236,6 +270,30 @@ export default function Learn() {
             <Link to={createPageUrl("Courses")}>
               <Button className="w-full bg-blue-900 hover:bg-blue-800">
                 {t('learn.backToCourses')}
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Si pas d'inscription mais cours trouvé
+  if (course && !enrollment) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Card className="max-w-md">
+          <CardContent className="p-8 text-center">
+            <div className="text-6xl mb-4">🔒</div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Inscription requise
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Vous devez vous inscrire à ce cours pour y accéder.
+            </p>
+            <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`}>
+              <Button className="w-full bg-blue-900 hover:bg-blue-800">
+                Voir les détails du cours
               </Button>
             </Link>
           </CardContent>
