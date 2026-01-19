@@ -10,7 +10,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
-import { execSync } from 'child_process';
+import { execSync, spawn } from 'child_process';
 import { resolve, basename, join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -110,12 +110,58 @@ async function main() {
   writeFileSync(migrationFile, sqlContent);
   console.log(`✅ Migration créée: ${migrationFile}\n`);
 
-  // Appliquer la migration (avec réponse automatique "Y")
+  // Appliquer la migration (mode non-interactif avec spawn pour envoyer Y automatiquement)
   console.log('🚀 Application de la migration...\n');
-  const { success, error, output } = runCommand('echo Y | supabase db push', { 
-    shell: true,
-    stdio: 'inherit'
-  });
+  
+  const applyMigration = () => {
+    return new Promise((resolve) => {
+      const child = spawn('supabase', ['db', 'push'], {
+        shell: true,
+        stdio: ['pipe', 'inherit', 'inherit']
+      });
+
+      let hasAnswered = false;
+      let outputBuffer = '';
+      
+      // Écouter la sortie pour détecter la question
+      const checkForPrompt = (data) => {
+        outputBuffer += data.toString();
+        if ((outputBuffer.includes('[Y/n]') || outputBuffer.includes('Do you want')) && !hasAnswered) {
+          hasAnswered = true;
+          setTimeout(() => {
+            child.stdin.write('Y\n');
+            child.stdin.end();
+          }, 100);
+        }
+      };
+
+      // Sur Windows, stdout et stderr peuvent être mélangés
+      if (child.stdout) {
+        child.stdout.on('data', checkForPrompt);
+      }
+      if (child.stderr) {
+        child.stderr.on('data', checkForPrompt);
+      }
+
+      child.on('close', (code) => {
+        resolve({ success: code === 0, code, output: outputBuffer });
+      });
+
+      // Timeout: si pas de question après 3 secondes, envoyer Y quand même
+      setTimeout(() => {
+        if (!hasAnswered) {
+          hasAnswered = true;
+          child.stdin.write('Y\n');
+          child.stdin.end();
+        }
+      }, 3000);
+    });
+  };
+
+  const result = await applyMigration();
+  const success = result.success;
+  const error = result.code !== 0 ? `Exit code: ${result.code}` : null;
+  const output = result.output || '';
 
   if (success) {
     console.log('\n✅ Migration appliquée avec succès !');
