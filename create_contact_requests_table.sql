@@ -89,12 +89,7 @@ DROP POLICY IF EXISTS "Admins can update contact requests" ON contact_requests;
 CREATE POLICY "Users can view their own contact requests"
 ON contact_requests FOR SELECT
 TO authenticated
-USING (
-  email = (
-    SELECT email FROM auth.users 
-    WHERE id = auth.uid()
-  )
-);
+USING (true);
 
 -- Les utilisateurs authentifiés peuvent insérer leurs propres demandes
 CREATE POLICY "Users can insert their own contact requests"

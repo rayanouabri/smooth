@@ -108,16 +108,17 @@ export default function CourseDetail() {
   };
 
   const checkCourseAccess = () => {
-    if (course.price === 0) {
+    // Si le cours n'est pas premium, il est accessible à tous
+    if (!course.is_premium) {
       setCanAccess(true);
       return;
     }
 
-    // Vérifier is_premium au lieu de subscription_plan
+    // Si le cours est premium, vérifier si l'utilisateur a un abonnement Premium
     const isPremium = userProfile?.is_premium === true || userProfile?.subscription_status === 'active';
     
     console.log('CourseDetail - checkCourseAccess:', {
-      coursePrice: course.price,
+      courseIsPremium: course.is_premium,
       isPremium: isPremium,
       userProfile: userProfile,
       is_premium: userProfile?.is_premium,
@@ -225,7 +226,6 @@ export default function CourseDetail() {
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full">
                   <Star className="w-5 h-5 fill-yellow-300 text-yellow-300" />
                   <span className="font-bold">{course.rating.toFixed(1)}</span>
-                  <span className="text-blue-100">({course.reviews_count} avis)</span>
                 </div>
               )}
 
@@ -424,7 +424,7 @@ export default function CourseDetail() {
                   
                   <CardContent className="p-6">
                     <div className="text-center mb-6">
-                      {course.price === 0 ? (
+                      {!course.is_premium ? (
                         <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xl px-6 py-3 shadow-xl">
                           ✓ 100% GRATUIT
                         </Badge>

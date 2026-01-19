@@ -57,13 +57,13 @@ export default function CourseCard({ course }) {
               <Badge className={`${levelColors[course.level]} shadow-xl text-xs font-bold px-3 py-1`}>
                 {levelLabels[course.level]}
               </Badge>
-              {course.price === 0 ? (
-                <Badge className="bg-green-500 text-white font-bold shadow-xl text-xs px-3 py-1">
-                  ✓ {t('common.free').toUpperCase()}
-                </Badge>
-              ) : (
+              {course.is_premium ? (
                 <Badge className="bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold shadow-xl text-xs px-3 py-1">
                   ⭐ {t('common.premium').toUpperCase()}
+                </Badge>
+              ) : (
+                <Badge className="bg-green-500 text-white font-bold shadow-xl text-xs px-3 py-1">
+                  ✓ {t('common.free').toUpperCase()}
                 </Badge>
               )}
             </div>

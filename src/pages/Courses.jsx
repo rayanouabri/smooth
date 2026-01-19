@@ -173,8 +173,8 @@ export default function Courses() {
     return matchesSearch && matchesCategory && matchesLevel;
   });
 
-  const freeCourses = filteredCourses.filter(c => c.price === 0);
-  const premiumCourses = filteredCourses.filter(c => c.price > 0);
+  const freeCourses = filteredCourses.filter(c => !c.is_premium);
+  const premiumCourses = filteredCourses.filter(c => c.is_premium);
 
   // Ordre personnalisé des catégories : Préparation Académique en avant-dernière
   const categoryOrder = [

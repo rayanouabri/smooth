@@ -92,7 +92,8 @@ export default function Learn() {
     if (course && userProfile !== null) {
       checkAccess();
     } else if (course && !userProfile) {
-      if (course.price === 0) {
+      // Si pas connecté, seul les cours non-premium sont accessibles
+      if (!course.is_premium) {
         setCanAccess(true);
       } else {
         setCanAccess(false);
@@ -101,16 +102,17 @@ export default function Learn() {
   }, [course, userProfile]);
 
   const checkAccess = () => {
-    if (course.price === 0) {
+    // Si le cours n'est pas premium, il est accessible à tous
+    if (!course.is_premium) {
       setCanAccess(true);
       return;
     }
 
-    // Vérifier is_premium au lieu de subscription_plan
+    // Si le cours est premium, vérifier si l'utilisateur a un abonnement Premium
     const isPremium = userProfile?.is_premium === true || userProfile?.subscription_status === 'active';
     
     console.log('Learn - checkAccess:', {
-      coursePrice: course.price,
+      courseIsPremium: course.is_premium,
       isPremium: isPremium,
       userProfile: userProfile,
       is_premium: userProfile?.is_premium,
