@@ -192,6 +192,12 @@ export const signInWithEmail = async (email, password) => {
     password,
   });
   if (error) throw error;
+  
+  // S'assurer que le profil existe après connexion
+  if (data.user) {
+    await ensureUserProfile(data.user);
+  }
+  
   return data;
 };
 

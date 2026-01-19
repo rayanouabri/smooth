@@ -94,11 +94,30 @@ export default function PaymentSuccess() {
   const reloadUserProfile = async (userId, userEmail) => {
     try {
       // Recharger le profil depuis la base de données
-      const { data: profile } = await supabase
+      // Utiliser des requêtes séparées pour éviter les problèmes avec .or()
+      let profile = null;
+      
+      // Essayer par ID d'abord
+      const { data: byId } = await supabase
         .from('user_profiles')
         .select('*')
-        .or(`id.eq.${userId},user_email.eq.${userEmail}`)
+        .eq('id', userId)
         .maybeSingle();
+      
+      if (byId) {
+        profile = byId;
+      } else {
+        // Essayer par email
+        const { data: byEmail } = await supabase
+          .from('user_profiles')
+          .select('*')
+          .eq('user_email', userEmail)
+          .maybeSingle();
+        
+        if (byEmail) {
+          profile = byEmail;
+        }
+      }
       
       if (profile) {
         const { data: { user: authUser } } = await supabase.auth.getUser();
