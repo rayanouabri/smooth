@@ -10,6 +10,8 @@
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
+  -- Insérer le profil utilisateur avec toutes les colonnes nécessaires
+  -- On utilise INSERT avec ON CONFLICT pour éviter les erreurs si le profil existe déjà
   INSERT INTO public.user_profiles (
     id,
     user_email,
@@ -25,6 +27,10 @@ BEGIN
     'inactive'
   )
   ON CONFLICT (id) DO NOTHING; -- Éviter les erreurs si le profil existe déjà
+  
+  -- Note: user_id n'est probablement pas une colonne séparée si id = user.id
+  -- Si la table a une colonne user_id, décommenter la ligne suivante:
+  -- ON CONFLICT (id) DO UPDATE SET user_id = NEW.id;
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
