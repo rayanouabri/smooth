@@ -29,6 +29,83 @@ export const getCurrentUser = async () => {
   }
 };
 
+// Créer automatiquement un profil utilisateur s'il n'existe pas
+const ensureUserProfile = async (user) => {
+  if (!user || !user.id) return null;
+  
+  try {
+    // Vérifier si le profil existe
+    let profile = null;
+    
+    // Essayer par ID
+    const { data: byId } = await supabase
+      .from('user_profiles')
+      .select('*')
+      .eq('id', user.id)
+      .maybeSingle();
+    
+    if (byId) {
+      profile = byId;
+    } else {
+      // Essayer par email
+      const { data: byEmail } = await supabase
+        .from('user_profiles')
+        .select('*')
+        .eq('user_email', user.email)
+        .maybeSingle();
+      
+      if (byEmail) {
+        profile = byEmail;
+      }
+    }
+    
+    // Si le profil n'existe pas, le créer
+    if (!profile) {
+      console.log('me() - Creating user profile for:', user.id, user.email);
+      
+      const profileData = {
+        id: user.id,
+        user_email: user.email,
+        full_name: user.user_metadata?.full_name || user.email?.split('@')[0],
+        is_premium: false,
+        subscription_status: 'inactive',
+      };
+      
+      const { data: newProfile, error: insertError } = await supabase
+        .from('user_profiles')
+        .insert(profileData)
+        .select()
+        .single();
+      
+      if (insertError) {
+        // Si l'insertion échoue (peut-être une contrainte), essayer la mise à jour
+        console.warn('me() - Insert failed, trying upsert:', insertError);
+        const { data: upsertedProfile, error: upsertError } = await supabase
+          .from('user_profiles')
+          .upsert(profileData, { onConflict: 'id' })
+          .select()
+          .single();
+        
+        if (upsertError) {
+          console.error('me() - Upsert also failed:', upsertError);
+          return null;
+        }
+        
+        profile = upsertedProfile;
+      } else {
+        profile = newProfile;
+      }
+      
+      console.log('me() - User profile created successfully');
+    }
+    
+    return profile;
+  } catch (err) {
+    console.error('me() - Error ensuring user profile:', err);
+    return null;
+  }
+};
+
 // Obtenir les informations complètes de l'utilisateur (compatibilité avec base44.auth.me())
 export const me = async () => {
   const user = await getCurrentUser();
@@ -38,40 +115,36 @@ export const me = async () => {
     return null;
   }
   
-  // Récupérer le profil utilisateur depuis la table user_profiles
-  // 1) recherche par id exact
-  // 2) fallback par user_email si pas trouvé (robustesse)
-  let profile = null;
-  try {
-    // Essayer d'abord par ID
-    const { data: byId, error: errorById } = await supabase
-      .from('user_profiles')
-      .select('*')
-      .eq('id', user.id)
-      .maybeSingle();
-    
-    if (errorById) {
-      console.error('me() error by ID:', errorById);
-    } else {
-      profile = byId;
-    }
-
-    // Si pas trouvé par ID, essayer par email
-    if (!profile) {
-      const { data: byEmail, error: errorByEmail } = await supabase
+  // S'assurer que le profil existe (création automatique si nécessaire)
+  let profile = await ensureUserProfile(user);
+  
+  // Si ensureUserProfile a échoué, essayer quand même de récupérer le profil
+  if (!profile) {
+    try {
+      // Essayer d'abord par ID
+      const { data: byId } = await supabase
         .from('user_profiles')
         .select('*')
-        .eq('user_email', user.email)
+        .eq('id', user.id)
         .maybeSingle();
       
-      if (errorByEmail) {
-        console.error('me() error by email:', errorByEmail);
+      if (byId) {
+        profile = byId;
       } else {
-        profile = byEmail;
+        // Essayer par email
+        const { data: byEmail } = await supabase
+          .from('user_profiles')
+          .select('*')
+          .eq('user_email', user.email)
+          .maybeSingle();
+        
+        if (byEmail) {
+          profile = byEmail;
+        }
       }
+    } catch (err) {
+      console.error('me() profile fetch error:', err);
     }
-  } catch (err) {
-    console.error('me() profile fetch error:', err);
   }
   
   // Forcer is_premium à être un boolean
