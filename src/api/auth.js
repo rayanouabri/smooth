@@ -182,8 +182,9 @@ export const me = async () => {
   }
   
   
-  // Forcer is_premium à être un boolean
-  const isPremium = profile?.is_premium === true || profile?.is_premium === 'true' || profile?.subscription_status === 'active';
+  // Forcer is_premium à être un boolean (utiliser la fonction utilitaire)
+  const { isPremium: checkPremium } = await import('../utils/premium');
+  const isPremium = checkPremium(profile);
   
   console.log('me() - User:', user.id, 'Email:', user.email);
   console.log('me() - Profile found:', !!profile, 'Profile ID:', profile?.id);

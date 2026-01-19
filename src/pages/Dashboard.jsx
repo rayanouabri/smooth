@@ -145,9 +145,10 @@ export default function Dashboard() {
     return courses.find(c => c.id === enrollment.course_id);
   };
 
-  // Utiliser is_premium au lieu de subscription_plan
-  const isPremium = profile?.is_premium === true || profile?.subscription_status === 'active';
-  const plan = isPremium ? 'premium' : 'gratuit';
+  // Utiliser la fonction utilitaire pour vérifier le statut Premium
+  const { isPremium } = require('@/utils/premium');
+  const userIsPremium = isPremium(profile);
+  const plan = userIsPremium ? 'premium' : 'gratuit';
 
   if (!user) {
     return (

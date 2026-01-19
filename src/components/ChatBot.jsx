@@ -110,8 +110,9 @@ export default function ChatBot() {
     if (!userMessage || isLoading) return;
 
     // Vérifier la limite pour les utilisateurs gratuits
-    const isPremium = user?.is_premium === true;
-    if (!isPremium && messagesCount >= FREE_MESSAGE_LIMIT) {
+    const { isPremium } = await import('@/utils/premium');
+    const userIsPremium = isPremium(user);
+    if (!userIsPremium && messagesCount >= FREE_MESSAGE_LIMIT) {
       setMessages(prev => [...prev, { 
         role: "assistant", 
         content: `🚫 Vous avez atteint votre limite de ${FREE_MESSAGE_LIMIT} messages gratuits ce mois-ci.\n\n💎 Passez Premium pour des messages illimités et accédez à tous nos cours, certificats et support prioritaire !\n\n👉 Cliquez sur "Passer Premium" ci-dessous pour découvrir nos offres.`
