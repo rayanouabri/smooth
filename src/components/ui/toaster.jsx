@@ -24,13 +24,16 @@ export function Toaster() {
             </div>
             {action}
             <ToastClose 
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 if (onOpenChange) {
                   onOpenChange(false);
                 } else {
                   dismiss(id);
                 }
               }}
+              aria-label="Fermer"
             />
           </Toast>
         );
