@@ -124,7 +124,6 @@ export default function CourseDetail() {
 
     // Si le cours est premium, vérifier si l'utilisateur a un abonnement Premium
     const userIsPremium = isPremium(userProfile);
-    const userIsPremium = isPremium(userProfile);
     
     console.log('CourseDetail - checkCourseAccess:', {
       courseIsPremium: course.is_premium,
