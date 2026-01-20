@@ -11,6 +11,7 @@ import { me, isAuthenticated } from "@/api/auth";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { isPremium } from "@/utils/premium";
 
 // Fonction pour nettoyer le markdown (enlever **, ##, etc.)
 const cleanMarkdown = (text) => {
@@ -110,7 +111,6 @@ export default function ChatBot() {
     if (!userMessage || isLoading) return;
 
     // Vérifier la limite pour les utilisateurs gratuits
-    const { isPremium } = await import('@/utils/premium');
     const userIsPremium = isPremium(user);
     if (!userIsPremium && messagesCount >= FREE_MESSAGE_LIMIT) {
       setMessages(prev => [...prev, { 

@@ -1,4 +1,5 @@
 import { supabase } from './supabaseClient';
+import { isPremium } from '../utils/premium';
 
 /**
  * Service d'authentification utilisant Supabase
@@ -183,8 +184,7 @@ export const me = async () => {
   
   
   // Forcer is_premium à être un boolean (utiliser la fonction utilitaire)
-  const { isPremium: checkPremium } = await import('../utils/premium');
-  const isPremium = checkPremium(profile);
+  const computedIsPremium = isPremium(profile);
   
   console.log('me() - User:', user.id, 'Email:', user.email);
   console.log('me() - Profile found:', !!profile, 'Profile ID:', profile?.id);
