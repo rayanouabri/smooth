@@ -3,7 +3,6 @@ import Layout from "./Layout.jsx";
 
 import Dashboard from "./Dashboard";
 
-import Chatbot from "./Chatbot";
 
 import Courses from "./Courses";
 
@@ -66,7 +65,6 @@ const PAGES = {
     
     Dashboard: Dashboard,
     
-    Chatbot: Chatbot,
     
     Courses: Courses,
     
@@ -201,7 +199,6 @@ function PagesContent() {
                 
                 <Route path="/Dashboard" element={<Dashboard />} />
                 
-                <Route path="/Chatbot" element={<Chatbot />} />
                 
                 <Route path="/Courses" element={<Courses />} />
                 <Route path="/courses" element={<Courses />} />
