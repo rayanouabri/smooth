@@ -40,7 +40,7 @@ export default function Courses() {
         // Pour chaque cours, compter les leçons et charger le contenu pour la recherche
         const coursesWithLessons = await Promise.all(result.map(async (course) => {
           try {
-            const { Lesson } = await import('@/api/entities');
+            
             const lessons = await Lesson.filter({ course_id: course.id });
             // Récupérer les titres et contenus des leçons pour la recherche améliorée
             const lessonTexts = lessons.map(lesson => 

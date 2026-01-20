@@ -123,7 +123,7 @@ export default function CourseDetail() {
     }
 
     // Si le cours est premium, vérifier si l'utilisateur a un abonnement Premium
-    const { isPremium } = await import('@/utils/premium');
+    const userIsPremium = isPremium(userProfile);
     const userIsPremium = isPremium(userProfile);
     
     console.log('CourseDetail - checkCourseAccess:', {
