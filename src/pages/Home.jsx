@@ -206,7 +206,7 @@ export default function Home() {
               </Button>
               <Link to={createPageUrl("ExpertOneShot")}>
                 <Button size="lg" variant="outline" className="border-2 border-gray-300 hover:border-indigo-400 px-10 py-7 text-lg font-semibold hover:bg-gray-50 transition-all">
-                  Besoin d'un expert ? (Conciergerie)
+                  Besoin d'un expert ?
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
