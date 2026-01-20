@@ -319,7 +319,6 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-              <ul className="space-y-2 text-sm text-gray-400">
                 <li><Link to={createPageUrl("Contact")} className="hover:text-white">Centre d'aide</Link></li>
                 <li><Link to={createPageUrl("Contact")} className="hover:text-white">Contact</Link></li>
                 <li><Link to={createPageUrl("CGV")} className="hover:text-white">CGV</Link></li>
