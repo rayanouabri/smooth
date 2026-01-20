@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
@@ -20,14 +20,14 @@ export default function Layout({ children, currentPageName }) {
 
   useEffect(() => {
     checkAuth();
-    // Recharger le statut utilisateur périodiquement pour détecter les changements de premium
+    // Recharger le statut utilisateur pÃ©riodiquement pour dÃ©tecter les changements de premium
     const interval = setInterval(() => {
       if (isAuthenticated) {
         checkAuth();
       }
-    }, 10000); // Toutes les 10 secondes (plus rapide pour détecter les changements de premium)
+    }, 10000); // Toutes les 10 secondes (plus rapide pour dÃ©tecter les changements de premium)
     
-    // Écouter les événements de navigation depuis PaymentSuccess
+    // Ã‰couter les Ã©vÃ©nements de navigation depuis PaymentSuccess
     const handleFocus = () => {
       if (isAuthenticated) {
         checkAuth();
@@ -47,7 +47,7 @@ export default function Layout({ children, currentPageName }) {
     setIsAuthenticated(authenticated);
     if (authenticated) {
       try {
-        // Utiliser me() qui récupère automatiquement le profil avec is_premium
+        // Utiliser me() qui rÃ©cupÃ¨re automatiquement le profil avec is_premium
         const userData = await me();
         console.log('Layout - User data:', userData);
         console.log('Layout - is_premium:', userData?.is_premium);
@@ -69,7 +69,7 @@ export default function Layout({ children, currentPageName }) {
     { name: "Cours", page: "Courses" },
     { name: "Cours particuliers", page: "Teachers" },
     { name: "Dashboard", page: "Dashboard" },
-    { name: "Communauté", page: "Community" },
+    { name: "CommunautÃ©", page: "Community" },
     { name: "Tarifs", page: "Pricing" },
   ];
 
@@ -88,7 +88,7 @@ export default function Layout({ children, currentPageName }) {
             {/* Desktop Navigation - Full Menu */}
             <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center min-w-0">
               {navLinks.map((link) => {
-                // Si c'est Dashboard et pas connecté, rediriger vers login
+                // Si c'est Dashboard et pas connectÃ©, rediriger vers login
                 const handleClick = async (e) => {
                   if (link.page === "Dashboard") {
                     const authenticated = await checkAuthStatus();
@@ -135,7 +135,7 @@ export default function Layout({ children, currentPageName }) {
                 <>
                   <Link to={createPageUrl("Dashboard")} className="hidden md:inline-block">
                     <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg text-xs sm:text-sm px-2 sm:px-3" size="sm">
-                      🎓 Mon Espace
+                      ðŸŽ“ Mon Espace
                     </Button>
                   </Link>
                   <DropdownMenu>
@@ -166,12 +166,12 @@ export default function Layout({ children, currentPageName }) {
                       {user?.is_premium && (
                         <DropdownMenuItem asChild>
                           <Link to={createPageUrl("Profile") + '?tab=subscription'} className="w-full cursor-pointer text-gray-900">
-                            Gérer mon abonnement
+                            GÃ©rer mon abonnement
                           </Link>
                         </DropdownMenuItem>
                       )}
                       <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
-                        Déconnexion
+                        DÃ©connexion
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -210,7 +210,7 @@ export default function Layout({ children, currentPageName }) {
             </button>
           </div>
 
-          {/* Mobile menu - Design amélioré */}
+          {/* Mobile menu - Design amÃ©liorÃ© */}
           {mobileMenuOpen && (
             <div className="lg:hidden fixed inset-0 top-[70px] bg-white z-50 overflow-y-auto shadow-2xl">
               <div className="px-4 py-6 space-y-1">
@@ -238,7 +238,7 @@ export default function Layout({ children, currentPageName }) {
                           className="w-full justify-start h-12 text-base hover:bg-gray-100"
                           onClick={() => setMobileMenuOpen(false)}
                         >
-                          📊 Tableau de bord
+                          ðŸ“Š Tableau de bord
                         </Button>
                       </Link>
                       <Link to={createPageUrl("Profile")}>
@@ -247,7 +247,7 @@ export default function Layout({ children, currentPageName }) {
                           className="w-full justify-start h-12 text-base hover:bg-gray-100"
                           onClick={() => setMobileMenuOpen(false)}
                         >
-                          👤 Mon profil
+                          ðŸ‘¤ Mon profil
                         </Button>
                       </Link>
                       <Button
@@ -258,7 +258,7 @@ export default function Layout({ children, currentPageName }) {
                           handleLogout();
                         }}
                       >
-                        🚪 Déconnexion
+                        ðŸšª DÃ©connexion
                       </Button>
                     </>
                   ) : (
@@ -294,7 +294,7 @@ export default function Layout({ children, currentPageName }) {
                 <span className="text-lg font-bold">FrancePrepAcademy</span>
               </div>
               <p className="text-gray-400 text-sm">
-                Votre partenaire pour réussir votre installation et vos études en France.
+                Votre partenaire pour rÃ©ussir votre installation et vos Ã©tudes en France.
               </p>
             </div>
             
@@ -308,10 +308,10 @@ export default function Layout({ children, currentPageName }) {
             </div>
 
             <div>
-              <h3 className="font-semibold mb-4">Communauté</h3>
+              <h3 className="font-semibold mb-4">CommunautÃ©</h3>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li><Link to={createPageUrl("Community")} className="hover:text-white">Forum</Link></li>
-                <li><a href="#" className="hover:text-white">Témoignages</a></li>
+                <li><a href="#" className="hover:text-white">TÃ©moignages</a></li>
                 <li><a href="#" className="hover:text-white">Blog</a></li>
               </ul>
             </div>
@@ -319,18 +319,18 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-white">Centre d'aide</a></li>
-                <li><a href="#" className="hover:text-white">Contact</a></li>
+                <li><Link to={createPageUrl("Contact")} className="hover:text-white">Centre d'aide</Link></li>
+                <li><Link to={createPageUrl("Contact")} className="hover:text-white">Contact</Link></li>
                 <li><Link to={createPageUrl("CGU")} className="hover:text-white">CGU</Link></li>
                 <li><Link to={createPageUrl("CGV")} className="hover:text-white">CGV</Link></li>
-                <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white">Confidentialité</Link></li>
-                <li><a href="#" className="hover:text-white">Mentions légales</a></li>
+                <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white">ConfidentialitÃ©</Link></li>
+                <li><Link to={createPageUrl("Contact")} className="hover:text-white">Mentions lÃ©gales</Link></li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2024 FrancePrepAcademy. Tous droits réservés.</p>
+            <p>&copy; 2024 FrancePrepAcademy. Tous droits rÃ©servÃ©s.</p>
           </div>
         </div>
       </footer>
