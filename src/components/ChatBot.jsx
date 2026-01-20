@@ -111,7 +111,6 @@ export default function ChatBot() {
     if (!userMessage || isLoading) return;
 
     // Vérifier la limite pour les utilisateurs gratuits
-    const userIsPremium = isPremium(user);
     if (!userIsPremium && messagesCount >= FREE_MESSAGE_LIMIT) {
       setMessages(prev => [...prev, { 
         role: "assistant", 
