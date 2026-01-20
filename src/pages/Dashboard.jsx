@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { me, isAuthenticated } from "@/api/auth";
 import { supabase } from "@/api/supabaseClient";
@@ -41,7 +41,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     loadUser();
-    // Recharger le profil quand on revient sur la page (après paiement)
+    // Recharger le profil quand on revient sur la page (aprÃ¨s paiement)
     const handleFocus = () => {
       loadUser();
     };
@@ -53,7 +53,7 @@ export default function Dashboard() {
     try {
       const authenticated = await isAuthenticated();
       if (!authenticated) {
-        // Rediriger vers login, puis vers Dashboard après connexion
+        // Rediriger vers login, puis vers Dashboard aprÃ¨s connexion
         navigate('/login?redirect=/Dashboard');
         return;
       }
@@ -67,7 +67,7 @@ export default function Dashboard() {
       
       setUser(userData);
       
-      // Charger le profil depuis la base de données pour être sûr
+      // Charger le profil depuis la base de donnÃ©es pour Ãªtre sÃ»r
       if (userData?.id) {
         try {
           const { data: profileData } = await supabase
@@ -80,12 +80,12 @@ export default function Dashboard() {
             setProfile(profileData);
             console.log('Dashboard - Profile loaded, is_premium:', profileData.is_premium);
           } else {
-            // Fallback: utiliser les données de me()
+            // Fallback: utiliser les donnÃ©es de me()
             setProfile(userData);
           }
         } catch (profileError) {
           console.error("Erreur lors du chargement du profil:", profileError);
-          // Fallback: utiliser les données de me()
+          // Fallback: utiliser les donnÃ©es de me()
           setProfile(userData);
         }
       }
@@ -145,8 +145,7 @@ export default function Dashboard() {
     return courses.find(c => c.id === enrollment.course_id);
   };
 
-  // Utiliser la fonction utilitaire pour vérifier le statut Premium
-  const { isPremium } = require('@/utils/premium');
+  // Utiliser la fonction utilitaire pour vÃ©rifier le statut Premium
   const userIsPremium = isPremium(profile);
   const plan = userIsPremium ? 'premium' : 'gratuit';
 
@@ -180,13 +179,13 @@ export default function Dashboard() {
                 animate={{ opacity: 1, y: 0 }}
               >
                 <Badge className="mb-3 bg-orange-500 border-0">
-                  {plan === 'premium' ? '⭐ Premium' : '🎓 Gratuit'}
+                  {plan === 'premium' ? 'â­ Premium' : 'ðŸŽ“ Gratuit'}
                 </Badge>
                 <h1 className="text-4xl font-bold mb-2">
-                  Bienvenue, {user.full_name || user.email?.split('@')[0]} ! 👋
+                  Bienvenue, {user.full_name || user.email?.split('@')[0]} ! ðŸ‘‹
                 </h1>
                 <p className="text-blue-100 text-lg">
-                  Continuez votre parcours vers la réussite
+                  Continuez votre parcours vers la rÃ©ussite
                 </p>
               </motion.div>
             </div>
@@ -199,7 +198,7 @@ export default function Dashboard() {
               {plan === 'gratuit' && (
                 <Link to={createPageUrl("Pricing")}>
                   <Button className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold shadow-lg">
-                    ⚡ Passer Premium
+                    âš¡ Passer Premium
                   </Button>
                 </Link>
               )}
@@ -217,28 +216,28 @@ export default function Dashboard() {
               labelKey: "dashboard.coursesFollowed",
               value: enrollments.length,
               color: "from-blue-500 to-cyan-500",
-              badge: "🎯 Explorer"
+              badge: "ðŸŽ¯ Explorer"
             },
             {
               icon: Flame,
               labelKey: "dashboard.activeStreak",
               value: `${Math.min(7, enrollments.length)} jours`,
               color: "from-orange-500 to-red-500",
-              badge: "🔥 Continue!"
+              badge: "ðŸ”¥ Continue!"
             },
             {
               icon: Trophy,
               labelKey: "dashboard.badgesEarned",
               value: completedEnrollments.length + Math.floor(avgProgress / 25),
               color: "from-yellow-500 to-orange-500",
-              badge: "⭐ Top!"
+              badge: "â­ Top!"
             },
             {
               icon: Zap,
               labelKey: "dashboard.xpPoints",
               value: (completedEnrollments.length * 100) + Math.floor(avgProgress * 10),
               color: "from-purple-500 to-pink-500",
-              badge: "🚀 Level " + Math.floor(1 + enrollments.length / 3)
+              badge: "ðŸš€ Level " + Math.floor(1 + enrollments.length / 3)
             }
           ].map((stat, index) => (
             <motion.div
@@ -278,7 +277,7 @@ export default function Dashboard() {
                     Niveau {Math.floor(1 + enrollments.length / 3)}
                   </h3>
                   <p className="text-sm text-gray-600">
-                    {enrollments.length % 3 === 0 ? "Félicitations ! Niveau suivant débloqué 🎉" : `${3 - (enrollments.length % 3)} cours pour passer au niveau ${Math.floor(2 + enrollments.length / 3)}`}
+                    {enrollments.length % 3 === 0 ? "FÃ©licitations ! Niveau suivant dÃ©bloquÃ© ðŸŽ‰" : `${3 - (enrollments.length % 3)} cours pour passer au niveau ${Math.floor(2 + enrollments.length / 3)}`}
                   </p>
                 </div>
               </div>
@@ -302,7 +301,7 @@ export default function Dashboard() {
                   Progression globale
                 </h3>
                 <p className="text-gray-600">
-                  Vous progressez à un excellent rythme ! 🚀
+                  Vous progressez Ã  un excellent rythme ! ðŸš€
                 </p>
               </div>
               <div className="text-5xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
@@ -325,9 +324,9 @@ export default function Dashboard() {
 
         <Tabs defaultValue="courses" className="mb-12">
           <TabsList className="grid w-full md:w-auto grid-cols-3 mb-8">
-            <TabsTrigger value="courses">📚 Mes Cours</TabsTrigger>
-            <TabsTrigger value="certificates">🏆 Certificats</TabsTrigger>
-            <TabsTrigger value="discover">🔍 Découvrir</TabsTrigger>
+            <TabsTrigger value="courses">ðŸ“š Mes Cours</TabsTrigger>
+            <TabsTrigger value="certificates">ðŸ† Certificats</TabsTrigger>
+            <TabsTrigger value="discover">ðŸ” DÃ©couvrir</TabsTrigger>
           </TabsList>
 
           <TabsContent value="courses">
@@ -373,7 +372,7 @@ export default function Dashboard() {
                                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                                   <div className="text-sm text-gray-500 flex items-center">
                                     <Calendar className="w-4 h-4 inline mr-1" />
-                                    Dernier accès: {new Date(enrollment.last_accessed).toLocaleDateString('fr-FR')}
+                                    Dernier accÃ¨s: {new Date(enrollment.last_accessed).toLocaleDateString('fr-FR')}
                                   </div>
                                   <Link to={createPageUrl("CourseDetail") + `?id=${course.id}`}>
                                     <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
@@ -394,7 +393,7 @@ export default function Dashboard() {
             ) : (
               <Card className="mb-12 bg-gradient-to-br from-orange-50 to-pink-50 border-2">
                 <CardContent className="p-12 text-center">
-                  <div className="text-6xl mb-4">🎯</div>
+                  <div className="text-6xl mb-4">ðŸŽ¯</div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">
                     Commencez votre premier cours !
                   </h3>
@@ -425,18 +424,18 @@ export default function Dashboard() {
                           <Award className="w-12 h-12 text-yellow-500" />
                           <Badge className="bg-green-500">
                             <CheckCircle className="w-3 h-3 mr-1" />
-                            Complété
+                            ComplÃ©tÃ©
                           </Badge>
                         </div>
                         <h3 className="font-bold text-gray-900 mb-2 line-clamp-2">
                           {course.title}
                         </h3>
                         <p className="text-sm text-gray-600 mb-4">
-                          Terminé le {new Date(enrollment.last_accessed).toLocaleDateString('fr-FR')}
+                          TerminÃ© le {new Date(enrollment.last_accessed).toLocaleDateString('fr-FR')}
                         </p>
                         <Button variant="outline" size="sm" className="w-full">
                           <Download className="w-4 h-4 mr-2" />
-                          Télécharger le certificat
+                          TÃ©lÃ©charger le certificat
                         </Button>
                       </CardContent>
                     </Card>
@@ -451,7 +450,7 @@ export default function Dashboard() {
                     Pas encore de certificat
                   </h3>
                   <p className="text-gray-600">
-                    Terminez vos cours pour obtenir vos certificats de complétion !
+                    Terminez vos cours pour obtenir vos certificats de complÃ©tion !
                   </p>
                 </CardContent>
               </Card>
@@ -461,7 +460,7 @@ export default function Dashboard() {
           <TabsContent value="discover">
             <div className="mb-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Cours recommandés pour vous
+                Cours recommandÃ©s pour vous
               </h2>
               <p className="text-gray-600">
                 Explorez notre catalogue de formations
@@ -487,7 +486,7 @@ export default function Dashboard() {
           <Card className="border-2 hover:shadow-xl transition-all cursor-pointer" onClick={() => window.location.href = createPageUrl("Community")}>
             <CardContent className="p-6 text-center">
               <MessageSquare className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="font-bold text-lg mb-2">Communauté</h3>
+              <h3 className="font-bold text-lg mb-2">CommunautÃ©</h3>
               <p className="text-sm text-gray-600">Rejoignez la discussion</p>
             </CardContent>
           </Card>
@@ -504,7 +503,7 @@ export default function Dashboard() {
             <CardContent className="p-6 text-center">
               <Target className="w-12 h-12 text-green-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Mon profil</h3>
-              <p className="text-sm text-gray-600">Gérez vos informations</p>
+              <p className="text-sm text-gray-600">GÃ©rez vos informations</p>
             </CardContent>
           </Card>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -59,106 +59,105 @@ export default function Pricing() {
 
   const plans = [
     {
-      name: "Découverte",
+      name: "DÃ©couverte",
       price: 0,
       priceAnnual: 0,
       tagline: "Pour explorer la plateforme",
-      description: "Idéal pour tester nos services",
+      description: "IdÃ©al pour tester nos services",
       features: [
-        { text: "Accès limité à une sélection de cours", included: true },
-        { text: "Accès au Forum communautaire", included: true },
+        { text: "AccÃ¨s limitÃ© Ã  une sÃ©lection de cours", included: true },
+        { text: "AccÃ¨s au Forum communautaire", included: true },
         { text: "Max 10 messages avec l'IA Assistant", included: true },
-        { text: "Accès illimité aux 200+ formations", included: false },
-        { text: "IA Assistante illimitée 24h/24", included: false },
-        { text: "Accès prioritaire au Forum & Centre d'aide", included: false },
+        { text: "AccÃ¨s illimitÃ© aux 200+ formations", included: false },
+        { text: "IA Assistante illimitÃ©e 24h/24", included: false },
+        { text: "AccÃ¨s prioritaire au Forum & Centre d'aide", included: false },
         { text: "Outils de suivi de dossier", included: false },
-        { text: "Accompagnement individuel personnalisé", included: false },
+        { text: "Accompagnement individuel personnalisÃ©", included: false },
       ],
       cta: "S'inscrire gratuitement",
       highlighted: false,
       popular: false,
-      icon: "🎓",
+      icon: "ðŸŽ“",
       color: "from-gray-500 to-gray-600"
     },
     {
       name: "Premium",
       price: 24.90,
       priceAnnual: 21.20,
-      tagline: "La réussite en toute autonomie",
-      description: "Le choix des étudiants",
+      tagline: "La rÃ©ussite en toute autonomie",
+      description: "Le choix des Ã©tudiants",
       features: [
-        { text: "Accès illimité aux 200+ formations", included: true },
-        { text: "IA Assistante illimitée 24h/24", included: true },
-        { text: "Accès prioritaire au Forum & Centre d'aide", included: true },
+        { text: "AccÃ¨s illimitÃ© aux 200+ formations", included: true },
+        { text: "IA Assistante illimitÃ©e 24h/24", included: true },
+        { text: "AccÃ¨s prioritaire au Forum & Centre d'aide", included: true },
         { text: "Outils de suivi de dossier", included: true },
-        { text: "Téléchargement des supports PDF", included: true },
-        { text: "Nouveaux guides en avant-première", included: true },
-        { text: "Accompagnement individuel personnalisé", included: false },
-        { text: "Aide pas-à-pas pour remplir vos dossiers", included: false },
+        { text: "TÃ©lÃ©chargement des supports PDF", included: true },
+        { text: "Nouveaux guides en avant-premiÃ¨re", included: true },
+        { text: "Accompagnement individuel personnalisÃ©", included: false },
+        { text: "Aide pas-Ã -pas pour remplir vos dossiers", included: false },
       ],
       cta: "Devenir Premium",
-      ctaPremium: "Gérer mon abonnement",
+      ctaPremium: "GÃ©rer mon abonnement",
       highlighted: true,
       popular: true,
-      icon: "⚡",
+      icon: "âš¡",
       color: "from-blue-600 to-indigo-600"
     },
     {
       name: "Ultimate VIP",
       price: 89.00,
       priceAnnual: 75.65,
-      tagline: "On ne vous lâche pas la main",
-      description: "Accompagnement personnalisé complet",
+      tagline: "On ne vous lÃ¢che pas la main",
+      description: "Accompagnement personnalisÃ© complet",
       features: [
-        { text: "Accompagnement individuel personnalisé", included: true },
-        { text: "Aide pas-à-pas pour remplir vos dossiers : Visa, Sécurité Sociale (CPAM), CAF (APL)", included: true },
-        { text: "Vérification humaine de vos documents avant envoi", included: true },
-        { text: "Support réactif pour vos questions administratives complexes", included: true },
-        { text: "Stratégie personnalisée de recherche de Job / Alternance", included: true },
+        { text: "Accompagnement individuel personnalisÃ©", included: true },
+        { text: "Aide pas-Ã -pas pour remplir vos dossiers : Visa, SÃ©curitÃ© Sociale (CPAM), CAF (APL)", included: true },
+        { text: "VÃ©rification humaine de vos documents avant envoi", included: true },
+        { text: "Support rÃ©actif pour vos questions administratives complexes", included: true },
+        { text: "StratÃ©gie personnalisÃ©e de recherche de Job / Alternance", included: true },
         { text: "Tous les avantages Premium inclus", included: true },
         { text: "Support WhatsApp prioritaire", included: true },
-        { text: "Conseiller dédié", included: true },
+        { text: "Conseiller dÃ©diÃ©", included: true },
       ],
-      cta: "Réserver mon accompagnement",
-      ctaPremium: "Gérer mon abonnement",
+      cta: "RÃ©server mon accompagnement",
+      ctaPremium: "GÃ©rer mon abonnement",
       highlighted: true,
       popular: false,
-      icon: "👑",
+      icon: "ðŸ‘‘",
       color: "from-amber-500 via-yellow-500 to-amber-600",
       isVip: true,
       glow: true
     },
     {
-      name: "Service Expert 'Clé en main'",
+      name: "Service Expert 'ClÃ© en main'",
       price: 180,
       priceAnnual: 180,
-      tagline: "On le fait à votre place",
+      tagline: "On le fait Ã  votre place",
       description: "Intervention ponctuelle sur mesure",
       features: [
         { text: "Un blocage sur un dossier ? Une urgence ?", included: true },
-        { text: "Nos experts prennent le relais de A à Z", included: true },
-        { text: "Sur une démarche précise", included: true },
+        { text: "Nos experts prennent le relais de A Ã  Z", included: true },
+        { text: "Sur une dÃ©marche prÃ©cise", included: true },
         { text: "Visa, Litige Logement, Dossier CAF complexe...", included: true },
         { text: "Intervention rapide et efficace", included: true },
-        { text: "Devis personnalisé selon votre besoin", included: true },
+        { text: "Devis personnalisÃ© selon votre besoin", included: true },
       ],
       cta: "Demander une intervention",
       highlighted: false,
       popular: false,
-      icon: "🔧",
+      icon: "ðŸ”§",
       color: "from-purple-500 to-indigo-500",
       isOneShot: true
     }
   ];
 
-  const { isPremium } = require('@/utils/premium');
-  const { isUltimateVIP, hasPlan } = require('@/utils/subscription-plans');
+  
   const userIsPremium = isPremium(user);
   const userIsUltimateVIP = isUltimateVIP(user);
 
   const handlePlanClick = async (plan) => {
     if (plan.isOneShot) {
-      // Rediriger vers la page dédiée Expert One-Shot
+      // Rediriger vers la page dÃ©diÃ©e Expert One-Shot
       window.location.href = createPageUrl("ExpertOneShot");
       return;
     }
@@ -173,7 +172,7 @@ export default function Pricing() {
       return;
     }
 
-    // Si utilisateur a déjà Ultimate VIP et clique sur Ultimate VIP
+    // Si utilisateur a dÃ©jÃ  Ultimate VIP et clique sur Ultimate VIP
     if (plan.name === "Ultimate VIP" && userIsUltimateVIP) {
       window.location.href = '/profile?tab=subscription';
       return;
@@ -185,9 +184,9 @@ export default function Pricing() {
       return;
     }
 
-    // Permettre à un Premium de passer à Ultimate VIP
+    // Permettre Ã  un Premium de passer Ã  Ultimate VIP
     if (plan.name === "Ultimate VIP" && userIsPremium && !userIsUltimateVIP) {
-      // Continuera avec le checkout pour passer à Ultimate VIP
+      // Continuera avec le checkout pour passer Ã  Ultimate VIP
     }
 
     if (!isAuthenticated) {
@@ -197,7 +196,7 @@ export default function Pricing() {
 
     setIsProcessing(true);
     try {
-      // Déterminer le Price ID selon le plan
+      // DÃ©terminer le Price ID selon le plan
       let priceId;
       if (plan.name === "Ultimate VIP") {
         priceId = billingCycle === 'monthly' ? STRIPE_PRICES.ultimate.monthly : STRIPE_PRICES.ultimate.annual;
@@ -206,7 +205,7 @@ export default function Pricing() {
       }
 
       if (!priceId || !String(priceId).startsWith('price_')) {
-        throw new Error('Price ID non configuré. Allez sur Stripe → Products → Pricing, copiez le "Price ID" (price_...) et mettez-le dans STRIPE_PRICES.');
+        throw new Error('Price ID non configurÃ©. Allez sur Stripe â†’ Products â†’ Pricing, copiez le "Price ID" (price_...) et mettez-le dans STRIPE_PRICES.');
       }
       
       const response = await createCheckout({
@@ -222,7 +221,7 @@ export default function Pricing() {
       }
     } catch (error) {
       console.error('Erreur paiement:', error);
-      alert('❌ ' + (error.message || 'Erreur inconnue. Consultez CONFIGURATION_STRIPE.md'));
+      alert('âŒ ' + (error.message || 'Erreur inconnue. Consultez CONFIGURATION_STRIPE.md'));
     } finally {
       setIsProcessing(false);
     }
@@ -243,16 +242,16 @@ export default function Pricing() {
             animate={{ opacity: 1, y: 0 }}
           >
             <Badge className="mb-4 bg-orange-500 text-white border-0 text-sm px-4 py-2">
-              💰 Tarifs transparents
+              ðŸ’° Tarifs transparents
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Choisissez votre{" "}
               <span className="bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">
-                formule idéale
+                formule idÃ©ale
               </span>
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Des prix simples et justes. Sans engagement, annulation à tout moment. Résiliation en 1 clic.
+              Des prix simples et justes. Sans engagement, annulation Ã  tout moment. RÃ©siliation en 1 clic.
             </p>
 
             {/* Billing Toggle */}
@@ -308,7 +307,7 @@ export default function Pricing() {
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
                     <Badge className="bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-1 shadow-lg">
                       <Star className="w-3 h-3 mr-1 inline" />
-                      Choix des étudiants
+                      Choix des Ã©tudiants
                     </Badge>
                   </div>
                 )}
@@ -351,7 +350,7 @@ export default function Pricing() {
                     <div className="mb-4">
                       <div className="flex items-end justify-center gap-2">
                         <span className="text-4xl md:text-5xl font-bold text-gray-900">
-                          {plan.isOneShot ? plan.price : (billingCycle === "annual" ? plan.priceAnnual : plan.price)}€
+                          {plan.isOneShot ? plan.price : (billingCycle === "annual" ? plan.priceAnnual : plan.price)}â‚¬
                         </span>
                         {plan.price > 0 && !plan.isOneShot && (
                           <span className="text-gray-600 text-lg mb-2">/mois</span>
@@ -362,14 +361,14 @@ export default function Pricing() {
                       </div>
                       {plan.price > 0 && !plan.isOneShot && billingCycle === "annual" && (
                         <p className="text-sm text-green-600 font-medium mt-2">
-                          Économisez {((plan.price - plan.priceAnnual) * 12).toFixed(0)}€/an
+                          Ã‰conomisez {((plan.price - plan.priceAnnual) * 12).toFixed(0)}â‚¬/an
                         </p>
                       )}
                       {plan.price === 0 && (
                         <p className="text-sm text-gray-600 mt-2">Toujours gratuit</p>
                       )}
                       {plan.isOneShot && (
-                        <p className="text-sm text-purple-600 font-medium mt-2">À partir de</p>
+                        <p className="text-sm text-purple-600 font-medium mt-2">Ã€ partir de</p>
                       )}
                     </div>
                   </div>
@@ -382,7 +381,7 @@ export default function Pricing() {
                       <Crown className="w-6 h-6 text-amber-600 flex-shrink-0" />
                       <div>
                         <div className="font-bold text-amber-900 text-sm">Accompagnement Premium</div>
-                        <div className="text-xs text-amber-700">Support humain dédié</div>
+                        <div className="text-xs text-amber-700">Support humain dÃ©diÃ©</div>
                       </div>
                     </div>
                   )}
@@ -428,12 +427,12 @@ export default function Pricing() {
                     onClick={() => handlePlanClick(plan)}
                   >
                     {isProcessing && !plan.isOneShot ? (
-                      '⏳ Chargement...'
+                      'â³ Chargement...'
                     ) : (
                       <>
                         <span className="block">
                           {plan.name === "Ultimate VIP" && userIsPremium && !userIsUltimateVIP 
-                            ? "Passer à Ultimate VIP" 
+                            ? "Passer Ã  Ultimate VIP" 
                             : plan.name === "Premium" && userIsPremium && !userIsUltimateVIP 
                             ? plan.ctaPremium 
                             : plan.name === "Ultimate VIP" && userIsUltimateVIP
@@ -465,66 +464,66 @@ export default function Pricing() {
             </h2>
             
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Découverte */}
+              {/* DÃ©couverte */}
               <div className="border-l-4 border-gray-400 pl-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl">🎓</span>
-                  <h3 className="text-xl font-bold text-gray-900">Offre Découverte</h3>
+                  <span className="text-3xl">ðŸŽ“</span>
+                  <h3 className="text-xl font-bold text-gray-900">Offre DÃ©couverte</h3>
                 </div>
                 <p className="text-gray-600 mb-4">
-                  Parfait pour découvrir la plateforme sans engagement. Accédez à une sélection de cours gratuits, 
+                  Parfait pour dÃ©couvrir la plateforme sans engagement. AccÃ©dez Ã  une sÃ©lection de cours gratuits, 
                   participez au forum communautaire et testez notre IA Assistant avec 10 messages gratuits.
                 </p>
                 <p className="text-sm text-gray-500">
-                  <strong>Idéal pour :</strong> Les nouveaux arrivants qui souhaitent explorer nos services avant de s'engager.
+                  <strong>IdÃ©al pour :</strong> Les nouveaux arrivants qui souhaitent explorer nos services avant de s'engager.
                 </p>
               </div>
 
               {/* Premium */}
               <div className="border-l-4 border-blue-600 pl-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl">⚡</span>
+                  <span className="text-3xl">âš¡</span>
                   <h3 className="text-xl font-bold text-gray-900">Offre Premium</h3>
                   <Badge className="bg-blue-600 text-white">Le plus choisi</Badge>
                 </div>
                 <p className="text-gray-600 mb-4">
-                  Accès illimité à toutes nos formations (200+), IA Assistant disponible 24h/24, accès prioritaire 
-                  au forum et outils de suivi de dossier. La formule parfaite pour réussir en toute autonomie.
+                  AccÃ¨s illimitÃ© Ã  toutes nos formations (200+), IA Assistant disponible 24h/24, accÃ¨s prioritaire 
+                  au forum et outils de suivi de dossier. La formule parfaite pour rÃ©ussir en toute autonomie.
                 </p>
                 <p className="text-sm text-gray-500">
-                  <strong>Idéal pour :</strong> Les étudiants autonomes qui veulent accéder à tous nos contenus et ressources.
+                  <strong>IdÃ©al pour :</strong> Les Ã©tudiants autonomes qui veulent accÃ©der Ã  tous nos contenus et ressources.
                 </p>
               </div>
 
               {/* Ultimate VIP */}
               <div className="border-l-4 border-amber-500 pl-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl">👑</span>
+                  <span className="text-3xl">ðŸ‘‘</span>
                   <h3 className="text-xl font-bold text-gray-900">Ultimate VIP</h3>
                   <Badge className="bg-amber-500 text-white">Premium</Badge>
                 </div>
                 <p className="text-gray-600 mb-4">
-                  Accompagnement personnalisé complet avec un expert dédié. Aide pour remplir vos dossiers (Visa, CPAM, CAF), 
-                  vérification de documents, support réactif et stratégie personnalisée pour trouver un job ou une alternance. 
-                  <strong> On ne vous lâche pas la main.</strong>
+                  Accompagnement personnalisÃ© complet avec un expert dÃ©diÃ©. Aide pour remplir vos dossiers (Visa, CPAM, CAF), 
+                  vÃ©rification de documents, support rÃ©actif et stratÃ©gie personnalisÃ©e pour trouver un job ou une alternance. 
+                  <strong> On ne vous lÃ¢che pas la main.</strong>
                 </p>
                 <p className="text-sm text-gray-500">
-                  <strong>Idéal pour :</strong> Ceux qui veulent un accompagnement humain personnalisé à chaque étape.
+                  <strong>IdÃ©al pour :</strong> Ceux qui veulent un accompagnement humain personnalisÃ© Ã  chaque Ã©tape.
                 </p>
               </div>
 
               {/* Expert One-Shot */}
               <div className="border-l-4 border-purple-500 pl-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl">🔧</span>
-                  <h3 className="text-xl font-bold text-gray-900">Service Expert 'Clé en main'</h3>
+                  <span className="text-3xl">ðŸ”§</span>
+                  <h3 className="text-xl font-bold text-gray-900">Service Expert 'ClÃ© en main'</h3>
                 </div>
                 <p className="text-gray-600 mb-4">
-                  Vous avez un blocage spécifique ou une urgence ? Nos experts prennent le relais de A à Z sur une démarche 
-                  précise. On le fait à votre place : Visa, Litige Logement, Dossier CAF complexe, etc.
+                  Vous avez un blocage spÃ©cifique ou une urgence ? Nos experts prennent le relais de A Ã  Z sur une dÃ©marche 
+                  prÃ©cise. On le fait Ã  votre place : Visa, Litige Logement, Dossier CAF complexe, etc.
                 </p>
                 <p className="text-sm text-gray-500">
-                  <strong>Idéal pour :</strong> Une intervention ponctuelle et rapide sur un dossier précis.
+                  <strong>IdÃ©al pour :</strong> Une intervention ponctuelle et rapide sur un dossier prÃ©cis.
                 </p>
               </div>
             </div>
@@ -534,9 +533,9 @@ export default function Pricing() {
         {/* Trust Badges */}
         <div className="grid md:grid-cols-3 gap-6 mb-20">
           {[
-            { icon: Shield, title: "Paiement Stripe sécurisé", desc: "Vos données bancaires sont protégées" },
-            { icon: Zap, title: "Résiliation en 1 clic", desc: "Annulez votre abonnement à tout moment" },
-            { icon: Sparkles, title: "Sans engagement", desc: "Aucun engagement de durée" }
+            { icon: Shield, title: "Paiement Stripe sÃ©curisÃ©", desc: "Vos donnÃ©es bancaires sont protÃ©gÃ©es" },
+            { icon: Zap, title: "RÃ©siliation en 1 clic", desc: "Annulez votre abonnement Ã  tout moment" },
+            { icon: Sparkles, title: "Sans engagement", desc: "Aucun engagement de durÃ©e" }
           ].map((badge, index) => (
             <motion.div
               key={index}
@@ -561,42 +560,42 @@ export default function Pricing() {
         {/* FAQ */}
         <div className="max-w-4xl mx-auto mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
-            Questions fréquentes 💬
+            Questions frÃ©quentes ðŸ’¬
           </h2>
 
           <Accordion type="single" collapsible className="w-full space-y-4">
             {[
               {
                 q: "Est-ce sans engagement ?",
-                a: "Oui, absolument ! Tous nos abonnements (Premium et Ultimate VIP) sont sans engagement. Vous pouvez résilier en 1 clic à tout moment depuis votre profil, sans frais de résiliation. Aucun engagement de durée, vous êtes libre de partir quand vous voulez."
+                a: "Oui, absolument ! Tous nos abonnements (Premium et Ultimate VIP) sont sans engagement. Vous pouvez rÃ©silier en 1 clic Ã  tout moment depuis votre profil, sans frais de rÃ©siliation. Aucun engagement de durÃ©e, vous Ãªtes libre de partir quand vous voulez."
               },
               {
                 q: "Comment se passe l'accompagnement individuel avec Ultimate VIP ?",
-                a: "Avec l'offre Ultimate VIP, vous avez accès à un conseiller dédié qui vous accompagne pas à pas. Il vous aide à remplir vos dossiers (Visa, CPAM, CAF), vérifie vos documents avant envoi, répond à vos questions administratives complexes et vous aide à trouver un job ou une alternance avec une stratégie personnalisée. Vous pouvez le contacter par email ou WhatsApp et il vous répond dans les plus brefs délais."
+                a: "Avec l'offre Ultimate VIP, vous avez accÃ¨s Ã  un conseiller dÃ©diÃ© qui vous accompagne pas Ã  pas. Il vous aide Ã  remplir vos dossiers (Visa, CPAM, CAF), vÃ©rifie vos documents avant envoi, rÃ©pond Ã  vos questions administratives complexes et vous aide Ã  trouver un job ou une alternance avec une stratÃ©gie personnalisÃ©e. Vous pouvez le contacter par email ou WhatsApp et il vous rÃ©pond dans les plus brefs dÃ©lais."
               },
               {
-                q: "Puis-je passer de Premium à Ultimate VIP ?",
-                a: "Oui, absolument ! Si vous avez déjà un abonnement Premium, vous pouvez passer à Ultimate VIP à tout moment. Le changement se fait instantanément et vous bénéficiez immédiatement de tous les avantages de l'accompagnement personnalisé. Le prix de votre abonnement sera ajusté au prorata."
+                q: "Puis-je passer de Premium Ã  Ultimate VIP ?",
+                a: "Oui, absolument ! Si vous avez dÃ©jÃ  un abonnement Premium, vous pouvez passer Ã  Ultimate VIP Ã  tout moment. Le changement se fait instantanÃ©ment et vous bÃ©nÃ©ficiez immÃ©diatement de tous les avantages de l'accompagnement personnalisÃ©. Le prix de votre abonnement sera ajustÃ© au prorata."
               },
               {
-                q: "Puis-je changer de formule à tout moment ?",
-                a: "Oui ! Vous pouvez passer de Gratuit à Premium ou Ultimate VIP instantanément, ou passer d'une formule à l'autre selon vos besoins. Vous pouvez aussi annuler votre abonnement à tout moment depuis votre profil."
+                q: "Puis-je changer de formule Ã  tout moment ?",
+                a: "Oui ! Vous pouvez passer de Gratuit Ã  Premium ou Ultimate VIP instantanÃ©ment, ou passer d'une formule Ã  l'autre selon vos besoins. Vous pouvez aussi annuler votre abonnement Ã  tout moment depuis votre profil."
               },
               {
                 q: "Que se passe-t-il si j'annule mon abonnement ?",
-                a: "Vous gardez l'accès Premium/Ultimate VIP jusqu'à la fin de votre période payée. Ensuite, vous repassez automatiquement au plan Découverte (gratuit) et conservez tout votre historique, vos cours suivis et vos données. Rien n'est perdu !"
+                a: "Vous gardez l'accÃ¨s Premium/Ultimate VIP jusqu'Ã  la fin de votre pÃ©riode payÃ©e. Ensuite, vous repassez automatiquement au plan DÃ©couverte (gratuit) et conservez tout votre historique, vos cours suivis et vos donnÃ©es. Rien n'est perdu !"
               },
               {
-                q: "Le paiement est-il sécurisé ?",
-                a: "100%. Nous utilisons Stripe, le leader mondial des paiements en ligne, pour garantir la sécurité de vos transactions. Vos données bancaires ne sont jamais stockées sur nos serveurs et sont cryptées selon les normes les plus strictes de l'industrie."
+                q: "Le paiement est-il sÃ©curisÃ© ?",
+                a: "100%. Nous utilisons Stripe, le leader mondial des paiements en ligne, pour garantir la sÃ©curitÃ© de vos transactions. Vos donnÃ©es bancaires ne sont jamais stockÃ©es sur nos serveurs et sont cryptÃ©es selon les normes les plus strictes de l'industrie."
               },
               {
-                q: "Y a-t-il des réductions pour les étudiants ?",
-                a: "Oui ! Contactez-nous à contact@franceprepacademy.fr avec votre carte étudiante pour bénéficier de 20% de réduction sur l'abonnement Premium. Cette réduction s'applique aussi à Ultimate VIP."
+                q: "Y a-t-il des rÃ©ductions pour les Ã©tudiants ?",
+                a: "Oui ! Contactez-nous Ã  contact@franceprepacademy.fr avec votre carte Ã©tudiante pour bÃ©nÃ©ficier de 20% de rÃ©duction sur l'abonnement Premium. Cette rÃ©duction s'applique aussi Ã  Ultimate VIP."
               },
               {
-                q: "Quelle est la différence entre Premium et Ultimate VIP ?",
-                a: "Premium vous donne accès à tous nos contenus (200+ formations) et à l'IA illimitée. Ultimate VIP inclut tout cela PLUS un accompagnement humain personnalisé avec un conseiller dédié qui vous aide à remplir vos dossiers, vérifie vos documents et vous guide dans toutes vos démarches administratives."
+                q: "Quelle est la diffÃ©rence entre Premium et Ultimate VIP ?",
+                a: "Premium vous donne accÃ¨s Ã  tous nos contenus (200+ formations) et Ã  l'IA illimitÃ©e. Ultimate VIP inclut tout cela PLUS un accompagnement humain personnalisÃ© avec un conseiller dÃ©diÃ© qui vous aide Ã  remplir vos dossiers, vÃ©rifie vos documents et vous guide dans toutes vos dÃ©marches administratives."
               }
             ].map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`} className="border-2 border-gray-200 rounded-lg px-4 mb-4">
@@ -625,10 +624,10 @@ export default function Pricing() {
           
           <div className="relative">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Prêt à transformer votre vie en France ? 🇫🇷
+              PrÃªt Ã  transformer votre vie en France ? ðŸ‡«ðŸ‡·
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Rejoignez notre communauté d'étudiants qui réussissent leur installation en France
+              Rejoignez notre communautÃ© d'Ã©tudiants qui rÃ©ussissent leur installation en France
             </p>
             <Button
               size="lg"
@@ -644,7 +643,7 @@ export default function Pricing() {
               Commencer gratuitement maintenant
             </Button>
             <p className="mt-4 text-blue-200 text-sm">
-              ✓ Sans carte bancaire • ✓ Accès instantané • ✓ Support francophone • ✓ Sans engagement
+              âœ“ Sans carte bancaire â€¢ âœ“ AccÃ¨s instantanÃ© â€¢ âœ“ Support francophone â€¢ âœ“ Sans engagement
             </p>
           </div>
         </motion.div>

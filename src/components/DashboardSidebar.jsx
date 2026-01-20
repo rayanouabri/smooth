@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import { me } from "@/api/auth";
@@ -36,7 +36,7 @@ export default function DashboardSidebar({ currentPage }) {
     const userData = await me();
     setUser(userData);
     
-    // Charger le profil depuis la base de données pour être sûr
+    // Charger le profil depuis la base de donnÃ©es pour Ãªtre sÃ»r
     if (userData?.id) {
       const { data: profileData } = await supabase
         .from('user_profiles')
@@ -48,7 +48,7 @@ export default function DashboardSidebar({ currentPage }) {
         setProfile(profileData);
         console.log('DashboardSidebar - Profile loaded, is_premium:', profileData.is_premium);
       } else {
-        // Fallback: utiliser les données de me()
+        // Fallback: utiliser les donnÃ©es de me()
         setProfile(userData);
       }
     }
@@ -58,7 +58,6 @@ export default function DashboardSidebar({ currentPage }) {
   };
 
   // Utiliser is_premium au lieu de subscription_plan
-  const { isPremium } = require('@/utils/premium');
   const userIsPremium = isPremium(profile);
   const plan = userIsPremium ? 'premium' : 'gratuit';
   const avgProgress = enrollments.length > 0 
@@ -69,7 +68,7 @@ export default function DashboardSidebar({ currentPage }) {
     { icon: Home, label: "Tableau de bord", page: "Dashboard", color: "text-blue-600", bgColor: "bg-blue-50" },
     { icon: BookOpen, label: "Mes Cours", page: "Courses", color: "text-purple-600", bgColor: "bg-purple-50" },
     { icon: Trophy, label: "Certificats", page: "Certificates", color: "text-yellow-600", bgColor: "bg-yellow-50" },
-    { icon: MessageSquare, label: "Communauté", page: "Community", color: "text-green-600", bgColor: "bg-green-50" },
+    { icon: MessageSquare, label: "CommunautÃ©", page: "Community", color: "text-green-600", bgColor: "bg-green-50" },
     { icon: Users, label: "Professeurs", page: "Teachers", color: "text-pink-600", bgColor: "bg-pink-50" },
     { icon: User, label: "Mon Profil", page: "Profile", color: "text-indigo-600", bgColor: "bg-indigo-50" },
   ];
@@ -115,7 +114,7 @@ export default function DashboardSidebar({ currentPage }) {
                       ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white' 
                       : 'bg-gray-200 text-gray-700'
                   } text-xs`}>
-                    {plan === 'premium' ? '⭐ Premium' : '🎓 Gratuit'}
+                    {plan === 'premium' ? 'â­ Premium' : 'ðŸŽ“ Gratuit'}
                   </Badge>
                   <Badge className="bg-indigo-100 text-indigo-700 text-xs">
                     Niv. {Math.floor(1 + enrollments.length / 3)}
@@ -152,7 +151,7 @@ export default function DashboardSidebar({ currentPage }) {
                   <Progress value={avgProgress} className="h-2" />
                   <div className="flex items-center justify-between mt-2 text-xs text-gray-500">
                     <span>{enrollments.length} cours</span>
-                    <span>🔥 {Math.min(7, enrollments.length)}j série</span>
+                    <span>ðŸ”¥ {Math.min(7, enrollments.length)}j sÃ©rie</span>
                   </div>
                 </div>
               )}
@@ -202,11 +201,11 @@ export default function DashboardSidebar({ currentPage }) {
               <h3 className="font-bold text-sm">Passer Premium</h3>
             </div>
             <p className="text-xs text-white/90 mb-3">
-              Débloquez 60+ cours et l'IA illimitée
+              DÃ©bloquez 60+ cours et l'IA illimitÃ©e
             </p>
             <Link to={createPageUrl("Pricing")}>
               <Button className="w-full bg-white text-orange-600 hover:bg-gray-100 text-xs font-bold py-2 shadow-lg">
-                ⚡ Découvrir
+                âš¡ DÃ©couvrir
               </Button>
             </Link>
           </div>
