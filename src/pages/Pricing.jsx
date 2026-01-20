@@ -151,8 +151,6 @@ export default function Pricing() {
     }
   ];
 
-  
-  const userIsPremium = isPremium(user);
   const userIsUltimateVIP = isUltimateVIP(user);
 
   const handlePlanClick = async (plan) => {
