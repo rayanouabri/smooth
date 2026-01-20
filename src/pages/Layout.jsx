@@ -323,8 +323,7 @@ export default function Layout({ children, currentPageName }) {
                 <li><Link to={createPageUrl("Contact")} className="hover:text-white">Contact</Link></li>
                 <li><Link to={createPageUrl("CGV")} className="hover:text-white">CGV</Link></li>
                 <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white">ConfidentialitÃ©</Link></li>
-                <li><Link to={createPageUrl("Contact")} className="hover:text-white">Mentions lÃ©gales</Link></li>
-            </div>
+                <li><Link to={createPageUrl("Contact")} className="hover:text-white">Mentions lÃ©gales</Link></li>`n              </ul>`n            </div>
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
