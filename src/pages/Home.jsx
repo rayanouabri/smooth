@@ -54,22 +54,22 @@ export default function Home() {
   const testimonials = [
     {
       name: "Thomas",
-      origin: "Étudiant Canadien",
-      text: "Grâce à FrancePrepAcademy, j'ai pu m'installer en France en 2 semaines au lieu de 3 mois. Les tutoriels sont clairs et pratiques, et l'accompagnement est incroyable.",
+      origin: "\u00c9tudiant Canadien",
+      text: "Gr\u00e2ce \u00e0 FrancePrepAcademy, j'ai pu m'installer en France en 2 semaines au lieu de 3 mois. Les tutoriels sont clairs et pratiques, et l'accompagnement est incroyable.",
       rating: 5,
       photo: "👨‍🎓"
     },
     {
       name: "Daniela",
       origin: "Travailleuse internationale",
-      text: "Les tutoriels sont excellents et très pratiques. J'ai appris énormément sur la culture française et les démarches administratives. Je recommande vivement !",
+      text: "Les tutoriels sont excellents et tr\u00e8s pratiques. J'ai appris \u00e9norm\u00e9ment sur la culture fran\u00e7aise et les d\u00e9marches administratives. Je recommande vivement !",
       rating: 5,
       photo: "👩‍💼"
     },
     {
       name: "Ahmed",
       origin: "Entrepreneur",
-      text: "L'ouverture de compte bancaire et la recherche de logement ont été expliquées parfaitement. J'ai économisé des semaines de démarches grâce aux tutoriels.",
+      text: "L'ouverture de compte bancaire et la recherche de logement ont \u00e9t\u00e9 expliqu\u00e9es parfaitement. J'ai \u00e9conomis\u00e9 des semaines de d\u00e9marches gr\u00e2ce aux tutoriels.",
       rating: 5,
       photo: "👨‍💻"
     }
@@ -77,10 +77,10 @@ export default function Home() {
 
   const plans = [
     {
-      name: "Découverte",
+      name: "D\u00e9couverte",
       price: "0€",
       description: "Pour explorer la plateforme",
-      features: ["10 messages IA", "Tutoriels de base", "Accès Forum"],
+      features: ["10 messages IA", "Tutoriels de base", "Acc\u00e8s Forum"],
       icon: "🎓",
       color: "from-gray-500 to-gray-600"
     },
@@ -88,7 +88,7 @@ export default function Home() {
       name: "Premium",
       price: "24,90€",
       description: "Choix de la communauté",
-      features: ["IA ILLIMITÉE", "Accès à tous les tutoriels (200+)", "Forum VIP", "Centre d'aide complet"],
+      features: ["IA ILLIMIT\u00c9E", "Acc\u00e8s \u00e0 tous les tutoriels (200+)", "Forum VIP", "Centre d'aide complet"],
       icon: "⚡",
       color: "from-blue-600 to-indigo-600",
       popular: true
@@ -96,7 +96,7 @@ export default function Home() {
     {
       name: "Ultimate VIP",
       price: "89€",
-      description: "Accompagnement personnalisé",
+      description: "Accompagnement personnalis\u00e9",
       features: ["Accompagnement individuel humain", "Aide au remplissage des dossiers", "Mentorat carrière"],
       icon: "👑",
       color: "from-amber-500 to-yellow-500"

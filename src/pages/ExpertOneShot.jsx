@@ -66,7 +66,7 @@ const TESTIMONIALS = [
     name: "Mohammed K.",
     origin: "Entrepreneur Marocain",
     service: "CAF + Logement",
-    text: "Grâce au service Expert, j'ai résolu mon problème de CAF qui traînait depuis 3 mois en une semaine. Et ils ont même trouvé un appartement pour moi !",
+    text: "Gr\u00e2ce au service Expert, j'ai r\u00e9solu mon probl\u00e8me de CAF qui tra\u00eenait depuis 3 mois en une semaine. Et ils ont m\u00eame trouv\u00e9 un appartement pour moi !",
     rating: 5
   },
   {

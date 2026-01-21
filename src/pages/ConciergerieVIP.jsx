@@ -65,7 +65,7 @@ export default function ConciergerieVIP() {
     {
       name: "Thomas",
       origin: "Expatrié Canadien",
-      text: "Grâce à la Conciergerie VIP, j'ai pu m'installer en France en 2 semaines au lieu de 3 mois. Tout était géré pour moi, je n'ai eu qu'à signer les papiers.",
+      text: "Gr\u00e2ce \u00e0 la Conciergerie VIP, j'ai pu m'installer en France en 2 semaines au lieu de 3 mois. Tout \u00e9tait g\u00e9r\u00e9 pour moi, je n'ai eu qu'\u00e0 signer les papiers.",
       rating: 5
     },
     {

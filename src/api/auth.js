@@ -229,7 +229,7 @@ export const signInWithEmail = async (email, password) => {
   });
   if (error) throw error;
   
-  // Note: Le profil devrait déjà exister grâce au trigger SQL on_auth_user_created
+  // Note: Le profil devrait d\u00e9j\u00e0 exister gr\u00e2ce au trigger SQL on_auth_user_created
   // On vérifie seulement pour les anciens utilisateurs qui n'ont peut-être pas de profil
   if (data.user) {
     try {
