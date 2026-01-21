@@ -25,6 +25,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { isPremium } from "@/utils/premium";
 
 export default function Learn() {
   const { t } = useLanguage();
@@ -118,7 +119,6 @@ export default function Learn() {
 
     // Si le cours est premium, vérifier si l'utilisateur a un abonnement Premium
     const userIsPremium = isPremium(userProfile);
-    
     
     console.log('Learn - checkAccess:', {
       courseIsPremium: course.is_premium,

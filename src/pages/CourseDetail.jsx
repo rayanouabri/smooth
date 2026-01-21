@@ -28,10 +28,11 @@ import {
   Zap,
   Target
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import { motion } from "framer-motion";
 import ChatBot from "../components/ChatBot";
+import { isPremium } from "@/utils/premium";
 
 export default function CourseDetail() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -39,6 +40,7 @@ export default function CourseDetail() {
   const [userProfile, setUserProfile] = useState(null);
   const [enrollment, setEnrollment] = useState(null);
   const [canAccess, setCanAccess] = useState(false);
+  const navigate = useNavigate();
   
   const urlParams = new URLSearchParams(window.location.search);
   const courseId = urlParams.get('id');
@@ -155,7 +157,7 @@ export default function CourseDetail() {
       setEnrollment(newEnrollment);
       queryClient.invalidateQueries({ queryKey: ['enrollments'] });
       if (lessons[0]) {
-        window.location.href = createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lessons[0].id}`;
+        navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lessons[0].id}`);
       }
     },
   });

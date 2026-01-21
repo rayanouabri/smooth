@@ -69,7 +69,8 @@ export default function Layout({ children, currentPageName }) {
     { name: "Cours", page: "Courses" },
     { name: "Cours particuliers", page: "Teachers" },
     { name: "Dashboard", page: "Dashboard" },
-    { name: "CommunautÃ©", page: "Community" },
+    // Éviter les soucis d'encodage lors de certains déploiements (UTF-8 mal interprété)
+    { name: "Communaut\u00e9", page: "Community" },
     { name: "Tarifs", page: "Pricing" },
   ];
 
@@ -94,7 +95,7 @@ export default function Layout({ children, currentPageName }) {
                     const authenticated = await checkAuthStatus();
                     if (!authenticated) {
                       e.preventDefault();
-                      redirectToLogin('/Dashboard');
+                      redirectToLogin('/dashboard');
                     }
                   }
                 };
@@ -135,7 +136,7 @@ export default function Layout({ children, currentPageName }) {
                 <>
                   <Link to={createPageUrl("Dashboard")} className="hidden md:inline-block">
                     <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg text-xs sm:text-sm px-2 sm:px-3" size="sm">
-                      ðŸŽ“ Mon Espace
+                      {"\uD83C\uDF93"} Mon Espace
                     </Button>
                   </Link>
                   <DropdownMenu>

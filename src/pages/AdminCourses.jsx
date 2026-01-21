@@ -26,7 +26,7 @@ export default function AdminCourses() {
     const userData = await getCurrentUser();
     setUser(userData);
     if (userData.role !== 'admin') {
-      window.location.href = '/Dashboard';
+      window.location.href = '/dashboard';
     }
   };
 

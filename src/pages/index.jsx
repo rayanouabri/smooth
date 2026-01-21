@@ -3,6 +3,7 @@ import Layout from "./Layout.jsx";
 
 import Dashboard from "./Dashboard";
 
+import Chatbot from "./Chatbot";
 
 import Courses from "./Courses";
 
@@ -59,12 +60,13 @@ import ResetPassword from "./ResetPassword";
 import AuthCallback from "./AuthCallback";
 import NotFound from "./NotFound";
 
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 
 const PAGES = {
     
     Dashboard: Dashboard,
     
+    Chatbot: Chatbot,
     
     Courses: Courses,
     
@@ -195,65 +197,65 @@ function PagesContent() {
             <Routes>            
                 
                     <Route path="/" element={<Home />} />
-                
-                
-                <Route path="/Dashboard" element={<Dashboard />} />
-                
-                
-                <Route path="/Courses" element={<Courses />} />
+
+                {/* Canonical (lowercase) routes - matches createPageUrl() */}
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/chatbot" element={<Chatbot />} />
                 <Route path="/courses" element={<Courses />} />
-                
-                <Route path="/NotesGenerator" element={<NotesGenerator />} />
-                
-                <Route path="/ResumeBuilder" element={<ResumeBuilder />} />
-                
-                <Route path="/MockInterview" element={<MockInterview />} />
-                
-                <Route path="/AptitudeTests" element={<AptitudeTests />} />
-                
-                <Route path="/VerbalTests" element={<VerbalTests />} />
-                
-                <Route path="/ProblemSolving" element={<ProblemSolving />} />
-                
-                <Route path="/CriticalThinking" element={<CriticalThinking />} />
-                
-                <Route path="/StudentAssessment" element={<StudentAssessment />} />
-                
-                <Route path="/ProgressTracker" element={<ProgressTracker />} />
-                
-                <Route path="/Profile" element={<Profile />} />
-                
-                <Route path="/Certificates" element={<Certificates />} />
-                
-                <Route path="/Home" element={<Home />} />
-                
-                <Route path="/CourseDetail" element={<CourseDetail />} />
-                
-                <Route path="/Learn" element={<Learn />} />
-                
-                <Route path="/Teachers" element={<Teachers />} />
-                
-                <Route path="/Community" element={<Community />} />
-                
-                <Route path="/Pricing" element={<Pricing />} />
-                
-                <Route path="/ExpertOneShot" element={<ExpertOneShot />} />
-                
-                <Route path="/CGU" element={<CGU />} />
-                
-                <Route path="/CGV" element={<CGV />} />
-                
-                <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
-                
-                <Route path="/PaymentSuccess" element={<PaymentSuccess />} />
-                
-                <Route path="/AdminCourses" element={<AdminCourses />} />
-                
+                <Route path="/notesgenerator" element={<NotesGenerator />} />
+                <Route path="/resumebuilder" element={<ResumeBuilder />} />
+                <Route path="/mockinterview" element={<MockInterview />} />
+                <Route path="/aptitudetests" element={<AptitudeTests />} />
+                <Route path="/verbaltests" element={<VerbalTests />} />
+                <Route path="/problemsolving" element={<ProblemSolving />} />
+                <Route path="/criticalthinking" element={<CriticalThinking />} />
+                <Route path="/studentassessment" element={<StudentAssessment />} />
+                <Route path="/progresstracker" element={<ProgressTracker />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/certificates" element={<Certificates />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/coursedetail" element={<CourseDetail />} />
+                <Route path="/learn" element={<Learn />} />
+                <Route path="/teachers" element={<Teachers />} />
+                <Route path="/community" element={<Community />} />
+                <Route path="/pricing" element={<Pricing />} />
+                <Route path="/expertoneshot" element={<ExpertOneShot />} />
+                <Route path="/cgu" element={<CGU />} />
+                <Route path="/cgv" element={<CGV />} />
+                <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+                <Route path="/paymentsuccess" element={<PaymentSuccess />} />
+                <Route path="/admincourses" element={<AdminCourses />} />
                 <Route path="/login" element={<Login />} />
-                
                 <Route path="/reset-password" element={<ResetPassword />} />
-                
                 <Route path="/auth/callback" element={<AuthCallback />} />
+
+                {/* Backward-compat redirects (old uppercase routes) */}
+                <Route path="/Dashboard" element={<Navigate to="/dashboard" replace />} />
+                <Route path="/Chatbot" element={<Navigate to="/chatbot" replace />} />
+                <Route path="/Courses" element={<Navigate to="/courses" replace />} />
+                <Route path="/NotesGenerator" element={<Navigate to="/notesgenerator" replace />} />
+                <Route path="/ResumeBuilder" element={<Navigate to="/resumebuilder" replace />} />
+                <Route path="/MockInterview" element={<Navigate to="/mockinterview" replace />} />
+                <Route path="/AptitudeTests" element={<Navigate to="/aptitudetests" replace />} />
+                <Route path="/VerbalTests" element={<Navigate to="/verbaltests" replace />} />
+                <Route path="/ProblemSolving" element={<Navigate to="/problemsolving" replace />} />
+                <Route path="/CriticalThinking" element={<Navigate to="/criticalthinking" replace />} />
+                <Route path="/StudentAssessment" element={<Navigate to="/studentassessment" replace />} />
+                <Route path="/ProgressTracker" element={<Navigate to="/progresstracker" replace />} />
+                <Route path="/Profile" element={<Navigate to="/profile" replace />} />
+                <Route path="/Certificates" element={<Navigate to="/certificates" replace />} />
+                <Route path="/Home" element={<Navigate to="/home" replace />} />
+                <Route path="/CourseDetail" element={<Navigate to="/coursedetail" replace />} />
+                <Route path="/Learn" element={<Navigate to="/learn" replace />} />
+                <Route path="/Teachers" element={<Navigate to="/teachers" replace />} />
+                <Route path="/Community" element={<Navigate to="/community" replace />} />
+                <Route path="/Pricing" element={<Navigate to="/pricing" replace />} />
+                <Route path="/ExpertOneShot" element={<Navigate to="/expertoneshot" replace />} />
+                <Route path="/CGU" element={<Navigate to="/cgu" replace />} />
+                <Route path="/CGV" element={<Navigate to="/cgv" replace />} />
+                <Route path="/PrivacyPolicy" element={<Navigate to="/privacypolicy" replace />} />
+                <Route path="/PaymentSuccess" element={<Navigate to="/paymentsuccess" replace />} />
+                <Route path="/AdminCourses" element={<Navigate to="/admincourses" replace />} />
                 
                 {/* Catch-all route for 404 */}
                 <Route path="*" element={<NotFound />} />

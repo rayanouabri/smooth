@@ -56,7 +56,7 @@ export default function NotFound() {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-              <Link to="/Home">
+              <Link to="/home">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-full px-8 py-6 text-lg shadow-xl"
@@ -82,28 +82,28 @@ export default function NotFound() {
               <p className="text-sm text-gray-500 mb-4">Ou visitez une de ces pages :</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
-                  to="/Courses"
+                  to="/courses"
                   className="text-indigo-600 hover:text-indigo-700 hover:underline font-medium"
                 >
                   Cours
                 </Link>
                 <span className="text-gray-300">•</span>
                 <Link
-                  to="/Community"
+                  to="/community"
                   className="text-indigo-600 hover:text-indigo-700 hover:underline font-medium"
                 >
                   Communauté
                 </Link>
                 <span className="text-gray-300">•</span>
                 <Link
-                  to="/Dashboard"
+                  to="/dashboard"
                   className="text-indigo-600 hover:text-indigo-700 hover:underline font-medium"
                 >
                   Dashboard
                 </Link>
                 <span className="text-gray-300">•</span>
                 <Link
-                  to="/Pricing"
+                  to="/pricing"
                   className="text-indigo-600 hover:text-indigo-700 hover:underline font-medium"
                 >
                   Tarifs

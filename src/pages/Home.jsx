@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticated as checkAuthStatus, redirectToLogin } from "@/api/auth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -39,6 +39,7 @@ import { motion } from "framer-motion";
 import ChatBot from "../components/ChatBot";
 
 export default function Home() {
+  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -197,7 +198,7 @@ export default function Home() {
                   if (!isAuthenticated) {
                     redirectToLogin(window.location.href);
                   } else {
-                    window.location.href = createPageUrl("Dashboard");
+                    navigate(createPageUrl("Dashboard"));
                   }
                 }}
               >
@@ -467,7 +468,7 @@ export default function Home() {
                       if (!isAuthenticated) {
                         redirectToLogin(window.location.href);
                       } else {
-                        window.location.href = createPageUrl("Dashboard");
+                        navigate(createPageUrl("Dashboard"));
                       }
                     }}
                   >
@@ -510,7 +511,7 @@ export default function Home() {
                       if (!isAuthenticated) {
                         redirectToLogin(window.location.href);
                       } else {
-                        window.location.href = createPageUrl("Dashboard");
+                        navigate(createPageUrl("Dashboard"));
                       }
                     }}
                   >

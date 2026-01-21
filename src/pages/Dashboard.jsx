@@ -53,15 +53,15 @@ export default function Dashboard() {
     try {
       const authenticated = await isAuthenticated();
       if (!authenticated) {
-        // Rediriger vers login, puis vers Dashboard aprÃ¨s connexion
-        navigate('/login?redirect=/Dashboard');
+        // Rediriger vers login, puis vers Dashboard après connexion
+        navigate('/login?redirect=/dashboard');
         return;
       }
 
       // Utiliser me() pour obtenir le profil avec is_premium
       const userData = await me();
       if (!userData) {
-        navigate('/login?redirect=/Dashboard');
+        navigate('/login?redirect=/dashboard');
         return;
       }
       
@@ -91,7 +91,7 @@ export default function Dashboard() {
       }
     } catch (error) {
       console.error("Erreur lors du chargement de l'utilisateur:", error);
-      navigate('/login?redirect=/Dashboard');
+      navigate('/login?redirect=/dashboard');
     }
   };
 
@@ -145,7 +145,9 @@ export default function Dashboard() {
     return courses.find(c => c.id === enrollment.course_id);
   };
 
-  // Utiliser la fonction utilitaire pour vÃ©rifier le statut Premium
+  // Utiliser la fonction utilitaire pour vérifier le statut Premium
+  // Utiliser la fonction utilitaire pour vérifier le statut Premium (import statique pour éviter les soucis de bundling)
+  const { isPremium } = require('@/utils/premium');
   const userIsPremium = isPremium(profile);
   const plan = userIsPremium ? 'premium' : 'gratuit';
 
@@ -483,7 +485,7 @@ export default function Dashboard() {
 
         {/* Quick Actions */}
         <div className="grid md:grid-cols-3 gap-6">
-          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer" onClick={() => window.location.href = createPageUrl("Community")}>
+          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer" onClick={() => navigate(createPageUrl("Community"))}>
             <CardContent className="p-6 text-center">
               <MessageSquare className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">CommunautÃ©</h3>
@@ -491,7 +493,7 @@ export default function Dashboard() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer" onClick={() => window.location.href = createPageUrl("Teachers")}>
+          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer" onClick={() => navigate(createPageUrl("Teachers"))}>
             <CardContent className="p-6 text-center">
               <Users className="w-12 h-12 text-purple-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Cours particulier</h3>
@@ -499,7 +501,7 @@ export default function Dashboard() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer" onClick={() => window.location.href = createPageUrl("Profile")}>
+          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer" onClick={() => navigate(createPageUrl("Profile"))}>
             <CardContent className="p-6 text-center">
               <Target className="w-12 h-12 text-green-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Mon profil</h3>

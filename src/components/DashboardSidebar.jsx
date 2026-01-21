@@ -68,7 +68,8 @@ export default function DashboardSidebar({ currentPage }) {
     { icon: Home, label: "Tableau de bord", page: "Dashboard", color: "text-blue-600", bgColor: "bg-blue-50" },
     { icon: BookOpen, label: "Mes Cours", page: "Courses", color: "text-purple-600", bgColor: "bg-purple-50" },
     { icon: Trophy, label: "Certificats", page: "Certificates", color: "text-yellow-600", bgColor: "bg-yellow-50" },
-    { icon: MessageSquare, label: "CommunautÃ©", page: "Community", color: "text-green-600", bgColor: "bg-green-50" },
+    // Éviter les soucis d'encodage lors de certains déploiements (UTF-8 mal interprété)
+    { icon: MessageSquare, label: "Communaut\u00e9", page: "Community", color: "text-green-600", bgColor: "bg-green-50" },
     { icon: Users, label: "Professeurs", page: "Teachers", color: "text-pink-600", bgColor: "bg-pink-50" },
     { icon: User, label: "Mon Profil", page: "Profile", color: "text-indigo-600", bgColor: "bg-indigo-50" },
   ];

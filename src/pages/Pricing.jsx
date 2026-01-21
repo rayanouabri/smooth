@@ -12,7 +12,7 @@ import {
 import { isAuthenticated as checkAuthStatus, redirectToLogin, me } from "@/api/auth";
 import { createCheckout } from "@/api/functions";
 import { createPageUrl } from "../utils";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ChatBot from "../components/ChatBot";
 import { motion } from "framer-motion";
 
@@ -21,6 +21,7 @@ export default function Pricing() {
   const [user, setUser] = useState(null);
   const [billingCycle, setBillingCycle] = useState("monthly");
   const [isProcessing, setIsProcessing] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     checkAuth();
@@ -155,8 +156,8 @@ export default function Pricing() {
 
   const handlePlanClick = async (plan) => {
     if (plan.isOneShot) {
-      // Rediriger vers la page dÃ©diÃ©e Expert One-Shot
-      window.location.href = createPageUrl("ExpertOneShot");
+      // Rediriger vers la page dédiée Expert One-Shot
+      navigate(createPageUrl("ExpertOneShot"));
       return;
     }
 
@@ -165,20 +166,20 @@ export default function Pricing() {
       if (!isAuthenticated) {
         redirectToLogin(window.location.href);
       } else {
-        window.location.href = createPageUrl("Dashboard");
+        navigate(createPageUrl("Dashboard"));
       }
       return;
     }
 
     // Si utilisateur a dÃ©jÃ  Ultimate VIP et clique sur Ultimate VIP
     if (plan.name === "Ultimate VIP" && userIsUltimateVIP) {
-      window.location.href = '/profile?tab=subscription';
+      navigate('/profile?tab=subscription');
       return;
     }
 
     // Si utilisateur a Premium et clique sur Premium
     if (plan.name === "Premium" && userIsPremium && !userIsUltimateVIP) {
-      window.location.href = '/profile?tab=subscription';
+      navigate('/profile?tab=subscription');
       return;
     }
 
@@ -634,7 +635,7 @@ export default function Pricing() {
                 if (!isAuthenticated) {
                   redirectToLogin(window.location.href);
                 } else {
-                  window.location.href = createPageUrl("Dashboard");
+                  navigate(createPageUrl("Dashboard"));
                 }
               }}
             >

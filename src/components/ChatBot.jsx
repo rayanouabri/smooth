@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -42,6 +42,8 @@ export default function ChatBot() {
   const [isCheckingLimit, setIsCheckingLimit] = useState(true);
   const messagesEndRef = useRef(null);
   const FREE_MESSAGE_LIMIT = 5;
+
+  const userIsPremium = useMemo(() => isPremium(user), [user]);
 
   // Charger l'utilisateur et compter les messages du mois
   useEffect(() => {
@@ -149,7 +151,7 @@ export default function ChatBot() {
       }).join('\n');
 
       const coursesContextText = coursesContext.length > 0 
-        ? `\n\nCOURS DISPONIBLES SUR LA PLATEFORME (à recommander si pertinent) :\n${coursesList}\n\nPour accéder aux cours, l'utilisateur peut aller sur /Courses. Les cours Premium nécessitent un abonnement (voir /Pricing).`
+        ? `\n\nCOURS DISPONIBLES SUR LA PLATEFORME (à recommander si pertinent) :\n${coursesList}\n\nPour accéder aux cours, l'utilisateur peut aller sur /courses. Les cours Premium nécessitent un abonnement (voir /pricing).`
         : '';
 
       const response = await InvokeLLM({
@@ -178,8 +180,8 @@ RÈGLES DE RÉPONSE IMPORTANTES :
 - Réponds TOUJOURS en français, de manière claire, concise et bienveillante
 - NE JAMAIS utiliser de formatage markdown (**gras**, ##titres, etc.) - réponds en texte simple avec emojis
 - Utilise des émojis pertinents : 📚 (cours), ✅ (confirmation), 🎓 (études), 💼 (travail), 🏠 (logement), 📋 (démarches), 💡 (conseil), 🔗 (lien), 💎 (premium), etc.
-- Quand tu mentionnes un cours, redirige l'utilisateur vers /Courses avec le nom du cours
-- MENTIONNE les avantages Premium quand pertinent (accès complet, certificats, support prioritaire) et redirige vers /Pricing
+- Quand tu mentionnes un cours, redirige l'utilisateur vers /courses avec le nom du cours
+- MENTIONNE les avantages Premium quand pertinent (accès complet, certificats, support prioritaire) et redirige vers /pricing
 - Donne des informations précises et pratiques
 - Si tu ne connais pas une réponse spécifique, guide l'utilisateur vers les ressources appropriées ou recommande de contacter le support
 - Pour le contact support, utilise toujours : contact@franceprepacademy.fr
