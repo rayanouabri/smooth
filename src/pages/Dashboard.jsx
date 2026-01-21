@@ -32,6 +32,7 @@ import ChatBot from "../components/ChatBot";
 import DashboardSidebar from "../components/DashboardSidebar";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { isPremium } from "@/utils/premium";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -145,9 +146,7 @@ export default function Dashboard() {
     return courses.find(c => c.id === enrollment.course_id);
   };
 
-  // Utiliser la fonction utilitaire pour vérifier le statut Premium
   // Utiliser la fonction utilitaire pour vérifier le statut Premium (import statique pour éviter les soucis de bundling)
-  const { isPremium } = require('@/utils/premium');
   const userIsPremium = isPremium(profile);
   const plan = userIsPremium ? 'premium' : 'gratuit';
 

@@ -15,6 +15,8 @@ import { createPageUrl } from "../utils";
 import { Link, useNavigate } from "react-router-dom";
 import ChatBot from "../components/ChatBot";
 import { motion } from "framer-motion";
+import { isPremium } from "@/utils/premium";
+import { isUltimateVIP } from "@/utils/subscription-plans";
 
 export default function Pricing() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -152,6 +154,7 @@ export default function Pricing() {
     }
   ];
 
+  const userIsPremium = isPremium(user);
   const userIsUltimateVIP = isUltimateVIP(user);
 
   const handlePlanClick = async (plan) => {
