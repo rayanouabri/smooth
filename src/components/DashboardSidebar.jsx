@@ -37,7 +37,7 @@ export default function DashboardSidebar({ currentPage }) {
     const userData = await me();
     setUser(userData);
     
-    // Charger le profil depuis la base de donnÃ©es pour Ãªtre sÃ»r
+    // Charger le profil depuis la base de données pour être sûr
     if (userData?.id) {
       const { data: profileData } = await supabase
         .from('user_profiles')
@@ -49,7 +49,7 @@ export default function DashboardSidebar({ currentPage }) {
         setProfile(profileData);
         console.log('DashboardSidebar - Profile loaded, is_premium:', profileData.is_premium);
       } else {
-        // Fallback: utiliser les donnÃ©es de me()
+        // Fallback: utiliser les données de me()
         setProfile(userData);
       }
     }
@@ -153,7 +153,7 @@ export default function DashboardSidebar({ currentPage }) {
                   <Progress value={avgProgress} className="h-2" />
                   <div className="flex items-center justify-between mt-2 text-xs text-gray-500">
                     <span>{enrollments.length} cours</span>
-                    <span>ðŸ”¥ {Math.min(7, enrollments.length)}j sÃ©rie</span>
+                    <span>{"\uD83D\uDD25"} {Math.min(7, enrollments.length)}j {"s\u00e9rie"}</span>
                   </div>
                 </div>
               )}
@@ -203,11 +203,11 @@ export default function DashboardSidebar({ currentPage }) {
               <h3 className="font-bold text-sm">Passer Premium</h3>
             </div>
             <p className="text-xs text-white/90 mb-3">
-              DÃ©bloquez 60+ cours et l'IA illimitÃ©e
+              {"D\u00e9bloquez 60+ cours et l'IA illimit\u00e9e"}
             </p>
             <Link to={createPageUrl("Pricing")}>
               <Button className="w-full bg-white text-orange-600 hover:bg-gray-100 text-xs font-bold py-2 shadow-lg">
-                âš¡ DÃ©couvrir
+                {"\u26A1"} {"D\u00e9couvrir"}
               </Button>
             </Link>
           </div>

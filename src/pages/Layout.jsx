@@ -20,14 +20,14 @@ export default function Layout({ children, currentPageName }) {
 
   useEffect(() => {
     checkAuth();
-    // Recharger le statut utilisateur pÃ©riodiquement pour dÃ©tecter les changements de premium
+    // Recharger le statut utilisateur périodiquement pour détecter les changements de premium
     const interval = setInterval(() => {
       if (isAuthenticated) {
         checkAuth();
       }
-    }, 10000); // Toutes les 10 secondes (plus rapide pour dÃ©tecter les changements de premium)
+    }, 10000); // Toutes les 10 secondes (plus rapide pour détecter les changements de premium)
     
-    // Ã‰couter les Ã©vÃ©nements de navigation depuis PaymentSuccess
+    // Écouter les événements de navigation depuis PaymentSuccess
     const handleFocus = () => {
       if (isAuthenticated) {
         checkAuth();
@@ -47,7 +47,7 @@ export default function Layout({ children, currentPageName }) {
     setIsAuthenticated(authenticated);
     if (authenticated) {
       try {
-        // Utiliser me() qui rÃ©cupÃ¨re automatiquement le profil avec is_premium
+        // Utiliser me() qui récupère automatiquement le profil avec is_premium
         const userData = await me();
         console.log('Layout - User data:', userData);
         console.log('Layout - is_premium:', userData?.is_premium);
@@ -89,7 +89,7 @@ export default function Layout({ children, currentPageName }) {
             {/* Desktop Navigation - Full Menu */}
             <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center min-w-0">
               {navLinks.map((link) => {
-                // Si c'est Dashboard et pas connectÃ©, rediriger vers login
+                // Si c'est Dashboard et pas connecté, rediriger vers login
                 const handleClick = async (e) => {
                   if (link.page === "Dashboard") {
                     const authenticated = await checkAuthStatus();
@@ -211,7 +211,7 @@ export default function Layout({ children, currentPageName }) {
             </button>
           </div>
 
-          {/* Mobile menu - Design amÃ©liorÃ© */}
+            {/* Mobile menu - Design amélioré */}
           {mobileMenuOpen && (
             <div className="lg:hidden fixed inset-0 top-[70px] bg-white z-50 overflow-y-auto shadow-2xl">
               <div className="px-4 py-6 space-y-1">
@@ -239,7 +239,7 @@ export default function Layout({ children, currentPageName }) {
                           className="w-full justify-start h-12 text-base hover:bg-gray-100"
                           onClick={() => setMobileMenuOpen(false)}
                         >
-                          ðŸ“Š Tableau de bord
+                          {"\uD83D\uDCCA"} Tableau de bord
                         </Button>
                       </Link>
                       <Link to={createPageUrl("Profile")}>
@@ -248,7 +248,7 @@ export default function Layout({ children, currentPageName }) {
                           className="w-full justify-start h-12 text-base hover:bg-gray-100"
                           onClick={() => setMobileMenuOpen(false)}
                         >
-                          ðŸ‘¤ Mon profil
+                          {"\uD83D\uDC64"} Mon profil
                         </Button>
                       </Link>
                       <Button
@@ -259,7 +259,7 @@ export default function Layout({ children, currentPageName }) {
                           handleLogout();
                         }}
                       >
-                        ðŸšª DÃ©connexion
+                        {"\uD83D\uDEAA"} {"D\u00e9connexion"}
                       </Button>
                     </>
                   ) : (
@@ -295,7 +295,7 @@ export default function Layout({ children, currentPageName }) {
                 <span className="text-lg font-bold">FrancePrepAcademy</span>
               </div>
               <p className="text-gray-400 text-sm">
-                Votre partenaire pour rÃ©ussir votre installation et vos Ã©tudes en France.
+                {"Votre partenaire pour r\u00e9ussir votre installation et vos \u00e9tudes en France."}
               </p>
             </div>
             
