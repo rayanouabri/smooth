@@ -167,12 +167,12 @@ export default function Layout({ children, currentPageName }) {
                       {user?.is_premium && (
                         <DropdownMenuItem asChild>
                           <Link to={createPageUrl("Profile") + '?tab=subscription'} className="w-full cursor-pointer text-gray-900">
-                            GÃ©rer mon abonnement
+                            {"G\u00e9rer mon abonnement"}
                           </Link>
                         </DropdownMenuItem>
                       )}
                       <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
-                        DÃ©connexion
+                        {"D\u00e9connexion"}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -309,10 +309,10 @@ export default function Layout({ children, currentPageName }) {
             </div>
 
             <div>
-              <h3 className="font-semibold mb-4">CommunautÃ©</h3>
+              <h3 className="font-semibold mb-4">{"Communaut\u00e9"}</h3>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li><Link to={createPageUrl("Community")} className="hover:text-white">Forum</Link></li>
-                <li><a href="#" className="hover:text-white">TÃ©moignages</a></li>
+                <li><a href="#" className="hover:text-white">{"T\u00e9moignages"}</a></li>
                 <li><a href="#" className="hover:text-white">Blog</a></li>
               </ul>
             </div>
@@ -323,12 +323,14 @@ export default function Layout({ children, currentPageName }) {
                 <li><Link to={createPageUrl("Contact")} className="hover:text-white">Centre d'aide</Link></li>
                 <li><Link to={createPageUrl("Contact")} className="hover:text-white">Contact</Link></li>
                 <li><Link to={createPageUrl("CGV")} className="hover:text-white">CGV</Link></li>
-                <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white">ConfidentialitÃ©</Link></li>
-                <li><Link to={createPageUrl("Contact")} className="hover:text-white">Mentions lÃ©gales</Link></li>`n              </ul>`n            </div>
+                <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white">{"Confidentialit\u00e9"}</Link></li>
+                <li><Link to={createPageUrl("Contact")} className="hover:text-white">{"Mentions l\u00e9gales"}</Link></li>
+              </ul>
+            </div>
             </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2024 FrancePrepAcademy. Tous droits rÃ©servÃ©s.</p>
+            <p>&copy; 2024 FrancePrepAcademy. {"Tous droits r\u00e9serv\u00e9s."}</p>
           </div>
         </div>
       </footer>

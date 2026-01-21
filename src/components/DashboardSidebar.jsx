@@ -4,6 +4,7 @@ import { createPageUrl } from "../utils";
 import { me } from "@/api/auth";
 import { supabase } from "@/api/supabaseClient";
 import { UserProfile, Enrollment } from "@/api/entities";
+import { isPremium } from "@/utils/premium";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -115,7 +116,7 @@ export default function DashboardSidebar({ currentPage }) {
                       ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white' 
                       : 'bg-gray-200 text-gray-700'
                   } text-xs`}>
-                    {plan === 'premium' ? 'â­ Premium' : 'ðŸŽ“ Gratuit'}
+                    {plan === 'premium' ? '\u2B50 Premium' : '\uD83C\uDF93 Gratuit'}
                   </Badge>
                   <Badge className="bg-indigo-100 text-indigo-700 text-xs">
                     Niv. {Math.floor(1 + enrollments.length / 3)}
