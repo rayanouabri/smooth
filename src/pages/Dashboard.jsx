@@ -1,9 +1,10 @@
 ﻿import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { me, isAuthenticated } from "@/api/auth";
-import { supabase } from "@/api/supabaseClient";
-import { UserProfile, Enrollment, Course } from "@/api/entities";
+import { isAuthenticated } from "@/api/auth";
+import { Enrollment, Course } from "@/api/entities";
 import { useQuery } from "@tanstack/react-query";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import logger from "@/utils/logger";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -35,66 +36,37 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { isPremium } from "@/utils/premium";
 
 export default function Dashboard() {
-  const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const { user, profile, isLoading: isLoadingProfile, error: profileError, refetch: refetchProfile } = useUserProfile();
 
   useEffect(() => {
-    loadUser();
+    // Vérifier l'authentification et rediriger si nécessaire
+    const checkAuth = async () => {
+      const authenticated = await isAuthenticated();
+      if (!authenticated) {
+        navigate('/login?redirect=/dashboard');
+        return;
+      }
+    };
+    
+    checkAuth();
+    
     // Recharger le profil quand on revient sur la page (après paiement)
     const handleFocus = () => {
-      loadUser();
+      refetchProfile();
     };
     window.addEventListener('focus', handleFocus);
     return () => window.removeEventListener('focus', handleFocus);
-  }, []);
+  }, [navigate, refetchProfile]);
 
-  const loadUser = async () => {
-    try {
-      const authenticated = await isAuthenticated();
-      if (!authenticated) {
-        // Rediriger vers login, puis vers Dashboard après connexion
-        navigate('/login?redirect=/dashboard');
-        return;
-      }
-
-      // Utiliser me() pour obtenir le profil avec is_premium
-      const userData = await me();
-      if (!userData) {
-        navigate('/login?redirect=/dashboard');
-        return;
-      }
-      
-      setUser(userData);
-      
-      // Charger le profil depuis la base de données pour être sûr
-      if (userData?.id) {
-        try {
-          const { data: profileData } = await supabase
-            .from('user_profiles')
-            .select('*')
-            .eq('id', userData.id)
-            .single();
-          
-          if (profileData) {
-            setProfile(profileData);
-            console.log('Dashboard - Profile loaded, is_premium:', profileData.is_premium);
-          } else {
-            // Fallback: utiliser les données de me()
-            setProfile(userData);
-          }
-        } catch (profileError) {
-          console.error("Erreur lors du chargement du profil:", profileError);
-          // Fallback: utiliser les données de me()
-          setProfile(userData);
-        }
-      }
-    } catch (error) {
-      console.error("Erreur lors du chargement de l'utilisateur:", error);
+  // Rediriger si erreur de chargement du profil
+  useEffect(() => {
+    if (profileError && !isLoadingProfile) {
+      logger.error("Erreur lors du chargement du profil:", profileError);
       navigate('/login?redirect=/dashboard');
     }
-  };
+  }, [profileError, isLoadingProfile, navigate]);
 
   const { data: enrollments = [] } = useQuery({
     queryKey: ['enrollments', user?.email],
@@ -128,7 +100,7 @@ export default function Dashboard() {
       try {
         return await Course.filter({ is_published: true });
       } catch (error) {
-        console.error("Erreur lors du chargement de tous les cours:", error);
+        logger.error("Erreur lors du chargement de tous les cours:", error);
         return [];
       }
     },

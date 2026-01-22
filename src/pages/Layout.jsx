@@ -6,6 +6,7 @@ import { isAuthenticated as checkAuthStatus, me, logout, redirectToLogin } from 
 import { Button } from "@/components/ui/button";
 import { Menu, X, GraduationCap, ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import logger from "@/utils/logger";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -50,13 +51,13 @@ export default function Layout({ children, currentPageName }) {
       try {
         // Utiliser me() qui récupère automatiquement le profil avec is_premium
         const userData = await me();
-        console.log('Layout - User data:', userData);
-        console.log('Layout - is_premium:', userData?.is_premium);
+        logger.debug('Layout - User data:', userData);
+        logger.debug('Layout - is_premium:', userData?.is_premium);
         if (userData) {
           setUser(userData);
         }
       } catch (err) {
-        console.error("Error fetching user:", err);
+        logger.error("Error fetching user:", err);
       }
     }
   };

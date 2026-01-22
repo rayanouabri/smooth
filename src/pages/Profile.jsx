@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { getCurrentUser, me } from "@/api/auth";
-import { supabase } from "@/api/supabaseClient";
 import { createBillingPortal } from "@/api/functions";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { supabase } from "@/api/supabaseClient";
+import logger from "@/utils/logger";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -24,92 +25,62 @@ export default function Profile() {
   const navigate = useNavigate();
   const activeTab = searchParams.get('tab') || 'profile';
   
-  const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState(null);
+  const { user, profile, isLoading: isLoadingProfile, refetch: refetchProfile } = useUserProfile();
   const [formData, setFormData] = useState({});
   const [goalInput, setGoalInput] = useState("");
-  const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
   const [billingLoading, setBillingLoading] = useState(false);
 
   useEffect(() => {
-    loadProfile();
     // Recharger le profil quand on revient sur la page (après paiement)
     const handleFocus = () => {
-      loadProfile();
+      refetchProfile();
     };
     window.addEventListener('focus', handleFocus);
     return () => window.removeEventListener('focus', handleFocus);
-  }, []);
+  }, [refetchProfile]);
 
-  const loadProfile = async () => {
-    try {
-      setLoading(true);
-      console.log('Loading profile...');
-      
-      // Utiliser me() pour obtenir le profil complet avec is_premium
-      const userData = await me();
-      console.log('User data:', userData);
-      
-      if (!userData) {
-        console.error('No user found');
-        window.location.href = '/login';
-        return;
-      }
-      
-      setUser(userData);
-      
-      // Récupérer le profil depuis user_profiles
-      const { data: profileData, error } = await supabase
-        .from('user_profiles')
-        .select('*')
-        .eq('id', userData.id)
-        .maybeSingle();
-      
-      console.log('Profile data:', profileData, 'Error:', error);
-      
-      if (profileData) {
-        setProfile(profileData);
-        setFormData({
-          photo_url: profileData.photo_url || "",
-          country_origin: profileData.country_origin || "",
-          city_destination: profileData.city_destination || "",
-          arrival_date: profileData.arrival_date || "",
-          study_field: profileData.study_field || "",
-          french_level: profileData.french_level || "A1",
-          goals: profileData.goals || [],
-          bio: profileData.bio || "",
-          phone: profileData.phone || ""
-        });
-      } else {
-        // Profil n'existe pas encore, initialiser avec des valeurs vides
-        setFormData({
-          photo_url: "",
-          country_origin: "",
-          city_destination: "",
-          arrival_date: "",
-          study_field: "",
-          french_level: "A1",
-          goals: [],
-          bio: "",
-          phone: ""
-        });
-      }
-    } catch (error) {
-      console.error('Error loading profile:', error);
-      setMessage({ type: 'error', text: 'Erreur lors du chargement du profil' });
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+      return;
     }
-  };
+
+    if (profile) {
+      setFormData({
+        photo_url: profile.photo_url || "",
+        country_origin: profile.country_origin || "",
+        city_destination: profile.city_destination || "",
+        arrival_date: profile.arrival_date || "",
+        study_field: profile.study_field || "",
+        french_level: profile.french_level || "A1",
+        goals: profile.goals || [],
+        bio: profile.bio || "",
+        phone: profile.phone || ""
+      });
+    } else {
+      // Profil n'existe pas encore, initialiser avec des valeurs vides
+      setFormData({
+        photo_url: "",
+        country_origin: "",
+        city_destination: "",
+        arrival_date: "",
+        study_field: "",
+        french_level: "A1",
+        goals: [],
+        bio: "",
+        phone: ""
+      });
+    }
+  }, [user, profile, navigate]);
 
   const saveProfile = async () => {
     try {
       setSaving(true);
       setMessage({ type: '', text: '' });
       
-      console.log('Saving profile...');
+      logger.debug('Saving profile...');
       
       if (!user) {
         throw new Error('Utilisateur non connecté');
@@ -122,7 +93,7 @@ export default function Profile() {
         ...formData
       };
 
-      console.log('Profile payload:', profilePayload);
+      logger.debug('Profile payload:', profilePayload);
 
       if (profile) {
         // Mise à jour
@@ -144,9 +115,9 @@ export default function Profile() {
       setMessage({ type: 'success', text: 'Profil mis à jour avec succès !' });
       
       // Recharger le profil
-      await loadProfile();
+      await refetchProfile();
     } catch (error) {
-      console.error('Error saving profile:', error);
+      logger.error('Error saving profile:', error);
       setMessage({ type: 'error', text: error.message || 'Erreur lors de la sauvegarde' });
     } finally {
       setSaving(false);
@@ -168,7 +139,7 @@ export default function Profile() {
     handleChange('goals', formData.goals.filter((_, i) => i !== index));
   };
 
-  if (loading) {
+  if (isLoadingProfile) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">

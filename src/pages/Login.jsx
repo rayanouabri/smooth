@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { signInWithEmail, signUpWithEmail, signInWithGoogle, resetPassword } from "@/api/auth";
+import logger from "@/utils/logger";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -36,7 +37,7 @@ export default function Login() {
       } else {
         // Inscription
         const result = await signUpWithEmail(email, password, { full_name: fullName });
-        console.log('Signup result:', result);
+        logger.debug('Signup result:', result);
         
         // Afficher message de confirmation
         setSuccessMessage(
@@ -56,7 +57,7 @@ export default function Login() {
         }, 5000);
       }
     } catch (err) {
-      console.error('Auth error:', err);
+      logger.error('Auth error:', err);
       setError(err.message || "Une erreur s'est produite lors de la connexion");
       setIsLoading(false); // S'assurer que le loading est désactivé en cas d'erreur
     }

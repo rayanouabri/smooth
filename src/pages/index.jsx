@@ -1,66 +1,49 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, Suspense, lazy } from "react";
 import Layout from "./Layout.jsx";
+import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 
-import Dashboard from "./Dashboard";
-
-import Chatbot from "./Chatbot";
-
-import Courses from "./Courses";
-
-import NotesGenerator from "./NotesGenerator";
-
-import ResumeBuilder from "./ResumeBuilder";
-
-import MockInterview from "./MockInterview";
-
-import AptitudeTests from "./AptitudeTests";
-
-import VerbalTests from "./VerbalTests";
-
-import ProblemSolving from "./ProblemSolving";
-
-import CriticalThinking from "./CriticalThinking";
-
-import StudentAssessment from "./StudentAssessment";
-
-import ProgressTracker from "./ProgressTracker";
-
-import Profile from "./Profile";
-
-import Certificates from "./Certificates";
-
+// Pages critiques chargées immédiatement (Home, Login, Layout)
 import Home from "./Home";
-
-import CourseDetail from "./CourseDetail";
-
-import Learn from "./Learn";
-
-import Teachers from "./Teachers";
-
-import Community from "./Community";
-
-import Pricing from "./Pricing";
-
-import ConciergerieVIP from "./ConciergerieVIP";
-
-import ExpertOneShot from "./ExpertOneShot";
-
-import CGU from "./CGU";
-
-import CGV from "./CGV";
-
-import PrivacyPolicy from "./PrivacyPolicy";
-
-import PaymentSuccess from "./PaymentSuccess";
-
-import AdminCourses from "./AdminCourses";
-
 import Login from "./Login";
 import ResetPassword from "./ResetPassword";
 import AuthCallback from "./AuthCallback";
 import NotFound from "./NotFound";
 
-import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
+// Lazy loading pour les autres pages (optimisation du bundle)
+const Dashboard = lazy(() => import("./Dashboard"));
+const Chatbot = lazy(() => import("./Chatbot"));
+const Courses = lazy(() => import("./Courses"));
+const NotesGenerator = lazy(() => import("./NotesGenerator"));
+const ResumeBuilder = lazy(() => import("./ResumeBuilder"));
+const MockInterview = lazy(() => import("./MockInterview"));
+const AptitudeTests = lazy(() => import("./AptitudeTests"));
+const VerbalTests = lazy(() => import("./VerbalTests"));
+const ProblemSolving = lazy(() => import("./ProblemSolving"));
+const CriticalThinking = lazy(() => import("./CriticalThinking"));
+const StudentAssessment = lazy(() => import("./StudentAssessment"));
+const ProgressTracker = lazy(() => import("./ProgressTracker"));
+const Profile = lazy(() => import("./Profile"));
+const Certificates = lazy(() => import("./Certificates"));
+const CourseDetail = lazy(() => import("./CourseDetail"));
+const Learn = lazy(() => import("./Learn"));
+const Teachers = lazy(() => import("./Teachers"));
+const Community = lazy(() => import("./Community"));
+const Pricing = lazy(() => import("./Pricing"));
+const ConciergerieVIP = lazy(() => import("./ConciergerieVIP"));
+const ExpertOneShot = lazy(() => import("./ExpertOneShot"));
+const CGU = lazy(() => import("./CGU"));
+const CGV = lazy(() => import("./CGV"));
+const PrivacyPolicy = lazy(() => import("./PrivacyPolicy"));
+const PaymentSuccess = lazy(() => import("./PaymentSuccess"));
+const AdminCourses = lazy(() => import("./AdminCourses"));
+const Contact = lazy(() => import("./Contact"));
+
+// Skeleton loader pour les pages en chargement
+const PageSkeleton = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+  </div>
+);
 
 const PAGES = {
     
@@ -194,40 +177,41 @@ function PagesContent() {
     
     return (
         <Layout currentPageName={currentPage}>
-            <Routes>            
-                
-                    <Route path="/" element={<Home />} />
+            <Suspense fallback={<PageSkeleton />}>
+                <Routes>            
+                    
+                        <Route path="/" element={<Home />} />
 
-                {/* Canonical (lowercase) routes - matches createPageUrl() */}
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/chatbot" element={<Chatbot />} />
-                <Route path="/courses" element={<Courses />} />
-                <Route path="/notesgenerator" element={<NotesGenerator />} />
-                <Route path="/resumebuilder" element={<ResumeBuilder />} />
-                <Route path="/mockinterview" element={<MockInterview />} />
-                <Route path="/aptitudetests" element={<AptitudeTests />} />
-                <Route path="/verbaltests" element={<VerbalTests />} />
-                <Route path="/problemsolving" element={<ProblemSolving />} />
-                <Route path="/criticalthinking" element={<CriticalThinking />} />
-                <Route path="/studentassessment" element={<StudentAssessment />} />
-                <Route path="/progresstracker" element={<ProgressTracker />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/certificates" element={<Certificates />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/coursedetail" element={<CourseDetail />} />
-                <Route path="/learn" element={<Learn />} />
-                <Route path="/teachers" element={<Teachers />} />
-                <Route path="/community" element={<Community />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/expertoneshot" element={<ExpertOneShot />} />
-                <Route path="/cgu" element={<CGU />} />
-                <Route path="/cgv" element={<CGV />} />
-                <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-                <Route path="/paymentsuccess" element={<PaymentSuccess />} />
-                <Route path="/admincourses" element={<AdminCourses />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/reset-password" element={<ResetPassword />} />
-                <Route path="/auth/callback" element={<AuthCallback />} />
+                    {/* Canonical (lowercase) routes - matches createPageUrl() */}
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/chatbot" element={<Chatbot />} />
+                    <Route path="/courses" element={<Courses />} />
+                    <Route path="/notesgenerator" element={<NotesGenerator />} />
+                    <Route path="/resumebuilder" element={<ResumeBuilder />} />
+                    <Route path="/mockinterview" element={<MockInterview />} />
+                    <Route path="/aptitudetests" element={<AptitudeTests />} />
+                    <Route path="/verbaltests" element={<VerbalTests />} />
+                    <Route path="/problemsolving" element={<ProblemSolving />} />
+                    <Route path="/criticalthinking" element={<CriticalThinking />} />
+                    <Route path="/studentassessment" element={<StudentAssessment />} />
+                    <Route path="/progresstracker" element={<ProgressTracker />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/certificates" element={<Certificates />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/coursedetail" element={<CourseDetail />} />
+                    <Route path="/learn" element={<Learn />} />
+                    <Route path="/teachers" element={<Teachers />} />
+                    <Route path="/community" element={<Community />} />
+                    <Route path="/pricing" element={<Pricing />} />
+                    <Route path="/expertoneshot" element={<ExpertOneShot />} />
+                    <Route path="/cgu" element={<CGU />} />
+                    <Route path="/cgv" element={<CGV />} />
+                    <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+                    <Route path="/paymentsuccess" element={<PaymentSuccess />} />
+                    <Route path="/admincourses" element={<AdminCourses />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
+                    <Route path="/auth/callback" element={<AuthCallback />} />
 
                 {/* Backward-compat redirects (old uppercase routes) */}
                 <Route path="/Dashboard" element={<Navigate to="/dashboard" replace />} />
@@ -257,10 +241,11 @@ function PagesContent() {
                 <Route path="/PaymentSuccess" element={<Navigate to="/paymentsuccess" replace />} />
                 <Route path="/AdminCourses" element={<Navigate to="/admincourses" replace />} />
                 
-                {/* Catch-all route for 404 */}
-                <Route path="*" element={<NotFound />} />
-                
-            </Routes>
+                    {/* Catch-all route for 404 */}
+                    <Route path="*" element={<NotFound />} />
+                    
+                </Routes>
+            </Suspense>
         </Layout>
     );
 }

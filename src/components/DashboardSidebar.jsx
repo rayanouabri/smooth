@@ -1,10 +1,10 @@
 ﻿import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
-import { me } from "@/api/auth";
-import { supabase } from "@/api/supabaseClient";
-import { UserProfile, Enrollment } from "@/api/entities";
+import { Enrollment } from "@/api/entities";
 import { isPremium } from "@/utils/premium";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import logger from "@/utils/logger";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -24,39 +24,22 @@ import {
 
 export default function DashboardSidebar({ currentPage }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState(null);
   const [enrollments, setEnrollments] = useState([]);
+  const { user, profile, isLoading } = useUserProfile();
 
   useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
-    // Utiliser me() pour obtenir le profil avec is_premium
-    const userData = await me();
-    setUser(userData);
-    
-    // Charger le profil depuis la base de données pour être sûr
-    if (userData?.id) {
-      const { data: profileData } = await supabase
-        .from('user_profiles')
-        .select('*')
-        .eq('id', userData.id)
-        .single();
-      
-      if (profileData) {
-        setProfile(profileData);
-        console.log('DashboardSidebar - Profile loaded, is_premium:', profileData.is_premium);
-      } else {
-        // Fallback: utiliser les données de me()
-        setProfile(userData);
-      }
+    if (user?.email) {
+      const loadEnrollments = async () => {
+        try {
+          const userEnrollments = await Enrollment.filter({ user_email: user.email });
+          setEnrollments(userEnrollments);
+        } catch (error) {
+          logger.error('Error loading enrollments:', error);
+        }
+      };
+      loadEnrollments();
     }
-
-    const userEnrollments = await Enrollment.filter({ user_email: userData.email });
-    setEnrollments(userEnrollments);
-  };
+  }, [user?.email]);
 
   // Utiliser is_premium au lieu de subscription_plan
   const userIsPremium = isPremium(profile);
