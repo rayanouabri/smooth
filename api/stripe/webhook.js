@@ -31,25 +31,25 @@ export default async function handler(req, res) {
     const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
     if (!stripeSecretKey) {
-      console.error('STRIPE_SECRET_KEY not configured');
+      console.error('❌ STRIPE_SECRET_KEY not configured');
       return res.status(500).json({ error: 'STRIPE_SECRET_KEY not configured' });
     }
 
     if (!webhookSecret) {
-      console.error('STRIPE_WEBHOOK_SECRET not configured');
+      console.error('❌ STRIPE_WEBHOOK_SECRET not configured');
       return res.status(500).json({ error: 'STRIPE_WEBHOOK_SECRET not configured' });
     }
 
     if (!supabaseUrl || !supabaseServiceKey) {
-      console.error('Supabase credentials not configured');
+      console.error('❌ Supabase credentials not configured');
       return res.status(500).json({ error: 'Supabase credentials not configured' });
     }
 
     // Récupérer le body brut pour la vérification de signature
-    // IMPORTANT: Pour Vercel, le body doit être en string raw
     const sig = req.headers['stripe-signature'];
     
     if (!sig) {
+      console.error('❌ Missing Stripe signature header');
       return res.status(400).json({ error: 'Missing Stripe signature' });
     }
 
@@ -69,8 +69,9 @@ export default async function handler(req, res) {
     try {
       const stripe = (await import('stripe')).default(stripeSecretKey);
       event = stripe.webhooks.constructEvent(rawBody, sig, webhookSecret);
+      console.log('✅ Webhook signature verified');
     } catch (err) {
-      console.error('Webhook signature verification failed:', err.message);
+      console.error('❌ Webhook signature verification failed:', err.message);
       // En développement, on peut accepter sans vérification pour tester
       if (process.env.NODE_ENV === 'development' && !webhookSecret) {
         console.warn('⚠️ Development mode: accepting webhook without signature verification');
@@ -108,8 +109,10 @@ export default async function handler(req, res) {
       return 'premium'; // Par défaut
     };
 
-    // Fonction pour mettre à jour le profil utilisateur
+    // Fonction améliorée pour mettre à jour le profil utilisateur
     const updateUserToPremium = async (email, customerId, subscriptionId, sessionId, plan = 'premium') => {
+      console.log('🔄 updateUserToPremium called:', { email, customerId, subscriptionId, sessionId, plan });
+      
       const premiumData = {
         is_premium: true,
         subscription_status: 'active',
@@ -120,107 +123,157 @@ export default async function handler(req, res) {
         premium_since: new Date().toISOString(),
       };
 
-      // STRATÉGIE 1: Chercher et mettre à jour par email
       let updated = false;
-      let profileId = null;
+      let userId = null;
 
-      const { data: profileByEmail } = await supabase
-        .from('user_profiles')
-        .select('*')
-        .eq('user_email', email)
-        .maybeSingle();
-
-      if (profileByEmail) {
-        profileId = profileByEmail.id;
-        
-        const { error: updateError } = await supabase
-          .from('user_profiles')
-          .update(premiumData)
-          .eq('id', profileId);
-
-        if (!updateError) {
-          updated = true;
-          console.log('✅ Profile updated by ID:', profileId, 'Plan:', plan);
-        } else {
-          console.error('❌ Update by ID failed:', updateError);
-        }
-      }
-
-      // STRATÉGIE 2: Si customer ID existe, chercher aussi par customer ID
-      if (customerId && !updated) {
-        const { data: profileByCustomer } = await supabase
-          .from('user_profiles')
-          .select('*')
-          .eq('stripe_customer_id', customerId)
-          .maybeSingle();
-
-        if (profileByCustomer) {
-          const { error: updateError } = await supabase
-            .from('user_profiles')
-            .update(premiumData)
-            .eq('stripe_customer_id', customerId);
-
-          if (!updateError) {
-            updated = true;
-            console.log('✅ Profile updated by customer ID:', customerId, 'Plan:', plan);
-          } else {
-            console.error('❌ Update by customer ID failed:', updateError);
-          }
-        }
-      }
-
-      // STRATÉGIE 3: Créer le profil s'il n'existe pas (avec l'email)
-      if (!updated && email) {
+      // STRATÉGIE 1: Chercher l'utilisateur dans auth.users par email pour obtenir l'ID
+      if (email) {
         try {
-          // Récupérer l'ID utilisateur depuis auth.users via l'API admin
           const { data: { users }, error: listError } = await supabase.auth.admin.listUsers();
           
-          if (listError) {
-            console.error('❌ Error listing users:', listError);
-          } else {
-            const authUser = users?.find(u => u.email === email);
-
+          if (!listError && users) {
+            const authUser = users.find(u => u.email?.toLowerCase() === email.toLowerCase());
             if (authUser) {
-              const { error: insertError } = await supabase
-                .from('user_profiles')
-                .insert({
-                  id: authUser.id,
-                  user_email: email,
-                  full_name: authUser.user_metadata?.full_name || email.split('@')[0],
-                  ...premiumData,
-                });
-
-              if (!insertError) {
-                updated = true;
-                console.log('✅ Profile created for new user:', email, 'Plan:', plan);
-              } else {
-                // Si l'insertion échoue (contrainte), essayer upsert
-                if (insertError.code === '23505' || insertError.message?.includes('duplicate')) {
-                  console.log('ℹ️ Profile exists, trying upsert...');
-                  const { error: upsertError } = await supabase
-                    .from('user_profiles')
-                    .upsert({
-                      id: authUser.id,
-                      user_email: email,
-                      ...premiumData,
-                    }, { onConflict: 'id' });
-                  
-                  if (!upsertError) {
-                    updated = true;
-                    console.log('✅ Profile upserted successfully');
-                  } else {
-                    console.error('❌ Upsert failed:', upsertError);
-                  }
-                } else {
-                  console.error('❌ Insert failed:', insertError);
-                }
-              }
-            } else {
-              console.warn('⚠️ Auth user not found for email:', email);
+              userId = authUser.id;
+              console.log('✅ Found user in auth.users:', userId);
             }
           }
         } catch (err) {
-          console.error('❌ Error in STRATÉGIE 3:', err);
+          console.warn('⚠️ Could not list users from auth:', err.message);
+        }
+      }
+
+      // STRATÉGIE 2: Chercher le profil par email dans user_profiles
+      if (!userId && email) {
+        const { data: profileByEmail, error: emailError } = await supabase
+          .from('user_profiles')
+          .select('id, user_email')
+          .eq('user_email', email)
+          .maybeSingle();
+
+        if (profileByEmail && !emailError) {
+          userId = profileByEmail.id;
+          console.log('✅ Found profile by email:', userId);
+        } else if (emailError) {
+          console.error('❌ Error searching by email:', emailError);
+        }
+      }
+
+      // STRATÉGIE 3: Chercher le profil par customer ID
+      if (!userId && customerId) {
+        const { data: profileByCustomer, error: customerError } = await supabase
+          .from('user_profiles')
+          .select('id, stripe_customer_id')
+          .eq('stripe_customer_id', customerId)
+          .maybeSingle();
+
+        if (profileByCustomer && !customerError) {
+          userId = profileByCustomer.id;
+          console.log('✅ Found profile by customer ID:', userId);
+        } else if (customerError) {
+          console.error('❌ Error searching by customer ID:', customerError);
+        }
+      }
+
+      // STRATÉGIE 4: Chercher le profil par session ID
+      if (!userId && sessionId) {
+        const { data: profileBySession, error: sessionError } = await supabase
+          .from('user_profiles')
+          .select('id, stripe_session_id')
+          .eq('stripe_session_id', sessionId)
+          .maybeSingle();
+
+        if (profileBySession && !sessionError) {
+          userId = profileBySession.id;
+          console.log('✅ Found profile by session ID:', userId);
+        } else if (sessionError) {
+          console.error('❌ Error searching by session ID:', sessionError);
+        }
+      }
+
+      // Si on a trouvé un userId, mettre à jour le profil
+      if (userId) {
+        // Utiliser upsert pour créer ou mettre à jour
+        const { error: upsertError } = await supabase
+          .from('user_profiles')
+          .upsert({
+            id: userId,
+            user_email: email,
+            ...premiumData,
+          }, { onConflict: 'id' });
+
+        if (!upsertError) {
+          updated = true;
+          console.log('✅ Profile upserted successfully:', userId, 'Plan:', plan);
+        } else {
+          console.error('❌ Upsert failed:', upsertError);
+          
+          // Fallback: essayer update seulement
+          const { error: updateError } = await supabase
+            .from('user_profiles')
+            .update(premiumData)
+            .eq('id', userId);
+
+          if (!updateError) {
+            updated = true;
+            console.log('✅ Profile updated successfully (fallback):', userId);
+          } else {
+            console.error('❌ Update failed (fallback):', updateError);
+          }
+        }
+      } else {
+        // Si aucun userId trouvé, essayer de créer le profil avec l'email
+        // Mais on a besoin d'un ID utilisateur, donc on va chercher dans auth.users
+        if (email) {
+          try {
+            const { data: { users }, error: listError } = await supabase.auth.admin.listUsers();
+            
+            if (!listError && users) {
+              const authUser = users.find(u => u.email?.toLowerCase() === email.toLowerCase());
+              
+              if (authUser) {
+                // Utiliser upsert pour créer le profil
+                const { error: upsertError } = await supabase
+                  .from('user_profiles')
+                  .upsert({
+                    id: authUser.id,
+                    user_email: email,
+                    full_name: authUser.user_metadata?.full_name || email.split('@')[0],
+                    ...premiumData,
+                  }, { onConflict: 'id' });
+
+                if (!upsertError) {
+                  updated = true;
+                  console.log('✅ Profile created/updated for new user:', authUser.id, 'Plan:', plan);
+                } else {
+                  console.error('❌ Failed to create profile:', upsertError);
+                }
+              } else {
+                console.warn('⚠️ User not found in auth.users for email:', email);
+              }
+            }
+          } catch (err) {
+            console.error('❌ Error creating profile:', err);
+          }
+        }
+      }
+
+      // Vérifier que la mise à jour a bien fonctionné
+      if (updated && userId) {
+        const { data: verifyProfile, error: verifyError } = await supabase
+          .from('user_profiles')
+          .select('is_premium, subscription_status, subscription_plan')
+          .eq('id', userId)
+          .maybeSingle();
+
+        if (!verifyError && verifyProfile) {
+          console.log('✅ Verification successful:', {
+            is_premium: verifyProfile.is_premium,
+            subscription_status: verifyProfile.subscription_status,
+            subscription_plan: verifyProfile.subscription_plan
+          });
+        } else {
+          console.warn('⚠️ Verification failed:', verifyError);
         }
       }
 
@@ -234,6 +287,9 @@ export default async function handler(req, res) {
       case 'checkout.session.completed': {
         const session = event.data.object;
         console.log('✅ Checkout session completed:', session.id);
+        console.log('📧 Customer email:', session.customer_email || session.customer_details?.email);
+        console.log('👤 Customer ID:', session.customer);
+        console.log('📝 Subscription ID:', session.subscription);
 
         const customerEmail = session.customer_email || session.customer_details?.email;
         const customerId = typeof session.customer === 'string' ? session.customer : session.customer?.id;
@@ -304,30 +360,46 @@ export default async function handler(req, res) {
         console.log('📦 Detected plan:', plan, 'Status:', status);
 
         // Récupérer l'email du customer depuis Stripe
-        const stripe = (await import('stripe')).default(stripeSecretKey);
-        const customer = await stripe.customers.retrieve(customerId);
-        const customerEmail = customer.email;
+        try {
+          const stripe = (await import('stripe')).default(stripeSecretKey);
+          const customer = await stripe.customers.retrieve(customerId);
+          const customerEmail = customer.email;
 
-        if (customerEmail) {
-          const premiumData = {
-            is_premium: status === 'active' || status === 'trialing',
-            subscription_status: status,
-            subscription_plan: plan,
-            stripe_customer_id: customerId,
-            stripe_subscription_id: subscription.id,
-          };
+          if (customerEmail) {
+            const premiumData = {
+              is_premium: status === 'active' || status === 'trialing',
+              subscription_status: status,
+              subscription_plan: plan,
+              stripe_customer_id: customerId,
+              stripe_subscription_id: subscription.id,
+            };
 
-          // Mettre à jour par customer ID
-          const { error: updateError } = await supabase
-            .from('user_profiles')
-            .update(premiumData)
-            .eq('stripe_customer_id', customerId);
+            // Mettre à jour par customer ID
+            const { error: updateError } = await supabase
+              .from('user_profiles')
+              .update(premiumData)
+              .eq('stripe_customer_id', customerId);
 
-          if (updateError) {
-            console.error('❌ Error updating subscription:', updateError);
-          } else {
-            console.log('✅ Subscription updated:', customerEmail, 'Status:', status, 'Plan:', plan);
+            if (updateError) {
+              console.error('❌ Error updating subscription:', updateError);
+              
+              // Fallback: essayer par email
+              const { error: emailUpdateError } = await supabase
+                .from('user_profiles')
+                .update(premiumData)
+                .eq('user_email', customerEmail);
+
+              if (emailUpdateError) {
+                console.error('❌ Error updating by email:', emailUpdateError);
+              } else {
+                console.log('✅ Subscription updated by email:', customerEmail);
+              }
+            } else {
+              console.log('✅ Subscription updated:', customerEmail, 'Status:', status, 'Plan:', plan);
+            }
           }
+        } catch (err) {
+          console.error('❌ Error retrieving customer from Stripe:', err);
         }
 
         break;
@@ -417,7 +489,7 @@ export default async function handler(req, res) {
     }
 
     // Toujours retourner 200 pour confirmer la réception
-    return res.status(200).json({ received: true });
+    return res.status(200).json({ received: true, event_type: event.type });
   } catch (error) {
     console.error('❌ Webhook error:', error);
     return res.status(500).json({ 
