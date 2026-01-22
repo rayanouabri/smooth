@@ -57,25 +57,40 @@ export default function PaymentSuccess() {
         const success = await markUserAsPremium(authUser.id, authUser.email, sessionId, 5);
         
         if (!success) {
-          console.warn('⚠️ Failed to mark user as premium after retries, but webhook should handle it');
-          // Ne pas bloquer, le webhook Stripe devrait gérer la mise à jour
+          console.warn('⚠️ Failed to mark user as premium after retries');
+          // Le webhook Stripe devrait gérer la mise à jour, mais on va quand même attendre
         }
         
         // Attendre pour que la base de données se synchronise (webhook peut prendre du temps)
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        // Augmenter le temps d'attente pour laisser le webhook faire son travail
+        await new Promise(resolve => setTimeout(resolve, 5000));
         
         // Recharger le profil utilisateur plusieurs fois avec retry
         let updatedUser = null;
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 8; i++) {
           updatedUser = await reloadUserProfile(authUser.id, authUser.email);
           if (updatedUser?.is_premium === true || updatedUser?.subscription_status === 'active') {
             console.log('✅ Premium status confirmed!');
             break;
           }
-          if (i < 4) {
-            console.log(`⏳ Waiting for premium activation... (${i + 1}/5)`);
+          if (i < 7) {
+            console.log(`⏳ Waiting for premium activation... (${i + 1}/8)`);
+            // Si après 3 tentatives, essayer de forcer la mise à jour une dernière fois
+            if (i === 3 && !updatedUser?.is_premium) {
+              console.log('🔄 Attempting final premium update...');
+              await markUserAsPremium(authUser.id, authUser.email, sessionId, 3);
+            }
             await new Promise(resolve => setTimeout(resolve, 2000));
           }
+        }
+        
+        // Si toujours pas Premium après tous les essais, forcer une dernière fois
+        if (!updatedUser?.is_premium && !updatedUser?.subscription_status === 'active') {
+          console.warn('⚠️ Premium not activated after all retries, forcing final update...');
+          await markUserAsPremium(authUser.id, authUser.email, sessionId, 5);
+          // Attendre encore un peu
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          updatedUser = await reloadUserProfile(authUser.id, authUser.email);
         }
         
         setUser(updatedUser || authUser);

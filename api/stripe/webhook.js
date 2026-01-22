@@ -193,32 +193,68 @@ export default async function handler(req, res) {
 
       // Si on a trouvé un userId, mettre à jour le profil
       if (userId) {
-        // Utiliser upsert pour créer ou mettre à jour
-        const { error: upsertError } = await supabase
+        console.log('🔄 Attempting to update profile for userId:', userId);
+        
+        // STRATÉGIE A: Essayer update d'abord (plus rapide si le profil existe)
+        const { data: existingProfile, error: selectError } = await supabase
           .from('user_profiles')
-          .upsert({
-            id: userId,
-            user_email: email,
-            ...premiumData,
-          }, { onConflict: 'id' });
+          .select('id, is_premium, subscription_status')
+          .eq('id', userId)
+          .maybeSingle();
 
-        if (!upsertError) {
+        if (selectError) {
+          console.error('❌ Error selecting profile:', selectError);
+        } else if (existingProfile) {
+          console.log('📋 Existing profile found:', existingProfile);
+        }
+
+        // Essayer update d'abord
+        const { data: updateData, error: updateError } = await supabase
+          .from('user_profiles')
+          .update(premiumData)
+          .eq('id', userId)
+          .select();
+
+        if (!updateError && updateData && updateData.length > 0) {
           updated = true;
-          console.log('✅ Profile upserted successfully:', userId, 'Plan:', plan);
+          console.log('✅ Profile updated successfully:', userId, 'Plan:', plan);
+          console.log('📊 Updated data:', updateData[0]);
         } else {
-          console.error('❌ Upsert failed:', upsertError);
+          console.warn('⚠️ Update failed, trying upsert:', updateError);
           
-          // Fallback: essayer update seulement
-          const { error: updateError } = await supabase
+          // STRATÉGIE B: Essayer upsert si update échoue
+          const { data: upsertData, error: upsertError } = await supabase
             .from('user_profiles')
-            .update(premiumData)
-            .eq('id', userId);
+            .upsert({
+              id: userId,
+              user_email: email,
+              ...premiumData,
+            }, { onConflict: 'id' })
+            .select();
 
-          if (!updateError) {
+          if (!upsertError && upsertData && upsertData.length > 0) {
             updated = true;
-            console.log('✅ Profile updated successfully (fallback):', userId);
+            console.log('✅ Profile upserted successfully:', userId, 'Plan:', plan);
+            console.log('📊 Upserted data:', upsertData[0]);
           } else {
-            console.error('❌ Update failed (fallback):', updateError);
+            console.error('❌ Upsert also failed:', upsertError);
+            
+            // STRATÉGIE C: Essayer update par email comme dernier recours
+            if (email) {
+              const { data: emailUpdateData, error: emailUpdateError } = await supabase
+                .from('user_profiles')
+                .update(premiumData)
+                .eq('user_email', email)
+                .select();
+
+              if (!emailUpdateError && emailUpdateData && emailUpdateData.length > 0) {
+                updated = true;
+                console.log('✅ Profile updated by email (last resort):', email);
+                console.log('📊 Updated data:', emailUpdateData[0]);
+              } else {
+                console.error('❌ All update strategies failed. Last error:', emailUpdateError);
+              }
+            }
           }
         }
       } else {
@@ -260,21 +296,48 @@ export default async function handler(req, res) {
 
       // Vérifier que la mise à jour a bien fonctionné
       if (updated && userId) {
+        // Attendre un peu pour que la base de données se synchronise
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
         const { data: verifyProfile, error: verifyError } = await supabase
           .from('user_profiles')
-          .select('is_premium, subscription_status, subscription_plan')
+          .select('is_premium, subscription_status, subscription_plan, stripe_customer_id')
           .eq('id', userId)
           .maybeSingle();
 
         if (!verifyError && verifyProfile) {
-          console.log('✅ Verification successful:', {
+          const isActuallyPremium = verifyProfile.is_premium === true || verifyProfile.subscription_status === 'active';
+          console.log('✅ Verification result:', {
             is_premium: verifyProfile.is_premium,
             subscription_status: verifyProfile.subscription_status,
-            subscription_plan: verifyProfile.subscription_plan
+            subscription_plan: verifyProfile.subscription_plan,
+            stripe_customer_id: verifyProfile.stripe_customer_id,
+            actually_premium: isActuallyPremium
           });
+          
+          if (!isActuallyPremium) {
+            console.error('❌ CRITICAL: Update reported success but is_premium is still false!');
+            // Essayer une dernière fois avec une méthode plus directe
+            const { error: forceUpdateError } = await supabase
+              .from('user_profiles')
+              .update({ 
+                is_premium: true,
+                subscription_status: 'active'
+              })
+              .eq('id', userId);
+            
+            if (forceUpdateError) {
+              console.error('❌ Force update also failed:', forceUpdateError);
+            } else {
+              console.log('✅ Force update succeeded');
+              updated = true;
+            }
+          }
         } else {
           console.warn('⚠️ Verification failed:', verifyError);
         }
+      } else if (!updated) {
+        console.error('❌ CRITICAL: updateUserToPremium returned false. No update was performed.');
       }
 
       return updated;
