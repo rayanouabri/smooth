@@ -37,7 +37,8 @@ export default async function handler(req, res) {
 
     console.log('Using STRIPE_SECRET_KEY:', stripeKey.substring(0, 10) + '...');
 
-    // Build Stripe checkout session
+    // Build Stripe checkout session avec metadata
+    // Note: URLSearchParams ne supporte pas les objets, donc on utilise la syntaxe metadata[key]
     const body = new URLSearchParams({
       'payment_method_types[]': 'card',
       mode: 'subscription',
@@ -46,6 +47,7 @@ export default async function handler(req, res) {
       'line_items[0][quantity]': '1',
       success_url: (successUrl || 'https://www.franceprepacademy.fr/PaymentSuccess') + '?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: cancelUrl || 'https://www.franceprepacademy.fr/pricing',
+      'metadata[price_id]': priceId, // Ajouter le Price ID dans les metadata pour le webhook
       allow_promotion_codes: 'true',
       billing_address_collection: 'auto',
     });
