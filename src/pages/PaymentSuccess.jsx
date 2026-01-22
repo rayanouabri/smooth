@@ -52,49 +52,61 @@ export default function PaymentSuccess() {
       console.log('Auth user:', authUser);
       
       if (authUser) {
-        // Utilisateur connecté - marquer comme premium avec retry
+        // Utilisateur connecté - marquer comme premium avec retry (en arrière-plan)
         console.log('User authenticated, marking as premium...');
-        const success = await markUserAsPremium(authUser.id, authUser.email, sessionId, 5);
         
-        if (!success) {
-          console.warn('⚠️ Failed to mark user as premium after retries');
-          // Le webhook Stripe devrait gérer la mise à jour, mais on va quand même attendre
+        // OPTIMISATION: Ne pas attendre la mise à jour, la faire en arrière-plan
+        // Le webhook Stripe devrait gérer la mise à jour rapidement
+        markUserAsPremium(authUser.id, authUser.email, sessionId, 3).catch(err => {
+          console.warn('⚠️ Background premium update failed:', err);
+        });
+        
+        // OPTIMISATION: Vérifier immédiatement si déjà Premium (cas où le webhook a déjà fonctionné)
+        let updatedUser = await reloadUserProfile(authUser.id, authUser.email);
+        
+        // Si déjà Premium, afficher immédiatement
+        if (updatedUser?.is_premium === true || updatedUser?.subscription_status === 'active') {
+          console.log('✅ Premium status already active!');
+          setUser(updatedUser);
+          setStep('success');
+          return;
         }
         
-        // Attendre pour que la base de données se synchronise (webhook peut prendre du temps)
-        // Augmenter le temps d'attente pour laisser le webhook faire son travail
-        await new Promise(resolve => setTimeout(resolve, 5000));
-        
-        // Recharger le profil utilisateur plusieurs fois avec retry
-        let updatedUser = null;
-        for (let i = 0; i < 8; i++) {
+        // Sinon, vérifier rapidement avec un nombre limité de tentatives
+        // OPTIMISATION: Réduire le nombre de tentatives et les délais
+        for (let i = 0; i < 3; i++) {
+          await new Promise(resolve => setTimeout(resolve, 1000)); // 1 seconde au lieu de 2
           updatedUser = await reloadUserProfile(authUser.id, authUser.email);
           if (updatedUser?.is_premium === true || updatedUser?.subscription_status === 'active') {
             console.log('✅ Premium status confirmed!');
             break;
           }
-          if (i < 7) {
-            console.log(`⏳ Waiting for premium activation... (${i + 1}/8)`);
-            // Si après 3 tentatives, essayer de forcer la mise à jour une dernière fois
-            if (i === 3 && !updatedUser?.is_premium) {
-              console.log('🔄 Attempting final premium update...');
-              await markUserAsPremium(authUser.id, authUser.email, sessionId, 3);
-            }
-            await new Promise(resolve => setTimeout(resolve, 2000));
+          if (i < 2) {
+            console.log(`⏳ Waiting for premium activation... (${i + 1}/3)`);
           }
         }
         
-        // Si toujours pas Premium après tous les essais, forcer une dernière fois
-        if (!updatedUser?.is_premium && !updatedUser?.subscription_status === 'active') {
-          console.warn('⚠️ Premium not activated after all retries, forcing final update...');
-          await markUserAsPremium(authUser.id, authUser.email, sessionId, 5);
-          // Attendre encore un peu
-          await new Promise(resolve => setTimeout(resolve, 2000));
-          updatedUser = await reloadUserProfile(authUser.id, authUser.email);
-        }
-        
+        // Si toujours pas Premium, continuer quand même (le webhook le fera)
+        // OPTIMISATION: Ne pas bloquer l'utilisateur, afficher le succès même si pas encore Premium
         setUser(updatedUser || authUser);
         setStep('success');
+        
+        // Continuer à vérifier en arrière-plan (sans bloquer l'UI)
+        if (!updatedUser?.is_premium && !updatedUser?.subscription_status === 'active') {
+          console.log('ℹ️ Premium not yet active, webhook will handle it in background');
+          // Vérifier en arrière-plan toutes les 2 secondes pendant 10 secondes max
+          const backgroundCheck = setInterval(async () => {
+            const profile = await reloadUserProfile(authUser.id, authUser.email);
+            if (profile?.is_premium === true || profile?.subscription_status === 'active') {
+              console.log('✅ Premium activated in background!');
+              setUser(profile);
+              clearInterval(backgroundCheck);
+            }
+          }, 2000);
+          
+          // Arrêter après 10 secondes
+          setTimeout(() => clearInterval(backgroundCheck), 10000);
+        }
       } else {
         // Pas connecté - montrer formulaire d'inscription
         console.log('User not authenticated, showing signup form');
@@ -162,7 +174,8 @@ export default function PaymentSuccess() {
     }
   };
 
-  const markUserAsPremium = async (userId, userEmail, sessionId, retries = 3) => {
+  const markUserAsPremium = async (userId, userEmail, sessionId, retries = 2) => {
+    // OPTIMISATION: Réduire les retries et simplifier la logique
     for (let attempt = 1; attempt <= retries; attempt++) {
       try {
         console.log(`🔄 Marking user as premium (attempt ${attempt}/${retries}):`, userId, userEmail);
@@ -174,121 +187,43 @@ export default function PaymentSuccess() {
           stripe_session_id: sessionId,
         };
 
-        // STRATÉGIE 1: Chercher et mettre à jour par ID
-        let profileFound = false;
-        
-        const { data: profileById } = await supabase
+        // OPTIMISATION: Utiliser upsert directement (plus rapide et plus fiable)
+        const { error: upsertError } = await supabase
           .from('user_profiles')
-          .select('*')
-          .eq('id', userId)
-          .maybeSingle();
-        
-        if (profileById) {
+          .upsert({
+            id: userId,
+            user_email: userEmail,
+            ...premiumData,
+          }, { onConflict: 'id' });
+
+        if (!upsertError) {
+          console.log('✅ Profile upserted successfully');
+          return true;
+        } else {
+          // Fallback: essayer update par ID
           const { error: updateError } = await supabase
             .from('user_profiles')
             .update(premiumData)
             .eq('id', userId);
-          
+
           if (!updateError) {
-            console.log('✅ Profile updated by ID:', userId);
-            profileFound = true;
+            console.log('✅ Profile updated successfully (fallback)');
+            return true;
+          } else if (attempt < retries) {
+            console.warn(`⚠️ Update failed, retrying... (${attempt}/${retries})`);
+            await new Promise(resolve => setTimeout(resolve, 500 * attempt)); // Backoff plus court
+            continue;
           } else {
-            console.warn('⚠️ Update by ID failed:', updateError);
+            console.error('❌ Update failed after all retries:', updateError);
+            return false;
           }
-        }
-
-        // STRATÉGIE 2: Chercher et mettre à jour par email
-        if (!profileFound) {
-          const { data: profileByEmail } = await supabase
-            .from('user_profiles')
-            .select('*')
-            .eq('user_email', userEmail)
-            .maybeSingle();
-          
-          if (profileByEmail) {
-            const { error: updateError } = await supabase
-              .from('user_profiles')
-              .update(premiumData)
-              .eq('user_email', userEmail);
-            
-            if (!updateError) {
-              console.log('✅ Profile updated by email:', userEmail);
-              profileFound = true;
-            } else {
-              console.warn('⚠️ Update by email failed:', updateError);
-            }
-          }
-        }
-
-        // STRATÉGIE 3: Mettre à jour TOUS les profils avec cet email (au cas où il y en aurait plusieurs)
-        if (profileFound) {
-          const { error: bulkUpdateError } = await supabase
-            .from('user_profiles')
-            .update(premiumData)
-            .eq('user_email', userEmail);
-          
-          if (bulkUpdateError) {
-            console.warn('⚠️ Bulk update warning:', bulkUpdateError);
-          } else {
-            console.log('✅ Bulk update successful');
-          }
-        }
-
-        // STRATÉGIE 4: Créer le profil s'il n'existe pas
-        if (!profileFound) {
-          const { error: insertError } = await supabase
-            .from('user_profiles')
-            .insert({
-              id: userId,
-              user_email: userEmail,
-              full_name: userEmail.split('@')[0],
-              ...premiumData,
-            });
-
-          if (insertError) {
-            // Si l'insertion échoue (contrainte), essayer upsert
-            if (insertError.code === '23505' || insertError.message?.includes('duplicate')) {
-              console.log('ℹ️ Profile exists, trying upsert...');
-              const { error: upsertError } = await supabase
-                .from('user_profiles')
-                .upsert(premiumData, { onConflict: 'id' });
-              
-              if (upsertError) {
-                throw upsertError;
-              }
-            } else {
-              throw insertError;
-            }
-          } else {
-            console.log('✅ Profile created successfully');
-          }
-        }
-
-        // Vérifier que la mise à jour a bien fonctionné
-        await new Promise(resolve => setTimeout(resolve, 500));
-        const { data: verifyProfile } = await supabase
-          .from('user_profiles')
-          .select('is_premium, subscription_status')
-          .eq('id', userId)
-          .maybeSingle();
-        
-        if (verifyProfile?.is_premium === true || verifyProfile?.subscription_status === 'active') {
-          console.log('✅ User marked as premium successfully (verified)');
-          return true;
-        } else if (attempt < retries) {
-          console.warn(`⚠️ Verification failed, retrying... (${attempt}/${retries})`);
-          await new Promise(resolve => setTimeout(resolve, 1000 * attempt)); // Backoff exponentiel
-          continue;
-        } else {
-          console.error('❌ Verification failed after all retries');
-          return false;
         }
       } catch (err) {
         console.error(`❌ Error marking user as premium (attempt ${attempt}/${retries}):`, err);
         if (attempt === retries) {
           return false;
         }
-        await new Promise(resolve => setTimeout(resolve, 1000 * attempt)); // Backoff exponentiel
+        await new Promise(resolve => setTimeout(resolve, 500 * attempt));
       }
     }
     return false;
@@ -326,34 +261,51 @@ export default function PaymentSuccess() {
       console.log('Signup successful:', data);
 
       if (data.user) {
-        // Créer le profil premium avec retry
+        // Créer le profil premium avec retry (en arrière-plan)
         console.log('Signup successful, marking as premium...');
-        const success = await markUserAsPremium(data.user.id, formData.email, sessionId, 5);
         
-        if (!success) {
-          console.warn('⚠️ Failed to mark user as premium after retries, but webhook should handle it');
-          // Ne pas bloquer, le webhook Stripe devrait gérer la mise à jour
+        // OPTIMISATION: Ne pas attendre, faire en arrière-plan
+        markUserAsPremium(data.user.id, formData.email, sessionId, 3).catch(err => {
+          console.warn('⚠️ Background premium update failed:', err);
+        });
+        
+        // OPTIMISATION: Vérifier immédiatement
+        let updatedUser = await reloadUserProfile(data.user.id, formData.email);
+        
+        // Si déjà Premium, afficher immédiatement
+        if (updatedUser?.is_premium === true || updatedUser?.subscription_status === 'active') {
+          console.log('✅ Premium status already active!');
+          setUser(updatedUser);
+          setStep('success');
+          return;
         }
         
-        // Attendre pour que la base de données se synchronise
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        
-        // Recharger le profil utilisateur plusieurs fois avec retry
-        let updatedUser = null;
-        for (let i = 0; i < 5; i++) {
+        // Sinon, vérifier rapidement
+        for (let i = 0; i < 2; i++) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
           updatedUser = await reloadUserProfile(data.user.id, formData.email);
           if (updatedUser?.is_premium === true || updatedUser?.subscription_status === 'active') {
             console.log('✅ Premium status confirmed!');
             break;
           }
-          if (i < 4) {
-            console.log(`⏳ Waiting for premium activation... (${i + 1}/5)`);
-            await new Promise(resolve => setTimeout(resolve, 2000));
-          }
         }
         
+        // Afficher le succès même si pas encore Premium (le webhook le fera)
         setUser(updatedUser || data.user);
         setStep('success');
+        
+        // Vérifier en arrière-plan
+        if (!updatedUser?.is_premium && !updatedUser?.subscription_status === 'active') {
+          const backgroundCheck = setInterval(async () => {
+            const profile = await reloadUserProfile(data.user.id, formData.email);
+            if (profile?.is_premium === true || profile?.subscription_status === 'active') {
+              console.log('✅ Premium activated in background!');
+              setUser(profile);
+              clearInterval(backgroundCheck);
+            }
+          }, 2000);
+          setTimeout(() => clearInterval(backgroundCheck), 10000);
+        }
       } else {
         throw new Error('Erreur lors de la création du compte');
       }
