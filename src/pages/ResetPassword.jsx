@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { GraduationCap, Lock, ArrowRight } from "lucide-react";
 import { createPageUrl } from "../utils";
 import { motion } from "framer-motion";
+import { validatePassword, getPasswordStrength, getPasswordStrengthLabel, getPasswordStrengthColor } from "@/utils/password-validation";
 
 export default function ResetPassword() {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function ResetPassword() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [passwordStrength, setPasswordStrength] = useState(0);
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
@@ -28,8 +30,10 @@ export default function ResetPassword() {
       return;
     }
 
-    if (password.length < 6) {
-      setError("Le mot de passe doit contenir au moins 6 caractères");
+    // Validation sécurisée du mot de passe
+    const validation = validatePassword(password);
+    if (!validation.isValid) {
+      setError(validation.errors[0]); // Afficher la première erreur
       return;
     }
 
@@ -101,12 +105,33 @@ export default function ResetPassword() {
                     type="password"
                     placeholder="••••••••"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setPasswordStrength(getPasswordStrength(e.target.value));
+                    }}
                     required
                     className="h-12 pl-10"
-                    minLength={6}
+                    minLength={8}
                     disabled={isLoading}
                   />
+                  {password && (
+                    <div className="mt-2">
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className="flex-1 bg-gray-200 rounded-full h-2">
+                          <div
+                            className={`h-2 rounded-full transition-all ${getPasswordStrengthColor(passwordStrength)}`}
+                            style={{ width: `${(passwordStrength / 4) * 100}%` }}
+                          />
+                        </div>
+                        <span className="text-xs text-gray-600">
+                          {getPasswordStrengthLabel(passwordStrength)}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Minimum 8 caractères avec majuscule, minuscule, chiffre et caractère spécial
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -121,7 +146,7 @@ export default function ResetPassword() {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                     className="h-12 pl-10"
-                    minLength={6}
+                    minLength={8}
                     disabled={isLoading}
                   />
                 </div>

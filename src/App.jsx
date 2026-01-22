@@ -3,6 +3,9 @@ import Pages from "@/pages/index.jsx"
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { LanguageProvider } from "@/contexts/LanguageContext"
+import ErrorBoundary from "@/components/ErrorBoundary"
+import { useToast } from "@/components/ui/use-toast"
+import logger from "@/utils/logger"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -10,19 +13,18 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       retry: 1,
       staleTime: 5 * 60 * 1000, // 5 minutes
-      // Ne pas afficher d'erreurs automatiquement pendant le chargement
       throwOnError: false,
-      // Ne pas afficher d'erreurs dans la console pour les requêtes qui échouent silencieusement
       onError: (error) => {
-        // Seulement logger les erreurs, ne pas afficher de toast automatiquement
-        console.error('Query error:', error);
+        // Logger les erreurs (console.error en dev, service externe en prod)
+        logger.error('Query error:', error);
+        // Les erreurs critiques seront gérées par ErrorBoundary ou les composants individuels
       },
     },
     mutations: {
-      // Ne pas afficher d'erreurs automatiquement pour les mutations
       throwOnError: false,
       onError: (error) => {
-        console.error('Mutation error:', error);
+        logger.error('Mutation error:', error);
+        // Les erreurs de mutation seront gérées par les composants qui les appellent
       },
     },
   },
@@ -30,12 +32,14 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <Pages />
-        <Toaster />
-      </LanguageProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <LanguageProvider>
+          <Pages />
+          <Toaster />
+        </LanguageProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   )
 }
 

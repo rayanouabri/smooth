@@ -21,11 +21,12 @@ export default function Layout({ children, currentPageName }) {
   useEffect(() => {
     checkAuth();
     // Recharger le statut utilisateur périodiquement pour détecter les changements de premium
+    // Intervalle réduit à 5 minutes pour éviter le polling excessif (360 requêtes/heure -> 12 requêtes/heure)
     const interval = setInterval(() => {
       if (isAuthenticated) {
         checkAuth();
       }
-    }, 10000); // Toutes les 10 secondes (plus rapide pour détecter les changements de premium)
+    }, 300000); // Toutes les 5 minutes (optimisé pour performance)
     
     // Écouter les événements de navigation depuis PaymentSuccess
     const handleFocus = () => {
