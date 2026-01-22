@@ -77,7 +77,26 @@ export default function Community() {
 
   const { data: replies = [] } = useQuery({
     queryKey: ['forum-replies', selectedPost?.id],
-    queryFn: () => ForumReply.filter({ post_id: selectedPost.id }, 'created_date'),
+    queryFn: async () => {
+      if (!selectedPost?.id) return [];
+      const repliesList = await ForumReply.filter({ post_id: selectedPost.id }, 'created_date');
+      
+      // Mettre à jour le compteur de réponses avec le nombre réel si nécessaire
+      const actualCount = repliesList ? repliesList.length : 0;
+      if (actualCount !== (selectedPost.replies_count || 0)) {
+        await ForumPost.update(selectedPost.id, {
+          replies_count: actualCount
+        });
+        // Mettre à jour selectedPost localement
+        setSelectedPost(prev => prev ? {
+          ...prev,
+          replies_count: actualCount
+        } : null);
+        queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
+      }
+      
+      return repliesList || [];
+    },
     enabled: !!selectedPost,
   });
 
@@ -109,10 +128,21 @@ export default function Community() {
       likes_count: 0
     }),
     onSuccess: async () => {
-      // Update reply count
+      // Calculer le nombre réel de réponses depuis la base de données
+      const allReplies = await ForumReply.filter({ post_id: selectedPost.id });
+      const actualRepliesCount = allReplies ? allReplies.length : 0;
+      
+      // Mettre à jour le compteur avec le nombre réel
       await ForumPost.update(selectedPost.id, {
-        replies_count: (selectedPost.replies_count || 0) + 1
+        replies_count: actualRepliesCount
       });
+      
+      // Mettre à jour selectedPost pour refléter le nouveau compteur
+      setSelectedPost(prev => ({
+        ...prev,
+        replies_count: actualRepliesCount
+      }));
+      
       queryClient.invalidateQueries({ queryKey: ['forum-replies'] });
       queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
       setReplyContent("");
@@ -120,17 +150,30 @@ export default function Community() {
   });
 
   const incrementViewsMutation = useMutation({
-    mutationFn: (post) => ForumPost.update(post.id, {
-      views_count: (post.views_count || 0) + 1
-    }),
-    onSuccess: () => {
+    mutationFn: async (post) => {
+      // Incrémenter le compteur de vues
+      const newViewsCount = (post.views_count || 0) + 1;
+      await ForumPost.update(post.id, {
+        views_count: newViewsCount
+      });
+      return newViewsCount;
+    },
+    onSuccess: (newViewsCount, post) => {
+      // Mettre à jour selectedPost pour refléter le nouveau compteur
+      setSelectedPost(prev => prev ? {
+        ...prev,
+        views_count: newViewsCount
+      } : null);
       queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
     },
   });
 
   const handlePostClick = (post) => {
     setSelectedPost(post);
-    incrementViewsMutation.mutate(post);
+    // Incrémenter les vues seulement si ce n'est pas déjà le post sélectionné
+    if (!selectedPost || selectedPost.id !== post.id) {
+      incrementViewsMutation.mutate(post);
+    }
   };
 
   const categoryLabels = {
