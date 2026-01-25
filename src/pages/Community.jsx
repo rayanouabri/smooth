@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { logger } from "@/utils/logger";
 import { 
   Select, 
   SelectContent, 
@@ -67,7 +68,7 @@ export default function Community() {
         }
         return await ForumPost.filter({ category: categoryFilter }, '-created_date');
       } catch (error) {
-        console.error("Erreur lors du chargement des posts:", error);
+        logger.error("Erreur lors du chargement des posts:", error);
         return [];
       }
     },
@@ -156,24 +157,62 @@ export default function Community() {
       await ForumPost.update(post.id, {
         views_count: newViewsCount
       });
-      return newViewsCount;
+      return { newViewsCount, postId: post.id };
     },
-    onSuccess: (newViewsCount, post) => {
+    onSuccess: ({ newViewsCount, postId }) => {
       // Mettre à jour selectedPost pour refléter le nouveau compteur
-      setSelectedPost(prev => prev ? {
+      setSelectedPost(prev => prev && prev.id === postId ? {
         ...prev,
         views_count: newViewsCount
-      } : null);
+      } : prev);
+      // Mettre à jour la liste des posts
+      queryClient.setQueryData(['forum-posts', categoryFilter], (oldData) => {
+        if (!oldData) return oldData;
+        return oldData.map(post => 
+          post.id === postId 
+            ? { ...post, views_count: newViewsCount }
+            : post
+        );
+      });
       queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
     },
   });
 
+  const incrementLikesMutation = useMutation({
+    mutationFn: async (reply) => {
+      // Incrémenter le compteur de likes
+      const newLikesCount = (reply.likes_count || 0) + 1;
+      await ForumReply.update(reply.id, {
+        likes_count: newLikesCount
+      });
+      return { newLikesCount, replyId: reply.id };
+    },
+    onSuccess: ({ newLikesCount, replyId }) => {
+      // Mettre à jour la liste des réponses
+      queryClient.setQueryData(['forum-replies', selectedPost?.id], (oldData) => {
+        if (!oldData) return oldData;
+        return oldData.map(reply => 
+          reply.id === replyId 
+            ? { ...reply, likes_count: newLikesCount }
+            : reply
+        );
+      });
+      queryClient.invalidateQueries({ queryKey: ['forum-replies', selectedPost?.id] });
+    },
+  });
+
   const handlePostClick = (post) => {
-    setSelectedPost(post);
     // Incrémenter les vues seulement si ce n'est pas déjà le post sélectionné
+    // Cela évite d'incrémenter plusieurs fois si on clique plusieurs fois sur le même post
     if (!selectedPost || selectedPost.id !== post.id) {
       incrementViewsMutation.mutate(post);
+      setSelectedPost(post);
     }
+  };
+
+  const handleLikeReply = (reply, e) => {
+    e.stopPropagation(); // Empêcher la propagation de l'événement
+    incrementLikesMutation.mutate(reply);
   };
 
   const categoryLabels = {
@@ -536,7 +575,11 @@ export default function Community() {
                           {reply.content}
                         </p>
                         <div className="flex items-center gap-4 mt-4">
-                          <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                          <button 
+                            onClick={(e) => handleLikeReply(reply, e)}
+                            disabled={incrementLikesMutation.isPending}
+                            className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+                          >
                             <span>👍</span>
                             <span className="font-medium">{reply.likes_count || 0}</span>
                           </button>

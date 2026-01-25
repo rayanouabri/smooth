@@ -62,10 +62,14 @@ export const debug = (...args) => {
 };
 
 // Export par défaut avec toutes les méthodes
-export default {
+const logger = {
   log,
   warn,
   error,
   info,
   debug
 };
+
+export default logger;
+// Export nommé pour compatibilité
+export { logger };
