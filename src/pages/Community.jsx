@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { logger } from "@/utils/logger";
+import { isMockId } from "@/utils/validate-uuid";
 import { 
   Select, 
   SelectContent, 
@@ -86,8 +87,8 @@ export default function Community() {
       const validReplies = (repliesList || []).filter(reply => {
         if (!reply || !reply.id) return false;
         // Exclure les IDs mock/test
-        if (reply.id === 'ffffffff-ffff-4fff-8fff-fffffffffff0') {
-          logger.warn('Réponse avec ID mock détectée et filtrée:', reply);
+        if (isMockId(reply.id)) {
+          logger.warn('Réponse avec ID mock détectée et filtrée:', reply.id);
           return false;
         }
         return true;
@@ -168,8 +169,8 @@ export default function Community() {
   const incrementViewsMutation = useMutation({
     mutationFn: async (post) => {
       // Valider l'ID
-      if (!post || !post.id || post.id === 'ffffffff-ffff-4fff-8fff-fffffffffff0') {
-        logger.error('ID de post invalide:', post);
+      if (!post || !post.id || isMockId(post.id)) {
+        logger.error('ID de post invalide (mock/test):', post?.id);
         throw new Error('ID de post invalide');
       }
       
@@ -215,8 +216,8 @@ export default function Community() {
   const incrementLikesMutation = useMutation({
     mutationFn: async (reply) => {
       // Valider que l'ID existe et est valide
-      if (!reply || !reply.id || reply.id === 'ffffffff-ffff-4fff-8fff-fffffffffff0') {
-        logger.error('ID de réponse invalide:', reply);
+      if (!reply || !reply.id || isMockId(reply.id)) {
+        logger.error('ID de réponse invalide (mock/test):', reply?.id);
         throw new Error('ID de réponse invalide');
       }
       
@@ -603,7 +604,7 @@ export default function Community() {
                 <MessageSquare className="w-6 h-6 text-blue-600" />
                 {replies.length} réponse{replies.length > 1 ? 's' : ''}
               </h2>
-              {replies.filter(reply => reply && reply.id && reply.id !== 'ffffffff-ffff-4fff-8fff-fffffffffff0').map((reply) => (
+              {replies.filter(reply => reply && reply.id && !isMockId(reply.id)).map((reply) => (
                 <Card key={reply.id} className={`border-2 ${reply.is_solution ? 'border-green-200 bg-green-50/30' : 'hover:border-blue-200'} transition-all`}>
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">

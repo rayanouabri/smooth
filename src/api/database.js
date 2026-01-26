@@ -1,4 +1,5 @@
 import { supabase } from './supabaseClient';
+import { isMockId } from '../utils/validate-uuid';
 
 /**
  * Service de base de données générique
@@ -115,7 +116,8 @@ export const createEntityService = (tableName) => {
      */
     update: async (id, updates) => {
       // Valider l'ID
-      if (!id || typeof id !== 'string' || id === 'ffffffff-ffff-4fff-8fff-fffffffffff0') {
+      if (!id || typeof id !== 'string' || isMockId(id)) {
+        console.warn(`Invalid or mock ID for ${tableName}: ${id}`);
         throw new Error(`Invalid ID for ${tableName}: ${id}`);
       }
       
@@ -132,7 +134,10 @@ export const createEntityService = (tableName) => {
       
       // Si aucune ligne n'a été mise à jour, retourner null au lieu de lancer une erreur
       if (!data || data.length === 0) {
-        console.warn(`No rows updated for ${tableName} with id ${id}`);
+        // Ne logger que si ce n'est pas un ID mock (pour éviter le spam)
+        if (!isMockId(id)) {
+          console.warn(`No rows updated for ${tableName} with id ${id}`);
+        }
         return null;
       }
       
