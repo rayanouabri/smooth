@@ -63,11 +63,25 @@ export default function Community() {
     queryKey: ['forum-posts', categoryFilter],
     queryFn: async () => {
       try {
+        let postsList = [];
         if (categoryFilter === "all") {
           // Utiliser filter avec un objet vide pour obtenir tous les posts
-          return await ForumPost.filter({}, '-created_date');
+          postsList = await ForumPost.filter({}, '-created_date');
+        } else {
+          postsList = await ForumPost.filter({ category: categoryFilter }, '-created_date');
         }
-        return await ForumPost.filter({ category: categoryFilter }, '-created_date');
+        
+        // Filtrer les posts avec des IDs invalides (IDs mock/test)
+        const validPosts = (postsList || []).filter(post => {
+          if (!post || !post.id) return false;
+          if (isMockId(post.id)) {
+            logger.warn('Post avec ID mock détecté et filtré:', post.id);
+            return false;
+          }
+          return true;
+        });
+        
+        return validPosts;
       } catch (error) {
         logger.error("Erreur lors du chargement des posts:", error);
         return [];
@@ -97,18 +111,30 @@ export default function Community() {
       // Mettre à jour le compteur de réponses avec le nombre réel si nécessaire
       const actualCount = validReplies.length;
       if (actualCount !== (selectedPost.replies_count || 0)) {
-        try {
-          await ForumPost.update(selectedPost.id, {
-            replies_count: actualCount
-          });
-          // Mettre à jour selectedPost localement
+        // Ne mettre à jour que si l'ID du post est valide
+        if (selectedPost.id && !isMockId(selectedPost.id)) {
+          try {
+            await ForumPost.update(selectedPost.id, {
+              replies_count: actualCount
+            });
+            // Mettre à jour selectedPost localement
+            setSelectedPost(prev => prev ? {
+              ...prev,
+              replies_count: actualCount
+            } : null);
+            queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
+          } catch (error) {
+            // Ne logger que si ce n'est pas un ID mock
+            if (!isMockId(selectedPost.id)) {
+              logger.error('Erreur lors de la mise à jour du compteur de réponses:', error);
+            }
+          }
+        } else {
+          // Si l'ID est mock, juste mettre à jour localement sans appeler la DB
           setSelectedPost(prev => prev ? {
             ...prev,
             replies_count: actualCount
           } : null);
-          queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
-        } catch (error) {
-          logger.error('Erreur lors de la mise à jour du compteur de réponses:', error);
         }
       }
       
@@ -147,12 +173,22 @@ export default function Community() {
     onSuccess: async () => {
       // Calculer le nombre réel de réponses depuis la base de données
       const allReplies = await ForumReply.filter({ post_id: selectedPost.id });
-      const actualRepliesCount = allReplies ? allReplies.length : 0;
+      const validReplies = (allReplies || []).filter(reply => reply && reply.id && !isMockId(reply.id));
+      const actualRepliesCount = validReplies.length;
       
-      // Mettre à jour le compteur avec le nombre réel
-      await ForumPost.update(selectedPost.id, {
-        replies_count: actualRepliesCount
-      });
+      // Mettre à jour le compteur avec le nombre réel seulement si l'ID est valide
+      if (selectedPost.id && !isMockId(selectedPost.id)) {
+        try {
+          await ForumPost.update(selectedPost.id, {
+            replies_count: actualRepliesCount
+          });
+        } catch (error) {
+          // Ne logger que si ce n'est pas un ID mock
+          if (!isMockId(selectedPost.id)) {
+            logger.error('Erreur lors de la mise à jour du compteur de réponses:', error);
+          }
+        }
+      }
       
       // Mettre à jour selectedPost pour refléter le nouveau compteur
       setSelectedPost(prev => ({
