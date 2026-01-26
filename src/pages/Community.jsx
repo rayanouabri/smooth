@@ -205,9 +205,16 @@ export default function Community() {
   const incrementViewsMutation = useMutation({
     mutationFn: async (post) => {
       // Valider l'ID
-      if (!post || !post.id || isMockId(post.id)) {
-        logger.error('ID de post invalide (mock/test):', post?.id);
-        throw new Error('ID de post invalide');
+      if (!post || !post.id) {
+        logger.error('Post invalide:', post);
+        throw new Error('Post invalide');
+      }
+      
+      // Si c'est un ID mock, retourner silencieusement sans mettre à jour la DB
+      if (isMockId(post.id)) {
+        logger.debug('ID mock détecté, mise à jour locale uniquement:', post.id);
+        const newViewsCount = (post.views_count || 0) + 1;
+        return { newViewsCount, postId: post.id, isMock: true };
       }
       
       // Incrémenter le compteur de vues
@@ -218,14 +225,19 @@ export default function Community() {
           views_count: newViewsCount
         });
         
+        // Si la mise à jour retourne null (ID mock ou inexistant), continuer avec l'UI optimiste
         if (!updatedData) {
-          logger.warn(`Aucune ligne mise à jour pour le post ${post.id}`);
-          // Même si la mise à jour a échoué, on retourne le nouveau compteur pour l'UI optimiste
+          logger.debug(`Aucune ligne mise à jour pour le post ${post.id}, mise à jour locale uniquement`);
           return { newViewsCount, postId: post.id };
         }
         
         return { newViewsCount, postId: post.id };
       } catch (error) {
+        // Si l'erreur est due à un ID mock, ne pas la propager
+        if (isMockId(post.id)) {
+          logger.debug('Erreur ignorée pour ID mock:', post.id);
+          return { newViewsCount, postId: post.id };
+        }
         logger.error('Erreur dans incrementViewsMutation:', error);
         throw error;
       }
@@ -252,9 +264,16 @@ export default function Community() {
   const incrementLikesMutation = useMutation({
     mutationFn: async (reply) => {
       // Valider que l'ID existe et est valide
-      if (!reply || !reply.id || isMockId(reply.id)) {
-        logger.error('ID de réponse invalide (mock/test):', reply?.id);
-        throw new Error('ID de réponse invalide');
+      if (!reply || !reply.id) {
+        logger.error('Réponse invalide:', reply);
+        throw new Error('Réponse invalide');
+      }
+      
+      // Si c'est un ID mock, retourner silencieusement sans mettre à jour la DB
+      if (isMockId(reply.id)) {
+        logger.debug('ID mock détecté, mise à jour locale uniquement:', reply.id);
+        const newLikesCount = (reply.likes_count || 0) + 1;
+        return { newLikesCount, replyId: reply.id, isMock: true };
       }
       
       // Incrémenter le compteur de likes
@@ -265,14 +284,19 @@ export default function Community() {
           likes_count: newLikesCount
         });
         
+        // Si la mise à jour retourne null (ID mock ou inexistant), continuer avec l'UI optimiste
         if (!updatedData) {
-          logger.warn(`Aucune ligne mise à jour pour la réponse ${reply.id}`);
-          // Même si la mise à jour a échoué, on retourne le nouveau compteur pour l'UI optimiste
+          logger.debug(`Aucune ligne mise à jour pour la réponse ${reply.id}, mise à jour locale uniquement`);
           return { newLikesCount, replyId: reply.id };
         }
         
         return { newLikesCount, replyId: reply.id, data: updatedData };
       } catch (error) {
+        // Si l'erreur est due à un ID mock, ne pas la propager
+        if (isMockId(reply.id)) {
+          logger.debug('Erreur ignorée pour ID mock:', reply.id);
+          return { newLikesCount, replyId: reply.id };
+        }
         logger.error('Erreur dans incrementLikesMutation:', error);
         throw error;
       }

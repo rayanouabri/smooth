@@ -116,9 +116,15 @@ export const createEntityService = (tableName) => {
      */
     update: async (id, updates) => {
       // Valider l'ID
-      if (!id || typeof id !== 'string' || isMockId(id)) {
-        console.warn(`Invalid or mock ID for ${tableName}: ${id}`);
-        throw new Error(`Invalid ID for ${tableName}: ${id}`);
+      if (!id || typeof id !== 'string') {
+        console.warn(`Invalid ID for ${tableName}: ${id}`);
+        return null; // Retourner null au lieu de lancer une erreur
+      }
+      
+      // Si c'est un ID mock, retourner null silencieusement
+      if (isMockId(id)) {
+        // Ne pas logger pour éviter le spam, juste retourner null
+        return null;
       }
       
       const { data, error } = await supabase
