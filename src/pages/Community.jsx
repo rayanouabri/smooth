@@ -82,21 +82,36 @@ export default function Community() {
       if (!selectedPost?.id) return [];
       const repliesList = await ForumReply.filter({ post_id: selectedPost.id }, 'created_date');
       
+      // Filtrer les réponses avec des IDs invalides (IDs mock/test)
+      const validReplies = (repliesList || []).filter(reply => {
+        if (!reply || !reply.id) return false;
+        // Exclure les IDs mock/test
+        if (reply.id === 'ffffffff-ffff-4fff-8fff-fffffffffff0') {
+          logger.warn('Réponse avec ID mock détectée et filtrée:', reply);
+          return false;
+        }
+        return true;
+      });
+      
       // Mettre à jour le compteur de réponses avec le nombre réel si nécessaire
-      const actualCount = repliesList ? repliesList.length : 0;
+      const actualCount = validReplies.length;
       if (actualCount !== (selectedPost.replies_count || 0)) {
-        await ForumPost.update(selectedPost.id, {
-          replies_count: actualCount
-        });
-        // Mettre à jour selectedPost localement
-        setSelectedPost(prev => prev ? {
-          ...prev,
-          replies_count: actualCount
-        } : null);
-        queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
+        try {
+          await ForumPost.update(selectedPost.id, {
+            replies_count: actualCount
+          });
+          // Mettre à jour selectedPost localement
+          setSelectedPost(prev => prev ? {
+            ...prev,
+            replies_count: actualCount
+          } : null);
+          queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
+        } catch (error) {
+          logger.error('Erreur lors de la mise à jour du compteur de réponses:', error);
+        }
       }
       
-      return repliesList || [];
+      return validReplies;
     },
     enabled: !!selectedPost,
   });
@@ -588,7 +603,7 @@ export default function Community() {
                 <MessageSquare className="w-6 h-6 text-blue-600" />
                 {replies.length} réponse{replies.length > 1 ? 's' : ''}
               </h2>
-              {replies.map((reply) => (
+              {replies.filter(reply => reply && reply.id && reply.id !== 'ffffffff-ffff-4fff-8fff-fffffffffff0').map((reply) => (
                 <Card key={reply.id} className={`border-2 ${reply.is_solution ? 'border-green-200 bg-green-50/30' : 'hover:border-blue-200'} transition-all`}>
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
