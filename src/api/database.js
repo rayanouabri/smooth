@@ -1,6 +1,13 @@
 import { supabase } from './supabaseClient';
 import { isMockId } from '../utils/validate-uuid';
 
+// Récupérer les variables d'environnement depuis supabaseClient pour éviter la duplication
+const getSupabaseConfig = () => {
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  return { supabaseUrl, supabaseAnonKey };
+};
+
 /**
  * Service de base de données générique
  * Remplace base44.entities.EntityName avec une interface similaire
@@ -20,7 +27,102 @@ export const createEntityService = (tableName) => {
    * @returns {Promise<Array>} Liste des entités
    */
   const filter = async (filters = {}, orderBy = null, limit = null) => {
-    let query = supabase.from(tableName).select('*');
+    // CRITIQUE: Pour forum_posts, utiliser TOUJOURS l'API REST directe
+    // car le client Supabase ne semble pas appliquer correctement la limite
+    // Les logs Supabase montrent que les requêtes n'ont PAS de paramètre limit dans l'URL
+    // CRITIQUE: Pour forum_posts, utiliser TOUJOURS l'API REST directe EN PREMIER
+    // car le client Supabase ne semble pas appliquer correctement la limite
+    if (tableName === 'forum_posts') {
+      const { supabaseUrl, supabaseAnonKey } = getSupabaseConfig();
+      
+      // Vérifier que les variables d'environnement sont disponibles
+      if (!supabaseUrl || !supabaseAnonKey) {
+        console.error(`[Database] ❌ Variables d'environnement manquantes pour forum_posts REST direct`);
+        console.error(`[Database] supabaseUrl: ${supabaseUrl ? 'OK' : 'MANQUANT'}, supabaseAnonKey: ${supabaseAnonKey ? 'OK' : 'MANQUANT'}`);
+        console.error(`[Database] ⚠️ Fallback vers client Supabase (sans limite garantie)`);
+      } else {
+        const defaultLimit = 1000;
+        const finalLimit = limit !== null ? limit : defaultLimit;
+        const actualLimit = Math.max(finalLimit, 1000);
+        
+        // Construire l'URL avec tous les paramètres
+        let url = `${supabaseUrl}/rest/v1/${tableName}?select=*&limit=${actualLimit}`;
+        
+        // Ajouter les filtres
+        Object.entries(filters).forEach(([key, value]) => {
+          if (value !== undefined && value !== null && value !== '') {
+            if (Array.isArray(value)) {
+              if (value.length > 0) {
+                url += `&${key}=in.(${value.join(',')})`;
+              }
+            } else {
+              url += `&${key}=eq.${encodeURIComponent(value)}`;
+            }
+          }
+        });
+        
+        // Ajouter le tri
+        if (orderBy) {
+          const isDescending = orderBy.startsWith('-');
+          const field = isDescending ? orderBy.slice(1) : orderBy;
+          url += `&order=${field}.${isDescending ? 'desc' : 'asc'}`;
+        }
+        
+        console.log(`[Database] 🔍 Requête REST directe pour forum_posts: ${url}`);
+        console.log(`[Database] 🔍 Variables: supabaseUrl=${supabaseUrl ? 'OK' : 'MANQUANT'}, supabaseAnonKey=${supabaseAnonKey ? 'OK (' + supabaseAnonKey.substring(0, 20) + '...)' : 'MANQUANT'}`);
+        
+        try {
+          const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+              'apikey': supabaseAnonKey,
+              'Authorization': `Bearer ${supabaseAnonKey}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'count=exact'
+            }
+          });
+          
+          console.log(`[Database] 🔍 Réponse REST: status=${response.status}, ok=${response.ok}, headers=`, Object.fromEntries(response.headers.entries()));
+          
+          if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`[Database] ❌ Erreur HTTP ${response.status}:`, errorText);
+            throw new Error(`HTTP error! status: ${response.status}, body: ${errorText}`);
+          }
+          
+          const data = await response.json();
+          const countHeader = response.headers.get('content-range');
+          const count = countHeader ? parseInt(countHeader.split('/')[1]) : data.length;
+          
+          console.log(`[Database] ✅ forum_posts (REST direct) - Récupéré ${data?.length || 0} lignes (count: ${count || 'N/A'})`);
+          if (data && data.length > 0) {
+            console.log(`[Database] 📋 IDs récupérés (${data.length}):`, data.map(p => p.id));
+            console.log(`[Database] 📋 Titres récupérés:`, data.map(p => p.title));
+          } else {
+            console.warn(`[Database] ⚠️ Aucun post récupéré avec la requête REST directe !`);
+          }
+          
+          // RETOURNER DIRECTEMENT - ne pas continuer avec Supabase client
+          return data || [];
+        } catch (restError) {
+          console.error(`[Database] ❌ Erreur avec requête REST directe:`, restError);
+          console.error(`[Database] ❌ Détails:`, {
+            message: restError.message,
+            stack: restError.stack,
+            name: restError.name
+          });
+          // Fallback vers le client Supabase si la requête REST échoue
+        }
+      }
+    }
+    
+    // Code normal pour les autres tables ou si REST direct échoue
+    const defaultLimit = tableName === 'forum_posts' ? 1000 : 1000;
+    const finalLimit = limit !== null ? limit : defaultLimit;
+    const actualLimit = tableName === 'forum_posts' ? Math.max(finalLimit, 1000) : finalLimit;
+    
+    // Utiliser select avec une limite explicite dans les options
+    let query = supabase.from(tableName).select('*', { count: 'exact', head: false });
 
     // Appliquer les filtres
     Object.entries(filters).forEach(([key, value]) => {
@@ -42,17 +144,32 @@ export const createEntityService = (tableName) => {
       query = query.order(field, { ascending: !isDescending });
     }
 
-    // Appliquer la limite
-    if (limit) {
-      query = query.limit(limit);
+    // Appliquer la limite - TOUJOURS explicite pour éviter les problèmes
+    query = query.limit(actualLimit);
+    
+    // Pour forum_posts, logger AVANT l'exécution pour vérifier
+    if (tableName === 'forum_posts') {
+      console.log(`[Database] 🔍 AVANT requête Supabase (fallback) - Limit: ${actualLimit}, Filtres:`, JSON.stringify(filters), `OrderBy:`, orderBy);
     }
-
-    const { data, error } = await query;
+    
+    const { data, error, count } = await query;
     if (error) {
       console.error(`Error filtering ${tableName}:`, error);
       console.error(`Table: ${tableName}`, `Filters:`, filters, `Error details:`, error);
       throw error;
     }
+    
+    // Logger pour déboguer le forum
+    if (tableName === 'forum_posts') {
+      console.log(`[Database] ✅ ${tableName} - Récupéré ${data?.length || 0} lignes (count: ${count || 'N/A'}) avec filtres:`, filters);
+      if (data && data.length > 0) {
+        console.log(`[Database] 📋 IDs des posts récupérés (${data.length}):`, data.map(p => p.id));
+        console.log(`[Database] 📋 Titres des posts récupérés:`, data.map(p => p.title));
+      } else {
+        console.warn(`[Database] ⚠️ Aucun post récupéré !`);
+      }
+    }
+    
     return data || [];
   };
 

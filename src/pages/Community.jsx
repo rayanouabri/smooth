@@ -59,28 +59,93 @@ export default function Community() {
     }
   };
 
-  const { data: posts = [], isLoading: isLoadingPosts } = useQuery({
+  // Mapping des catégories de la base vers les catégories affichées
+  const categoryMapping = {
+    'culture_codes_sociaux': 'vie_quotidienne',
+    'insertion_professionnelle': 'emploi',
+    'integration_administrative': 'administratif',
+    'vie_quotidienne': 'vie_quotidienne',
+    'etudes': 'etudes',
+    'logement': 'logement',
+    'emploi': 'emploi',
+    'administratif': 'administratif',
+    'autre': 'autre'
+  };
+
+  // Fonction pour obtenir la catégorie normalisée
+  const getNormalizedCategory = (category) => {
+    return categoryMapping[category] || 'autre';
+  };
+
+  const { data: posts = [], isLoading: isLoadingPosts, refetch } = useQuery({
     queryKey: ['forum-posts', categoryFilter],
     queryFn: async () => {
       try {
         let postsList = [];
+        console.log('[Forum] 🚀 Début du chargement des posts, categoryFilter:', categoryFilter);
+        
+        // FORCER le rafraîchissement en invalidant le cache d'abord
+        queryClient.removeQueries({ queryKey: ['forum-posts'] });
+        
         if (categoryFilter === "all") {
           // Utiliser filter avec un objet vide pour obtenir tous les posts
-          postsList = await ForumPost.filter({}, '-created_date');
+          // Spécifier explicitement une limite élevée pour être sûr de récupérer tous les posts
+          console.log('[Forum] 📡 Appel ForumPost.filter({}, "-created_date", 1000)');
+          try {
+            postsList = await ForumPost.filter({}, '-created_date', 1000);
+            console.log(`[Forum] ✅ Récupéré ${postsList?.length || 0} posts depuis la base (filtre: all)`);
+            if (postsList && postsList.length > 0) {
+              console.log('[Forum] 📋 IDs récupérés:', postsList.map(p => p.id));
+              console.log('[Forum] 📋 Titres récupérés:', postsList.map(p => p.title));
+            } else {
+              console.error('[Forum] ❌ ERREUR: Aucun post récupéré alors qu\'il devrait y en avoir 11 !');
+            }
+          } catch (err) {
+            console.error('[Forum] ❌ Erreur lors de la récupération des posts:', err);
+            throw err;
+          }
         } else {
-          postsList = await ForumPost.filter({ category: categoryFilter }, '-created_date');
+          console.log('[Forum] 📡 Appel ForumPost.filter avec catégorie:', categoryFilter);
+          postsList = await ForumPost.filter({ category: categoryFilter }, '-created_date', 1000);
+          console.log(`[Forum] ✅ Récupéré ${postsList?.length || 0} posts depuis la base (filtre: ${categoryFilter})`);
+          if (postsList && postsList.length > 0) {
+            console.log('[Forum] 📋 IDs récupérés:', postsList.map(p => p.id));
+          }
         }
         
         // Filtrer les posts avec des IDs invalides (IDs mock/test)
+        // Normaliser les catégories pour l'affichage
         const validPosts = (postsList || []).filter(post => {
-          if (!post || !post.id) return false;
-          if (isMockId(post.id)) {
-            logger.warn('Post avec ID mock détecté et filtré:', post.id);
+          if (!post || !post.id) {
+            console.warn('[Forum] Post sans ID détecté:', post);
+            return false;
+          }
+          const isMock = isMockId(post.id);
+          if (isMock) {
+            console.warn('[Forum] Post avec ID mock détecté et filtré:', post.id, post.title);
             return false;
           }
           return true;
-        });
+        }).map(post => ({
+          ...post,
+          normalizedCategory: getNormalizedCategory(post.category || 'autre')
+        }));
         
+        console.log(`[Forum] ${validPosts.length} posts valides après filtrage des IDs mock`, validPosts.map(p => ({ id: p.id, title: p.title, category: p.category, normalizedCategory: p.normalizedCategory })));
+        
+        // Si un filtre de catégorie est actif (autre que "all"), filtrer par catégorie normalisée
+        if (categoryFilter !== "all") {
+          const filtered = validPosts.filter(post => post.normalizedCategory === categoryFilter);
+          console.log(`[Forum] ${filtered.length} posts après filtrage par catégorie normalisée (${categoryFilter})`, filtered.map(p => ({ id: p.id, title: p.title })));
+          return filtered;
+        }
+        
+        console.log(`[Forum] ✅ Retour de ${validPosts.length} posts (toutes catégories)`);
+        if (validPosts.length !== 11 && categoryFilter === "all") {
+          console.error(`[Forum] ⚠️ ATTENTION: ${validPosts.length} posts au lieu de 11 attendus !`);
+          console.error(`[Forum] Posts manquants ? Vérifiez les logs ci-dessus.`);
+        }
+        console.log(`[Forum] 📋 Liste finale des posts:`, validPosts.map(p => ({ id: p.id, title: p.title, category: p.category })));
         return validPosts;
       } catch (error) {
         logger.error("Erreur lors du chargement des posts:", error);
@@ -351,6 +416,11 @@ export default function Community() {
     autre: "bg-gray-100 text-gray-800"
   };
 
+  // Fonction pour obtenir la catégorie normalisée
+  const getNormalizedCategory = (category) => {
+    return categoryMapping[category] || 'autre';
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
       {/* Header */}
@@ -381,7 +451,19 @@ export default function Community() {
                       Chargement...
                     </span>
                   ) : (
-                    <span>{posts.length} discussions</span>
+                    <>
+                      <span>{posts.length} discussions</span>
+                      <button
+                        onClick={() => {
+                          queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
+                          refetch();
+                        }}
+                        className="ml-2 text-xs underline opacity-75 hover:opacity-100"
+                        title="Rafraîchir"
+                      >
+                        🔄
+                      </button>
+                    </>
                   )}
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full">
@@ -531,8 +613,8 @@ export default function Community() {
                               Épinglé
                             </Badge>
                           )}
-                          <Badge className={categoryColors[post.category] + " font-medium"}>
-                            {categoryLabels[post.category]}
+                          <Badge className={categoryColors[post.normalizedCategory || 'autre'] + " font-medium"}>
+                            {categoryLabels[post.normalizedCategory || 'autre']}
                           </Badge>
                           {post.is_solved && (
                             <Badge className="bg-green-500 text-white">
@@ -619,9 +701,9 @@ export default function Community() {
             {/* Original Post */}
             <Card className="mb-8">
               <CardHeader>
-                <div className="flex items-center space-x-3 mb-3">
-                  <Badge className={categoryColors[selectedPost.category]}>
-                    {categoryLabels[selectedPost.category]}
+                  <div className="flex items-center space-x-3 mb-3">
+                  <Badge className={categoryColors[getNormalizedCategory(selectedPost.category || 'autre')]}>
+                    {categoryLabels[getNormalizedCategory(selectedPost.category || 'autre')]}
                   </Badge>
                   {selectedPost.is_solved && (
                     <Badge className="bg-green-500">
