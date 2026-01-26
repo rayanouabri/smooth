@@ -5,54 +5,12 @@
 -- send-email-notification quand une nouvelle demande
 -- de contact est créée
 -- =====================================================
+-- 
+-- PRÉREQUIS: Activer l'extension pg_net dans Supabase
+-- Database → Extensions → pg_net → Enable
+-- =====================================================
 
--- Fonction pour appeler l'Edge Function Supabase
-CREATE OR REPLACE FUNCTION notify_contact_request()
-RETURNS TRIGGER AS $$
-DECLARE
-  payload jsonb;
-  response http_response;
-BEGIN
-  -- Construire le payload avec les données de la demande
-  payload := jsonb_build_object(
-    'contactRequest', jsonb_build_object(
-      'id', NEW.id,
-      'request_type', NEW.request_type,
-      'name', NEW.name,
-      'email', NEW.email,
-      'phone', NEW.phone,
-      'form_data', NEW.form_data,
-      'status', NEW.status,
-      'created_at', NEW.created_at
-    )
-  );
-
-  -- Appeler l'Edge Function via HTTP
-  -- Note: Cette approche nécessite l'extension http de Supabase
-  -- Si l'extension n'est pas disponible, on utilisera pg_net ou webhooks
-  SELECT * INTO response
-  FROM http_post(
-    current_setting('app.settings.supabase_url') || '/functions/v1/send-email-notification',
-    payload::text,
-    'application/json'::text,
-    ARRAY[
-      'Authorization: Bearer ' || current_setting('app.settings.supabase_anon_key', true)
-    ]
-  );
-
-  -- Logger le résultat (optionnel)
-  RAISE NOTICE 'Email notification sent for contact request %', NEW.id;
-
-  RETURN NEW;
-EXCEPTION
-  WHEN OTHERS THEN
-    -- En cas d'erreur, logger mais ne pas bloquer l'insertion
-    RAISE WARNING 'Failed to send email notification for contact request %: %', NEW.id, SQLERRM;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
-
--- Version optimisée utilisant pg_net (recommandé pour Supabase)
+-- Fonction pour appeler l'Edge Function Supabase via pg_net
 CREATE OR REPLACE FUNCTION notify_contact_request_pgnet()
 RETURNS TRIGGER AS $$
 DECLARE
