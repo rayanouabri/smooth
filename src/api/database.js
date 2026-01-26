@@ -27,12 +27,16 @@ export const createEntityService = (tableName) => {
    * @returns {Promise<Array>} Liste des entités
    */
   const filter = async (filters = {}, orderBy = null, limit = null) => {
+    // LOGS DE DÉBOGAGE - TOUJOURS ACTIFS
+    console.log(`[Database] 🔍 filter() appelé - tableName: "${tableName}", filters:`, filters, `orderBy:`, orderBy, `limit:`, limit);
+    
     // CRITIQUE: Pour forum_posts, utiliser TOUJOURS l'API REST directe
     // car le client Supabase ne semble pas appliquer correctement la limite
     // Les logs Supabase montrent que les requêtes n'ont PAS de paramètre limit dans l'URL
     // CRITIQUE: Pour forum_posts, utiliser TOUJOURS l'API REST directe EN PREMIER
     // car le client Supabase ne semble pas appliquer correctement la limite
     if (tableName === 'forum_posts') {
+      console.log(`[Database] ✅ tableName === 'forum_posts' - Utilisation de l'API REST directe`);
       const { supabaseUrl, supabaseAnonKey } = getSupabaseConfig();
       
       // Vérifier que les variables d'environnement sont disponibles
@@ -117,6 +121,7 @@ export const createEntityService = (tableName) => {
     }
     
     // Code normal pour les autres tables ou si REST direct échoue
+    console.log(`[Database] ⚠️ tableName !== 'forum_posts' ou REST direct échoué - Utilisation du client Supabase (tableName: "${tableName}")`);
     const defaultLimit = tableName === 'forum_posts' ? 1000 : 1000;
     const finalLimit = limit !== null ? limit : defaultLimit;
     const actualLimit = tableName === 'forum_posts' ? Math.max(finalLimit, 1000) : finalLimit;
