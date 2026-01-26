@@ -152,12 +152,31 @@ export default function Community() {
 
   const incrementViewsMutation = useMutation({
     mutationFn: async (post) => {
+      // Valider l'ID
+      if (!post || !post.id || post.id === 'ffffffff-ffff-4fff-8fff-fffffffffff0') {
+        logger.error('ID de post invalide:', post);
+        throw new Error('ID de post invalide');
+      }
+      
       // Incrémenter le compteur de vues
       const newViewsCount = (post.views_count || 0) + 1;
-      await ForumPost.update(post.id, {
-        views_count: newViewsCount
-      });
-      return { newViewsCount, postId: post.id };
+      
+      try {
+        const updatedData = await ForumPost.update(post.id, {
+          views_count: newViewsCount
+        });
+        
+        if (!updatedData) {
+          logger.warn(`Aucune ligne mise à jour pour le post ${post.id}`);
+          // Même si la mise à jour a échoué, on retourne le nouveau compteur pour l'UI optimiste
+          return { newViewsCount, postId: post.id };
+        }
+        
+        return { newViewsCount, postId: post.id };
+      } catch (error) {
+        logger.error('Erreur dans incrementViewsMutation:', error);
+        throw error;
+      }
     },
     onSuccess: ({ newViewsCount, postId }) => {
       // Mettre à jour selectedPost pour refléter le nouveau compteur
@@ -180,15 +199,34 @@ export default function Community() {
 
   const incrementLikesMutation = useMutation({
     mutationFn: async (reply) => {
+      // Valider que l'ID existe et est valide
+      if (!reply || !reply.id || reply.id === 'ffffffff-ffff-4fff-8fff-fffffffffff0') {
+        logger.error('ID de réponse invalide:', reply);
+        throw new Error('ID de réponse invalide');
+      }
+      
       // Incrémenter le compteur de likes
       const newLikesCount = (reply.likes_count || 0) + 1;
-      await ForumReply.update(reply.id, {
-        likes_count: newLikesCount
-      });
-      return { newLikesCount, replyId: reply.id };
+      
+      try {
+        const updatedData = await ForumReply.update(reply.id, {
+          likes_count: newLikesCount
+        });
+        
+        if (!updatedData) {
+          logger.warn(`Aucune ligne mise à jour pour la réponse ${reply.id}`);
+          // Même si la mise à jour a échoué, on retourne le nouveau compteur pour l'UI optimiste
+          return { newLikesCount, replyId: reply.id };
+        }
+        
+        return { newLikesCount, replyId: reply.id, data: updatedData };
+      } catch (error) {
+        logger.error('Erreur dans incrementLikesMutation:', error);
+        throw error;
+      }
     },
     onSuccess: ({ newLikesCount, replyId }) => {
-      // Mettre à jour la liste des réponses
+      // Mettre à jour la liste des réponses de manière optimiste
       queryClient.setQueryData(['forum-replies', selectedPost?.id], (oldData) => {
         if (!oldData) return oldData;
         return oldData.map(reply => 
@@ -198,6 +236,9 @@ export default function Community() {
         );
       });
       queryClient.invalidateQueries({ queryKey: ['forum-replies', selectedPost?.id] });
+    },
+    onError: (error) => {
+      logger.error('Erreur lors de l\'incrémentation des likes:', error);
     },
   });
 

@@ -114,17 +114,30 @@ export const createEntityService = (tableName) => {
      * Mettre à jour une entité
      */
     update: async (id, updates) => {
+      // Valider l'ID
+      if (!id || typeof id !== 'string' || id === 'ffffffff-ffff-4fff-8fff-fffffffffff0') {
+        throw new Error(`Invalid ID for ${tableName}: ${id}`);
+      }
+      
       const { data, error } = await supabase
         .from(tableName)
         .update(updates)
         .eq('id', id)
-        .select()
-        .single();
+        .select();
+      
       if (error) {
         console.error(`Error updating ${tableName} ${id}:`, error);
         throw error;
       }
-      return data;
+      
+      // Si aucune ligne n'a été mise à jour, retourner null au lieu de lancer une erreur
+      if (!data || data.length === 0) {
+        console.warn(`No rows updated for ${tableName} with id ${id}`);
+        return null;
+      }
+      
+      // Retourner la première ligne (ou toutes les lignes si plusieurs)
+      return data.length === 1 ? data[0] : data;
     },
 
     /**
