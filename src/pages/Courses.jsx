@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Course } from "@/api/entities";
+import { Course, Lesson } from "@/api/entities";
 import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";

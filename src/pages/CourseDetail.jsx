@@ -143,22 +143,34 @@ export default function CourseDetail() {
   };
 
   const enrollMutation = useMutation({
-    mutationFn: () => Enrollment.create({
-      user_email: user.email,
-      course_id: courseId,
-      progress_percentage: 0,
-      completed_lessons: [],
-      last_accessed: new Date().toISOString(),
-      time_spent_minutes: 0,
-      completed: false,
-      certificate_issued: false
-    }),
+    mutationFn: () => {
+      console.log('[CourseDetail] 🚀 Début de l\'inscription au cours:', courseId, 'User:', user?.email);
+      return Enrollment.create({
+        user_email: user.email,
+        course_id: courseId,
+        progress_percentage: 0,
+        completed_lessons: [],
+        last_accessed: new Date().toISOString(),
+        time_spent_minutes: 0,
+        completed: false,
+        certificate_issued: false
+      });
+    },
     onSuccess: (newEnrollment) => {
+      console.log('[CourseDetail] ✅ Inscription réussie:', newEnrollment);
       setEnrollment(newEnrollment);
       queryClient.invalidateQueries({ queryKey: ['enrollments'] });
-      if (lessons[0]) {
+      if (lessons && lessons[0]) {
         navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lessons[0].id}`);
+      } else {
+        console.warn('[CourseDetail] ⚠️ Aucune leçon disponible pour ce cours');
+        // Recharger la page pour afficher le bouton "Continuer le cours"
+        window.location.reload();
       }
+    },
+    onError: (error) => {
+      console.error('[CourseDetail] ❌ Erreur lors de l\'inscription:', error);
+      alert(`Erreur lors de l'inscription: ${error.message || 'Une erreur est survenue'}`);
     },
   });
 
