@@ -416,11 +416,6 @@ export default function Community() {
     autre: "bg-gray-100 text-gray-800"
   };
 
-  // Fonction pour obtenir la catégorie normalisée
-  const getNormalizedCategory = (category) => {
-    return categoryMapping[category] || 'autre';
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
       {/* Header */}
