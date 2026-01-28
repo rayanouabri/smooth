@@ -175,57 +175,67 @@ export default function PaymentSuccess() {
   };
 
   const markUserAsPremium = async (userId, userEmail, sessionId, retries = 2) => {
-    // OPTIMISATION: Réduire les retries et simplifier la logique
+    // Le webhook Stripe est la source de vérité, mais on essaie aussi côté client
     for (let attempt = 1; attempt <= retries; attempt++) {
       try {
         console.log(`🔄 Marking user as premium (attempt ${attempt}/${retries}):`, userId, userEmail);
         
+        // Données premium à mettre à jour (sans stripe_session_id qui peut ne pas exister)
         const premiumData = {
           is_premium: true,
           subscription_status: 'active',
           premium_since: new Date().toISOString(),
-          stripe_session_id: sessionId,
         };
 
-        // OPTIMISATION: Utiliser upsert directement (plus rapide et plus fiable)
-        const { error: upsertError } = await supabase
+        // STRATÉGIE 1: Update direct par ID (le profil existe déjà grâce au trigger d'inscription)
+        const { data: updateData, error: updateError } = await supabase
           .from('user_profiles')
-          .upsert({
-            id: userId,
-            user_email: userEmail,
-            ...premiumData,
-          }, { onConflict: 'id' });
+          .update(premiumData)
+          .eq('id', userId)
+          .select();
 
-        if (!upsertError) {
-          console.log('✅ Profile upserted successfully');
+        if (!updateError && updateData && updateData.length > 0) {
+          console.log('✅ Profile updated successfully:', updateData[0]);
           return true;
-        } else {
-          // Fallback: essayer update par ID
-          const { error: updateError } = await supabase
+        }
+        
+        if (updateError) {
+          console.warn('⚠️ Update by ID failed:', updateError.message);
+        }
+
+        // STRATÉGIE 2: Update par email (fallback pour anciens utilisateurs)
+        if (userEmail) {
+          const { data: emailData, error: emailError } = await supabase
             .from('user_profiles')
             .update(premiumData)
-            .eq('id', userId);
+            .eq('user_email', userEmail)
+            .select();
 
-          if (!updateError) {
-            console.log('✅ Profile updated successfully (fallback)');
+          if (!emailError && emailData && emailData.length > 0) {
+            console.log('✅ Profile updated by email:', emailData[0]);
             return true;
-          } else if (attempt < retries) {
-            console.warn(`⚠️ Update failed, retrying... (${attempt}/${retries})`);
-            await new Promise(resolve => setTimeout(resolve, 500 * attempt)); // Backoff plus court
-            continue;
-          } else {
-            console.error('❌ Update failed after all retries:', updateError);
-            return false;
           }
+          
+          if (emailError) {
+            console.warn('⚠️ Update by email failed:', emailError.message);
+          }
+        }
+
+        // Si les deux stratégies échouent, on fait confiance au webhook Stripe
+        if (attempt < retries) {
+          console.log(`⏳ Retrying in ${500 * attempt}ms...`);
+          await new Promise(resolve => setTimeout(resolve, 500 * attempt));
         }
       } catch (err) {
         console.error(`❌ Error marking user as premium (attempt ${attempt}/${retries}):`, err);
-        if (attempt === retries) {
-          return false;
+        if (attempt < retries) {
+          await new Promise(resolve => setTimeout(resolve, 500 * attempt));
         }
-        await new Promise(resolve => setTimeout(resolve, 500 * attempt));
       }
     }
+    
+    // Même si les mises à jour côté client échouent, le webhook Stripe devrait faire le travail
+    console.log('ℹ️ Client-side update failed, relying on Stripe webhook');
     return false;
   };
 
@@ -261,50 +271,64 @@ export default function PaymentSuccess() {
       console.log('Signup successful:', data);
 
       if (data.user) {
-        // Créer le profil premium avec retry (en arrière-plan)
-        console.log('Signup successful, marking as premium...');
+        console.log('Signup successful, user ID:', data.user.id);
         
-        // OPTIMISATION: Ne pas attendre, faire en arrière-plan
-        markUserAsPremium(data.user.id, formData.email, sessionId, 3).catch(err => {
-          console.warn('⚠️ Background premium update failed:', err);
-        });
+        // Attendre que le trigger SQL crée le profil (il s'exécute automatiquement)
+        await new Promise(resolve => setTimeout(resolve, 500));
         
-        // OPTIMISATION: Vérifier immédiatement
+        // Vérifier que le profil a été créé par le trigger
+        let profile = await reloadUserProfile(data.user.id, formData.email);
+        
+        if (!profile) {
+          console.log('Profile not found after signup, creating manually...');
+          // Créer le profil manuellement si le trigger n'a pas fonctionné
+          const { error: insertError } = await supabase
+            .from('user_profiles')
+            .insert({
+              id: data.user.id,
+              user_email: formData.email,
+              full_name: formData.name,
+              is_premium: true,
+              subscription_status: 'active',
+              premium_since: new Date().toISOString(),
+            });
+          
+          if (insertError) {
+            console.warn('⚠️ Manual profile creation failed:', insertError.message);
+          } else {
+            console.log('✅ Profile created manually');
+          }
+        } else {
+          // Le profil existe, le mettre à jour en Premium
+          console.log('Profile found, updating to premium...');
+          await markUserAsPremium(data.user.id, formData.email, sessionId, 2);
+        }
+        
+        // Recharger le profil pour affichage
         let updatedUser = await reloadUserProfile(data.user.id, formData.email);
         
-        // Si déjà Premium, afficher immédiatement
-        if (updatedUser?.is_premium === true || updatedUser?.subscription_status === 'active') {
-          console.log('✅ Premium status already active!');
-          setUser(updatedUser);
-          setStep('success');
-          return;
-        }
-        
-        // Sinon, vérifier rapidement
-        for (let i = 0; i < 2; i++) {
+        // Vérifier rapidement si le statut Premium est actif
+        for (let i = 0; i < 3 && !(updatedUser?.is_premium || updatedUser?.subscription_status === 'active'); i++) {
           await new Promise(resolve => setTimeout(resolve, 1000));
           updatedUser = await reloadUserProfile(data.user.id, formData.email);
-          if (updatedUser?.is_premium === true || updatedUser?.subscription_status === 'active') {
-            console.log('✅ Premium status confirmed!');
-            break;
-          }
         }
         
-        // Afficher le succès même si pas encore Premium (le webhook le fera)
+        // Afficher le succès même si pas encore Premium (le webhook Stripe le fera)
         setUser(updatedUser || data.user);
         setStep('success');
         
-        // Vérifier en arrière-plan
-        if (!updatedUser?.is_premium && !updatedUser?.subscription_status === 'active') {
+        // Vérifier en arrière-plan si pas encore Premium
+        if (!(updatedUser?.is_premium || updatedUser?.subscription_status === 'active')) {
+          console.log('ℹ️ Premium not yet active, checking in background...');
           const backgroundCheck = setInterval(async () => {
             const profile = await reloadUserProfile(data.user.id, formData.email);
-            if (profile?.is_premium === true || profile?.subscription_status === 'active') {
+            if (profile?.is_premium || profile?.subscription_status === 'active') {
               console.log('✅ Premium activated in background!');
               setUser(profile);
               clearInterval(backgroundCheck);
             }
           }, 2000);
-          setTimeout(() => clearInterval(backgroundCheck), 10000);
+          setTimeout(() => clearInterval(backgroundCheck), 15000);
         }
       } else {
         throw new Error('Erreur lors de la création du compte');

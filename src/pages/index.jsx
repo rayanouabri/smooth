@@ -23,7 +23,7 @@ const CriticalThinking = lazy(() => import("./CriticalThinking"));
 const StudentAssessment = lazy(() => import("./StudentAssessment"));
 const ProgressTracker = lazy(() => import("./ProgressTracker"));
 const Profile = lazy(() => import("./Profile"));
-// const Certificates = lazy(() => import("./Certificates")); // Disabled
+// const Certificates = lazy(() => import("./Certificates")); // Désactivé temporairement
 const CourseDetail = lazy(() => import("./CourseDetail"));
 const Learn = lazy(() => import("./Learn"));
 const Teachers = lazy(() => import("./Teachers"));
@@ -73,7 +73,7 @@ const PAGES = {
     
     Profile: Profile,
     
-    // Certificates: Certificates, // Disabled
+    // Certificates: Certificates, // Désactivé temporairement
     
     Home: Home,
     
@@ -209,6 +209,7 @@ function PagesContent() {
                     <Route path="/privacypolicy" element={<PrivacyPolicy />} />
                     <Route path="/paymentsuccess" element={<PaymentSuccess />} />
                     <Route path="/admincourses" element={<AdminCourses />} />
+                    <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
                     <Route path="/auth/callback" element={<AuthCallback />} />
@@ -240,6 +241,7 @@ function PagesContent() {
                 <Route path="/PrivacyPolicy" element={<Navigate to="/privacypolicy" replace />} />
                 <Route path="/PaymentSuccess" element={<Navigate to="/paymentsuccess" replace />} />
                 <Route path="/AdminCourses" element={<Navigate to="/admincourses" replace />} />
+                <Route path="/Contact" element={<Navigate to="/contact" replace />} />
                 
                     {/* Catch-all route for 404 */}
                     <Route path="*" element={<NotFound />} />

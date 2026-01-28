@@ -15,8 +15,8 @@ export default async function handler(req, res) {
   try {
     const { priceId, userEmail, successUrl, cancelUrl } = req.body;
 
-    console.log('Stripe checkout request:', { priceId, userEmail });
-    console.log('Available env vars:', Object.keys(process.env).filter(k => k.includes('STRIPE')));
+    // Log request (sans données sensibles)
+    console.log('Stripe checkout request received');
 
     if (!priceId || !userEmail) {
       return res.status(400).json({ error: 'Missing priceId or userEmail' });
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       });
     }
 
-    console.log('Using STRIPE_SECRET_KEY:', stripeKey.substring(0, 10) + '...');
+    // Clé Stripe configurée
 
     // Build Stripe checkout session avec metadata
     // Note: URLSearchParams ne supporte pas les objets, donc on utilise la syntaxe metadata[key]

@@ -9,15 +9,18 @@ import {
 import { Button } from '@/components/ui/button';
 
 const languages = [
-  { code: 'fr', name: 'Fran\u00e7ais', flag: '\uD83C\uDDEB\uD83C\uDDF7' },
-  { code: 'en', name: 'English', flag: '\uD83C\uDDEC\uD83C\uDDE7' },
-  { code: 'es', name: 'Espa\u00f1ol', flag: '\uD83C\uDDEA\uD83C\uDDF8' },
-  { code: 'ar', name: '\u0627\u0644\u0639\u0631\u0628\u064A\u0629', flag: '\uD83C\uDDF8\uD83C\uDDE6' },
-  { code: 'zh-CN', name: '\u4E2D\u6587', flag: '\uD83C\uDDE8\uD83C\uDDF3' },
-  { code: 'pt', name: 'Portugu\u00eas', flag: '\uD83C\uDDE7\uD83C\uDDF7' },
-  { code: 'de', name: 'Deutsch', flag: '\uD83C\uDDE9\uD83C\uDDEA' },
-  { code: 'it', name: 'Italiano', flag: '\uD83C\uDDEE\uD83C\uDDF9' },
-  { code: 'ru', name: '\u0420\u0443\u0441\u0441\u043A\u0438\u0439', flag: '\uD83C\uDDF7\uD83C\uDDFA' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
+  { code: 'zh-CN', name: '中文', flag: '🇨🇳' },
+  { code: 'pt', name: 'Português', flag: '🇧🇷' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+  { code: 'ko', name: '한국어', flag: '🇰🇷' },
+  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
 ];
 
 export default function LanguageSelector() {
@@ -25,6 +28,7 @@ export default function LanguageSelector() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    // Détecter la langue actuelle depuis le cookie Google Translate
     const getCookie = (name) => {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
@@ -45,6 +49,7 @@ export default function LanguageSelector() {
   const changeLanguage = (langCode) => {
     setCurrentLang(langCode);
     
+    // Si on revient au français, supprimer le cookie
     if (langCode === 'fr') {
       document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
       document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.franceprepacademy.fr';
@@ -52,8 +57,11 @@ export default function LanguageSelector() {
       return;
     }
 
+    // Définir le cookie pour Google Translate
     document.cookie = `googtrans=/fr/${langCode}; path=/`;
     document.cookie = `googtrans=/fr/${langCode}; path=/; domain=.franceprepacademy.fr`;
+    
+    // Recharger pour appliquer la traduction
     window.location.reload();
   };
 
@@ -67,7 +75,7 @@ export default function LanguageSelector() {
         <Button 
           variant="outline" 
           size="sm" 
-          className="gap-2 bg-white/90 backdrop-blur-sm border-gray-200 hover:bg-white hover:border-blue-400 shadow-sm"
+          className="gap-2 bg-white/90 backdrop-blur-sm border-gray-200 hover:bg-white hover:border-blue-400 shadow-sm transition-all"
         >
           <span className="text-lg">{currentLanguage.flag}</span>
           <span className="hidden sm:inline text-sm font-medium text-gray-700">
@@ -84,7 +92,7 @@ export default function LanguageSelector() {
           <DropdownMenuItem
             key={lang.code}
             onClick={() => changeLanguage(lang.code)}
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer ${
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-all ${
               currentLang === lang.code 
                 ? 'bg-blue-50 text-blue-700' 
                 : 'hover:bg-gray-50'
@@ -93,7 +101,7 @@ export default function LanguageSelector() {
             <span className="text-xl">{lang.flag}</span>
             <span className="font-medium">{lang.name}</span>
             {currentLang === lang.code && (
-              <span className="ml-auto text-blue-500">\u2713</span>
+              <span className="ml-auto text-blue-500">✓</span>
             )}
           </DropdownMenuItem>
         ))}

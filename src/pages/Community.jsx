@@ -82,61 +82,24 @@ export default function Community() {
     queryFn: async () => {
       try {
         let postsList = [];
-        console.log('[Forum] 🚀 Début du chargement des posts, categoryFilter:', categoryFilter);
-        
-        // Note: Ne PAS appeler removeQueries ici car cela cause une boucle infinie
         
         if (categoryFilter === "all") {
-          // Utiliser filter avec un objet vide pour obtenir tous les posts
-          // Spécifier explicitement une limite élevée pour être sûr de récupérer tous les posts
-          console.log('[Forum] 📡 Appel ForumPost.filter({}, "-created_date", 1000)');
-          try {
-            postsList = await ForumPost.filter({}, '-created_date', 1000);
-            console.log(`[Forum] ✅ Récupéré ${postsList?.length || 0} posts depuis la base (filtre: all)`);
-            if (postsList && postsList.length > 0) {
-              console.log('[Forum] 📋 IDs récupérés:', postsList.map(p => p.id));
-              console.log('[Forum] 📋 Titres récupérés:', postsList.map(p => p.title));
-            } else {
-              console.error('[Forum] ❌ ERREUR: Aucun post récupéré alors qu\'il devrait y en avoir 11 !');
-            }
-          } catch (err) {
-            console.error('[Forum] ❌ Erreur lors de la récupération des posts:', err);
-            throw err;
-          }
+          postsList = await ForumPost.filter({}, '-created_date', 1000);
         } else {
-          console.log('[Forum] 📡 Appel ForumPost.filter avec catégorie:', categoryFilter);
           postsList = await ForumPost.filter({ category: categoryFilter }, '-created_date', 1000);
-          console.log(`[Forum] ✅ Récupéré ${postsList?.length || 0} posts depuis la base (filtre: ${categoryFilter})`);
-          if (postsList && postsList.length > 0) {
-            console.log('[Forum] 📋 IDs récupérés:', postsList.map(p => p.id));
-          }
         }
         
-        // Filtrer les posts avec des IDs invalides (IDs mock/test)
-        // Normaliser les catégories pour l'affichage
-        const validPosts = (postsList || []).filter(post => {
-          if (!post || !post.id) {
-            console.warn('[Forum] Post sans ID détecté:', post);
-            return false;
-          }
-          const isMock = isMockId(post.id);
-          if (isMock) {
-            console.warn('[Forum] Post avec ID mock détecté et filtré:', post.id, post.title);
-            return false;
-          }
-          return true;
-        }).map(post => ({
-          ...post,
-          normalizedCategory: getNormalizedCategory(post.category || 'autre')
-        }));
+        // Filtrer les posts invalides et normaliser les catégories
+        const validPosts = (postsList || [])
+          .filter(post => post?.id && !isMockId(post.id))
+          .map(post => ({
+            ...post,
+            normalizedCategory: getNormalizedCategory(post.category || 'autre')
+          }));
         
-        console.log(`[Forum] ${validPosts.length} posts valides après filtrage des IDs mock`, validPosts.map(p => ({ id: p.id, title: p.title, category: p.category, normalizedCategory: p.normalizedCategory })));
-        
-        // Si un filtre de catégorie est actif (autre que "all"), filtrer par catégorie normalisée
+        // Filtrer par catégorie si nécessaire
         if (categoryFilter !== "all") {
-          const filtered = validPosts.filter(post => post.normalizedCategory === categoryFilter);
-          console.log(`[Forum] ${filtered.length} posts après filtrage par catégorie normalisée (${categoryFilter})`, filtered.map(p => ({ id: p.id, title: p.title })));
-          return filtered;
+          return validPosts.filter(post => post.normalizedCategory === categoryFilter);
         }
         
         console.log(`[Forum] ✅ Retour de ${validPosts.length} posts (toutes catégories)`);
