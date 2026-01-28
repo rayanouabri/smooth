@@ -1,52 +1,35 @@
-/**
- * Fonction utilitaire pour valider les UUIDs et détecter les IDs mock/test
+﻿/**
+ * Fonction utilitaire pour valider les UUIDs et detecter les IDs mock/test
  */
 
 /**
- * Vérifie si un ID est un UUID mock/test
- * @param {string} id - L'ID à vérifier
+ * Verifie si un ID est un UUID mock/test
+ * @param {string} id - L'ID a verifier
  * @returns {boolean} true si l'ID est un mock/test, false sinon
  */
 export const isMockId = (id) => {
+  // SIMPLIFIE: Cette fonction ne filtre AUCUN ID qui a un format UUID valide
+  // Tous les IDs dans forum_posts sont des donnees reelles
+  
+  // Rejeter seulement si l'ID est null, undefined, ou n'est pas une string
   if (!id || typeof id !== 'string') return true;
   
-  const lowerId = id.toLowerCase();
+  // Verifier que l'ID a un format UUID basique (8-4-4-4-12 caracteres hexadecimaux)
+  // On accepte TOUS les formats UUID, pas seulement v4
+  const uuidFormat = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   
-  // Vérifier si l'ID est un UUID valide d'abord
-  const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-  if (!uuidPattern.test(lowerId)) {
-    return true; // Si ce n'est pas un UUID valide, considérer comme mock
+  // Si ce n'est pas un format UUID valide, c'est peut-etre un mock
+  if (!uuidFormat.test(id)) {
+    return true;
   }
   
-  // Liste STRICTE des IDs mock/test connus (uniquement les IDs vraiment mock/test)
-  // Ne JAMAIS inclure d'IDs qui existent réellement dans la base de données
-  // Cette liste est la SEULE source de vérité pour les IDs mock
-  const knownMockIds = [
-    'ffffffff-ffff-4fff-8fff-fffffffffff0',
-    'dddddddd-dddd-4ddd-8ddd-ddddddddddde',
-    'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbc',
-    'eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeef',
-    '44444444-4444-4444-8444-444444444445',
-    '33333333-3333-4333-8333-333333333334',
-    'cccccccc-cccc-4ccc-8ccc-cccccccccccd',
-    'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaab',
-    '11111111-1111-4111-8111-111111111112',
-    '22222222-2222-4222-8222-222222222223',
-    '80808080-8080-4080-8080-808080808080',
-    '90909090-9090-4090-8090-909090909090',
-    '60606060-6060-4060-8060-606060606060',
-    '50505050-5050-4050-8050-505050505050',
-    '70707070-7070-4070-8070-707070707070',
-  ];
-  
-  // Vérifier si l'ID correspond à un ID mock connu (liste stricte uniquement)
-  // C'EST LA SEULE VÉRIFICATION - pas de patterns, pas de détection automatique
-  return knownMockIds.includes(lowerId);
+  // Tous les UUIDs valides sont acceptes - pas de filtrage supplementaire
+  return false;
 };
 
 /**
  * Valide qu'un ID est un UUID valide et n'est pas un mock
- * @param {string} id - L'ID à valider
+ * @param {string} id - L'ID a valider
  * @returns {boolean} true si l'ID est valide, false sinon
  */
 export const isValidId = (id) => {
