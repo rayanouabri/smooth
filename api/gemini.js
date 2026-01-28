@@ -13,7 +13,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Parse body
     let body = req.body;
     
     if (typeof body === 'string') {
@@ -41,7 +40,6 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing prompt' });
     }
 
-    // UTILISER UNIQUEMENT gemini-2.5-flash
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
     
     const payload = {
@@ -59,8 +57,6 @@ export default async function handler(req, res) {
         { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
       ]
     };
-
-    console.log('[Gemini] Calling gemini-2.5-flash, prompt length:', prompt.length);
     
     const response = await fetch(url, {
       method: 'POST',
@@ -74,68 +70,49 @@ export default async function handler(req, res) {
     try {
       json = JSON.parse(responseText);
     } catch (parseErr) {
-      console.error('[Gemini] Parse error. Status:', response.status);
+      console.error('[Gemini] Parse error:', response.status);
       return res.status(500).json({ 
         error: 'Invalid response from Gemini',
-        status: response.status,
-        detail: responseText.substring(0, 200)
+        status: response.status
       });
     }
 
     if (!response.ok) {
-      const errorMsg = json.error?.message || json.error?.message || json.error || 'Gemini API error';
-      const errorStatus = json.error?.status || response.status;
-      console.error('[Gemini] API error:', errorStatus, errorMsg);
+      const errorMsg = json.error?.message || 'Gemini API error';
       
-      // Détection spécifique de l'erreur "API key expired"
-      if (errorMsg.toLowerCase().includes('api key expired') || 
-          errorMsg.toLowerCase().includes('key expired') ||
-          errorMsg.toLowerCase().includes('expired')) {
+      if (errorMsg.toLowerCase().includes('expired')) {
         return res.status(500).json({ 
           error: 'API key expired',
-          message: 'Votre clé Gemini a expiré. Veuillez la renouveler dans Vercel Environment Variables et redéployer l\'application.'
+          message: 'Renew Gemini API key in Vercel environment variables'
         });
       }
       
-      if (response.status === 401 || response.status === 403 || errorStatus === 401 || errorStatus === 403) {
+      if (response.status === 401 || response.status === 403) {
         return res.status(500).json({ 
           error: 'Invalid API key',
-          message: 'Clé API invalide. Vérifiez GEMINI_API_KEY dans Vercel Environment Variables et redéployez l\'application.'
+          message: 'Check GEMINI_API_KEY in Vercel environment variables'
         });
       }
+      
       if (response.status === 429) {
         return res.status(500).json({ 
           error: 'Rate limit exceeded',
           message: 'Try again later'
         });
       }
-      if (response.status === 404) {
-        return res.status(500).json({ 
-          error: 'Model gemini-2.5-flash not found',
-          message: `Error: ${errorMsg}. Verify model name and API access.`
-        });
-      }
       
-      return res.status(500).json({ 
-        error: errorMsg,
-        status: response.status
-      });
+      return res.status(500).json({ error: errorMsg });
     }
 
     const content = json.candidates?.[0]?.content?.parts?.[0]?.text;
     if (!content) {
-      console.error('[Gemini] No content:', JSON.stringify(json).substring(0, 300));
       return res.status(500).json({ error: 'No content from Gemini' });
     }
     
-    console.log('[Gemini] Success! Content length:', content.length);
     return res.status(200).json({ content });
     
   } catch (err) {
     console.error('[Gemini] Error:', err.message);
-    return res.status(500).json({ 
-      error: err.message || 'Server error',
-      message: 'Check server logs for details'
-    });
+    return res.status(500).json({ error: 'Server error' });
   }
 }

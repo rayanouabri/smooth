@@ -1,86 +1,62 @@
 # FrancePrep Academy
 
-Plateforme d'apprentissage complète pour faciliter l'intégration des étudiants étrangers en France. Formation linguistique, administrative, sociale et professionnelle avec assistance IA.
+Plateforme d'apprentissage pour l'intégration des étudiants étrangers en France.
 
-## 🚀 Technologies
+## Architecture
 
-- **Frontend** : React + Vite
-- **Backend** : Supabase (PostgreSQL, Auth, Storage)
-- **Déploiement** : Vercel
-- **UI** : Tailwind CSS + shadcn/ui
+\\nsrc/
+  api/           - Services backend (auth, database, entities)
+  pages/         - Pages React (Home, Courses, Community, etc.)
+  components/    - Composants réutilisables + shadcn/ui
+  utils/         - Utilitaires (premium, validate-uuid, i18n)
+  contexts/      - Contextes React
 
-## 📋 Fonctionnalités
+api/             - Vercel Serverless Functions
+  gemini.js      - API Gemini pour chatbot
+  stripe/        - Checkout, webhook, billing
 
-- ✅ 200+ cours d'intégration (CAF, sécurité sociale, logement, etc.)
-- ✅ Assistant IA disponible 24/7 (Sophie)
-- ✅ Forum communautaire
-- ✅ Système de progression et certificats
-- ✅ Tests d'aptitude et évaluations
-- ✅ Génération de CV
-- ✅ Cours particuliers avec professeurs
-- ✅ Dashboard personnalisé
+supabase/
+  migrations/    - Migrations SQL
+  functions/     - Edge Functions
+\\n
+## Base de données (Supabase)
 
-## 🛠️ Installation
+Tables: courses, lessons, enrollments, user_profiles, forum_posts, forum_replies, progress, certificates.
 
-1. Clonez le repository :
-```bash
-git clone https://github.com/VOTRE_USERNAME/franceprep-academy.git
-cd franceprep-academy
-```
+RLS activé sur toutes les tables. Trigger on_auth_user_created crée automatiquement un profil.
 
-2. Installez les dépendances :
-```bash
-npm install
-```
+## Paiements (Stripe)
 
-3. Configurez les variables d'environnement :
-Créez un fichier `.env.local` :
-```env
-VITE_SUPABASE_URL=https://votre-projet.supabase.co
-VITE_SUPABASE_ANON_KEY=votre-anon-key
-```
+1. Frontend -> /api/stripe/checkout
+2. Stripe session créée
+3. Webhook met à jour is_premium
 
-4. Lancez le serveur de développement :
-```bash
-npm run dev
-```
+Variables Vercel: STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, SUPABASE_SERVICE_ROLE_KEY
 
-## 🔒 Sécurité
+## Assistant IA
 
-Le projet utilise :
-- Variables d'environnement pour toutes les clés API
-- Row Level Security (RLS) activé sur Supabase
-- Secrets stockés via Supabase Secrets (Edge Functions)
-- HTTPS forcé en production
+Gemini 2.5 Flash via /api/gemini. Variable: GEMINI_API_KEY
 
-**⚠️ Important** : Ne commitez jamais de fichiers `.env` ou contenant des clés API.
+## Déploiement
 
-Consultez `SECURITY_AUDIT_REPORT.md` pour plus de détails sur la sécurité.
+Variables requises: VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, GEMINI_API_KEY
 
-## 🚀 Déploiement
+## Commandes
 
-Le projet est configuré pour se déployer automatiquement sur Vercel via GitHub.
+- npm install - Installer
+- npm run dev - Développement
+- npm run build - Production
 
-**Variables d'environnement requises sur Vercel** :
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_ANON_KEY`
-- `GEMINI_API_KEY` (pour l'assistant IA)
+## Sécurité
 
-## 📝 Scripts SQL Utiles
+- Variables d'environnement pour toutes les clés
+- RLS activé sur Supabase
+- Signature webhook vérifiée
+- Jamais de secrets dans le code
 
-Les migrations sont gérées automatiquement via Supabase CLI. Les fichiers SQL à la racine servent de référence :
-- `create_ai_messages_table.sql` - Table pour limiter les messages IA (5/mois pour gratuit)
-- `create_contact_requests_table.sql` - Table pour les demandes de contact
-- `fix_premium_courses_business_model.sql` - Correction du modèle premium
-- `update_courses_ratings_and_duration.sql` - Mise à jour des évaluations et durées
-- `set_30_percent_courses_premium.sql` - Définit 30% des cours en premium
+## Pour les futures IA
 
-Pour exécuter un script SQL : `node scripts/run-sql-cli.js <fichier.sql>`
-
-## 📞 Support
-
-Pour toute question ou problème, contactez l'équipe de développement.
-
----
-
-**Note** : Ce projet est en développement actif. Les fonctionnalités peuvent évoluer.
+Pattern: createEntityService(tableName) crée un service CRUD.
+Les entités sont exportées depuis src/api/entities.js.
+L'auth est gérée par src/api/auth.js.
+Les pages utilisent useQuery de React Query.
