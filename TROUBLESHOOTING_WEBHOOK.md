@@ -74,6 +74,24 @@ Vous devriez recevoir une réponse (même si c'est une erreur de signature, c'es
 4. Cliquez sur **View Function Logs**
 5. Vérifiez s'il y a des erreurs
 
+## 📍 Où trouver SUPABASE_SERVICE_ROLE_KEY
+
+1. Allez sur [Supabase Dashboard](https://app.supabase.com)
+2. Sélectionnez votre projet
+3. Cliquez sur **Settings** (⚙️ en bas à gauche)
+4. Cliquez sur **API** dans le menu de gauche
+5. Dans la section **Project API keys**, vous verrez :
+   - **anon** `public` key (celle que vous utilisez déjà)
+   - **service_role** `secret` key ← **C'EST CELLE-CI**
+6. Cliquez sur l'icône 👁️ (eye) à côté de **service_role** pour révéler la clé
+7. Copiez la clé (elle commence par `eyJhbGc...`)
+
+**⚠️ IMPORTANT** :
+- Cette clé peut bypasser toutes les règles RLS (Row Level Security)
+- Ne la partagez JAMAIS publiquement
+- Ne la commitez JAMAIS dans Git
+- Utilisez-la uniquement côté serveur (Vercel Serverless Functions)
+
 ## ✅ Solution rapide
 
 1. **Trouvez votre URL Vercel** :
@@ -120,6 +138,8 @@ https://www.franceprepacademy.fr/api/stripe/webhook
 - [ ] Le déploiement Vercel est terminé
 - [ ] J'utilise la bonne URL dans Stripe Dashboard
 - [ ] J'ai testé l'endpoint avec curl ou Postman
+- [ ] J'ai récupéré `SUPABASE_SERVICE_ROLE_KEY` depuis Supabase Dashboard
+- [ ] J'ai ajouté toutes les variables d'environnement dans Vercel
 
 ## 🆘 Si ça ne marche toujours pas
 
@@ -127,3 +147,4 @@ https://www.franceprepacademy.fr/api/stripe/webhook
 2. Vérifiez que le dernier déploiement inclut `api/stripe/webhook.js`
 3. Vérifiez les logs Vercel pour voir les erreurs
 4. Assurez-vous que `vercel.json` est correctement configuré
+5. Vérifiez que toutes les variables d'environnement sont bien définies dans Vercel

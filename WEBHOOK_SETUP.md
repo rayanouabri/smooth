@@ -44,19 +44,33 @@ Le webhook Stripe est maintenant implémenté dans `/api/stripe/webhook.js` (Ver
 7. **Copiez le "Signing secret"** (commence par `whsec_...`)
    - C'est votre `STRIPE_WEBHOOK_SECRET`
 
-### Étape 2 : Configurer les variables d'environnement dans Vercel
+### Étape 2 : Obtenir SUPABASE_SERVICE_ROLE_KEY depuis Supabase
+
+1. Allez sur [Supabase Dashboard](https://app.supabase.com)
+2. Sélectionnez votre projet
+3. Allez dans **Settings** (⚙️ en bas à gauche) → **API**
+4. Dans la section **Project API keys**, vous verrez :
+   - **anon** `public` key (celle que vous utilisez déjà côté client)
+   - **service_role** `secret` key ← **C'EST CELLE-CI QU'IL VOUS FAUT**
+5. Cliquez sur l'icône 👁️ (eye) à côté de **service_role** pour révéler la clé
+6. **⚠️ ATTENTION** : Cette clé est très sensible ! Elle peut bypasser toutes les règles RLS (Row Level Security)
+   - Ne la partagez JAMAIS publiquement
+   - Ne la commitez JAMAIS dans Git
+   - Utilisez-la uniquement côté serveur (Vercel Serverless Functions)
+
+### Étape 3 : Configurer les variables d'environnement dans Vercel
 
 1. Allez sur [Vercel Dashboard](https://vercel.com/dashboard)
 2. Sélectionnez votre projet
 3. Allez dans **Settings** → **Environment Variables**
 4. Ajoutez les variables suivantes :
 
-   | Variable | Valeur | Environnement |
-   |----------|--------|---------------|
-   | `STRIPE_SECRET_KEY` | `sk_live_...` ou `sk_test_...` | Production, Preview, Development |
-   | `STRIPE_WEBHOOK_SECRET` | `whsec_...` | Production, Preview, Development |
-   | `SUPABASE_URL` | `https://xxx.supabase.co` | Production, Preview, Development |
-   | `SUPABASE_SERVICE_ROLE_KEY` | `eyJhbGc...` | Production, Preview, Development |
+   | Variable | Valeur | Où la trouver | Environnement |
+   |----------|--------|---------------|---------------|
+   | `STRIPE_SECRET_KEY` | `sk_live_...` ou `sk_test_...` | Stripe Dashboard → Developers → API keys | Production, Preview, Development |
+   | `STRIPE_WEBHOOK_SECRET` | `whsec_...` | Stripe Dashboard → Developers → Webhooks → Signing secret | Production, Preview, Development |
+   | `SUPABASE_URL` | `https://xxx.supabase.co` | Supabase Dashboard → Settings → API → Project URL | Production, Preview, Development |
+   | `SUPABASE_SERVICE_ROLE_KEY` | `eyJhbGc...` | Supabase Dashboard → Settings → API → service_role secret key | Production, Preview, Development |
 
 5. Cliquez sur **Save**
 6. **Redéployez votre application** pour que les nouvelles variables soient prises en compte

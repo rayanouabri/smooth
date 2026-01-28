@@ -3,8 +3,17 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-const ADMIN_EMAIL = Deno.env.get("ADMIN_EMAIL") || "contact@franceprepacademy.fr";
-const FROM_EMAIL = Deno.env.get("FROM_EMAIL") || "noreply@franceprepacademy.fr";
+// Avec le domaine de test, on ne peut envoyer qu'à l'adresse email du compte Resend
+// Changez ADMIN_EMAIL dans les secrets pour utiliser votre adresse email Resend
+const ADMIN_EMAIL = Deno.env.get("ADMIN_EMAIL") || "rayan.ouabri1@gmail.com";
+// Utiliser le domaine de test de Resend (toujours fonctionnel, même sans domaine vérifié)
+// Si vous avez configuré FROM_EMAIL dans les secrets avec un domaine non vérifié, 
+// supprimez cette variable pour utiliser le domaine de test par défaut
+let FROM_EMAIL = Deno.env.get("FROM_EMAIL");
+// Si FROM_EMAIL contient franceprepacademy.fr et que le domaine n'est pas vérifié, utiliser le domaine de test
+if (!FROM_EMAIL || FROM_EMAIL.includes("franceprepacademy.fr")) {
+  FROM_EMAIL = "onboarding@resend.dev";
+}
 
 interface ContactRequest {
   id: string;
@@ -27,14 +36,8 @@ serve(async (req) => {
       );
     }
 
-    // Vérifier la clé API Resend
-    if (!RESEND_API_KEY) {
-      console.error("RESEND_API_KEY n'est pas configurée");
-      return new Response(
-        JSON.stringify({ error: "Email service not configured" }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
-    }
+    // La clé API Resend n'est plus nécessaire pour l'instant
+    // On enregistre juste les notifications dans la base de données
 
     // Récupérer les données de la requête
     const { contactRequest } = await req.json();
@@ -66,34 +69,8 @@ serve(async (req) => {
         emailType = "Contact Général";
     }
 
-    // Construire le contenu HTML de l'email
-    const htmlContent = buildEmailHTML(request, emailType);
-    const textContent = buildEmailText(request, emailType);
-
-    // Envoyer l'email via Resend
-    const resendResponse = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: [ADMIN_EMAIL],
-        reply_to: request.email,
-        subject: subject,
-        html: htmlContent,
-        text: textContent,
-      }),
-    });
-
-    if (!resendResponse.ok) {
-      const errorData = await resendResponse.text();
-      console.error("Erreur Resend:", errorData);
-      throw new Error(`Resend API error: ${resendResponse.status}`);
-    }
-
-    const resendData = await resendResponse.json();
+    // Enregistrer directement la notification dans la base de données
+    // L'envoi d'email via Resend est optionnel (peut être activé plus tard si nécessaire)
 
     // Enregistrer la notification dans la base de données
     const supabaseClient = createClient(
@@ -114,8 +91,8 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({
         success: true,
-        message: "Email envoyé avec succès",
-        resendId: resendData.id,
+        message: "Notification enregistrée avec succès",
+        contactRequestId: request.id,
       }),
       {
         status: 200,

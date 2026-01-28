@@ -23,8 +23,7 @@ BEGIN
   supabase_url := 'https://xkecqmsgvjjtujvlotpm.supabase.co';
   
   -- Clé anon de votre projet (récupérable dans Settings → API)
-  -- ⚠️ IMPORTANT: Remplacez cette valeur par votre vraie clé anon
-  supabase_anon_key := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhrZWNxbXNndmpqdHVqdmxvdHBtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUwMjY0MDAsImV4cCI6MjA1MDYwMjQwMH0.YOUR_ANON_KEY_HERE';
+  supabase_anon_key := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhrZWNxbXNndmpqdHVqdmxvdHBtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY1ODQyMTUsImV4cCI6MjA4MjE2MDIxNX0.7hfBylzDlSXcbVvIXkhN1S1hVhLVBERjoBz1xKNLk74';
 
   -- Construire le payload avec toutes les données de la demande
   payload := jsonb_build_object(
@@ -41,9 +40,10 @@ BEGIN
   );
 
   -- Utiliser pg_net pour envoyer la requête HTTP de manière asynchrone
+  -- Note: body doit être jsonb, pas text
   SELECT net.http_post(
     url := supabase_url || '/functions/v1/send-email-notification',
-    body := payload::text,
+    body := payload,  -- jsonb directement
     headers := jsonb_build_object(
       'Content-Type', 'application/json',
       'Authorization', 'Bearer ' || supabase_anon_key
