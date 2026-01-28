@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
-    <meta name="description" content="FrancePrepAcademy - Plateforme d'apprentissage pour l'intégration des étudiants internationaux en France" />
+    <meta name="description" content="FrancePrepAcademy - Plateforme d'apprentissage pour l'int&eacute;gration des &eacute;tudiants internationaux en France" />
     <meta name="theme-color" content="#06b6d4" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -12,40 +12,58 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="HandheldFriendly" content="true" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>FrancePrepAcademy - Réussissez votre vie en France</title>
+    <title>FrancePrepAcademy - R&eacute;ussissez votre vie en France</title>
     <style>
-      * {
-        box-sizing: border-box;
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+      body { overflow-x: hidden; width: 100%; position: relative; }
+      img, video, iframe { max-width: 100%; height: auto; }
+      
+      /* HIDE ALL Google Translate UI elements */
+      .goog-te-banner-frame,
+      .skiptranslate,
+      #goog-gt-tt,
+      .goog-te-balloon-frame,
+      div#goog-gt-,
+      .goog-text-highlight,
+      .goog-te-spinner-pos,
+      .goog-te-gadget-icon,
+      iframe.goog-te-menu-frame,
+      iframe.goog-te-banner-frame {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        opacity: 0 !important;
       }
-      html {
-        -webkit-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-      }
+      
       body {
-        overflow-x: hidden;
-        width: 100%;
-        position: relative;
+        top: 0 !important;
+        position: relative !important;
       }
-      img, video, iframe {
-        max-width: 100%;
-        height: auto;
+      
+      html.translated-ltr body,
+      html.translated-rtl body {
+        top: 0 !important;
+      }
+      
+      .goog-logo-link,
+      .goog-te-gadget span {
+        display: none !important;
       }
     </style>
   </head>
   <body>
-    <!-- Google Translate Widget -->
-    <div id="google_translate_element"></div>
-    
     <div id="root"></div>
     
-    <!-- Google Translate Script -->
+    <!-- Google Translate (completely hidden, controlled by LanguageSelector) -->
+    <div id="google_translate_element" style="display:none !important; visibility:hidden !important; height:0 !important; width:0 !important;"></div>
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement({
           pageLanguage: 'fr',
-          includedLanguages: 'en,es,ar,zh-CN,pt,de,it,ru,ja,ko,tr,vi,hi,bn',
-          layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
-          autoDisplay: false
+          autoDisplay: false,
+          multilanguagePage: true
         }, 'google_translate_element');
       }
     </script>

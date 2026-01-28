@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -267,3 +267,57 @@ button:focus-visible {
     }
   }
 }
+
+/* ============================================
+   COMPLETELY HIDE GOOGLE TRANSLATE UI
+   ============================================ */
+
+/* Hide the top bar */
+.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+}
+
+/* Hide the gadget/widget */
+#google_translate_element,
+.goog-te-gadget,
+.skiptranslate,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-te-menu-frame,
+.goog-te-spinner-pos {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+/* Prevent body from being pushed down */
+body {
+  top: 0 !important;
+  position: relative !important;
+}
+
+html.translated-ltr body,
+html.translated-rtl body {
+  top: 0 !important;
+}
+
+/* Hide Google branding */
+.goog-logo-link,
+.goog-te-gadget span,
+.goog-te-gadget-simple span {
+  display: none !important;
+}
+
+/* Remove any iframe borders */
+iframe.goog-te-menu-frame,
+iframe.goog-te-banner-frame {
+  display: none !important;
+}
+
