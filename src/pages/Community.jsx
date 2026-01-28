@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { isAuthenticated as checkAuthStatus, me as getCurrentUser, redirectToLogin } from "@/api/auth";
 import { ForumPost, ForumReply } from "@/api/entities";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -59,7 +59,7 @@ export default function Community() {
     }
   };
 
-  // Mapping des catégories de la base vers les catégories affichées
+  // Mapping des catÃ©gories de la base vers les catÃ©gories affichÃ©es
   const categoryMapping = {
     'culture_codes_sociaux': 'vie_quotidienne',
     'insertion_professionnelle': 'emploi',
@@ -72,7 +72,7 @@ export default function Community() {
     'autre': 'autre'
   };
 
-  // Fonction pour obtenir la catégorie normalisée
+  // Fonction pour obtenir la catÃ©gorie normalisÃ©e
   const getNormalizedCategory = (category) => {
     return categoryMapping[category] || 'autre';
   };
@@ -82,47 +82,46 @@ export default function Community() {
     queryFn: async () => {
       try {
         let postsList = [];
-        console.log('[Forum] 🚀 Début du chargement des posts, categoryFilter:', categoryFilter);
+        console.log('[Forum] ðŸš€ DÃ©but du chargement des posts, categoryFilter:', categoryFilter);
         
-        // FORCER le rafraîchissement en invalidant le cache d'abord
-        queryClient.removeQueries({ queryKey: ['forum-posts'] });
+        // Note: Ne PAS appeler removeQueries ici car cela cause une boucle infinie
         
         if (categoryFilter === "all") {
           // Utiliser filter avec un objet vide pour obtenir tous les posts
-          // Spécifier explicitement une limite élevée pour être sûr de récupérer tous les posts
-          console.log('[Forum] 📡 Appel ForumPost.filter({}, "-created_date", 1000)');
+          // SpÃ©cifier explicitement une limite Ã©levÃ©e pour Ãªtre sÃ»r de rÃ©cupÃ©rer tous les posts
+          console.log('[Forum] ðŸ“¡ Appel ForumPost.filter({}, "-created_date", 1000)');
           try {
             postsList = await ForumPost.filter({}, '-created_date', 1000);
-            console.log(`[Forum] ✅ Récupéré ${postsList?.length || 0} posts depuis la base (filtre: all)`);
+            console.log(`[Forum] âœ… RÃ©cupÃ©rÃ© ${postsList?.length || 0} posts depuis la base (filtre: all)`);
             if (postsList && postsList.length > 0) {
-              console.log('[Forum] 📋 IDs récupérés:', postsList.map(p => p.id));
-              console.log('[Forum] 📋 Titres récupérés:', postsList.map(p => p.title));
+              console.log('[Forum] ðŸ“‹ IDs rÃ©cupÃ©rÃ©s:', postsList.map(p => p.id));
+              console.log('[Forum] ðŸ“‹ Titres rÃ©cupÃ©rÃ©s:', postsList.map(p => p.title));
             } else {
-              console.error('[Forum] ❌ ERREUR: Aucun post récupéré alors qu\'il devrait y en avoir 11 !');
+              console.error('[Forum] âŒ ERREUR: Aucun post rÃ©cupÃ©rÃ© alors qu\'il devrait y en avoir 11 !');
             }
           } catch (err) {
-            console.error('[Forum] ❌ Erreur lors de la récupération des posts:', err);
+            console.error('[Forum] âŒ Erreur lors de la rÃ©cupÃ©ration des posts:', err);
             throw err;
           }
         } else {
-          console.log('[Forum] 📡 Appel ForumPost.filter avec catégorie:', categoryFilter);
+          console.log('[Forum] ðŸ“¡ Appel ForumPost.filter avec catÃ©gorie:', categoryFilter);
           postsList = await ForumPost.filter({ category: categoryFilter }, '-created_date', 1000);
-          console.log(`[Forum] ✅ Récupéré ${postsList?.length || 0} posts depuis la base (filtre: ${categoryFilter})`);
+          console.log(`[Forum] âœ… RÃ©cupÃ©rÃ© ${postsList?.length || 0} posts depuis la base (filtre: ${categoryFilter})`);
           if (postsList && postsList.length > 0) {
-            console.log('[Forum] 📋 IDs récupérés:', postsList.map(p => p.id));
+            console.log('[Forum] ðŸ“‹ IDs rÃ©cupÃ©rÃ©s:', postsList.map(p => p.id));
           }
         }
         
         // Filtrer les posts avec des IDs invalides (IDs mock/test)
-        // Normaliser les catégories pour l'affichage
+        // Normaliser les catÃ©gories pour l'affichage
         const validPosts = (postsList || []).filter(post => {
           if (!post || !post.id) {
-            console.warn('[Forum] Post sans ID détecté:', post);
+            console.warn('[Forum] Post sans ID dÃ©tectÃ©:', post);
             return false;
           }
           const isMock = isMockId(post.id);
           if (isMock) {
-            console.warn('[Forum] Post avec ID mock détecté et filtré:', post.id, post.title);
+            console.warn('[Forum] Post avec ID mock dÃ©tectÃ© et filtrÃ©:', post.id, post.title);
             return false;
           }
           return true;
@@ -131,21 +130,21 @@ export default function Community() {
           normalizedCategory: getNormalizedCategory(post.category || 'autre')
         }));
         
-        console.log(`[Forum] ${validPosts.length} posts valides après filtrage des IDs mock`, validPosts.map(p => ({ id: p.id, title: p.title, category: p.category, normalizedCategory: p.normalizedCategory })));
+        console.log(`[Forum] ${validPosts.length} posts valides aprÃ¨s filtrage des IDs mock`, validPosts.map(p => ({ id: p.id, title: p.title, category: p.category, normalizedCategory: p.normalizedCategory })));
         
-        // Si un filtre de catégorie est actif (autre que "all"), filtrer par catégorie normalisée
+        // Si un filtre de catÃ©gorie est actif (autre que "all"), filtrer par catÃ©gorie normalisÃ©e
         if (categoryFilter !== "all") {
           const filtered = validPosts.filter(post => post.normalizedCategory === categoryFilter);
-          console.log(`[Forum] ${filtered.length} posts après filtrage par catégorie normalisée (${categoryFilter})`, filtered.map(p => ({ id: p.id, title: p.title })));
+          console.log(`[Forum] ${filtered.length} posts aprÃ¨s filtrage par catÃ©gorie normalisÃ©e (${categoryFilter})`, filtered.map(p => ({ id: p.id, title: p.title })));
           return filtered;
         }
         
-        console.log(`[Forum] ✅ Retour de ${validPosts.length} posts (toutes catégories)`);
+        console.log(`[Forum] âœ… Retour de ${validPosts.length} posts (toutes catÃ©gories)`);
         if (validPosts.length !== 11 && categoryFilter === "all") {
-          console.error(`[Forum] ⚠️ ATTENTION: ${validPosts.length} posts au lieu de 11 attendus !`);
-          console.error(`[Forum] Posts manquants ? Vérifiez les logs ci-dessus.`);
+          console.error(`[Forum] âš ï¸ ATTENTION: ${validPosts.length} posts au lieu de 11 attendus !`);
+          console.error(`[Forum] Posts manquants ? VÃ©rifiez les logs ci-dessus.`);
         }
-        console.log(`[Forum] 📋 Liste finale des posts:`, validPosts.map(p => ({ id: p.id, title: p.title, category: p.category })));
+        console.log(`[Forum] ðŸ“‹ Liste finale des posts:`, validPosts.map(p => ({ id: p.id, title: p.title, category: p.category })));
         return validPosts;
       } catch (error) {
         logger.error("Erreur lors du chargement des posts:", error);
@@ -162,27 +161,27 @@ export default function Community() {
       if (!selectedPost?.id) return [];
       const repliesList = await ForumReply.filter({ post_id: selectedPost.id }, 'created_date');
       
-      // Filtrer les réponses avec des IDs invalides (IDs mock/test)
+      // Filtrer les rÃ©ponses avec des IDs invalides (IDs mock/test)
       const validReplies = (repliesList || []).filter(reply => {
         if (!reply || !reply.id) return false;
         // Exclure les IDs mock/test
         if (isMockId(reply.id)) {
-          logger.warn('Réponse avec ID mock détectée et filtrée:', reply.id);
+          logger.warn('RÃ©ponse avec ID mock dÃ©tectÃ©e et filtrÃ©e:', reply.id);
           return false;
         }
         return true;
       });
       
-      // Mettre à jour le compteur de réponses avec le nombre réel si nécessaire
+      // Mettre Ã  jour le compteur de rÃ©ponses avec le nombre rÃ©el si nÃ©cessaire
       const actualCount = validReplies.length;
       if (actualCount !== (selectedPost.replies_count || 0)) {
-        // Ne mettre à jour que si l'ID du post est valide
+        // Ne mettre Ã  jour que si l'ID du post est valide
         if (selectedPost.id && !isMockId(selectedPost.id)) {
           try {
             await ForumPost.update(selectedPost.id, {
               replies_count: actualCount
             });
-            // Mettre à jour selectedPost localement
+            // Mettre Ã  jour selectedPost localement
             setSelectedPost(prev => prev ? {
               ...prev,
               replies_count: actualCount
@@ -191,11 +190,11 @@ export default function Community() {
           } catch (error) {
             // Ne logger que si ce n'est pas un ID mock
             if (!isMockId(selectedPost.id)) {
-              logger.error('Erreur lors de la mise à jour du compteur de réponses:', error);
+              logger.error('Erreur lors de la mise Ã  jour du compteur de rÃ©ponses:', error);
             }
           }
         } else {
-          // Si l'ID est mock, juste mettre à jour localement sans appeler la DB
+          // Si l'ID est mock, juste mettre Ã  jour localement sans appeler la DB
           setSelectedPost(prev => prev ? {
             ...prev,
             replies_count: actualCount
@@ -236,12 +235,12 @@ export default function Community() {
       likes_count: 0
     }),
     onSuccess: async () => {
-      // Calculer le nombre réel de réponses depuis la base de données
+      // Calculer le nombre rÃ©el de rÃ©ponses depuis la base de donnÃ©es
       const allReplies = await ForumReply.filter({ post_id: selectedPost.id });
       const validReplies = (allReplies || []).filter(reply => reply && reply.id && !isMockId(reply.id));
       const actualRepliesCount = validReplies.length;
       
-      // Mettre à jour le compteur avec le nombre réel seulement si l'ID est valide
+      // Mettre Ã  jour le compteur avec le nombre rÃ©el seulement si l'ID est valide
       if (selectedPost.id && !isMockId(selectedPost.id)) {
         try {
           await ForumPost.update(selectedPost.id, {
@@ -250,12 +249,12 @@ export default function Community() {
         } catch (error) {
           // Ne logger que si ce n'est pas un ID mock
           if (!isMockId(selectedPost.id)) {
-            logger.error('Erreur lors de la mise à jour du compteur de réponses:', error);
+            logger.error('Erreur lors de la mise Ã  jour du compteur de rÃ©ponses:', error);
           }
         }
       }
       
-      // Mettre à jour selectedPost pour refléter le nouveau compteur
+      // Mettre Ã  jour selectedPost pour reflÃ©ter le nouveau compteur
       setSelectedPost(prev => ({
         ...prev,
         replies_count: actualRepliesCount
@@ -275,14 +274,14 @@ export default function Community() {
         throw new Error('Post invalide');
       }
       
-      // Si c'est un ID mock, retourner silencieusement sans mettre à jour la DB
+      // Si c'est un ID mock, retourner silencieusement sans mettre Ã  jour la DB
       if (isMockId(post.id)) {
-        logger.debug('ID mock détecté, mise à jour locale uniquement:', post.id);
+        logger.debug('ID mock dÃ©tectÃ©, mise Ã  jour locale uniquement:', post.id);
         const newViewsCount = (post.views_count || 0) + 1;
         return { newViewsCount, postId: post.id, isMock: true };
       }
       
-      // Incrémenter le compteur de vues
+      // IncrÃ©menter le compteur de vues
       const newViewsCount = (post.views_count || 0) + 1;
       
       try {
@@ -290,17 +289,17 @@ export default function Community() {
           views_count: newViewsCount
         });
         
-        // Si la mise à jour retourne null (ID mock ou inexistant), continuer avec l'UI optimiste
+        // Si la mise Ã  jour retourne null (ID mock ou inexistant), continuer avec l'UI optimiste
         if (!updatedData) {
-          logger.debug(`Aucune ligne mise à jour pour le post ${post.id}, mise à jour locale uniquement`);
+          logger.debug(`Aucune ligne mise Ã  jour pour le post ${post.id}, mise Ã  jour locale uniquement`);
           return { newViewsCount, postId: post.id };
         }
         
         return { newViewsCount, postId: post.id };
       } catch (error) {
-        // Si l'erreur est due à un ID mock, ne pas la propager
+        // Si l'erreur est due Ã  un ID mock, ne pas la propager
         if (isMockId(post.id)) {
-          logger.debug('Erreur ignorée pour ID mock:', post.id);
+          logger.debug('Erreur ignorÃ©e pour ID mock:', post.id);
           return { newViewsCount, postId: post.id };
         }
         logger.error('Erreur dans incrementViewsMutation:', error);
@@ -308,12 +307,12 @@ export default function Community() {
       }
     },
     onSuccess: ({ newViewsCount, postId }) => {
-      // Mettre à jour selectedPost pour refléter le nouveau compteur
+      // Mettre Ã  jour selectedPost pour reflÃ©ter le nouveau compteur
       setSelectedPost(prev => prev && prev.id === postId ? {
         ...prev,
         views_count: newViewsCount
       } : prev);
-      // Mettre à jour la liste des posts
+      // Mettre Ã  jour la liste des posts
       queryClient.setQueryData(['forum-posts', categoryFilter], (oldData) => {
         if (!oldData) return oldData;
         return oldData.map(post => 
@@ -330,18 +329,18 @@ export default function Community() {
     mutationFn: async (reply) => {
       // Valider que l'ID existe et est valide
       if (!reply || !reply.id) {
-        logger.error('Réponse invalide:', reply);
-        throw new Error('Réponse invalide');
+        logger.error('RÃ©ponse invalide:', reply);
+        throw new Error('RÃ©ponse invalide');
       }
       
-      // Si c'est un ID mock, retourner silencieusement sans mettre à jour la DB
+      // Si c'est un ID mock, retourner silencieusement sans mettre Ã  jour la DB
       if (isMockId(reply.id)) {
-        logger.debug('ID mock détecté, mise à jour locale uniquement:', reply.id);
+        logger.debug('ID mock dÃ©tectÃ©, mise Ã  jour locale uniquement:', reply.id);
         const newLikesCount = (reply.likes_count || 0) + 1;
         return { newLikesCount, replyId: reply.id, isMock: true };
       }
       
-      // Incrémenter le compteur de likes
+      // IncrÃ©menter le compteur de likes
       const newLikesCount = (reply.likes_count || 0) + 1;
       
       try {
@@ -349,17 +348,17 @@ export default function Community() {
           likes_count: newLikesCount
         });
         
-        // Si la mise à jour retourne null (ID mock ou inexistant), continuer avec l'UI optimiste
+        // Si la mise Ã  jour retourne null (ID mock ou inexistant), continuer avec l'UI optimiste
         if (!updatedData) {
-          logger.debug(`Aucune ligne mise à jour pour la réponse ${reply.id}, mise à jour locale uniquement`);
+          logger.debug(`Aucune ligne mise Ã  jour pour la rÃ©ponse ${reply.id}, mise Ã  jour locale uniquement`);
           return { newLikesCount, replyId: reply.id };
         }
         
         return { newLikesCount, replyId: reply.id, data: updatedData };
       } catch (error) {
-        // Si l'erreur est due à un ID mock, ne pas la propager
+        // Si l'erreur est due Ã  un ID mock, ne pas la propager
         if (isMockId(reply.id)) {
-          logger.debug('Erreur ignorée pour ID mock:', reply.id);
+          logger.debug('Erreur ignorÃ©e pour ID mock:', reply.id);
           return { newLikesCount, replyId: reply.id };
         }
         logger.error('Erreur dans incrementLikesMutation:', error);
@@ -367,7 +366,7 @@ export default function Community() {
       }
     },
     onSuccess: ({ newLikesCount, replyId }) => {
-      // Mettre à jour la liste des réponses de manière optimiste
+      // Mettre Ã  jour la liste des rÃ©ponses de maniÃ¨re optimiste
       queryClient.setQueryData(['forum-replies', selectedPost?.id], (oldData) => {
         if (!oldData) return oldData;
         return oldData.map(reply => 
@@ -379,13 +378,13 @@ export default function Community() {
       queryClient.invalidateQueries({ queryKey: ['forum-replies', selectedPost?.id] });
     },
     onError: (error) => {
-      logger.error('Erreur lors de l\'incrémentation des likes:', error);
+      logger.error('Erreur lors de l\'incrÃ©mentation des likes:', error);
     },
   });
 
   const handlePostClick = (post) => {
-    // Incrémenter les vues seulement si ce n'est pas déjà le post sélectionné
-    // Cela évite d'incrémenter plusieurs fois si on clique plusieurs fois sur le même post
+    // IncrÃ©menter les vues seulement si ce n'est pas dÃ©jÃ  le post sÃ©lectionnÃ©
+    // Cela Ã©vite d'incrÃ©menter plusieurs fois si on clique plusieurs fois sur le mÃªme post
     if (!selectedPost || selectedPost.id !== post.id) {
       incrementViewsMutation.mutate(post);
       setSelectedPost(post);
@@ -393,13 +392,13 @@ export default function Community() {
   };
 
   const handleLikeReply = (reply, e) => {
-    e.stopPropagation(); // Empêcher la propagation de l'événement
+    e.stopPropagation(); // EmpÃªcher la propagation de l'Ã©vÃ©nement
     incrementLikesMutation.mutate(reply);
   };
 
   const categoryLabels = {
-    all: "Toutes les catégories",
-    etudes: "Études",
+    all: "Toutes les catÃ©gories",
+    etudes: "Ã‰tudes",
     logement: "Logement",
     emploi: "Emploi",
     vie_quotidienne: "Vie quotidienne",
@@ -429,13 +428,13 @@ export default function Community() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
               <Badge className="mb-4 bg-white/20 text-white border-0 text-sm px-4 py-2">
-                💬 Forum d'entraide
+                ðŸ’¬ Forum d'entraide
               </Badge>
               <h1 className="text-5xl md:text-6xl font-bold mb-4">
-                Communauté FrancePrep
+                CommunautÃ© FrancePrep
               </h1>
               <p className="text-xl text-blue-100 mb-4">
-                Posez vos questions, partagez vos expériences et aidez les autres
+                Posez vos questions, partagez vos expÃ©riences et aidez les autres
               </p>
               <div className="flex items-center gap-6 text-lg">
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full">
@@ -454,9 +453,9 @@ export default function Community() {
                           refetch();
                         }}
                         className="ml-2 text-xs underline opacity-75 hover:opacity-100"
-                        title="Rafraîchir"
+                        title="RafraÃ®chir"
                       >
-                        🔄
+                        ðŸ”„
                       </button>
                     </>
                   )}
@@ -477,7 +476,7 @@ export default function Community() {
                 </DialogTrigger>
                 <DialogContent className="max-w-2xl">
                   <DialogHeader>
-                    <DialogTitle>Créer un nouveau sujet</DialogTitle>
+                    <DialogTitle>CrÃ©er un nouveau sujet</DialogTitle>
                   </DialogHeader>
                   <div className="space-y-4 mt-4">
                     <div>
@@ -487,12 +486,12 @@ export default function Community() {
                       <Input
                         value={newPost.title}
                         onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
-                        placeholder="Décrivez votre question ou sujet..."
+                        placeholder="DÃ©crivez votre question ou sujet..."
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Catégorie
+                        CatÃ©gorie
                       </label>
                       <Select 
                         value={newPost.category} 
@@ -517,7 +516,7 @@ export default function Community() {
                       <Textarea
                         value={newPost.content}
                         onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
-                        placeholder="Expliquez votre situation en détail..."
+                        placeholder="Expliquez votre situation en dÃ©tail..."
                         rows={6}
                       />
                     </div>
@@ -605,7 +604,7 @@ export default function Community() {
                           {post.is_pinned && (
                             <Badge className="bg-orange-500 text-white">
                               <Pin className="w-3 h-3 mr-1" />
-                              Épinglé
+                              Ã‰pinglÃ©
                             </Badge>
                           )}
                           <Badge className={categoryColors[post.normalizedCategory || 'autre'] + " font-medium"}>
@@ -614,7 +613,7 @@ export default function Community() {
                           {post.is_solved && (
                             <Badge className="bg-green-500 text-white">
                               <CheckCircle className="w-3 h-3 mr-1" />
-                              Résolu
+                              RÃ©solu
                             </Badge>
                           )}
                         </div>
@@ -631,7 +630,7 @@ export default function Community() {
                           <div className="flex items-center space-x-2 bg-blue-50 px-3 py-2 rounded-lg">
                             <MessageCircle className="w-4 h-4 text-blue-600" />
                             <span className="font-semibold text-blue-600">{post.replies_count || 0}</span>
-                            <span className="text-gray-600">réponses</span>
+                            <span className="text-gray-600">rÃ©ponses</span>
                           </div>
                           <div className="flex items-center space-x-2 bg-gray-100 px-3 py-2 rounded-lg">
                             <Eye className="w-4 h-4 text-gray-600" />
@@ -669,12 +668,12 @@ export default function Community() {
                     Aucun sujet pour le moment
                   </h3>
                   <p className="text-gray-600 mb-6">
-                    Soyez le premier à poser une question !
+                    Soyez le premier Ã  poser une question !
                   </p>
                   {isAuthenticated && (
                     <Button onClick={() => setShowNewPostDialog(true)}>
                       <Plus className="w-4 h-4 mr-2" />
-                      Créer un sujet
+                      CrÃ©er un sujet
                     </Button>
                   )}
                 </div>
@@ -690,7 +689,7 @@ export default function Community() {
               className="mb-6"
               onClick={() => setSelectedPost(null)}
             >
-              ← Retour aux sujets
+              â† Retour aux sujets
             </Button>
 
             {/* Original Post */}
@@ -703,7 +702,7 @@ export default function Community() {
                   {selectedPost.is_solved && (
                     <Badge className="bg-green-500">
                       <CheckCircle className="w-3 h-3 mr-1" />
-                      Résolu
+                      RÃ©solu
                     </Badge>
                   )}
                 </div>
@@ -739,7 +738,7 @@ export default function Community() {
             <div className="space-y-6 mb-8">
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
                 <MessageSquare className="w-6 h-6 text-blue-600" />
-                {replies.length} réponse{replies.length > 1 ? 's' : ''}
+                {replies.length} rÃ©ponse{replies.length > 1 ? 's' : ''}
               </h2>
               {replies.filter(reply => reply && reply.id && !isMockId(reply.id)).map((reply) => (
                 <Card key={reply.id} className={`border-2 ${reply.is_solution ? 'border-green-200 bg-green-50/30' : 'hover:border-blue-200'} transition-all`}>
@@ -761,7 +760,7 @@ export default function Community() {
                           {reply.is_solution && (
                             <Badge className="bg-green-500 text-white">
                               <CheckCircle className="w-3 h-3 mr-1" />
-                              ✓ Solution acceptée
+                              âœ“ Solution acceptÃ©e
                             </Badge>
                           )}
                         </div>
@@ -774,7 +773,7 @@ export default function Community() {
                             disabled={incrementLikesMutation.isPending}
                             className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
                           >
-                            <span>👍</span>
+                            <span>ðŸ‘</span>
                             <span className="font-medium">{reply.likes_count || 0}</span>
                           </button>
                         </div>
@@ -790,12 +789,12 @@ export default function Community() {
               <Card>
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                    Votre réponse
+                    Votre rÃ©ponse
                   </h3>
                   <Textarea
                     value={replyContent}
                     onChange={(e) => setReplyContent(e.target.value)}
-                    placeholder="Partagez votre expérience ou vos conseils..."
+                    placeholder="Partagez votre expÃ©rience ou vos conseils..."
                     rows={4}
                     className="mb-4"
                   />
@@ -805,7 +804,7 @@ export default function Community() {
                     disabled={!replyContent.trim() || createReplyMutation.isPending}
                   >
                     <Send className="w-4 h-4 mr-2" />
-                    {createReplyMutation.isPending ? "Envoi..." : "Envoyer ma réponse"}
+                    {createReplyMutation.isPending ? "Envoi..." : "Envoyer ma rÃ©ponse"}
                   </Button>
                 </CardContent>
               </Card>
@@ -813,7 +812,7 @@ export default function Community() {
               <Card>
                 <CardContent className="p-6 text-center">
                   <p className="text-gray-600 mb-4">
-                    Connectez-vous pour participer à la discussion
+                    Connectez-vous pour participer Ã  la discussion
                   </p>
                   <Button onClick={() => redirectToLogin(window.location.href)}>
                     Se connecter
