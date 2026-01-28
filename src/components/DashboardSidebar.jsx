@@ -11,12 +11,9 @@ import { Progress } from "@/components/ui/progress";
 import { 
   Home, 
   BookOpen, 
-  Trophy, 
-  BarChart3, 
   MessageSquare, 
   Users, 
   User, 
-  CreditCard,
   Zap,
   ChevronLeft,
   ChevronRight

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, Suspense, lazy } from "react";
+﻿import React, { useState, useEffect, useMemo, Suspense, lazy } from "react";
 import Layout from "./Layout.jsx";
 import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ const CriticalThinking = lazy(() => import("./CriticalThinking"));
 const StudentAssessment = lazy(() => import("./StudentAssessment"));
 const ProgressTracker = lazy(() => import("./ProgressTracker"));
 const Profile = lazy(() => import("./Profile"));
-const Certificates = lazy(() => import("./Certificates"));
+// const Certificates = lazy(() => import("./Certificates")); // Disabled
 const CourseDetail = lazy(() => import("./CourseDetail"));
 const Learn = lazy(() => import("./Learn"));
 const Teachers = lazy(() => import("./Teachers"));
@@ -73,7 +73,7 @@ const PAGES = {
     
     Profile: Profile,
     
-    Certificates: Certificates,
+    // Certificates: Certificates, // Disabled
     
     Home: Home,
     
@@ -196,7 +196,7 @@ function PagesContent() {
                     <Route path="/studentassessment" element={<StudentAssessment />} />
                     <Route path="/progresstracker" element={<ProgressTracker />} />
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/certificates" element={<Certificates />} />
+                    {/* <Route path="/certificates" element={<Certificates />} /> */}
                     <Route path="/home" element={<Home />} />
                     <Route path="/coursedetail" element={<CourseDetail />} />
                     <Route path="/learn" element={<Learn />} />
@@ -227,7 +227,7 @@ function PagesContent() {
                 <Route path="/StudentAssessment" element={<Navigate to="/studentassessment" replace />} />
                 <Route path="/ProgressTracker" element={<Navigate to="/progresstracker" replace />} />
                 <Route path="/Profile" element={<Navigate to="/profile" replace />} />
-                <Route path="/Certificates" element={<Navigate to="/certificates" replace />} />
+                {/* <Route path="/Certificates" element={<Navigate to="/certificates" replace />} /> */}
                 <Route path="/Home" element={<Navigate to="/home" replace />} />
                 <Route path="/CourseDetail" element={<Navigate to="/coursedetail" replace />} />
                 <Route path="/Learn" element={<Navigate to="/learn" replace />} />
