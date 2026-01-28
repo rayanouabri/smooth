@@ -13,6 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import LanguageSelector from "@/components/LanguageSelector";
 
 export default function Layout({ children, currentPageName }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -131,8 +132,11 @@ export default function Layout({ children, currentPageName }) {
               ))}
             </div>
 
-            {/* Right Section: Auth */}
+            {/* Right Section: Language + Auth */}
             <div className="flex items-center space-x-1 sm:space-x-1.5 md:space-x-2 flex-shrink-0 ml-auto">
+              {/* Language Selector */}
+              <LanguageSelector />
+              
               {/* Auth Buttons */}
               {isAuthenticated ? (
                 <>
