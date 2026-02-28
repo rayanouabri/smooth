@@ -4,21 +4,110 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
-    <meta name="description" content="FrancePrepAcademy - Plateforme d'apprentissage pour l'int&eacute;gration des &eacute;tudiants internationaux en France" />
+
+    <!-- SEO Primary -->
+    <title>FrancePrepAcademy - Réussissez votre vie en France</title>
+    <meta name="description" content="FrancePrepAcademy : la plateforme d'apprentissage n°1 pour les étudiants internationaux en France. Cours en ligne, professeurs privés, assistant IA, et accompagnement personnalisé pour réussir vos études et votre intégration en France." />
+    <meta name="keywords" content="étudiant international France, cours en ligne France, apprendre français, intégration France, université France, visa étudiant France, accompagnement étudiant, formation en ligne, préparation examens France" />
+    <meta name="author" content="FrancePrepAcademy" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://franceprepacademy.fr/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://franceprepacademy.fr/" />
+    <meta property="og:site_name" content="FrancePrepAcademy" />
+    <meta property="og:title" content="FrancePrepAcademy - Réussissez votre vie en France" />
+    <meta property="og:description" content="La plateforme d'apprentissage n°1 pour les étudiants internationaux en France. Cours, tuteurs, assistant IA et accompagnement complet pour réussir en France." />
+    <meta property="og:image" content="https://franceprepacademy.fr/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="FrancePrepAcademy - Plateforme d'apprentissage pour étudiants internationaux" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_AR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@FrancePrepAcad" />
+    <meta name="twitter:title" content="FrancePrepAcademy - Réussissez votre vie en France" />
+    <meta name="twitter:description" content="La plateforme d'apprentissage n°1 pour les étudiants internationaux en France. Cours, tuteurs, assistant IA et accompagnement complet." />
+    <meta name="twitter:image" content="https://franceprepacademy.fr/og-image.png" />
+    <meta name="twitter:image:alt" content="FrancePrepAcademy - Plateforme d'apprentissage" />
+
+    <!-- Geo / Location -->
+    <meta name="geo.region" content="FR" />
+    <meta name="geo.placename" content="France" />
+
+    <!-- PWA / Mobile -->
     <meta name="theme-color" content="#06b6d4" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="FrancePrepAcademy" />
+    <meta name="application-name" content="FrancePrepAcademy" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="HandheldFriendly" content="true" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>FrancePrepAcademy - R&eacute;ussissez votre vie en France</title>
+
+    <!-- Preconnect pour performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- JSON-LD Organization + WebSite (base) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://franceprepacademy.fr/#organization",
+          "name": "FrancePrepAcademy",
+          "url": "https://franceprepacademy.fr",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://franceprepacademy.fr/favicon.svg",
+            "width": 512,
+            "height": 512
+          },
+          "description": "Plateforme d'apprentissage et d'accompagnement pour les étudiants internationaux en France.",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "url": "https://franceprepacademy.fr/contact",
+            "availableLanguage": ["French", "English", "Arabic"]
+          },
+          "sameAs": []
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://franceprepacademy.fr/#website",
+          "url": "https://franceprepacademy.fr",
+          "name": "FrancePrepAcademy",
+          "description": "Plateforme d'apprentissage pour étudiants internationaux en France",
+          "publisher": {
+            "@id": "https://franceprepacademy.fr/#organization"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://franceprepacademy.fr/courses?search={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          },
+          "inLanguage": ["fr", "en", "ar", "es", "zh", "pt", "ru", "de", "it"]
+        }
+      ]
+    }
+    </script>
+
     <style>
       * { box-sizing: border-box; }
       html { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
       body { overflow-x: hidden; width: 100%; position: relative; }
       img, video, iframe { max-width: 100%; height: auto; }
-      
+
       /* HIDE ALL Google Translate UI elements */
       .goog-te-banner-frame,
       .skiptranslate,
@@ -36,17 +125,17 @@
         width: 0 !important;
         opacity: 0 !important;
       }
-      
+
       body {
         top: 0 !important;
         position: relative !important;
       }
-      
+
       html.translated-ltr body,
       html.translated-rtl body {
         top: 0 !important;
       }
-      
+
       .goog-logo-link,
       .goog-te-gadget span {
         display: none !important;
@@ -55,7 +144,7 @@
   </head>
   <body>
     <div id="root"></div>
-    
+
     <!-- Google Translate (completely hidden, controlled by LanguageSelector) -->
     <div id="google_translate_element" style="display:none !important; visibility:hidden !important; height:0 !important; width:0 !important;"></div>
     <script type="text/javascript">
@@ -68,7 +157,7 @@
       }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

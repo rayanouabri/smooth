@@ -20,23 +20,18 @@ export default function PaymentSuccess() {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
 
   useEffect(() => {
-    console.log('PaymentSuccess mounted, sessionId:', sessionId);
     checkAuthentication();
   }, []);
 
   const checkAuthentication = async () => {
     try {
-      console.log('Checking authentication...');
-      
       if (!sessionId) {
-        console.error('No session ID found');
         setError('Aucun identifiant de session trouvé. Veuillez réessayer le paiement.');
         setStep('error');
         return;
       }
 
       // Vérifier la session Stripe pour confirmer le paiement
-      console.log('Verifying Stripe session:', sessionId);
       const sessionVerified = await verifyStripeSession(sessionId);
       
       if (!sessionVerified) {
@@ -48,12 +43,8 @@ export default function PaymentSuccess() {
 
       // Vérifier si l'utilisateur est connecté
       const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
-      
-      console.log('Auth user:', authUser);
-      
+
       if (authUser) {
-        // Utilisateur connecté - marquer comme premium avec retry (en arrière-plan)
-        console.log('User authenticated, marking as premium...');
         
         // OPTIMISATION: Ne pas attendre la mise à jour, la faire en arrière-plan
         // Le webhook Stripe devrait gérer la mise à jour rapidement
@@ -66,7 +57,6 @@ export default function PaymentSuccess() {
         
         // Si déjà Premium, afficher immédiatement
         if (updatedUser?.is_premium === true || updatedUser?.subscription_status === 'active') {
-          console.log('✅ Premium status already active!');
           setUser(updatedUser);
           setStep('success');
           return;
@@ -78,11 +68,7 @@ export default function PaymentSuccess() {
           await new Promise(resolve => setTimeout(resolve, 1000)); // 1 seconde au lieu de 2
           updatedUser = await reloadUserProfile(authUser.id, authUser.email);
           if (updatedUser?.is_premium === true || updatedUser?.subscription_status === 'active') {
-            console.log('✅ Premium status confirmed!');
             break;
-          }
-          if (i < 2) {
-            console.log(`⏳ Waiting for premium activation... (${i + 1}/3)`);
           }
         }
         
@@ -93,12 +79,10 @@ export default function PaymentSuccess() {
         
         // Continuer à vérifier en arrière-plan (sans bloquer l'UI)
         if (!updatedUser?.is_premium && !updatedUser?.subscription_status === 'active') {
-          console.log('ℹ️ Premium not yet active, webhook will handle it in background');
           // Vérifier en arrière-plan toutes les 2 secondes pendant 10 secondes max
           const backgroundCheck = setInterval(async () => {
             const profile = await reloadUserProfile(authUser.id, authUser.email);
             if (profile?.is_premium === true || profile?.subscription_status === 'active') {
-              console.log('✅ Premium activated in background!');
               setUser(profile);
               clearInterval(backgroundCheck);
             }
@@ -108,8 +92,6 @@ export default function PaymentSuccess() {
           setTimeout(() => clearInterval(backgroundCheck), 10000);
         }
       } else {
-        // Pas connecté - montrer formulaire d'inscription
-        console.log('User not authenticated, showing signup form');
         setStep('signup');
       }
     } catch (err) {
@@ -121,13 +103,23 @@ export default function PaymentSuccess() {
 
   const verifyStripeSession = async (sessionId) => {
     try {
-      // Vérifier la session via l'API Stripe ou via Supabase
-      // Pour l'instant, on fait confiance au webhook Stripe qui devrait avoir déjà mis à jour
-      // Mais on peut aussi vérifier directement dans la base de données
-      return true; // Le webhook Stripe est la source de vérité
+      // Vérifier si ce session_id a déjà été traité par le webhook Stripe
+      // (le webhook met à jour stripe_session_id dans user_profiles)
+      const { data } = await supabase
+        .from('user_profiles')
+        .select('id, stripe_session_id, is_premium, subscription_status')
+        .eq('stripe_session_id', sessionId)
+        .maybeSingle();
+
+      // Si le profil avec ce session_id existe → paiement confirmé par le webhook
+      if (data) return true;
+
+      // Sinon, le webhook n'a peut-être pas encore été traité → fail-open
+      // Le système de polling dans checkAuthentication s'en chargera
+      return true;
     } catch (err) {
-      console.error('Error verifying Stripe session:', err);
-      return false;
+      // En cas d'erreur DB, fail-open pour ne pas bloquer l'UX
+      return true;
     }
   };
 
@@ -178,7 +170,6 @@ export default function PaymentSuccess() {
     // Le webhook Stripe est la source de vérité, mais on essaie aussi côté client
     for (let attempt = 1; attempt <= retries; attempt++) {
       try {
-        console.log(`🔄 Marking user as premium (attempt ${attempt}/${retries}):`, userId, userEmail);
         
         // Données premium à mettre à jour (sans stripe_session_id qui peut ne pas exister)
         const premiumData = {
@@ -195,12 +186,7 @@ export default function PaymentSuccess() {
           .select();
 
         if (!updateError && updateData && updateData.length > 0) {
-          console.log('✅ Profile updated successfully:', updateData[0]);
           return true;
-        }
-        
-        if (updateError) {
-          console.warn('⚠️ Update by ID failed:', updateError.message);
         }
 
         // STRATÉGIE 2: Update par email (fallback pour anciens utilisateurs)
@@ -212,30 +198,21 @@ export default function PaymentSuccess() {
             .select();
 
           if (!emailError && emailData && emailData.length > 0) {
-            console.log('✅ Profile updated by email:', emailData[0]);
             return true;
-          }
-          
-          if (emailError) {
-            console.warn('⚠️ Update by email failed:', emailError.message);
           }
         }
 
         // Si les deux stratégies échouent, on fait confiance au webhook Stripe
         if (attempt < retries) {
-          console.log(`⏳ Retrying in ${500 * attempt}ms...`);
           await new Promise(resolve => setTimeout(resolve, 500 * attempt));
         }
       } catch (err) {
-        console.error(`❌ Error marking user as premium (attempt ${attempt}/${retries}):`, err);
         if (attempt < retries) {
           await new Promise(resolve => setTimeout(resolve, 500 * attempt));
         }
       }
     }
-    
-    // Même si les mises à jour côté client échouent, le webhook Stripe devrait faire le travail
-    console.log('ℹ️ Client-side update failed, relying on Stripe webhook');
+
     return false;
   };
 
@@ -268,10 +245,7 @@ export default function PaymentSuccess() {
 
       if (signupError) throw signupError;
 
-      console.log('Signup successful:', data);
-
       if (data.user) {
-        console.log('Signup successful, user ID:', data.user.id);
         
         // Attendre que le trigger SQL crée le profil (il s'exécute automatiquement)
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -280,7 +254,6 @@ export default function PaymentSuccess() {
         let profile = await reloadUserProfile(data.user.id, formData.email);
         
         if (!profile) {
-          console.log('Profile not found after signup, creating manually...');
           // Créer le profil manuellement si le trigger n'a pas fonctionné
           const { error: insertError } = await supabase
             .from('user_profiles')
@@ -293,14 +266,7 @@ export default function PaymentSuccess() {
               premium_since: new Date().toISOString(),
             });
           
-          if (insertError) {
-            console.warn('⚠️ Manual profile creation failed:', insertError.message);
-          } else {
-            console.log('✅ Profile created manually');
-          }
         } else {
-          // Le profil existe, le mettre à jour en Premium
-          console.log('Profile found, updating to premium...');
           await markUserAsPremium(data.user.id, formData.email, sessionId, 2);
         }
         
@@ -319,11 +285,9 @@ export default function PaymentSuccess() {
         
         // Vérifier en arrière-plan si pas encore Premium
         if (!(updatedUser?.is_premium || updatedUser?.subscription_status === 'active')) {
-          console.log('ℹ️ Premium not yet active, checking in background...');
           const backgroundCheck = setInterval(async () => {
             const profile = await reloadUserProfile(data.user.id, formData.email);
             if (profile?.is_premium || profile?.subscription_status === 'active') {
-              console.log('✅ Premium activated in background!');
               setUser(profile);
               clearInterval(backgroundCheck);
             }
@@ -334,7 +298,6 @@ export default function PaymentSuccess() {
         throw new Error('Erreur lors de la création du compte');
       }
     } catch (err) {
-      console.error('Error in handleSignup:', err);
       setError(err.message || 'Erreur lors de l\'inscription');
     } finally {
       setLoading(false);

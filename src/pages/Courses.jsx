@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Course, Lesson } from "@/api/entities";
 import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "@/contexts/LanguageContext";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { 
@@ -192,6 +193,18 @@ export default function Courses() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <SEO
+        title="Cours en ligne pour étudiants internationaux"
+        description="Découvrez tous nos cours en ligne pour réussir votre intégration en France : français, culture française, administration, emploi, logement et bien plus encore."
+        canonical="/courses"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Cours FrancePrepAcademy",
+          "description": "Catalogue de cours en ligne pour étudiants internationaux en France",
+          "url": "https://franceprepacademy.fr/courses"
+        }}
+      />
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 text-white py-24 overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200')] opacity-10 bg-cover bg-center"></div>

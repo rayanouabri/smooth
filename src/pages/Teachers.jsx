@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import SEO from "@/components/SEO";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -354,6 +355,22 @@ ${formData.needs}
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <SEO
+        title="Professeurs & Cours Particuliers"
+        description="Trouvez votre professeur particulier sur FrancePrepAcademy. Nos tuteurs certifiés accompagnent les étudiants internationaux en France : français, mathématiques, sciences, préparation aux concours et bien plus."
+        canonical="/teachers"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Cours particuliers FrancePrepAcademy",
+          "description": "Service de mise en relation avec des professeurs particuliers pour étudiants internationaux en France",
+          "provider": {
+            "@type": "Organization",
+            "name": "FrancePrepAcademy",
+            "url": "https://franceprepacademy.fr"
+          }
+        }}
+      />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">

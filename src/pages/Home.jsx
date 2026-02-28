@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import SEO from "@/components/SEO";
 import { isAuthenticated as checkAuthStatus, redirectToLogin } from "@/api/auth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -114,6 +115,25 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Réussissez votre vie en France"
+        description="FrancePrepAcademy : la plateforme n°1 pour les étudiants internationaux en France. Cours en ligne, professeurs privés, assistant IA Sophie, et accompagnement complet pour réussir vos études et votre intégration en France."
+        canonical="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "EducationalOrganization",
+          "name": "FrancePrepAcademy",
+          "url": "https://franceprepacademy.fr",
+          "description": "Plateforme d'apprentissage et d'accompagnement pour les étudiants internationaux en France.",
+          "offers": {
+            "@type": "Offer",
+            "name": "Abonnement Premium",
+            "priceCurrency": "EUR",
+            "price": "24.90",
+            "url": "https://franceprepacademy.fr/pricing"
+          }
+        }}
+      />
       {/* Hero Section - Design moderne et élégant */}
       <section className="relative min-h-screen flex items-start justify-center pt-12 pb-4 bg-gradient-to-b from-white via-indigo-50/30 to-white overflow-hidden">
         {/* Décoration moderne */}

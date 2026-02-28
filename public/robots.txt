@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+
+# Pages publiques indexables
+Allow: /
+Allow: /courses
+Allow: /pricing
+Allow: /teachers
+Allow: /community
+Allow: /contact
+Allow: /cgu
+Allow: /cgv
+Allow: /privacypolicy
+
+# Pages privées - ne pas indexer
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /learn
+Disallow: /paymentsuccess
+Disallow: /admin
+Disallow: /admincourses
+Disallow: /auth/
+Disallow: /reset-password
+Disallow: /api/
+
+# Éviter les URLs avec paramètres de requête sensibles
+Disallow: /*?*courseId=
+Disallow: /*?*lessonId=
+
+# Sitemap
+Sitemap: https://franceprepacademy.fr/sitemap.xml
