@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { isAuthenticated as checkAuthStatus, me as getCurrentUser, redirectToLogin } from "@/api/auth";
 import { ForumPost, ForumReply } from "@/api/entities";
+import SEO from "@/components/SEO";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -380,6 +381,11 @@ export default function Community() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+      <SEO
+        title="Communauté des étudiants internationaux"
+        description="Rejoignez la communauté FrancePrepAcademy : forum d'entraide, partage d'expériences et conseils entre étudiants internationaux vivant en France. Posez vos questions et aidez les autres!"
+        canonical="/community"
+      />
       {/* Header */}
       <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">

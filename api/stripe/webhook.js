@@ -10,10 +10,7 @@
  */
 
 export default async function handler(req, res) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Stripe-Signature');
+  // Ce endpoint est server-to-server (Stripe → Vercel), pas de CORS nécessaire
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -72,13 +69,7 @@ export default async function handler(req, res) {
       console.log('✅ Webhook signature verified');
     } catch (err) {
       console.error('❌ Webhook signature verification failed:', err.message);
-      // En développement, on peut accepter sans vérification pour tester
-      if (process.env.NODE_ENV === 'development' && !webhookSecret) {
-        console.warn('⚠️ Development mode: accepting webhook without signature verification');
-        event = req.body;
-      } else {
-        return res.status(400).json({ error: `Webhook signature verification failed: ${err.message}` });
-      }
+      return res.status(400).json({ error: `Webhook signature verification failed: ${err.message}` });
     }
 
     // Importer Supabase client

@@ -1,6 +1,7 @@
 ﻿import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticated } from "@/api/auth";
+import SEO from "@/components/SEO";
 import { Enrollment, Course } from "@/api/entities";
 import { useQuery } from "@tanstack/react-query";
 import { useUserProfile } from "@/hooks/useUserProfile";
@@ -135,6 +136,12 @@ export default function Dashboard() {
 
   return (
     <div className="flex flex-col sm:flex-row min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 overflow-x-hidden">
+      <SEO
+        title="Tableau de bord"
+        description="Votre tableau de bord FrancePrepAcademy : suivez vos cours, vos progrès et votre parcours d'apprentissage."
+        canonical="/dashboard"
+        noindex={true}
+      />
       <DashboardSidebar currentPage="Dashboard" />
       
       <div className="flex-1 min-w-0 px-3 sm:px-4 lg:px-6 py-4 sm:py-6 overflow-x-hidden">

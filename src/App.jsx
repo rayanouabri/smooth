@@ -6,6 +6,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext"
 import ErrorBoundary from "@/components/ErrorBoundary"
 import { useToast } from "@/components/ui/use-toast"
 import logger from "@/utils/logger"
+import { HelmetProvider } from "react-helmet-async"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,14 +33,16 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <LanguageProvider>
-          <Pages />
-          <Toaster />
-        </LanguageProvider>
-      </QueryClientProvider>
-    </ErrorBoundary>
+    <HelmetProvider>
+      <ErrorBoundary>
+        <QueryClientProvider client={queryClient}>
+          <LanguageProvider>
+            <Pages />
+            <Toaster />
+          </LanguageProvider>
+        </QueryClientProvider>
+      </ErrorBoundary>
+    </HelmetProvider>
   )
 }
 

@@ -9,13 +9,18 @@ export const createCheckout = async ({ priceId, userId, userEmail, successUrl, c
   }
 
   try {
-    console.log('Creating checkout session for:', { priceId, userEmail });
+    // Récupérer le token JWT de la session en cours
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.access_token) {
+      throw new Error('Authentification requise pour accéder au paiement.');
+    }
 
-    // Appel à une API endpoint Vercel/Next.js
+    // Appel à l'API Vercel avec le token d'authentification
     const response = await fetch('/api/stripe/checkout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`,
       },
       body: JSON.stringify({
         priceId,
@@ -42,7 +47,6 @@ export const createCheckout = async ({ priceId, userId, userEmail, successUrl, c
 
     return data;
   } catch (error) {
-    console.error('Erreur createCheckout:', error);
     throw new Error(error?.message || 'Erreur lors de la création de la session Stripe');
   }
 };
@@ -73,7 +77,6 @@ export const createBillingPortal = async ({ customerId, returnUrl }) => {
   }
 
   try {
-    console.log('Creating billing portal session for customer:', customerId);
 
     const response = await fetch('/api/stripe/billing-portal', {
       method: 'POST',

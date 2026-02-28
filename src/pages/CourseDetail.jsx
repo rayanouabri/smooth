@@ -3,6 +3,7 @@ import { isAuthenticated as checkAuthStatus, me, redirectToLogin } from "@/api/a
 import { supabase } from "@/api/supabaseClient";
 import { UserProfile, Course, Lesson, Enrollment } from "@/api/entities";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -68,7 +69,6 @@ export default function CourseDetail() {
         
         if (profile) {
           setUserProfile(profile);
-          console.log('CourseDetail - Profile loaded, is_premium:', profile.is_premium);
         } else {
           // Fallback: utiliser les données de me()
           setUserProfile(userData);
@@ -127,14 +127,6 @@ export default function CourseDetail() {
     // Si le cours est premium, vérifier si l'utilisateur a un abonnement Premium
     const userIsPremium = isPremium(userProfile);
     
-    console.log('CourseDetail - checkCourseAccess:', {
-      courseIsPremium: course.is_premium,
-      isPremium: isPremium,
-      userProfile: userProfile,
-      is_premium: userProfile?.is_premium,
-      subscription_status: userProfile?.subscription_status
-    });
-    
     if (userIsPremium) {
       setCanAccess(true);
     } else {
@@ -144,7 +136,6 @@ export default function CourseDetail() {
 
   const enrollMutation = useMutation({
     mutationFn: () => {
-      console.log('[CourseDetail] 🚀 Début de l\'inscription au cours:', courseId, 'User:', user?.email);
       return Enrollment.create({
         user_email: user.email,
         course_id: courseId,
@@ -250,6 +241,23 @@ export default function CourseDetail() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+      <SEO
+        title={course?.title || "Détail du cours"}
+        description={course?.short_description || course?.description?.slice(0, 155) || "Découvrez ce cours sur FrancePrepAcademy et commencez votre apprentissage dès aujourd'hui."}
+        canonical="/courses"
+        jsonLd={course ? {
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "name": course.title,
+          "description": course.short_description || course.description,
+          "provider": {
+            "@type": "Organization",
+            "name": "FrancePrepAcademy",
+            "url": "https://franceprepacademy.fr"
+          },
+          "url": `https://franceprepacademy.fr/coursedetail?id=${course.id}`
+        } : null}
+      />
       {/* Hero Banner */}
       <div className="relative bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200')] opacity-10 bg-cover"></div>

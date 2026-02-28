@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, X, Star, Zap, Shield, Sparkles, Crown, Users, ArrowRight, Lock } from "lucide-react";
+import SEO from "@/components/SEO";
 import {
   Accordion,
   AccordionContent,
@@ -231,7 +232,40 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
-      {/* Header */}
+      <SEO
+        title="Tarifs & Abonnements"
+        description="Choisissez le plan FrancePrepAcademy adapté à vos besoins : Discovery gratuit, Premium à 24,90€/mois, Ultimate VIP à 89€/mois. Accès illimité aux cours, mentorship et assistant IA."
+        canonical="/pricing"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Tarifs FrancePrepAcademy",
+          "url": "https://franceprepacademy.fr/pricing",
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "Discovery",
+              "price": "0",
+              "priceCurrency": "EUR",
+              "description": "Accès gratuit limité à la plateforme"
+            },
+            {
+              "@type": "Offer",
+              "name": "Premium",
+              "price": "24.90",
+              "priceCurrency": "EUR",
+              "description": "Accès complet aux cours et à l'assistant IA"
+            },
+            {
+              "@type": "Offer",
+              "name": "Ultimate VIP",
+              "price": "89",
+              "priceCurrency": "EUR",
+              "description": "Mentors humains, support prioritaire, concierge VIP"
+            }
+          ]
+        }}
+      />
       <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500 rounded-full blur-3xl animate-pulse"></div>
