@@ -167,9 +167,38 @@ function LessonContentRenderer({ content }) {
   );
 }
 
+// ---- Markdown renderer for bot messages ----
+function BotMessageContent({ content }) {
+  return (
+    <div className="bot-msg-md text-[13px] leading-relaxed">
+      <ReactMarkdown
+        components={{
+          p: ({children}) => <p className="mb-1.5 last:mb-0">{children}</p>,
+          strong: ({children}) => <strong className="font-bold text-gray-900">{children}</strong>,
+          em: ({children}) => <em className="italic">{children}</em>,
+          ul: ({children}) => <ul className="list-none space-y-1 my-1.5">{children}</ul>,
+          ol: ({children}) => <ol className="list-decimal pl-4 space-y-1 my-1.5">{children}</ol>,
+          li: ({children}) => <li className="flex items-start gap-1.5"><span className="text-purple-400 mt-0.5 flex-shrink-0">&#8226;</span><span>{children}</span></li>,
+          h1: ({children}) => <p className="font-bold text-gray-900 text-sm mt-2 mb-1">{children}</p>,
+          h2: ({children}) => <p className="font-bold text-gray-900 text-sm mt-2 mb-1">{children}</p>,
+          h3: ({children}) => <p className="font-semibold text-gray-800 mt-1.5 mb-1">{children}</p>,
+          code: ({inline, children}) => inline
+            ? <code className="bg-purple-50 text-purple-700 px-1 py-0.5 rounded text-xs">{children}</code>
+            : <pre className="bg-gray-50 rounded-lg p-2 text-xs overflow-x-auto my-1.5"><code>{children}</code></pre>,
+          blockquote: ({children}) => <div className="border-l-2 border-purple-300 pl-2 my-1.5 text-gray-600 text-xs">{children}</div>,
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </div>
+  );
+}
+
 // ---- Lesson AI Assistant ----
 function LessonAssistant({ currentLesson, courseName, allLessons, lessonIndex }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasBeenOpened, setHasBeenOpened] = useState(false);
+  const [showBubble, setShowBubble] = useState(true);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -185,9 +214,10 @@ function LessonAssistant({ currentLesson, courseName, allLessons, lessonIndex })
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
+      setHasBeenOpened(true);
       setMessages([{
         role: "assistant",
-        content: `Je suis là pour t'aider avec "${currentLesson?.title || 'cette leçon'}". Tu peux me poser une question ou utiliser les raccourcis ci-dessous.`
+        content: `Je suis ton assistant pour cette leçon ! Pose-moi une question ou utilise les raccourcis ci-dessous.`
       }]);
     }
   }, [isOpen, currentLesson?.id]);
@@ -196,11 +226,19 @@ function LessonAssistant({ currentLesson, courseName, allLessons, lessonIndex })
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Hide welcome bubble after 8 seconds
+  useEffect(() => {
+    if (!hasBeenOpened && showBubble) {
+      const timer = setTimeout(() => setShowBubble(false), 8000);
+      return () => clearTimeout(timer);
+    }
+  }, [hasBeenOpened, showBubble]);
+
   const quickActions = [
-    { id: "summary", label: "Résume cette leçon", icon: AlignLeft, prompt: `Resume cette lecon en 5 points cles maximum, de maniere claire et concise. Contenu : ${lessonContent.substring(0, 4000)}` },
-    { id: "quiz", label: "Teste mes connaissances", icon: HelpCircle, prompt: `A partir du contenu de cette lecon, genere 3 questions QCM (avec 4 choix et la bonne reponse indiquee) pour tester la comprehension de l'etudiant. Contenu : ${lessonContent.substring(0, 4000)}` },
-    { id: "explain", label: "Explique simplement", icon: Lightbulb, prompt: `Explique le contenu de cette lecon comme si tu parlais a quelqu'un qui decouvre completement le sujet. Utilise des analogies simples et des exemples concrets du quotidien. Contenu : ${lessonContent.substring(0, 4000)}` },
-    { id: "next", label: "Que dois-je retenir ?", icon: ListChecks, prompt: `A partir de cette lecon, donne les 3-5 choses essentielles a retenir absolument, et un conseil pratique pour appliquer ces connaissances dans la vie reelle en France. Contenu : ${lessonContent.substring(0, 4000)}` },
+    { id: "summary", label: "Résumer la leçon", icon: AlignLeft, prompt: `Resume cette lecon en 5 points cles maximum, de maniere claire et concise. Contenu : ${lessonContent.substring(0, 4000)}` },
+    { id: "quiz", label: "Tester mes connaissances", icon: HelpCircle, prompt: `A partir du contenu de cette lecon, genere 3 questions QCM (avec 4 choix et la bonne reponse indiquee) pour tester la comprehension de l'etudiant. Contenu : ${lessonContent.substring(0, 4000)}` },
+    { id: "explain", label: "Expliquer simplement", icon: Lightbulb, prompt: `Explique le contenu de cette lecon comme si tu parlais a quelqu'un qui decouvre completement le sujet. Utilise des analogies simples et des exemples concrets du quotidien. Contenu : ${lessonContent.substring(0, 4000)}` },
+    { id: "next", label: "Points essentiels", icon: ListChecks, prompt: `A partir de cette lecon, donne les 3-5 choses essentielles a retenir absolument, et un conseil pratique pour appliquer ces connaissances dans la vie reelle en France. Contenu : ${lessonContent.substring(0, 4000)}` },
   ];
 
   const handleAction = async (action) => {
@@ -210,7 +248,12 @@ function LessonAssistant({ currentLesson, courseName, allLessons, lessonIndex })
     try {
       const response = await InvokeLLM({
         prompt: `Tu es un assistant pedagogique bienveillant de FrancePrepAcademy. L'etudiant suit le cours "${courseName}", lecon "${currentLesson?.title || ''}".
-REGLES : Reponds en francais, sois clair, concis et utile. Utilise des emojis pertinents.
+REGLES STRICTES :
+- Reponds en francais
+- N'utilise JAMAIS de markdown (pas de **, pas de ##, pas de *)
+- Utilise des tirets (-) pour les listes
+- Utilise des emojis pertinents pour structurer
+- Sois clair, concis et utile
 ${action.prompt}`,
         add_context_from_internet: false
       });
@@ -230,7 +273,12 @@ ${action.prompt}`,
       const response = await InvokeLLM({
         prompt: `Tu es un assistant pedagogique de FrancePrepAcademy. Cours : "${courseName}", lecon : "${currentLesson?.title}".
 CONTENU DE LA LECON : ${lessonContent.substring(0, 3000)}
-REGLES : Reponds en francais, sois pedagogique, concis (3-5 phrases), donne des exemples concrets si possible.
+REGLES STRICTES :
+- Reponds en francais
+- N'utilise JAMAIS de markdown (pas de **, pas de ##, pas de *)
+- Utilise des tirets (-) pour les listes
+- Utilise des emojis pertinents pour structurer
+- Sois pedagogique et concis (3-5 phrases), donne des exemples concrets
 Question : ${msg}`,
         add_context_from_internet: false
       });
@@ -242,23 +290,53 @@ Question : ${msg}`,
 
   return (
     <>
+      {/* Floating button + welcome bubble */}
       <AnimatePresence>
         {!isOpen && (
-          <motion.button
+          <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
-            onClick={() => setIsOpen(true)}
-            className="fixed bottom-5 right-5 z-40 group"
+            className="fixed bottom-5 right-5 z-40 flex items-end gap-3"
           >
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-600 to-purple-700 shadow-lg shadow-purple-500/25 flex items-center justify-center transition-all group-hover:shadow-xl group-hover:scale-105">
-              <MessageSquare className="w-6 h-6 text-white" />
-            </div>
-            <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white" />
-          </motion.button>
+            {/* Welcome bubble - shown before first open */}
+            {!hasBeenOpened && showBubble && (
+              <motion.div
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 10 }}
+                className="bg-white rounded-2xl shadow-xl border border-purple-100 p-3.5 max-w-[220px] mb-1"
+              >
+                <button onClick={() => setShowBubble(false)} className="absolute top-1.5 right-2 text-gray-300 hover:text-gray-500 text-xs">✕</button>
+                <p className="text-xs font-semibold text-gray-800 mb-2">Besoin d'aide ? 🎓</p>
+                <div className="space-y-1.5">
+                  <button
+                    onClick={() => { setIsOpen(true); setTimeout(() => handleAction(quickActions[0]), 300); }}
+                    className="w-full text-left text-[11px] text-purple-700 bg-purple-50 hover:bg-purple-100 px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5"
+                  >
+                    <AlignLeft className="w-3 h-3 flex-shrink-0" />Résumer cette leçon
+                  </button>
+                  <button
+                    onClick={() => { setIsOpen(true); setTimeout(() => handleAction(quickActions[1]), 300); }}
+                    className="w-full text-left text-[11px] text-purple-700 bg-purple-50 hover:bg-purple-100 px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5"
+                  >
+                    <HelpCircle className="w-3 h-3 flex-shrink-0" />Tester mes connaissances
+                  </button>
+                </div>
+                <div className="absolute -right-2 bottom-5 w-3 h-3 bg-white border-r border-b border-purple-100 transform rotate-[-45deg]" />
+              </motion.div>
+            )}
+            <button onClick={() => setIsOpen(true)} className="group relative">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-600 to-purple-700 shadow-lg shadow-purple-500/25 flex items-center justify-center transition-all group-hover:shadow-xl group-hover:scale-105">
+                <Brain className="w-6 h-6 text-white" />
+              </div>
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white" />
+            </button>
+          </motion.div>
         )}
       </AnimatePresence>
 
+      {/* Chat panel */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -275,7 +353,7 @@ Question : ${msg}`,
                   <div className="flex items-center gap-2.5">
                     <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center"><Brain className="w-4 h-4" /></div>
                     <div>
-                      <p className="text-sm font-bold leading-tight">Aide à la leçon</p>
+                      <p className="text-sm font-bold leading-tight">Assistant IA</p>
                       <p className="text-[10px] text-purple-200 truncate max-w-[200px]">{currentLesson?.title}</p>
                     </div>
                   </div>
@@ -308,12 +386,15 @@ Question : ${msg}`,
                         <Brain className="w-3 h-3 text-white" />
                       </div>
                     )}
-                    <div className={`max-w-[80%] px-3 py-2 rounded-xl text-[13px] leading-relaxed ${
+                    <div className={`max-w-[85%] px-3 py-2 rounded-xl text-[13px] leading-relaxed ${
                       msg.role === "user"
                         ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-tr-sm"
                         : "bg-white text-gray-700 border border-gray-100 shadow-sm rounded-tl-sm"
                     }`}>
-                      <p className="whitespace-pre-wrap">{msg.content}</p>
+                      {msg.role === "assistant"
+                        ? <BotMessageContent content={msg.content} />
+                        : <p className="whitespace-pre-wrap">{msg.content}</p>
+                      }
                     </div>
                   </div>
                 ))}
@@ -334,7 +415,7 @@ Question : ${msg}`,
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-                    placeholder="Pose ta question sur cette leçon..."
+                    placeholder="Pose ta question..."
                     className="flex-1 px-3 py-2 rounded-lg bg-gray-50 border border-gray-200 focus:border-purple-400 focus:ring-1 focus:ring-purple-100 outline-none text-sm"
                     disabled={isLoading}
                   />
@@ -356,7 +437,6 @@ export default function Learn() {
   const [enrollment, setEnrollment] = useState(null);
   const [canAccess, setCanAccess] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [readingProgress, setReadingProgress] = useState(0);
   const navigate = useNavigate();
   const contentRef = useRef(null);
 
@@ -364,21 +444,6 @@ export default function Learn() {
   const courseId = urlParams.get('courseId');
   const lessonId = urlParams.get('lessonId');
   const queryClient = useQueryClient();
-
-  // Track reading progress
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!contentRef.current) return;
-      const el = contentRef.current;
-      const rect = el.getBoundingClientRect();
-      const total = el.scrollHeight - window.innerHeight;
-      const scrolled = -rect.top + 200;
-      const pct = Math.min(100, Math.max(0, (scrolled / total) * 100));
-      setReadingProgress(pct);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => { loadUserAndEnrollment(); }, [courseId]);
 
@@ -507,28 +572,6 @@ export default function Learn() {
 
   return (
     <div className="min-h-screen bg-gray-50/80 flex flex-col lg:flex-row overflow-x-hidden">
-      {/* ===== READING PROGRESS BAR ===== */}
-      <div className="fixed top-14 sm:top-16 left-0 right-0 z-30">
-        <div className="h-[3px] bg-gray-200/60">
-          <motion.div
-            className="h-full rounded-r-full relative"
-            style={{
-              width: `${readingProgress}%`,
-              background: 'linear-gradient(90deg, #7c3aed, #a855f7, #d946ef)',
-            }}
-            initial={false}
-            animate={{ width: `${readingProgress}%` }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-          >
-            <div className="absolute inset-0 rounded-r-full" style={{
-              background: 'linear-gradient(90deg, #7c3aed, #a855f7, #d946ef)',
-              filter: 'blur(4px)',
-              opacity: 0.5,
-            }} />
-          </motion.div>
-        </div>
-      </div>
-
       {/* Mobile sidebar toggle */}
       <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden fixed top-[72px] left-3 z-30 w-10 h-10 rounded-xl bg-white shadow-lg border border-gray-200 flex items-center justify-center">
         {sidebarOpen ? <PanelLeftClose className="w-5 h-5 text-gray-600" /> : <PanelLeftOpen className="w-5 h-5 text-gray-600" />}
