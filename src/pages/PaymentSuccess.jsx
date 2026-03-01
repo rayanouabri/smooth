@@ -78,7 +78,7 @@ export default function PaymentSuccess() {
         setStep('success');
         
         // Continuer à vérifier en arrière-plan (sans bloquer l'UI)
-        if (!updatedUser?.is_premium && !updatedUser?.subscription_status === 'active') {
+        if (!updatedUser?.is_premium && updatedUser?.subscription_status !== 'active') {
           // Vérifier en arrière-plan toutes les 2 secondes pendant 10 secondes max
           const backgroundCheck = setInterval(async () => {
             const profile = await reloadUserProfile(authUser.id, authUser.email);

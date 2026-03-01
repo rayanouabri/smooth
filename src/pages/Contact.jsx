@@ -6,9 +6,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
-import { 
-  Mail, 
-  MessageSquare, 
+import {
+  Mail,
+  MessageSquare,
   Send,
   CheckCircle,
   Clock,
@@ -16,6 +16,7 @@ import {
   Loader2
 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { SendEmail } from "@/api/integrations";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -37,19 +38,19 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      await SendEmail({
+        to: "contact@franceprepacademy.fr",
+        subject: `Contact - ${formData.subject}`,
+        html: `<div><h2>Nouveau message de contact</h2><p><strong>Nom:</strong> ${formData.name}</p><p><strong>Email:</strong> ${formData.email}</p><p><strong>Sujet:</strong> ${formData.subject}</p><p><strong>Message:</strong></p><p style="white-space:pre-wrap">${formData.message}</p></div>`,
+        text: `Nom: ${formData.name}\nEmail: ${formData.email}\nSujet: ${formData.subject}\nMessage: ${formData.message}`,
+        requestType: 'contact',
+        formData: {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
         },
-        body: JSON.stringify(formData),
       });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Erreur lors de l\'envoi');
-      }
 
       setIsSubmitted(true);
       toast({
@@ -58,9 +59,13 @@ export default function Contact() {
       });
     } catch (error) {
       console.error('Error:', error);
+      let errorMessage = "Une erreur est survenue. Veuillez r\u00e9essayer ou nous contacter directement \u00e0 contact@franceprepacademy.fr";
+      if (error?.message?.includes('contact_requests')) {
+        errorMessage = "Une erreur technique s'est produite. Veuillez nous contacter directement \u00e0 contact@franceprepacademy.fr";
+      }
       toast({
         title: "Erreur",
-        description: error.message || "Une erreur est survenue. Veuillez r\u00e9essayer.",
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {

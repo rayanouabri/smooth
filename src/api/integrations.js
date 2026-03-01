@@ -46,9 +46,23 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
 
       if (response_json_schema && content) {
         try {
-          const jsonMatch = content.match(/\{[\s\S]*\}/);
-          if (jsonMatch) {
-            return JSON.parse(jsonMatch[0]);
+          // Remove markdown code blocks if present
+          let cleaned = content.trim();
+          cleaned = cleaned.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '');
+
+          // Try parsing the cleaned content directly first
+          try {
+            return JSON.parse(cleaned);
+          } catch (_) {}
+
+          // Try to extract JSON array [...] or object {...}
+          const arrayMatch = cleaned.match(/\[[\s\S]*\]/);
+          if (arrayMatch) {
+            return JSON.parse(arrayMatch[0]);
+          }
+          const objMatch = cleaned.match(/\{[\s\S]*\}/);
+          if (objMatch) {
+            return JSON.parse(objMatch[0]);
           }
         } catch (e) {
           console.warn('[InvokeLLM] JSON parsing failed, returning raw content');

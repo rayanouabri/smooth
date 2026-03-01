@@ -464,12 +464,26 @@ IMPORTANT : Reponds UNIQUEMENT avec le JSON array valide, rien d'autre. Les lien
       });
 
       let parsed = response;
-      if (typeof response === "string") {
-        const m = response.match(/\[[\s\S]*\]/);
-        if (m) parsed = JSON.parse(m[0]);
+      if (typeof parsed === "string") {
+        // Remove markdown code blocks if present
+        let cleaned = parsed.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '');
+        try {
+          parsed = JSON.parse(cleaned);
+        } catch (_) {
+          const m = cleaned.match(/\[[\s\S]*\]/);
+          if (m) {
+            try { parsed = JSON.parse(m[0]); } catch (_2) {}
+          }
+        }
+      }
+      // Handle object with steps/roadmap key wrapping an array
+      if (parsed && !Array.isArray(parsed) && typeof parsed === "object") {
+        const vals = Object.values(parsed);
+        const arr = vals.find(v => Array.isArray(v));
+        if (arr) parsed = arr;
       }
 
-      if (Array.isArray(parsed)) setRoadmap(parsed);
+      if (Array.isArray(parsed) && parsed.length > 0) setRoadmap(parsed);
       else throw new Error("Invalid format");
     } catch (error) {
       console.error("Error generating roadmap:", error);

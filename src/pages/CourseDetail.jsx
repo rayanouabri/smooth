@@ -118,6 +118,7 @@ export default function CourseDetail() {
   };
 
   const checkCourseAccess = () => {
+    if (!course) return;
     // Si le cours n'est pas premium, il est accessible à tous
     if (!course.is_premium) {
       setCanAccess(true);
@@ -125,8 +126,8 @@ export default function CourseDetail() {
     }
 
     // Si le cours est premium, vérifier si l'utilisateur a un abonnement Premium
-    const userIsPremium = isPremium(userProfile);
-    
+    const userIsPremium = userProfile ? isPremium(userProfile) : false;
+
     if (userIsPremium) {
       setCanAccess(true);
     } else {
@@ -151,11 +152,10 @@ export default function CourseDetail() {
       console.log('[CourseDetail] ✅ Inscription réussie:', newEnrollment);
       setEnrollment(newEnrollment);
       queryClient.invalidateQueries({ queryKey: ['enrollments'] });
-      if (lessons && lessons[0]) {
+      if (lessons && lessons.length > 0 && lessons[0]?.id) {
         navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lessons[0].id}`);
       } else {
         console.warn('[CourseDetail] ⚠️ Aucune leçon disponible pour ce cours');
-        // Recharger la page pour afficher le bouton "Continuer le cours"
         window.location.reload();
       }
     },
@@ -526,7 +526,7 @@ export default function CourseDetail() {
                     {isAuthenticated ? (
                       enrollment ? (
                         canAccess ? (
-                          <Link to={createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lessons[0]?.id}`}>
+                          <Link to={createPageUrl("Learn") + `?courseId=${courseId}${lessons.length > 0 ? `&lessonId=${lessons[0].id}` : ''}`}>
                             <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-6 text-lg shadow-xl" size="lg">
                               <Play className="w-5 h-5 mr-2" />
                               Continuer le cours
