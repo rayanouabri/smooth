@@ -37,6 +37,7 @@ const PrivacyPolicy = lazy(() => import("./PrivacyPolicy"));
 const PaymentSuccess = lazy(() => import("./PaymentSuccess"));
 const AdminCourses = lazy(() => import("./AdminCourses"));
 const Contact = lazy(() => import("./Contact"));
+const AIAgent = lazy(() => import("./AIAgent"));
 
 // Skeleton loader pour les pages en chargement
 const PageSkeleton = () => (
@@ -100,7 +101,9 @@ const PAGES = {
     PaymentSuccess: PaymentSuccess,
     
     AdminCourses: AdminCourses,
-    
+
+    AIAgent: AIAgent,
+
     Login: Login,
     
     ResetPassword: ResetPassword,
@@ -210,6 +213,7 @@ function PagesContent() {
                     <Route path="/paymentsuccess" element={<PaymentSuccess />} />
                     <Route path="/admincourses" element={<AdminCourses />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/aiagent" element={<AIAgent />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
                     <Route path="/auth/callback" element={<AuthCallback />} />
@@ -242,6 +246,7 @@ function PagesContent() {
                 <Route path="/PaymentSuccess" element={<Navigate to="/paymentsuccess" replace />} />
                 <Route path="/AdminCourses" element={<Navigate to="/admincourses" replace />} />
                 <Route path="/Contact" element={<Navigate to="/contact" replace />} />
+                <Route path="/AIAgent" element={<Navigate to="/aiagent" replace />} />
                 
                     {/* Catch-all route for 404 */}
                     <Route path="*" element={<NotFound />} />
