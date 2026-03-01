@@ -80,10 +80,16 @@ const translations = {
       resetFilters: "Réinitialiser les filtres",
       categories: {
         all: "Toutes les catégories",
-        preparation_academique: "📚 Préparation Académique",
-        integration_administrative: "📋 Intégration Administrative",
+        logement: "🏠 Logement",
+        sante: "🏥 Santé",
+        budget_finances: "💰 Budget & Finances",
         culture_codes_sociaux: "🎭 Culture & Codes Sociaux",
         insertion_professionnelle: "💼 Insertion Professionnelle",
+        integration_administrative: "📋 Administration",
+        transport: "🚆 Transport",
+        travail: "👔 Travail",
+        administration: "🏛️ Démarches",
+        preparation_academique: "📚 Préparation Académique",
         formations_professionnelles: "🚀 Formations Professionnelles"
       },
       levels: {
@@ -241,10 +247,16 @@ const translations = {
       resetFilters: "Reset filters",
       categories: {
         all: "All categories",
-        preparation_academique: "📚 Academic Preparation",
-        integration_administrative: "📋 Administrative Integration",
+        logement: "🏠 Housing",
+        sante: "🏥 Health",
+        budget_finances: "💰 Budget & Finances",
         culture_codes_sociaux: "🎭 Culture & Social Codes",
         insertion_professionnelle: "💼 Professional Integration",
+        integration_administrative: "📋 Administration",
+        transport: "🚆 Transport",
+        travail: "👔 Work",
+        administration: "🏛️ Administrative",
+        preparation_academique: "📚 Academic Preparation",
         formations_professionnelles: "🚀 Professional Training"
       },
       levels: {
