@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import { isAuthenticated as checkAuthStatus, me, logout, redirectToLogin } from "@/api/auth";
 import { Button } from "@/components/ui/button";
-import { Menu, X, GraduationCap, ChevronDown } from "lucide-react";
+import { Menu, X, GraduationCap, ChevronDown, Bot } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import logger from "@/utils/logger";
 import {
@@ -75,6 +75,7 @@ export default function Layout({ children, currentPageName }) {
     // Éviter les soucis d'encodage lors de certains déploiements (UTF-8 mal interprété)
     { name: "Communaut\u00e9", page: "Community" },
     { name: "Tarifs", page: "Pricing" },
+    { name: "Assistant IA", page: "AIAgent", icon: true },
   ];
 
   return (
@@ -107,9 +108,18 @@ export default function Layout({ children, currentPageName }) {
                   <Link key={link.page} to={createPageUrl(link.page)} onClick={handleClick}>
                     <Button
                       variant={currentPageName === link.page ? "default" : "ghost"}
-                      className={currentPageName === link.page ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 text-sm font-semibold" : "text-gray-700 hover:text-blue-900 hover:bg-blue-50 text-sm font-medium"}
+                      className={
+                        link.icon
+                          ? currentPageName === link.page
+                            ? "bg-gradient-to-r from-violet-500 to-purple-500 text-white hover:from-violet-600 hover:to-purple-600 text-sm font-semibold gap-1.5"
+                            : "text-purple-600 hover:text-purple-800 hover:bg-purple-50 text-sm font-medium gap-1.5 border border-purple-200 hover:border-purple-300"
+                          : currentPageName === link.page
+                            ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 text-sm font-semibold"
+                            : "text-gray-700 hover:text-blue-900 hover:bg-blue-50 text-sm font-medium"
+                      }
                       size="sm"
                     >
+                      {link.icon && <Bot className="w-4 h-4" />}
                       {link.name}
                     </Button>
                   </Link>
@@ -225,13 +235,18 @@ export default function Layout({ children, currentPageName }) {
                   <Link key={link.page} to={createPageUrl(link.page)}>
                     <Button
                       variant={currentPageName === link.page ? "default" : "ghost"}
-                      className={`w-full justify-start h-12 text-base ${
-                        currentPageName === link.page 
-                          ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white" 
-                          : "hover:bg-gray-100"
+                      className={`w-full justify-start h-12 text-base gap-2 ${
+                        link.icon
+                          ? currentPageName === link.page
+                            ? "bg-gradient-to-r from-violet-500 to-purple-500 text-white"
+                            : "text-purple-600 hover:bg-purple-50"
+                          : currentPageName === link.page
+                            ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
+                            : "hover:bg-gray-100"
                       }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
+                      {link.icon && <Bot className="w-5 h-5" />}
                       {link.name}
                     </Button>
                   </Link>
