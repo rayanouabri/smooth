@@ -46,20 +46,24 @@ export default function Layout({ children, currentPageName }) {
   }, [isAuthenticated]);
 
   const checkAuth = async () => {
-    const authenticated = await checkAuthStatus();
-    setIsAuthenticated(authenticated);
-    if (authenticated) {
-      try {
-        // Utiliser me() qui récupère automatiquement le profil avec is_premium
-        const userData = await me();
-        logger.debug('Layout - User data:', userData);
-        logger.debug('Layout - is_premium:', userData?.is_premium);
-        if (userData) {
-          setUser(userData);
+    try {
+      const authenticated = await checkAuthStatus();
+      setIsAuthenticated(authenticated);
+      if (authenticated) {
+        try {
+          const userData = await me();
+          logger.debug('Layout - User data:', userData);
+          logger.debug('Layout - is_premium:', userData?.is_premium);
+          if (userData) {
+            setUser(userData);
+          }
+        } catch (err) {
+          logger.error("Error fetching user:", err);
         }
-      } catch (err) {
-        logger.error("Error fetching user:", err);
       }
+    } catch (err) {
+      logger.error("Auth check failed:", err);
+      setIsAuthenticated(false);
     }
   };
 

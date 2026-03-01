@@ -48,8 +48,13 @@ export default function Home() {
   }, []);
 
   const checkAuth = async () => {
-    const authenticated = await checkAuthStatus();
-    setIsAuthenticated(authenticated);
+    try {
+      const authenticated = await checkAuthStatus();
+      setIsAuthenticated(authenticated);
+    } catch (err) {
+      console.warn('Auth check failed:', err);
+      setIsAuthenticated(false);
+    }
   };
 
   const testimonials = [

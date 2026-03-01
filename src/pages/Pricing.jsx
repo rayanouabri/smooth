@@ -38,14 +38,23 @@ export default function Pricing() {
   }, []);
 
   const checkAuth = async () => {
-    const authenticated = await checkAuthStatus();
-    setIsAuthenticated(authenticated);
-    
-    if (authenticated) {
-      const fullUserData = await me();
-      if (fullUserData) {
-        setUser(fullUserData);
+    try {
+      const authenticated = await checkAuthStatus();
+      setIsAuthenticated(authenticated);
+
+      if (authenticated) {
+        try {
+          const fullUserData = await me();
+          if (fullUserData) {
+            setUser(fullUserData);
+          }
+        } catch (err) {
+          console.warn('Could not fetch user data:', err);
+        }
       }
+    } catch (err) {
+      console.warn('Auth check failed:', err);
+      setIsAuthenticated(false);
     }
   };
 

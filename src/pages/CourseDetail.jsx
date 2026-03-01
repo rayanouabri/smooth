@@ -52,28 +52,34 @@ export default function CourseDetail() {
   }, []);
 
   const checkAuth = async () => {
-    const authenticated = await checkAuthStatus();
-    setIsAuthenticated(authenticated);
-    if (authenticated) {
-      // Utiliser me() pour obtenir le profil avec is_premium
-      const userData = await me();
-      setUser(userData);
-      
-      // Charger le profil depuis la base de données pour être sûr
-      if (userData?.id) {
-        const { data: profile } = await supabase
-          .from('user_profiles')
-          .select('*')
-          .eq('id', userData.id)
-          .single();
-        
-        if (profile) {
-          setUserProfile(profile);
-        } else {
-          // Fallback: utiliser les données de me()
-          setUserProfile(userData);
+    try {
+      const authenticated = await checkAuthStatus();
+      setIsAuthenticated(authenticated);
+      if (authenticated) {
+        try {
+          const userData = await me();
+          setUser(userData);
+
+          if (userData?.id) {
+            const { data: profile } = await supabase
+              .from('user_profiles')
+              .select('*')
+              .eq('id', userData.id)
+              .single();
+
+            if (profile) {
+              setUserProfile(profile);
+            } else {
+              setUserProfile(userData);
+            }
+          }
+        } catch (err) {
+          console.warn('Could not fetch user data:', err);
         }
       }
+    } catch (err) {
+      console.warn('Auth check failed:', err);
+      setIsAuthenticated(false);
     }
   };
 

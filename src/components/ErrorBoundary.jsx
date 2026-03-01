@@ -2,8 +2,6 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertCircle, RefreshCw, Home } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 
 class ErrorBoundaryClass extends React.Component {
   constructor(props) {
@@ -16,18 +14,11 @@ class ErrorBoundaryClass extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    // Logger l'erreur (en production, envoyer vers un service de monitoring)
     console.error('ErrorBoundary caught an error:', error, errorInfo);
     this.setState({
       error,
       errorInfo
     });
-
-    // En production, envoyer vers un service de monitoring
-    if (import.meta.env.PROD) {
-      // TODO: Envoyer vers Sentry, LogRocket, etc.
-      // sendToMonitoringService('error-boundary', { error, errorInfo });
-    }
   }
 
   handleReset = () => {
@@ -49,9 +40,19 @@ class ErrorBoundaryClass extends React.Component {
   }
 }
 
+// NOTE: This component does NOT use React Router hooks because
+// ErrorBoundary renders OUTSIDE the Router context.
+// Use window.location for navigation instead.
 function ErrorFallback({ error, errorInfo, onReset }) {
-  const navigate = useNavigate();
   const isDevelopment = import.meta.env.DEV;
+
+  const handleGoHome = () => {
+    window.location.href = '/';
+  };
+
+  const handleReload = () => {
+    window.location.reload();
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 flex items-center justify-center p-4">
@@ -66,7 +67,7 @@ function ErrorFallback({ error, errorInfo, onReset }) {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-gray-700">
-            Désolé, une erreur inattendue s'est produite. Notre équipe a été notifiée.
+            Désolé, une erreur inattendue s'est produite. Essayez de recharger la page.
           </p>
 
           {isDevelopment && error && (
@@ -85,15 +86,15 @@ function ErrorFallback({ error, errorInfo, onReset }) {
 
           <div className="flex gap-3 pt-4">
             <Button
-              onClick={onReset}
+              onClick={handleReload}
               variant="outline"
               className="flex-1"
             >
               <RefreshCw className="w-4 h-4 mr-2" />
-              Réessayer
+              Recharger la page
             </Button>
             <Button
-              onClick={() => navigate(createPageUrl('Home'))}
+              onClick={handleGoHome}
               className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white"
             >
               <Home className="w-4 h-4 mr-2" />

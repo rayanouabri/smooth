@@ -52,11 +52,18 @@ export default function Community() {
   }, []);
 
   const checkAuth = async () => {
-    const authenticated = await checkAuthStatus();
-    setIsAuthenticated(authenticated);
-    if (authenticated) {
-      const userData = await getCurrentUser();
-      setUser(userData);
+    try {
+      const authenticated = await checkAuthStatus();
+      setIsAuthenticated(authenticated);
+      if (authenticated) {
+        try {
+          const userData = await getCurrentUser();
+          setUser(userData);
+        } catch (err) { console.warn('Could not fetch user:', err); }
+      }
+    } catch (err) {
+      console.warn('Auth check failed:', err);
+      setIsAuthenticated(false);
     }
   };
 

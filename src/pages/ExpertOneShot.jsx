@@ -99,19 +99,26 @@ export default function ExpertOneShot() {
   }, []);
 
   const checkAuth = async () => {
-    const authenticated = await isAuthenticated();
-    setIsAuthenticatedUser(authenticated);
-    if (authenticated) {
-      const userData = await me();
-      if (userData) {
-        setUser(userData);
-        setFormData(prev => ({
-          ...prev,
-          name: userData.full_name || userData.name || prev.name,
-          email: userData.email || prev.email,
-          phone: userData.phone || prev.phone,
-        }));
+    try {
+      const authenticated = await isAuthenticated();
+      setIsAuthenticatedUser(authenticated);
+      if (authenticated) {
+        try {
+          const userData = await me();
+          if (userData) {
+            setUser(userData);
+            setFormData(prev => ({
+              ...prev,
+              name: userData.full_name || userData.name || prev.name,
+              email: userData.email || prev.email,
+              phone: userData.phone || prev.phone,
+            }));
+          }
+        } catch (err) { console.warn('Could not fetch user:', err); }
       }
+    } catch (err) {
+      console.warn('Auth check failed:', err);
+      setIsAuthenticatedUser(false);
     }
   };
 

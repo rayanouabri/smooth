@@ -44,13 +44,18 @@ export default function Dashboard() {
   useEffect(() => {
     // Vérifier l'authentification et rediriger si nécessaire
     const checkAuth = async () => {
-      const authenticated = await isAuthenticated();
-      if (!authenticated) {
+      try {
+        const authenticated = await isAuthenticated();
+        if (!authenticated) {
+          navigate('/login?redirect=/dashboard');
+          return;
+        }
+      } catch (err) {
+        console.warn('Auth check failed:', err);
         navigate('/login?redirect=/dashboard');
-        return;
       }
     };
-    
+
     checkAuth();
     
     // Recharger le profil quand on revient sur la page (après paiement)
