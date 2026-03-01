@@ -413,10 +413,7 @@ export default function CourseDetail() {
                                 >
                                   <div className="flex items-center gap-3 flex-1">
                                     <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                      {lesson.content_type === "video" && <Play className="w-5 h-5 text-blue-600" />}
-                                      {lesson.content_type === "text" && <FileText className="w-5 h-5 text-purple-600" />}
-                                      {lesson.content_type === "quiz" && <CheckCircle className="w-5 h-5 text-green-600" />}
-                                      {lesson.content_type === "pdf" && <FileText className="w-5 h-5 text-orange-600" />}
+                                      {lesson.video_url ? <Play className="w-5 h-5 text-blue-600" /> : <FileText className="w-5 h-5 text-purple-600" />}
                                     </div>
                                     <div className="flex-1">
                                       <div className="font-semibold text-gray-900 flex items-center gap-2">
