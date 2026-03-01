@@ -21,6 +21,129 @@ import { isPremium } from "@/utils/premium";
 import { InvokeLLM } from "@/api/integrations";
 import { motion, AnimatePresence } from "framer-motion";
 
+// ---- Content renderer: splits text and iframes so videos render properly ----
+function LessonContentRenderer({ content }) {
+  // Split content at <iframe ...> ... </iframe> tags (rendered as text by ReactMarkdown)
+  const iframeRegex = /<iframe[\s\S]*?<\/iframe>/gi;
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = iframeRegex.exec(content)) !== null) {
+    // Push text before the iframe
+    if (match.index > lastIndex) {
+      parts.push({ type: "text", value: content.slice(lastIndex, match.index) });
+    }
+    // Extract src from iframe
+    const srcMatch = match[0].match(/src=["']([^"']+)["']/);
+    const titleMatch = match[0].match(/title=["']([^"']+)["']/);
+    if (srcMatch) {
+      parts.push({ type: "video", src: srcMatch[1], title: titleMatch?.[1] || "Vidéo" });
+    }
+    lastIndex = match.index + match[0].length;
+  }
+  // Push remaining text
+  if (lastIndex < content.length) {
+    parts.push({ type: "text", value: content.slice(lastIndex) });
+  }
+
+  // If no iframes found, just render everything as markdown
+  if (parts.length === 0) {
+    parts.push({ type: "text", value: content });
+  }
+
+  return (
+    <div className="space-y-8">
+      {parts.map((part, i) => {
+        if (part.type === "video") {
+          return (
+            <div key={i} className="my-8">
+              <div className="rounded-xl overflow-hidden shadow-lg border border-gray-100 bg-black">
+                <div className="aspect-video">
+                  <iframe
+                    src={part.src}
+                    title={part.title}
+                    className="w-full h-full"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+              {part.title && part.title !== "Vidéo" && (
+                <p className="text-center text-sm text-gray-400 mt-2 flex items-center justify-center gap-1.5">
+                  <Play className="w-3.5 h-3.5" /> {part.title}
+                </p>
+              )}
+            </div>
+          );
+        }
+        // Text part: render with ReactMarkdown
+        const trimmed = part.value.trim();
+        if (!trimmed) return null;
+        return (
+          <article key={i} className="prose prose-gray prose-lg max-w-none
+            prose-headings:text-gray-900 prose-headings:font-extrabold
+            prose-h1:text-3xl prose-h1:mb-6 prose-h1:pb-4 prose-h1:border-b prose-h1:border-gray-100
+            prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
+            prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+            prose-p:text-gray-600 prose-p:leading-[1.85] prose-p:text-[15.5px] prose-p:mb-5
+            prose-li:text-gray-600 prose-li:leading-relaxed
+            prose-strong:text-gray-900
+            prose-a:text-purple-600 prose-a:no-underline hover:prose-a:underline
+            prose-blockquote:border-l-purple-400 prose-blockquote:bg-purple-50/50 prose-blockquote:rounded-r-xl prose-blockquote:py-1
+            prose-code:text-purple-700 prose-code:bg-purple-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm
+            prose-img:rounded-xl prose-img:shadow-md
+          ">
+            <ReactMarkdown
+              components={{
+                h2: ({node, children, ...props}) => (
+                  <h2 {...props} className="flex items-center gap-3 text-2xl mt-10 mb-4 font-extrabold text-gray-900">
+                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-100 to-violet-100 inline-flex items-center justify-center flex-shrink-0">
+                      <BookOpen className="w-4.5 h-4.5 text-purple-600" />
+                    </span>
+                    {children}
+                  </h2>
+                ),
+                h3: ({node, children, ...props}) => (
+                  <h3 {...props} className="text-xl mt-8 mb-3 font-extrabold text-gray-800 flex items-center gap-2">
+                    <span className="w-1 h-6 rounded-full bg-purple-400 flex-shrink-0" />
+                    {children}
+                  </h3>
+                ),
+                ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 space-y-3 marker:text-purple-500 marker:font-bold" {...props} />,
+                ul: ({node, ...props}) => <ul className="list-none pl-0 mb-6 space-y-2.5" {...props} />,
+                li: ({node, children, ordered, ...props}) => {
+                  const isUnordered = !ordered;
+                  if (isUnordered) {
+                    return (
+                      <li className="flex items-start gap-3 text-gray-600 leading-relaxed" {...props}>
+                        <span className="w-2 h-2 rounded-full bg-gradient-to-br from-purple-400 to-violet-500 mt-2 flex-shrink-0" />
+                        <span>{children}</span>
+                      </li>
+                    );
+                  }
+                  return <li className="text-gray-600 leading-relaxed pl-2" {...props}>{children}</li>;
+                },
+                blockquote: ({node, children, ...props}) => (
+                  <blockquote {...props} className="border-l-4 border-purple-400 bg-purple-50/60 rounded-r-xl py-3 px-5 my-6 not-italic">
+                    <div className="flex items-start gap-2">
+                      <Lightbulb className="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0" />
+                      <div className="text-gray-700 text-[15px] leading-relaxed">{children}</div>
+                    </div>
+                  </blockquote>
+                ),
+              }}
+            >
+              {trimmed}
+            </ReactMarkdown>
+          </article>
+        );
+      })}
+    </div>
+  );
+}
+
 // ---- Lesson AI Assistant (contextual, not robotic) ----
 function LessonAssistant({ currentLesson, courseName, allLessons, lessonIndex }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -364,10 +487,15 @@ export default function Learn() {
   const hasContent = lessonContent.trim().length > 0 || currentLesson.content_url;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col lg:flex-row overflow-x-hidden">
-      {/* Reading progress bar at very top */}
-      <div className="fixed top-14 sm:top-16 left-0 right-0 z-30 h-0.5 bg-gray-200">
-        <div className="h-full bg-gradient-to-r from-violet-500 to-purple-500 transition-all duration-150" style={{ width: `${readingProgress}%` }} />
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 flex flex-col lg:flex-row overflow-x-hidden">
+      {/* Reading progress bar - visible and thick */}
+      <div className="fixed top-14 sm:top-16 left-0 right-0 z-30 h-1 bg-gray-200/80">
+        <div className="h-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500 transition-all duration-200 shadow-sm shadow-purple-500/20" style={{ width: `${readingProgress}%` }} />
+        {readingProgress > 3 && (
+          <div className="absolute right-0 top-full mt-1 mr-2 text-[10px] font-bold text-purple-600 bg-white/90 backdrop-blur px-1.5 py-0.5 rounded shadow-sm border border-purple-100">
+            {Math.round(readingProgress)}%
+          </div>
+        )}
       </div>
 
       {/* Mobile sidebar toggle */}
@@ -378,7 +506,7 @@ export default function Learn() {
       {sidebarOpen && <div className="lg:hidden fixed inset-0 bg-black/30 z-20 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />}
 
       {/* Sidebar */}
-      <aside className={`fixed lg:sticky top-0 left-0 z-20 h-screen w-[300px] lg:w-80 bg-white border-r border-gray-200 overflow-y-auto transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-0 lg:min-w-0 lg:overflow-hidden lg:border-0'}`}>
+      <aside className={`fixed lg:sticky top-0 left-0 z-20 h-screen bg-white border-r border-gray-200 overflow-y-auto transition-all duration-300 ${sidebarOpen ? 'w-[300px] lg:w-72 translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-0 lg:min-w-0 lg:overflow-hidden lg:border-0 lg:p-0'}`}>
         {/* Sidebar header */}
         <div className="sticky top-0 z-10 bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 text-white p-4">
           <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`} className="block group">
@@ -444,90 +572,51 @@ export default function Learn() {
 
       {/* Main content */}
       <main className="flex-1 min-w-0" ref={contentRef}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-10 py-6 lg:py-8">
-          {/* Top bar */}
-          <div className="flex items-center justify-between mb-6">
-            <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`}>
-              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700 -ml-2 gap-1.5"><ArrowLeft className="w-4 h-4" /><span className="hidden sm:inline">Retour</span></Button>
-            </Link>
-            <div className="flex items-center gap-2 text-xs text-gray-400">
-              {lessonContent.trim() && (
-                <>
-                  <Eye className="w-3.5 h-3.5" />
-                  <span>~{readingTime} min de lecture</span>
-                  <span className="text-gray-300">|</span>
-                  <span>{wordCount} mots</span>
-                </>
-              )}
+        {/* Lesson hero header */}
+        <div className="bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 text-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
+            <div className="flex items-center justify-between mb-4">
+              <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`}>
+                <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 -ml-2 gap-1.5"><ArrowLeft className="w-4 h-4" /><span className="hidden sm:inline">Retour au cours</span></Button>
+              </Link>
+              <div className="flex items-center gap-3 text-xs text-purple-200">
+                {lessonContent.trim() && (
+                  <>
+                    <span className="flex items-center gap-1"><Eye className="w-3.5 h-3.5" />~{readingTime} min</span>
+                    <span className="text-purple-400">·</span>
+                    <span>{wordCount} mots</span>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-
-          {/* Lesson header */}
-          <div className="mb-6">
             <div className="flex items-center flex-wrap gap-2 mb-3">
-              <Badge className="bg-purple-100 text-purple-700 border-0 text-xs font-semibold px-2.5 py-0.5">Module {currentLesson.module_number || 1}</Badge>
-              <Badge variant="outline" className="text-gray-500 text-xs px-2.5 py-0.5">Le\u00e7on {currentLesson.lesson_number || currentIndex + 1}</Badge>
-              {currentLesson.duration_minutes && <Badge variant="outline" className="text-gray-400 text-xs gap-1 px-2.5 py-0.5"><Clock className="w-3 h-3" />{currentLesson.duration_minutes} min</Badge>}
-              {isCompleted && <Badge className="bg-emerald-100 text-emerald-700 border-0 text-xs gap-1 px-2.5 py-0.5"><CheckCircle className="w-3 h-3" />Termin\u00e9e</Badge>}
+              <Badge className="bg-white/15 text-white border-0 text-xs font-semibold px-2.5 py-0.5 backdrop-blur-sm">Module {currentLesson.module_number || 1}</Badge>
+              <Badge className="bg-white/10 text-white/80 border-0 text-xs px-2.5 py-0.5">Le\u00e7on {currentLesson.lesson_number || currentIndex + 1}/{lessons.length}</Badge>
+              {currentLesson.duration_minutes && <Badge className="bg-white/10 text-white/80 border-0 text-xs gap-1 px-2.5 py-0.5"><Clock className="w-3 h-3" />{currentLesson.duration_minutes} min</Badge>}
+              {isCompleted && <Badge className="bg-emerald-500/20 text-emerald-200 border-0 text-xs gap-1 px-2.5 py-0.5"><CheckCircle className="w-3 h-3" />Termin\u00e9e</Badge>}
             </div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">{currentLesson.title || t('learn.lessonWithoutTitle')}</h1>
-            {currentLesson.description && <p className="text-base text-gray-500 mt-2 leading-relaxed max-w-2xl">{currentLesson.description}</p>}
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight tracking-tight">{currentLesson.title || t('learn.lessonWithoutTitle')}</h1>
+            {currentLesson.description && <p className="text-base text-purple-200 mt-2 leading-relaxed max-w-2xl">{currentLesson.description}</p>}
           </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-10 py-6 lg:py-8">
 
           {/* Content card */}
           <div className="mb-6">
-            <Card className="border-0 shadow-lg bg-white rounded-2xl overflow-hidden">
+            <Card className="border-0 shadow-xl bg-white rounded-2xl overflow-hidden">
               <CardContent className="p-0">
-                {/* Video */}
+                {/* Dedicated video lesson */}
                 {currentLesson.content_type === "video" && currentLesson.content_url && (
-                  <div className="aspect-video bg-gray-950"><iframe src={currentLesson.content_url} className="w-full h-full" allowFullScreen title={currentLesson.title} /></div>
+                  <div className="aspect-video bg-gray-950 rounded-t-2xl overflow-hidden">
+                    <iframe src={currentLesson.content_url} className="w-full h-full" allowFullScreen title={currentLesson.title} />
+                  </div>
                 )}
 
-                {/* Text/Markdown */}
+                {/* Text/Markdown content with embedded videos */}
                 {hasContent && lessonContent.trim() && (
                   <div className="px-5 sm:px-8 lg:px-12 py-8 sm:py-10">
-                    <article className="prose prose-gray prose-lg max-w-none
-                      prose-headings:text-gray-900 prose-headings:font-extrabold
-                      prose-h1:text-3xl prose-h1:mb-6 prose-h1:pb-4 prose-h1:border-b prose-h1:border-gray-100
-                      prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:flex prose-h2:items-center prose-h2:gap-3
-                      prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-                      prose-p:text-gray-600 prose-p:leading-[1.85] prose-p:text-[15px] prose-p:mb-5
-                      prose-li:text-gray-600 prose-li:leading-relaxed
-                      prose-strong:text-gray-900
-                      prose-a:text-purple-600 prose-a:no-underline hover:prose-a:underline
-                      prose-blockquote:border-l-purple-400 prose-blockquote:bg-purple-50/50 prose-blockquote:rounded-r-xl prose-blockquote:py-1
-                      prose-code:text-purple-700 prose-code:bg-purple-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm
-                    ">
-                      <ReactMarkdown
-                        components={{
-                          h2: ({node, children, ...props}) => (
-                            <h2 {...props}>
-                              <span className="w-8 h-8 rounded-lg bg-purple-100 inline-flex items-center justify-center mr-2 flex-shrink-0">
-                                <BookOpen className="w-4 h-4 text-purple-600" />
-                              </span>
-                              {children}
-                            </h2>
-                          ),
-                          ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 space-y-3 marker:text-purple-400 marker:font-bold" {...props} />,
-                          ul: ({node, ...props}) => <ul className="list-none pl-0 mb-6 space-y-2" {...props} />,
-                          li: ({node, children, ...props}) => {
-                            // Check if parent is ul (unordered) to add custom bullet
-                            const isUnordered = node?.parentNode?.tagName === 'ul';
-                            if (isUnordered) {
-                              return (
-                                <li className="flex items-start gap-2.5 text-gray-600 leading-relaxed" {...props}>
-                                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2.5 flex-shrink-0" />
-                                  <span>{children}</span>
-                                </li>
-                              );
-                            }
-                            return <li className="text-gray-600 leading-relaxed pl-2" {...props}>{children}</li>;
-                          },
-                        }}
-                      >
-                        {lessonContent}
-                      </ReactMarkdown>
-                    </article>
+                    <LessonContentRenderer content={lessonContent} />
                   </div>
                 )}
 
@@ -578,7 +667,7 @@ export default function Learn() {
               </CardContent>
             </Card>
           )}
-        </div>
+        </div>{/* end max-w-4xl */}
       </main>
 
       {/* AI Assistant */}
