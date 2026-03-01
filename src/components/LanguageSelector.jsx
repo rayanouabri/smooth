@@ -8,20 +8,33 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 
+// Use real flag images since emoji flags DON'T RENDER on Windows
 const languages = [
-  { code: 'fr', name: 'Fran\u00e7ais', flag: '\uD83C\uDDEB\uD83C\uDDF7', short: 'FR' },
-  { code: 'en', name: 'English', flag: '\uD83C\uDDEC\uD83C\uDDE7', short: 'EN' },
-  { code: 'es', name: 'Espa\u00f1ol', flag: '\uD83C\uDDEA\uD83C\uDDF8', short: 'ES' },
-  { code: 'ar', name: '\u0627\u0644\u0639\u0631\u0628\u064A\u0629', flag: '\uD83C\uDDF8\uD83C\uDDE6', short: 'AR' },
-  { code: 'zh-CN', name: '\u4E2D\u6587', flag: '\uD83C\uDDE8\uD83C\uDDF3', short: 'ZH' },
-  { code: 'pt', name: 'Portugu\u00eas', flag: '\uD83C\uDDE7\uD83C\uDDF7', short: 'PT' },
-  { code: 'de', name: 'Deutsch', flag: '\uD83C\uDDE9\uD83C\uDDEA', short: 'DE' },
-  { code: 'it', name: 'Italiano', flag: '\uD83C\uDDEE\uD83C\uDDF9', short: 'IT' },
-  { code: 'ru', name: '\u0420\u0443\u0441\u0441\u043A\u0438\u0439', flag: '\uD83C\uDDF7\uD83C\uDDFA', short: 'RU' },
-  { code: 'tr', name: 'T\u00fcrk\u00e7e', flag: '\uD83C\uDDF9\uD83C\uDDF7', short: 'TR' },
-  { code: 'ja', name: '\u65E5\u672C\u8A9E', flag: '\uD83C\uDDEF\uD83C\uDDF5', short: 'JA' },
-  { code: 'ko', name: '\uD55C\uAD6D\uC5B4', flag: '\uD83C\uDDF0\uD83C\uDDF7', short: 'KO' },
+  { code: 'fr', name: 'Fran\u00e7ais', short: 'FR', flag: 'https://flagcdn.com/w40/fr.png' },
+  { code: 'en', name: 'English', short: 'EN', flag: 'https://flagcdn.com/w40/gb.png' },
+  { code: 'es', name: 'Espa\u00f1ol', short: 'ES', flag: 'https://flagcdn.com/w40/es.png' },
+  { code: 'ar', name: '\u0627\u0644\u0639\u0631\u0628\u064A\u0629', short: 'AR', flag: 'https://flagcdn.com/w40/sa.png' },
+  { code: 'zh-CN', name: '\u4E2D\u6587', short: 'ZH', flag: 'https://flagcdn.com/w40/cn.png' },
+  { code: 'pt', name: 'Portugu\u00eas', short: 'PT', flag: 'https://flagcdn.com/w40/br.png' },
+  { code: 'de', name: 'Deutsch', short: 'DE', flag: 'https://flagcdn.com/w40/de.png' },
+  { code: 'it', name: 'Italiano', short: 'IT', flag: 'https://flagcdn.com/w40/it.png' },
+  { code: 'ru', name: '\u0420\u0443\u0441\u0441\u043A\u0438\u0439', short: 'RU', flag: 'https://flagcdn.com/w40/ru.png' },
+  { code: 'tr', name: 'T\u00fcrk\u00e7e', short: 'TR', flag: 'https://flagcdn.com/w40/tr.png' },
+  { code: 'ja', name: '\u65E5\u672C\u8A9E', short: 'JA', flag: 'https://flagcdn.com/w40/jp.png' },
+  { code: 'ko', name: '\uD55C\uAD6D\uC5B4', short: 'KO', flag: 'https://flagcdn.com/w40/kr.png' },
 ];
+
+function FlagImg({ src, alt, className = "" }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={`inline-block object-cover rounded-sm ${className}`}
+      loading="lazy"
+      onError={(e) => { e.target.style.display = 'none'; }}
+    />
+  );
+}
 
 export default function LanguageSelector() {
   const [currentLang, setCurrentLang] = useState('fr');
@@ -88,10 +101,11 @@ export default function LanguageSelector() {
         <Button
           variant="ghost"
           size="sm"
-          className="gap-1.5 px-2 sm:px-3 h-9 text-gray-700 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 hover:border-gray-300 rounded-xl transition-all"
+          className="gap-2 px-2.5 sm:px-3 h-9 text-gray-700 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 hover:border-gray-300 rounded-xl transition-all"
+          aria-label="Change language"
         >
-          <span className="text-lg leading-none">{currentLanguage.flag}</span>
-          <span className="hidden sm:inline text-xs font-semibold text-gray-600">
+          <FlagImg src={currentLanguage.flag} alt={currentLanguage.name} className="w-6 h-4" />
+          <span className="text-xs font-semibold text-gray-600">
             {currentLanguage.short}
           </span>
           <ChevronDown className="w-3 h-3 text-gray-400" />
@@ -99,16 +113,16 @@ export default function LanguageSelector() {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="w-60 bg-white/95 backdrop-blur-xl border border-gray-200 shadow-2xl rounded-2xl p-2 z-[9999]"
+        className="w-56 bg-white/95 backdrop-blur-xl border border-gray-200 shadow-2xl rounded-2xl p-1.5 z-[9999]"
         sideOffset={8}
       >
-        <div className="px-3 py-2 mb-1">
+        <div className="px-3 py-2 mb-1 border-b border-gray-100">
           <div className="flex items-center gap-2">
             <Globe className="w-3.5 h-3.5 text-gray-400" />
             <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Langue / Language</p>
           </div>
         </div>
-        <div className="max-h-[320px] overflow-y-auto scrollbar-thin">
+        <div className="max-h-[340px] overflow-y-auto">
           {languages.map((lang) => {
             const isActive = currentLang === lang.code;
             return (
@@ -121,7 +135,7 @@ export default function LanguageSelector() {
                     : 'hover:bg-gray-50 text-gray-700'
                 }`}
               >
-                <span className="text-2xl leading-none flex-shrink-0">{lang.flag}</span>
+                <FlagImg src={lang.flag} alt={lang.name} className="w-7 h-5" />
                 <span className={`font-medium flex-1 text-sm ${isActive ? 'text-purple-700' : ''}`}>
                   {lang.name}
                 </span>
