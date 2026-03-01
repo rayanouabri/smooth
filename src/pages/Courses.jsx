@@ -98,10 +98,16 @@ export default function Courses() {
 
   const categoryLabels = {
     all: t('courses.categories.all'),
-    preparation_academique: t('courses.categories.preparation_academique'),
-    integration_administrative: t('courses.categories.integration_administrative'),
+    logement: t('courses.categories.logement'),
+    budget_finances: t('courses.categories.budget_finances'),
+    sante: t('courses.categories.sante'),
     culture_codes_sociaux: t('courses.categories.culture_codes_sociaux'),
     insertion_professionnelle: t('courses.categories.insertion_professionnelle'),
+    integration_administrative: t('courses.categories.integration_administrative'),
+    administration: t('courses.categories.administration'),
+    transport: t('courses.categories.transport'),
+    travail: t('courses.categories.travail'),
+    preparation_academique: t('courses.categories.preparation_academique'),
     formations_professionnelles: t('courses.categories.formations_professionnelles')
   };
 
@@ -113,18 +119,6 @@ export default function Courses() {
   };
 
   const filteredCourses = courses.filter(course => {
-    // Exclure les cours de français académique (Bac, FLE, Philosophie, Histoire-Géo)
-    const excludedKeywords = ['français', 'french', 'fle', 'delf', 'dalf', 'bac', 'baccalauréat', 
-                              'philosophie', 'philo', 'histoire', 'géographie', 'histoire-géo',
-                              'littérature', 'grammaire', 'conjugaison', 'orthographe'];
-    const titleLower = course.title?.toLowerCase() || '';
-    const descLower = course.short_description?.toLowerCase() || '';
-    const isExcluded = excludedKeywords.some(keyword => 
-      titleLower.includes(keyword) || descLower.includes(keyword)
-    );
-    
-    if (isExcluded) return false;
-    
     // Recherche améliorée : chercher dans tous les champs pertinents
     let matchesSearch = true;
     if (searchTerm.trim()) {
@@ -168,7 +162,8 @@ export default function Courses() {
       matchesSearch = directMatch || semanticMatch;
     }
     
-    const matchesCategory = categoryFilter === "all" || course.category === categoryFilter;
+    const normalizedCategory = (course.category || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const matchesCategory = categoryFilter === "all" || normalizedCategory === categoryFilter;
     const matchesLevel = levelFilter === "all" || course.level === levelFilter;
     
     return matchesSearch && matchesCategory && matchesLevel;
@@ -177,17 +172,25 @@ export default function Courses() {
   const freeCourses = filteredCourses.filter(c => !c.is_premium);
   const premiumCourses = filteredCourses.filter(c => c.is_premium);
 
-  // Ordre personnalisé des catégories : Préparation Académique en avant-dernière
+  // Ordre des catégories : toutes les 11 catégories incluses
   const categoryOrder = [
-    'integration_administrative',
+    'logement',
+    'budget_finances',
+    'sante',
     'culture_codes_sociaux',
     'insertion_professionnelle',
-    'formations_professionnelles',
-    'preparation_academique' // Avant-dernière
+    'integration_administrative',
+    'administration',
+    'transport',
+    'travail',
+    'preparation_academique',
+    'formations_professionnelles'
   ];
 
   const coursesByCategory = categoryOrder.reduce((acc, category) => {
-    acc[category] = filteredCourses.filter(c => c.category === category);
+    acc[category] = filteredCourses.filter(c =>
+      (c.category || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') === category
+    );
     return acc;
   }, {});
 

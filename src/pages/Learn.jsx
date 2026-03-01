@@ -437,6 +437,7 @@ export default function Learn() {
   const [enrollment, setEnrollment] = useState(null);
   const [canAccess, setCanAccess] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [videoError, setVideoError] = useState(false);
   const navigate = useNavigate();
   const contentRef = useRef(null);
 
@@ -539,6 +540,11 @@ export default function Learn() {
   const embedUrl = toYouTubeEmbed(videoUrl);
   const wordCount = lessonContent.split(/\s+/).length;
   const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+  // Reset video error state when lesson changes
+  useEffect(() => {
+    setVideoError(false);
+  }, [currentLesson?.id]);
 
   // -- Guard states --
   if (courseLoading || lessonsLoading) return (
@@ -735,18 +741,27 @@ export default function Learn() {
           {hasVideo && (
             <div className="mb-8">
               <div className="rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/10 bg-black">
-                <div className="aspect-video relative">
-                  <iframe
-                    src={embedUrl}
-                    className="absolute inset-0 w-full h-full"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    allowFullScreen
-                    loading="lazy"
-                    title={currentLesson.title}
-                  />
-                </div>
+                {videoError ? (
+                  <div className="aspect-video flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 to-purple-950 text-white">
+                    <Video className="w-12 h-12 text-purple-400 mb-3 opacity-60" />
+                    <p className="text-lg font-semibold text-purple-200">Vidéo à venir</p>
+                    <p className="text-sm text-slate-400 mt-1">Cette vidéo sera disponible prochainement</p>
+                  </div>
+                ) : (
+                  <div className="aspect-video relative">
+                    <iframe
+                      src={embedUrl}
+                      className="absolute inset-0 w-full h-full"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      allowFullScreen
+                      loading="lazy"
+                      title={currentLesson.title}
+                      onError={() => setVideoError(true)}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           )}

@@ -80,10 +80,16 @@ const translations = {
       resetFilters: "Réinitialiser les filtres",
       categories: {
         all: "Toutes les catégories",
-        preparation_academique: "📚 Préparation Académique",
-        integration_administrative: "📋 Intégration Administrative",
+        logement: "🏠 Logement",
+        budget_finances: "💰 Budget & Finances",
+        sante: "🏥 Santé",
         culture_codes_sociaux: "🎭 Culture & Codes Sociaux",
         insertion_professionnelle: "💼 Insertion Professionnelle",
+        integration_administrative: "📋 Intégration Administrative",
+        administration: "🏛️ Administration",
+        transport: "🚇 Transport",
+        travail: "👔 Travail",
+        preparation_academique: "📚 Préparation Académique",
         formations_professionnelles: "🚀 Formations Professionnelles"
       },
       levels: {
@@ -241,10 +247,16 @@ const translations = {
       resetFilters: "Reset filters",
       categories: {
         all: "All categories",
-        preparation_academique: "📚 Academic Preparation",
-        integration_administrative: "📋 Administrative Integration",
+        logement: "🏠 Housing",
+        budget_finances: "💰 Budget & Finances",
+        sante: "🏥 Health",
         culture_codes_sociaux: "🎭 Culture & Social Codes",
         insertion_professionnelle: "💼 Professional Integration",
+        integration_administrative: "📋 Administrative Integration",
+        administration: "🏛️ Administration",
+        transport: "🚇 Transport",
+        travail: "👔 Work",
+        preparation_academique: "📚 Academic Preparation",
         formations_professionnelles: "🚀 Professional Training"
       },
       levels: {
@@ -1173,7 +1185,15 @@ export const getTranslation = (lang, key) => {
   let value = translations[lang] || translations.fr;
   for (const k of keys) {
     value = value?.[k];
-    if (!value) return key;
+    if (value === undefined || value === null) {
+      // Fall back to French for missing keys
+      let frValue = translations.fr;
+      for (const fk of keys) {
+        frValue = frValue?.[fk];
+        if (!frValue) return key;
+      }
+      return frValue || key;
+    }
   }
   return value || key;
 };
