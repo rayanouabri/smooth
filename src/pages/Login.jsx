@@ -1,55 +1,131 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { signInWithEmail, signUpWithEmail, signInWithGoogle, resetPassword } from "@/api/auth";
 import logger from "@/utils/logger";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { GraduationCap, Mail, Lock, ArrowRight } from "lucide-react";
+import { GraduationCap, Mail, Lock, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { createPageUrl } from "../utils";
 import { motion } from "framer-motion";
+
+// Traduire les erreurs Supabase en messages français clairs
+function translateAuthError(error) {
+  const msg = error?.message || error?.toString() || "";
+  const code = error?.code || error?.status || "";
+
+  if (msg.includes("Invalid login credentials") || msg.includes("invalid_credentials")) {
+    return "Email ou mot de passe incorrect. Vérifiez vos identifiants.";
+  }
+  if (msg.includes("Email not confirmed")) {
+    return "Votre email n'a pas encore été confirmé. Vérifiez votre boîte mail (et les spams).";
+  }
+  if (msg.includes("User already registered") || msg.includes("already been registered")) {
+    return "Un compte existe déjà avec cet email. Essayez de vous connecter.";
+  }
+  if (msg.includes("Password should be at least") || msg.includes("password")) {
+    return "Le mot de passe doit contenir au moins 6 caractères.";
+  }
+  if (msg.includes("rate limit") || msg.includes("too many requests") || code === 429) {
+    return "Trop de tentatives. Veuillez patienter quelques minutes avant de réessayer.";
+  }
+  if (msg.includes("network") || msg.includes("fetch") || msg.includes("Failed to fetch")) {
+    return "Erreur de connexion réseau. Vérifiez votre connexion internet et réessayez.";
+  }
+  if (msg.includes("invalid email") || msg.includes("Unable to validate email")) {
+    return "Adresse email invalide. Vérifiez le format de votre email.";
+  }
+  if (msg.includes("signup_disabled")) {
+    return "Les inscriptions sont temporairement désactivées. Veuillez réessayer plus tard.";
+  }
+  return msg || "Une erreur s'est produite. Veuillez réessayer.";
+}
 
 export default function Login() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const redirectUrl = searchParams.get('redirect') || createPageUrl('Dashboard');
-  
+
   const [isLogin, setIsLogin] = useState(true);
   const [showResetPassword, setShowResetPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const formRef = useRef(null);
+
+  // Réinitialiser les erreurs quand on change de mode
+  useEffect(() => {
+    setError("");
+    setSuccessMessage("");
+  }, [isLogin, showResetPassword]);
 
   const handleEmailAuth = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
+
+    // Empêcher les soumissions multiples
+    if (isLoading) return;
+
     setIsLoading(true);
     setError("");
     setSuccessMessage("");
 
+    // Validation côté client avant envoi (contourne les bugs de validation native sur certains navigateurs mobile)
+    const trimmedEmail = email.trim().toLowerCase();
+    const trimmedPassword = password.trim();
+    const trimmedName = fullName.trim();
+
+    if (!trimmedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      setError("Veuillez entrer une adresse email valide.");
+      setIsLoading(false);
+      return;
+    }
+
+    if (!trimmedPassword || trimmedPassword.length < 6) {
+      setError("Le mot de passe doit contenir au moins 6 caractères.");
+      setIsLoading(false);
+      return;
+    }
+
+    if (!isLogin && !trimmedName) {
+      setError("Veuillez entrer votre nom complet.");
+      setIsLoading(false);
+      return;
+    }
+
     try {
       if (isLogin) {
-        await signInWithEmail(email, password);
+        await signInWithEmail(trimmedEmail, trimmedPassword);
         // Redirection après connexion réussie
         window.location.href = redirectUrl;
       } else {
         // Inscription
-        const result = await signUpWithEmail(email, password, { full_name: fullName });
+        const result = await signUpWithEmail(trimmedEmail, trimmedPassword, { full_name: trimmedName });
         logger.debug('Signup result:', result);
-        
+
+        // Vérifier si l'inscription nécessite une confirmation email
+        if (result?.user?.identities?.length === 0) {
+          // L'utilisateur existe déjà (Supabase renvoie un user vide)
+          setError("Un compte existe déjà avec cet email. Essayez de vous connecter.");
+          setIsLoading(false);
+          return;
+        }
+
         // Afficher message de confirmation
         setSuccessMessage(
-          "Inscription réussie ! Un email de confirmation vous a été envoyé. Veuillez vérifier votre boîte mail pour valider votre compte."
+          "Inscription réussie ! Un email de confirmation vous a été envoyé. Veuillez vérifier votre boîte mail (et vos spams) pour valider votre compte."
         );
         setEmail("");
         setPassword("");
         setFullName("");
-        
+
         // Réinitialiser le loading immédiatement après succès
         setIsLoading(false);
-        
+
         // Auto-redirection après 5 secondes
         setTimeout(() => {
           setIsLogin(true);
@@ -58,8 +134,8 @@ export default function Login() {
       }
     } catch (err) {
       logger.error('Auth error:', err);
-      setError(err.message || "Une erreur s'est produite lors de la connexion");
-      setIsLoading(false); // S'assurer que le loading est désactivé en cas d'erreur
+      setError(translateAuthError(err));
+      setIsLoading(false);
     }
   };
 
@@ -221,64 +297,95 @@ export default function Login() {
                   </div>
                 </div>
 
-                {/* Formulaire Email/Password */}
-                <form onSubmit={handleEmailAuth} className="space-y-4">
+                {/* Formulaire Email/Password - Compatible tous navigateurs et mobiles */}
+                <form
+                  ref={formRef}
+                  onSubmit={handleEmailAuth}
+                  className="space-y-4"
+                  noValidate
+                  autoComplete={isLogin ? "on" : "off"}
+                >
                   {!isLogin && (
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-gray-700">Nom complet</label>
+                      <label htmlFor="fullName" className="text-sm font-medium text-gray-700">Nom complet</label>
                       <div className="relative">
                         <Input
+                          id="fullName"
+                          name="fullName"
                           type="text"
+                          inputMode="text"
+                          autoComplete="name"
                           placeholder="Jean Dupont"
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
-                          required={!isLogin}
-                          className="h-12"
+                          className="h-12 text-base"
+                          aria-label="Nom complet"
                         />
                       </div>
                     </div>
                   )}
 
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Email</label>
+                    <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
                       <Input
+                        id="email"
+                        name="email"
                         type="email"
+                        inputMode="email"
+                        autoComplete={isLogin ? "email" : "email"}
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck="false"
                         placeholder="votre@email.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="h-12 pl-10"
+                        className="h-12 pl-10 text-base"
+                        aria-label="Adresse email"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <label className="text-sm font-medium text-gray-700">Mot de passe</label>
+                      <label htmlFor="password" className="text-sm font-medium text-gray-700">Mot de passe</label>
                       {isLogin && (
                         <button
                           type="button"
                           onClick={() => setShowResetPassword(true)}
-                          className="text-xs text-cyan-600 hover:text-cyan-700 font-semibold"
+                          className="text-xs text-cyan-600 hover:text-cyan-700 font-semibold touch-manipulation"
                         >
-                          Oublié ?
+                          {"Oublié ?"}
                         </button>
                       )}
                     </div>
                     <div className="relative">
-                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
                       <Input
-                        type="password"
+                        id="password"
+                        name="password"
+                        type={showPassword ? "text" : "password"}
+                        autoComplete={isLogin ? "current-password" : "new-password"}
                         placeholder="••••••••"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required
-                        className="h-12 pl-10"
-                        minLength={6}
+                        className="h-12 pl-10 pr-12 text-base"
+                        aria-label="Mot de passe"
                       />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 touch-manipulation p-1"
+                        aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                        tabIndex={-1}
+                      >
+                        {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                      </button>
                     </div>
+                    {!isLogin && (
+                      <p className="text-xs text-gray-500">Minimum 6 caractères</p>
+                    )}
                   </div>
 
                   {error && (

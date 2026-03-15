@@ -20,6 +20,31 @@ export default function Layout({ children, currentPageName }) {
   const [user, setUser] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Bloquer le scroll du body quand le menu mobile est ouvert
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+    };
+  }, [mobileMenuOpen]);
+
   useEffect(() => {
     checkAuth();
     // Recharger le statut utilisateur périodiquement pour détecter les changements de premium
@@ -204,33 +229,35 @@ export default function Layout({ children, currentPageName }) {
               )}
             </div>
 
-            {/* Mobile menu button */}
+            {/* Mobile menu button - Zone cliquable agrandie pour mobile */}
             <button
-              className="lg:hidden flex-shrink-0"
+              className="lg:hidden flex-shrink-0 p-3 -m-1 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors touch-manipulation"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-gray-700" />
+                <X className="w-7 h-7 text-gray-700" />
               ) : (
-                <Menu className="w-6 h-6 text-gray-700" />
+                <Menu className="w-7 h-7 text-gray-700" />
               )}
             </button>
           </div>
 
-            {/* Mobile menu - Design amélioré */}
+            {/* Mobile menu - Design amélioré avec meilleure compatibilité */}
           {mobileMenuOpen && (
-            <div className="lg:hidden fixed inset-0 top-[70px] bg-white z-50 overflow-y-auto shadow-2xl">
+            <div className="lg:hidden fixed inset-0 top-[56px] sm:top-[64px] bg-white z-50 overflow-y-auto shadow-2xl overscroll-contain">
               <div className="px-4 py-6 space-y-1">
                 {navLinks.map((link) => (
                   <Link key={link.page} to={createPageUrl(link.page)}>
                     <Button
                       variant={currentPageName === link.page ? "default" : "ghost"}
                       className={`w-full justify-start h-12 text-base ${
-                        currentPageName === link.page 
-                          ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white" 
+                        currentPageName === link.page
+                          ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
                           : "hover:bg-gray-100"
                       }`}
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={() => { setMobileMenuOpen(false); window.scrollTo(0,0); }}
                     >
                       {link.name}
                     </Button>
@@ -243,7 +270,7 @@ export default function Layout({ children, currentPageName }) {
                         <Button
                           variant="ghost"
                           className="w-full justify-start h-12 text-base hover:bg-gray-100"
-                          onClick={() => setMobileMenuOpen(false)}
+                          onClick={() => { setMobileMenuOpen(false); window.scrollTo(0,0); }}
                         >
                           {"\uD83D\uDCCA"} Tableau de bord
                         </Button>
@@ -252,7 +279,7 @@ export default function Layout({ children, currentPageName }) {
                         <Button
                           variant="ghost"
                           className="w-full justify-start h-12 text-base hover:bg-gray-100"
-                          onClick={() => setMobileMenuOpen(false)}
+                          onClick={() => { setMobileMenuOpen(false); window.scrollTo(0,0); }}
                         >
                           {"\uD83D\uDC64"} Mon profil
                         </Button>

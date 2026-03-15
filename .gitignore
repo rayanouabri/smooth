@@ -49,3 +49,10 @@ config.json
 .cache# OS files
 Thumbs.db
 .DS_Store
+.vercel
+
+# Claude temp files
+tmpclaude-*
+.claude/
+nul
+backup-*.json

@@ -2,6 +2,15 @@
 import Layout from "./Layout.jsx";
 import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 
+// Composant pour scroll en haut à chaque changement de page
+function ScrollToTop() {
+    const { pathname } = useLocation();
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, [pathname]);
+    return null;
+}
+
 // Pages critiques chargées immédiatement (Home, Login, Layout)
 import Home from "./Home";
 import Login from "./Login";
@@ -176,6 +185,8 @@ function PagesContent() {
     }
     
     return (
+        <>
+        <ScrollToTop />
         <Layout currentPageName={currentPage}>
             <Suspense fallback={<PageSkeleton />}>
                 <Routes>            
@@ -249,6 +260,7 @@ function PagesContent() {
                 </Routes>
             </Suspense>
         </Layout>
+        </>
     );
 }
 
