@@ -200,8 +200,8 @@ const extraBlocks = {
 <p>Les <strong>jours fériés français</strong> sont au nombre de 11 par an : 1er janvier, lundi de Pâques, 1er mai, 8 mai, Ascension, lundi de Pentecôte, 14 juillet, 15 août, 1er novembre, 11 novembre, 25 décembre. Lorsqu'un jour férié tombe un mardi ou un jeudi, les Français pratiquent souvent le <strong>« pont »</strong> (prendre le lundi ou le vendredi comme jour de congé pour avoir un week-end prolongé). Les cours à l'université peuvent être supprimés lors des ponts, renseignez-vous auprès de votre scolarité.</p>`,
 };
 
-  const extra = extraBlocks[topic] || extraBlocks.pratique;
-  return extra;
+function generateExtra(topic) {
+  return extraBlocks[topic] || extraBlocks.pratique;
 }
 
 async function main() {
@@ -224,7 +224,8 @@ async function main() {
   let success = 0, fail = 0;
   for (const l of under) {
     const courseTitle = courseMap[l.course_id] || '';
-    const extra = generateExtra(l.title, courseTitle);
+    const topic = getTopic(l.title, courseTitle);
+    const extra = generateExtra(topic);
     const enriched = l.content + '\n\n' + extra;
     const newWc = enriched.split(' ').length;
 

@@ -39,6 +39,7 @@ const Teachers = lazy(() => import("./Teachers"));
 const Community = lazy(() => import("./Community"));
 const Pricing = lazy(() => import("./Pricing"));
 const ConciergerieVIP = lazy(() => import("./ConciergerieVIP"));
+const AIAgent = lazy(() => import("./AIAgent"));
 const ExpertOneShot = lazy(() => import("./ExpertOneShot"));
 const CGU = lazy(() => import("./CGU"));
 const CGV = lazy(() => import("./CGV"));
@@ -215,6 +216,8 @@ function PagesContent() {
                     <Route path="/community" element={<Community />} />
                     <Route path="/pricing" element={<Pricing />} />
                     <Route path="/expertoneshot" element={<ExpertOneShot />} />
+                    <Route path="/aiagent" element={<AIAgent />} />
+                    <Route path="/AIAgent" element={<Navigate to="/aiagent" replace />} />
                     <Route path="/cgu" element={<CGU />} />
                     <Route path="/cgv" element={<CGV />} />
                     <Route path="/privacypolicy" element={<PrivacyPolicy />} />

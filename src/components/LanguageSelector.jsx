@@ -9,18 +9,18 @@ import {
 import { Button } from '@/components/ui/button';
 
 const languages = [
-  { code: 'fr', name: 'Fran\u00e7ais', flag: '\uD83C\uDDEB\uD83C\uDDF7' },
-  { code: 'en', name: 'English', flag: '\uD83C\uDDEC\uD83C\uDDE7' },
-  { code: 'es', name: 'Espa\u00f1ol', flag: '\uD83C\uDDEA\uD83C\uDDF8' },
-  { code: 'ar', name: '\u0627\u0644\u0639\u0631\u0628\u064A\u0629', flag: '\uD83C\uDDF8\uD83C\uDDE6' },
-  { code: 'zh-CN', name: '\u4E2D\u6587', flag: '\uD83C\uDDE8\uD83C\uDDF3' },
-  { code: 'pt', name: 'Portugu\u00eas', flag: '\uD83C\uDDE7\uD83C\uDDF7' },
-  { code: 'de', name: 'Deutsch', flag: '\uD83C\uDDE9\uD83C\uDDEA' },
-  { code: 'it', name: 'Italiano', flag: '\uD83C\uDDEE\uD83C\uDDF9' },
-  { code: 'ru', name: '\u0420\u0443\u0441\u0441\u043A\u0438\u0439', flag: '\uD83C\uDDF7\uD83C\uDDFA' },
-  { code: 'tr', name: 'T\u00fcrk\u00e7e', flag: '\uD83C\uDDF9\uD83C\uDDF7' },
-  { code: 'ja', name: '\u65E5\u672C\u8A9E', flag: '\uD83C\uDDEF\uD83C\uDDF5' },
-  { code: 'ko', name: '\uD55C\uAD6D\uC5B4', flag: '\uD83C\uDDF0\uD83C\uDDF7' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
+  { code: 'zh-CN', name: '中文', flag: '🇨🇳' },
+  { code: 'pt', name: 'Português', flag: '🇧🇷' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+  { code: 'ko', name: '한국어', flag: '🇰🇷' },
 ];
 
 export default function LanguageSelector() {
@@ -28,7 +28,7 @@ export default function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // D\u00e9tecter la langue depuis le cookie
+    // Détecter la langue depuis le cookie
     const getCookie = (name) => {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
@@ -44,7 +44,7 @@ export default function LanguageSelector() {
       }
     }
 
-    // Cacher tout UI Google Translate apr\u00e8s chargement
+    // Cacher tout UI Google Translate après chargement
     const hideGoogleUI = () => {
       const elements = document.querySelectorAll('.goog-te-banner-frame, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame');
       elements.forEach(el => {
@@ -75,7 +75,7 @@ export default function LanguageSelector() {
       return;
     }
 
-    // D\u00e9finir les nouveaux cookies
+    // Définir les nouveaux cookies
     document.cookie = `googtrans=/fr/${langCode}; path=/`;
     if (window.location.hostname.includes('franceprepacademy')) {
       document.cookie = `googtrans=/fr/${langCode}; path=/; domain=.franceprepacademy.fr`;

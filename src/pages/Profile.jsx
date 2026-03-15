@@ -156,7 +156,7 @@ export default function Profile() {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <Card className="p-8 text-center">
           <p className="text-gray-600 mb-4">Vous devez être connecté pour accéder à votre profil</p>
-          <Button onClick={() => window.location.href = '/login'}>Se connecter</Button>
+          <Button onClick={() => { window.scrollTo(0, 0); window.location.href = '/login'; }}>Se connecter</Button>
         </Card>
       </div>
     );
@@ -558,7 +558,7 @@ export default function Profile() {
                           )}
                         </Button>
                         <Button
-                          onClick={() => window.location.href = '/pricing'}
+                          onClick={() => { window.scrollTo(0, 0); window.location.href = '/pricing'; }}
                           className="flex-1 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white"
                         >
                           Voir tous les avantages
@@ -599,7 +599,7 @@ export default function Profile() {
                     Débloquez tous les cours, IA illimitée et certificats professionnels
                   </p>
                   <Button
-                    onClick={() => window.location.href = '/pricing'}
+                    onClick={() => { window.scrollTo(0, 0); window.location.href = '/pricing'; }}
                     className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white text-lg px-8 py-6"
                   >
                     Découvrir Premium →

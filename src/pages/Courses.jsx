@@ -318,6 +318,7 @@ export default function Courses() {
                 size="sm"
                 className="border-indigo-300 text-indigo-600 hover:bg-indigo-50 rounded-full text-xs sm:text-sm"
                 onClick={() => {
+                  window.scrollTo(0, 0);
                   setSearchTerm("");
                   setCategoryFilter("all");
                   setLevelFilter("all");
@@ -383,6 +384,7 @@ export default function Courses() {
               size="lg"
               className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-full px-8"
               onClick={() => {
+                window.scrollTo(0, 0);
                 setSearchTerm("");
                 setCategoryFilter("all");
                 setLevelFilter("all");

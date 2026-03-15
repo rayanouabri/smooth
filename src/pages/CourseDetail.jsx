@@ -209,7 +209,7 @@ export default function CourseDetail() {
           <p className="text-gray-600 mb-6">
             Impossible de charger ce cours. Veuillez réessayer plus tard.
           </p>
-          <Link to={createPageUrl("Courses")}>
+          <Link to={createPageUrl("Courses")} onClick={() => window.scrollTo(0, 0)}>
             <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
               Retour aux cours
             </Button>
@@ -229,7 +229,7 @@ export default function CourseDetail() {
           <p className="text-gray-600 mb-6">
             Ce cours n'existe pas ou n'est plus disponible.
           </p>
-          <Link to={createPageUrl("Courses")}>
+          <Link to={createPageUrl("Courses")} onClick={() => window.scrollTo(0, 0)}>
             <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
               Retour aux cours
             </Button>
@@ -526,7 +526,7 @@ export default function CourseDetail() {
                     {isAuthenticated ? (
                       enrollment ? (
                         canAccess ? (
-                          <Link to={createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lessons[0]?.id}`}>
+                          <Link to={createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lessons[0]?.id}`} onClick={() => window.scrollTo(0, 0)}>
                             <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-6 text-lg shadow-xl" size="lg">
                               <Play className="w-5 h-5 mr-2" />
                               Continuer le cours
@@ -541,7 +541,7 @@ export default function CourseDetail() {
                             <p className="text-sm text-red-600 text-center mt-3 font-semibold">
                               ⚠️ Abonnement Premium requis
                             </p>
-                            <Link to={createPageUrl("Pricing")}>
+                            <Link to={createPageUrl("Pricing")} onClick={() => window.scrollTo(0, 0)}>
                               <Button variant="outline" className="w-full mt-3 border-2 border-orange-300 text-orange-600 hover:bg-orange-50 font-bold">
                                 <Zap className="w-4 h-4 mr-2" />
                                 Débloquer avec Premium
@@ -553,7 +553,10 @@ export default function CourseDetail() {
                         <Button
                           className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-6 text-lg shadow-xl"
                           size="lg"
-                          onClick={() => enrollMutation.mutate()}
+                          onClick={() => {
+                            window.scrollTo(0, 0);
+                            enrollMutation.mutate();
+                          }}
                           disabled={enrollMutation.isPending}
                         >
                           {enrollMutation.isPending ? (
@@ -574,7 +577,7 @@ export default function CourseDetail() {
                             <Lock className="w-5 h-5 mr-2" />
                             Abonnement requis
                           </Button>
-                          <Link to={createPageUrl("Pricing")}>
+                          <Link to={createPageUrl("Pricing")} onClick={() => window.scrollTo(0, 0)}>
                             <Button className="w-full mt-3 bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold py-4">
                               <Zap className="w-4 h-4 mr-2" />
                               Passer Premium

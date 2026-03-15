@@ -204,17 +204,20 @@ export default function Learn() {
 
   const handleNext = () => {
     if (nextLesson) {
+      window.scrollTo(0, 0);
       navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${nextLesson.id}`);
     }
   };
 
   const handlePrev = () => {
     if (prevLesson) {
+      window.scrollTo(0, 0);
       navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${prevLesson.id}`);
     }
   };
 
   const handleLessonClick = (lessonId) => {
+    window.scrollTo(0, 0);
     navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lessonId}`);
   };
 
@@ -244,7 +247,7 @@ export default function Learn() {
             <p className="text-gray-600 mb-6">
               Impossible de charger ce cours. Veuillez réessayer plus tard.
             </p>
-            <Link to={createPageUrl("Courses")}>
+            <Link to={createPageUrl("Courses")} onClick={() => window.scrollTo(0, 0)}>
               <Button className="w-full bg-blue-900 hover:bg-blue-800">
                 {t('learn.backToCourses')}
               </Button>
@@ -268,7 +271,7 @@ export default function Learn() {
             <p className="text-gray-600 mb-6">
               {t('learn.courseNotFoundDesc')}
             </p>
-            <Link to={createPageUrl("Courses")}>
+            <Link to={createPageUrl("Courses")} onClick={() => window.scrollTo(0, 0)}>
               <Button className="w-full bg-blue-900 hover:bg-blue-800">
                 {t('learn.backToCourses')}
               </Button>
@@ -315,7 +318,7 @@ export default function Learn() {
             <p className="text-gray-600 mb-6">
               {t('learn.noLessonsDesc')}
             </p>
-            <Link to={createPageUrl("Courses")}>
+            <Link to={createPageUrl("Courses")} onClick={() => window.scrollTo(0, 0)}>
               <Button className="w-full bg-blue-900 hover:bg-blue-800">
                 {t('learn.backToCourses')}
               </Button>
@@ -350,12 +353,12 @@ export default function Learn() {
               {t('learn.accessRestrictedDesc')}
             </p>
             <div className="space-y-3">
-              <Link to={createPageUrl("Pricing")}>
+              <Link to={createPageUrl("Pricing")} onClick={() => window.scrollTo(0, 0)}>
                 <Button className="w-full bg-blue-900 hover:bg-blue-800">
                   {t('learn.discoverSubscriptions')}
                 </Button>
               </Link>
-              <Link to={createPageUrl("Courses")}>
+              <Link to={createPageUrl("Courses")} onClick={() => window.scrollTo(0, 0)}>
                 <Button variant="outline" className="w-full">
                   {t('learn.backToCourses')}
                 </Button>
@@ -476,7 +479,7 @@ export default function Learn() {
       <div className="flex-1 overflow-y-auto min-w-0">
         <div className="max-w-5xl mx-auto p-3 sm:p-4 lg:p-6 xl:p-10">
           {/* Back Button */}
-          <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`}>
+          <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`} onClick={() => window.scrollTo(0, 0)}>
             <Button variant="ghost" className="mb-4 -ml-2">
               <ArrowLeft className="w-4 h-4 mr-2" />
               {t('learn.backToCourse')}

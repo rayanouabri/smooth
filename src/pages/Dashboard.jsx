@@ -159,13 +159,13 @@ export default function Dashboard() {
                 animate={{ opacity: 1, y: 0 }}
               >
                 <Badge className="mb-3 bg-orange-500 border-0">
-                  {plan === 'premium' ? '\u2B50 Premium' : '\uD83C\uDF93 Gratuit'}
+                  {plan === 'premium' ? '⭐ Premium' : '🎓 Gratuit'}
                 </Badge>
                 <h1 className="text-4xl font-bold mb-2">
-                  Bienvenue, {user.full_name || user.email?.split('@')[0]} ! {"\uD83D\uDC4B"}
+                  Bienvenue, {user.full_name || user.email?.split('@')[0]} ! {"👋"}
                 </h1>
                 <p className="text-blue-100 text-lg">
-                  {"Continuez votre parcours vers la r\u00e9ussite"}
+                  {"Continuez votre parcours vers la réussite"}
                 </p>
               </motion.div>
             </div>
@@ -178,7 +178,7 @@ export default function Dashboard() {
               {plan === 'gratuit' && (
                 <Link to={createPageUrl("Pricing")}>
                   <Button className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-bold shadow-lg">
-                    {"\u26A1"} Passer Premium
+                    {"⚡"} Passer Premium
                   </Button>
                 </Link>
               )}
@@ -196,28 +196,28 @@ export default function Dashboard() {
               labelKey: "dashboard.coursesFollowed",
               value: enrollments.length,
               color: "from-blue-500 to-cyan-500",
-              badge: "\uD83C\uDFAF Explorer"
+              badge: "🎯 Explorer"
             },
             {
               icon: Flame,
               labelKey: "dashboard.activeStreak",
               value: `${Math.min(7, enrollments.length)} jours`,
               color: "from-orange-500 to-red-500",
-              badge: "\uD83D\uDD25 Continue!"
+              badge: "🔥 Continue!"
             },
             {
               icon: Trophy,
               labelKey: "dashboard.badgesEarned",
               value: completedEnrollments.length + Math.floor(avgProgress / 25),
               color: "from-yellow-500 to-orange-500",
-              badge: "\u2B50 Top!"
+              badge: "⭐ Top!"
             },
             {
               icon: Zap,
               labelKey: "dashboard.xpPoints",
               value: (completedEnrollments.length * 100) + Math.floor(avgProgress * 10),
               color: "from-purple-500 to-pink-500",
-              badge: "\uD83D\uDE80 Level " + Math.floor(1 + enrollments.length / 3)
+              badge: "🚀 Level " + Math.floor(1 + enrollments.length / 3)
             }
           ].map((stat, index) => (
             <motion.div
@@ -257,7 +257,7 @@ export default function Dashboard() {
                     Niveau {Math.floor(1 + enrollments.length / 3)}
                   </h3>
                   <p className="text-sm text-gray-600">
-                    {enrollments.length % 3 === 0 ? `F\u00e9licitations ! Niveau suivant d\u00e9bloqu\u00e9 \uD83C\uDF89` : `${3 - (enrollments.length % 3)} cours pour passer au niveau ${Math.floor(2 + enrollments.length / 3)}`}
+                    {enrollments.length % 3 === 0 ? `Félicitations ! Niveau suivant débloqué 🎉` : `${3 - (enrollments.length % 3)} cours pour passer au niveau ${Math.floor(2 + enrollments.length / 3)}`}
                   </p>
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function Dashboard() {
                   Progression globale
                 </h3>
                 <p className="text-gray-600">
-                  {"Vous progressez \u00e0 un excellent rythme ! \uD83D\uDE80"}
+                  {"Vous progressez à un excellent rythme ! 🚀"}
                 </p>
               </div>
               <div className="text-5xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
@@ -304,9 +304,9 @@ export default function Dashboard() {
 
         <Tabs defaultValue="courses" className="mb-12">
           <TabsList className="grid w-full md:w-auto grid-cols-3 mb-8">
-            <TabsTrigger value="courses">{"\uD83D\uDCD6"} Mes Cours</TabsTrigger>
-            <TabsTrigger value="certificates">{"\uD83C\uDFC6"} Certificats</TabsTrigger>
-            <TabsTrigger value="discover">{"\uD83D\uDD0D"} {"D\u00e9couvrir"}</TabsTrigger>
+            <TabsTrigger value="courses">{"📖"} Mes Cours</TabsTrigger>
+            <TabsTrigger value="certificates">{"🏆"} Certificats</TabsTrigger>
+            <TabsTrigger value="discover">{"🔍"} {"Découvrir"}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="courses">
@@ -352,7 +352,7 @@ export default function Dashboard() {
                                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                                   <div className="text-sm text-gray-500 flex items-center">
                                     <Calendar className="w-4 h-4 inline mr-1" />
-                                    {"Dernier acc\u00e8s:"} {new Date(enrollment.last_accessed).toLocaleDateString('fr-FR')}
+                                    {"Dernier accès:"} {new Date(enrollment.last_accessed).toLocaleDateString('fr-FR')}
                                   </div>
                                   <Link to={createPageUrl("CourseDetail") + `?id=${course.id}`}>
                                     <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
@@ -373,7 +373,7 @@ export default function Dashboard() {
             ) : (
               <Card className="mb-12 bg-gradient-to-br from-orange-50 to-pink-50 border-2">
                 <CardContent className="p-12 text-center">
-                  <div className="text-6xl mb-4">{"\uD83C\uDFAF"}</div>
+                  <div className="text-6xl mb-4">{"🎯"}</div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">
                     Commencez votre premier cours !
                   </h3>
@@ -404,18 +404,18 @@ export default function Dashboard() {
                           <Award className="w-12 h-12 text-yellow-500" />
                           <Badge className="bg-green-500">
                             <CheckCircle className="w-3 h-3 mr-1" />
-                            {"Compl\u00e9t\u00e9"}
+                            {"Complété"}
                           </Badge>
                         </div>
                         <h3 className="font-bold text-gray-900 mb-2 line-clamp-2">
                           {course.title}
                         </h3>
                         <p className="text-sm text-gray-600 mb-4">
-                          {"Termin\u00e9 le"} {new Date(enrollment.last_accessed).toLocaleDateString('fr-FR')}
+                          {"Terminé le"} {new Date(enrollment.last_accessed).toLocaleDateString('fr-FR')}
                         </p>
                         <Button variant="outline" size="sm" className="w-full">
                           <Download className="w-4 h-4 mr-2" />
-                          {"T\u00e9l\u00e9charger le certificat"}
+                          {"Télécharger le certificat"}
                         </Button>
                       </CardContent>
                     </Card>
@@ -430,7 +430,7 @@ export default function Dashboard() {
                     Pas encore de certificat
                   </h3>
                   <p className="text-gray-600">
-                    {"Terminez vos cours pour obtenir vos certificats de compl\u00e9tion !"}
+                    {"Terminez vos cours pour obtenir vos certificats de complétion !"}
                   </p>
                 </CardContent>
               </Card>
@@ -440,7 +440,7 @@ export default function Dashboard() {
           <TabsContent value="discover">
             <div className="mb-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                {"Cours recommand\u00e9s pour vous"}
+                {"Cours recommandés pour vous"}
               </h2>
               <p className="text-gray-600">
                 Explorez notre catalogue de formations
@@ -466,7 +466,7 @@ export default function Dashboard() {
           <Card className="border-2 hover:shadow-xl transition-all cursor-pointer" onClick={() => navigate(createPageUrl("Community"))}>
             <CardContent className="p-6 text-center">
               <MessageSquare className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="font-bold text-lg mb-2">{"Communaut\u00e9"}</h3>
+              <h3 className="font-bold text-lg mb-2">{"Communauté"}</h3>
               <p className="text-sm text-gray-600">Rejoignez la discussion</p>
             </CardContent>
           </Card>
@@ -483,7 +483,7 @@ export default function Dashboard() {
             <CardContent className="p-6 text-center">
               <Target className="w-12 h-12 text-green-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Mon profil</h3>
-              <p className="text-sm text-gray-600">{"G\u00e9rez vos informations"}</p>
+              <p className="text-sm text-gray-600">{"Gérez vos informations"}</p>
             </CardContent>
           </Card>
         </div>
