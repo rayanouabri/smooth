@@ -369,7 +369,23 @@ export default function Learn() {
 
   // Get lesson content - support multiple formats
   const lessonContent = currentLesson.content_text || currentLesson.content || '';
-  const hasContent = lessonContent.trim().length > 0 || currentLesson.content_url;
+  // video_url is the DB column; also support legacy content_url
+  const videoUrl = currentLesson.video_url || currentLesson.content_url || null;
+  // Convert youtube watch URL to embed URL
+  const getEmbedUrl = (url) => {
+    if (!url) return null;
+    // Already embed
+    if (url.includes('youtube.com/embed/')) return url;
+    // watch?v=ID
+    const match = url.match(/[?&]v=([A-Za-z0-9_-]{11})/);
+    if (match) return `https://www.youtube.com/embed/${match[1]}?rel=0&modestbranding=1`;
+    // youtu.be/ID
+    const short = url.match(/youtu\.be\/([A-Za-z0-9_-]{11})/);
+    if (short) return `https://www.youtube.com/embed/${short[1]}?rel=0&modestbranding=1`;
+    return url;
+  };
+  const embedUrl = getEmbedUrl(videoUrl);
+  const hasContent = lessonContent.trim().length > 0 || videoUrl;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 flex flex-col lg:flex-row overflow-x-hidden">
@@ -520,14 +536,16 @@ export default function Learn() {
           {/* Lesson Content */}
           <Card className="mb-6 border-2 shadow-2xl">
             <CardContent className="p-0">
-              {/* Video Content */}
-              {currentLesson.content_type === "video" && currentLesson.content_url && (
-                <div className="aspect-video bg-gray-900 relative">
+              {/* Video Content - affiche si video_url présente en base */}
+              {embedUrl && (
+                <div className="aspect-video bg-gray-900 relative rounded-t-lg overflow-hidden">
                   <iframe
-                    src={currentLesson.content_url}
-                    className="w-full h-full rounded-t-lg"
+                    src={embedUrl}
+                    className="w-full h-full"
                     allowFullScreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     title={currentLesson.title}
+                    loading="lazy"
                   />
                 </div>
               )}

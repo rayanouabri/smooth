@@ -1,6 +1,6 @@
 // Enrichissement: Quitter son logement en France (6 leçons)
 const SUPABASE_URL = 'https://xkecqmsgvjjtujvlotpm.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhrZWNxbXNndmpqdHVqdmxvdHBtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY1ODQyMTUsImV4cCI6MjA4MjE2MDIxNX0.7hfBylzDlSXcbVvIXkhN1S1hVhLVBERjoBz1xKNLk74';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhrZWNxbXNndmpqdHVqdmxvdHBtIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NjU4NDIxNSwiZXhwIjoyMDgyMTYwMjE1fQ.jOOgWSgXTqOKtr1fFqh4RIhwXzd7ZcF9XjOihpCHCnU';
 
 async function updateLesson(id, content) {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/lessons?id=eq.${id}`, {
