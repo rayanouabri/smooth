@@ -12,6 +12,7 @@ export {
   TeacherProfile,
   Testimonial,
   UserProfile,
+  rpc,
 } from './database';
 
 // Export auth pour compatibilité

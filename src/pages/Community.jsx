@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { isAuthenticated as checkAuthStatus, me as getCurrentUser, redirectToLogin } from "@/api/auth";
-import { ForumPost, ForumReply } from "@/api/entities";
+import { ForumPost, ForumReply, rpc } from "@/api/entities";
 import SEO from "@/components/SEO";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -24,14 +24,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { 
-  MessageSquare, 
-  Plus, 
-  Pin, 
-  CheckCircle, 
-  Eye, 
+import {
+  MessageSquare,
+  Plus,
+  Pin,
+  CheckCircle,
+  Eye,
   MessageCircle,
-  Send 
+  Send,
+  Flag,
+  AlertTriangle
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
@@ -239,119 +241,87 @@ export default function Community() {
 
   const incrementViewsMutation = useMutation({
     mutationFn: async (post) => {
-      // Valider l'ID
-      if (!post || !post.id) {
-        logger.error('Post invalide:', post);
-        throw new Error('Post invalide');
+      if (!post || !post.id || isMockId(post.id)) {
+        const newViewsCount = (post?.views_count || 0) + 1;
+        return { newViewsCount, postId: post?.id };
       }
-      
-      // Si c'est un ID mock, retourner silencieusement sans mettre à jour la DB
-      if (isMockId(post.id)) {
-        logger.debug('ID mock détecté, mise à jour locale uniquement:', post.id);
-        const newViewsCount = (post.views_count || 0) + 1;
-        return { newViewsCount, postId: post.id, isMock: true };
-      }
-      
-      // Incrémenter le compteur de vues
-      const newViewsCount = (post.views_count || 0) + 1;
-      
-      try {
-        const updatedData = await ForumPost.update(post.id, {
-          views_count: newViewsCount
-        });
-        
-        // Si la mise à jour retourne null (ID mock ou inexistant), continuer avec l'UI optimiste
-        if (!updatedData) {
-          logger.debug(`Aucune ligne mise à jour pour le post ${post.id}, mise à jour locale uniquement`);
-          return { newViewsCount, postId: post.id };
-        }
-        
-        return { newViewsCount, postId: post.id };
-      } catch (error) {
-        // Si l'erreur est due à un ID mock, ne pas la propager
-        if (isMockId(post.id)) {
-          logger.debug('Erreur ignorée pour ID mock:', post.id);
-          return { newViewsCount, postId: post.id };
-        }
-        logger.error('Erreur dans incrementViewsMutation:', error);
-        throw error;
-      }
+
+      const newViewsCount = await rpc.incrementPostViews(post.id);
+      return { newViewsCount, postId: post.id };
     },
     onSuccess: ({ newViewsCount, postId }) => {
-      // Mettre à jour selectedPost pour refléter le nouveau compteur
       setSelectedPost(prev => prev && prev.id === postId ? {
         ...prev,
         views_count: newViewsCount
       } : prev);
-      // Mettre à jour la liste des posts
       queryClient.setQueryData(['forum-posts', categoryFilter], (oldData) => {
         if (!oldData) return oldData;
-        return oldData.map(post => 
-          post.id === postId 
+        return oldData.map(post =>
+          post.id === postId
             ? { ...post, views_count: newViewsCount }
             : post
         );
       });
-      queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
     },
   });
 
   const incrementLikesMutation = useMutation({
     mutationFn: async (reply) => {
-      // Valider que l'ID existe et est valide
       if (!reply || !reply.id) {
-        logger.error('Réponse invalide:', reply);
         throw new Error('Réponse invalide');
       }
-      
-      // Si c'est un ID mock, retourner silencieusement sans mettre à jour la DB
+
       if (isMockId(reply.id)) {
-        logger.debug('ID mock détecté, mise à jour locale uniquement:', reply.id);
         const newLikesCount = (reply.likes_count || 0) + 1;
-        return { newLikesCount, replyId: reply.id, isMock: true };
+        return { newLikesCount, replyId: reply.id };
       }
-      
-      // Incrémenter le compteur de likes
-      const newLikesCount = (reply.likes_count || 0) + 1;
-      
-      try {
-        const updatedData = await ForumReply.update(reply.id, {
-          likes_count: newLikesCount
-        });
-        
-        // Si la mise à jour retourne null (ID mock ou inexistant), continuer avec l'UI optimiste
-        if (!updatedData) {
-          logger.debug(`Aucune ligne mise à jour pour la réponse ${reply.id}, mise à jour locale uniquement`);
-          return { newLikesCount, replyId: reply.id };
-        }
-        
-        return { newLikesCount, replyId: reply.id, data: updatedData };
-      } catch (error) {
-        // Si l'erreur est due à un ID mock, ne pas la propager
-        if (isMockId(reply.id)) {
-          logger.debug('Erreur ignorée pour ID mock:', reply.id);
-          return { newLikesCount, replyId: reply.id };
-        }
-        logger.error('Erreur dans incrementLikesMutation:', error);
-        throw error;
-      }
+
+      const newLikesCount = await rpc.incrementReplyLikes(reply.id);
+      return { newLikesCount, replyId: reply.id };
     },
     onSuccess: ({ newLikesCount, replyId }) => {
-      // Mettre à jour la liste des réponses de manière optimiste
       queryClient.setQueryData(['forum-replies', selectedPost?.id], (oldData) => {
         if (!oldData) return oldData;
-        return oldData.map(reply => 
-          reply.id === replyId 
+        return oldData.map(reply =>
+          reply.id === replyId
             ? { ...reply, likes_count: newLikesCount }
             : reply
         );
       });
-      queryClient.invalidateQueries({ queryKey: ['forum-replies', selectedPost?.id] });
     },
     onError: (error) => {
       logger.error('Erreur lors de l\'incrémentation des likes:', error);
     },
   });
+
+  const reportMutation = useMutation({
+    mutationFn: async ({ postId, replyId, reason }) => {
+      if (!user?.email) throw new Error('Non connecté');
+      return rpc.reportForumContent(user.email, postId || null, replyId || null, reason);
+    },
+    onSuccess: (reported) => {
+      if (reported) {
+        alert('Merci pour votre signalement. Notre équipe va l\'examiner.');
+      } else {
+        alert('Vous avez déjà signalé ce contenu.');
+      }
+      queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
+      queryClient.invalidateQueries({ queryKey: ['forum-replies'] });
+    },
+    onError: () => {
+      alert('Erreur lors du signalement. Veuillez réessayer.');
+    },
+  });
+
+  const handleReport = (e, postId = null, replyId = null) => {
+    e.stopPropagation();
+    if (!isAuthenticated) {
+      redirectToLogin(window.location.href);
+      return;
+    }
+    const reason = prompt('Motif du signalement (optionnel) :') || 'inappropriate';
+    reportMutation.mutate({ postId, replyId, reason });
+  };
 
   const handlePostClick = (post) => {
     // Incrémenter les vues seulement si ce n'est pas déjà le post sélectionné
@@ -706,6 +676,17 @@ export default function Community() {
                       </div>
                     </div>
                   </div>
+                  {isAuthenticated && (
+                    <button
+                      onClick={(e) => handleReport(e, selectedPost.id, null)}
+                      disabled={reportMutation.isPending}
+                      className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-red-500 transition-colors px-3 py-1.5 rounded-lg hover:bg-red-50"
+                      title="Signaler ce sujet"
+                    >
+                      <Flag className="w-4 h-4" />
+                      <span>Signaler</span>
+                    </button>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -744,7 +725,7 @@ export default function Community() {
                           {reply.content}
                         </p>
                         <div className="flex items-center gap-4 mt-4">
-                          <button 
+                          <button
                             onClick={(e) => handleLikeReply(reply, e)}
                             disabled={incrementLikesMutation.isPending}
                             className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
@@ -752,6 +733,17 @@ export default function Community() {
                             <span>👍</span>
                             <span className="font-medium">{reply.likes_count || 0}</span>
                           </button>
+                          {isAuthenticated && (
+                            <button
+                              onClick={(e) => handleReport(e, null, reply.id)}
+                              disabled={reportMutation.isPending}
+                              className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 transition-colors"
+                              title="Signaler ce commentaire"
+                            >
+                              <Flag className="w-3.5 h-3.5" />
+                              <span>Signaler</span>
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>

@@ -178,6 +178,39 @@ export const createEntityService = (tableName) => {
   };
 };
 
+// RPC helper functions
+export const rpc = {
+  incrementReplyLikes: async (replyId) => {
+    const { data, error } = await supabase.rpc('increment_reply_likes', { reply_id: replyId });
+    if (error) {
+      console.error('[Database] Error incrementing reply likes:', error.message);
+      throw error;
+    }
+    return data;
+  },
+  incrementPostViews: async (postId) => {
+    const { data, error } = await supabase.rpc('increment_post_views', { post_id: postId });
+    if (error) {
+      console.error('[Database] Error incrementing post views:', error.message);
+      throw error;
+    }
+    return data;
+  },
+  reportForumContent: async (reporterEmail, postId = null, replyId = null, reason = 'inappropriate') => {
+    const { data, error } = await supabase.rpc('report_forum_content', {
+      p_reporter_email: reporterEmail,
+      p_post_id: postId,
+      p_reply_id: replyId,
+      p_reason: reason,
+    });
+    if (error) {
+      console.error('[Database] Error reporting content:', error.message);
+      throw error;
+    }
+    return data;
+  },
+};
+
 // Services pour chaque entité
 export const Course = createEntityService('courses');
 export const Progress = createEntityService('progress');

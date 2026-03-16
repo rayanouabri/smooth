@@ -20,7 +20,12 @@ export default function CGU() {
           </CardHeader>
           <CardContent className="prose prose-blue max-w-none">
             <p>
-              <strong>Éditeur du site :</strong> FrancePrepAcademy — Rayan Ouabri<br />
+              <strong>Éditeur du site :</strong> FrancePrepAcademy — Rayan Ouabri, Entrepreneur individuel<br />
+              <strong>SIRET :</strong> 991 540 402 00013<br />
+              <strong>SIREN :</strong> 991 540 402<br />
+              <strong>N° TVA intracommunautaire :</strong> FR12991540402<br />
+              <strong>Activité (NAF/APE) :</strong> Autres enseignements — 8559B<br />
+              <strong>Adresse :</strong> 7 rue du Port, 59800 Lille<br />
               <strong>Email :</strong> contact@franceprepacademy.fr<br />
               <strong>Site web :</strong> https://www.franceprepacademy.fr<br />
               <strong>Directeur de la publication :</strong> Rayan Ouabri
@@ -135,8 +140,11 @@ export default function CGU() {
               avant la date de renouvellement.
             </p>
             <p>
-              <strong>6.4 Remboursement :</strong> Conformément à notre politique de satisfaction, vous disposez 
-              pour demander un remboursement complet.
+              <strong>6.4 Droit de rétractation :</strong> Conformément à l'article L.221-28 du Code de la consommation,
+              le droit de rétractation ne s'applique pas aux contrats de fourniture de contenu numérique non fourni
+              sur un support matériel dont l'exécution a commencé avec votre accord exprès et renoncement au droit
+              de rétractation. En souscrivant à un abonnement et en accédant immédiatement aux contenus, vous
+              reconnaissez renoncer expressément à votre droit de rétractation.
             </p>
           </CardContent>
         </Card>

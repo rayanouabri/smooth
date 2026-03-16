@@ -204,7 +204,9 @@ export default function PrivacyPolicy() {
           <CardContent className="prose prose-blue max-w-none">
             <p>
               <strong>Responsable du traitement des données :</strong><br />
-              Rayan Ouabri — FrancePrepAcademy<br />
+              Rayan Ouabri — FrancePrepAcademy, Entrepreneur individuel<br />
+              SIRET : 991 540 402 00013<br />
+              Adresse : 7 rue du Port, 59800 Lille<br />
               Email : contact@franceprepacademy.fr
             </p>
             <p>

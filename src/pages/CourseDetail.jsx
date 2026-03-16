@@ -295,7 +295,7 @@ export default function CourseDetail() {
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full">
                 <BookOpen className="w-5 h-5" />
-                <span className="font-semibold">{course.total_lessons} leçons</span>
+                <span className="font-semibold">{course.lessons_count || lessons.length} leçons</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full">
                 <Target className="w-5 h-5" />

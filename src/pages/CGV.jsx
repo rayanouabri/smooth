@@ -77,16 +77,22 @@ export default function CGV() {
           </CardHeader>
           <CardContent className="prose prose-blue max-w-none">
             <p>
-              Conformément à la législation européenne, vous disposez d'un délai de 14 jours pour exercer 
-              votre droit de rétractation sans avoir à justifier de motifs.
+              Conformément à l'article L.221-28 du Code de la consommation, le droit de rétractation
+              ne peut être exercé pour les contrats de fourniture de contenu numérique non fourni sur
+              un support matériel dont l'exécution a commencé avec l'accord préalable exprès du consommateur
+              et son renoncement exprès à son droit de rétractation.
             </p>
             <p>
-              <strong>Garantie satisfaction :</strong> Au-delà du délai légal de rétractation, 
-              FrancePrepAcademy offre une garantie "Satisfait ou remboursé" à compter de la 
-              souscription à l'abonnement Premium.
+              En souscrivant à un abonnement Premium ou Ultimate VIP et en accédant immédiatement aux
+              contenus de la plateforme, vous reconnaissez expressément :
             </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Avoir donné votre accord pour que l'exécution du service commence immédiatement après la souscription</li>
+              <li>Renoncer expressément à votre droit de rétractation de 14 jours</li>
+            </ul>
             <p>
-              Pour exercer ce droit, contactez-nous à : contact@franceprepacademy.fr
+              Vous conservez la possibilité de résilier votre abonnement à tout moment. La résiliation
+              prendra effet à la fin de la période en cours déjà payée, sans remboursement au prorata.
             </p>
           </CardContent>
         </Card>
@@ -138,8 +144,8 @@ export default function CGV() {
               de qualité, régulièrement mis à jour et vérifiés par des experts.
             </p>
             <p>
-              <strong>7.2 Disponibilité :</strong> Nous garantissons une disponibilité de la plateforme à 99.5% 
-              hors maintenance programmée.
+              <strong>7.2 Disponibilité :</strong> Nous nous efforçons d'assurer une disponibilité optimale de la plateforme,
+              hors maintenance programmée, sans toutefois pouvoir garantir l'absence totale d'interruptions.
             </p>
             <p>
               <strong>7.3 Support client :</strong> Un support client est disponible par email 7j/7 pour 
@@ -204,7 +210,9 @@ export default function CGV() {
           </CardHeader>
           <CardContent className="prose prose-blue max-w-none">
             <p>
-              <strong>Éditeur :</strong> FrancePrepAcademy — Rayan Ouabri<br />
+              <strong>Éditeur :</strong> FrancePrepAcademy — Rayan Ouabri, Entrepreneur individuel<br />
+              <strong>SIRET :</strong> 991 540 402 00013 — N° TVA : FR12991540402<br />
+              <strong>Adresse :</strong> 7 rue du Port, 59800 Lille<br />
               <strong>Email :</strong> contact@franceprepacademy.fr<br />
               <strong>Hébergeur :</strong> Vercel Inc. — 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis<br />
               <strong>Paiements sécurisés par :</strong> Stripe, Inc. — certifié PCI-DSS niveau 1
