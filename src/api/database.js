@@ -180,13 +180,24 @@ export const createEntityService = (tableName) => {
 
 // RPC helper functions
 export const rpc = {
-  incrementReplyLikes: async (replyId) => {
-    const { data, error } = await supabase.rpc('increment_reply_likes', { reply_id: replyId });
+  toggleReplyLike: async (replyId) => {
+    const { data, error } = await supabase.rpc('toggle_reply_like', { p_reply_id: replyId });
     if (error) {
-      console.error('[Database] Error incrementing reply likes:', error.message);
+      console.error('[Database] Error toggling reply like:', error.message);
       throw error;
     }
-    return data;
+    return data; // { likes_count, liked }
+  },
+  getUserLikes: async (replyIds) => {
+    const { data, error } = await supabase
+      .from('forum_likes')
+      .select('reply_id')
+      .in('reply_id', replyIds);
+    if (error) {
+      console.error('[Database] Error fetching user likes:', error.message);
+      return [];
+    }
+    return (data || []).map(l => l.reply_id);
   },
   incrementPostViews: async (postId) => {
     const { data, error } = await supabase.rpc('increment_post_views', { post_id: postId });

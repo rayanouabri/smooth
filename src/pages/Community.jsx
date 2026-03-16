@@ -47,6 +47,7 @@ export default function Community() {
   const [selectedPost, setSelectedPost] = useState(null);
   const [newPost, setNewPost] = useState({ title: "", content: "", category: "autre" });
   const [replyContent, setReplyContent] = useState("");
+  const [likedReplies, setLikedReplies] = useState(new Set());
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -180,6 +181,24 @@ export default function Community() {
     enabled: !!selectedPost,
   });
 
+  // Fetch which replies the current user has liked
+  useEffect(() => {
+    const fetchUserLikes = async () => {
+      if (!isAuthenticated || !replies || replies.length === 0) {
+        setLikedReplies(new Set());
+        return;
+      }
+      try {
+        const replyIds = replies.map(r => r.id).filter(Boolean);
+        const likedIds = await rpc.getUserLikes(replyIds);
+        setLikedReplies(new Set(likedIds));
+      } catch (err) {
+        logger.error('Error fetching user likes:', err);
+      }
+    };
+    fetchUserLikes();
+  }, [replies, isAuthenticated]);
+
   const createPostMutation = useMutation({
     mutationFn: (postData) => ForumPost.create({
       ...postData,
@@ -265,32 +284,37 @@ export default function Community() {
     },
   });
 
-  const incrementLikesMutation = useMutation({
+  const toggleLikeMutation = useMutation({
     mutationFn: async (reply) => {
-      if (!reply || !reply.id) {
-        throw new Error('Réponse invalide');
-      }
+      if (!reply || !reply.id) throw new Error('Réponse invalide');
+      if (!isAuthenticated) throw new Error('Non connecté');
 
       if (isMockId(reply.id)) {
-        const newLikesCount = (reply.likes_count || 0) + 1;
-        return { newLikesCount, replyId: reply.id };
+        const isLiked = likedReplies.has(reply.id);
+        return { likes_count: (reply.likes_count || 0) + (isLiked ? -1 : 1), liked: !isLiked, replyId: reply.id };
       }
 
-      const newLikesCount = await rpc.incrementReplyLikes(reply.id);
-      return { newLikesCount, replyId: reply.id };
+      const result = await rpc.toggleReplyLike(reply.id);
+      return { ...result, replyId: reply.id };
     },
-    onSuccess: ({ newLikesCount, replyId }) => {
+    onSuccess: ({ likes_count, liked, replyId }) => {
+      setLikedReplies(prev => {
+        const next = new Set(prev);
+        if (liked) next.add(replyId);
+        else next.delete(replyId);
+        return next;
+      });
       queryClient.setQueryData(['forum-replies', selectedPost?.id], (oldData) => {
         if (!oldData) return oldData;
         return oldData.map(reply =>
           reply.id === replyId
-            ? { ...reply, likes_count: newLikesCount }
+            ? { ...reply, likes_count }
             : reply
         );
       });
     },
     onError: (error) => {
-      logger.error('Erreur lors de l\'incrémentation des likes:', error);
+      logger.error('Erreur lors du toggle like:', error);
     },
   });
 
@@ -333,8 +357,12 @@ export default function Community() {
   };
 
   const handleLikeReply = (reply, e) => {
-    e.stopPropagation(); // Empêcher la propagation de l'événement
-    incrementLikesMutation.mutate(reply);
+    e.stopPropagation();
+    if (!isAuthenticated) {
+      redirectToLogin(window.location.href);
+      return;
+    }
+    toggleLikeMutation.mutate(reply);
   };
 
   const categoryLabels = {
@@ -727,11 +755,16 @@ export default function Community() {
                         <div className="flex items-center gap-4 mt-4">
                           <button
                             onClick={(e) => handleLikeReply(reply, e)}
-                            disabled={incrementLikesMutation.isPending}
-                            className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+                            disabled={toggleLikeMutation.isPending}
+                            className={`flex items-center gap-2 text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 ${
+                              likedReplies.has(reply.id)
+                                ? 'text-blue-600 font-semibold'
+                                : 'text-gray-600 hover:text-blue-600'
+                            }`}
                           >
-                            <span>👍</span>
+                            <span>{likedReplies.has(reply.id) ? '👍' : '👍'}</span>
                             <span className="font-medium">{reply.likes_count || 0}</span>
+                            {likedReplies.has(reply.id) && <span className="text-xs">J'aime</span>}
                           </button>
                           {isAuthenticated && (
                             <button
