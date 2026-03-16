@@ -8,11 +8,30 @@ export default function CGU() {
       <div className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold mb-4">Conditions Générales d'Utilisation</h1>
-          <p className="text-blue-100">Dernière mise à jour : 23 décembre 2025</p>
+          <p className="text-blue-100">Dernière mise à jour : 16 mars 2026</p>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Mentions légales obligatoires */}
+        <Card className="mb-8 border-l-4 border-l-blue-500">
+          <CardHeader>
+            <CardTitle>Mentions Légales</CardTitle>
+          </CardHeader>
+          <CardContent className="prose prose-blue max-w-none">
+            <p>
+              <strong>Éditeur du site :</strong> FrancePrepAcademy — Rayan Ouabri<br />
+              <strong>Email :</strong> contact@franceprepacademy.fr<br />
+              <strong>Site web :</strong> https://www.franceprepacademy.fr<br />
+              <strong>Directeur de la publication :</strong> Rayan Ouabri
+            </p>
+            <p>
+              <strong>Hébergement :</strong> Vercel Inc. — 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis<br />
+              <strong>Base de données :</strong> Supabase Inc. — 970 Toa Payoh North #07-04, Singapore 318992
+            </p>
+          </CardContent>
+        </Card>
+
         <Card className="mb-8">
           <CardHeader>
             <CardTitle>1. Objet</CardTitle>
@@ -20,7 +39,7 @@ export default function CGU() {
           <CardContent className="prose prose-blue max-w-none">
             <p>
               Les présentes Conditions Générales d'Utilisation (CGU) régissent l'utilisation de la plateforme 
-              FrancePrepAcademy, accessible à l'adresse [URL du site]. En accédant et en utilisant notre plateforme, 
+              FrancePrepAcademy, accessible à l'adresse https://www.franceprepacademy.fr. En accédant et en utilisant notre plateforme, 
               vous acceptez sans réserve les présentes CGU.
             </p>
           </CardContent>
@@ -208,8 +227,8 @@ export default function CGU() {
               Pour toute question concernant les présentes CGU, vous pouvez nous contacter à :
             </p>
             <p>
-              <strong>Email :</strong> legal@franceprepacademy.com<br />
-              <strong>Adresse :</strong> FrancePrepAcademy, [Adresse complète]
+              <strong>Email :</strong> contact@franceprepacademy.fr<br />
+              <strong>Site :</strong> https://www.franceprepacademy.fr
             </p>
           </CardContent>
         </Card>

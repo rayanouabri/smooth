@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Course, Lesson } from "@/api/entities";
+import { Course } from "@/api/entities";
 import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "@/contexts/LanguageContext";
 import SEO from "@/components/SEO";
@@ -25,73 +25,35 @@ export default function Courses() {
   const [levelFilter, setLevelFilter] = useState("all");
   const { t } = useLanguage();
 
+  // Fetch courses only (no N+1 lesson queries - major perf improvement)
   const { data: courses = [], isLoading, error: coursesError } = useQuery({
     queryKey: ['courses'],
     queryFn: async () => {
       try {
-        console.log('Chargement des cours...');
         const result = await Course.filter({ is_published: true }, '-created_date');
-        console.log(`Cours chargés: ${result.length} cours trouvés`);
-        
+
         if (!result || result.length === 0) {
-          console.warn('Aucun cours publié trouvé dans la base de données');
           return [];
         }
 
-        // Pour chaque cours, compter les leçons et charger le contenu pour la recherche
-        const coursesWithLessons = await Promise.all(result.map(async (course) => {
-          try {
-            
-            const lessons = await Lesson.filter({ course_id: course.id });
-            // Récupérer les titres et contenus des leçons pour la recherche améliorée
-            const lessonTexts = lessons.map(lesson => 
-              `${lesson.title || ''} ${lesson.content || ''}`.toLowerCase()
-            ).join(' ');
-            return { 
-              ...course, 
-              lessons_count: lessons.length,
-              // Créer un index de recherche combinant tous les champs pertinents
-              searchable_text: [
-                course.title,
-                course.short_description,
-                course.description,
-                Array.isArray(course.objectives) ? course.objectives.join(' ') : '',
-                Array.isArray(course.prerequisites) ? course.prerequisites.join(' ') : '',
-                lessonTexts
-              ].filter(Boolean).join(' ').toLowerCase()
-            };
-          } catch (err) {
-            console.warn(`Erreur lors du chargement des leçons pour le cours ${course.id}:`, err);
-            return { 
-              ...course, 
-              lessons_count: 0,
-              searchable_text: [
-                course.title,
-                course.short_description,
-                course.description,
-                Array.isArray(course.objectives) ? course.objectives.join(' ') : '',
-                Array.isArray(course.prerequisites) ? course.prerequisites.join(' ') : ''
-              ].filter(Boolean).join(' ').toLowerCase()
-            };
-          }
+        // Build search index from course metadata only (NOT lesson content)
+        // This avoids N+1 queries (was fetching all lessons for each course)
+        return result.map(course => ({
+          ...course,
+          searchable_text: [
+            course.title,
+            course.short_description,
+            course.description,
+            Array.isArray(course.objectives) ? course.objectives.join(' ') : '',
+            Array.isArray(course.prerequisites) ? course.prerequisites.join(' ') : ''
+          ].filter(Boolean).join(' ').toLowerCase()
         }));
-        return coursesWithLessons || [];
       } catch (error) {
         console.error("Erreur lors du chargement des cours:", error);
-        console.error("Détails de l'erreur:", {
-          message: error.message,
-          code: error.code,
-          details: error.details,
-          hint: error.hint,
-          status: error.status
-        });
-        // Afficher une alerte pour l'utilisateur
-        if (error.code === 'PGRST116' || error.status === 404) {
-          console.error('Erreur 404: La table courses n\'existe pas ou n\'est pas accessible. Vérifiez la configuration Supabase.');
-        }
         return [];
       }
     },
+    staleTime: 10 * 60 * 1000, // Cache 10 minutes (courses rarely change)
     retry: 2,
     retryDelay: 1000,
   });

@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import LanguageSelector from "@/components/LanguageSelector";
+import CookieBanner from "@/components/CookieBanner";
 
 export default function Layout({ children, currentPageName }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -346,16 +347,18 @@ export default function Layout({ children, currentPageName }) {
                 <li><Link to={createPageUrl("Contact")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>Contact</Link></li>
                 <li><Link to={createPageUrl("CGV")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>CGV</Link></li>
                 <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>{"Confidentialité"}</Link></li>
-                <li><Link to={createPageUrl("Contact")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>{"Mentions légales"}</Link></li>
+                <li><Link to={createPageUrl("CGU")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>CGU / Mentions légales</Link></li>
               </ul>
             </div>
             </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2024 FrancePrepAcademy. {"Tous droits réservés."}</p>
+            <p>&copy; 2026 FrancePrepAcademy. {"Tous droits réservés."}</p>
           </div>
         </div>
       </footer>
+
+      <CookieBanner />
     </div>
   );
 }

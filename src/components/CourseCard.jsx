@@ -50,6 +50,8 @@ export default function CourseCard({ course }) {
             <img
               src={course.thumbnail_url || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"}
               alt={course.title}
+              loading="lazy"
+              decoding="async"
               className="w-full h-52 object-cover group-hover:scale-110 transition-transform duration-700"
             />
             

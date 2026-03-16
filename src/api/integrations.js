@@ -73,61 +73,8 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
       return content;
     } catch (err) {
       console.error('[InvokeLLM] Gemini proxy failed:', err.message);
-      if (!import.meta.env.VITE_OPENAI_API_KEY) {
-        throw err;
-      }
+      throw err;
     }
-    
-    // Fallback: Si OpenAI API Key est configurée
-    if (import.meta.env.VITE_OPENAI_API_KEY) {
-      console.log('[InvokeLLM] Falling back to OpenAI');
-      const requestBody = {
-        model: model === 'gpt-4' ? 'gpt-4-turbo-preview' : model,
-        messages: [{ role: 'user', content: prompt }],
-        temperature: 0.7,
-      };
-
-      if (response_json_schema) {
-        requestBody.response_format = { type: 'json_object' };
-        const jsonPrompt = `${prompt}\n\nImportant: Réponds UNIQUEMENT avec un objet JSON valide qui correspond exactement à ce schéma: ${JSON.stringify(response_json_schema)}`;
-        requestBody.messages[0].content = jsonPrompt;
-      }
-
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error?.message || 'OpenAI API error');
-      }
-
-      const json = await response.json();
-      const content = json.choices[0]?.message?.content;
-
-      if (!content) {
-        throw new Error('OpenAI returned empty content');
-      }
-
-      if (response_json_schema) {
-        try {
-          return JSON.parse(content);
-        } catch (e) {
-          console.error('[InvokeLLM] JSON parse error from OpenAI:', e);
-          throw new Error('Invalid JSON from OpenAI');
-        }
-      }
-
-      return content;
-    }
-
-    // Erreur: Aucune clé API configurée
-    throw new Error('No AI API configured. Set GEMINI_API_KEY on Vercel or VITE_OPENAI_API_KEY in .env');
   } catch (error) {
     console.error('[InvokeLLM] Fatal error:', error.message);
     

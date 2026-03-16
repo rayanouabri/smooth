@@ -8,7 +8,7 @@ export default function CGV() {
       <div className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold mb-4">Conditions Générales de Vente</h1>
-          <p className="text-blue-100">Dernière mise à jour : 23 décembre 2025</p>
+          <p className="text-blue-100">Dernière mise à jour : 16 mars 2026</p>
         </div>
       </div>
 
@@ -39,8 +39,10 @@ export default function CGV() {
               <strong>2.2 Abonnement Premium :</strong>
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Abonnement mensuel : 29€/mois</li>
-              <li>Abonnement annuel : 24€/mois (288€/an) - Économie de 17%</li>
+              <li>Abonnement Premium mensuel : 24,90 €/mois</li>
+              <li>Abonnement Premium annuel : 19,90 €/mois (238,80 €/an)</li>
+              <li>Abonnement Ultimate VIP mensuel : 89 €/mois</li>
+              <li>Abonnement Ultimate VIP annuel : 69 €/mois (828 €/an)</li>
             </ul>
             <p>
               <strong>2.3 Promotions :</strong> Les offres promotionnelles sont valables dans la limite des stocks 
@@ -84,7 +86,7 @@ export default function CGV() {
               souscription à l'abonnement Premium.
             </p>
             <p>
-              Pour exercer ce droit, contactez-nous à : refund@franceprepacademy.com
+              Pour exercer ce droit, contactez-nous à : contact@franceprepacademy.fr
             </p>
           </CardContent>
         </Card>
@@ -185,11 +187,13 @@ export default function CGV() {
           </CardHeader>
           <CardContent className="prose prose-blue max-w-none">
             <p>
-              Pour toute réclamation, contactez notre service client : support@franceprepacademy.com
+              Pour toute réclamation, contactez notre service client : contact@franceprepacademy.fr
             </p>
             <p>
-              En cas de litige persistant, vous pouvez recourir à la médiation de la consommation en 
-              contactant : [Médiateur de la consommation agréé]
+              En cas de litige persistant, conformément aux articles L.611-1 et R.612-1 du Code de la consommation,
+              vous pouvez recourir gratuitement au service de médiation MEDICYS, accessible sur le site
+              www.medicys.fr ou par courrier : MEDICYS - Centre de Médiation et Règlement Amiable des Huissiers
+              de Justice, 73 boulevard de Clichy, 75009 Paris.
             </p>
           </CardContent>
         </Card>
@@ -200,14 +204,10 @@ export default function CGV() {
           </CardHeader>
           <CardContent className="prose prose-blue max-w-none">
             <p>
-              <strong>Raison sociale :</strong> FrancePrepAcademy<br />
-              <strong>Forme juridique :</strong> [SAS / SARL / Auto-entrepreneur]<br />
-              <strong>Capital social :</strong> [Montant]<br />
-              <strong>Siège social :</strong> [Adresse complète]<br />
-              <strong>SIRET :</strong> [Numéro SIRET]<br />
-              <strong>TVA intracommunautaire :</strong> [Numéro TVA]<br />
-              <strong>Email :</strong> contact@franceprepacademy.com<br />
-              <strong>Hébergeur :</strong> [Nom et adresse de l'hébergeur]
+              <strong>Éditeur :</strong> FrancePrepAcademy — Rayan Ouabri<br />
+              <strong>Email :</strong> contact@franceprepacademy.fr<br />
+              <strong>Hébergeur :</strong> Vercel Inc. — 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis<br />
+              <strong>Paiements sécurisés par :</strong> Stripe, Inc. — certifié PCI-DSS niveau 1
             </p>
           </CardContent>
         </Card>

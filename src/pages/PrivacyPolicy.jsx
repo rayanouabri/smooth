@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
       <div className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold mb-4">Politique de Confidentialité</h1>
-          <p className="text-blue-100">Dernière mise à jour : 23 décembre 2025</p>
+          <p className="text-blue-100">Dernière mise à jour : 16 mars 2026</p>
         </div>
       </div>
 
@@ -129,7 +129,7 @@ export default function PrivacyPolicy() {
               <li><strong>Retrait du consentement :</strong> à tout moment pour les traitements basés sur le consentement</li>
             </ul>
             <p>
-              Pour exercer ces droits, contactez-nous à : privacy@franceprepacademy.com<br />
+              Pour exercer ces droits, contactez-nous à : contact@franceprepacademy.fr<br />
               Nous répondrons dans un délai maximum d'un mois.
             </p>
           </CardContent>
@@ -176,9 +176,10 @@ export default function PrivacyPolicy() {
           </CardHeader>
           <CardContent className="prose prose-blue max-w-none">
             <p>
-              Vos données sont stockées et traitées au sein de l'Union Européenne. Si un transfert hors UE 
-              s'avérait nécessaire, nous nous assurerions qu'il respecte les garanties appropriées prévues 
-              par le RGPD (clauses contractuelles types, Privacy Shield).
+              Certaines de vos données peuvent être transférées hors de l'Union Européenne, notamment vers
+              les États-Unis (hébergement Vercel, paiements Stripe, base de données Supabase). Ces transferts
+              sont encadrés par des clauses contractuelles types approuvées par la Commission Européenne
+              et le Data Privacy Framework (DPF) UE-États-Unis.
             </p>
           </CardContent>
         </Card>
@@ -202,9 +203,9 @@ export default function PrivacyPolicy() {
           </CardHeader>
           <CardContent className="prose prose-blue max-w-none">
             <p>
-              <strong>Délégué à la Protection des Données (DPO) :</strong><br />
-              Email : dpo@franceprepacademy.com<br />
-              Adresse : FrancePrepAcademy, [Adresse complète]
+              <strong>Responsable du traitement des données :</strong><br />
+              Rayan Ouabri — FrancePrepAcademy<br />
+              Email : contact@franceprepacademy.fr
             </p>
             <p>
               <strong>Autorité de contrôle :</strong><br />
