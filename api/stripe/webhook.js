@@ -9,6 +9,23 @@
  * - SUPABASE_SERVICE_ROLE_KEY (clé service role pour bypass RLS)
  */
 
+// Disable Vercel body parsing to get raw body for signature verification
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+// Helper to read raw body from request stream
+async function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on('data', (chunk) => chunks.push(chunk));
+    req.on('end', () => resolve(Buffer.concat(chunks)));
+    req.on('error', reject);
+  });
+}
+
 export default async function handler(req, res) {
   // Ce endpoint est server-to-server (Stripe → Vercel), pas de CORS nécessaire
 
@@ -50,15 +67,18 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing Stripe signature' });
     }
 
-    // Vercel parse automatiquement le JSON, mais on a besoin du raw body
-    // Solution: utiliser req.body directement si c'est une string, sinon reconstruire
+    // Read raw body for proper signature verification (body parsing disabled via config)
     let rawBody;
     if (typeof req.body === 'string') {
       rawBody = req.body;
-    } else {
-      // Si Vercel a déjà parsé le JSON, on doit le re-stringify
-      // Note: Ce n'est pas idéal pour la vérification de signature, mais fonctionne
+    } else if (Buffer.isBuffer(req.body)) {
+      rawBody = req.body.toString('utf8');
+    } else if (req.body && typeof req.body === 'object') {
+      // Fallback if body was already parsed (shouldn't happen with config above)
       rawBody = JSON.stringify(req.body);
+    } else {
+      // Read from stream
+      rawBody = (await getRawBody(req)).toString('utf8');
     }
 
     // Vérifier la signature du webhook avec Stripe SDK

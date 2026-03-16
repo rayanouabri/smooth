@@ -1,8 +1,32 @@
+// Simple in-memory rate limiting (resets on cold start)
+const RATE_LIMITS = {};
+const RATE_LIMIT_WINDOW = 60000; // 1 minute
+const RATE_LIMIT_MAX = 15; // 15 requests per minute per IP
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  if (!RATE_LIMITS[ip] || now > RATE_LIMITS[ip].reset) {
+    RATE_LIMITS[ip] = { count: 1, reset: now + RATE_LIMIT_WINDOW };
+    return true;
+  }
+  RATE_LIMITS[ip].count++;
+  return RATE_LIMITS[ip].count <= RATE_LIMIT_MAX;
+}
+
 export default async function handler(req, res) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // CORS - restrict to allowed origins only
+  const allowedOrigins = [
+    'https://www.franceprepacademy.fr',
+    'https://franceprepacademy.fr',
+    'http://localhost:5173',
+    'http://localhost:3000',
+  ];
+  const origin = req.headers.origin;
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -35,9 +59,20 @@ export default async function handler(req, res) {
       });
     }
 
+    // Rate limiting
+    const clientIp = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown';
+    if (!checkRateLimit(clientIp)) {
+      return res.status(429).json({ error: 'Trop de requêtes. Réessayez dans une minute.' });
+    }
+
     const prompt = body.prompt;
     if (!prompt) {
       return res.status(400).json({ error: 'Missing prompt' });
+    }
+
+    // Limit prompt size to prevent abuse
+    if (prompt.length > 5000) {
+      return res.status(400).json({ error: 'Le message est trop long (max 5000 caractères)' });
     }
 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
@@ -51,10 +86,10 @@ export default async function handler(req, res) {
         maxOutputTokens: 2048,
       },
       safetySettings: [
-        { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
-        { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
-        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
-        { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
+        { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+        { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+        { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" }
       ]
     };
     

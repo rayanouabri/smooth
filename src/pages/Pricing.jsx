@@ -24,6 +24,7 @@ export default function Pricing() {
   const [user, setUser] = useState(null);
   const [billingCycle, setBillingCycle] = useState("monthly");
   const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentError, setPaymentError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -224,7 +225,7 @@ export default function Pricing() {
         priceId: priceId,
         userId: user?.id,
         userEmail: user?.email,
-        successUrl: window.location.origin + '/PaymentSuccess',
+        successUrl: window.location.origin + '/paymentsuccess',
         cancelUrl: window.location.origin + '/pricing',
       });
 
@@ -233,7 +234,7 @@ export default function Pricing() {
       }
     } catch (error) {
       console.error('Erreur paiement:', error);
-      alert('❌ ' + (error.message || 'Erreur inconnue. Consultez CONFIGURATION_STRIPE.md'));
+      setPaymentError(error.message || 'Une erreur est survenue lors du paiement. Veuillez réessayer.');
     } finally {
       setIsProcessing(false);
     }
@@ -328,6 +329,13 @@ export default function Pricing() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Payment error banner */}
+        {paymentError && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center justify-between">
+            <p className="text-red-700 text-sm">{paymentError}</p>
+            <button onClick={() => setPaymentError("")} className="text-red-500 hover:text-red-700 ml-4 text-lg font-bold">&times;</button>
+          </div>
+        )}
         {/* Plans Grid - 4 columns desktop, 1 column mobile */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-20">
           {plans.map((plan, index) => (

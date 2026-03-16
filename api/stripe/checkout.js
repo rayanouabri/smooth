@@ -32,13 +32,16 @@ export default async function handler(req, res) {
     const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
     const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
-    if (supabaseUrl && supabaseAnonKey) {
-      const { createClient } = await import('@supabase/supabase-js');
-      const supabaseAuth = createClient(supabaseUrl, supabaseAnonKey);
-      const { data: { user }, error: authError } = await supabaseAuth.auth.getUser(token);
-      if (authError || !user) {
-        return res.status(401).json({ error: 'Token invalide ou expiré' });
-      }
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.error('Supabase credentials not configured');
+      return res.status(500).json({ error: 'Configuration serveur incomplète' });
+    }
+
+    const { createClient } = await import('@supabase/supabase-js');
+    const supabaseAuth = createClient(supabaseUrl, supabaseAnonKey);
+    const { data: { user }, error: authError } = await supabaseAuth.auth.getUser(token);
+    if (authError || !user) {
+      return res.status(401).json({ error: 'Token invalide ou expiré' });
     }
 
     const { priceId, userEmail, successUrl, cancelUrl } = req.body;
@@ -72,7 +75,7 @@ export default async function handler(req, res) {
       customer_email: userEmail,
       'line_items[0][price]': priceId,
       'line_items[0][quantity]': '1',
-      success_url: (successUrl || 'https://www.franceprepacademy.fr/PaymentSuccess') + '?session_id={CHECKOUT_SESSION_ID}',
+      success_url: (successUrl || 'https://www.franceprepacademy.fr/paymentsuccess') + '?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: cancelUrl || 'https://www.franceprepacademy.fr/pricing',
       'metadata[price_id]': priceId, // Ajouter le Price ID dans les metadata pour le webhook
       allow_promotion_codes: 'true',

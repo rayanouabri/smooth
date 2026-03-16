@@ -46,13 +46,8 @@ export default function PaymentSuccess() {
 
       if (authUser) {
         
-        // OPTIMISATION: Ne pas attendre la mise à jour, la faire en arrière-plan
-        // Le webhook Stripe devrait gérer la mise à jour rapidement
-        markUserAsPremium(authUser.id, authUser.email, sessionId, 3).catch(err => {
-          console.warn('⚠️ Background premium update failed:', err);
-        });
-        
-        // OPTIMISATION: Vérifier immédiatement si déjà Premium (cas où le webhook a déjà fonctionné)
+        // Premium status is set exclusively by the Stripe webhook (server-side)
+        // We only poll to check when the webhook has completed
         let updatedUser = await reloadUserProfile(authUser.id, authUser.email);
         
         // Si déjà Premium, afficher immédiatement
@@ -103,22 +98,27 @@ export default function PaymentSuccess() {
 
   const verifyStripeSession = async (sessionId) => {
     try {
-      // Vérifier si ce session_id a déjà été traité par le webhook Stripe
-      // (le webhook met à jour stripe_session_id dans user_profiles)
+      // Basic format validation for session_id
+      if (!sessionId || typeof sessionId !== 'string' || !sessionId.startsWith('cs_')) {
+        console.error('Invalid session_id format');
+        return false;
+      }
+
+      // Check if webhook has already processed this session
       const { data } = await supabase
         .from('user_profiles')
         .select('id, stripe_session_id, is_premium, subscription_status')
         .eq('stripe_session_id', sessionId)
         .maybeSingle();
 
-      // Si le profil avec ce session_id existe → paiement confirmé par le webhook
       if (data) return true;
 
-      // Sinon, le webhook n'a peut-être pas encore été traité → fail-open
-      // Le système de polling dans checkAuthentication s'en chargera
+      // Webhook may not have processed yet - allow but rely on polling to confirm
+      // This is acceptable since we don't grant premium client-side
       return true;
     } catch (err) {
-      // En cas d'erreur DB, fail-open pour ne pas bloquer l'UX
+      console.error('Session verification error:', err);
+      // Allow through - the webhook is the source of truth for premium status
       return true;
     }
   };
@@ -228,8 +228,14 @@ export default function PaymentSuccess() {
         throw new Error('Tous les champs sont obligatoires');
       }
       
-      if (formData.password.length < 6) {
-        throw new Error('Le mot de passe doit contenir au moins 6 caractères');
+      if (formData.password.length < 8) {
+        throw new Error('Le mot de passe doit contenir au moins 8 caractères');
+      }
+      if (!/[A-Z]/.test(formData.password)) {
+        throw new Error('Le mot de passe doit contenir au moins une majuscule');
+      }
+      if (!/[0-9]/.test(formData.password)) {
+        throw new Error('Le mot de passe doit contenir au moins un chiffre');
       }
 
       // Créer le compte
@@ -254,21 +260,12 @@ export default function PaymentSuccess() {
         let profile = await reloadUserProfile(data.user.id, formData.email);
         
         if (!profile) {
-          // Créer le profil manuellement si le trigger n'a pas fonctionné
-          const { error: insertError } = await supabase
-            .from('user_profiles')
-            .insert({
-              id: data.user.id,
-              user_email: formData.email,
-              full_name: formData.name,
-              is_premium: true,
-              subscription_status: 'active',
-              premium_since: new Date().toISOString(),
-            });
-          
-        } else {
-          await markUserAsPremium(data.user.id, formData.email, sessionId, 2);
+          // Profile should be created by the handle_new_user trigger
+          // Wait a bit more for the trigger to complete
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          profile = await reloadUserProfile(data.user.id, formData.email);
         }
+        // Premium status is set by Stripe webhook, not client-side
         
         // Recharger le profil pour affichage
         let updatedUser = await reloadUserProfile(data.user.id, formData.email);
@@ -485,10 +482,10 @@ export default function PaymentSuccess() {
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })} 
                     disabled={loading} 
                     required 
-                    minLength={6} 
+                    minLength={8}
                     className="h-12"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Minimum 6 caractères</p>
+                  <p className="text-xs text-gray-500 mt-1">Minimum 8 caractères, 1 majuscule, 1 chiffre</p>
                 </div>
 
                 <Button 

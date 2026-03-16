@@ -9,10 +9,28 @@ import { GraduationCap, Mail, Lock, ArrowRight } from "lucide-react";
 import { createPageUrl } from "../utils";
 import { motion } from "framer-motion";
 
+// Validate redirect URL to prevent open redirect attacks
+function validateRedirectUrl(url) {
+  if (!url) return null;
+  try {
+    const parsed = new URL(url, window.location.origin);
+    // Only allow same-origin redirects
+    if (parsed.origin === window.location.origin) {
+      return parsed.pathname + parsed.search + parsed.hash;
+    }
+  } catch {
+    // If it's a relative path starting with /, allow it
+    if (url.startsWith('/') && !url.startsWith('//')) {
+      return url;
+    }
+  }
+  return null;
+}
+
 export default function Login() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const redirectUrl = searchParams.get('redirect') || createPageUrl('Dashboard');
+  const redirectUrl = validateRedirectUrl(searchParams.get('redirect')) || createPageUrl('Dashboard');
   
   const [isLogin, setIsLogin] = useState(true);
   const [showResetPassword, setShowResetPassword] = useState(false);
@@ -33,8 +51,22 @@ export default function Login() {
       if (isLogin) {
         await signInWithEmail(email, password);
         // Redirection après connexion réussie
+        // Note: setIsLoading(false) will run on error via catch, or page unloads on success
         window.location.href = redirectUrl;
+        // If redirect fails (e.g. popup blocker), reset loading after a delay
+        setTimeout(() => setIsLoading(false), 3000);
       } else {
+        // Validate password strength for signup
+        if (password.length < 8) {
+          throw new Error("Le mot de passe doit contenir au moins 8 caractères");
+        }
+        if (!/[A-Z]/.test(password)) {
+          throw new Error("Le mot de passe doit contenir au moins une majuscule");
+        }
+        if (!/[0-9]/.test(password)) {
+          throw new Error("Le mot de passe doit contenir au moins un chiffre");
+        }
+
         // Inscription
         const result = await signUpWithEmail(email, password, { full_name: fullName });
         logger.debug('Signup result:', result);
@@ -276,7 +308,7 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         className="h-12 pl-10"
-                        minLength={6}
+                        minLength={isLogin ? 6 : 8}
                       />
                     </div>
                   </div>
