@@ -159,6 +159,7 @@ export default function CourseDetail() {
       setEnrollment(newEnrollment);
       queryClient.invalidateQueries({ queryKey: ['enrollments'] });
       if (lessons && lessons.length > 0 && lessons[0]?.id) {
+        window.scrollTo(0, 0);
         navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lessons[0].id}`);
       } else {
         console.warn('[CourseDetail] ⚠️ Aucune leçon disponible pour ce cours');

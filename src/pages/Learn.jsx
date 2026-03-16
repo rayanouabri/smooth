@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 import {
   ChevronLeft, ChevronRight, CheckCircle, Play, FileText, BookOpen,
   Award, Clock, ArrowLeft, Download, Send, X, Sparkles, Bot,
@@ -114,6 +115,7 @@ function LessonContentRenderer({ content }) {
             prose-td:text-sm prose-td:px-4 prose-td:py-2.5 prose-td:border prose-td:border-gray-200
           ">
             <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
               components={{
                 h2: ({node, children, ...props}) => (
                   <h2 {...props} className="flex items-center gap-3 text-2xl mt-10 mb-4 font-extrabold text-gray-900">
@@ -143,6 +145,9 @@ function LessonContentRenderer({ content }) {
                   }
                   return <li className="text-gray-600 leading-relaxed pl-2" {...props}>{children}</li>;
                 },
+                a: ({node, children, href, ...props}) => (
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 hover:underline font-medium" {...props}>{children}</a>
+                ),
                 blockquote: ({node, children, ...props}) => (
                   <blockquote {...props} className="border-l-4 border-purple-400 bg-purple-50/60 rounded-r-xl py-3 px-5 my-6 not-italic">
                     <div className="flex items-start gap-2">
@@ -529,9 +534,9 @@ export default function Learn() {
   }, {});
 
   const handleNav = (lid) => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
     navigate(createPageUrl("Learn") + `?courseId=${courseId}&lessonId=${lid}`);
     if (window.innerWidth < 1024) setSidebarOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Content & video from correct DB fields
@@ -541,10 +546,15 @@ export default function Learn() {
   const wordCount = lessonContent.split(/\s+/).length;
   const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
-  // Reset video error state when lesson changes
+  // Reset video error state and scroll to top when lesson changes
   useEffect(() => {
     setVideoError(false);
-  }, [currentLesson?.id]);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    // Double-ensure scroll after paint (some browsers need a frame to settle)
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+  }, [lessonId]);
 
   // -- Guard states --
   if (courseLoading || lessonsLoading) return (
