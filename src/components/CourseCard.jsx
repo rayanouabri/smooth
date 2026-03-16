@@ -39,7 +39,7 @@ export default function CourseCard({ course }) {
   };
 
   return (
-    <Link to={createPageUrl("CourseDetail") + `?id=${course.id}`}>
+    <Link to={createPageUrl("CourseDetail") + `?id=${course.id}`} onClick={() => window.scrollTo(0, 0)}>
       <motion.div
         whileHover={{ y: -8, scale: 1.02 }}
         transition={{ duration: 0.3 }}

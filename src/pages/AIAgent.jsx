@@ -25,43 +25,43 @@ const ONBOARDING_QUESTIONS = [
     question: "Quel est ton objectif principal en France ?",
     icon: Target,
     options: [
-      { label: "\u00c9tudier \u00e0 l'universit\u00e9", value: "studies", icon: "\uD83C\uDF93" },
-      { label: "D\u00e9marches administratives", value: "admin", icon: "\uD83D\uDCCB" },
-      { label: "Apprendre le fran\u00e7ais", value: "french", icon: "\uD83C\uDDEB\uD83C\uDDF7" },
-      { label: "Trouver un emploi / stage", value: "work", icon: "\uD83D\uDCBC" },
+      { label: "Étudier à l'université", value: "studies", icon: "🎓" },
+      { label: "Démarches administratives", value: "admin", icon: "📋" },
+      { label: "Apprendre le français", value: "french", icon: "🇫🇷" },
+      { label: "Trouver un emploi / stage", value: "work", icon: "💼" },
     ],
   },
   {
     id: "level",
-    question: "Quel est ton niveau de fran\u00e7ais ?",
+    question: "Quel est ton niveau de français ?",
     icon: BarChart3,
     options: [
-      { label: "D\u00e9butant (A1-A2)", value: "beginner", icon: "\uD83C\uDF31" },
-      { label: "Interm\u00e9diaire (B1-B2)", value: "intermediate", icon: "\uD83D\uDCC8" },
-      { label: "Avanc\u00e9 (C1-C2)", value: "advanced", icon: "\uD83D\uDE80" },
-      { label: "Je ne parle pas fran\u00e7ais", value: "none", icon: "\uD83C\uDD95" },
+      { label: "Débutant (A1-A2)", value: "beginner", icon: "🌱" },
+      { label: "Intermédiaire (B1-B2)", value: "intermediate", icon: "📈" },
+      { label: "Avancé (C1-C2)", value: "advanced", icon: "🚀" },
+      { label: "Je ne parle pas français", value: "none", icon: "🆕" },
     ],
   },
   {
     id: "timeline",
-    question: "Quand arrives-tu (ou es-tu arriv\u00e9) en France ?",
+    question: "Quand arrives-tu (ou es-tu arrivé) en France ?",
     icon: Clock,
     options: [
-      { label: "Je suis d\u00e9j\u00e0 en France", value: "already_here", icon: "\uD83C\uDFE0" },
-      { label: "Dans moins de 3 mois", value: "soon", icon: "\u23F3" },
-      { label: "Dans 3 \u00e0 6 mois", value: "medium", icon: "\uD83D\uDCC5" },
-      { label: "Dans plus de 6 mois", value: "later", icon: "\uD83D\uDD2E" },
+      { label: "Je suis déjà en France", value: "already_here", icon: "🏠" },
+      { label: "Dans moins de 3 mois", value: "soon", icon: "⏳" },
+      { label: "Dans 3 à 6 mois", value: "medium", icon: "📅" },
+      { label: "Dans plus de 6 mois", value: "later", icon: "🔮" },
     ],
   },
   {
     id: "challenge",
-    question: "Quelle est ta plus grande difficult\u00e9 actuellement ?",
+    question: "Quelle est ta plus grande difficulté actuellement ?",
     icon: Lightbulb,
     options: [
-      { label: "Trouver un logement", value: "housing", icon: "\uD83C\uDFE0" },
-      { label: "Titre de s\u00e9jour / Pr\u00e9fecture", value: "visa", icon: "\uD83D\uDCC4" },
-      { label: "Comprendre le syst\u00e8me fran\u00e7ais", value: "system", icon: "\uD83C\uDFDB\uFE0F" },
-      { label: "S'int\u00e9grer socialement", value: "social", icon: "\uD83E\uDD1D" },
+      { label: "Trouver un logement", value: "housing", icon: "🏠" },
+      { label: "Titre de séjour / Préfecture", value: "visa", icon: "📄" },
+      { label: "Comprendre le système français", value: "system", icon: "🏛️" },
+      { label: "S'intégrer socialement", value: "social", icon: "🤝" },
     ],
   },
   {
@@ -69,10 +69,10 @@ const ONBOARDING_QUESTIONS = [
     question: "Quel est ton budget mensuel approximatif ?",
     icon: Euro,
     options: [
-      { label: "Moins de 600\u20ac/mois", value: "tight", icon: "\uD83D\uDCB0" },
-      { label: "600\u20ac - 1000\u20ac/mois", value: "moderate", icon: "\uD83D\uDCB3" },
-      { label: "1000\u20ac - 1500\u20ac/mois", value: "comfortable", icon: "\uD83D\uDCB5" },
-      { label: "Plus de 1500\u20ac/mois", value: "high", icon: "\uD83D\uDC8E" },
+      { label: "Moins de 600€/mois", value: "tight", icon: "💰" },
+      { label: "600€ - 1000€/mois", value: "moderate", icon: "💳" },
+      { label: "1000€ - 1500€/mois", value: "comfortable", icon: "💵" },
+      { label: "Plus de 1500€/mois", value: "high", icon: "💎" },
     ],
   },
 ];
@@ -138,7 +138,7 @@ function RoadmapStep({ step, index, courses, isFirst }) {
   const priorityConfig = {
     high: { label: "Urgent", color: "bg-red-50 text-red-600 border-red-200", dot: "bg-red-500" },
     medium: { label: "Important", color: "bg-amber-50 text-amber-600 border-amber-200", dot: "bg-amber-500" },
-    low: { label: "Recommand\u00e9", color: "bg-blue-50 text-blue-600 border-blue-200", dot: "bg-blue-500" },
+    low: { label: "Recommandé", color: "bg-blue-50 text-blue-600 border-blue-200", dot: "bg-blue-500" },
   };
   const prio = priorityConfig[step.priority] || priorityConfig.medium;
 
@@ -226,7 +226,7 @@ function RoadmapStep({ step, index, courses, isFirst }) {
                   {step.checklist && step.checklist.length > 0 && (
                     <div className="mt-4">
                       <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-                        <FileCheck className="w-3.5 h-3.5" /> Actions \u00e0 faire
+                        <FileCheck className="w-3.5 h-3.5" /> Actions à faire
                       </p>
                       <div className="space-y-2">
                         {step.checklist.map((item, i) => (
@@ -292,7 +292,7 @@ function RoadmapStep({ step, index, courses, isFirst }) {
                   {step.relatedCourses && step.relatedCourses.length > 0 && (
                     <div className="mt-4">
                       <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-                        <BookOpen className="w-3.5 h-3.5" /> Cours recommand\u00e9s
+                        <BookOpen className="w-3.5 h-3.5" /> Cours recommandés
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {step.relatedCourses.map((name, ci) => {
@@ -326,7 +326,7 @@ function RoadmapStep({ step, index, courses, isFirst }) {
 function AIChat({ courses, user }) {
   const [messages, setMessages] = useState([{
     role: "assistant",
-    content: "Salut ! Je suis ton coach IA. Je connais tous les cours de la plateforme et les d\u00e9marches en France. Pose-moi ta question !"
+    content: "Salut ! Je suis ton coach IA. Je connais tous les cours de la plateforme et les démarches en France. Pose-moi ta question !"
   }]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -348,7 +348,7 @@ function AIChat({ courses, user }) {
       });
       setMessages(prev => [...prev, { role: "assistant", content: response }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: "assistant", content: "D\u00e9sol\u00e9, une erreur s'est produite. R\u00e9essaie." }]);
+      setMessages(prev => [...prev, { role: "assistant", content: "Désolé, une erreur s'est produite. Réessaie." }]);
     } finally { setIsLoading(false); }
   };
 
@@ -358,7 +358,7 @@ function AIChat({ courses, user }) {
         <div className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-700 text-white p-4 flex-shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center"><Brain className="w-5 h-5" /></div>
-            <div><h3 className="font-bold">Coach IA</h3><p className="text-xs text-purple-200">Ton guide personnalis\u00e9</p></div>
+            <div><h3 className="font-bold">Coach IA</h3><p className="text-xs text-purple-200">Ton guide personnalisé</p></div>
             <div className="ml-auto flex items-center gap-1.5"><div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" /><span className="text-xs text-purple-200">En ligne</span></div>
           </div>
         </div>
@@ -374,7 +374,7 @@ function AIChat({ courses, user }) {
           {isLoading && <div className="flex justify-start"><div className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center mr-2 flex-shrink-0"><Bot className="w-3.5 h-3.5 text-white" /></div><div className="bg-gray-50 px-4 py-3 rounded-2xl border border-gray-100 rounded-tl-md"><div className="flex gap-1.5"><div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" /><div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: "0.15s" }} /><div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: "0.3s" }} /></div></div></div>}
           {messages.length === 1 && (
             <div className="flex flex-wrap gap-2 mt-2">
-              {["Comment faire ma demande CAF ?", "Aide-moi pour mon titre de s\u00e9jour", "Quel cours pour le DELF B2 ?", "Comment trouver un logement \u00e9tudiant ?"].map((q, i) => (
+              {["Comment faire ma demande CAF ?", "Aide-moi pour mon titre de séjour", "Quel cours pour le DELF B2 ?", "Comment trouver un logement étudiant ?"].map((q, i) => (
                 <button key={i} onClick={() => setInput(q)} className="text-xs bg-purple-50 text-purple-700 px-3 py-2 rounded-xl hover:bg-purple-100 transition-colors border border-purple-100">{q}</button>
               ))}
             </div>
@@ -383,7 +383,7 @@ function AIChat({ courses, user }) {
         </div>
         <div className="p-3 border-t border-gray-100 bg-white flex-shrink-0">
           <div className="flex gap-2">
-            <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()} placeholder="\u00c9cris ta question..." className="flex-1 px-4 py-2.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-100 outline-none text-sm" disabled={isLoading} />
+            <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()} placeholder="Écris ta question..." className="flex-1 px-4 py-2.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-100 outline-none text-sm" disabled={isLoading} />
             <button onClick={handleSend} disabled={!input.trim() || isLoading} className="w-10 h-10 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white flex items-center justify-center hover:shadow-lg transition-all disabled:opacity-40 flex-shrink-0"><Send className="w-4 h-4" /></button>
           </div>
         </div>
@@ -488,11 +488,11 @@ IMPORTANT : Reponds UNIQUEMENT avec le JSON array valide, rien d'autre. Les lien
     } catch (error) {
       console.error("Error generating roadmap:", error);
       setRoadmap([
-        { title: "Ouvrir un compte bancaire", description: "C'est la premi\u00e8re chose \u00e0 faire. Sans compte bancaire, tu ne peux pas recevoir d'aides ni payer ton loyer.", duration: "1 semaine", priority: "high", budget: "Gratuit", deadline: "D\u00e8s ton arriv\u00e9e", why: "Le compte bancaire est la cl\u00e9 de toutes tes d\u00e9marches administratives.", checklist: ["Comparer les offres (Boursorama, BNP, SG)", "Pr\u00e9parer passeport + justificatif domicile + attestation d'h\u00e9bergement", "Prendre RDV en agence ou ouvrir en ligne", "Activer la carte bancaire"], tips: ["Les banques en ligne sont souvent gratuites et plus rapides", "Certaines banques offrent des primes d'ouverture de 50\u00e0 150\u20ac"], links: [{ label: "Boursorama Etudiant", url: "https://www.boursorama.com" }], relatedCourses: [] },
-        { title: "Demander la CAF (APL)", description: "L'aide au logement peut couvrir 30 \u00e0 50% de ton loyer. C'est une aide essentielle.", duration: "2-3 semaines", priority: "high", budget: "Gratuit (tu re\u00e7ois de l'argent !)", deadline: "Dans le 1er mois", why: "C'est de l'argent gratuit chaque mois. Ne passe pas \u00e0 c\u00f4t\u00e9 !", checklist: ["Cr\u00e9er ton compte sur caf.fr", "Pr\u00e9parer ton bail + RIB + attestation de logement", "Remplir la demande d'APL en ligne", "Fournir la quittance de loyer"], tips: ["Fais ta demande d\u00e8s la signature du bail, m\u00eame sans RIB fran\u00e7ais", "Le 1er versement prend souvent 2 mois, pr\u00e9vois le budget"], links: [{ label: "CAF.fr - Faire une demande", url: "https://www.caf.fr" }, { label: "Simulation APL", url: "https://www.caf.fr/allocataires/mes-services-en-ligne/faire-une-simulation" }], relatedCourses: [] },
-        { title: "S'inscrire \u00e0 la S\u00e9curit\u00e9 Sociale", description: "L'assurance maladie est obligatoire et gratuite. Elle couvre tes frais m\u00e9dicaux.", duration: "2-4 semaines", priority: "high", budget: "Gratuit", deadline: "Dans les 3 premiers mois", why: "Sans s\u00e9cu, une visite chez le m\u00e9decin co\u00fbte 25\u20ac minimum non rembours\u00e9s.", checklist: ["S'inscrire sur etudiant-etranger.ameli.fr", "Fournir passeport + visa + certificat de scolarit\u00e9", "Attendre l'attestation de droits", "Commander ta carte Vitale"], tips: ["En attendant la carte Vitale, tu re\u00e7ois une attestation provisoire", "Prends une mutuelle \u00e9tudiante compl\u00e9mentaire (souvent 15-30\u20ac/mois)"], links: [{ label: "Ameli \u00c9tudiants \u00c9trangers", url: "https://etudiant-etranger.ameli.fr" }], relatedCourses: [] },
-        { title: "Am\u00e9liorer ton fran\u00e7ais", description: "Le fran\u00e7ais est la cl\u00e9 de l'int\u00e9gration. M\u00eame un niveau basique change tout.", duration: "En continu", priority: "medium", budget: "Gratuit sur la plateforme", why: "Parler fran\u00e7ais ouvre toutes les portes : emploi, amiti\u00e9s, administration.", checklist: ["Faire un test de niveau sur la plateforme", "Suivre les cours gratuits de FrancePrepAcademy", "Pratiquer 15 min/jour minimum", "Rejoindre le forum communautaire pour pratiquer"], tips: ["Regarde des s\u00e9ries fran\u00e7aises avec sous-titres fran\u00e7ais", "L'appli Tandem permet de trouver des partenaires linguistiques gratuits"], links: [{ label: "Nos cours de fran\u00e7ais", url: "/courses" }], relatedCourses: [] },
-        { title: "Construire ton r\u00e9seau", description: "L'isolement est le plus grand ennemi. Cr\u00e9e des liens d\u00e8s la premi\u00e8re semaine.", duration: "En continu", priority: "medium", budget: "Gratuit", why: "Ton r\u00e9seau t'aidera \u00e0 trouver un logement, un stage et des amis.", checklist: ["Rejoindre le forum FrancePrepAcademy", "S'inscrire aux associations \u00e9tudiantes de ta ville", "Participer aux \u00e9v\u00e9nements d'accueil de l'universit\u00e9", "Rejoindre des groupes Facebook/WhatsApp de ta communaut\u00e9"], tips: ["Les BDE organisent souvent des soir\u00e9es d'int\u00e9gration gratuites", "Le b\u00e9n\u00e9volat est un excellent moyen de rencontrer des Fran\u00e7ais"], links: [{ label: "Forum Communautaire", url: "/community" }], relatedCourses: [] },
+        { title: "Ouvrir un compte bancaire", description: "C'est la première chose à faire. Sans compte bancaire, tu ne peux pas recevoir d'aides ni payer ton loyer.", duration: "1 semaine", priority: "high", budget: "Gratuit", deadline: "Dès ton arrivée", why: "Le compte bancaire est la clé de toutes tes démarches administratives.", checklist: ["Comparer les offres (Boursorama, BNP, SG)", "Préparer passeport + justificatif domicile + attestation d'hébergement", "Prendre RDV en agence ou ouvrir en ligne", "Activer la carte bancaire"], tips: ["Les banques en ligne sont souvent gratuites et plus rapides", "Certaines banques offrent des primes d'ouverture de 50à 150€"], links: [{ label: "Boursorama Etudiant", url: "https://www.boursorama.com" }], relatedCourses: [] },
+        { title: "Demander la CAF (APL)", description: "L'aide au logement peut couvrir 30 à 50% de ton loyer. C'est une aide essentielle.", duration: "2-3 semaines", priority: "high", budget: "Gratuit (tu reçois de l'argent !)", deadline: "Dans le 1er mois", why: "C'est de l'argent gratuit chaque mois. Ne passe pas à côté !", checklist: ["Créer ton compte sur caf.fr", "Préparer ton bail + RIB + attestation de logement", "Remplir la demande d'APL en ligne", "Fournir la quittance de loyer"], tips: ["Fais ta demande dès la signature du bail, même sans RIB français", "Le 1er versement prend souvent 2 mois, prévois le budget"], links: [{ label: "CAF.fr - Faire une demande", url: "https://www.caf.fr" }, { label: "Simulation APL", url: "https://www.caf.fr/allocataires/mes-services-en-ligne/faire-une-simulation" }], relatedCourses: [] },
+        { title: "S'inscrire à la Sécurité Sociale", description: "L'assurance maladie est obligatoire et gratuite. Elle couvre tes frais médicaux.", duration: "2-4 semaines", priority: "high", budget: "Gratuit", deadline: "Dans les 3 premiers mois", why: "Sans sécu, une visite chez le médecin coûte 25€ minimum non remboursés.", checklist: ["S'inscrire sur etudiant-etranger.ameli.fr", "Fournir passeport + visa + certificat de scolarité", "Attendre l'attestation de droits", "Commander ta carte Vitale"], tips: ["En attendant la carte Vitale, tu reçois une attestation provisoire", "Prends une mutuelle étudiante complémentaire (souvent 15-30€/mois)"], links: [{ label: "Ameli Étudiants Étrangers", url: "https://etudiant-etranger.ameli.fr" }], relatedCourses: [] },
+        { title: "Améliorer ton français", description: "Le français est la clé de l'intégration. Même un niveau basique change tout.", duration: "En continu", priority: "medium", budget: "Gratuit sur la plateforme", why: "Parler français ouvre toutes les portes : emploi, amitiés, administration.", checklist: ["Faire un test de niveau sur la plateforme", "Suivre les cours gratuits de FrancePrepAcademy", "Pratiquer 15 min/jour minimum", "Rejoindre le forum communautaire pour pratiquer"], tips: ["Regarde des séries françaises avec sous-titres français", "L'appli Tandem permet de trouver des partenaires linguistiques gratuits"], links: [{ label: "Nos cours de français", url: "/courses" }], relatedCourses: [] },
+        { title: "Construire ton réseau", description: "L'isolement est le plus grand ennemi. Crée des liens dès la première semaine.", duration: "En continu", priority: "medium", budget: "Gratuit", why: "Ton réseau t'aidera à trouver un logement, un stage et des amis.", checklist: ["Rejoindre le forum FrancePrepAcademy", "S'inscrire aux associations étudiantes de ta ville", "Participer aux événements d'accueil de l'université", "Rejoindre des groupes Facebook/WhatsApp de ta communauté"], tips: ["Les BDE organisent souvent des soirées d'intégration gratuites", "Le bénévolat est un excellent moyen de rencontrer des Français"], links: [{ label: "Forum Communautaire", url: "/community" }], relatedCourses: [] },
       ]);
     } finally { setIsGenerating(false); }
   };
@@ -517,13 +517,13 @@ IMPORTANT : Reponds UNIQUEMENT avec le JSON array valide, rien d'autre. Les lien
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20"><Bot className="w-8 h-8 text-white" /></div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-3 tracking-tight">Ton Coach IA Personnel</h1>
-            <p className="text-base sm:text-lg text-purple-200 max-w-xl mx-auto">Roadmap d\u00e9taill\u00e9e, checklist d'actions, budget estim\u00e9, d\u00e9lais, liens officiels. Tout ce qu'il te faut pour r\u00e9ussir.</p>
+            <p className="text-base sm:text-lg text-purple-200 max-w-xl mx-auto">Roadmap détaillée, checklist d'actions, budget estimé, délais, liens officiels. Tout ce qu'il te faut pour réussir.</p>
           </motion.div>
           {user && (
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto">
               {[
                 { label: "Inscrits", value: enrollments.length, icon: BookOpen },
-                { label: "Termin\u00e9s", value: completedCoursesCount, icon: Trophy },
+                { label: "Terminés", value: completedCoursesCount, icon: Trophy },
                 { label: "Progression", value: `${totalProgress}%`, icon: BarChart3 },
                 { label: "Disponibles", value: courses.length, icon: GraduationCap },
               ].map((s, i) => (
@@ -563,15 +563,15 @@ IMPORTANT : Reponds UNIQUEMENT avec le JSON array valide, rien d'autre. Les lien
                     <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-purple-600 animate-spin" />
                     <Sparkles className="absolute inset-0 m-auto w-8 h-8 text-purple-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">G\u00e9n\u00e9ration de ta roadmap...</h3>
-                  <p className="text-gray-500 text-sm">L'IA analyse ton profil pour cr\u00e9er un parcours sur-mesure avec actions, budget et d\u00e9lais</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Génération de ta roadmap...</h3>
+                  <p className="text-gray-500 text-sm">L'IA analyse ton profil pour créer un parcours sur-mesure avec actions, budget et délais</p>
                 </div>
               ) : roadmap ? (
                 <div className="max-w-3xl mx-auto">
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
                     <div>
                       <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Ta Roadmap</h2>
-                      <p className="text-sm text-gray-500 mt-1">Clique sur chaque \u00e9tape pour voir les d\u00e9tails, la checklist et les conseils</p>
+                      <p className="text-sm text-gray-500 mt-1">Clique sur chaque étape pour voir les détails, la checklist et les conseils</p>
                     </div>
                     <Button variant="outline" onClick={resetRoadmap} className="gap-2 rounded-xl flex-shrink-0">
                       <RefreshCw className="w-4 h-4" />Refaire
@@ -617,11 +617,11 @@ IMPORTANT : Reponds UNIQUEMENT avec le JSON array valide, rien d'autre. Les lien
                   <Card className="border-0 shadow-xl"><CardContent className="p-6">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold flex-shrink-0">{user?.full_name?.[0] || user?.email?.[0] || "U"}</div>
-                      <div><h3 className="text-lg font-bold text-gray-900">{user?.full_name || "\u00c9tudiant"}</h3><p className="text-sm text-gray-500">{user?.email}</p></div>
+                      <div><h3 className="text-lg font-bold text-gray-900">{user?.full_name || "Étudiant"}</h3><p className="text-sm text-gray-500">{user?.email}</p></div>
                     </div>
                     <div className="grid grid-cols-3 gap-3">
                       <div className="bg-purple-50 rounded-xl p-3 text-center"><BookOpen className="w-5 h-5 text-purple-600 mx-auto mb-1" /><div className="text-xl font-extrabold text-gray-900">{enrollments.length}</div><div className="text-[10px] text-gray-500">Inscrits</div></div>
-                      <div className="bg-emerald-50 rounded-xl p-3 text-center"><Trophy className="w-5 h-5 text-emerald-600 mx-auto mb-1" /><div className="text-xl font-extrabold text-gray-900">{completedCoursesCount}</div><div className="text-[10px] text-gray-500">Termin\u00e9s</div></div>
+                      <div className="bg-emerald-50 rounded-xl p-3 text-center"><Trophy className="w-5 h-5 text-emerald-600 mx-auto mb-1" /><div className="text-xl font-extrabold text-gray-900">{completedCoursesCount}</div><div className="text-[10px] text-gray-500">Terminés</div></div>
                       <div className="bg-blue-50 rounded-xl p-3 text-center"><Zap className="w-5 h-5 text-blue-600 mx-auto mb-1" /><div className="text-xl font-extrabold text-gray-900">{totalProgress}%</div><div className="text-[10px] text-gray-500">Progression</div></div>
                     </div>
                   </CardContent></Card>

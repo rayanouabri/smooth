@@ -554,15 +554,15 @@ export default function Learn() {
   );
 
   if ((courseError && !courseLoading) || (!course && !courseLoading)) return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-50 to-red-50"><Card className="max-w-md w-full border-0 shadow-2xl"><CardContent className="p-10 text-center"><BookOpen className="w-12 h-12 text-gray-300 mx-auto mb-4" /><h2 className="text-xl font-bold text-gray-900 mb-2">{t('learn.courseNotFound')}</h2><Link to={createPageUrl("Courses")}><Button className="mt-4 bg-purple-600 hover:bg-purple-700 rounded-xl">{t('learn.backToCourses')}</Button></Link></CardContent></Card></div>
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-50 to-red-50"><Card className="max-w-md w-full border-0 shadow-2xl"><CardContent className="p-10 text-center"><BookOpen className="w-12 h-12 text-gray-300 mx-auto mb-4" /><h2 className="text-xl font-bold text-gray-900 mb-2">{t('learn.courseNotFound')}</h2><Link to={createPageUrl("Courses")} onClick={() => window.scrollTo(0, 0)}><Button className="mt-4 bg-purple-600 hover:bg-purple-700 rounded-xl">{t('learn.backToCourses')}</Button></Link></CardContent></Card></div>
   );
 
   if (course && !enrollment) return (
-    <div className="min-h-screen flex items-center justify-center p-4"><Card className="max-w-md w-full border-0 shadow-2xl"><CardContent className="p-10 text-center"><GraduationCap className="w-12 h-12 text-purple-300 mx-auto mb-4" /><h2 className="text-xl font-bold mb-2">Inscription requise</h2><Link to={createPageUrl("CourseDetail") + `?id=${courseId}`}><Button className="mt-4 bg-purple-600 hover:bg-purple-700 rounded-xl">Voir le cours</Button></Link></CardContent></Card></div>
+    <div className="min-h-screen flex items-center justify-center p-4"><Card className="max-w-md w-full border-0 shadow-2xl"><CardContent className="p-10 text-center"><GraduationCap className="w-12 h-12 text-purple-300 mx-auto mb-4" /><h2 className="text-xl font-bold mb-2">Inscription requise</h2><Link to={createPageUrl("CourseDetail") + `?id=${courseId}`} onClick={() => window.scrollTo(0, 0)}><Button className="mt-4 bg-purple-600 hover:bg-purple-700 rounded-xl">Voir le cours</Button></Link></CardContent></Card></div>
   );
 
   if (lessons.length === 0) return (
-    <div className="min-h-screen flex items-center justify-center p-4"><Card className="max-w-md w-full border-0 shadow-2xl"><CardContent className="p-10 text-center"><FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" /><h2 className="text-xl font-bold mb-2">{t('learn.noLessons')}</h2><Link to={createPageUrl("Courses")}><Button className="mt-4 bg-purple-600 hover:bg-purple-700 rounded-xl">{t('learn.backToCourses')}</Button></Link></CardContent></Card></div>
+    <div className="min-h-screen flex items-center justify-center p-4"><Card className="max-w-md w-full border-0 shadow-2xl"><CardContent className="p-10 text-center"><FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" /><h2 className="text-xl font-bold mb-2">{t('learn.noLessons')}</h2><Link to={createPageUrl("Courses")} onClick={() => window.scrollTo(0, 0)}><Button className="mt-4 bg-purple-600 hover:bg-purple-700 rounded-xl">{t('learn.backToCourses')}</Button></Link></CardContent></Card></div>
   );
 
   if (lessonLoading || !currentLesson) return (
@@ -570,7 +570,7 @@ export default function Learn() {
   );
 
   if (!canAccess) return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-50 to-amber-50"><Card className="max-w-md w-full border-0 shadow-2xl"><CardContent className="p-10 text-center"><Award className="w-12 h-12 text-amber-500 mx-auto mb-4" /><h2 className="text-xl font-bold mb-2">{t('learn.accessRestricted')}</h2><p className="text-gray-500 mb-6">{t('learn.accessRestrictedDesc')}</p><Link to={createPageUrl("Pricing")}><Button className="w-full bg-amber-500 hover:bg-amber-600 rounded-xl h-11">{t('learn.discoverSubscriptions')}</Button></Link></CardContent></Card></div>
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-50 to-amber-50"><Card className="max-w-md w-full border-0 shadow-2xl"><CardContent className="p-10 text-center"><Award className="w-12 h-12 text-amber-500 mx-auto mb-4" /><h2 className="text-xl font-bold mb-2">{t('learn.accessRestricted')}</h2><p className="text-gray-500 mb-6">{t('learn.accessRestrictedDesc')}</p><Link to={createPageUrl("Pricing")} onClick={() => window.scrollTo(0, 0)}><Button className="w-full bg-amber-500 hover:bg-amber-600 rounded-xl h-11">{t('learn.discoverSubscriptions')}</Button></Link></CardContent></Card></div>
   );
 
   const hasContent = lessonContent.trim().length > 0;
@@ -590,7 +590,7 @@ export default function Learn() {
         {/* Sidebar header with course info */}
         <div className="sticky top-0 z-10 bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 text-white">
           <div className="p-4 pb-3">
-            <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`} className="block group">
+            <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`} className="block group" onClick={() => window.scrollTo(0, 0)}>
               <div className="flex items-center gap-2 text-purple-200 text-[10px] font-medium mb-1 group-hover:text-white transition-colors">
                 <ArrowLeft className="w-3 h-3" />
                 Retour au cours
@@ -689,7 +689,7 @@ export default function Learn() {
 
           <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-12 py-6 sm:py-8 relative">
             <div className="flex items-center justify-between mb-4">
-              <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`}>
+              <Link to={createPageUrl("CourseDetail") + `?id=${courseId}`} onClick={() => window.scrollTo(0, 0)}>
                 <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 -ml-2 gap-1.5">
                   <ArrowLeft className="w-4 h-4" />
                   <span className="hidden sm:inline">Retour</span>

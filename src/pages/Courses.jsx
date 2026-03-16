@@ -162,7 +162,7 @@ export default function Courses() {
       matchesSearch = directMatch || semanticMatch;
     }
     
-    const normalizedCategory = (course.category || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const normalizedCategory = (course.category || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
     const matchesCategory = categoryFilter === "all" || normalizedCategory === categoryFilter;
     const matchesLevel = levelFilter === "all" || course.level === levelFilter;
     
@@ -189,7 +189,7 @@ export default function Courses() {
 
   const coursesByCategory = categoryOrder.reduce((acc, category) => {
     acc[category] = filteredCourses.filter(c =>
-      (c.category || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') === category
+      (c.category || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '') === category
     );
     return acc;
   }, {});

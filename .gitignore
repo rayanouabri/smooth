@@ -46,6 +46,14 @@ config.json
 # Fichiers temporaires
 *.tmp
 *.temp
-.cache# OS files
+tmpclaude-*
+.claude/
+.vercel/
+backup-*.json
+nul
+
+.cache
+
+# OS files
 Thumbs.db
 .DS_Store

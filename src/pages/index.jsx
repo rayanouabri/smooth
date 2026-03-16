@@ -132,6 +132,15 @@ function _getCurrentPage(url) {
     return pageName || 'NotFound';
 }
 
+// ScrollToTop component to scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+  return null;
+}
+
 // Create a wrapper component that uses useLocation inside the Router context
 function PagesContent() {
     const location = useLocation();
@@ -260,6 +269,7 @@ function PagesContent() {
 export default function Pages() {
     return (
         <Router>
+            <ScrollToTop />
             <PagesContent />
         </Router>
     );

@@ -54,14 +54,14 @@ export default function Contact() {
 
       setIsSubmitted(true);
       toast({
-        title: "Message envoy\u00e9 !",
-        description: "Nous vous r\u00e9pondrons dans les plus brefs d\u00e9lais.",
+        title: "Message envoyé !",
+        description: "Nous vous répondrons dans les plus brefs délais.",
       });
     } catch (error) {
       console.error('Error:', error);
-      let errorMessage = "Une erreur est survenue. Veuillez r\u00e9essayer ou nous contacter directement \u00e0 contact@franceprepacademy.fr";
+      let errorMessage = "Une erreur est survenue. Veuillez réessayer ou nous contacter directement à contact@franceprepacademy.fr";
       if (error?.message?.includes('contact_requests')) {
-        errorMessage = "Une erreur technique s'est produite. Veuillez nous contacter directement \u00e0 contact@franceprepacademy.fr";
+        errorMessage = "Une erreur technique s'est produite. Veuillez nous contacter directement à contact@franceprepacademy.fr";
       }
       toast({
         title: "Erreur",
@@ -75,20 +75,20 @@ export default function Contact() {
 
   const faqItems = [
     {
-      question: "Comment acc\u00e9der aux cours Premium ?",
-      answer: "Rendez-vous sur notre page Tarifs et choisissez la formule qui vous convient. Une fois le paiement effectu\u00e9, l'acc\u00e8s est imm\u00e9diat."
+      question: "Comment accéder aux cours Premium ?",
+      answer: "Rendez-vous sur notre page Tarifs et choisissez la formule qui vous convient. Une fois le paiement effectué, l'accès est immédiat."
     },
     {
       question: "Puis-je annuler mon abonnement ?",
-      answer: "Oui, vous pouvez annuler \u00e0 tout moment depuis votre profil. L'acc\u00e8s reste actif jusqu'\u00e0 la fin de la p\u00e9riode pay\u00e9e."
+      answer: "Oui, vous pouvez annuler à tout moment depuis votre profil. L'accès reste actif jusqu'à la fin de la période payée."
     },
     {
       question: "Comment fonctionne l'assistant IA ?",
-      answer: "Sophie est disponible 24/7 pour r\u00e9pondre \u00e0 vos questions. Gratuit: 5 messages/mois, Premium: illimit\u00e9."
+      answer: "Sophie est disponible 24/7 pour répondre à vos questions. Gratuit: 5 messages/mois, Premium: illimité."
     },
     {
       question: "Proposez-vous des cours particuliers ?",
-      answer: "Oui ! Nos professeurs certifi\u00e9s proposent des cours de fran\u00e7ais et accompagnement administratif."
+      answer: "Oui ! Nos professeurs certifiés proposent des cours de français et accompagnement administratif."
     }
   ];
 
@@ -107,10 +107,10 @@ export default function Contact() {
             Support & Assistance
           </Badge>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
-            Une question ?<br />Nous sommes l\u00e0 !
+            Une question ?<br />Nous sommes là !
           </h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Notre \u00e9quipe r\u00e9pond sous 24-48h pour vous accompagner dans votre int\u00e9gration en France.
+            Notre équipe répond sous 24-48h pour vous accompagner dans votre intégration en France.
           </p>
         </div>
       </section>
@@ -134,9 +134,9 @@ export default function Contact() {
                     <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                       <CheckCircle className="w-10 h-10 text-green-600" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Message envoy\u00e9 !</h3>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Message envoyé !</h3>
                     <p className="text-gray-600 mb-8 max-w-md mx-auto">
-                      Merci pour votre message. Un email de confirmation vous a \u00e9t\u00e9 envoy\u00e9 et nous vous r\u00e9pondrons sous 24-48h.
+                      Merci pour votre message. Un email de confirmation vous a été envoyé et nous vous répondrons sous 24-48h.
                     </p>
                     <Button 
                       onClick={() => { setIsSubmitted(false); setFormData({ name: "", email: "", subject: "", message: "" }); }}
@@ -193,7 +193,7 @@ export default function Contact() {
                         name="message" 
                         value={formData.message} 
                         onChange={handleChange} 
-                        placeholder="D\u00e9crivez votre demande en d\u00e9tail..." 
+                        placeholder="Décrivez votre demande en détail..." 
                         rows={6} 
                         required 
                         className="mt-2 border-gray-200 focus:border-indigo-500 focus:ring-indigo-500 resize-none" 
@@ -247,8 +247,8 @@ export default function Contact() {
                     <Clock className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900 text-lg">D\u00e9lai de r\u00e9ponse</p>
-                    <p className="text-gray-600 font-medium">24-48h ouvr\u00e9es</p>
+                    <p className="font-bold text-gray-900 text-lg">Délai de réponse</p>
+                    <p className="text-gray-600 font-medium">24-48h ouvrées</p>
                   </div>
                 </div>
               </CardContent>
@@ -257,8 +257,8 @@ export default function Contact() {
             <Card className="shadow-lg border-0 rounded-xl bg-gradient-to-br from-indigo-50 to-purple-50">
               <CardContent className="p-6">
                 <p className="text-gray-700 leading-relaxed">
-                  <span className="text-2xl mr-2">\uD83D\uDCA1</span>
-                  <strong>Astuce :</strong> Pour une r\u00e9ponse plus rapide, consultez d'abord notre FAQ ci-dessous, vous y trouverez peut-\u00eatre la r\u00e9ponse \u00e0 votre question !
+                  <span className="text-2xl mr-2">💡</span>
+                  <strong>Astuce :</strong> Pour une réponse plus rapide, consultez d'abord notre FAQ ci-dessous, vous y trouverez peut-être la réponse à votre question !
                 </p>
               </CardContent>
             </Card>
@@ -269,8 +269,8 @@ export default function Contact() {
         <section className="mt-20">
           <div className="text-center mb-12">
             <Badge className="mb-4 bg-indigo-100 text-indigo-700 px-4 py-1.5">FAQ</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Questions fr\u00e9quentes</h2>
-            <p className="text-gray-600 mt-3 max-w-xl mx-auto">Trouvez rapidement des r\u00e9ponses aux questions les plus pos\u00e9es</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Questions fréquentes</h2>
+            <p className="text-gray-600 mt-3 max-w-xl mx-auto">Trouvez rapidement des réponses aux questions les plus posées</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {faqItems.map((item, index) => (

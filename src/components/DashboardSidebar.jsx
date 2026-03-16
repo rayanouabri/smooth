@@ -48,7 +48,7 @@ export default function DashboardSidebar({ currentPage }) {
   const menuItems = [
     { icon: Home, label: "Tableau de bord", page: "Dashboard", color: "text-blue-600", bgColor: "bg-blue-50" },
     { icon: BookOpen, label: "Mes Cours", page: "Courses", color: "text-purple-600", bgColor: "bg-purple-50" },
-    { icon: MessageSquare, label: "Communaut\u00e9", page: "Community", color: "text-green-600", bgColor: "bg-green-50" },
+    { icon: MessageSquare, label: "Communauté", page: "Community", color: "text-green-600", bgColor: "bg-green-50" },
     { icon: Users, label: "Professeurs", page: "Teachers", color: "text-pink-600", bgColor: "bg-pink-50" },
     { icon: User, label: "Mon Profil", page: "Profile", color: "text-indigo-600", bgColor: "bg-indigo-50" },
   ];
@@ -94,7 +94,7 @@ export default function DashboardSidebar({ currentPage }) {
                       ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white' 
                       : 'bg-gray-200 text-gray-700'
                   } text-xs`}>
-                    {plan === 'premium' ? '\u2B50 Premium' : '\uD83C\uDF93 Gratuit'}
+                    {plan === 'premium' ? '⭐ Premium' : '🎓 Gratuit'}
                   </Badge>
                   <Badge className="bg-indigo-100 text-indigo-700 text-xs">
                     Niv. {Math.floor(1 + enrollments.length / 3)}
@@ -131,7 +131,7 @@ export default function DashboardSidebar({ currentPage }) {
                   <Progress value={avgProgress} className="h-2" />
                   <div className="flex items-center justify-between mt-2 text-xs text-gray-500">
                     <span>{enrollments.length} cours</span>
-                    <span>{"\uD83D\uDD25"} {Math.min(7, enrollments.length)}j {"s\u00e9rie"}</span>
+                    <span>{"🔥"} {Math.min(7, enrollments.length)}j {"série"}</span>
                   </div>
                 </div>
               )}
@@ -181,11 +181,11 @@ export default function DashboardSidebar({ currentPage }) {
               <h3 className="font-bold text-sm">Passer Premium</h3>
             </div>
             <p className="text-xs text-white/90 mb-3">
-              {"D\u00e9bloquez 60+ cours et l'IA illimit\u00e9e"}
+              {"Débloquez 60+ cours et l'IA illimitée"}
             </p>
             <Link to={createPageUrl("Pricing")}>
               <Button className="w-full bg-white text-orange-600 hover:bg-gray-100 text-xs font-bold py-2 shadow-lg">
-                {"\u26A1"} {"D\u00e9couvrir"}
+                {"⚡"} {"Découvrir"}
               </Button>
             </Link>
           </div>

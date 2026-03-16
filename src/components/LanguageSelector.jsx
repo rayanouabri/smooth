@@ -10,18 +10,18 @@ import { Button } from '@/components/ui/button';
 
 // Use real flag images since emoji flags DON'T RENDER on Windows
 const languages = [
-  { code: 'fr', name: 'Fran\u00e7ais', short: 'FR', flag: 'https://flagcdn.com/w40/fr.png' },
+  { code: 'fr', name: 'Français', short: 'FR', flag: 'https://flagcdn.com/w40/fr.png' },
   { code: 'en', name: 'English', short: 'EN', flag: 'https://flagcdn.com/w40/gb.png' },
-  { code: 'es', name: 'Espa\u00f1ol', short: 'ES', flag: 'https://flagcdn.com/w40/es.png' },
-  { code: 'ar', name: '\u0627\u0644\u0639\u0631\u0628\u064A\u0629', short: 'AR', flag: 'https://flagcdn.com/w40/sa.png' },
-  { code: 'zh-CN', name: '\u4E2D\u6587', short: 'ZH', flag: 'https://flagcdn.com/w40/cn.png' },
-  { code: 'pt', name: 'Portugu\u00eas', short: 'PT', flag: 'https://flagcdn.com/w40/br.png' },
+  { code: 'es', name: 'Español', short: 'ES', flag: 'https://flagcdn.com/w40/es.png' },
+  { code: 'ar', name: 'العربية', short: 'AR', flag: 'https://flagcdn.com/w40/sa.png' },
+  { code: 'zh-CN', name: '中文', short: 'ZH', flag: 'https://flagcdn.com/w40/cn.png' },
+  { code: 'pt', name: 'Português', short: 'PT', flag: 'https://flagcdn.com/w40/br.png' },
   { code: 'de', name: 'Deutsch', short: 'DE', flag: 'https://flagcdn.com/w40/de.png' },
   { code: 'it', name: 'Italiano', short: 'IT', flag: 'https://flagcdn.com/w40/it.png' },
-  { code: 'ru', name: '\u0420\u0443\u0441\u0441\u043A\u0438\u0439', short: 'RU', flag: 'https://flagcdn.com/w40/ru.png' },
-  { code: 'tr', name: 'T\u00fcrk\u00e7e', short: 'TR', flag: 'https://flagcdn.com/w40/tr.png' },
-  { code: 'ja', name: '\u65E5\u672C\u8A9E', short: 'JA', flag: 'https://flagcdn.com/w40/jp.png' },
-  { code: 'ko', name: '\uD55C\uAD6D\uC5B4', short: 'KO', flag: 'https://flagcdn.com/w40/kr.png' },
+  { code: 'ru', name: 'Русский', short: 'RU', flag: 'https://flagcdn.com/w40/ru.png' },
+  { code: 'tr', name: 'Türkçe', short: 'TR', flag: 'https://flagcdn.com/w40/tr.png' },
+  { code: 'ja', name: '日本語', short: 'JA', flag: 'https://flagcdn.com/w40/jp.png' },
+  { code: 'ko', name: '한국어', short: 'KO', flag: 'https://flagcdn.com/w40/kr.png' },
 ];
 
 function FlagImg({ src, alt, className = "" }) {
