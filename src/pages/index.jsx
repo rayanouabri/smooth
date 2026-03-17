@@ -105,6 +105,8 @@ const PAGES = {
 
     AIAgent: AIAgent,
 
+    Contact: Contact,
+
     Login: Login,
     
     ResetPassword: ResetPassword,
@@ -229,8 +231,10 @@ function PagesContent() {
                     <Route path="/admincourses" element={<AdminCourses />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/aiagent" element={<AIAgent />} />
+                    <Route path="/conciergerievip" element={<ConciergerieVIP />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/reset-password" element={<ResetPassword />} />
+                    <Route path="/resetpassword" element={<ResetPassword />} />
+                    <Route path="/reset-password" element={<Navigate to="/resetpassword" replace />} />
                     <Route path="/auth/callback" element={<AuthCallback />} />
 
                 {/* Backward-compat redirects (old uppercase routes) */}
@@ -262,6 +266,7 @@ function PagesContent() {
                 <Route path="/AdminCourses" element={<Navigate to="/admincourses" replace />} />
                 <Route path="/Contact" element={<Navigate to="/contact" replace />} />
                 <Route path="/AIAgent" element={<Navigate to="/aiagent" replace />} />
+                <Route path="/ConciergerieVIP" element={<Navigate to="/conciergerievip" replace />} />
                 
                     {/* Catch-all route for 404 */}
                     <Route path="*" element={<NotFound />} />

@@ -568,7 +568,7 @@ export default function Community() {
                       {/* Avatar */}
                       <div className="flex-shrink-0">
                         <div className="w-16 h-16 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
-                          {post.author_name[0]}
+                          {(post.author_name || '?').charAt(0)}
                         </div>
                       </div>
                       
@@ -692,7 +692,7 @@ export default function Community() {
                   <div className="flex items-center space-x-3">
                     <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                       <span className="font-semibold text-blue-900">
-                        {selectedPost.author_name.charAt(0)}
+                        {(selectedPost.author_name || '?').charAt(0)}
                       </span>
                     </div>
                     <div>
@@ -731,7 +731,7 @@ export default function Community() {
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-gray-400 to-gray-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
                         <span className="font-bold text-white text-lg">
-                          {reply.author_name.charAt(0)}
+                          {(reply.author_name || '?').charAt(0)}
                         </span>
                       </div>
                       <div className="flex-1">
