@@ -1,6 +1,7 @@
 ﻿import React, { useState, useEffect, useMemo, Suspense, lazy } from "react";
 import Layout from "./Layout.jsx";
 import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
+import { trackPageView } from '@/utils/analytics';
 
 // Pages critiques chargées immédiatement (Home, Login, Layout)
 import Home from "./Home";
@@ -166,6 +167,11 @@ function PagesContent() {
     const currentPage = useMemo(() => {
         return _getCurrentPage(location.pathname);
     }, [location.pathname]);
+
+    // Track page views on route change
+    useEffect(() => {
+        trackPageView(location.pathname, currentPage);
+    }, [location.pathname, currentPage]);
     
     // Afficher un loader pendant le chargement initial pour éviter les pages blanches
     if (!isReady || hasError) {

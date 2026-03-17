@@ -18,6 +18,7 @@ import ChatBot from "../components/ChatBot";
 import { motion } from "framer-motion";
 import { isPremium } from "@/utils/premium";
 import { isUltimateVIP } from "@/utils/subscription-plans";
+import { trackPricingView, trackCheckoutStart } from "@/utils/analytics";
 
 export default function Pricing() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -28,6 +29,7 @@ export default function Pricing() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    trackPricingView();
     checkAuth();
     const handleFocus = () => {
       if (isAuthenticated) {
@@ -221,6 +223,8 @@ export default function Pricing() {
         throw new Error('Price ID non configuré. Allez sur Stripe → Products → Pricing, copiez le "Price ID" (price_...) et mettez-le dans STRIPE_PRICES.');
       }
       
+      trackCheckoutStart(plan, plan === 'premium' ? (billingCycle === 'monthly' ? 24.90 : 19.90) : (billingCycle === 'monthly' ? 89 : 69));
+
       const response = await createCheckout({
         priceId: priceId,
         userId: user?.id,

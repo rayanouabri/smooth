@@ -8,15 +8,19 @@ import logger from "@/utils/logger";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { 
-  Home, 
-  BookOpen, 
-  MessageSquare, 
-  Users, 
-  User, 
+import {
+  Home,
+  BookOpen,
+  MessageSquare,
+  Users,
+  User,
   Zap,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  BarChart3,
+  Brain,
+  ClipboardCheck,
+  Crown
 } from "lucide-react";
 
 export default function DashboardSidebar({ currentPage }) {
@@ -48,6 +52,9 @@ export default function DashboardSidebar({ currentPage }) {
   const menuItems = [
     { icon: Home, label: "Tableau de bord", page: "Dashboard", color: "text-blue-600", bgColor: "bg-blue-50" },
     { icon: BookOpen, label: "Mes Cours", page: "Courses", color: "text-purple-600", bgColor: "bg-purple-50" },
+    { icon: BarChart3, label: "Ma Progression", page: "ProgressTracker", color: "text-teal-600", bgColor: "bg-teal-50" },
+    { icon: Brain, label: "Tests d'aptitude", page: "AptitudeTests", color: "text-amber-600", bgColor: "bg-amber-50" },
+    { icon: ClipboardCheck, label: "Entretien simulé", page: "MockInterview", color: "text-cyan-600", bgColor: "bg-cyan-50" },
     { icon: MessageSquare, label: "Communauté", page: "Community", color: "text-green-600", bgColor: "bg-green-50" },
     { icon: Users, label: "Professeurs", page: "Teachers", color: "text-pink-600", bgColor: "bg-pink-50" },
     { icon: User, label: "Mon Profil", page: "Profile", color: "text-indigo-600", bgColor: "bg-indigo-50" },

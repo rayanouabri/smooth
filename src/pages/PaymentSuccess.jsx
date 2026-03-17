@@ -7,11 +7,18 @@ import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { supabase } from "@/api/supabaseClient";
 import { Badge } from "@/components/ui/badge";
+import { trackPurchase } from "@/utils/analytics";
 
 export default function PaymentSuccess() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
+
+  useEffect(() => {
+    if (sessionId) {
+      trackPurchase('premium', 0, sessionId);
+    }
+  }, [sessionId]);
   
   const [step, setStep] = useState('loading');
   const [user, setUser] = useState(null);

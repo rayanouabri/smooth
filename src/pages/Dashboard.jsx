@@ -26,7 +26,11 @@ import {
   Zap,
   Trophy,
   Flame,
-  Users
+  Users,
+  Brain,
+  ClipboardCheck,
+  Crown,
+  FileText
 } from "lucide-react";
 import { createPageUrl } from "../utils";
 import CourseCard from "../components/CourseCard";
@@ -467,28 +471,90 @@ export default function Dashboard() {
         </Tabs>
 
         {/* Quick Actions */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer" onClick={() => navigate(createPageUrl("Community"))}>
-            <CardContent className="p-6 text-center">
-              <MessageSquare className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="font-bold text-lg mb-2">{"Communauté"}</h3>
-              <p className="text-sm text-gray-600">Rejoignez la discussion</p>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          <Zap className="w-6 h-6 mr-2 text-orange-500" />
+          Outils & Ressources
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer hover:scale-105" onClick={() => navigate(createPageUrl("ProgressTracker"))}>
+            <CardContent className="p-5 text-center">
+              <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500 mb-3 shadow-lg">
+                <BarChart3 className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-bold text-sm mb-1">Ma Progression</h3>
+              <p className="text-xs text-gray-500">Suivez vos statistiques</p>
             </CardContent>
           </Card>
 
-          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer" onClick={() => navigate(createPageUrl("Teachers"))}>
-            <CardContent className="p-6 text-center">
-              <Users className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-              <h3 className="font-bold text-lg mb-2">Cours particulier</h3>
-              <p className="text-sm text-gray-600">Demandez un professeur</p>
+          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer hover:scale-105" onClick={() => navigate(createPageUrl("AptitudeTests"))}>
+            <CardContent className="p-5 text-center">
+              <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 mb-3 shadow-lg">
+                <Brain className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-bold text-sm mb-1">Tests d'aptitude</h3>
+              <p className="text-xs text-gray-500">{"Évaluez vos compétences"}</p>
             </CardContent>
           </Card>
 
-          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer" onClick={() => navigate(createPageUrl("Profile"))}>
-            <CardContent className="p-6 text-center">
-              <Target className="w-12 h-12 text-green-600 mx-auto mb-4" />
-              <h3 className="font-bold text-lg mb-2">Mon profil</h3>
-              <p className="text-sm text-gray-600">{"Gérez vos informations"}</p>
+          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer hover:scale-105" onClick={() => navigate(createPageUrl("MockInterview"))}>
+            <CardContent className="p-5 text-center">
+              <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 mb-3 shadow-lg">
+                <ClipboardCheck className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-bold text-sm mb-1">{"Entretien simulé"}</h3>
+              <p className="text-xs text-gray-500">{"Préparez-vous"}</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer hover:scale-105" onClick={() => navigate(createPageUrl("ResumeBuilder"))}>
+            <CardContent className="p-5 text-center">
+              <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 mb-3 shadow-lg">
+                <FileText className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-bold text-sm mb-1">{"Créer un CV"}</h3>
+              <p className="text-xs text-gray-500">CV professionnel IA</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer hover:scale-105" onClick={() => navigate(createPageUrl("Community"))}>
+            <CardContent className="p-5 text-center">
+              <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 mb-3 shadow-lg">
+                <MessageSquare className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-bold text-sm mb-1">{"Communauté"}</h3>
+              <p className="text-xs text-gray-500">Rejoignez la discussion</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer hover:scale-105" onClick={() => navigate(createPageUrl("Teachers"))}>
+            <CardContent className="p-5 text-center">
+              <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 mb-3 shadow-lg">
+                <Users className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-bold text-sm mb-1">Cours particulier</h3>
+              <p className="text-xs text-gray-500">Demandez un professeur</p>
+            </CardContent>
+          </Card>
+
+          {plan === 'gratuit' && (
+            <Card className="border-2 border-orange-200 hover:shadow-xl transition-all cursor-pointer hover:scale-105 bg-gradient-to-br from-orange-50 to-pink-50" onClick={() => navigate(createPageUrl("Pricing"))}>
+              <CardContent className="p-5 text-center">
+                <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-orange-500 to-pink-500 mb-3 shadow-lg">
+                  <Crown className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="font-bold text-sm mb-1">Passer Premium</h3>
+                <p className="text-xs text-gray-500">{"Débloquez tout"}</p>
+              </CardContent>
+            </Card>
+          )}
+
+          <Card className="border-2 hover:shadow-xl transition-all cursor-pointer hover:scale-105" onClick={() => navigate(createPageUrl("Profile"))}>
+            <CardContent className="p-5 text-center">
+              <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 mb-3 shadow-lg">
+                <Target className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-bold text-sm mb-1">Mon profil</h3>
+              <p className="text-xs text-gray-500">{"Gérez vos informations"}</p>
             </CardContent>
           </Card>
         </div>
