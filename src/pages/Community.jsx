@@ -134,52 +134,30 @@ export default function Community() {
     queryFn: async () => {
       if (!selectedPost?.id) return [];
       const repliesList = await ForumReply.filter({ post_id: selectedPost.id }, 'created_date');
-      
+
       // Filtrer les réponses avec des IDs invalides (IDs mock/test)
       const validReplies = (repliesList || []).filter(reply => {
         if (!reply || !reply.id) return false;
-        // Exclure les IDs mock/test
-        if (isMockId(reply.id)) {
-          logger.warn('Réponse avec ID mock détectée et filtrée:', reply.id);
-          return false;
-        }
+        if (isMockId(reply.id)) return false;
         return true;
       });
-      
-      // Mettre à jour le compteur de réponses avec le nombre réel si nécessaire
-      const actualCount = validReplies.length;
-      if (actualCount !== (selectedPost.replies_count || 0)) {
-        // Ne mettre à jour que si l'ID du post est valide
-        if (selectedPost.id && !isMockId(selectedPost.id)) {
-          try {
-            await ForumPost.update(selectedPost.id, {
-              replies_count: actualCount
-            });
-            // Mettre à jour selectedPost localement
-            setSelectedPost(prev => prev ? {
-              ...prev,
-              replies_count: actualCount
-            } : null);
-            queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
-          } catch (error) {
-            // Ne logger que si ce n'est pas un ID mock
-            if (!isMockId(selectedPost.id)) {
-              logger.error('Erreur lors de la mise à jour du compteur de réponses:', error);
-            }
-          }
-        } else {
-          // Si l'ID est mock, juste mettre à jour localement sans appeler la DB
-          setSelectedPost(prev => prev ? {
-            ...prev,
-            replies_count: actualCount
-          } : null);
-        }
-      }
-      
+
       return validReplies;
     },
     enabled: !!selectedPost,
   });
+
+  // Sync replies count separately to avoid re-render loops in queryFn
+  useEffect(() => {
+    if (!selectedPost?.id || !replies || replies.length === 0) return;
+    const actualCount = replies.length;
+    if (actualCount === (selectedPost.replies_count || 0)) return;
+
+    // Update locally only (no state change on selectedPost to avoid loops)
+    if (selectedPost.id && !isMockId(selectedPost.id)) {
+      ForumPost.update(selectedPost.id, { replies_count: actualCount }).catch(() => {});
+    }
+  }, [replies?.length, selectedPost?.id]);
 
   // Fetch which replies the current user has liked
   useEffect(() => {
@@ -226,32 +204,7 @@ export default function Community() {
       is_solution: false,
       likes_count: 0
     }),
-    onSuccess: async () => {
-      // Calculer le nombre réel de réponses depuis la base de données
-      const allReplies = await ForumReply.filter({ post_id: selectedPost.id });
-      const validReplies = (allReplies || []).filter(reply => reply && reply.id && !isMockId(reply.id));
-      const actualRepliesCount = validReplies.length;
-      
-      // Mettre à jour le compteur avec le nombre réel seulement si l'ID est valide
-      if (selectedPost.id && !isMockId(selectedPost.id)) {
-        try {
-          await ForumPost.update(selectedPost.id, {
-            replies_count: actualRepliesCount
-          });
-        } catch (error) {
-          // Ne logger que si ce n'est pas un ID mock
-          if (!isMockId(selectedPost.id)) {
-            logger.error('Erreur lors de la mise à jour du compteur de réponses:', error);
-          }
-        }
-      }
-      
-      // Mettre à jour selectedPost pour refléter le nouveau compteur
-      setSelectedPost(prev => ({
-        ...prev,
-        replies_count: actualRepliesCount
-      }));
-      
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['forum-replies'] });
       queryClient.invalidateQueries({ queryKey: ['forum-posts'] });
       setReplyContent("");
