@@ -85,12 +85,13 @@ export default function Layout({ children, currentPageName }) {
   ];
 
   const goTo = async (e, targetPage, opts = {}) => {
-    // Sécurise la nav même si une extension injecte des handlers
+    // Sécurise la nav même si une extension ou un script empêche les clics
+    const url = createPageUrl(targetPage);
+    e?.preventDefault?.();
     try {
       if (targetPage === "Dashboard") {
         const authenticated = await checkAuthStatus();
         if (!authenticated) {
-          e?.preventDefault();
           redirectToLogin('/dashboard');
           return;
         }
@@ -99,11 +100,16 @@ export default function Layout({ children, currentPageName }) {
         setMobileMenuOpen(false);
       }
       window.scrollTo(0, 0);
-      navigate(createPageUrl(targetPage));
+      navigate(url);
     } catch (err) {
       logger.error('Navigation error:', err);
-      // Fallback hard reload si jamais navigate échoue
-      window.location.href = createPageUrl(targetPage);
+    } finally {
+      // Fallback force si navigate est bloqué ou ignoré
+      setTimeout(() => {
+        if (window.location.pathname.toLowerCase() !== url.toLowerCase()) {
+          window.location.href = url;
+        }
+      }, 50);
     }
   };
 
