@@ -85,9 +85,15 @@ export default function Layout({ children, currentPageName }) {
   ];
 
   const goTo = async (e, targetPage, opts = {}) => {
-    // Sécurise la nav même si une extension ou un script empêche les clics
+    // Force la navigation même si des scripts/extensions bloquent les clics
     const url = createPageUrl(targetPage);
     e?.preventDefault?.();
+
+    // Fermer le menu mobile tôt pour éviter les overlays
+    if (opts.closeMenu) {
+      setMobileMenuOpen(false);
+    }
+
     try {
       if (targetPage === "Dashboard") {
         const authenticated = await checkAuthStatus();
@@ -96,20 +102,17 @@ export default function Layout({ children, currentPageName }) {
           return;
         }
       }
-      if (opts.closeMenu) {
-        setMobileMenuOpen(false);
-      }
       window.scrollTo(0, 0);
       navigate(url);
     } catch (err) {
       logger.error('Navigation error:', err);
     } finally {
-      // Fallback force si navigate est bloqué ou ignoré
+      // Fallback hard reload très court si navigate est ignoré/bloqué
       setTimeout(() => {
         if (window.location.pathname.toLowerCase() !== url.toLowerCase()) {
           window.location.href = url;
         }
-      }, 50);
+      }, 10);
     }
   };
 

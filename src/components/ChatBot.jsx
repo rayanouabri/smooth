@@ -279,11 +279,16 @@ Réponds maintenant de manière utile et bienveillante, SANS formatage markdown,
             <Button
               onClick={() => setIsOpen(true)}
               size="lg"
-              className="rounded-full w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 shadow-2xl hover:shadow-blue-500/50 transition-all animate-pulse hover:animate-none"
+              className="relative flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 hover:from-cyan-600 hover:to-indigo-700 shadow-2xl hover:shadow-blue-500/40 transition-all border border-white/40 backdrop-blur-lg"
             >
-              <MessageCircle className="w-7 h-7 text-white" />
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-ping"></span>
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white"></span>
+              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                <MessageCircle className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex flex-col text-left leading-tight">
+                <span className="text-white font-semibold text-sm">Assistant IA</span>
+                <span className="text-white/80 text-[11px]">Pose-moi une question</span>
+              </div>
+              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 rounded-full border-2 border-white shadow-sm"></span>
             </Button>
           </motion.div>
         )}
