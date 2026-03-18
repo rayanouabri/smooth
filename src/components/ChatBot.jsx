@@ -42,6 +42,7 @@ export default function ChatBot() {
   const [isCheckingLimit, setIsCheckingLimit] = useState(true);
   const messagesEndRef = useRef(null);
   const FREE_MESSAGE_LIMIT = 5;
+  const MAX_PROMPT_CHARS = 4800; // marge avant le cutoff API 5000
 
   const userIsPremium = useMemo(() => isPremium(user), [user]);
 
@@ -154,8 +155,8 @@ export default function ChatBot() {
         ? `\n\nCOURS DISPONIBLES SUR LA PLATEFORME (à recommander si pertinent) :\n${coursesList}\n\nPour accéder aux cours, l'utilisateur peut aller sur /courses. Les cours Premium nécessitent un abonnement (voir /pricing).`
         : '';
 
-      const response = await InvokeLLM({
-        prompt: `Tu es Sophie, l'assistante IA de FrancePrepAcademy, une plateforme d'apprentissage spécialisée dans l'intégration des étudiants internationaux en France.
+      // Construire le prompt et le tronquer si nécessaire pour éviter le 400 "message trop long"
+      const basePrompt = `Tu es Sophie, l'assistante IA de FrancePrepAcademy, une plateforme d'apprentissage spécialisée dans l'intégration des étudiants internationaux en France.
 
 CONTEXTE DU SITE :
 FrancePrepAcademy est une plateforme éducative qui propose :
@@ -187,10 +188,33 @@ RÈGLES DE RÉPONSE IMPORTANTES :
 - Pour le contact support, utilise toujours : contact@franceprepacademy.fr
 - Sois empathique et compréhensive envers les difficultés des étudiants internationaux
 - Encourage l'utilisation des ressources de la plateforme (cours gratuits et premium, forum communautaire)
+`;
+
+      const questionBlock = `
 
 Question de l'utilisateur : ${userMessage}
 
-Réponds maintenant de manière utile et bienveillante, SANS formatage markdown, en texte simple avec emojis :`,
+Réponds maintenant de manière utile et bienveillante, SANS formatage markdown, en texte simple avec emojis :`;
+
+      const buildPrompt = () => `${basePrompt}${coursesContextText}${questionBlock}`;
+
+      let prompt = buildPrompt();
+      if (prompt.length > MAX_PROMPT_CHARS) {
+        // Réduire le contexte des cours en priorité
+        const overBy = prompt.length - MAX_PROMPT_CHARS;
+        const trimmedCourses = coursesContextText.slice(0, Math.max(0, coursesContextText.length - overBy - 200));
+        const safeCourses = trimmedCourses.endsWith('\n') ? trimmedCourses : `${trimmedCourses}\n`;
+        prompt = `${basePrompt}${safeCourses}${questionBlock}`;
+      }
+      // Si c'est encore trop long (question immense), tronquer la question
+      if (prompt.length > MAX_PROMPT_CHARS) {
+        const roomForQuestion = MAX_PROMPT_CHARS - (basePrompt.length + coursesContextText.length + 50);
+        const shortenedQuestion = userMessage.slice(0, Math.max(0, roomForQuestion));
+        prompt = `${basePrompt}${coursesContextText}\n\nQuestion de l'utilisateur (tronquée) : ${shortenedQuestion}\n\nRéponds maintenant de manière utile et bienveillante, SANS formatage markdown, en texte simple avec emojis :`;
+      }
+
+      const response = await InvokeLLM({
+        prompt,
         add_context_from_internet: false
       });
 
