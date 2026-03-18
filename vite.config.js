@@ -24,5 +24,6 @@ export default defineConfig({
   build: {
     target: 'es2015', // Compatibilité avec les navigateurs plus anciens comme Opera
     minify: 'esbuild', // Utiliser esbuild au lieu de terser (plus rapide et inclus)
+    chunkSizeWarningLimit: 1200, // Eviter les faux positifs sur les gros bundles (données statiques)
   },
 }) 
