@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import { isAuthenticated as checkAuthStatus, me, logout, redirectToLogin } from "@/api/auth";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,7 @@ export default function Layout({ children, currentPageName }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     checkAuth();
@@ -83,6 +84,29 @@ export default function Layout({ children, currentPageName }) {
     { name: "Assistant IA", page: "AIAgent", icon: true },
   ];
 
+  const goTo = async (e, targetPage, opts = {}) => {
+    // Sécurise la nav même si une extension injecte des handlers
+    try {
+      if (targetPage === "Dashboard") {
+        const authenticated = await checkAuthStatus();
+        if (!authenticated) {
+          e?.preventDefault();
+          redirectToLogin('/dashboard');
+          return;
+        }
+      }
+      if (opts.closeMenu) {
+        setMobileMenuOpen(false);
+      }
+      window.scrollTo(0, 0);
+      navigate(createPageUrl(targetPage));
+    } catch (err) {
+      logger.error('Navigation error:', err);
+      // Fallback hard reload si jamais navigate échoue
+      window.location.href = createPageUrl(targetPage);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Navigation */}
@@ -97,45 +121,32 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Desktop Navigation - Full Menu */}
             <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center min-w-0">
-              {navLinks.map((link) => {
-                // Si c'est Dashboard et pas connecté, rediriger vers login
-                const handleClick = async (e) => {
-                  if (link.page === "Dashboard") {
-                    const authenticated = await checkAuthStatus();
-                    if (!authenticated) {
-                      e.preventDefault();
-                      redirectToLogin('/dashboard');
+              {navLinks.map((link) => (
+                <Link key={link.page} to={createPageUrl(link.page)} onClick={(e) => goTo(e, link.page)}>
+                  <Button
+                    variant={currentPageName === link.page ? "default" : "ghost"}
+                    className={
+                      link.icon
+                        ? currentPageName === link.page
+                          ? "bg-gradient-to-r from-violet-500 to-purple-500 text-white hover:from-violet-600 hover:to-purple-600 text-sm font-semibold gap-1.5"
+                          : "text-purple-600 hover:text-purple-800 hover:bg-purple-50 text-sm font-medium gap-1.5 border border-purple-200 hover:border-purple-300"
+                        : currentPageName === link.page
+                          ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 text-sm font-semibold"
+                          : "text-gray-700 hover:text-blue-900 hover:bg-blue-50 text-sm font-medium"
                     }
-                  }
-                };
-                
-                return (
-                  <Link key={link.page} to={createPageUrl(link.page)} onClick={(e) => { handleClick(e); window.scrollTo(0, 0); }}>
-                    <Button
-                      variant={currentPageName === link.page ? "default" : "ghost"}
-                      className={
-                        link.icon
-                          ? currentPageName === link.page
-                            ? "bg-gradient-to-r from-violet-500 to-purple-500 text-white hover:from-violet-600 hover:to-purple-600 text-sm font-semibold gap-1.5"
-                            : "text-purple-600 hover:text-purple-800 hover:bg-purple-50 text-sm font-medium gap-1.5 border border-purple-200 hover:border-purple-300"
-                          : currentPageName === link.page
-                            ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 text-sm font-semibold"
-                            : "text-gray-700 hover:text-blue-900 hover:bg-blue-50 text-sm font-medium"
-                      }
-                      size="sm"
-                    >
-                      {link.icon && <Bot className="w-4 h-4" />}
-                      {link.name}
-                    </Button>
-                  </Link>
-                );
-              })}
+                    size="sm"
+                  >
+                    {link.icon && <Bot className="w-4 h-4" />}
+                    {link.name}
+                  </Button>
+                </Link>
+              ))}
             </div>
 
             {/* Tablet Navigation - Simplified */}
             <div className="hidden md:flex lg:hidden items-center space-x-1 flex-1 justify-center">
               {navLinks.slice(0, 3).map((link) => (
-                <Link key={link.page} to={createPageUrl(link.page)} onClick={() => window.scrollTo(0, 0)}>
+                <Link key={link.page} to={createPageUrl(link.page)} onClick={(e) => goTo(e, link.page)}>
                   <Button
                     variant={currentPageName === link.page ? "default" : "ghost"}
                     className={currentPageName === link.page ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs" : "text-gray-700 text-xs"}
@@ -155,7 +166,7 @@ export default function Layout({ children, currentPageName }) {
               {/* Auth Buttons */}
               {isAuthenticated ? (
                 <>
-                  <Link to={createPageUrl("Dashboard")} className="hidden md:inline-block" onClick={() => window.scrollTo(0, 0)}>
+                  <Link to={createPageUrl("Dashboard")} className="hidden md:inline-block" onClick={(e) => goTo(e, "Dashboard") }>
                     <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg text-xs sm:text-sm px-2 sm:px-3" size="sm">
                       {"🎓"} Mon Espace
                     </Button>
@@ -237,7 +248,7 @@ export default function Layout({ children, currentPageName }) {
             <div className="lg:hidden fixed inset-0 top-[70px] bg-white z-50 overflow-y-auto shadow-2xl">
               <div className="px-4 py-6 space-y-1">
                 {navLinks.map((link) => (
-                  <Link key={link.page} to={createPageUrl(link.page)} onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}>
+                  <Link key={link.page} to={createPageUrl(link.page)} onClick={(e) => goTo(e, link.page, { closeMenu: true })}>
                     <Button
                       variant={currentPageName === link.page ? "default" : "ghost"}
                       className={`w-full justify-start h-12 text-base gap-2 ${
@@ -258,7 +269,7 @@ export default function Layout({ children, currentPageName }) {
                 <div className="border-t border-gray-200 my-4 pt-4">
                   {isAuthenticated ? (
                     <>
-                      <Link to={createPageUrl("Dashboard")} onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}>
+                      <Link to={createPageUrl("Dashboard")} onClick={(e) => goTo(e, "Dashboard", { closeMenu: true })}>
                         <Button
                           variant="ghost"
                           className="w-full justify-start h-12 text-base hover:bg-gray-100"
@@ -266,7 +277,7 @@ export default function Layout({ children, currentPageName }) {
                           {"📊"} Tableau de bord
                         </Button>
                       </Link>
-                      <Link to={createPageUrl("Profile")} onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}>
+                      <Link to={createPageUrl("Profile")} onClick={(e) => goTo(e, "Profile", { closeMenu: true })}>
                         <Button
                           variant="ghost"
                           className="w-full justify-start h-12 text-base hover:bg-gray-100"
@@ -325,16 +336,16 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h3 className="font-semibold mb-4">Formation</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to={createPageUrl("Courses")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>Catalogue de cours</Link></li>
-                <li><Link to={createPageUrl("Teachers")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>Nos professeurs</Link></li>
-                <li><Link to={createPageUrl("Pricing")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>Tarifs</Link></li>
+                <li><Link to={createPageUrl("Courses")} className="hover:text-white" onClick={(e) => goTo(e, "Courses")}>Catalogue de cours</Link></li>
+                <li><Link to={createPageUrl("Teachers")} className="hover:text-white" onClick={(e) => goTo(e, "Teachers")}>Nos professeurs</Link></li>
+                <li><Link to={createPageUrl("Pricing")} className="hover:text-white" onClick={(e) => goTo(e, "Pricing")}>Tarifs</Link></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">{"Communauté"}</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to={createPageUrl("Community")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>Forum</Link></li>
+                <li><Link to={createPageUrl("Community")} className="hover:text-white" onClick={(e) => goTo(e, "Community")}>Forum</Link></li>
                 <li><a href="#" className="hover:text-white">{"Témoignages"}</a></li>
                 <li><a href="#" className="hover:text-white">Blog</a></li>
               </ul>
@@ -343,11 +354,11 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to={createPageUrl("Contact")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>Centre d'aide</Link></li>
-                <li><Link to={createPageUrl("Contact")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>Contact</Link></li>
-                <li><Link to={createPageUrl("CGV")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>CGV</Link></li>
-                <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>{"Confidentialité"}</Link></li>
-                <li><Link to={createPageUrl("CGU")} className="hover:text-white" onClick={() => window.scrollTo(0, 0)}>CGU / Mentions légales</Link></li>
+                <li><Link to={createPageUrl("Contact")} className="hover:text-white" onClick={(e) => goTo(e, "Contact")}>Centre d'aide</Link></li>
+                <li><Link to={createPageUrl("Contact")} className="hover:text-white" onClick={(e) => goTo(e, "Contact")}>Contact</Link></li>
+                <li><Link to={createPageUrl("CGV")} className="hover:text-white" onClick={(e) => goTo(e, "CGV")}>CGV</Link></li>
+                <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white" onClick={(e) => goTo(e, "PrivacyPolicy")}>{"Confidentialité"}</Link></li>
+                <li><Link to={createPageUrl("CGU")} className="hover:text-white" onClick={(e) => goTo(e, "CGU")}>CGU / Mentions légales</Link></li>
               </ul>
             </div>
             </div>
