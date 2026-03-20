@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import { isAuthenticated as checkAuthStatus, me, logout, redirectToLogin } from "@/api/auth";
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,7 @@ export default function Layout({ children, currentPageName }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
+
 
   useEffect(() => {
     checkAuth();
@@ -84,42 +84,21 @@ export default function Layout({ children, currentPageName }) {
     { name: "Assistant IA", page: "AIAgent", icon: true },
   ];
 
-  const isPlainLeftClick = (event) => {
-    if (!event) return true;
-    return event.button === 0 && !event.metaKey && !event.altKey && !event.ctrlKey && !event.shiftKey;
+  // Dashboard auth guard — only prevents navigation when not authenticated
+  const handleDashboardClick = (e) => {
+    checkAuthStatus().then(authenticated => {
+      if (!authenticated) {
+        e.preventDefault();
+        redirectToLogin('/dashboard');
+      }
+    }).catch(() => {
+      // Let navigation proceed on error
+    });
   };
 
-  const goTo = (e, targetPage, opts = {}) => {
-    const url = createPageUrl(targetPage);
-    const shouldHandle = isPlainLeftClick(e);
-    if (e && !shouldHandle) {
-      // Let browser handle Ctrl+Click, etc.
-      return;
-    }
-    e?.preventDefault?.();
-
-    // Fermer le menu mobile tôt pour éviter les overlays
-    if (opts.closeMenu) {
-      setMobileMenuOpen(false);
-    }
-
-    // Dashboard requires auth — check asynchronously then navigate
-    if (targetPage === "Dashboard") {
-      checkAuthStatus().then(authenticated => {
-        if (!authenticated) {
-          redirectToLogin('/dashboard');
-        } else {
-          navigate(url);
-        }
-      }).catch(() => {
-        // Fallback: navigate anyway and let Dashboard handle auth
-        navigate(url);
-      });
-      return;
-    }
-
-    // Direct synchronous navigation for all other pages
-    navigate(url);
+  // Close mobile menu on link click (without blocking React Router navigation)
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -137,7 +116,7 @@ export default function Layout({ children, currentPageName }) {
             {/* Desktop Navigation - Full Menu */}
             <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center min-w-0">
               {navLinks.map((link) => (
-                <Link key={link.page} to={createPageUrl(link.page)} onClick={(e) => goTo(e, link.page)}>
+                <Link key={link.page} to={createPageUrl(link.page)} onClick={link.page === "Dashboard" ? handleDashboardClick : undefined}>
                   <Button
                     variant={currentPageName === link.page ? "default" : "ghost"}
                     className={
@@ -161,7 +140,7 @@ export default function Layout({ children, currentPageName }) {
             {/* Tablet Navigation - Simplified */}
             <div className="hidden md:flex lg:hidden items-center space-x-1 flex-1 justify-center">
               {navLinks.slice(0, 3).map((link) => (
-                <Link key={link.page} to={createPageUrl(link.page)} onClick={(e) => goTo(e, link.page)}>
+                <Link key={link.page} to={createPageUrl(link.page)} onClick={link.page === "Dashboard" ? handleDashboardClick : undefined}>
                   <Button
                     variant={currentPageName === link.page ? "default" : "ghost"}
                     className={currentPageName === link.page ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs" : "text-gray-700 text-xs"}
@@ -181,7 +160,7 @@ export default function Layout({ children, currentPageName }) {
               {/* Auth Buttons */}
               {isAuthenticated ? (
                 <>
-                  <Link to={createPageUrl("Dashboard")} className="hidden md:inline-block" onClick={(e) => goTo(e, "Dashboard") }>
+                  <Link to={createPageUrl("Dashboard")} className="hidden md:inline-block" onClick={handleDashboardClick}>
                     <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg text-xs sm:text-sm px-2 sm:px-3" size="sm">
                       {"🎓"} Mon Espace
                     </Button>
@@ -263,7 +242,7 @@ export default function Layout({ children, currentPageName }) {
             <div className="lg:hidden fixed inset-0 top-[70px] bg-white z-50 overflow-y-auto shadow-2xl">
               <div className="px-4 py-6 space-y-1">
                 {navLinks.map((link) => (
-                  <Link key={link.page} to={createPageUrl(link.page)} onClick={(e) => goTo(e, link.page, { closeMenu: true })}>
+                  <Link key={link.page} to={createPageUrl(link.page)} onClick={() => { closeMobileMenu(); if (link.page === "Dashboard") { checkAuthStatus().then(auth => { if (!auth) redirectToLogin('/dashboard'); }); } }}>
                     <Button
                       variant={currentPageName === link.page ? "default" : "ghost"}
                       className={`w-full justify-start h-12 text-base gap-2 ${
@@ -284,7 +263,7 @@ export default function Layout({ children, currentPageName }) {
                 <div className="border-t border-gray-200 my-4 pt-4">
                   {isAuthenticated ? (
                     <>
-                      <Link to={createPageUrl("Dashboard")} onClick={(e) => goTo(e, "Dashboard", { closeMenu: true })}>
+                      <Link to={createPageUrl("Dashboard")} onClick={() => { closeMobileMenu(); checkAuthStatus().then(auth => { if (!auth) redirectToLogin('/dashboard'); }); }}>
                         <Button
                           variant="ghost"
                           className="w-full justify-start h-12 text-base hover:bg-gray-100"
@@ -292,7 +271,7 @@ export default function Layout({ children, currentPageName }) {
                           {"📊"} Tableau de bord
                         </Button>
                       </Link>
-                      <Link to={createPageUrl("Profile")} onClick={(e) => goTo(e, "Profile", { closeMenu: true })}>
+                      <Link to={createPageUrl("Profile")} onClick={closeMobileMenu}>
                         <Button
                           variant="ghost"
                           className="w-full justify-start h-12 text-base hover:bg-gray-100"
@@ -351,16 +330,16 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h3 className="font-semibold mb-4">Formation</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to={createPageUrl("Courses")} className="hover:text-white" onClick={(e) => goTo(e, "Courses")}>Catalogue de cours</Link></li>
-                <li><Link to={createPageUrl("Teachers")} className="hover:text-white" onClick={(e) => goTo(e, "Teachers")}>Nos professeurs</Link></li>
-                <li><Link to={createPageUrl("Pricing")} className="hover:text-white" onClick={(e) => goTo(e, "Pricing")}>Tarifs</Link></li>
+                <li><Link to={createPageUrl("Courses")} className="hover:text-white">Catalogue de cours</Link></li>
+                <li><Link to={createPageUrl("Teachers")} className="hover:text-white">Nos professeurs</Link></li>
+                <li><Link to={createPageUrl("Pricing")} className="hover:text-white">Tarifs</Link></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">{"Communauté"}</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to={createPageUrl("Community")} className="hover:text-white" onClick={(e) => goTo(e, "Community")}>Forum</Link></li>
+                <li><Link to={createPageUrl("Community")} className="hover:text-white">Forum</Link></li>
                 <li><a href="#" className="hover:text-white">{"Témoignages"}</a></li>
                 <li><a href="#" className="hover:text-white">Blog</a></li>
               </ul>
@@ -369,11 +348,11 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to={createPageUrl("Contact")} className="hover:text-white" onClick={(e) => goTo(e, "Contact")}>Centre d'aide</Link></li>
-                <li><Link to={createPageUrl("Contact")} className="hover:text-white" onClick={(e) => goTo(e, "Contact")}>Contact</Link></li>
-                <li><Link to={createPageUrl("CGV")} className="hover:text-white" onClick={(e) => goTo(e, "CGV")}>CGV</Link></li>
-                <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white" onClick={(e) => goTo(e, "PrivacyPolicy")}>{"Confidentialité"}</Link></li>
-                <li><Link to={createPageUrl("CGU")} className="hover:text-white" onClick={(e) => goTo(e, "CGU")}>CGU / Mentions légales</Link></li>
+                <li><Link to={createPageUrl("Contact")} className="hover:text-white">Centre d'aide</Link></li>
+                <li><Link to={createPageUrl("Contact")} className="hover:text-white">Contact</Link></li>
+                <li><Link to={createPageUrl("CGV")} className="hover:text-white">CGV</Link></li>
+                <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white">{"Confidentialité"}</Link></li>
+                <li><Link to={createPageUrl("CGU")} className="hover:text-white">CGU / Mentions légales</Link></li>
               </ul>
             </div>
             </div>

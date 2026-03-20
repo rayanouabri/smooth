@@ -197,7 +197,7 @@ function PagesContent() {
     
     return (
         <Layout currentPageName={currentPage}>
-            <Suspense fallback={<PageSkeleton />} key={location.pathname}>
+            <Suspense fallback={<PageSkeleton />}>
                 <Routes location={location}>
                     
                         <Route path="/" element={<Home />} />
