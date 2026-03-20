@@ -116,39 +116,43 @@ export default function Layout({ children, currentPageName }) {
             {/* Desktop Navigation - Full Menu */}
             <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center min-w-0">
               {navLinks.map((link) => (
-                <Link key={link.page} to={createPageUrl(link.page)} onClick={link.page === "Dashboard" ? handleDashboardClick : undefined}>
-                  <Button
-                    variant={currentPageName === link.page ? "default" : "ghost"}
-                    className={
-                      link.icon
-                        ? currentPageName === link.page
-                          ? "bg-gradient-to-r from-violet-500 to-purple-500 text-white hover:from-violet-600 hover:to-purple-600 text-sm font-semibold gap-1.5"
-                          : "text-purple-600 hover:text-purple-800 hover:bg-purple-50 text-sm font-medium gap-1.5 border border-purple-200 hover:border-purple-300"
-                        : currentPageName === link.page
-                          ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 text-sm font-semibold"
-                          : "text-gray-700 hover:text-blue-900 hover:bg-blue-50 text-sm font-medium"
-                    }
-                    size="sm"
-                  >
+                <Button
+                  key={link.page}
+                  asChild
+                  variant={currentPageName === link.page ? "default" : "ghost"}
+                  className={
+                    link.icon
+                      ? currentPageName === link.page
+                        ? "bg-gradient-to-r from-violet-500 to-purple-500 text-white hover:from-violet-600 hover:to-purple-600 text-sm font-semibold gap-1.5"
+                        : "text-purple-600 hover:text-purple-800 hover:bg-purple-50 text-sm font-medium gap-1.5 border border-purple-200 hover:border-purple-300"
+                      : currentPageName === link.page
+                        ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 text-sm font-semibold"
+                        : "text-gray-700 hover:text-blue-900 hover:bg-blue-50 text-sm font-medium"
+                  }
+                  size="sm"
+                >
+                  <Link to={createPageUrl(link.page)} onClick={link.page === "Dashboard" ? handleDashboardClick : undefined}>
                     {link.icon && <Bot className="w-4 h-4" />}
                     {link.name}
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               ))}
             </div>
 
             {/* Tablet Navigation - Simplified */}
             <div className="hidden md:flex lg:hidden items-center space-x-1 flex-1 justify-center">
               {navLinks.slice(0, 3).map((link) => (
-                <Link key={link.page} to={createPageUrl(link.page)} onClick={link.page === "Dashboard" ? handleDashboardClick : undefined}>
-                  <Button
-                    variant={currentPageName === link.page ? "default" : "ghost"}
-                    className={currentPageName === link.page ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs" : "text-gray-700 text-xs"}
-                    size="sm"
-                  >
+                <Button
+                  key={link.page}
+                  asChild
+                  variant={currentPageName === link.page ? "default" : "ghost"}
+                  className={currentPageName === link.page ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs" : "text-gray-700 text-xs"}
+                  size="sm"
+                >
+                  <Link to={createPageUrl(link.page)} onClick={link.page === "Dashboard" ? handleDashboardClick : undefined}>
                     {link.name}
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               ))}
             </div>
 
@@ -160,11 +164,11 @@ export default function Layout({ children, currentPageName }) {
               {/* Auth Buttons */}
               {isAuthenticated ? (
                 <>
-                  <Link to={createPageUrl("Dashboard")} className="hidden md:inline-block" onClick={handleDashboardClick}>
-                    <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg text-xs sm:text-sm px-2 sm:px-3" size="sm">
+                  <Button asChild className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg text-xs sm:text-sm px-2 sm:px-3 hidden md:inline-flex" size="sm">
+                    <Link to={createPageUrl("Dashboard")} onClick={handleDashboardClick}>
                       {"🎓"} Mon Espace
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="outline" size="sm" className="flex items-center space-x-1 sm:space-x-1.5 relative px-1.5 sm:px-2">
@@ -242,43 +246,39 @@ export default function Layout({ children, currentPageName }) {
             <div className="lg:hidden fixed inset-0 top-[70px] bg-white z-50 overflow-y-auto shadow-2xl">
               <div className="px-4 py-6 space-y-1">
                 {navLinks.map((link) => (
-                  <Link key={link.page} to={createPageUrl(link.page)} onClick={() => { closeMobileMenu(); if (link.page === "Dashboard") { checkAuthStatus().then(auth => { if (!auth) redirectToLogin('/dashboard'); }); } }}>
-                    <Button
-                      variant={currentPageName === link.page ? "default" : "ghost"}
-                      className={`w-full justify-start h-12 text-base gap-2 ${
-                        link.icon
-                          ? currentPageName === link.page
-                            ? "bg-gradient-to-r from-violet-500 to-purple-500 text-white"
-                            : "text-purple-600 hover:bg-purple-50"
-                          : currentPageName === link.page
-                            ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
-                            : "hover:bg-gray-100"
-                      }`}
-                    >
+                  <Button
+                    key={link.page}
+                    asChild
+                    variant={currentPageName === link.page ? "default" : "ghost"}
+                    className={`w-full justify-start h-12 text-base gap-2 ${
+                      link.icon
+                        ? currentPageName === link.page
+                          ? "bg-gradient-to-r from-violet-500 to-purple-500 text-white"
+                          : "text-purple-600 hover:bg-purple-50"
+                        : currentPageName === link.page
+                          ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white"
+                          : "hover:bg-gray-100"
+                    }`}
+                  >
+                    <Link to={createPageUrl(link.page)} onClick={() => { closeMobileMenu(); if (link.page === "Dashboard") { checkAuthStatus().then(auth => { if (!auth) redirectToLogin('/dashboard'); }); } }}>
                       {link.icon && <Bot className="w-5 h-5" />}
                       {link.name}
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 ))}
                 <div className="border-t border-gray-200 my-4 pt-4">
                   {isAuthenticated ? (
                     <>
-                      <Link to={createPageUrl("Dashboard")} onClick={() => { closeMobileMenu(); checkAuthStatus().then(auth => { if (!auth) redirectToLogin('/dashboard'); }); }}>
-                        <Button
-                          variant="ghost"
-                          className="w-full justify-start h-12 text-base hover:bg-gray-100"
-                        >
+                      <Button asChild variant="ghost" className="w-full justify-start h-12 text-base hover:bg-gray-100">
+                        <Link to={createPageUrl("Dashboard")} onClick={() => { closeMobileMenu(); checkAuthStatus().then(auth => { if (!auth) redirectToLogin('/dashboard'); }); }}>
                           {"📊"} Tableau de bord
-                        </Button>
-                      </Link>
-                      <Link to={createPageUrl("Profile")} onClick={closeMobileMenu}>
-                        <Button
-                          variant="ghost"
-                          className="w-full justify-start h-12 text-base hover:bg-gray-100"
-                        >
+                        </Link>
+                      </Button>
+                      <Button asChild variant="ghost" className="w-full justify-start h-12 text-base hover:bg-gray-100">
+                        <Link to={createPageUrl("Profile")} onClick={closeMobileMenu}>
                           {"👤"} Mon profil
-                        </Button>
-                      </Link>
+                        </Link>
+                      </Button>
                       <Button
                         variant="ghost"
                         className="w-full justify-start h-12 text-base hover:bg-red-50 text-red-600"
