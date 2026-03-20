@@ -89,11 +89,11 @@ export default function Layout({ children, currentPageName }) {
     return event.button === 0 && !event.metaKey && !event.altKey && !event.ctrlKey && !event.shiftKey;
   };
 
-  const goTo = async (e, targetPage, opts = {}) => {
-    // Force la navigation même si des scripts/extensions bloquent les clics
+  const goTo = (e, targetPage, opts = {}) => {
     const url = createPageUrl(targetPage);
     const shouldHandle = isPlainLeftClick(e);
     if (e && !shouldHandle) {
+      // Let browser handle Ctrl+Click, etc.
       return;
     }
     e?.preventDefault?.();
@@ -103,26 +103,23 @@ export default function Layout({ children, currentPageName }) {
       setMobileMenuOpen(false);
     }
 
-    try {
-      if (targetPage === "Dashboard") {
-        const authenticated = await checkAuthStatus();
+    // Dashboard requires auth — check asynchronously then navigate
+    if (targetPage === "Dashboard") {
+      checkAuthStatus().then(authenticated => {
         if (!authenticated) {
           redirectToLogin('/dashboard');
-          return;
+        } else {
+          navigate(url);
         }
-      }
-      window.scrollTo(0, 0);
-      navigate(url);
-    } catch (err) {
-      logger.error('Navigation error:', err);
-    } finally {
-      // Fallback hard reload très court si navigate est ignoré/bloqué
-      setTimeout(() => {
-        if (window.location.pathname.toLowerCase() !== url.toLowerCase()) {
-          window.location.href = url;
-        }
-      }, 10);
+      }).catch(() => {
+        // Fallback: navigate anyway and let Dashboard handle auth
+        navigate(url);
+      });
+      return;
     }
+
+    // Direct synchronous navigation for all other pages
+    navigate(url);
   };
 
   return (
