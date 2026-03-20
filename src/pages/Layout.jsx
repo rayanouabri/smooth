@@ -84,9 +84,18 @@ export default function Layout({ children, currentPageName }) {
     { name: "Assistant IA", page: "AIAgent", icon: true },
   ];
 
+  const isPlainLeftClick = (event) => {
+    if (!event) return true;
+    return event.button === 0 && !event.metaKey && !event.altKey && !event.ctrlKey && !event.shiftKey;
+  };
+
   const goTo = async (e, targetPage, opts = {}) => {
     // Force la navigation même si des scripts/extensions bloquent les clics
     const url = createPageUrl(targetPage);
+    const shouldHandle = isPlainLeftClick(e);
+    if (e && !shouldHandle) {
+      return;
+    }
     e?.preventDefault?.();
 
     // Fermer le menu mobile tôt pour éviter les overlays

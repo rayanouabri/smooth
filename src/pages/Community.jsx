@@ -48,6 +48,8 @@ export default function Community() {
   const [newPost, setNewPost] = useState({ title: "", content: "", category: "autre" });
   const [replyContent, setReplyContent] = useState("");
   const [likedReplies, setLikedReplies] = useState(new Set());
+  const [currentPage, setCurrentPage] = useState(1);
+  const POSTS_PER_PAGE = 10;
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -88,18 +90,25 @@ export default function Community() {
     return categoryMapping[category] || 'autre';
   };
 
+  // Réinitialiser la page et le post sélectionné quand on change de catégorie
+  const handleCategoryChange = (value) => {
+    setCategoryFilter(value);
+    setCurrentPage(1);
+    setSelectedPost(null);
+  };
+
   const { data: posts = [], isLoading: isLoadingPosts, refetch } = useQuery({
     queryKey: ['forum-posts', categoryFilter],
     queryFn: async () => {
       try {
         let postsList = [];
-        
+
         if (categoryFilter === "all") {
           postsList = await ForumPost.filter({}, '-created_date', 1000);
         } else {
-          postsList = await ForumPost.filter({ category: categoryFilter }, '-created_date', 1000);
+          postsList = await ForumPost.filter({}, '-created_date', 1000);
         }
-        
+
         // Filtrer les posts invalides et normaliser les catégories
         const validPosts = (postsList || [])
           .filter(post => post?.id && !isMockId(post.id))
@@ -107,18 +116,12 @@ export default function Community() {
             ...post,
             normalizedCategory: getNormalizedCategory(post.category || 'autre')
           }));
-        
-        // Filtrer par catégorie si nécessaire
+
+        // Filtrer par catégorie côté client
         if (categoryFilter !== "all") {
           return validPosts.filter(post => post.normalizedCategory === categoryFilter);
         }
-        
-        console.log(`[Forum] ✅ Retour de ${validPosts.length} posts (toutes catégories)`);
-        if (validPosts.length !== 11 && categoryFilter === "all") {
-          console.error(`[Forum] ⚠️ ATTENTION: ${validPosts.length} posts au lieu de 11 attendus !`);
-          console.error(`[Forum] Posts manquants ? Vérifiez les logs ci-dessus.`);
-        }
-        console.log(`[Forum] 📋 Liste finale des posts:`, validPosts.map(p => ({ id: p.id, title: p.title, category: p.category })));
+
         return validPosts;
       } catch (error) {
         logger.error("Erreur lors du chargement des posts:", error);
@@ -128,6 +131,10 @@ export default function Community() {
     retry: 2,
     retryDelay: 1000,
   });
+
+  // Pagination calculée à partir des posts filtrés
+  const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
+  const paginatedPosts = posts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
 
   const { data: replies = [] } = useQuery({
     queryKey: ['forum-replies', selectedPost?.id],
@@ -301,11 +308,11 @@ export default function Community() {
   };
 
   const handlePostClick = (post) => {
-    // Incrémenter les vues seulement si ce n'est pas déjà le post sélectionné
-    // Cela évite d'incrémenter plusieurs fois si on clique plusieurs fois sur le même post
     if (!selectedPost || selectedPost.id !== post.id) {
       incrementViewsMutation.mutate(post);
       setSelectedPost(post);
+      // Remonter en haut de la page pour afficher le thread
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -467,7 +474,7 @@ export default function Community() {
           <div>
             {/* Filter */}
             <div className="mb-6">
-              <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+              <Select value={categoryFilter} onValueChange={handleCategoryChange}>
                 <SelectTrigger className="w-64">
                   <SelectValue />
                 </SelectTrigger>
@@ -510,7 +517,7 @@ export default function Community() {
               </div>
             ) : (
               <div className="space-y-6">
-                {posts.map((post) => (
+                {paginatedPosts.map((post) => (
                 <Card
                   key={post.id}
                   className="hover:shadow-2xl hover:border-blue-300 transition-all duration-300 cursor-pointer border-2 group"
@@ -605,6 +612,48 @@ export default function Community() {
                   )}
                 </div>
               )}
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 mt-8 pt-6 border-t border-gray-200">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => { setCurrentPage(p => Math.max(1, p - 1)); window.scrollTo({ top: 400, behavior: 'smooth' }); }}
+                    disabled={currentPage === 1}
+                    className="px-4"
+                  >
+                    ← Précédent
+                  </Button>
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                      <button
+                        key={page}
+                        onClick={() => { setCurrentPage(page); window.scrollTo({ top: 400, behavior: 'smooth' }); }}
+                        className={`w-9 h-9 rounded-lg text-sm font-semibold transition-all ${
+                          page === currentPage
+                            ? 'bg-indigo-600 text-white shadow-md'
+                            : 'text-gray-600 hover:bg-indigo-50 hover:text-indigo-600'
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => { setCurrentPage(p => Math.min(totalPages, p + 1)); window.scrollTo({ top: 400, behavior: 'smooth' }); }}
+                    disabled={currentPage === totalPages}
+                    className="px-4"
+                  >
+                    Suivant →
+                  </Button>
+                  <span className="text-sm text-gray-500 ml-2">
+                    Page {currentPage} / {totalPages} ({posts.length} sujets)
+                  </span>
+                </div>
+              )}
             </div>
             )}
           </div>
@@ -614,7 +663,7 @@ export default function Community() {
             <Button
               variant="outline"
               className="mb-6"
-              onClick={() => setSelectedPost(null)}
+              onClick={() => { setSelectedPost(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             >
               ← Retour aux sujets
             </Button>
