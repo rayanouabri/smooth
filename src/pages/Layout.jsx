@@ -157,7 +157,7 @@ export default function Layout({ children, currentPageName }) {
             </div>
 
             {/* Right Section: Language + Auth */}
-            <div className="flex items-center space-x-1 sm:space-x-1.5 md:space-x-2 flex-shrink-0 ml-auto">
+            <div className="flex items-center space-x-1.5 sm:space-x-2 md:space-x-2 flex-shrink-0 ml-auto">
               {/* Language Selector */}
               <LanguageSelector />
               
@@ -171,8 +171,8 @@ export default function Layout({ children, currentPageName }) {
                   </Button>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm" className="flex items-center space-x-1 sm:space-x-1.5 relative px-1.5 sm:px-2">
-                        <div className="w-6 h-6 sm:w-7 sm:h-7 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm flex-shrink-0">
+                      <Button variant="outline" size="sm" className="flex items-center space-x-1 sm:space-x-1.5 relative px-2 sm:px-2 min-w-[44px] min-h-[44px]">
+                        <div className="w-7 h-7 sm:w-7 sm:h-7 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm flex-shrink-0">
                           {user?.full_name?.[0] || user?.email?.[0] || "U"}
                         </div>
                         {user?.is_premium && (
@@ -230,7 +230,7 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Mobile menu button */}
             <button
-              className="lg:hidden flex-shrink-0"
+              className="lg:hidden flex-shrink-0 min-w-[44px] min-h-[44px] flex items-center justify-center"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? (

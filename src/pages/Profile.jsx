@@ -43,6 +43,7 @@ export default function Profile() {
   }, [refetchProfile]);
 
   useEffect(() => {
+    if (isLoadingProfile) return; // Wait for user data to load before checking auth
     if (!user) {
       navigate('/login');
       return;
@@ -74,7 +75,7 @@ export default function Profile() {
         phone: ""
       });
     }
-  }, [user, profile, navigate]);
+  }, [user, profile, isLoadingProfile, navigate]);
 
   const saveProfile = async () => {
     try {

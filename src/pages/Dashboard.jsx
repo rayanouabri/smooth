@@ -155,7 +155,7 @@ export default function Dashboard() {
       
       <div className="flex-1 min-w-0 px-3 sm:px-4 lg:px-6 py-4 sm:py-6 overflow-x-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white py-8 relative overflow-hidden">
+        <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white py-5 sm:py-8 relative overflow-hidden rounded-xl sm:rounded-2xl mx-0 sm:mx-0">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-0 w-96 h-96 bg-pink-500 rounded-full blur-3xl animate-pulse"></div>
         </div>
@@ -170,10 +170,10 @@ export default function Dashboard() {
                 <Badge className="mb-3 bg-orange-500 border-0">
                   {plan === 'premium' ? '⭐ Premium' : '🎓 Gratuit'}
                 </Badge>
-                <h1 className="text-4xl font-bold mb-2">
+                <h1 className="text-2xl sm:text-4xl font-bold mb-2">
                   Bienvenue, {user.full_name || user.email?.split('@')[0]} ! {"👋"}
                 </h1>
-                <p className="text-blue-100 text-lg">
+                <p className="text-blue-100 text-sm sm:text-lg">
                   {"Continuez votre parcours vers la réussite"}
                 </p>
               </motion.div>

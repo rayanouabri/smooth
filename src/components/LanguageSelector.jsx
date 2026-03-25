@@ -101,7 +101,7 @@ export default function LanguageSelector() {
         <Button
           variant="ghost"
           size="sm"
-          className="gap-2 px-2.5 sm:px-3 h-9 text-gray-700 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 hover:border-gray-300 rounded-xl transition-all"
+          className="gap-2 px-2.5 sm:px-3 min-h-[44px] h-9 sm:h-9 text-gray-700 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 hover:border-gray-300 rounded-xl transition-all"
           aria-label="Change language"
         >
           <FlagImg src={currentLanguage.flag} alt={currentLanguage.name} className="w-6 h-4" />

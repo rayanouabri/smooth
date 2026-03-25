@@ -63,8 +63,8 @@ export default function DashboardSidebar({ currentPage }) {
   return (
     <div 
       className={`${
-        isCollapsed ? 'w-0 sm:w-20' : 'w-full sm:w-64 lg:w-72'
-      } bg-white border-r border-gray-200 min-h-screen sticky top-16 shadow-lg transition-all duration-300 flex flex-col overflow-hidden`}
+        isCollapsed ? 'w-0 sm:w-20' : 'hidden sm:flex sm:w-64 lg:w-72'
+      } bg-white border-r border-gray-200 min-h-screen sticky top-16 shadow-lg transition-all duration-300 flex-col overflow-hidden`}
     >
       {/* Toggle Button */}
       <button
