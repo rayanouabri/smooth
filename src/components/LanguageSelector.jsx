@@ -36,34 +36,35 @@ function FlagImg({ src, alt, className = "" }) {
   );
 }
 
-export default function LanguageSelector() {
-  const [currentLang, setCurrentLang] = useState('fr');
-  const [isOpen, setIsOpen] = useState(false);
+// Read language synchronously BEFORE first render — avoids flash of wrong flag.
+// useEffect fires after paint, so we use a lazy initializer instead.
+function getInitialLang() {
+  try {
+    const saved = localStorage.getItem('selectedLanguage');
+    if (saved && languages.find(l => l.code === saved)) return saved;
 
-  useEffect(() => {
-    // localStorage is more reliable than cookie parsing (Google Translate can interfere)
-    const savedLang = localStorage.getItem('selectedLanguage');
-    if (savedLang && languages.find(l => l.code === savedLang)) {
-      setCurrentLang(savedLang);
-    } else {
-      // Fallback: read from googtrans cookie
-      const getCookie = (name) => {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-        return null;
-      };
-
-      const googtrans = getCookie('googtrans');
-      if (googtrans) {
-        const lang = googtrans.split('/').pop();
+    // Fallback: parse googtrans cookie (format: /fr/en)
+    const value = `; ${document.cookie}`;
+    const parts = value.split('; googtrans=');
+    if (parts.length === 2) {
+      const cookieVal = parts.pop().split(';').shift();
+      if (cookieVal) {
+        const lang = cookieVal.split('/').pop();
         if (lang && lang !== 'fr' && languages.find(l => l.code === lang)) {
-          setCurrentLang(lang);
           localStorage.setItem('selectedLanguage', lang);
+          return lang;
         }
       }
     }
+  } catch {}
+  return 'fr';
+}
 
+export default function LanguageSelector() {
+  const [currentLang, setCurrentLang] = useState(getInitialLang);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
     const hideGoogleUI = () => {
       const elements = document.querySelectorAll('.goog-te-banner-frame, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame');
       elements.forEach(el => {
