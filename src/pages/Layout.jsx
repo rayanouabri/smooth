@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import { isAuthenticated as checkAuthStatus, me, logout, redirectToLogin } from "@/api/auth";
 import { Button } from "@/components/ui/button";
@@ -20,19 +20,27 @@ export default function Layout({ children, currentPageName }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  // Force full page reload when navigating away from Community page
+  // React Query keeps the Community component alive and prevents React Router
+  // from unmounting it during SPA navigation
+  const handleNavClick = (e, href) => {
+    if (location.pathname === '/community' && href && href !== '/community') {
+      e.preventDefault();
+      window.location.href = href;
+    }
+  };
 
 
   useEffect(() => {
     checkAuth();
-    // Recharger le statut utilisateur périodiquement pour détecter les changements de premium
-    // Intervalle réduit à 5 minutes pour éviter le polling excessif (360 requêtes/heure -> 12 requêtes/heure)
     const interval = setInterval(() => {
       if (isAuthenticated) {
         checkAuth();
       }
-    }, 300000); // Toutes les 5 minutes (optimisé pour performance)
+    }, 300000);
     
-    // Écouter les événements de navigation depuis PaymentSuccess
     const handleFocus = () => {
       if (isAuthenticated) {
         checkAuth();
@@ -78,25 +86,20 @@ export default function Layout({ children, currentPageName }) {
     { name: "Cours", page: "Courses" },
     { name: "Cours particuliers", page: "Teachers" },
     { name: "Dashboard", page: "Dashboard" },
-    // Éviter les soucis d'encodage lors de certains déploiements (UTF-8 mal interprété)
     { name: "Communauté", page: "Community" },
     { name: "Tarifs", page: "Pricing" },
     { name: "Assistant IA", page: "AIAgent", icon: true },
   ];
 
-  // Dashboard auth guard — only prevents navigation when not authenticated
   const handleDashboardClick = (e) => {
     checkAuthStatus().then(authenticated => {
       if (!authenticated) {
         e.preventDefault();
         redirectToLogin('/dashboard');
       }
-    }).catch(() => {
-      // Let navigation proceed on error
-    });
+    }).catch(() => {});
   };
 
-  // Close mobile menu on link click (without blocking React Router navigation)
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
@@ -108,7 +111,7 @@ export default function Layout({ children, currentPageName }) {
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8">
           <div className="flex justify-between items-center h-14 sm:h-16 gap-1 sm:gap-2 md:gap-4 overflow-x-auto">
             {/* Logo */}
-            <Link to={createPageUrl("Home")} className="flex items-center space-x-1 md:space-x-2 flex-shrink-0">
+            <Link to={createPageUrl("Home")} className="flex items-center space-x-1 md:space-x-2 flex-shrink-0" onClick={(e) => handleNavClick(e, createPageUrl("Home"))}>
               <GraduationCap className="w-6 h-6 md:w-7 md:h-7 text-cyan-500 flex-shrink-0" />
               <span className="text-sm sm:text-base md:text-xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent whitespace-nowrap">FrancePrepAcademy</span>
             </Link>
@@ -131,7 +134,7 @@ export default function Layout({ children, currentPageName }) {
                   }
                   size="sm"
                 >
-                  <Link to={createPageUrl(link.page)} onClick={link.page === "Dashboard" ? handleDashboardClick : undefined}>
+                  <Link to={createPageUrl(link.page)} onClick={(e) => { handleNavClick(e, createPageUrl(link.page)); if (link.page === "Dashboard") handleDashboardClick(e); }}>
                     {link.icon && <Bot className="w-4 h-4" />}
                     {link.name}
                   </Link>
@@ -149,7 +152,7 @@ export default function Layout({ children, currentPageName }) {
                   className={currentPageName === link.page ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs" : "text-gray-700 text-xs"}
                   size="sm"
                 >
-                  <Link to={createPageUrl(link.page)} onClick={link.page === "Dashboard" ? handleDashboardClick : undefined}>
+                  <Link to={createPageUrl(link.page)} onClick={(e) => { handleNavClick(e, createPageUrl(link.page)); if (link.page === "Dashboard") handleDashboardClick(e); }}>
                     {link.name}
                   </Link>
                 </Button>
@@ -165,7 +168,7 @@ export default function Layout({ children, currentPageName }) {
               {isAuthenticated ? (
                 <>
                   <Button asChild className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg text-xs sm:text-sm px-2 sm:px-3 hidden md:inline-flex" size="sm">
-                    <Link to={createPageUrl("Dashboard")} onClick={handleDashboardClick}>
+                    <Link to={createPageUrl("Dashboard")} onClick={(e) => { handleNavClick(e, createPageUrl("Dashboard")); handleDashboardClick(e); }}>
                       {"🎓"} Mon Espace
                     </Link>
                   </Button>
@@ -185,18 +188,18 @@ export default function Layout({ children, currentPageName }) {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuItem asChild>
-                        <Link to={createPageUrl("Dashboard")} className="w-full cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
+                        <Link to={createPageUrl("Dashboard")} className="w-full cursor-pointer" onClick={(e) => { handleNavClick(e, createPageUrl("Dashboard")); window.scrollTo(0, 0); }}>
                           Tableau de bord
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link to={createPageUrl("Profile")} className="w-full cursor-pointer text-gray-900" onClick={() => window.scrollTo(0, 0)}>
+                        <Link to={createPageUrl("Profile")} className="w-full cursor-pointer text-gray-900" onClick={(e) => { handleNavClick(e, createPageUrl("Profile")); window.scrollTo(0, 0); }}>
                           Mon profil
                         </Link>
                       </DropdownMenuItem>
                       {user?.is_premium && (
                         <DropdownMenuItem asChild>
-                          <Link to={createPageUrl("Profile") + '?tab=subscription'} className="w-full cursor-pointer text-gray-900" onClick={() => window.scrollTo(0, 0)}>
+                          <Link to={createPageUrl("Profile") + '?tab=subscription'} className="w-full cursor-pointer text-gray-900" onClick={(e) => { handleNavClick(e, createPageUrl("Profile") + '?tab=subscription'); window.scrollTo(0, 0); }}>
                             {"Gérer mon abonnement"}
                           </Link>
                         </DropdownMenuItem>
@@ -241,7 +244,7 @@ export default function Layout({ children, currentPageName }) {
             </button>
           </div>
 
-            {/* Mobile menu - Design amélioré */}
+            {/* Mobile menu */}
           {mobileMenuOpen && (
             <div className="lg:hidden fixed inset-0 top-[70px] bg-white z-50 overflow-y-auto shadow-2xl">
               <div className="px-4 py-6 space-y-1">
@@ -260,7 +263,7 @@ export default function Layout({ children, currentPageName }) {
                           : "hover:bg-gray-100"
                     }`}
                   >
-                    <Link to={createPageUrl(link.page)} onClick={() => { closeMobileMenu(); if (link.page === "Dashboard") { checkAuthStatus().then(auth => { if (!auth) redirectToLogin('/dashboard'); }); } }}>
+                    <Link to={createPageUrl(link.page)} onClick={(e) => { handleNavClick(e, createPageUrl(link.page)); closeMobileMenu(); if (link.page === "Dashboard") { checkAuthStatus().then(auth => { if (!auth) redirectToLogin('/dashboard'); }); } }}>
                       {link.icon && <Bot className="w-5 h-5" />}
                       {link.name}
                     </Link>
@@ -270,12 +273,12 @@ export default function Layout({ children, currentPageName }) {
                   {isAuthenticated ? (
                     <>
                       <Button asChild variant="ghost" className="w-full justify-start h-12 text-base hover:bg-gray-100">
-                        <Link to={createPageUrl("Dashboard")} onClick={() => { closeMobileMenu(); checkAuthStatus().then(auth => { if (!auth) redirectToLogin('/dashboard'); }); }}>
+                        <Link to={createPageUrl("Dashboard")} onClick={(e) => { handleNavClick(e, createPageUrl("Dashboard")); closeMobileMenu(); checkAuthStatus().then(auth => { if (!auth) redirectToLogin('/dashboard'); }); }}>
                           {"📊"} Tableau de bord
                         </Link>
                       </Button>
                       <Button asChild variant="ghost" className="w-full justify-start h-12 text-base hover:bg-gray-100">
-                        <Link to={createPageUrl("Profile")} onClick={closeMobileMenu}>
+                        <Link to={createPageUrl("Profile")} onClick={(e) => { handleNavClick(e, createPageUrl("Profile")); closeMobileMenu(); }}>
                           {"👤"} Mon profil
                         </Link>
                       </Button>
@@ -330,16 +333,16 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h3 className="font-semibold mb-4">Formation</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to={createPageUrl("Courses")} className="hover:text-white">Catalogue de cours</Link></li>
-                <li><Link to={createPageUrl("Teachers")} className="hover:text-white">Nos professeurs</Link></li>
-                <li><Link to={createPageUrl("Pricing")} className="hover:text-white">Tarifs</Link></li>
+                <li><Link to={createPageUrl("Courses")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("Courses"))}>Catalogue de cours</Link></li>
+                <li><Link to={createPageUrl("Teachers")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("Teachers"))}>Nos professeurs</Link></li>
+                <li><Link to={createPageUrl("Pricing")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("Pricing"))}>Tarifs</Link></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">{"Communauté"}</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to={createPageUrl("Community")} className="hover:text-white">Forum</Link></li>
+                <li><Link to={createPageUrl("Community")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("Community"))}>Forum</Link></li>
                 <li><a href="#" className="hover:text-white">{"Témoignages"}</a></li>
                 <li><a href="#" className="hover:text-white">Blog</a></li>
               </ul>
@@ -348,11 +351,11 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link to={createPageUrl("Contact")} className="hover:text-white">Centre d'aide</Link></li>
-                <li><Link to={createPageUrl("Contact")} className="hover:text-white">Contact</Link></li>
-                <li><Link to={createPageUrl("CGV")} className="hover:text-white">CGV</Link></li>
-                <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white">{"Confidentialité"}</Link></li>
-                <li><Link to={createPageUrl("CGU")} className="hover:text-white">CGU / Mentions légales</Link></li>
+                <li><Link to={createPageUrl("Contact")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("Contact"))}>Centre d'aide</Link></li>
+                <li><Link to={createPageUrl("Contact")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("Contact"))}>Contact</Link></li>
+                <li><Link to={createPageUrl("CGV")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("CGV"))}>CGV</Link></li>
+                <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("PrivacyPolicy"))}>{"Confidentialité"}</Link></li>
+                <li><Link to={createPageUrl("CGU")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("CGU"))}>CGU / Mentions légales</Link></li>
               </ul>
             </div>
             </div>
