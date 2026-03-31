@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Users, Star, BookOpen, Zap } from "lucide-react";
+import { Clock, Users, BookOpen, Zap } from "lucide-react";
 import { createPageUrl } from "../utils";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -44,9 +44,9 @@ export default function CourseCard({ course }) {
         whileHover={{ y: -8, scale: 1.02 }}
         transition={{ duration: 0.3 }}
       >
-        <Card className="h-full hover:shadow-2xl transition-all duration-500 cursor-pointer group border-0 overflow-hidden bg-white">
+        <Card className="h-full shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group border-0 overflow-hidden bg-white">
           <div className="relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
             <img
               src={course.thumbnail_url || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"}
               alt={course.title}
@@ -56,15 +56,15 @@ export default function CourseCard({ course }) {
             />
             
             <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20">
-              <Badge className={`${levelColors[course.level]} shadow-xl text-xs font-bold px-3 py-1`}>
+              <Badge className={`${levelColors[course.level]} shadow text-xs font-bold px-3 py-1`}>
                 {levelLabels[course.level]}
               </Badge>
               {course.is_premium ? (
-                <Badge className="bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold shadow-xl text-xs px-3 py-1">
+                <Badge className="bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold shadow text-xs px-3 py-1">
                   ⭐ {t('common.premium').toUpperCase()}
                 </Badge>
               ) : (
-                <Badge className="bg-green-500 text-white font-bold shadow-xl text-xs px-3 py-1">
+                <Badge className="bg-green-500 text-white font-bold shadow text-xs px-3 py-1">
                   ✓ {t('common.free').toUpperCase()}
                 </Badge>
               )}
@@ -73,11 +73,11 @@ export default function CourseCard({ course }) {
             <div className="absolute bottom-0 left-0 right-0 p-4 z-20 text-white">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-2xl">{categoryIcons[course.category]}</span>
-                <Badge variant="outline" className="text-xs font-medium border-white/60 text-white bg-white/10 backdrop-blur-md">
+                <Badge variant="outline" className="text-xs font-medium border-white/60 text-white bg-white/10 backdrop-blur-sm">
                   {categoryLabels[course.category]}
                 </Badge>
               </div>
-              <h3 className="text-xl font-bold line-clamp-2 leading-tight drop-shadow-2xl">
+              <h3 className="text-xl font-bold line-clamp-2 leading-tight drop-shadow-lg">
                 {course.title}
               </h3>
             </div>
@@ -99,25 +99,6 @@ export default function CourseCard({ course }) {
               </div>
             </div>
 
-            {course.rating > 0 && (
-              <div className="flex items-center pt-4 border-t border-gray-100">
-                <div className="flex items-center gap-2">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-4 h-4 ${
-                          i < Math.floor(course.rating)
-                            ? "fill-yellow-400 text-yellow-400"
-                            : "text-gray-300"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm font-bold text-gray-900">{course.rating.toFixed(1)}</span>
-                </div>
-              </div>
-            )}
           </CardContent>
         </Card>
       </motion.div>

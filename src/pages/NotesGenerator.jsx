@@ -1,281 +1,397 @@
 import React, { useState } from "react";
-import { InvokeLLM } from "@/api/integrations";
-import { User } from "@/api/entities";
+import SEO from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { 
-  FileText, Download, Copy, BookOpen, Brain, 
-  GraduationCap, Calculator, Globe, Users, Zap
+import {
+  FileText, Download, Plus, Trash2, Edit3,
+  BookOpen, ClipboardList, Mail, Calendar,
+  Copy, Check, Search
 } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import ChatBot from "../components/ChatBot";
+
+const templates = [
+  {
+    id: "course-summary",
+    name: "Résumé de cours",
+    icon: BookOpen,
+    color: "bg-blue-100 text-blue-700",
+    content: `# Résumé de cours : [Nom du cours]
+
+## Points clés
+-
+-
+-
+
+## Concepts importants
+### Concept 1
+Description...
+
+### Concept 2
+Description...
+
+## À retenir
+-
+-
+
+## Questions de révision
+1.
+2.
+3. `
+  },
+  {
+    id: "cover-letter",
+    name: "Lettre de motivation",
+    icon: Mail,
+    color: "bg-green-100 text-green-700",
+    content: `[Votre Nom]
+[Votre Adresse]
+[Ville, Code Postal]
+[Email] | [Téléphone]
+
+[Date]
+
+[Nom de l'entreprise]
+[Adresse de l'entreprise]
+
+Objet : Candidature pour le poste de [Intitulé du poste]
+
+Madame, Monsieur,
+
+Actuellement [votre situation], je me permets de vous adresser ma candidature pour le poste de [intitulé] au sein de votre entreprise.
+
+[Paragraphe 1 : Pourquoi cette entreprise vous intéresse]
+
+[Paragraphe 2 : Vos compétences et expériences pertinentes]
+
+[Paragraphe 3 : Ce que vous pouvez apporter à l'entreprise]
+
+Je me tiens à votre disposition pour un entretien à votre convenance.
+
+Cordialement,
+[Votre Nom]`
+  },
+  {
+    id: "study-plan",
+    name: "Plan de révision",
+    icon: Calendar,
+    color: "bg-purple-100 text-purple-700",
+    content: `# Plan de révision - [Matière/Examen]
+
+## Objectif
+Date de l'examen : [Date]
+Objectif de note : [Note visée]
+
+## Semaine 1 : [Dates]
+### Lundi
+- [ ]
+- [ ]
+
+### Mardi
+- [ ]
+- [ ]
+
+### Mercredi
+- [ ]
+- [ ]
+
+### Jeudi
+- [ ]
+- [ ]
+
+### Vendredi
+- [ ] Révision générale
+- [ ] Auto-évaluation
+
+## Ressources
+-
+-
+
+## Notes importantes
+- `
+  },
+  {
+    id: "meeting-notes",
+    name: "Notes de réunion",
+    icon: ClipboardList,
+    color: "bg-orange-100 text-orange-700",
+    content: `# Notes de réunion - [Date]
+
+## Participants
+-
+-
+
+## Ordre du jour
+1.
+2.
+3.
+
+## Discussions
+### Point 1
+-
+
+### Point 2
+-
+
+## Décisions prises
+-
+
+## Actions à faire
+| Action | Responsable | Échéance |
+|--------|-------------|----------|
+|        |             |          |
+|        |             |          |
+
+## Prochaine réunion
+Date :
+Heure : `
+  }
+];
 
 export default function NotesGenerator() {
-  const [topic, setTopic] = useState("");
-  const [subject, setSubject] = useState("");
-  const [notesType, setNotesType] = useState("comprehensive");
-  const [generatedNotes, setGeneratedNotes] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [user, setUser] = useState(null);
+  const [notes, setNotes] = useState([]);
+  const [currentNote, setCurrentNote] = useState(null);
+  const [editTitle, setEditTitle] = useState("");
+  const [editContent, setEditContent] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [copied, setCopied] = useState(false);
 
-  React.useEffect(() => {
-    loadUser();
-  }, []);
+  const createNote = (title = "Nouvelle note", content = "") => {
+    const newNote = {
+      id: Date.now(),
+      title,
+      content,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    setNotes(prev => [newNote, ...prev]);
+    setCurrentNote(newNote);
+    setEditTitle(title);
+    setEditContent(content);
+  };
 
-  const loadUser = async () => {
-    try {
-      const userData = await User.me();
-      setUser(userData);
-    } catch (error) {
-      console.log("User not authenticated");
+  const createFromTemplate = (template) => {
+    createNote(template.name, template.content);
+  };
+
+  const saveNote = () => {
+    if (!currentNote) return;
+    const updated = {
+      ...currentNote,
+      title: editTitle,
+      content: editContent,
+      updatedAt: new Date().toISOString()
+    };
+    setNotes(prev => prev.map(n => n.id === currentNote.id ? updated : n));
+    setCurrentNote(updated);
+  };
+
+  const deleteNote = (id) => {
+    setNotes(prev => prev.filter(n => n.id !== id));
+    if (currentNote?.id === id) {
+      setCurrentNote(null);
+      setEditTitle("");
+      setEditContent("");
     }
   };
 
-  const noteTypes = [
-    { id: "comprehensive", name: "Comprehensive Notes", desc: "Detailed explanation with examples" },
-    { id: "summary", name: "Quick Summary", desc: "Key points and highlights" },
-    { id: "exam", name: "Exam Notes", desc: "Focused on exam preparation" },
-    { id: "practical", name: "Practical Guide", desc: "Step-by-step implementation" }
-  ];
-
-  const subjectCategories = [
-    { name: "Commerce", subjects: ["Accounting", "Business Studies", "Economics", "Statistics", "Banking", "Taxation"] },
-    { name: "Science", subjects: ["Physics", "Chemistry", "Biology", "Mathematics", "Computer Science", "Environmental Science"] },
-    { name: "Arts", subjects: ["History", "Geography", "Political Science", "Psychology", "Sociology", "Philosophy"] },
-    { name: "Engineering", subjects: ["Programming", "Data Structures", "Database Systems", "Software Engineering", "Networking"] },
-    { name: "General", subjects: ["English", "Hindi", "Tamil", "Current Affairs", "General Knowledge", "Aptitude"] }
-  ];
-
-  const generateNotes = async () => {
-    if (!topic.trim() || !subject.trim()) return;
-
-    setIsGenerating(true);
-    try {
-      const userContext = user ? `Student profile: ${user.stream} student at ${user.institute}, location: ${user.location}` : "Indian student";
-      
-      let prompt = `Generate ${notesType} study notes on "${topic}" for ${subject}. 
-      Context: ${userContext}
-      
-      Requirements:
-      - Suitable for Indian curriculum and context
-      - Include relevant examples from Indian context
-      - Use clear, structured format with headings
-      - Add practical applications and real-world examples
-      - Include key formulas, definitions, or important points
-      `;
-
-      if (notesType === "comprehensive") {
-        prompt += `
-        - Provide detailed explanations
-        - Include sub-topics and related concepts
-        - Add diagrams descriptions where helpful
-        - Include practice questions at the end`;
-      } else if (notesType === "summary") {
-        prompt += `
-        - Focus on key points and bullet points
-        - Highlight most important concepts
-        - Keep it concise but comprehensive`;
-      } else if (notesType === "exam") {
-        prompt += `
-        - Focus on exam-relevant content
-        - Include likely exam questions
-        - Highlight important formulas and definitions
-        - Add memory techniques and mnemonics`;
-      } else if (notesType === "practical") {
-        prompt += `
-        - Provide step-by-step instructions
-        - Include practical examples and case studies
-        - Focus on application and implementation`;
-      }
-
-      const response = await InvokeLLM({
-        prompt: prompt,
-        add_context_from_internet: true
-      });
-
-      setGeneratedNotes(response);
-    } catch (error) {
-      setGeneratedNotes("Sorry, there was an error generating your notes. Please try again.");
+  const selectNote = (note) => {
+    // Auto-save current before switching
+    if (currentNote && (editTitle !== currentNote.title || editContent !== currentNote.content)) {
+      saveNote();
     }
-    setIsGenerating(false);
+    setCurrentNote(note);
+    setEditTitle(note.title);
+    setEditContent(note.content);
   };
 
-  const copyNotes = () => {
-    navigator.clipboard.writeText(generatedNotes);
+  const downloadNote = () => {
+    if (!currentNote) return;
+    const blob = new Blob([editContent], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${editTitle.replace(/[^a-zA-Z0-9àâéèêëïîôùûüç\s-]/g, '')}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
-  const downloadNotes = () => {
-    const element = document.createElement('a');
-    const file = new Blob([generatedNotes], {type: 'text/plain'});
-    element.href = URL.createObjectURL(file);
-    element.download = `${topic}_${subject}_notes.txt`;
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+  const copyNote = () => {
+    if (!editContent) return;
+    navigator.clipboard.writeText(editContent);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
+
+  const filteredNotes = notes.filter(n =>
+    n.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    n.content.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
-      <div className="max-w-6xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-gradient">🤖 AI Notes Generator</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Generate comprehensive study notes for any subject, tailored for Indian curriculum
-          </p>
+    <div className="min-h-screen bg-gray-50">
+      <SEO
+        title="Générateur de notes - FrancePrepAcademy"
+        description="Créez et organisez vos notes de cours, lettres de motivation et plans de révision."
+        canonical="/notesgenerator"
+        noindex={true}
+      />
+
+      {/* Header */}
+      <div className="bg-gradient-to-r from-emerald-900 to-teal-800 text-white py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl font-bold mb-1">Mes Notes & Documents</h1>
+          <p className="text-emerald-200">Créez, organisez et exportez vos notes et documents</p>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Templates */}
+        <div className="mb-8">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Modèles rapides</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {templates.map(template => (
+              <button
+                key={template.id}
+                onClick={() => createFromTemplate(template)}
+                className="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-sm transition-all text-left group"
+              >
+                <div className={`p-2 rounded-lg ${template.color}`}>
+                  <template.icon className="w-5 h-5" />
+                </div>
+                <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">{template.name}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Input Panel */}
-          <div className="lg:col-span-1 space-y-6">
-            <Card className="border-0 shadow-lg glass-effect">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Brain className="w-5 h-5 text-blue-600" />
-                  Generate Notes
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">Topic</label>
-                  <Input
-                    placeholder="Enter topic (e.g., Photosynthesis, Accounting Principles)"
-                    value={topic}
-                    onChange={(e) => setTopic(e.target.value)}
-                    className="h-12"
-                  />
+        <div className="grid lg:grid-cols-3 gap-6" style={{ minHeight: '500px' }}>
+          {/* LEFT - Notes List */}
+          <div className="lg:col-span-1">
+            <Card className="h-full">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-base">Mes notes ({notes.length})</CardTitle>
+                  <Button size="sm" onClick={() => createNote()}>
+                    <Plus className="w-4 h-4 mr-1" /> Créer
+                  </Button>
                 </div>
-
-                <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">Subject</label>
-                  <Input
-                    placeholder="Enter subject (e.g., Biology, Accounting)"
-                    value={subject}
-                    onChange={(e) => setSubject(e.target.value)}
-                    className="h-12"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">Note Type</label>
-                  <div className="space-y-2">
-                    {noteTypes.map((type) => (
-                      <div
-                        key={type.id}
-                        className={`p-3 rounded-lg cursor-pointer transition-all ${
-                          notesType === type.id 
-                            ? 'bg-blue-100 border-blue-500 border-2' 
-                            : 'bg-gray-50 border border-gray-200 hover:bg-gray-100'
-                        }`}
-                        onClick={() => setNotesType(type.id)}
-                      >
-                        <div className="font-medium text-sm">{type.name}</div>
-                        <div className="text-xs text-gray-600">{type.desc}</div>
-                      </div>
-                    ))}
+                {notes.length > 2 && (
+                  <div className="relative mt-3">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <Input
+                      placeholder="Rechercher..."
+                      value={searchTerm}
+                      onChange={e => setSearchTerm(e.target.value)}
+                      className="pl-9 h-9 text-sm"
+                    />
                   </div>
-                </div>
-
-                <Button
-                  onClick={generateNotes}
-                  disabled={!topic.trim() || !subject.trim() || isGenerating}
-                  className="w-full h-12 bg-blue-600 hover:bg-blue-700"
-                >
-                  {isGenerating ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Generating...
-                    </>
-                  ) : (
-                    <>
-                      <Zap className="w-4 h-4 mr-2" />
-                      Generate Notes
-                    </>
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Subject Categories */}
-            <Card className="border-0 shadow-lg glass-effect">
-              <CardHeader>
-                <CardTitle className="text-sm">Popular Subjects</CardTitle>
+                )}
               </CardHeader>
-              <CardContent>
-                <Tabs defaultValue="Commerce" className="space-y-4">
-                  <TabsList className="grid grid-cols-2 lg:grid-cols-1 gap-1">
-                    {subjectCategories.map((category) => (
-                      <TabsTrigger key={category.name} value={category.name} className="text-xs">
-                        {category.name}
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
-                  {subjectCategories.map((category) => (
-                    <TabsContent key={category.name} value={category.name} className="space-y-2">
-                      <div className="flex flex-wrap gap-1">
-                        {category.subjects.map((subj) => (
-                          <Badge
-                            key={subj}
-                            variant="outline"
-                            className="cursor-pointer hover:bg-blue-50 text-xs"
-                            onClick={() => setSubject(subj)}
-                          >
-                            {subj}
-                          </Badge>
-                        ))}
+              <CardContent className="space-y-2 overflow-y-auto" style={{ maxHeight: '500px' }}>
+                {filteredNotes.length === 0 && (
+                  <div className="text-center py-8 text-gray-500">
+                    <FileText className="w-10 h-10 mx-auto mb-3 opacity-40" />
+                    <p className="text-sm">Aucune note pour le moment</p>
+                    <p className="text-xs mt-1">Utilisez un modèle ou créez une note vide</p>
+                  </div>
+                )}
+                {filteredNotes.map(note => (
+                  <div
+                    key={note.id}
+                    onClick={() => selectNote(note)}
+                    className={`p-3 rounded-lg cursor-pointer transition-all border ${
+                      currentNote?.id === note.id
+                        ? "bg-indigo-50 border-indigo-200"
+                        : "bg-white border-gray-100 hover:bg-gray-50"
+                    }`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-sm font-medium text-gray-900 truncate">{note.title}</h4>
+                        <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                          {note.content.substring(0, 80)}...
+                        </p>
+                        <p className="text-xs text-gray-400 mt-1">
+                          {new Date(note.updatedAt).toLocaleDateString('fr-FR', {
+                            day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+                          })}
+                        </p>
                       </div>
-                    </TabsContent>
-                  ))}
-                </Tabs>
+                      <button
+                        onClick={e => { e.stopPropagation(); deleteNote(note.id); }}
+                        className="ml-2 p-1 text-gray-400 hover:text-red-500 rounded"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </CardContent>
             </Card>
           </div>
 
-          {/* Notes Display */}
+          {/* RIGHT - Editor */}
           <div className="lg:col-span-2">
-            <Card className="border-0 shadow-lg glass-effect h-full">
-              <CardHeader>
-                <div className="flex justify-between items-center">
-                  <CardTitle className="flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-green-600" />
-                    Generated Notes
-                  </CardTitle>
-                  {generatedNotes && (
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm" onClick={copyNotes}>
-                        <Copy className="w-4 h-4 mr-2" />
-                        Copy
+            {currentNote ? (
+              <Card className="h-full">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between gap-4">
+                    <Input
+                      value={editTitle}
+                      onChange={e => setEditTitle(e.target.value)}
+                      className="text-lg font-semibold border-0 p-0 h-auto shadow-none focus-visible:ring-0"
+                      placeholder="Titre de la note..."
+                    />
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <Button size="sm" variant="outline" onClick={copyNote}>
+                        {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
                       </Button>
-                      <Button variant="outline" size="sm" onClick={downloadNotes}>
-                        <Download className="w-4 h-4 mr-2" />
-                        Download
+                      <Button size="sm" variant="outline" onClick={downloadNote}>
+                        <Download className="w-4 h-4" />
+                      </Button>
+                      <Button size="sm" onClick={saveNote} className="bg-indigo-600 hover:bg-indigo-700">
+                        Sauvegarder
                       </Button>
                     </div>
-                  )}
-                </div>
-              </CardHeader>
-              <CardContent>
-                {generatedNotes ? (
-                  <div className="prose max-w-none">
-                    <ReactMarkdown className="whitespace-pre-wrap text-gray-700 leading-relaxed">
-                      {generatedNotes}
-                    </ReactMarkdown>
                   </div>
-                ) : (
-                  <div className="text-center py-12 text-gray-500">
-                    <FileText className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                    <p className="text-lg mb-2">No notes generated yet</p>
-                    <p className="text-sm">Enter a topic and subject to generate comprehensive study notes</p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+                  <p className="text-xs text-gray-400 mt-1">
+                    Dernière modification : {new Date(currentNote.updatedAt).toLocaleString('fr-FR')}
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <Textarea
+                    value={editContent}
+                    onChange={e => setEditContent(e.target.value)}
+                    placeholder="Commencez à écrire..."
+                    className="min-h-[450px] resize-y font-mono text-sm leading-relaxed border-0 shadow-none focus-visible:ring-0 p-0"
+                  />
+                </CardContent>
+              </Card>
+            ) : (
+              <Card className="h-full flex items-center justify-center">
+                <CardContent className="text-center py-16">
+                  <Edit3 className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                  <h3 className="text-lg font-semibold text-gray-700 mb-2">Sélectionnez ou créez une note</h3>
+                  <p className="text-sm text-gray-500 mb-6">
+                    Choisissez un modèle ci-dessus ou créez une note vide pour commencer
+                  </p>
+                  <Button onClick={() => createNote()} variant="outline">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Nouvelle note vide
+                  </Button>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </div>
       </div>
+
+      <ChatBot />
     </div>
   );
 }

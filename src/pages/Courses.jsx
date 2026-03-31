@@ -5,14 +5,14 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from "@/components/ui/select";
-import { Search, Filter, TrendingUp, Star, Sparkles } from "lucide-react";
+import { Search, Filter, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import CourseCard from "../components/CourseCard";
@@ -111,7 +111,7 @@ export default function Courses() {
       ].filter(Boolean).join(' ').toLowerCase();
 
       const directMatch = searchableText.includes(searchLower);
-      
+
       // Recherche sémantique : si le terme de recherche correspond à un mot-clé, chercher aussi les termes liés
       let semanticMatch = false;
       for (const [keyword, relatedTerms] of Object.entries(semanticMatches)) {
@@ -123,11 +123,11 @@ export default function Courses() {
 
       matchesSearch = directMatch || semanticMatch;
     }
-    
+
     const normalizedCategory = (course.category || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
     const matchesCategory = categoryFilter === "all" || normalizedCategory === categoryFilter;
     const matchesLevel = levelFilter === "all" || course.level === levelFilter;
-    
+
     return matchesSearch && matchesCategory && matchesLevel;
   });
 
@@ -157,7 +157,7 @@ export default function Courses() {
   }, {});
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-white">
       <SEO
         title="Cours en ligne pour étudiants internationaux"
         description="Découvrez tous nos cours en ligne pour réussir votre intégration en France : français, culture française, administration, emploi, logement et bien plus encore."
@@ -170,146 +170,155 @@ export default function Courses() {
           "url": "https://franceprepacademy.fr/courses"
         }}
       />
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 text-white py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200')] opacity-10 bg-cover bg-center"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-400/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-400/10 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+      {/* Hero Section - Clean & Modern */}
+      <div className="relative bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-pink-400 text-white border-0 text-base px-6 py-2 shadow-2xl animate-bounce">
-              <Sparkles className="w-4 h-4 mr-2 inline" />
-              {isLoading ? (
-                <span className="flex items-center gap-2">
-                  <div className="inline-block animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                  Chargement...
-                </span>
-              ) : (
-                <>{courses.length}+ {t('courses.availableCourses')} • 70% {t('courses.freeCourses')}</>
-              )}
-            </Badge>
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 drop-shadow-2xl">
+            <div className="mb-6 inline-block">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium text-indigo-600 bg-indigo-50">
+                <span className="w-2 h-2 rounded-full bg-indigo-600"></span>
+                {isLoading ? "Chargement..." : `${courses.length}+ cours disponibles`}
+              </span>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
               {t('courses.title')}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-8">
+
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
               {t('courses.subtitle')}
             </p>
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 flex items-center gap-2">
-                <Star className="w-5 h-5 fill-yellow-300 text-yellow-300" />
-                <span className="font-bold">4.8/5</span>
+
+            {!isLoading && (
+              <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+                <div className="flex items-center gap-3">
+                  <div className="text-3xl font-bold text-gray-900">{courses.length}</div>
+                  <div className="text-sm text-gray-600">Cours<br />au total</div>
+                </div>
+                <div className="w-px bg-gray-200"></div>
+                <div className="flex items-center gap-3">
+                  <div className="text-3xl font-bold text-green-600">{freeCourses.length}</div>
+                  <div className="text-sm text-gray-600">Cours<br />gratuits</div>
+                </div>
+                <div className="w-px bg-gray-200"></div>
+                <div className="flex items-center gap-3">
+                  <div className="text-3xl font-bold text-indigo-600">{premiumCourses.length}</div>
+                  <div className="text-sm text-gray-600">Premium<br />inclus</div>
+                </div>
               </div>
-            </div>
+            )}
           </motion.div>
         </div>
       </div>
 
-      {/* Filters - Mobile Optimized */}
-      <div className="bg-white/80 backdrop-blur-lg border-b-2 border-indigo-100 sticky top-16 z-40 shadow-xl">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
-            <div className="relative col-span-1 sm:col-span-3 lg:col-span-1">
-              <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-indigo-500 w-4 h-4 sm:w-5 sm:h-5" />
-              <Input
-                placeholder={t('courses.searchPlaceholder')}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9 sm:pl-12 h-10 sm:h-12 lg:h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-xl sm:rounded-2xl shadow-sm bg-white text-sm sm:text-base lg:text-lg"
-              />
+      {/* Filters - Clean Card Style */}
+      <div className="sticky top-16 z-40 bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          {/* Filter Card */}
+          <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6 shadow-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              {/* Search Input */}
+              <div className="relative sm:col-span-3 lg:col-span-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Input
+                  placeholder={t('courses.searchPlaceholder')}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 h-11 border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-lg bg-white text-base transition-colors"
+                />
+              </div>
+
+              {/* Category Filter */}
+              <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+                <SelectTrigger className="h-11 border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-lg bg-white text-base transition-colors">
+                  <Filter className="w-4 h-4 mr-2 text-gray-500" />
+                  <SelectValue placeholder="Catégorie" />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.entries(categoryLabels).map(([value, label]) => (
+                    <SelectItem key={value} value={value} className="text-base">
+                      {label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              {/* Level Filter */}
+              <Select value={levelFilter} onValueChange={setLevelFilter}>
+                <SelectTrigger className="h-11 border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-lg bg-white text-base transition-colors">
+                  <SelectValue placeholder="Niveau" />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.entries(levelLabels).map(([value, label]) => (
+                    <SelectItem key={value} value={value} className="text-base">
+                      {label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
-            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-              <SelectTrigger className="h-10 sm:h-12 lg:h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-xl sm:rounded-2xl shadow-sm bg-white text-sm sm:text-base">
-                <Filter className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-indigo-500" />
-                <SelectValue placeholder="Catégorie" />
-              </SelectTrigger>
-              <SelectContent>
-                {Object.entries(categoryLabels).map(([value, label]) => (
-                  <SelectItem key={value} value={value} className="text-sm sm:text-base">
-                    {label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            <Select value={levelFilter} onValueChange={setLevelFilter}>
-              <SelectTrigger className="h-10 sm:h-12 lg:h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-xl sm:rounded-2xl shadow-sm bg-white text-sm sm:text-base">
-                <SelectValue placeholder="Niveau" />
-              </SelectTrigger>
-              <SelectContent>
-                {Object.entries(levelLabels).map(([value, label]) => (
-                  <SelectItem key={value} value={value} className="text-sm sm:text-base">
-                    {label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="mt-3 sm:mt-4 lg:mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 lg:gap-4">
-            {isLoading ? (
-              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                <div className="flex items-center gap-2">
-                  <div className="h-6 sm:h-7 lg:h-8 w-24 sm:w-32 bg-gray-200 animate-pulse rounded-lg"></div>
-                  <div className="h-4 w-32 sm:w-40 bg-gray-200 animate-pulse rounded"></div>
+            {/* Filter Info & Reset */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              {isLoading ? (
+                <div className="flex items-center gap-3">
+                  <div className="h-5 w-32 bg-gray-200 animate-pulse rounded"></div>
                 </div>
-                <div className="h-6 sm:h-7 w-28 sm:w-32 bg-gray-200 animate-pulse rounded-full"></div>
-                <div className="h-6 sm:h-7 w-32 sm:w-36 bg-gray-200 animate-pulse rounded-full"></div>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                <p className="text-gray-700 font-bold text-sm sm:text-base lg:text-lg">
-                  <span className="text-xl sm:text-2xl lg:text-3xl text-indigo-600">{filteredCourses.length}</span> {t('courses.coursesFound')}
-                </p>
-                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm">
-                  ✓ {freeCourses.length} {t('courses.freeCourses')}
-                </Badge>
-                <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm">
-                  ⭐ {premiumCourses.length} {t('courses.premiumCourses')}
-                </Badge>
-              </div>
-            )}
-            {(categoryFilter !== "all" || levelFilter !== "all" || searchTerm) && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-indigo-300 text-indigo-600 hover:bg-indigo-50 rounded-full text-xs sm:text-sm"
-                onClick={() => {
-                  setSearchTerm("");
-                  setCategoryFilter("all");
-                  setLevelFilter("all");
-                }}
-              >
-                ✕ {t('courses.resetFilters')}
-              </Button>
-            )}
+              ) : (
+                <div className="flex items-center gap-3 flex-wrap">
+                  <span className="text-sm text-gray-600">
+                    <span className="font-bold text-gray-900">{filteredCourses.length}</span> cours trouvés
+                  </span>
+                  {freeCourses.length > 0 && (
+                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 text-xs">
+                      {freeCourses.length} gratuit{freeCourses.length > 1 ? 's' : ''}
+                    </Badge>
+                  )}
+                  {premiumCourses.length > 0 && (
+                    <Badge variant="outline" className="bg-indigo-50 text-indigo-700 border-indigo-200 text-xs">
+                      {premiumCourses.length} premium
+                    </Badge>
+                  )}
+                </div>
+              )}
+
+              {(categoryFilter !== "all" || levelFilter !== "all" || searchTerm) && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-gray-300 text-gray-700 hover:bg-gray-50 rounded-lg text-sm h-9 px-3 gap-2"
+                  onClick={() => {
+                    setSearchTerm("");
+                    setCategoryFilter("all");
+                    setLevelFilter("all");
+                  }}
+                >
+                  <X className="w-4 h-4" />
+                  Réinitialiser
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Courses */}
+      {/* Courses Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {coursesError ? (
           <div className="text-center py-20">
-            <div className="text-8xl mb-6">⚠️</div>
-            <h3 className="text-3xl font-bold text-red-600 mb-4">Erreur de chargement</h3>
-            <p className="text-xl text-gray-600 mb-2">
-              Impossible de charger les cours depuis la base de données.
-            </p>
-            <p className="text-sm text-gray-500 mb-6">
-              {coursesError.message || 'Erreur inconnue'}
+            <div className="text-6xl mb-4">⚠️</div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Erreur de chargement</h3>
+            <p className="text-gray-600 mb-6">
+              {coursesError.message || 'Une erreur est survenue lors du chargement des cours.'}
             </p>
             <Button
-              size="lg"
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-full px-8"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg px-6"
               onClick={() => window.location.reload()}
             >
               Recharger la page
@@ -317,36 +326,31 @@ export default function Courses() {
           </div>
         ) : isLoading ? (
           <div>
-            {/* Skeleton Loader - Afficher des cartes de chargement */}
+            {/* Skeleton Loader */}
             <div className="mb-12">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="h-2 w-16 bg-gray-200 rounded-full animate-pulse"></div>
-                <div className="h-10 w-64 bg-gray-200 rounded animate-pulse"></div>
-              </div>
+              <div className="h-8 w-48 bg-gray-200 rounded-lg animate-pulse mb-8"></div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {[...Array(8)].map((_, index) => (
                   <CourseCardSkeleton key={index} />
                 ))}
               </div>
             </div>
-            {/* Message de chargement */}
             <div className="text-center py-8">
-              <div className="inline-flex items-center gap-3 text-indigo-600">
-                <div className="inline-block animate-spin rounded-full h-5 w-5 border-2 border-indigo-200 border-t-indigo-600"></div>
-                <p className="text-base font-medium">Chargement des cours...</p>
+              <div className="inline-flex items-center gap-2 text-indigo-600">
+                <div className="inline-block animate-spin rounded-full h-5 w-5 border-2 border-gray-200 border-t-indigo-600"></div>
+                <p className="text-sm font-medium">Chargement des cours...</p>
               </div>
             </div>
           </div>
         ) : filteredCourses.length === 0 ? (
           <div className="text-center py-20">
-            <div className="text-8xl mb-6">🔍</div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Aucun cours trouvé</h3>
-            <p className="text-xl text-gray-600 mb-6">
+            <div className="text-6xl mb-4">🔍</div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Aucun cours trouvé</h3>
+            <p className="text-gray-600 mb-8">
               Essayez de modifier vos critères de recherche
             </p>
             <Button
-              size="lg"
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-full px-8"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg px-6"
               onClick={() => {
                 setSearchTerm("");
                 setCategoryFilter("all");
@@ -357,7 +361,7 @@ export default function Courses() {
             </Button>
           </div>
         ) : categoryFilter === "all" && !searchTerm ? (
-          // Afficher par catégorie
+          // Display by category
           Object.entries(coursesByCategory).map(([category, categoryCourses], catIndex) => (
             categoryCourses.length > 0 && (
               <motion.div
@@ -366,16 +370,16 @@ export default function Courses() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: catIndex * 0.1 }}
-                className="mb-20"
+                className="mb-16"
               >
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="h-2 w-16 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-full"></div>
-                  <h2 className="text-4xl font-extrabold text-gray-900 flex items-center gap-3">
+                  <div className="h-1 w-1 bg-indigo-600 rounded-full"></div>
+                  <h2 className="text-2xl font-bold text-gray-900">
                     {categoryLabels[category]}
-                    <Badge variant="outline" className="text-base font-normal">
-                      {categoryCourses.length} cours
-                    </Badge>
                   </h2>
+                  <Badge variant="secondary" className="ml-auto text-gray-600 bg-gray-100 text-sm font-normal">
+                    {categoryCourses.length} cours
+                  </Badge>
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {categoryCourses.map((course, index) => (
@@ -394,18 +398,25 @@ export default function Courses() {
             )
           ))
         ) : (
-          // Afficher tous les résultats filtrés
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredCourses.map((course, index) => (
-              <motion.div
-                key={course.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <CourseCard course={course} />
-              </motion.div>
-            ))}
+          // Display filtered results
+          <div>
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900">
+                Résultats de recherche
+              </h2>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredCourses.map((course, index) => (
+                <motion.div
+                  key={course.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <CourseCard course={course} />
+                </motion.div>
+              ))}
+            </div>
           </div>
         )}
       </div>

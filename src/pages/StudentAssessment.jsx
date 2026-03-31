@@ -1,601 +1,373 @@
-import React, { useState, useEffect } from "react";
-import { InvokeLLM } from "@/api/integrations";
-import { User } from "@/api/entities";
+import React, { useState } from "react";
+import SEO from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { 
-  ClipboardCheck, User as UserIcon, Target, Brain, 
-  BookOpen, TrendingUp, Save, Sparkles, Award
+import {
+  ClipboardCheck, Play, RotateCcw, ArrowLeft, ArrowRight, Award, Target
 } from "lucide-react";
+import ChatBot from "../components/ChatBot";
+
+const questions = [
+  {
+    id: 1,
+    category: "langue",
+    question: "Comment évaluez-vous votre niveau de français ?",
+    options: [
+      { label: "Je comprends et parle couramment", points: 3 },
+      { label: "Je me débrouille bien au quotidien", points: 2 },
+      { label: "J'ai des bases mais des difficultés à l'oral", points: 1 },
+      { label: "Je débute en français", points: 0 }
+    ]
+  },
+  {
+    id: 2,
+    category: "experience",
+    question: "Avez-vous déjà vécu seul(e) à l'étranger ?",
+    options: [
+      { label: "Oui, plus de 6 mois", points: 3 },
+      { label: "Oui, quelques mois", points: 2 },
+      { label: "Non, mais j'ai voyagé", points: 1 },
+      { label: "Non, jamais", points: 0 }
+    ]
+  },
+  {
+    id: 3,
+    category: "admin",
+    question: "Connaissez-vous les démarches pour obtenir un titre de séjour ?",
+    options: [
+      { label: "Oui, je connais bien le processus", points: 3 },
+      { label: "J'ai une idée générale", points: 2 },
+      { label: "Vaguement, j'ai besoin de me renseigner", points: 1 },
+      { label: "Pas du tout", points: 0 }
+    ]
+  },
+  {
+    id: 4,
+    category: "logement",
+    question: "Savez-vous comment chercher un logement en France ?",
+    options: [
+      { label: "Oui, je connais les sites et les démarches", points: 3 },
+      { label: "J'ai quelques pistes", points: 2 },
+      { label: "Je sais que c'est difficile, mais pas comment faire", points: 1 },
+      { label: "Non, aucune idée", points: 0 }
+    ]
+  },
+  {
+    id: 5,
+    category: "droits",
+    question: "Connaissez-vous vos droits en tant qu'étudiant étranger en France ?",
+    options: [
+      { label: "Oui, droit au travail, APL, sécu sociale, etc.", points: 3 },
+      { label: "Je connais certains droits", points: 2 },
+      { label: "Très peu", points: 1 },
+      { label: "Non, pas du tout", points: 0 }
+    ]
+  },
+  {
+    id: 6,
+    category: "digital",
+    question: "Êtes-vous à l'aise avec les démarches en ligne (impôts, CAF, Ameli) ?",
+    options: [
+      { label: "Très à l'aise, je gère tout en ligne", points: 3 },
+      { label: "Assez à l'aise", points: 2 },
+      { label: "J'ai besoin d'aide pour certaines démarches", points: 1 },
+      { label: "Je ne suis pas du tout à l'aise", points: 0 }
+    ]
+  },
+  {
+    id: 7,
+    category: "etudes",
+    question: "Connaissez-vous le système universitaire français ?",
+    options: [
+      { label: "Oui, LMD, ECTS, examens, etc.", points: 3 },
+      { label: "En partie", points: 2 },
+      { label: "Un peu", points: 1 },
+      { label: "Non, pas du tout", points: 0 }
+    ]
+  },
+  {
+    id: 8,
+    category: "budget",
+    question: "Avez-vous établi un budget prévisionnel pour votre vie en France ?",
+    options: [
+      { label: "Oui, budget détaillé avec marge de sécurité", points: 3 },
+      { label: "Oui, un budget approximatif", points: 2 },
+      { label: "J'ai une idée des coûts mais pas de budget", points: 1 },
+      { label: "Non, pas encore", points: 0 }
+    ]
+  },
+  {
+    id: 9,
+    category: "reseau",
+    question: "Avez-vous un réseau de contacts en France ?",
+    options: [
+      { label: "Oui, famille, amis et contacts professionnels", points: 3 },
+      { label: "Quelques contacts (amis ou communauté)", points: 2 },
+      { label: "Un ou deux contacts", points: 1 },
+      { label: "Personne", points: 0 }
+    ]
+  },
+  {
+    id: 10,
+    category: "confiance",
+    question: "Globalement, comment vous sentez-vous par rapport à votre projet en France ?",
+    options: [
+      { label: "Très confiant(e) et bien préparé(e)", points: 3 },
+      { label: "Plutôt confiant(e) avec quelques inquiétudes", points: 2 },
+      { label: "Inquiet(e) mais motivé(e)", points: 1 },
+      { label: "Très anxieux(se), beaucoup d'incertitudes", points: 0 }
+    ]
+  }
+];
+
+function getLevel(score, max) {
+  const pct = (score / max) * 100;
+  if (pct >= 80) return { label: "Bien préparé(e)", color: "text-green-600", bg: "bg-green-50 border-green-200", badge: "bg-green-600" };
+  if (pct >= 60) return { label: "En bonne voie", color: "text-blue-600", bg: "bg-blue-50 border-blue-200", badge: "bg-blue-600" };
+  if (pct >= 35) return { label: "À renforcer", color: "text-orange-600", bg: "bg-orange-50 border-orange-200", badge: "bg-orange-600" };
+  return { label: "Débutant(e)", color: "text-red-600", bg: "bg-red-50 border-red-200", badge: "bg-red-600" };
+}
+
+const categoryLabels = {
+  langue: "Langue française",
+  experience: "Expérience internationale",
+  admin: "Démarches administratives",
+  logement: "Logement",
+  droits: "Droits étudiants",
+  digital: "Compétences numériques",
+  etudes: "Système universitaire",
+  budget: "Gestion du budget",
+  reseau: "Réseau social",
+  confiance: "Confiance & préparation"
+};
+
+const advice = {
+  langue: "Inscrivez-vous à des cours de FLE, pratiquez avec des podcasts français (France Culture, RFI), et rejoignez un tandem linguistique.",
+  experience: "Participez à des événements interculturels, rejoignez des groupes d'étudiants internationaux et n'hésitez pas à sortir de votre zone de confort.",
+  admin: "Consultez le site Campus France et les guides du CROUS. Préparez vos documents à l'avance et créez un dossier organisé.",
+  logement: "Explorez les résidences CROUS, Studapart, LeBonCoin. Constituez un dossier locatif solide (garant, fiches de paie, attestation).",
+  droits: "Renseignez-vous sur vos droits : APL, sécurité sociale, droit au travail (964h/an), réductions étudiantes.",
+  digital: "Familiarisez-vous avec les sites gouvernementaux : ameli.fr, caf.fr, impots.gouv.fr. Créez vos comptes en avance.",
+  etudes: "Documentez-vous sur le système LMD, les ECTS, le fonctionnement des examens et le calendrier universitaire français.",
+  budget: "Établissez un budget mensuel détaillé incluant loyer, alimentation, transport, assurance, téléphone et une marge pour les imprévus.",
+  reseau: "Rejoignez des associations étudiantes, des groupes Facebook de votre ville, et participez aux événements d'accueil de votre université.",
+  confiance: "La préparation est la clé de la confiance. Suivez les cours de FrancePrepAcademy et n'hésitez pas à poser des questions !"
+};
 
 export default function StudentAssessment() {
-  const [user, setUser] = useState(null);
-  const [activeTab, setActiveTab] = useState("assessment");
-  const [formData, setFormData] = useState({
-    academic_subjects: [],
-    favorite_subjects: [],
-    challenging_subjects: [],
-    career_interests: [],
-    skills_to_develop: [],
-    learning_preferences: [],
-    study_habits: "",
-    time_availability: "",
-    future_goals: "",
-    current_challenges: ""
-  });
-  const [feedback, setFeedback] = useState(null);
-  const [roadmap, setRoadmap] = useState(null);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [phase, setPhase] = useState("home");
+  const [currentQ, setCurrentQ] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [results, setResults] = useState(null);
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
-    try {
-      const userData = await User.me();
-      setUser(userData);
-      
-      // Pre-fill form with existing user data
-      if (userData) {
-        setFormData(prev => ({
-          ...prev,
-          career_interests: userData.interests || [],
-          future_goals: userData.career_goals || "",
-          skills_to_develop: userData.skills_to_improve || []
-        }));
-      }
-    } catch (error) {
-      console.log("Error loading data");
-    }
-    setIsLoading(false);
+  const startAssessment = () => {
+    setPhase("assessment");
+    setCurrentQ(0);
+    setAnswers({});
+    setResults(null);
   };
 
-  const subjects = {
-    commerce: ["Accounting", "Business Studies", "Economics", "Statistics", "Marketing", "Finance"],
-    science: ["Physics", "Chemistry", "Biology", "Mathematics", "Computer Science", "Environmental Science"],
-    arts: ["History", "Geography", "Political Science", "Psychology", "Sociology", "Philosophy"],
-    engineering: ["Programming", "Data Structures", "Database Systems", "Networking", "Software Engineering"],
-    general: ["English", "Hindi", "Tamil", "Current Affairs", "General Knowledge"]
+  const selectOption = (points) => {
+    const updated = { ...answers, [currentQ]: points };
+    setAnswers(updated);
   };
 
-  const careerFields = [
-    "Technology & IT", "Business & Finance", "Healthcare", "Education", "Engineering",
-    "Design & Creative", "Law & Legal", "Government & Public Service", "Research & Academia",
-    "Entrepreneurship", "Media & Communication", "Social Work", "Arts & Entertainment"
-  ];
-
-  const learningStyles = [
-    "Visual (diagrams, charts)", "Auditory (lectures, discussions)", 
-    "Reading/Writing (notes, books)", "Kinesthetic (hands-on, practical)",
-    "Group Learning", "Individual Study", "Online Learning", "Traditional Classroom"
-  ];
-
-  const handleMultiSelect = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: prev[field].includes(value) 
-        ? prev[field].filter(item => item !== value)
-        : [...prev[field], value]
-    }));
-  };
-
-  const generateFeedback = async () => {
-    setIsGenerating(true);
-    try {
-      const response = await InvokeLLM({
-        prompt: `Provide comprehensive educational feedback and guidance for this Indian student:
-        
-        Student Profile:
-        - Name: ${user.full_name}
-        - Stream: ${user.stream}
-        - Institute: ${user.institute}
-        - Location: ${user.location}
-        
-        Assessment Data:
-        - Favorite subjects: ${formData.favorite_subjects.join(', ')}
-        - Challenging subjects: ${formData.challenging_subjects.join(', ')}
-        - Career interests: ${formData.career_interests.join(', ')}
-        - Skills to develop: ${formData.skills_to_develop.join(', ')}
-        - Learning preferences: ${formData.learning_preferences.join(', ')}
-        - Study habits: ${formData.study_habits}
-        - Time availability: ${formData.time_availability}
-        - Future goals: ${formData.future_goals}
-        - Current challenges: ${formData.current_challenges}
-        
-        Provide:
-        1. Strengths analysis
-        2. Areas for improvement
-        3. Specific recommendations
-        4. Career pathway suggestions
-        5. Skills development plan
-        6. Study strategy recommendations
-        
-        Make recommendations specific to Indian education system and job market.`,
-        response_json_schema: {
-          type: "object",
-          properties: {
-            strengths: { type: "array", items: { type: "string" } },
-            improvement_areas: { type: "array", items: { type: "string" } },
-            recommendations: { type: "array", items: { type: "string" } },
-            career_suggestions: { type: "array", items: { type: "string" } },
-            skill_development: { type: "array", items: { type: "string" } },
-            study_strategies: { type: "array", items: { type: "string" } },
-            overall_feedback: { type: "string" },
-            motivation_message: { type: "string" }
-          }
-        }
-      });
-
-      setFeedback(response);
-    } catch (error) {
-      console.error("Error generating feedback:", error);
-    }
-    setIsGenerating(false);
-  };
-
-  const generateRoadmap = async () => {
-    if (!feedback) return;
-    
-    setIsGenerating(true);
-    try {
-      const response = await InvokeLLM({
-        prompt: `Create a detailed 12-month career roadmap for this student based on their assessment:
-        
-        Student: ${user.full_name} - ${user.stream} student
-        Career Goals: ${formData.future_goals}
-        Career Interests: ${formData.career_interests.join(', ')}
-        Skills to Develop: ${formData.skills_to_develop.join(', ')}
-        
-        Create a month-by-month roadmap with:
-        - Specific learning objectives
-        - Skills to focus on
-        - Projects or activities
-        - Milestones and goals
-        - Resources and platforms
-        
-        Make it practical and achievable for an Indian student.`,
-        response_json_schema: {
-          type: "object",
-          properties: {
-            roadmap: {
-              type: "array",
-              items: {
-                type: "object",
-                properties: {
-                  month: { type: "string" },
-                  objectives: { type: "array", items: { type: "string" } },
-                  skills_focus: { type: "array", items: { type: "string" } },
-                  activities: { type: "array", items: { type: "string" } },
-                  milestones: { type: "array", items: { type: "string" } },
-                  resources: { type: "array", items: { type: "string" } }
-                }
-              }
-            },
-            success_metrics: { type: "array", items: { type: "string" } },
-            key_advice: { type: "string" }
-          }
-        }
-      });
-
-      setRoadmap(response);
-    } catch (error) {
-      console.error("Error generating roadmap:", error);
-    }
-    setIsGenerating(false);
-  };
-
-  const saveAssessment = async () => {
-    try {
-      await User.updateMyUserData({
-        interests: formData.career_interests,
-        career_goals: formData.future_goals,
-        skills_to_improve: formData.skills_to_develop,
-        preferred_learning_style: formData.learning_preferences[0] || "visual"
-      });
-      console.log("Assessment saved successfully");
-    } catch (error) {
-      console.error("Error saving assessment:", error);
+  const goNext = () => {
+    if (currentQ < questions.length - 1) {
+      setCurrentQ(currentQ + 1);
+    } else {
+      finishAssessment();
     }
   };
 
-  if (isLoading) {
+  const goPrev = () => {
+    if (currentQ > 0) setCurrentQ(currentQ - 1);
+  };
+
+  const finishAssessment = () => {
+    const totalScore = Object.values(answers).reduce((a, b) => a + b, 0);
+    const maxScore = questions.length * 3;
+    const categoryScores = {};
+    questions.forEach((q, i) => {
+      categoryScores[q.category] = answers[i] !== undefined ? answers[i] : 0;
+    });
+    setResults({ totalScore, maxScore, categoryScores });
+    setPhase("results");
+  };
+
+  if (phase === "results" && results) {
+    const level = getLevel(results.totalScore, results.maxScore);
+    const pct = Math.round((results.totalScore / results.maxScore) * 100);
+    const weakCategories = Object.entries(results.categoryScores)
+      .filter(([, score]) => score <= 1)
+      .map(([cat]) => cat);
+
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="min-h-screen bg-gray-50">
+        <SEO title="Résultats - Auto-évaluation" noindex={true} />
+        <div className="bg-gradient-to-r from-indigo-900 to-violet-800 text-white py-10">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <Award className="w-12 h-12 mx-auto mb-3 text-yellow-300" />
+            <h1 className="text-3xl font-bold mb-1">Votre profil de préparation</h1>
+            <p className="text-indigo-200">Basé sur vos réponses à l'auto-évaluation</p>
+          </div>
+        </div>
+        <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
+          <Card className={`border ${level.bg}`}>
+            <CardContent className="p-6 text-center">
+              <div className={`text-4xl font-bold ${level.color} mb-2`}>{pct}%</div>
+              <Badge className={`${level.badge} text-white text-sm px-4 py-1`}>{level.label}</Badge>
+              <Progress value={pct} className="h-3 mt-4" />
+              <p className="text-sm text-gray-600 mt-3">
+                {results.totalScore} points sur {results.maxScore}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader><CardTitle>Détail par catégorie</CardTitle></CardHeader>
+            <CardContent className="space-y-3">
+              {questions.map((q, i) => {
+                const score = results.categoryScores[q.category];
+                const catLevel = getLevel(score, 3);
+                return (
+                  <div key={q.id} className="flex items-center gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-sm font-medium text-gray-700">{categoryLabels[q.category]}</span>
+                        <Badge className={`${catLevel.badge} text-white text-xs`}>{score}/3</Badge>
+                      </div>
+                      <Progress value={(score / 3) * 100} className="h-2" />
+                    </div>
+                  </div>
+                );
+              })}
+            </CardContent>
+          </Card>
+
+          {weakCategories.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Target className="w-5 h-5 text-orange-500" /> Points à améliorer
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {weakCategories.map(cat => (
+                  <div key={cat} className="bg-orange-50 border border-orange-200 p-4 rounded-lg">
+                    <h4 className="font-semibold text-orange-800 mb-1">{categoryLabels[cat]}</h4>
+                    <p className="text-sm text-orange-900">{advice[cat]}</p>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          )}
+
+          <div className="text-center">
+            <Button onClick={startAssessment} className="bg-indigo-600 hover:bg-indigo-700">
+              <RotateCcw className="w-4 h-4 mr-2" /> Refaire l'évaluation
+            </Button>
+          </div>
+        </div>
+        <ChatBot />
+      </div>
+    );
+  }
+
+  if (phase === "assessment") {
+    const q = questions[currentQ];
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <SEO title={`Question ${currentQ + 1} - Auto-évaluation`} noindex={true} />
+        <div className="bg-gradient-to-r from-indigo-900 to-violet-800 text-white py-6">
+          <div className="max-w-4xl mx-auto px-4 flex justify-between items-center">
+            <div>
+              <h1 className="text-xl font-bold">Auto-évaluation</h1>
+              <p className="text-indigo-200 text-sm">Question {currentQ + 1} sur {questions.length}</p>
+            </div>
+            <Badge className="bg-white/20 text-white">{categoryLabels[q.category]}</Badge>
+          </div>
+        </div>
+        <div className="max-w-4xl mx-auto px-4 py-6">
+          <Progress value={((currentQ + 1) / questions.length) * 100} className="h-2 mb-6" />
+
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-lg font-medium text-gray-900 mb-6">{q.question}</h3>
+              <div className="space-y-3">
+                {q.options.map((opt, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => selectOption(opt.points)}
+                    className={`p-4 border rounded-lg cursor-pointer transition-all ${
+                      answers[currentQ] === opt.points
+                        ? 'border-indigo-500 bg-indigo-50'
+                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    <span className="text-gray-800">{opt.label}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="flex justify-between mt-6">
+            <Button variant="outline" onClick={goPrev} disabled={currentQ === 0}>
+              <ArrowLeft className="w-4 h-4 mr-1" /> Précédent
+            </Button>
+            <Button onClick={goNext} disabled={answers[currentQ] === undefined} className="bg-indigo-600 hover:bg-indigo-700">
+              {currentQ === questions.length - 1 ? "Voir mes résultats" : "Suivant"} <ArrowRight className="w-4 h-4 ml-1" />
+            </Button>
+          </div>
+        </div>
+        <ChatBot />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
-      <div className="max-w-6xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-gradient">📋 Student Assessment</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Get personalized feedback and career roadmap based on your interests and goals
-          </p>
+    <div className="min-h-screen bg-gray-50">
+      <SEO
+        title="Auto-évaluation - FrancePrepAcademy"
+        description="Évaluez votre niveau de préparation pour la vie en France."
+        canonical="/studentassessment"
+        noindex={true}
+      />
+      <div className="bg-gradient-to-r from-indigo-900 to-violet-800 text-white py-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl font-bold mb-1">Auto-évaluation</h1>
+          <p className="text-indigo-200">Évaluez votre niveau de préparation pour votre projet en France</p>
         </div>
+      </div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        <Card>
+          <CardContent className="p-8 text-center space-y-4">
+            <ClipboardCheck className="w-14 h-14 text-indigo-600 mx-auto" />
+            <h2 className="text-2xl font-bold text-gray-900">Bilan de préparation</h2>
+            <p className="text-gray-600 max-w-md mx-auto">
+              10 questions pour évaluer votre préparation dans les domaines essentiels :
+              langue, administratif, logement, budget, droits et bien plus.
+            </p>
+            <Button onClick={startAssessment} size="lg" className="bg-indigo-600 hover:bg-indigo-700 mt-4">
+              <Play className="w-5 h-5 mr-2" /> Commencer l'évaluation
+            </Button>
+          </CardContent>
+        </Card>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="assessment">Assessment Form</TabsTrigger>
-            <TabsTrigger value="feedback" disabled={!feedback}>AI Feedback</TabsTrigger>
-            <TabsTrigger value="roadmap" disabled={!roadmap}>Career Roadmap</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="assessment" className="space-y-6">
-            <Card className="border-0 shadow-lg glass-effect">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <UserIcon className="w-6 h-6 text-blue-600" />
-                  Student Assessment Form
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {/* Academic Subjects */}
-                <div>
-                  <label className="text-sm font-semibold text-gray-700 mb-3 block">
-                    📚 Select your favorite subjects:
-                  </label>
-                  <div className="space-y-4">
-                    {Object.entries(subjects).map(([category, subjectList]) => (
-                      <div key={category}>
-                        <h4 className="font-medium text-gray-900 mb-2 capitalize">{category}</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {subjectList.map((subject) => (
-                            <Badge
-                              key={subject}
-                              variant={formData.favorite_subjects.includes(subject) ? "default" : "outline"}
-                              className="cursor-pointer hover:bg-blue-50"
-                              onClick={() => handleMultiSelect("favorite_subjects", subject)}
-                            >
-                              {subject}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Challenging Subjects */}
-                <div>
-                  <label className="text-sm font-semibold text-gray-700 mb-3 block">
-                    ⚠️ Subjects you find challenging:
-                  </label>
-                  <div className="space-y-4">
-                    {Object.entries(subjects).map(([category, subjectList]) => (
-                      <div key={category}>
-                        <h4 className="font-medium text-gray-900 mb-2 capitalize">{category}</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {subjectList.map((subject) => (
-                            <Badge
-                              key={subject}
-                              variant={formData.challenging_subjects.includes(subject) ? "destructive" : "outline"}
-                              className="cursor-pointer hover:bg-red-50"
-                              onClick={() => handleMultiSelect("challenging_subjects", subject)}
-                            >
-                              {subject}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Career Interests */}
-                <div>
-                  <label className="text-sm font-semibold text-gray-700 mb-3 block">
-                    🎯 Career fields that interest you:
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {careerFields.map((field) => (
-                      <Badge
-                        key={field}
-                        variant={formData.career_interests.includes(field) ? "default" : "outline"}
-                        className="cursor-pointer hover:bg-blue-50"
-                        onClick={() => handleMultiSelect("career_interests", field)}
-                      >
-                        {field}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Learning Preferences */}
-                <div>
-                  <label className="text-sm font-semibold text-gray-700 mb-3 block">
-                    🧠 Your learning preferences:
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {learningStyles.map((style) => (
-                      <Badge
-                        key={style}
-                        variant={formData.learning_preferences.includes(style) ? "default" : "outline"}
-                        className="cursor-pointer hover:bg-blue-50"
-                        onClick={() => handleMultiSelect("learning_preferences", style)}
-                      >
-                        {style}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Text Fields */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="text-sm font-semibold text-gray-700 mb-2 block">
-                      📅 Daily study time availability:
-                    </label>
-                    <Input
-                      placeholder="e.g., 2-3 hours after college"
-                      value={formData.time_availability}
-                      onChange={(e) => setFormData({...formData, time_availability: e.target.value})}
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-semibold text-gray-700 mb-2 block">
-                      📖 Describe your current study habits:
-                    </label>
-                    <Input
-                      placeholder="e.g., Visual learner, prefer group study"
-                      value={formData.study_habits}
-                      onChange={(e) => setFormData({...formData, study_habits: e.target.value})}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold text-gray-700 mb-2 block">
-                    🎓 What are your future career goals?
-                  </label>
-                  <Textarea
-                    placeholder="Describe your career aspirations, dream job, or long-term professional goals..."
-                    value={formData.future_goals}
-                    onChange={(e) => setFormData({...formData, future_goals: e.target.value})}
-                    rows={4}
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-semibold text-gray-700 mb-2 block">
-                    😰 What are your current academic or career challenges?
-                  </label>
-                  <Textarea
-                    placeholder="Share any difficulties you're facing in studies, career confusion, or areas where you need help..."
-                    value={formData.current_challenges}
-                    onChange={(e) => setFormData({...formData, current_challenges: e.target.value})}
-                    rows={4}
-                  />
-                </div>
-
-                <div className="flex justify-between pt-6">
-                  <Button variant="outline" onClick={saveAssessment}>
-                    <Save className="w-4 h-4 mr-2" />
-                    Save Assessment
-                  </Button>
-                  <Button
-                    onClick={generateFeedback}
-                    disabled={isGenerating || !formData.future_goals.trim()}
-                    className="bg-blue-600 hover:bg-blue-700"
-                  >
-                    {isGenerating ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Analyzing...
-                      </>
-                    ) : (
-                      <>
-                        <Sparkles className="w-4 h-4 mr-2" />
-                        Generate AI Feedback
-                      </>
-                    )}
-                  </Button>
-                </div>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+          {Object.entries(categoryLabels).map(([key, label]) => (
+            <Card key={key}>
+              <CardContent className="p-3 text-center">
+                <p className="text-xs font-medium text-gray-700">{label}</p>
               </CardContent>
             </Card>
-          </TabsContent>
-
-          <TabsContent value="feedback" className="space-y-6">
-            {feedback && (
-              <div className="grid lg:grid-cols-2 gap-6">
-                <Card className="border-0 shadow-lg glass-effect">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-green-700">
-                      <Award className="w-6 h-6" />
-                      Your Strengths
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {feedback.strengths?.map((strength, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <span className="text-green-600 mt-1">✅</span>
-                          <span className="text-gray-700">{strength}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-0 shadow-lg glass-effect">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-orange-700">
-                      <Target className="w-6 h-6" />
-                      Areas for Improvement
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {feedback.improvement_areas?.map((area, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <span className="text-orange-600 mt-1">🎯</span>
-                          <span className="text-gray-700">{area}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-0 shadow-lg glass-effect lg:col-span-2">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-blue-700">
-                      <Brain className="w-6 h-6" />
-                      Personalized Recommendations
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">📝 Study Strategies:</h4>
-                      <ul className="space-y-1">
-                        {feedback.study_strategies?.map((strategy, index) => (
-                          <li key={index} className="text-gray-700">• {strategy}</li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">🚀 Career Suggestions:</h4>
-                      <ul className="space-y-1">
-                        {feedback.career_suggestions?.map((suggestion, index) => (
-                          <li key={index} className="text-gray-700">• {suggestion}</li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">💪 Skills to Develop:</h4>
-                      <ul className="space-y-1">
-                        {feedback.skill_development?.map((skill, index) => (
-                          <li key={index} className="text-gray-700">• {skill}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-0 shadow-lg glass-effect lg:col-span-2">
-                  <CardHeader>
-                    <CardTitle className="text-purple-700">💜 Motivational Message</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-700 italic leading-relaxed">{feedback.motivation_message}</p>
-                  </CardContent>
-                </Card>
-
-                <div className="lg:col-span-2 text-center">
-                  <Button
-                    onClick={generateRoadmap}
-                    disabled={isGenerating}
-                    className="bg-purple-600 hover:bg-purple-700"
-                  >
-                    {isGenerating ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Creating Roadmap...
-                      </>
-                    ) : (
-                      <>
-                        <TrendingUp className="w-4 h-4 mr-2" />
-                        Generate 12-Month Career Roadmap
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </div>
-            )}
-          </TabsContent>
-
-          <TabsContent value="roadmap" className="space-y-6">
-            {roadmap && (
-              <div className="space-y-6">
-                <Card className="border-0 shadow-lg glass-effect">
-                  <CardHeader>
-                    <CardTitle className="text-center">🗺️ Your 12-Month Career Development Roadmap</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-700 text-center mb-6">{roadmap.key_advice}</p>
-                    
-                    <div className="grid gap-6">
-                      {roadmap.roadmap?.map((month, index) => (
-                        <Card key={index} className="border border-blue-200">
-                          <CardHeader className="pb-3">
-                            <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">
-                                {index + 1}
-                              </div>
-                              <CardTitle className="text-lg">{month.month}</CardTitle>
-                            </div>
-                          </CardHeader>
-                          <CardContent className="grid md:grid-cols-2 gap-4">
-                            <div>
-                              <h4 className="font-semibold text-blue-700 mb-2">🎯 Objectives:</h4>
-                              <ul className="text-sm space-y-1">
-                                {month.objectives?.map((obj, idx) => (
-                                  <li key={idx} className="text-gray-700">• {obj}</li>
-                                ))}
-                              </ul>
-                            </div>
-                            
-                            <div>
-                              <h4 className="font-semibold text-green-700 mb-2">💪 Skills Focus:</h4>
-                              <ul className="text-sm space-y-1">
-                                {month.skills_focus?.map((skill, idx) => (
-                                  <li key={idx} className="text-gray-700">• {skill}</li>
-                                ))}
-                              </ul>
-                            </div>
-                            
-                            <div>
-                              <h4 className="font-semibold text-purple-700 mb-2">📋 Activities:</h4>
-                              <ul className="text-sm space-y-1">
-                                {month.activities?.map((activity, idx) => (
-                                  <li key={idx} className="text-gray-700">• {activity}</li>
-                                ))}
-                              </ul>
-                            </div>
-                            
-                            <div>
-                              <h4 className="font-semibold text-orange-700 mb-2">🏆 Milestones:</h4>
-                              <ul className="text-sm space-y-1">
-                                {month.milestones?.map((milestone, idx) => (
-                                  <li key={idx} className="text-gray-700">• {milestone}</li>
-                                ))}
-                              </ul>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-
-                    <Card className="border-0 bg-green-50 mt-6">
-                      <CardHeader>
-                        <CardTitle className="text-green-800">📊 Success Metrics</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-1">
-                          {roadmap.success_metrics?.map((metric, index) => (
-                            <li key={index} className="text-green-700">• {metric}</li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
-          </TabsContent>
-        </Tabs>
+          ))}
+        </div>
       </div>
+      <ChatBot />
     </div>
   );
 }

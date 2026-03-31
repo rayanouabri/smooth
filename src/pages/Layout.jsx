@@ -35,12 +35,15 @@ export default function Layout({ children, currentPageName }) {
 
   useEffect(() => {
     checkAuth();
+    // Recharger le statut utilisateur périodiquement pour détecter les changements de premium
+    // Intervalle réduit à 5 minutes pour éviter le polling excessif (360 requêtes/heure -> 12 requêtes/heure)
     const interval = setInterval(() => {
       if (isAuthenticated) {
         checkAuth();
       }
-    }, 300000);
+    }, 300000); // Toutes les 5 minutes (optimisé pour performance)
     
+    // Écouter les événements de navigation depuis PaymentSuccess
     const handleFocus = () => {
       if (isAuthenticated) {
         checkAuth();
@@ -86,20 +89,25 @@ export default function Layout({ children, currentPageName }) {
     { name: "Cours", page: "Courses" },
     { name: "Cours particuliers", page: "Teachers" },
     { name: "Dashboard", page: "Dashboard" },
+    // Éviter les soucis d'encodage lors de certains déploiements (UTF-8 mal interprété)
     { name: "Communauté", page: "Community" },
     { name: "Tarifs", page: "Pricing" },
     { name: "Assistant IA", page: "AIAgent", icon: true },
   ];
 
+  // Dashboard auth guard — only prevents navigation when not authenticated
   const handleDashboardClick = (e) => {
     checkAuthStatus().then(authenticated => {
       if (!authenticated) {
         e.preventDefault();
         redirectToLogin('/dashboard');
       }
-    }).catch(() => {});
+    }).catch(() => {
+      // Let navigation proceed on error
+    });
   };
 
+  // Close mobile menu on link click (without blocking React Router navigation)
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
@@ -244,7 +252,7 @@ export default function Layout({ children, currentPageName }) {
             </button>
           </div>
 
-            {/* Mobile menu */}
+            {/* Mobile menu - Design amélioré */}
           {mobileMenuOpen && (
             <div className="lg:hidden fixed inset-0 top-[70px] bg-white z-50 overflow-y-auto shadow-2xl">
               <div className="px-4 py-6 space-y-1">

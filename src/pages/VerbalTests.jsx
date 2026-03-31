@@ -1,393 +1,256 @@
-import React, { useState, useEffect } from "react";
-import { InvokeLLM } from "@/api/integrations";
-import { Assessment } from "@/api/entities";
-import { User } from "@/api/entities";
+import React, { useState, useCallback, useEffect } from "react";
+import SEO from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { 
-  BookOpen, Clock, MessageCircle, Target, CheckCircle, 
-  Play, RotateCcw, Trophy, PenTool, Volume2
+import {
+  BookOpen, Clock, CheckCircle, Play, RotateCcw, Trophy, ArrowLeft, ArrowRight
 } from "lucide-react";
+import ChatBot from "../components/ChatBot";
+
+const allQuestions = [
+  {
+    question: "Quel est le synonyme de 'perspicace' ?",
+    options: { A: "Distrait", B: "Clairvoyant", C: "Paresseux", D: "Timide" },
+    correct_answer: "B",
+    explanation: "'Perspicace' signifie qui a une intelligence pénétrante, capable de saisir ce qui échappe aux autres. 'Clairvoyant' en est le synonyme le plus proche."
+  },
+  {
+    question: "Quel est l'antonyme de 'éphémère' ?",
+    options: { A: "Provisoire", B: "Fugace", C: "Permanent", D: "Bref" },
+    correct_answer: "C",
+    explanation: "'Éphémère' signifie qui dure très peu de temps. Son contraire est 'permanent', qui dure indéfiniment."
+  },
+  {
+    question: "Que signifie l'expression 'avoir le cafard' ?",
+    options: { A: "Avoir peur des insectes", B: "Être très fatigué", C: "Être déprimé, triste", D: "Être en colère" },
+    correct_answer: "C",
+    explanation: "'Avoir le cafard' est une expression familière qui signifie être mélancolique, avoir des idées noires."
+  },
+  {
+    question: "Quelle est la bonne orthographe ?",
+    options: { A: "Acceuil", B: "Accueil", C: "Acueil", D: "Accueille" },
+    correct_answer: "B",
+    explanation: "La bonne orthographe est 'accueil' (nom masculin). Attention : 'accueille' est la forme conjuguée du verbe accueillir."
+  },
+  {
+    question: "Complétez : 'Il faut que je ___ à l'heure.'",
+    options: { A: "sois", B: "suis", C: "serai", D: "étais" },
+    correct_answer: "A",
+    explanation: "Après 'il faut que', on utilise le subjonctif présent. 'Sois' est la forme correcte du verbe être au subjonctif."
+  },
+  {
+    question: "Quel mot n'appartient pas à la même famille ?",
+    options: { A: "Terrestre", B: "Terrain", C: "Terrible", D: "Territoire" },
+    correct_answer: "C",
+    explanation: "'Terrible' vient du latin 'terrere' (effrayer), tandis que les autres mots viennent de 'terra' (terre)."
+  },
+  {
+    question: "Que signifie 'corroborer' ?",
+    options: { A: "Contredire", B: "Confirmer", C: "Compliquer", D: "Corriger" },
+    correct_answer: "B",
+    explanation: "'Corroborer' signifie renforcer, confirmer une affirmation, un témoignage par de nouvelles preuves."
+  },
+  {
+    question: "Quel est le pluriel de 'un oeil' ?",
+    options: { A: "Des oeils", B: "Des oeux", C: "Des yeux", D: "Des yeuxs" },
+    correct_answer: "C",
+    explanation: "'Un oeil' a un pluriel irrégulier : 'des yeux'. C'est l'un des pluriels les plus irréguliers du français."
+  },
+  {
+    question: "Que signifie l'expression 'mettre la charrue avant les boeufs' ?",
+    options: { A: "Travailler dur", B: "Faire les choses dans le désordre", C: "Être très organisé", D: "Abandonner un projet" },
+    correct_answer: "B",
+    explanation: "Cette expression signifie commencer par la fin, ne pas respecter l'ordre logique des choses."
+  },
+  {
+    question: "Choisissez la phrase correcte :",
+    options: {
+      A: "Les fleurs que j'ai cueilli sont belles.",
+      B: "Les fleurs que j'ai cueillis sont belles.",
+      C: "Les fleurs que j'ai cueillies sont belles.",
+      D: "Les fleurs que j'ai cueille sont belles."
+    },
+    correct_answer: "C",
+    explanation: "Avec l'auxiliaire 'avoir', le participe passé s'accorde avec le COD placé avant le verbe. 'Fleurs' est féminin pluriel, donc 'cueillies'."
+  }
+];
 
 export default function VerbalTests() {
-  const [user, setUser] = useState(null);
-  const [testType, setTestType] = useState("");
-  const [questions, setQuestions] = useState([]);
+  const [phase, setPhase] = useState("home");
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState([]);
-  const [selectedAnswer, setSelectedAnswer] = useState("");
-  const [timeLeft, setTimeLeft] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [answers, setAnswers] = useState({});
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(600);
   const [results, setResults] = useState(null);
-  const [pastResults, setPastResults] = useState([]);
+
+  const completeTest = useCallback(() => {
+    const finalAnswers = { ...answers };
+    if (selectedAnswer) {
+      finalAnswers[currentQuestion] = selectedAnswer;
+    }
+    let correct = 0;
+    allQuestions.forEach((q, i) => {
+      if (finalAnswers[i] === q.correct_answer) correct++;
+    });
+    setResults({
+      correct,
+      total: allQuestions.length,
+      score: Math.round((correct / allQuestions.length) * 100),
+      answers: finalAnswers
+    });
+    setPhase("results");
+  }, [answers, selectedAnswer, currentQuestion]);
 
   useEffect(() => {
-    loadData();
-    let timer;
-    if (isActive && timeLeft > 0) {
-      timer = setInterval(() => {
-        setTimeLeft(prev => {
-          if (prev <= 1) {
-            completeTest();
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
+    if (phase !== "test") return;
+    if (timeLeft <= 0) { completeTest(); return; }
+    const timer = setInterval(() => setTimeLeft(t => t - 1), 1000);
     return () => clearInterval(timer);
-  }, [isActive, timeLeft]);
+  }, [phase, timeLeft, completeTest]);
 
-  const loadData = async () => {
-    try {
-      const userData = await User.me();
-      setUser(userData);
-
-      const assessments = await Assessment.filter({ 
-        user_email: userData.email,
-        assessment_type: "verbal"
-      });
-      setPastResults(assessments);
-    } catch (error) {
-      console.log("Error loading data");
-    }
+  const startTest = () => {
+    setPhase("test");
+    setCurrentQuestion(0);
+    setAnswers({});
+    setSelectedAnswer(null);
+    setTimeLeft(600);
+    setResults(null);
   };
 
-  const testTypes = [
-    { 
-      id: "vocabulary", 
-      name: "Vocabulary", 
-      desc: "Synonyms, antonyms, word meanings",
-      time: 20,
-      color: "bg-green-100 text-green-800",
-      icon: BookOpen
-    },
-    { 
-      id: "reading_comprehension", 
-      name: "Reading Comprehension", 
-      desc: "Passage-based questions",
-      time: 30,
-      color: "bg-blue-100 text-blue-800",
-      icon: PenTool
-    },
-    { 
-      id: "grammar", 
-      name: "Grammar & Usage", 
-      desc: "Sentence correction, error spotting",
-      time: 25,
-      color: "bg-purple-100 text-purple-800",
-      icon: MessageCircle
-    }
-  ];
-
-  const startTest = async (type) => {
-    setTestType(type);
-    setIsGenerating(true);
-    
-    try {
-      let prompt = `Generate 15 ${type} questions suitable for Indian English proficiency tests and competitive exams.`;
-      
-      if (type === "vocabulary") {
-        prompt += `
-        Include questions on:
-        - Synonyms and Antonyms
-        - Word meanings in context
-        - Analogies
-        - Idioms and phrases
-        - One-word substitutions
-        Use words commonly found in Indian competitive exams.`;
-      } else if (type === "reading_comprehension") {
-        prompt += `
-        Include:
-        - 2-3 short passages (150-200 words each)
-        - Questions on main idea, inference, tone
-        - Detail-based questions
-        - Vocabulary in context
-        Topics relevant to Indian context (social issues, technology, environment, etc.)`;
-      } else if (type === "grammar") {
-        prompt += `
-        Include questions on:
-        - Subject-verb agreement
-        - Tenses and verb forms
-        - Prepositions
-        - Articles usage
-        - Sentence structure
-        - Error identification and correction`;
-      }
-      
-      prompt += `
-      Each question should have:
-      - Clear question statement
-      - 4 options (A, B, C, D)
-      - Correct answer (A, B, C, or D)
-      - Brief explanation
-      
-      Make questions suitable for Indian English learners.`;
-
-      const response = await InvokeLLM({
-        prompt,
-        response_json_schema: {
-          type: "object",
-          properties: {
-            questions: {
-              type: "array",
-              items: {
-                type: "object",
-                properties: {
-                  question: { type: "string" },
-                  passage: { type: "string" },
-                  options: {
-                    type: "object",
-                    properties: {
-                      A: { type: "string" },
-                      B: { type: "string" },
-                      C: { type: "string" },
-                      D: { type: "string" }
-                    }
-                  },
-                  correct_answer: { type: "string" },
-                  explanation: { type: "string" }
-                }
-              }
-            }
-          }
-        }
-      });
-
-      setQuestions(response.questions || []);
-      setCurrentQuestion(0);
-      setAnswers([]);
-      setSelectedAnswer("");
-      setTimeLeft(testTypes.find(t => t.id === type)?.time * 60 || 1200);
-      setIsActive(true);
-      setResults(null);
-    } catch (error) {
-      console.error("Error generating test:", error);
-    }
-    
-    setIsGenerating(false);
+  const selectOption = (key) => {
+    setSelectedAnswer(key);
+    setAnswers(prev => ({ ...prev, [currentQuestion]: key }));
   };
 
-  const nextQuestion = () => {
-    const newAnswers = [...answers];
-    newAnswers[currentQuestion] = selectedAnswer;
-    setAnswers(newAnswers);
-    setSelectedAnswer("");
-
-    if (currentQuestion < questions.length - 1) {
+  const goNext = () => {
+    if (currentQuestion < allQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswer(answers[currentQuestion + 1] || null);
     } else {
       completeTest();
     }
   };
 
-  const completeTest = async () => {
-    const finalAnswers = [...answers];
-    if (selectedAnswer) {
-      finalAnswers[currentQuestion] = selectedAnswer;
+  const goPrev = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+      setSelectedAnswer(answers[currentQuestion - 1] || null);
     }
-
-    // Calculate score
-    let correctCount = 0;
-    questions.forEach((question, index) => {
-      if (finalAnswers[index] === question.correct_answer) {
-        correctCount++;
-      }
-    });
-
-    const score = Math.round((correctCount / questions.length) * 100);
-    const timeTaken = Math.round((testTypes.find(t => t.id === testType)?.time * 60 - timeLeft) / 60);
-
-    try {
-      await Assessment.create({
-        user_email: user.email,
-        assessment_type: "verbal",
-        score: score,
-        max_score: 100,
-        time_taken: timeTaken,
-        feedback: `Completed ${testType} test with ${correctCount}/${questions.length} correct answers`,
-        areas_to_improve: score < 60 ? ["Improve vocabulary", "Practice reading comprehension"] : [],
-        completed_date: new Date().toISOString()
-      });
-
-      const assessments = await Assessment.filter({ 
-        user_email: user.email,
-        assessment_type: "verbal"
-      });
-      setPastResults(assessments);
-    } catch (error) {
-      console.error("Error saving results:", error);
-    }
-
-    setResults({
-      correct: correctCount,
-      total: questions.length,
-      score: score,
-      timeTaken: timeTaken,
-      answers: finalAnswers
-    });
-    setIsActive(false);
   };
 
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
+  const formatTime = (s) => `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`;
 
-  const restartTest = () => {
-    setIsActive(false);
-    setResults(null);
-    setQuestions([]);
-    setCurrentQuestion(0);
-    setAnswers([]);
-    setSelectedAnswer("");
-  };
-
-  if (results) {
+  if (phase === "results" && results) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="text-center">
-            <div className="text-6xl mb-4">
-              {results.score >= 80 ? "🌟" : results.score >= 60 ? "📚" : "📖"}
-            </div>
-            <h1 className="text-3xl font-bold text-gray-900">Test Completed!</h1>
+      <div className="min-h-screen bg-gray-50">
+        <SEO title="Résultats - Tests verbaux" noindex={true} />
+        <div className="bg-gradient-to-r from-green-900 to-emerald-800 text-white py-10">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <Trophy className="w-12 h-12 mx-auto mb-3 text-yellow-300" />
+            <h1 className="text-3xl font-bold mb-1">Résultats du test</h1>
+            <p className="text-green-200">Vocabulaire & Grammaire française</p>
+          </div>
+        </div>
+        <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
+          <div className="grid grid-cols-3 gap-4">
+            <Card><CardContent className="p-5 text-center">
+              <div className="text-3xl font-bold text-indigo-600">{results.score}%</div>
+              <p className="text-xs text-gray-600">Score</p>
+            </CardContent></Card>
+            <Card><CardContent className="p-5 text-center">
+              <div className="text-3xl font-bold text-green-600">{results.correct}</div>
+              <p className="text-xs text-gray-600">Bonnes réponses</p>
+            </CardContent></Card>
+            <Card><CardContent className="p-5 text-center">
+              <div className="text-3xl font-bold text-red-500">{results.total - results.correct}</div>
+              <p className="text-xs text-gray-600">Mauvaises réponses</p>
+            </CardContent></Card>
           </div>
 
-          <Card className="border-0 shadow-lg glass-effect">
-            <CardHeader>
-              <CardTitle className="text-center">Your Verbal Ability Results</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div>
-                  <div className="text-2xl font-bold text-blue-600">{results.score}%</div>
-                  <p className="text-gray-600">Score</p>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-green-600">{results.correct}</div>
-                  <p className="text-gray-600">Correct</p>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-red-600">{results.total - results.correct}</div>
-                  <p className="text-gray-600">Incorrect</p>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-purple-600">{results.timeTaken}m</div>
-                  <p className="text-gray-600">Time Taken</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="font-semibold mb-4">Question Review:</h3>
-                <div className="space-y-3 max-h-96 overflow-y-auto">
-                  {questions.map((question, index) => (
-                    <div key={index} className="p-4 border rounded-lg">
-                      <div className="flex justify-between items-start mb-2">
-                        <span className="font-medium">Q{index + 1}</span>
-                        <Badge className={
-                          results.answers[index] === question.correct_answer 
-                            ? "bg-green-100 text-green-800" 
-                            : "bg-red-100 text-red-800"
-                        }>
-                          {results.answers[index] === question.correct_answer ? "Correct" : "Incorrect"}
-                        </Badge>
-                      </div>
-                      {question.passage && (
-                        <div className="bg-gray-50 p-3 rounded mb-2">
-                          <p className="text-sm text-gray-700">{question.passage}</p>
-                        </div>
-                      )}
-                      <p className="text-sm text-gray-700 mb-2">{question.question}</p>
-                      <div className="text-xs text-gray-600">
-                        <p>Your answer: <span className="font-medium">{results.answers[index] || "Not answered"}</span></p>
-                        <p>Correct answer: <span className="font-medium text-green-600">{question.correct_answer}</span></p>
-                        <p className="mt-1 text-blue-600">{question.explanation}</p>
-                      </div>
+          <Card>
+            <CardHeader><CardTitle>Correction détaillée</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              {allQuestions.map((q, i) => {
+                const isCorrect = results.answers[i] === q.correct_answer;
+                return (
+                  <div key={i} className={`p-4 rounded-lg border ${isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="font-medium text-sm">Q{i + 1}. {q.question}</span>
+                      <Badge className={isCorrect ? "bg-green-600 text-white" : "bg-red-600 text-white"}>
+                        {isCorrect ? "Correct" : "Incorrect"}
+                      </Badge>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex justify-center gap-4">
-                <Button onClick={restartTest} className="bg-blue-600 hover:bg-blue-700">
-                  <RotateCcw className="w-4 h-4 mr-2" />
-                  Take Another Test
-                </Button>
-              </div>
+                    <p className="text-xs text-gray-600 mb-1">
+                      Votre réponse : <strong>{results.answers[i] ? `${results.answers[i]}. ${q.options[results.answers[i]]}` : "Pas de réponse"}</strong>
+                    </p>
+                    {!isCorrect && (
+                      <p className="text-xs text-green-700">
+                        Bonne réponse : <strong>{q.correct_answer}. {q.options[q.correct_answer]}</strong>
+                      </p>
+                    )}
+                    <p className="text-xs text-blue-700 mt-2">{q.explanation}</p>
+                  </div>
+                );
+              })}
             </CardContent>
           </Card>
+
+          <div className="text-center">
+            <Button onClick={startTest} className="bg-indigo-600 hover:bg-indigo-700">
+              <RotateCcw className="w-4 h-4 mr-2" /> Refaire le test
+            </Button>
+          </div>
         </div>
+        <ChatBot />
       </div>
     );
   }
 
-  if (isActive && questions.length > 0) {
-    const question = questions[currentQuestion];
+  if (phase === "test") {
+    const q = allQuestions[currentQuestion];
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
-        <div className="max-w-4xl mx-auto space-y-6">
-          {/* Header */}
-          <div className="flex justify-between items-center">
+      <div className="min-h-screen bg-gray-50">
+        <SEO title="Test verbal en cours" noindex={true} />
+        <div className="bg-gradient-to-r from-green-900 to-emerald-800 text-white py-6">
+          <div className="max-w-4xl mx-auto px-4 flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                {testTypes.find(t => t.id === testType)?.name} Test
-              </h1>
-              <p className="text-gray-600">Question {currentQuestion + 1} of {questions.length}</p>
+              <h1 className="text-xl font-bold">Vocabulaire & Grammaire</h1>
+              <p className="text-green-200 text-sm">Question {currentQuestion + 1} sur {allQuestions.length}</p>
             </div>
-            <div className="flex items-center gap-4">
-              <div className={`flex items-center gap-2 px-4 py-2 rounded-lg ${timeLeft < 300 ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
-                <Clock className="w-4 h-4" />
-                {formatTime(timeLeft)}
-              </div>
-              <Button variant="outline" onClick={completeTest}>
-                Submit Test
-              </Button>
+            <div className={`flex items-center gap-2 px-4 py-2 rounded-lg ${timeLeft < 120 ? 'bg-red-500/30' : 'bg-white/10'}`}>
+              <Clock className="w-4 h-4" />
+              <span className="font-mono font-bold">{formatTime(timeLeft)}</span>
             </div>
           </div>
+        </div>
+        <div className="max-w-4xl mx-auto px-4 py-6">
+          <Progress value={((currentQuestion + 1) / allQuestions.length) * 100} className="h-2 mb-6" />
 
-          {/* Progress */}
-          <Progress value={((currentQuestion + 1) / questions.length) * 100} className="h-2" />
-
-          {/* Question */}
-          <Card className="border-0 shadow-lg glass-effect">
-            <CardContent className="p-8">
-              {question.passage && (
-                <div className="mb-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
-                  <h4 className="font-semibold mb-2">Passage:</h4>
-                  <p className="text-gray-700 leading-relaxed">{question.passage}</p>
-                </div>
-              )}
-              
-              <h3 className="text-lg font-medium text-gray-900 mb-6">
-                {question.question}
-              </h3>
-              
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-lg font-medium text-gray-900 mb-6">{q.question}</h3>
               <div className="space-y-3">
-                {Object.entries(question.options).map(([key, value]) => (
+                {Object.entries(q.options).map(([key, value]) => (
                   <div
                     key={key}
+                    onClick={() => selectOption(key)}
                     className={`p-4 border rounded-lg cursor-pointer transition-all ${
-                      selectedAnswer === key 
-                        ? 'border-blue-500 bg-blue-50' 
+                      selectedAnswer === key
+                        ? 'border-indigo-500 bg-indigo-50'
                         : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                     }`}
-                    onClick={() => setSelectedAnswer(key)}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                        selectedAnswer === key 
-                          ? 'border-blue-500 bg-blue-500' 
-                          : 'border-gray-300'
+                      <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center text-sm font-bold ${
+                        selectedAnswer === key
+                          ? 'border-indigo-500 bg-indigo-500 text-white'
+                          : 'border-gray-300 text-gray-500'
                       }`}>
-                        {selectedAnswer === key && <CheckCircle className="w-4 h-4 text-white" />}
+                        {key}
                       </div>
-                      <span className="font-medium">{key}.</span>
-                      <span>{value}</span>
+                      <span className="text-gray-800">{value}</span>
                     </div>
                   </div>
                 ))}
@@ -395,148 +258,64 @@ export default function VerbalTests() {
             </CardContent>
           </Card>
 
-          {/* Controls */}
-          <div className="flex justify-between">
-            <Button
-              variant="outline"
-              onClick={() => setCurrentQuestion(Math.max(0, currentQuestion - 1))}
-              disabled={currentQuestion === 0}
-            >
-              Previous
+          <div className="flex justify-between mt-6">
+            <Button variant="outline" onClick={goPrev} disabled={currentQuestion === 0}>
+              <ArrowLeft className="w-4 h-4 mr-1" /> Précédent
             </Button>
-            <Button
-              onClick={nextQuestion}
-              disabled={!selectedAnswer}
-              className="bg-blue-600 hover:bg-blue-700"
-            >
-              {currentQuestion === questions.length - 1 ? "Submit Test" : "Next Question"}
+            <Button onClick={goNext} disabled={!selectedAnswer} className="bg-indigo-600 hover:bg-indigo-700">
+              {currentQuestion === allQuestions.length - 1 ? "Terminer" : "Suivant"} <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
           </div>
         </div>
+        <ChatBot />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
-      <div className="max-w-6xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-gradient">📝 Verbal Ability Tests</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Enhance your English language skills with comprehensive verbal ability assessments
-          </p>
+    <div className="min-h-screen bg-gray-50">
+      <SEO
+        title="Tests verbaux - FrancePrepAcademy"
+        description="Testez vos compétences en vocabulaire et grammaire française."
+        canonical="/verbaltests"
+        noindex={true}
+      />
+      <div className="bg-gradient-to-r from-green-900 to-emerald-800 text-white py-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl font-bold mb-1">Tests verbaux</h1>
+          <p className="text-green-200">Vocabulaire, grammaire et expressions françaises</p>
         </div>
+      </div>
 
-        {/* Test Types */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {testTypes.map((type) => (
-            <Card key={type.id} className="border-0 shadow-lg hover-lift glass-effect">
-              <CardContent className="p-8 text-center space-y-4">
-                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto">
-                  <type.icon className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{type.name}</h3>
-                  <p className="text-gray-600 mb-4">{type.desc}</p>
-                  <Badge className={type.color}>{type.time} minutes</Badge>
-                </div>
-                <Button
-                  onClick={() => startTest(type.id)}
-                  disabled={isGenerating}
-                  className="w-full bg-green-600 hover:bg-green-700 h-12"
-                >
-                  {isGenerating ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Generating Test...
-                    </>
-                  ) : (
-                    <>
-                      <Play className="w-5 h-5 mr-2" />
-                      Start Test
-                    </>
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Study Tips */}
-        <Card className="border-0 shadow-lg glass-effect">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Volume2 className="w-6 h-6 text-blue-500" />
-              Verbal Ability Tips
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-3">📚 Vocabulary Building</h4>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Read newspapers daily</li>
-                  <li>• Learn word roots and etymology</li>
-                  <li>• Use flashcards for new words</li>
-                  <li>• Practice synonyms and antonyms</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-3">📖 Reading Comprehension</h4>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Read passages carefully</li>
-                  <li>• Identify main ideas first</li>
-                  <li>• Look for context clues</li>
-                  <li>• Practice different passage types</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-3">✏️ Grammar & Usage</h4>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Review basic grammar rules</li>
-                  <li>• Practice error detection</li>
-                  <li>• Learn common usage patterns</li>
-                  <li>• Focus on sentence structure</li>
-                </ul>
-              </div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        <Card>
+          <CardContent className="p-8 text-center space-y-4">
+            <BookOpen className="w-14 h-14 text-green-600 mx-auto" />
+            <h2 className="text-2xl font-bold text-gray-900">Vocabulaire & Grammaire française</h2>
+            <p className="text-gray-600 max-w-md mx-auto">
+              10 questions sur les synonymes, antonymes, expressions idiomatiques, orthographe et grammaire.
+            </p>
+            <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+              <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> 10 minutes</span>
+              <span className="flex items-center gap-1"><CheckCircle className="w-4 h-4" /> 10 questions</span>
             </div>
+            <Button onClick={startTest} size="lg" className="bg-green-600 hover:bg-green-700 mt-4">
+              <Play className="w-5 h-5 mr-2" /> Commencer le test
+            </Button>
           </CardContent>
         </Card>
 
-        {/* Past Results */}
-        {pastResults.length > 0 && (
-          <Card className="border-0 shadow-lg glass-effect">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Trophy className="w-6 h-6 text-yellow-500" />
-                Your Verbal Test History
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {pastResults.slice(0, 6).map((result, index) => (
-                  <div key={index} className="p-4 border rounded-lg">
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="font-medium">Verbal Test</span>
-                      <Badge className={
-                        result.score >= 80 ? "bg-green-100 text-green-800" :
-                        result.score >= 60 ? "bg-yellow-100 text-yellow-800" :
-                        "bg-red-100 text-red-800"
-                      }>
-                        {result.score}%
-                      </Badge>
-                    </div>
-                    <p className="text-sm text-gray-600">
-                      {new Date(result.completed_date).toLocaleDateString()} • {result.time_taken}min
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        )}
+        <Card>
+          <CardHeader><CardTitle>Conseils pour progresser</CardTitle></CardHeader>
+          <CardContent className="text-sm text-gray-700 space-y-2">
+            <p>- Lisez régulièrement des articles et livres en français pour enrichir votre vocabulaire.</p>
+            <p>- Apprenez les racines latines et grecques des mots pour mieux comprendre leur sens.</p>
+            <p>- Pratiquez les expressions idiomatiques dans leur contexte pour les mémoriser.</p>
+            <p>- Révisez les règles d'accord du participe passé et du subjonctif.</p>
+          </CardContent>
+        </Card>
       </div>
+      <ChatBot />
     </div>
   );
 }

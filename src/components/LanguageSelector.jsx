@@ -41,26 +41,18 @@ export default function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // localStorage is more reliable than cookie parsing (Google Translate can interfere)
-    const savedLang = localStorage.getItem('selectedLanguage');
-    if (savedLang && languages.find(l => l.code === savedLang)) {
-      setCurrentLang(savedLang);
-    } else {
-      // Fallback: read from googtrans cookie
-      const getCookie = (name) => {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-        return null;
-      };
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    };
 
-      const googtrans = getCookie('googtrans');
-      if (googtrans) {
-        const lang = googtrans.split('/').pop();
-        if (lang && lang !== 'fr' && languages.find(l => l.code === lang)) {
-          setCurrentLang(lang);
-          localStorage.setItem('selectedLanguage', lang);
-        }
+    const googtrans = getCookie('googtrans');
+    if (googtrans) {
+      const lang = googtrans.split('/').pop();
+      if (lang && lang !== 'fr') {
+        setCurrentLang(lang);
       }
     }
 
@@ -81,7 +73,6 @@ export default function LanguageSelector() {
 
   const changeLanguage = (langCode) => {
     setCurrentLang(langCode);
-    localStorage.setItem('selectedLanguage', langCode);
     setIsOpen(false);
 
     const domains = ['', '.franceprepacademy.fr', window.location.hostname];
