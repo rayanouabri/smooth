@@ -208,16 +208,25 @@ export default function ConciergerieVIP() {
               <p className="text-xl mb-8 text-amber-50">
                 Contactez-nous pour discuter de vos besoins spécifiques
               </p>
-              <Button
-                size="lg"
-                className="bg-white text-amber-600 hover:bg-gray-100 font-bold px-8 py-6 text-lg shadow-xl"
-                onClick={() => {
-                  // TODO: Ajouter logique de contact/commande
-                  alert("Contactez-nous à contact@franceprepacademy.fr pour plus d'informations");
-                }}
-              >
-                Contacter notre équipe
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:contact@franceprepacademy.fr">
+                  <Button
+                    size="lg"
+                    className="bg-white text-amber-600 hover:bg-gray-100 font-bold px-8 py-6 text-lg shadow-xl"
+                  >
+                    Contacter par email
+                  </Button>
+                </a>
+                <Link to={createPageUrl("Contact")}>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-2 border-white text-white hover:bg-white/20 font-bold px-8 py-6 text-lg"
+                  >
+                    Page de contact
+                  </Button>
+                </Link>
+              </div>
             </CardContent>
           </Card>
         </div>

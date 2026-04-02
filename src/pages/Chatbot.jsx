@@ -1,47 +1,67 @@
 import React, { useState, useRef, useEffect } from "react";
-import { InvokeLLM } from "@/api/integrations";
-import { User } from "@/api/entities";
+import { useUserProfile } from "@/hooks/useUserProfile";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Send, Bot, User as UserIcon, Sparkles, BookOpen, Target, Brain } from "lucide-react";
+import { Send, Bot, User as UserIcon, Sparkles, BookOpen, Target, Brain, AlertCircle } from "lucide-react";
+
+// Simple local AI responses for common questions - no external API needed
+const getLocalResponse = (message, userName) => {
+  const lower = message.toLowerCase();
+
+  if (lower.includes('bonjour') || lower.includes('salut') || lower.includes('hello') || lower.includes('hi')) {
+    return `Bonjour${userName ? ` ${userName}` : ''} ! Je suis votre assistant FrancePrepAcademy. Comment puis-je vous aider aujourd'hui ? Je peux vous renseigner sur nos cours, l'intégration en France, les démarches administratives, et bien plus.`;
+  }
+  if (lower.includes('cours') || lower.includes('formation') || lower.includes('apprendre')) {
+    return "Nous proposons plus de 30 cours couvrant 11 catégories essentielles : logement, budget & finances, santé, culture française, insertion professionnelle, administration, transport, et plus encore. Consultez notre page Cours pour découvrir tout le catalogue. La majorité de nos cours sont gratuits !";
+  }
+  if (lower.includes('logement') || lower.includes('appartement') || lower.includes('loyer')) {
+    return "Pour le logement en France, nous avons des guides complets sur : la garantie Visale, la recherche d'appartement, les droits du locataire, et l'aide au logement (APL). Consultez notre catégorie 'Logement' dans les cours pour des guides détaillés.";
+  }
+  if (lower.includes('visa') || lower.includes('titre de séjour') || lower.includes('prefecture') || lower.includes('préfecture')) {
+    return "Les démarches administratives peuvent être complexes. Nos cours couvrent les rendez-vous en préfecture, le renouvellement du titre de séjour, et toutes les formalités. Pour un accompagnement personnalisé, découvrez notre Conciergerie VIP.";
+  }
+  if (lower.includes('caf') || lower.includes('aide') || lower.includes('allocation') || lower.includes('bourse')) {
+    return "La CAF propose plusieurs aides : APL (aide au logement), prime d'activité, et plus. Nos cours 'Budget & Finances' vous guident étape par étape dans vos demandes d'aides.";
+  }
+  if (lower.includes('santé') || lower.includes('sante') || lower.includes('médecin') || lower.includes('cpam') || lower.includes('carte vitale')) {
+    return "Pour la santé en France : inscrivez-vous à la Sécurité Sociale (CPAM) pour obtenir votre carte Vitale. Nos cours 'Santé' vous expliquent tout le processus, du choix du médecin traitant aux remboursements.";
+  }
+  if (lower.includes('travail') || lower.includes('emploi') || lower.includes('job') || lower.includes('cv') || lower.includes('entretien')) {
+    return "Pour trouver un emploi en France, nos cours couvrent : la rédaction de CV à la française, la préparation aux entretiens, les droits des travailleurs, et les plateformes de recherche d'emploi. Consultez nos catégories 'Insertion professionnelle' et 'Travail'.";
+  }
+  if (lower.includes('premium') || lower.includes('prix') || lower.includes('tarif') || lower.includes('abonnement')) {
+    return "FrancePrepAcademy propose 70% de contenu gratuit ! Nos plans Premium débloquent des guides avancés et un accès prioritaire. Consultez notre page Tarifs pour les détails.";
+  }
+  if (lower.includes('merci') || lower.includes('super') || lower.includes('génial') || lower.includes('parfait')) {
+    return `De rien${userName ? ` ${userName}` : ''} ! N'hésitez pas si vous avez d'autres questions. Bonne continuation dans votre parcours en France !`;
+  }
+
+  return "Je suis votre assistant FrancePrepAcademy. Je peux vous aider avec des questions sur nos cours, le logement, les démarches administratives, la santé, l'emploi, et l'intégration en France. Posez-moi une question précise et je ferai de mon mieux pour vous aider !";
+};
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hello! I'm your AI education assistant. I can help you with study notes, career guidance, interview preparation, and academic questions. How can I assist you today? 🎓"
+      content: "Bonjour ! Je suis l'assistant FrancePrepAcademy. Je peux vous aider avec vos questions sur les cours, l'intégration en France, les démarches administratives, et bien plus. Comment puis-je vous aider ?"
     }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState(null);
+  const { user } = useUserProfile();
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    loadUser();
-    scrollToBottom();
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const loadUser = async () => {
-    try {
-      const userData = await User.me();
-      setUser(userData);
-    } catch (error) {
-      console.log("User not authenticated");
-    }
-  };
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const quickPrompts = [
-    { text: "Help me with study notes", icon: BookOpen, color: "bg-blue-100 text-blue-800" },
-    { text: "Career guidance", icon: Target, color: "bg-green-100 text-green-800" },
-    { text: "Interview preparation", icon: Brain, color: "bg-purple-100 text-purple-800" },
-    { text: "Academic help", icon: Sparkles, color: "bg-orange-100 text-orange-800" }
+    { text: "Aide sur les cours disponibles", icon: BookOpen, color: "bg-blue-100 text-blue-800" },
+    { text: "Comment trouver un logement ?", icon: Target, color: "bg-green-100 text-green-800" },
+    { text: "Démarches administratives", icon: Brain, color: "bg-purple-100 text-purple-800" },
+    { text: "Aide pour l'emploi", icon: Sparkles, color: "bg-orange-100 text-orange-800" }
   ];
 
   const handleSend = async (message = input) => {
@@ -52,51 +72,27 @@ export default function Chatbot() {
     setInput("");
     setIsLoading(true);
 
-    try {
-      const context = user ? `User profile: ${user.full_name}, studying ${user.stream} at ${user.institute}, interests: ${user.interests?.join(', ')}, career goals: ${user.career_goals}` : "";
-      
-      const response = await InvokeLLM({
-        prompt: `You are an AI education assistant for Indian students, especially those in Tamil Nadu. 
-        Context: ${context}
-        
-        User question: ${message}
-        
-        Provide helpful, personalized responses focusing on:
-        - Study techniques and notes
-        - Career guidance for Indian job market
-        - Interview preparation tips
-        - Academic support
-        - Skill development recommendations
-        
-        Be encouraging, specific, and actionable. Use emojis appropriately.`,
-        add_context_from_internet: true
-      });
+    // Simulate a brief delay for natural feel
+    await new Promise(resolve => setTimeout(resolve, 600));
 
-      const assistantMessage = { role: "assistant", content: response };
-      setMessages(prev => [...prev, assistantMessage]);
-    } catch (error) {
-      const errorMessage = { 
-        role: "assistant", 
-        content: "I apologize, but I'm having trouble processing your request right now. Please try again in a moment. 🙏" 
-      };
-      setMessages(prev => [...prev, errorMessage]);
-    }
-    
+    const response = getLocalResponse(message, user?.full_name || user?.email?.split('@')[0]);
+    const assistantMessage = { role: "assistant", content: response };
+    setMessages(prev => [...prev, assistantMessage]);
     setIsLoading(false);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
       <div className="max-w-4xl mx-auto">
-        <Card className="h-[80vh] border-0 shadow-2xl glass-effect">
-          <CardHeader className="border-b border-blue-100 gradient-bg text-white">
+        <Card className="h-[80vh] border-0 shadow-2xl">
+          <CardHeader className="border-b border-blue-100 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white rounded-t-lg">
             <CardTitle className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                 <Bot className="w-6 h-6" />
               </div>
               <div>
-                <h2 className="text-xl font-bold">AI Education Assistant</h2>
-                <p className="text-blue-100 text-sm font-normal">Your personalized learning companion</p>
+                <h2 className="text-xl font-bold">Assistant FrancePrepAcademy</h2>
+                <p className="text-blue-100 text-sm font-normal">Votre guide pour l'intégration en France</p>
               </div>
             </CardTitle>
           </CardHeader>
@@ -117,8 +113,8 @@ export default function Chatbot() {
                       )}
                     </div>
                     <div className={`p-4 rounded-2xl ${
-                      message.role === 'user' 
-                        ? 'bg-blue-600 text-white' 
+                      message.role === 'user'
+                        ? 'bg-blue-600 text-white'
                         : 'bg-white shadow-md border border-gray-100'
                     }`}>
                       <p className="whitespace-pre-wrap">{message.content}</p>
@@ -126,7 +122,7 @@ export default function Chatbot() {
                   </div>
                 </div>
               ))}
-              
+
               {isLoading && (
                 <div className="flex gap-3">
                   <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
@@ -147,7 +143,7 @@ export default function Chatbot() {
             {/* Quick Prompts */}
             {messages.length === 1 && (
               <div className="p-6 pt-0">
-                <p className="text-gray-600 text-sm mb-4">Try these quick prompts:</p>
+                <p className="text-gray-600 text-sm mb-4">Suggestions rapides :</p>
                 <div className="grid grid-cols-2 gap-3">
                   {quickPrompts.map((prompt, index) => (
                     <Button
@@ -170,7 +166,7 @@ export default function Chatbot() {
                 <Input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask me anything about your studies, career, or academics..."
+                  placeholder="Posez votre question sur l'intégration en France..."
                   className="flex-1 h-12 border-2 border-gray-200 rounded-xl focus:border-blue-500"
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                 />
@@ -183,7 +179,7 @@ export default function Chatbot() {
                 </Button>
               </div>
               <p className="text-xs text-gray-500 mt-2 text-center">
-                AI responses are generated and may contain errors. Always verify important information.
+                Les réponses sont générées localement. Pour des questions complexes, consultez nos cours détaillés.
               </p>
             </div>
           </CardContent>

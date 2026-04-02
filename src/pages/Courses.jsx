@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { Course } from "@/api/entities";
 import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -12,9 +12,9 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import { Search, SlidersHorizontal, X, GraduationCap, BookOpen, TrendingUp, ChevronRight } from "lucide-react";
+import { Search, Filter, TrendingUp, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import CourseCard from "../components/CourseCard";
 import CourseCardSkeleton from "../components/CourseCardSkeleton";
 import ChatBot from "../components/ChatBot";
@@ -23,15 +23,20 @@ export default function Courses() {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [levelFilter, setLevelFilter] = useState("all");
-  const [showFilters, setShowFilters] = useState(false);
   const { t } = useLanguage();
 
+  // Fetch courses only (no N+1 lesson queries - major perf improvement)
   const { data: courses = [], isLoading, error: coursesError } = useQuery({
     queryKey: ['courses'],
     queryFn: async () => {
       try {
         const result = await Course.filter({ is_published: true }, '-created_date');
-        if (!result || result.length === 0) return [];
+
+        if (!result || result.length === 0) {
+          return [];
+        }
+
+        // Build search index from course metadata only (NOT lesson content)
         return result.map(course => ({
           ...course,
           searchable_text: [
@@ -74,70 +79,79 @@ export default function Courses() {
     avance: t('courses.levels.avance')
   };
 
-  const semanticMatches = {
-    'logement': ['visale', 'visa', 'caution', 'garantie', 'apartement', 'appartement', 'location', 'loyer', 'bail', 'logement', 'hébergement', 'colocation'],
-    'loger': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail'],
-    'habitation': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail', 'appartement'],
-    'santé': ['cpam', 'sécu', 'sécurité sociale', 'mutuelle', 'carte vitale', 'médecin', 'remboursement'],
-    'sante': ['cpam', 'sécu', 'sécurité sociale', 'mutuelle', 'carte vitale', 'médecin', 'remboursement'],
-    'argent': ['caf', 'aide', 'allocation', 'bourse', 'budget', 'banque', 'compte', 'prélèvement'],
-    'travail': ['emploi', 'job', 'cdi', 'cdd', 'alternance', 'stage', 'cv', 'entretien', 'salaire'],
-    'université': ['campus france', 'études', 'inscription', 'université', 'formation', 'diplôme'],
-    'universite': ['campus france', 'études', 'inscription', 'université', 'formation', 'diplôme'],
-    'études': ['campus france', 'université', 'formation', 'diplôme', 'inscription'],
-    'etudes': ['campus france', 'université', 'formation', 'diplôme', 'inscription']
-  };
+  const filteredCourses = courses.filter(course => {
+    let matchesSearch = true;
+    if (searchTerm.trim()) {
+      const searchLower = searchTerm.toLowerCase().trim();
+      const semanticMatches = {
+        'logement': ['visale', 'visa', 'caution', 'garantie', 'apartement', 'appartement', 'location', 'loyer', 'bail', 'logement', 'hébergement', 'colocation'],
+        'loger': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail'],
+        'habitation': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail', 'appartement'],
+        'maison': ['logement', 'visale', 'caution', 'garantie', 'location', 'loyer', 'bail'],
+        'santé': ['cpam', 'sécu', 'sécurité sociale', 'mutuelle', 'carte vitale', 'médecin', 'remboursement'],
+        'sante': ['cpam', 'sécu', 'sécurité sociale', 'mutuelle', 'carte vitale', 'médecin', 'remboursement'],
+        'argent': ['caf', 'aide', 'allocation', 'bourse', 'budget', 'banque', 'compte', 'prélèvement'],
+        'travail': ['emploi', 'job', 'cdi', 'cdd', 'alternance', 'stage', 'cv', 'entretien', 'salaire'],
+        'université': ['campus france', 'études', 'inscription', 'université', 'formation', 'diplôme'],
+        'universite': ['campus france', 'études', 'inscription', 'université', 'formation', 'diplôme'],
+        'études': ['campus france', 'université', 'formation', 'diplôme', 'inscription'],
+        'etudes': ['campus france', 'université', 'formation', 'diplôme', 'inscription']
+      };
 
-  const filteredCourses = useMemo(() => {
-    return courses.filter(course => {
-      let matchesSearch = true;
-      if (searchTerm.trim()) {
-        const searchLower = searchTerm.toLowerCase().trim();
-        const searchableText = course.searchable_text || '';
-        const directMatch = searchableText.includes(searchLower);
-        let semanticMatch = false;
-        for (const [keyword, relatedTerms] of Object.entries(semanticMatches)) {
-          if (searchLower.includes(keyword)) {
-            semanticMatch = relatedTerms.some(term => searchableText.includes(term));
-            if (semanticMatch) break;
-          }
+      const searchableText = course.searchable_text || [
+        course.title,
+        course.short_description,
+        course.description,
+        Array.isArray(course.objectives) ? course.objectives.join(' ') : '',
+        Array.isArray(course.prerequisites) ? course.prerequisites.join(' ') : ''
+      ].filter(Boolean).join(' ').toLowerCase();
+
+      const directMatch = searchableText.includes(searchLower);
+
+      let semanticMatch = false;
+      for (const [keyword, relatedTerms] of Object.entries(semanticMatches)) {
+        if (searchLower.includes(keyword)) {
+          semanticMatch = relatedTerms.some(term => searchableText.includes(term));
+          if (semanticMatch) break;
         }
-        matchesSearch = directMatch || semanticMatch;
       }
-      const normalizedCategory = (course.category || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-      const matchesCategory = categoryFilter === "all" || normalizedCategory === categoryFilter;
-      const matchesLevel = levelFilter === "all" || course.level === levelFilter;
-      return matchesSearch && matchesCategory && matchesLevel;
-    });
-  }, [courses, searchTerm, categoryFilter, levelFilter]);
+
+      matchesSearch = directMatch || semanticMatch;
+    }
+
+    const normalizedCategory = (course.category || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const matchesCategory = categoryFilter === "all" || normalizedCategory === categoryFilter;
+    const matchesLevel = levelFilter === "all" || course.level === levelFilter;
+
+    return matchesSearch && matchesCategory && matchesLevel;
+  });
 
   const freeCourses = filteredCourses.filter(c => !c.is_premium);
   const premiumCourses = filteredCourses.filter(c => c.is_premium);
-  const hasActiveFilters = categoryFilter !== "all" || levelFilter !== "all" || searchTerm;
 
   const categoryOrder = [
-    'logement', 'budget_finances', 'sante', 'culture_codes_sociaux',
-    'insertion_professionnelle', 'integration_administrative', 'administration',
-    'transport', 'travail', 'preparation_academique', 'formations_professionnelles'
+    'logement',
+    'budget_finances',
+    'sante',
+    'culture_codes_sociaux',
+    'insertion_professionnelle',
+    'integration_administrative',
+    'administration',
+    'transport',
+    'travail',
+    'preparation_academique',
+    'formations_professionnelles'
   ];
 
-  const coursesByCategory = useMemo(() => {
-    return categoryOrder.reduce((acc, category) => {
-      acc[category] = filteredCourses.filter(c =>
-        (c.category || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') === category
-      );
-      return acc;
-    }, {});
-  }, [filteredCourses]);
-
-  const resetFilters = () => {
-    setSearchTerm("");
-    setCategoryFilter("all");
-    setLevelFilter("all");
-  };
+  const coursesByCategory = categoryOrder.reduce((acc, category) => {
+    acc[category] = filteredCourses.filter(c =>
+      (c.category || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') === category
+    );
+    return acc;
+  }, {});
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <SEO
         title="Cours en ligne pour étudiants internationaux"
         description="Découvrez tous nos cours en ligne pour réussir votre intégration en France : français, culture française, administration, emploi, logement et bien plus encore."
@@ -150,254 +164,235 @@ export default function Courses() {
           "url": "https://franceprepacademy.fr/courses"
         }}
       />
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 text-white py-20 lg:py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200')] opacity-10 bg-cover bg-center"></div>
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-72 h-72 bg-cyan-400/15 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-pink-400/15 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-400/10 rounded-full blur-3xl"></div>
+        </div>
 
-      {/* Hero */}
-      <div className="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyek0zNiAyNHYySDI0di0yaDEyeiIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-3xl"
+            transition={{ duration: 0.6 }}
+            className="text-center"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight tracking-tight">
+            <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-pink-400 text-white border-0 text-sm px-5 py-1.5 shadow-lg">
+              <Sparkles className="w-4 h-4 mr-2 inline" />
+              {isLoading ? (
+                <span className="flex items-center gap-2">
+                  <div className="inline-block animate-spin rounded-full h-3.5 w-3.5 border-2 border-white border-t-transparent"></div>
+                  Chargement...
+                </span>
+              ) : (
+                <>{courses.length}+ {t('courses.availableCourses')} &bull; 70% {t('courses.freeCourses')}</>
+              )}
+            </Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 drop-shadow-lg">
               {t('courses.title')}
             </h1>
-            <p className="text-base sm:text-lg text-slate-300 mb-8 leading-relaxed max-w-2xl">
+            <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
               {t('courses.subtitle')}
             </p>
-
-            {!isLoading && (
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                    <BookOpen className="w-5 h-5 text-indigo-300" />
-                  </div>
-                  <div>
-                    <div className="text-xl font-bold text-white">{courses.length}</div>
-                    <div className="text-xs text-slate-400">Cours</div>
-                  </div>
-                </div>
-                <div className="w-px h-10 bg-white/10"></div>
-                <div className="flex items-center gap-2.5">
-                  <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                    <GraduationCap className="w-5 h-5 text-emerald-400" />
-                  </div>
-                  <div>
-                    <div className="text-xl font-bold text-white">{freeCourses.length}</div>
-                    <div className="text-xs text-slate-400">Gratuits</div>
-                  </div>
-                </div>
-                <div className="w-px h-10 bg-white/10"></div>
-                <div className="flex items-center gap-2.5">
-                  <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 text-amber-400" />
-                  </div>
-                  <div>
-                    <div className="text-xl font-bold text-white">{premiumCourses.length}</div>
-                    <div className="text-xs text-slate-400">Premium</div>
-                  </div>
-                </div>
-              </div>
-            )}
           </motion.div>
         </div>
       </div>
 
-      {/* Search & Filters */}
-      <div className="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
-          <div className="flex items-center gap-3">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+      {/* Filters - Mobile Optimized */}
+      <div className="bg-white/80 backdrop-blur-lg border-b-2 border-indigo-100 sticky top-16 z-40 shadow-xl">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
+            <div className="relative col-span-1 sm:col-span-3 lg:col-span-1">
+              <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-indigo-500 w-4 h-4 sm:w-5 sm:h-5" />
               <Input
                 placeholder={t('courses.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 h-10 border-gray-200 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-lg bg-gray-50 text-sm"
+                className="pl-9 sm:pl-12 h-10 sm:h-12 lg:h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-xl sm:rounded-2xl shadow-sm bg-white text-sm sm:text-base lg:text-lg"
               />
-              {searchTerm && (
-                <button
-                  onClick={() => setSearchTerm("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
             </div>
 
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowFilters(!showFilters)}
-              className={`h-10 px-3 gap-2 rounded-lg border-gray-200 ${showFilters ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : ''}`}
-            >
-              <SlidersHorizontal className="w-4 h-4" />
-              <span className="hidden sm:inline">Filtres</span>
-              {hasActiveFilters && (
-                <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
-              )}
-            </Button>
+            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+              <SelectTrigger className="h-10 sm:h-12 lg:h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-xl sm:rounded-2xl shadow-sm bg-white text-sm sm:text-base">
+                <Filter className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-indigo-500" />
+                <SelectValue placeholder="Catégorie" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(categoryLabels).map(([value, label]) => (
+                  <SelectItem key={value} value={value} className="text-sm sm:text-base">
+                    {label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
 
-            {hasActiveFilters && (
-              <Button variant="ghost" size="sm" onClick={resetFilters} className="h-10 px-3 text-gray-500 hover:text-gray-700">
-                <X className="w-4 h-4 mr-1" /> Effacer
+            <Select value={levelFilter} onValueChange={setLevelFilter}>
+              <SelectTrigger className="h-10 sm:h-12 lg:h-14 border-2 border-indigo-200 focus:border-indigo-500 rounded-xl sm:rounded-2xl shadow-sm bg-white text-sm sm:text-base">
+                <SelectValue placeholder="Niveau" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(levelLabels).map(([value, label]) => (
+                  <SelectItem key={value} value={value} className="text-sm sm:text-base">
+                    {label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="mt-3 sm:mt-4 lg:mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 lg:gap-4">
+            {isLoading ? (
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <div className="h-6 sm:h-7 lg:h-8 w-24 sm:w-32 bg-gray-200 animate-pulse rounded-lg"></div>
+                  <div className="h-4 w-32 sm:w-40 bg-gray-200 animate-pulse rounded"></div>
+                </div>
+                <div className="h-6 sm:h-7 w-28 sm:w-32 bg-gray-200 animate-pulse rounded-full"></div>
+                <div className="h-6 sm:h-7 w-32 sm:w-36 bg-gray-200 animate-pulse rounded-full"></div>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                <p className="text-gray-700 font-bold text-sm sm:text-base lg:text-lg">
+                  <span className="text-xl sm:text-2xl lg:text-3xl text-indigo-600">{filteredCourses.length}</span> {t('courses.coursesFound')}
+                </p>
+                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm">
+                  {freeCourses.length} {t('courses.freeCourses')}
+                </Badge>
+                <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200 px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm">
+                  {premiumCourses.length} {t('courses.premiumCourses')}
+                </Badge>
+              </div>
+            )}
+            {(categoryFilter !== "all" || levelFilter !== "all" || searchTerm) && (
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-indigo-300 text-indigo-600 hover:bg-indigo-50 rounded-full text-xs sm:text-sm"
+                onClick={() => {
+                  setSearchTerm("");
+                  setCategoryFilter("all");
+                  setLevelFilter("all");
+                }}
+              >
+                Réinitialiser les filtres
               </Button>
             )}
           </div>
-
-          <AnimatePresence>
-            {showFilters && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="overflow-hidden"
-              >
-                <div className="grid grid-cols-2 gap-3 pt-3">
-                  <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                    <SelectTrigger className="h-10 border-gray-200 rounded-lg bg-gray-50 text-sm">
-                      <SelectValue placeholder="Catégorie" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Object.entries(categoryLabels).map(([value, label]) => (
-                        <SelectItem key={value} value={value}>{label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
-                  <Select value={levelFilter} onValueChange={setLevelFilter}>
-                    <SelectTrigger className="h-10 border-gray-200 rounded-lg bg-gray-50 text-sm">
-                      <SelectValue placeholder="Niveau" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Object.entries(levelLabels).map(([value, label]) => (
-                        <SelectItem key={value} value={value}>{label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Results count */}
-          {!isLoading && (
-            <div className="flex items-center gap-2 pt-2">
-              <span className="text-xs text-gray-500">
-                <span className="font-semibold text-gray-900">{filteredCourses.length}</span> cours trouvés
-              </span>
-              {hasActiveFilters && (
-                <>
-                  {categoryFilter !== "all" && (
-                    <Badge variant="secondary" className="text-xs h-5 px-2 bg-indigo-50 text-indigo-700 border-0">
-                      {categoryLabels[categoryFilter]}
-                    </Badge>
-                  )}
-                  {levelFilter !== "all" && (
-                    <Badge variant="secondary" className="text-xs h-5 px-2 bg-purple-50 text-purple-700 border-0">
-                      {levelLabels[levelFilter]}
-                    </Badge>
-                  )}
-                </>
-              )}
-            </div>
-          )}
         </div>
       </div>
 
-      {/* Course Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      {/* Courses */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {coursesError ? (
           <div className="text-center py-20">
-            <div className="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-4">
-              <X className="w-8 h-8 text-red-500" />
-            </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-1">Erreur de chargement</h3>
-            <p className="text-sm text-gray-500 mb-4">Impossible de charger les cours</p>
-            <Button size="sm" onClick={() => window.location.reload()} className="bg-indigo-600 hover:bg-indigo-700">
-              Réessayer
+            <div className="text-6xl mb-6">&#9888;&#65039;</div>
+            <h3 className="text-2xl font-bold text-red-600 mb-4">Erreur de chargement</h3>
+            <p className="text-lg text-gray-600 mb-2">
+              Impossible de charger les cours depuis la base de données.
+            </p>
+            <p className="text-sm text-gray-500 mb-6">
+              {coursesError.message || 'Erreur inconnue'}
+            </p>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-full px-8"
+              onClick={() => window.location.reload()}
+            >
+              Recharger la page
             </Button>
           </div>
         ) : isLoading ? (
           <div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-              {[...Array(8)].map((_, i) => (
-                <CourseCardSkeleton key={i} />
-              ))}
+            <div className="mb-12">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="h-2 w-16 bg-gray-200 rounded-full animate-pulse"></div>
+                <div className="h-10 w-64 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {[...Array(8)].map((_, index) => (
+                  <CourseCardSkeleton key={index} />
+                ))}
+              </div>
+            </div>
+            <div className="text-center py-8">
+              <div className="inline-flex items-center gap-3 text-indigo-600">
+                <div className="inline-block animate-spin rounded-full h-5 w-5 border-2 border-indigo-200 border-t-indigo-600"></div>
+                <p className="text-base font-medium">Chargement des cours...</p>
+              </div>
             </div>
           </div>
         ) : filteredCourses.length === 0 ? (
           <div className="text-center py-20">
-            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
-              <Search className="w-7 h-7 text-gray-400" />
-            </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-1">Aucun cours trouvé</h3>
-            <p className="text-sm text-gray-500 mb-4">Essayez d'autres critères de recherche</p>
-            <Button size="sm" variant="outline" onClick={resetFilters}>
+            <div className="text-6xl mb-6">&#128269;</div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Aucun cours trouvé</h3>
+            <p className="text-lg text-gray-600 mb-6">
+              Essayez de modifier vos critères de recherche
+            </p>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-full px-8"
+              onClick={() => {
+                setSearchTerm("");
+                setCategoryFilter("all");
+                setLevelFilter("all");
+              }}
+            >
               Réinitialiser les filtres
             </Button>
           </div>
         ) : categoryFilter === "all" && !searchTerm ? (
-          <div className="space-y-12">
-            {categoryOrder.map((category) => {
-              const categoryCourses = coursesByCategory[category];
-              if (!categoryCourses || categoryCourses.length === 0) return null;
-              return (
-                <motion.section
-                  key={category}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="flex items-center gap-3">
-                      <div className="w-1 h-6 bg-indigo-600 rounded-full"></div>
-                      <h2 className="text-lg font-semibold text-gray-900">
-                        {categoryLabels[category]}
-                      </h2>
-                      <span className="text-xs font-medium text-gray-400 bg-gray-100 rounded-full px-2.5 py-0.5">
-                        {categoryCourses.length}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                    {categoryCourses.map((course, index) => (
-                      <motion.div
-                        key={course.id}
-                        initial={{ opacity: 0, y: 15 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.04, duration: 0.3 }}
-                      >
-                        <CourseCard course={course} />
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.section>
-              );
-            })}
-          </div>
+          // Afficher par catégorie
+          Object.entries(coursesByCategory).map(([category, categoryCourses], catIndex) => (
+            categoryCourses.length > 0 && (
+              <motion.div
+                key={category}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: catIndex * 0.08 }}
+                className="mb-16"
+              >
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="h-1.5 w-12 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-full"></div>
+                  <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                    {categoryLabels[category]}
+                    <Badge variant="outline" className="text-sm font-normal">
+                      {categoryCourses.length} cours
+                    </Badge>
+                  </h2>
+                </div>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {categoryCourses.map((course, index) => (
+                    <motion.div
+                      key={course.id}
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.04 }}
+                    >
+                      <CourseCard course={course} />
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )
+          ))
         ) : (
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-5">
-              Résultats {searchTerm && <span className="text-gray-400 font-normal">pour "{searchTerm}"</span>}
-            </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-              {filteredCourses.map((course, index) => (
-                <motion.div
-                  key={course.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.04, duration: 0.3 }}
-                >
-                  <CourseCard course={course} />
-                </motion.div>
-              ))}
-            </div>
+          // Afficher tous les résultats filtrés
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredCourses.map((course, index) => (
+              <motion.div
+                key={course.id}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.04 }}
+              >
+                <CourseCard course={course} />
+              </motion.div>
+            ))}
           </div>
         )}
       </div>
