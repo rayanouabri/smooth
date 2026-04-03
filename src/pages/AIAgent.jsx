@@ -431,7 +431,21 @@ export default function AIAgent() {
   const generateRoadmap = async (ua) => {
     setIsGenerating(true);
     try {
-      const coursesList = courses.map(c => `- "${c.title}" (${c.is_premium ? 'Premium' : 'Gratuit'}, ${c.category || 'General'})`).join('\n');
+      // Limit to 15 most relevant courses to reduce API cost
+      const goalKeywords = (ua.goal || "").toLowerCase();
+      const priorityCategories = goalKeywords.includes("trava") || goalKeywords.includes("emploi") || goalKeywords.includes("stage")
+        ? ["insertion_professionnelle", "administration", "budget_finances"]
+        : goalKeywords.includes("étude") || goalKeywords.includes("etude") || goalKeywords.includes("univer")
+        ? ["preparation_academique", "administration", "integration_administrative"]
+        : goalKeywords.includes("logement") || goalKeywords.includes("appartement")
+        ? ["logement", "budget_finances", "integration_administrative"]
+        : ["integration_administrative", "administration", "budget_finances"];
+      const sortedCourses = [...courses].sort((a, b) => {
+        const aPrio = priorityCategories.indexOf(a.category);
+        const bPrio = priorityCategories.indexOf(b.category);
+        return (aPrio === -1 ? 99 : aPrio) - (bPrio === -1 ? 99 : bPrio);
+      });
+      const coursesList = sortedCourses.slice(0, 15).map(c => `- "${c.title}" (${c.is_premium ? 'Premium' : 'Gratuit'}, ${c.category || 'General'})`).join('\n');
       const response = await InvokeLLM({
         prompt: `Tu es un expert en integration des etudiants internationaux en France. Tu dois generer une roadmap TRES detaillee et actionnable.
 

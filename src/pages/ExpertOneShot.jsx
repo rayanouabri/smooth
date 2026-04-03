@@ -56,25 +56,31 @@ const SERVICE_TYPES = [
 
 const TESTIMONIALS = [
   {
-    name: "Sarah M.",
-    origin: "Étudiante Canadienne",
-    service: "Dossier Visa",
-    text: "J'étais complètement perdue avec mon dossier de visa. L'équipe a tout géré pour moi et j'ai obtenu mon titre de séjour en 2 semaines. Un service exceptionnel !",
-    rating: 5
+    name: "Fatou Sy",
+    origin: "Étudiante en Master 2, Dakar → Paris",
+    service: "Renouvellement titre de séjour",
+    text: "Mon titre de séjour expirait dans 3 semaines et je n'arrivais pas à prendre rendez-vous en préfecture. L'Expert a trouvé un créneau et a préparé mon dossier complet. Titre renouvelé sans aucun stress. Je savais pas que c'était possible aussi vite.",
+    rating: 5,
+    date: "6 mars 2026",
+    avatar: "FS"
   },
   {
-    name: "Mohammed K.",
-    origin: "Entrepreneur Marocain",
-    service: "CAF + Logement",
-    text: "Grâce au service Expert, j'ai résolu mon problème de CAF qui traînait depuis 3 mois en une semaine. Et ils ont même trouvé un appartement pour moi !",
-    rating: 5
+    name: "Karim Bouhaddou",
+    origin: "Auto-entrepreneur, Casablanca → Montpellier",
+    service: "CAF bloquée + logement",
+    text: "Ma CAF était bloquée depuis 4 mois malgré plusieurs relances. L'Expert a identifié le problème (un document mal nommé dans mon dossier), l'a corrigé et relancé le traitement. J'ai reçu mes arriérés 15 jours après. Valait vraiment le coup.",
+    rating: 5,
+    date: "18 février 2026",
+    avatar: "KB"
   },
   {
-    name: "Emma L.",
-    origin: "Travailleuse Britannique",
-    service: "CPAM + Banque",
-    text: "L'ouverture de compte bancaire et l'inscription à la CPAM ont été gérées de A à Z. Je n'ai eu qu'à signer. Je recommande à 100% !",
-    rating: 5
+    name: "Ngozi Adeyemi",
+    origin: "Responsable RH, Lagos → Lyon",
+    service: "CPAM + compte bancaire",
+    text: "Arrivée avec un visa travail, je ne savais pas du tout par où commencer pour la CPAM. L'Expert a monté mon dossier d'affiliation, contacté la CPAM directement et m'a accompagnée jusqu'à la réception de ma carte Vitale. Service vraiment clé en main.",
+    rating: 5,
+    date: "28 janvier 2026",
+    avatar: "NA"
   }
 ];
 

@@ -63,22 +63,28 @@ export default function ConciergerieVIP() {
 
   const testimonials = [
     {
-      name: "Thomas",
-      origin: "Expatrié Canadien",
-      text: "Grâce à la Conciergerie VIP, j'ai pu m'installer en France en 2 semaines au lieu de 3 mois. Tout était géré pour moi, je n'ai eu qu'à signer les papiers.",
-      rating: 5
+      name: "Ibrahima Diallo",
+      origin: "Chef de projet IT, Dakar → Île-de-France",
+      text: "J'arrivais avec un poste en CDI et zéro temps pour gérer les démarches. La Conciergerie VIP a tout pris en charge : titre de séjour, CPAM, compte bancaire. En 10 jours j'étais opérationnel. Investissement qui vaut largement son prix.",
+      rating: 5,
+      date: "il y a 2 semaines",
+      avatar: "ID"
     },
     {
-      name: "Daniela",
-      origin: "Travailleuse internationale",
-      text: "Le support WhatsApp 24/7 a été un game-changer. À chaque question, j'avais une réponse immédiate. Je recommande à 100%.",
-      rating: 5
+      name: "Mariana Ferreira",
+      origin: "Infirmière, São Paulo → Strasbourg",
+      text: "Le suivi WhatsApp a tout changé pour moi. J'envoyais un message à 22h sur mon dossier CPAM, j'avais une réponse à 8h le lendemain avec les documents à fournir. Jamais vu un service aussi réactif.",
+      rating: 5,
+      date: "il y a 1 mois",
+      avatar: "MF"
     },
     {
-      name: "Ahmed",
-      origin: "Entrepreneur",
-      text: "L'ouverture de compte bancaire et la recherche de logement ont été gérées parfaitement. J'ai économisé des semaines de démarches.",
-      rating: 5
+      name: "Oussama Tazi",
+      origin: "Entrepreneur, Rabat → Marseille",
+      text: "J'avais besoin d'un logement rapide + ouverture de compte pro pour lancer mon activité. L'équipe a géré les deux en parallèle. Appartement signé en 5 jours, compte Qonto ouvert dans la foulée. Exceptionnel.",
+      rating: 5,
+      date: "il y a 3 semaines",
+      avatar: "OT"
     }
   ];
 

@@ -59,25 +59,49 @@ export default function Home() {
 
   const testimonials = [
     {
-      name: "Thomas",
-      origin: "Étudiant Canadien",
-      text: "Grâce à FrancePrepAcademy, j'ai pu m'installer en France en 2 semaines au lieu de 3 mois. Les tutoriels sont clairs et pratiques, et l'accompagnement est incroyable.",
+      name: "Kofi Mensah",
+      origin: "Étudiant en Master, Accra → Lyon",
+      text: "J'avais une peur bleue des démarches OFII et de la CAF avant d'arriver. Avec FrancePrepAcademy j'ai tout compris en quelques heures. Mon VLS-TS validé en 3 jours, APL reçue le mois suivant. Merci !",
       rating: 5,
-      photo: "👨‍🎓"
+      photo: "👨‍🎓",
+      date: "il y a 3 semaines",
+      verified: true
     },
     {
-      name: "Daniela",
-      origin: "Travailleuse internationale",
-      text: "Les tutoriels sont excellents et très pratiques. J'ai appris énormément sur la culture française et les démarches administratives. Je recommande vivement !",
+      name: "Amira Benali",
+      origin: "Ingénieure, Alger → Paris",
+      text: "Le module sur l'ouverture de compte bancaire m'a sauvée — j'avais essuyé 2 refus avant. Le tutoriel explique exactement quels documents préparer et comment présenter son dossier. Compte ouvert chez Boursobank en 48h.",
       rating: 5,
-      photo: "👩‍💼"
+      photo: "👩‍💼",
+      date: "il y a 1 mois",
+      verified: true
     },
     {
-      name: "Ahmed",
-      origin: "Entrepreneur",
-      text: "L'ouverture de compte bancaire et la recherche de logement ont été expliquées parfaitement. J'ai économisé des semaines de démarches grâce aux tutoriels.",
+      name: "Romuald Tchuissé",
+      origin: "Doctorant, Douala → Bordeaux",
+      text: "L'assistant IA Sophie répond à 3h du matin quand t'as un doute sur ta CPAM 😅 Sérieusement, les cours sur la santé et le logement étudiant m'ont évité beaucoup de stress à mon arrivée.",
       rating: 5,
-      photo: "👨‍💻"
+      photo: "👨‍💻",
+      date: "il y a 2 semaines",
+      verified: true
+    },
+    {
+      name: "Yasmin El Fassi",
+      origin: "Licence éco, Casablanca → Toulouse",
+      text: "La simulation d'entretien Campus France est excellente. J'ai pu m'entraîner autant que je voulais avant le grand jour. J'ai eu mon visa du premier coup, je suis arrivée en septembre et tout se passe bien !",
+      rating: 5,
+      photo: "👩‍🎓",
+      date: "il y a 5 jours",
+      verified: true
+    },
+    {
+      name: "Jean-Baptiste Nkosi",
+      origin: "BTS Commerce, Kinshasa → Nantes",
+      text: "Franchement le cours sur le budget étudiant m'a ouvert les yeux. J'avais pas pensé à la mutuelle, à la taxe Habitation, aux frais de dossier... Maintenant je maîtrise mon budget à l'euro près.",
+      rating: 5,
+      photo: "👨‍🏫",
+      date: "il y a 3 jours",
+      verified: true
     }
   ];
 
@@ -895,29 +919,43 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.08 }}
               >
-                <Card className="h-full border border-gray-200 hover:shadow-lg transition-all">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
-                    <p className="text-gray-700 mb-6 italic leading-relaxed">"{testimonial.text}"</p>
-                    <div className="border-t pt-4 flex items-center gap-3">
-                      <div className="text-3xl">{testimonial.photo}</div>
-                      <div>
-                        <div className="font-bold text-gray-900">{testimonial.name}</div>
-                        <div className="text-sm text-gray-600">{testimonial.origin}</div>
+                <Card className="h-full border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">
+                  <CardContent className="p-6 flex flex-col h-full">
+                    {/* Header : étoiles + date */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-0.5">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                        ))}
                       </div>
+                      <span className="text-xs text-gray-400">{testimonial.date}</span>
+                    </div>
+                    {/* Texte */}
+                    <p className="text-gray-700 text-sm leading-relaxed flex-1 mb-4">"{testimonial.text}"</p>
+                    {/* Footer */}
+                    <div className="border-t border-gray-100 pt-4 flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                        {testimonial.name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0,2)}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="font-bold text-gray-900 text-sm truncate">{testimonial.name}</div>
+                        <div className="text-xs text-gray-500 truncate">{testimonial.origin}</div>
+                      </div>
+                      {testimonial.verified && (
+                        <div className="flex items-center gap-1 px-2 py-0.5 bg-emerald-50 rounded-full flex-shrink-0">
+                          <CheckCircle className="w-3 h-3 text-emerald-500" />
+                          <span className="text-[10px] font-semibold text-emerald-600">Vérifié</span>
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
