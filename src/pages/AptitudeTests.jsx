@@ -1,22 +1,29 @@
 import React, { useState, useEffect, useCallback } from "react";
 import SEO from "@/components/SEO";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
 import {
-  Clock, Brain, Target, CheckCircle,
-  Play, RotateCcw, Trophy, BookOpen, Globe, Calculator, ArrowRight
+  Clock, Brain, Target, CheckCircle, XCircle,
+  Play, RotateCcw, Trophy, BookOpen, Globe, Calculator, ArrowRight,
+  Zap, Star, TrendingUp, ChevronRight, Award, AlertCircle
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import ChatBot from "../components/ChatBot";
 
 // Banque de questions intégrée
 const questionBank = {
   culture_france: {
     name: "Culture & vie en France",
-    desc: "Testez vos connaissances sur la culture, les institutions et la vie quotidienne en France",
+    desc: "Connaissances sur la culture, les institutions et la vie quotidienne",
     icon: Globe,
-    color: "bg-blue-100 text-blue-700",
+    gradient: "from-blue-500 to-indigo-600",
+    lightBg: "bg-blue-50",
+    lightText: "text-blue-700",
+    accentColor: "bg-blue-500",
+    ringColor: "ring-blue-500",
+    emoji: "🇫🇷",
+    difficulty: "Intermédiaire",
+    diffColor: "text-amber-600 bg-amber-50",
     time: 10,
     questions: [
       { q: "Quelle est la devise de la République française ?", options: { A: "Unité, Force, Progrès", B: "Liberté, Égalité, Fraternité", C: "Paix, Justice, Travail", D: "Honneur, Patrie, Devoir" }, correct: "B", explanation: "La devise de la France est 'Liberté, Égalité, Fraternité', adoptée pendant la Révolution française." },
@@ -28,23 +35,30 @@ const questionBank = {
       { q: "Qu'est-ce que Visale ?", options: { A: "Un visa étudiant", B: "Une garantie locative gratuite", C: "Une assurance santé", D: "Un titre de transport" }, correct: "B", explanation: "Visale est une caution locative gratuite proposée par Action Logement pour les jeunes et étudiants." },
       { q: "Quel est le salaire minimum (SMIC) horaire brut approximatif en France en 2024 ?", options: { A: "8,50€", B: "11,65€", C: "15,00€", D: "9,20€" }, correct: "B", explanation: "Le SMIC horaire brut est d'environ 11,65€ en 2024 (montant qui évolue chaque année)." },
       { q: "Que signifie OFII ?", options: { A: "Office Français de l'Immigration et de l'Intégration", B: "Organisation Française des Institutions Internationales", C: "Office des Formations et Initiatives Internationales", D: "Organisme de Financement des Investissements Internationaux" }, correct: "A", explanation: "L'OFII gère l'accueil et l'intégration des étrangers en France, notamment la validation du VLS-TS." },
-      { q: "Quel est le numéro d'urgence européen ?", options: { A: "15", B: "17", C: "112", D: "911" }, correct: "C", explanation: "Le 112 est le numéro d'urgence européen, accessible dans tous les pays de l'UE. En France, le 15 = SAMU, 17 = Police, 18 = Pompiers." }
+      { q: "Quel est le numéro d'urgence européen ?", options: { A: "15", B: "17", C: "112", D: "911" }, correct: "C", explanation: "Le 112 est le numéro d'urgence européen. En France, le 15 = SAMU, 17 = Police, 18 = Pompiers." }
     ]
   },
   administration: {
     name: "Démarches administratives",
-    desc: "Testez vos connaissances sur les démarches administratives essentielles en France",
+    desc: "Les démarches essentielles pour s'installer et étudier en France",
     icon: BookOpen,
-    color: "bg-green-100 text-green-700",
+    gradient: "from-emerald-500 to-teal-600",
+    lightBg: "bg-emerald-50",
+    lightText: "text-emerald-700",
+    accentColor: "bg-emerald-500",
+    ringColor: "ring-emerald-500",
+    emoji: "📋",
+    difficulty: "Débutant",
+    diffColor: "text-emerald-600 bg-emerald-50",
     time: 10,
     questions: [
-      { q: "Que signifie VLS-TS ?", options: { A: "Visa Long Séjour - Titre de Séjour", B: "Visa Longue Scolarité - Transport Scolaire", C: "Visa Long Séjour valant Titre de Séjour", D: "Validation Longue Séjour - Travail Salarié" }, correct: "C", explanation: "Le VLS-TS (Visa Long Séjour valant Titre de Séjour) doit être validé auprès de l'OFII dans les 3 mois suivant l'arrivée." },
+      { q: "Que signifie VLS-TS ?", options: { A: "Visa Long Séjour - Titre de Séjour", B: "Visa Longue Scolarité - Transport Scolaire", C: "Visa Long Séjour valant Titre de Séjour", D: "Validation Longue Séjour - Travail Salarié" }, correct: "C", explanation: "Le VLS-TS doit être validé auprès de l'OFII dans les 3 mois suivant l'arrivée." },
       { q: "Dans quel délai devez-vous valider votre VLS-TS après votre arrivée en France ?", options: { A: "1 mois", B: "3 mois", C: "6 mois", D: "1 an" }, correct: "B", explanation: "Vous devez valider votre VLS-TS dans les 3 mois suivant votre arrivée en France via la plateforme en ligne de l'OFII." },
       { q: "Qu'est-ce que la carte Vitale ?", options: { A: "Une carte de transport", B: "Une carte bancaire", C: "La carte d'assurance maladie", D: "Une carte étudiante" }, correct: "C", explanation: "La carte Vitale est la carte d'assurance maladie qui permet le remboursement des frais de santé." },
       { q: "Auprès de quel organisme faire sa demande d'APL ?", options: { A: "La mairie", B: "La CAF", C: "La préfecture", D: "La banque" }, correct: "B", explanation: "La demande d'APL se fait auprès de la CAF (Caisse d'Allocations Familiales), en ligne sur caf.fr." },
       { q: "Qu'est-ce que Campus France ?", options: { A: "Un réseau d'universités françaises", B: "L'agence de promotion de l'enseignement supérieur français", C: "Un site de recherche d'emploi", D: "Une agence immobilière étudiante" }, correct: "B", explanation: "Campus France est l'agence nationale chargée de la promotion de l'enseignement supérieur français à l'étranger." },
-      { q: "Quel document faut-il pour ouvrir un compte bancaire en France ?", options: { A: "Uniquement le passeport", B: "Un justificatif de domicile et une pièce d'identité", C: "Uniquement le titre de séjour", D: "Le diplôme du bac" }, correct: "B", explanation: "Il faut généralement un justificatif de domicile, une pièce d'identité et un justificatif de statut (certificat de scolarité, etc.)." },
-      { q: "Que signifie CVEC ?", options: { A: "Contribution Vie Étudiante et de Campus", B: "Carte de Validation des Études et Concours", C: "Centre de Vérification des Étudiants en Campus", D: "Certificat de Vie Étudiante Complet" }, correct: "A", explanation: "La CVEC est une contribution obligatoire de 100€ environ pour les étudiants, à payer avant l'inscription universitaire." },
+      { q: "Quel document faut-il pour ouvrir un compte bancaire en France ?", options: { A: "Uniquement le passeport", B: "Un justificatif de domicile et une pièce d'identité", C: "Uniquement le titre de séjour", D: "Le diplôme du bac" }, correct: "B", explanation: "Il faut généralement un justificatif de domicile, une pièce d'identité et un justificatif de statut." },
+      { q: "Que signifie CVEC ?", options: { A: "Contribution Vie Étudiante et de Campus", B: "Carte de Validation des Études et Concours", C: "Centre de Vérification des Étudiants en Campus", D: "Certificat de Vie Étudiante Complet" }, correct: "A", explanation: "La CVEC est une contribution obligatoire d'environ 100€ pour les étudiants, à payer avant l'inscription universitaire." },
       { q: "Où se rendre pour renouveler son titre de séjour ?", options: { A: "À la mairie", B: "À la préfecture ou sous-préfecture", C: "À l'ambassade", D: "À la CAF" }, correct: "B", explanation: "Le renouvellement du titre de séjour se fait à la préfecture ou sous-préfecture de votre lieu de résidence." },
       { q: "Qu'est-ce qu'une mutuelle étudiante ?", options: { A: "Un prêt étudiant", B: "Une assurance complémentaire santé", C: "Un logement étudiant", D: "Un repas au CROUS" }, correct: "B", explanation: "La mutuelle étudiante est une complémentaire santé qui rembourse la part non couverte par la Sécurité sociale." },
       { q: "Quel est le rôle du CROUS ?", options: { A: "Gérer les transports", B: "Gérer les résidences et restaurants universitaires", C: "Délivrer les visas", D: "Organiser les examens" }, correct: "B", explanation: "Le CROUS gère les résidences universitaires, les restaurants (RU), les bourses et l'aide sociale étudiante." }
@@ -52,9 +66,16 @@ const questionBank = {
   },
   logique: {
     name: "Logique & raisonnement",
-    desc: "Testez votre capacité de raisonnement logique avec des exercices variés",
+    desc: "Exercez votre capacité de raisonnement et votre esprit d'analyse",
     icon: Brain,
-    color: "bg-purple-100 text-purple-700",
+    gradient: "from-purple-500 to-violet-600",
+    lightBg: "bg-purple-50",
+    lightText: "text-purple-700",
+    accentColor: "bg-purple-500",
+    ringColor: "ring-purple-500",
+    emoji: "🧠",
+    difficulty: "Avancé",
+    diffColor: "text-rose-600 bg-rose-50",
     time: 15,
     questions: [
       { q: "Complétez la suite : 2, 6, 18, 54, ...", options: { A: "108", B: "162", C: "148", D: "216" }, correct: "B", explanation: "Chaque nombre est multiplié par 3 : 2×3=6, 6×3=18, 18×3=54, 54×3=162." },
@@ -71,9 +92,16 @@ const questionBank = {
   },
   calcul: {
     name: "Calcul & mathématiques",
-    desc: "Exercices de calcul mental et mathématiques appliquées",
+    desc: "Calcul mental et mathématiques appliquées à la vie en France",
     icon: Calculator,
-    color: "bg-orange-100 text-orange-700",
+    gradient: "from-orange-500 to-amber-500",
+    lightBg: "bg-orange-50",
+    lightText: "text-orange-700",
+    accentColor: "bg-orange-500",
+    ringColor: "ring-orange-500",
+    emoji: "🔢",
+    difficulty: "Intermédiaire",
+    diffColor: "text-amber-600 bg-amber-50",
     time: 12,
     questions: [
       { q: "Combien font 15% de 240 ?", options: { A: "32", B: "36", C: "38", D: "42" }, correct: "B", explanation: "15% de 240 = 0.15 × 240 = 36." },
@@ -90,6 +118,8 @@ const questionBank = {
   }
 };
 
+const OPTION_KEYS = ["A", "B", "C", "D"];
+
 export default function AptitudeTests() {
   const [selectedTest, setSelectedTest] = useState(null);
   const [currentQ, setCurrentQ] = useState(0);
@@ -104,13 +134,11 @@ export default function AptitudeTests() {
     if (selectedAnswer) {
       finalAnswers[currentQ] = selectedAnswer;
     }
-
     const test = questionBank[selectedTest];
     let correct = 0;
     test.questions.forEach((q, i) => {
       if (finalAnswers[i] === q.correct) correct++;
     });
-
     const score = Math.round((correct / test.questions.length) * 100);
     setResults({ correct, total: test.questions.length, score, answers: finalAnswers });
     setIsActive(false);
@@ -120,10 +148,7 @@ export default function AptitudeTests() {
     if (!isActive || timeLeft <= 0) return;
     const timer = setInterval(() => {
       setTimeLeft(prev => {
-        if (prev <= 1) {
-          completeTest();
-          return 0;
-        }
+        if (prev <= 1) { completeTest(); return 0; }
         return prev - 1;
       });
     }, 1000);
@@ -145,19 +170,16 @@ export default function AptitudeTests() {
     newAnswers[currentQ] = selectedAnswer;
     setAnswers(newAnswers);
     setSelectedAnswer("");
-
     const test = questionBank[selectedTest];
     if (currentQ < test.questions.length - 1) {
       setCurrentQ(currentQ + 1);
     } else {
-      // Complete with this last answer
-      const finalAnswers = [...newAnswers];
       let correct = 0;
       test.questions.forEach((q, i) => {
-        if (finalAnswers[i] === q.correct) correct++;
+        if (newAnswers[i] === q.correct) correct++;
       });
       const score = Math.round((correct / test.questions.length) * 100);
-      setResults({ correct, total: test.questions.length, score, answers: finalAnswers });
+      setResults({ correct, total: test.questions.length, score, answers: newAnswers });
       setIsActive(false);
     }
   };
@@ -177,82 +199,99 @@ export default function AptitudeTests() {
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
-  // RESULTS SCREEN
+  // ─── RESULTS SCREEN ───────────────────────────────────────────────────────────
   if (results && selectedTest) {
     const test = questionBank[selectedTest];
+    const isExcellent = results.score >= 80;
+    const isGood = results.score >= 60;
+    const scoreEmoji = isExcellent ? "🏆" : isGood ? "👏" : "💪";
+    const scoreLabel = isExcellent ? "Excellent !" : isGood ? "Bon résultat !" : "Continuez à vous entraîner !";
+    const scoreGradient = isExcellent ? "from-amber-400 to-orange-500" : isGood ? "from-blue-400 to-indigo-500" : "from-rose-400 to-red-500";
+
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
         <SEO title="Résultats du test - FrancePrepAcademy" noindex={true} />
-        <div className="bg-gradient-to-r from-indigo-900 to-blue-800 text-white py-10">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="text-5xl mb-3">
-              {results.score >= 80 ? "🏆" : results.score >= 60 ? "👏" : "💪"}
-            </div>
-            <h1 className="text-3xl font-bold mb-2">Test terminé !</h1>
-            <p className="text-blue-200">
-              {results.score >= 80 ? "Excellent travail !" : results.score >= 60 ? "Bon résultat, continuez !" : "Continuez à vous entraîner !"}
-            </p>
+
+        {/* Hero result */}
+        <div className={`bg-gradient-to-br ${test.gradient} text-white`}>
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
+            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 200 }}
+              className="text-6xl mb-4">{scoreEmoji}</motion.div>
+            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+              className="text-3xl md:text-4xl font-extrabold mb-2">{scoreLabel}</motion.h1>
+            <p className="text-white/80 text-lg">{test.name}</p>
+
+            {/* Score ring */}
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }}
+              className="mt-8 inline-flex items-center justify-center w-28 h-28 rounded-full bg-white/20 border-4 border-white/40 backdrop-blur">
+              <span className="text-4xl font-black">{results.score}<span className="text-xl font-bold">%</span></span>
+            </motion.div>
           </div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-          {/* Score overview */}
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+          {/* Stat cards */}
           <div className="grid grid-cols-3 gap-4">
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className={`text-3xl font-bold ${results.score >= 80 ? 'text-green-600' : results.score >= 60 ? 'text-orange-600' : 'text-red-600'}`}>
-                  {results.score}%
-                </div>
-                <p className="text-sm text-gray-600 mt-1">Score</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-green-600">{results.correct}</div>
-                <p className="text-sm text-gray-600 mt-1">Bonnes réponses</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-red-500">{results.total - results.correct}</div>
-                <p className="text-sm text-gray-600 mt-1">Erreurs</p>
-              </CardContent>
-            </Card>
+            {[
+              { label: "Score global", value: `${results.score}%`, color: isExcellent ? "text-amber-600" : isGood ? "text-blue-600" : "text-rose-600", bg: isExcellent ? "bg-amber-50 border-amber-200" : isGood ? "bg-blue-50 border-blue-200" : "bg-rose-50 border-rose-200" },
+              { label: "Bonnes réponses", value: `${results.correct}/${results.total}`, color: "text-emerald-600", bg: "bg-emerald-50 border-emerald-200" },
+              { label: "Erreurs", value: `${results.total - results.correct}`, color: "text-rose-600", bg: "bg-rose-50 border-rose-200" },
+            ].map((s, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 * i + 0.4 }}
+                className={`rounded-2xl border-2 p-5 text-center ${s.bg}`}>
+                <div className={`text-3xl font-extrabold ${s.color}`}>{s.value}</div>
+                <p className="text-xs text-gray-500 mt-1 font-medium">{s.label}</p>
+              </motion.div>
+            ))}
           </div>
 
-          {/* Question review */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Correction détaillée</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4 max-h-[500px] overflow-y-auto">
+          {/* Correction détaillée */}
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <div className="px-6 py-4 border-b border-gray-100 flex items-center gap-2">
+              <Target className="w-5 h-5 text-indigo-600" />
+              <h2 className="text-base font-bold text-gray-900">Correction détaillée</h2>
+            </div>
+            <div className="divide-y divide-gray-50 max-h-[600px] overflow-y-auto">
               {test.questions.map((question, idx) => {
                 const isCorrect = results.answers[idx] === question.correct;
                 return (
-                  <div key={idx} className={`p-4 rounded-lg border ${isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-                    <div className="flex items-start justify-between mb-2">
-                      <span className="text-sm font-semibold text-gray-900">Q{idx + 1}. {question.q}</span>
-                      <Badge className={isCorrect ? "bg-green-600 text-white" : "bg-red-600 text-white"}>
-                        {isCorrect ? "Correct" : "Incorrect"}
-                      </Badge>
+                  <motion.div key={idx} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: idx * 0.03 }}
+                    className={`px-6 py-5 ${isCorrect ? "bg-emerald-50/50" : "bg-rose-50/50"}`}>
+                    <div className="flex items-start gap-3">
+                      <div className={`mt-0.5 flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center ${isCorrect ? "bg-emerald-500" : "bg-rose-500"}`}>
+                        {isCorrect ? <CheckCircle className="w-4 h-4 text-white" /> : <XCircle className="w-4 h-4 text-white" />}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-gray-800 mb-2">Q{idx + 1}. {question.q}</p>
+                        <div className="space-y-1 text-xs">
+                          <p className={`font-medium ${isCorrect ? "text-emerald-700" : "text-rose-700"}`}>
+                            Votre réponse : {results.answers[idx] ? `${results.answers[idx]}. ${question.options[results.answers[idx]]}` : "Pas de réponse"}
+                          </p>
+                          {!isCorrect && (
+                            <p className="font-medium text-emerald-700">
+                              ✓ Bonne réponse : {question.correct}. {question.options[question.correct]}
+                            </p>
+                          )}
+                          <p className="text-gray-500 italic pt-1 border-t border-gray-100 mt-1">{question.explanation}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-sm text-gray-700 space-y-1 ml-2">
-                      <p>Votre réponse : <strong>{results.answers[idx] ? `${results.answers[idx]}. ${question.options[results.answers[idx]]}` : "Pas de réponse"}</strong></p>
-                      {!isCorrect && (
-                        <p className="text-green-700">Bonne réponse : <strong>{question.correct}. {question.options[question.correct]}</strong></p>
-                      )}
-                      <p className="text-gray-600 italic mt-1">{question.explanation}</p>
-                    </div>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <div className="text-center">
-            <Button onClick={resetTest} size="lg">
+          <div className="flex justify-center gap-3 pb-8">
+            <Button size="lg" onClick={resetTest}
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl shadow-lg px-8">
               <RotateCcw className="w-4 h-4 mr-2" />
-              Refaire un test
+              Choisir un autre test
+            </Button>
+            <Button size="lg" variant="outline" onClick={() => startTest(selectedTest)}
+              className="rounded-xl border-2 px-8">
+              <Play className="w-4 h-4 mr-2" />
+              Réessayer ce test
             </Button>
           </div>
         </div>
@@ -261,101 +300,150 @@ export default function AptitudeTests() {
     );
   }
 
-  // ACTIVE TEST SCREEN
+  // ─── ACTIVE TEST SCREEN ───────────────────────────────────────────────────────
   if (isActive && selectedTest) {
     const test = questionBank[selectedTest];
     const question = test.questions[currentQ];
-    const progress = ((currentQ) / test.questions.length) * 100;
+    const progress = (currentQ / test.questions.length) * 100;
+    const isLowTime = timeLeft < 120;
+    const answeredCount = answers.filter(Boolean).length;
 
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
         <SEO title={`${test.name} - FrancePrepAcademy`} noindex={true} />
-        <div className="bg-white border-b border-gray-200 sticky top-0 z-40">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex items-center justify-between mb-3">
-              <div>
-                <h2 className="font-semibold text-gray-900">{test.name}</h2>
-                <p className="text-sm text-gray-500">Question {currentQ + 1} sur {test.questions.length}</p>
-              </div>
+
+        {/* Sticky header */}
+        <div className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-40 shadow-sm">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
-                <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium ${timeLeft < 120 ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}>
-                  <Clock className="w-4 h-4" />
+                <div className={`w-8 h-8 rounded-xl bg-gradient-to-br ${test.gradient} flex items-center justify-center text-white text-sm`}>
+                  {test.emoji}
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 font-medium">{test.name}</p>
+                  <p className="text-sm font-bold text-gray-900">Question {currentQ + 1} <span className="text-gray-400 font-normal">/ {test.questions.length}</span></p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-bold transition-colors ${
+                  isLowTime ? "bg-red-100 text-red-700 animate-pulse" : "bg-gray-100 text-gray-700"
+                }`}>
+                  <Clock className="w-3.5 h-3.5" />
                   {formatTime(timeLeft)}
                 </div>
-                <Button variant="outline" size="sm" onClick={completeTest}>
+                <Button size="sm" variant="outline" onClick={completeTest} className="rounded-xl text-xs">
                   Terminer
                 </Button>
               </div>
             </div>
-            <Progress value={progress} className="h-1.5" />
+            <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
+              <motion.div
+                className={`h-full bg-gradient-to-r ${test.gradient} rounded-full`}
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+                transition={{ duration: 0.4 }}
+              />
+            </div>
           </div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-          <Card>
-            <CardContent className="p-8">
-              <h3 className="text-lg font-medium text-gray-900 mb-6">{question.q}</h3>
+        {/* Question area */}
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <AnimatePresence mode="wait">
+            <motion.div key={currentQ}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.25 }}
+              className="space-y-5"
+            >
+              {/* Question card */}
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-7">
+                <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold mb-4 bg-gradient-to-r ${test.gradient} text-white`}>
+                  <Zap className="w-3 h-3" />
+                  Question {currentQ + 1}
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 leading-relaxed">{question.q}</h3>
+              </div>
+
+              {/* Options */}
               <div className="space-y-3">
-                {Object.entries(question.options).map(([key, value]) => (
-                  <button
-                    key={key}
-                    className={`w-full text-left p-4 border rounded-lg transition-all ${
-                      selectedAnswer === key
-                        ? 'border-indigo-500 bg-indigo-50 ring-1 ring-indigo-500'
-                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                    }`}
-                    onClick={() => setSelectedAnswer(key)}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center text-sm font-medium ${
-                        selectedAnswer === key
-                          ? 'border-indigo-500 bg-indigo-500 text-white'
-                          : 'border-gray-300 text-gray-500'
+                {OPTION_KEYS.map((key) => {
+                  const isSelected = selectedAnswer === key;
+                  return (
+                    <motion.button
+                      key={key}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                      onClick={() => setSelectedAnswer(key)}
+                      className={`w-full text-left p-4 rounded-2xl border-2 transition-all duration-200 flex items-center gap-4 ${
+                        isSelected
+                          ? `border-transparent bg-gradient-to-r ${test.gradient} text-white shadow-lg`
+                          : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm text-gray-800"
+                      }`}
+                    >
+                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center text-sm font-extrabold flex-shrink-0 transition-all ${
+                        isSelected ? "bg-white/20 text-white" : "bg-gray-100 text-gray-600"
                       }`}>
                         {key}
                       </div>
-                      <span className="text-gray-900">{value}</span>
-                    </div>
-                  </button>
-                ))}
+                      <span className="font-medium">{question.options[key]}</span>
+                      {isSelected && <ChevronRight className="w-5 h-5 ml-auto opacity-70" />}
+                    </motion.button>
+                  );
+                })}
               </div>
-            </CardContent>
-          </Card>
 
-          <div className="flex justify-between">
-            <Button
-              variant="outline"
-              onClick={() => {
-                if (currentQ > 0) {
-                  const newAnswers = [...answers];
-                  newAnswers[currentQ] = selectedAnswer;
-                  setAnswers(newAnswers);
-                  setCurrentQ(currentQ - 1);
-                  setSelectedAnswer(answers[currentQ - 1] || "");
-                }
-              }}
-              disabled={currentQ === 0}
-            >
-              Précédente
-            </Button>
-            <Button
-              onClick={nextQuestion}
-              disabled={!selectedAnswer}
-              className="bg-indigo-600 hover:bg-indigo-700"
-            >
-              {currentQ === test.questions.length - 1 ? "Terminer le test" : "Suivante"}
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
+              {/* Navigation */}
+              <div className="flex justify-between items-center pt-2">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    if (currentQ > 0) {
+                      const newAnswers = [...answers];
+                      newAnswers[currentQ] = selectedAnswer;
+                      setAnswers(newAnswers);
+                      setCurrentQ(currentQ - 1);
+                      setSelectedAnswer(answers[currentQ - 1] || "");
+                    }
+                  }}
+                  disabled={currentQ === 0}
+                  className="rounded-xl border-2"
+                >
+                  ← Précédente
+                </Button>
+
+                {/* Dots indicator */}
+                <div className="flex gap-1.5">
+                  {test.questions.map((_, i) => (
+                    <div key={i} className={`w-2 h-2 rounded-full transition-all ${
+                      i === currentQ ? `bg-gradient-to-r ${test.gradient} w-4` :
+                      answers[i] ? "bg-emerald-400" : "bg-gray-200"
+                    }`} />
+                  ))}
+                </div>
+
+                <Button
+                  onClick={nextQuestion}
+                  disabled={!selectedAnswer}
+                  className={`rounded-xl px-6 bg-gradient-to-r ${test.gradient} hover:opacity-90 text-white border-0 shadow-md disabled:opacity-40`}
+                >
+                  {currentQ === test.questions.length - 1 ? "Terminer" : "Suivante"}
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
         <ChatBot />
       </div>
     );
   }
 
-  // HOME SCREEN
+  // ─── HOME SCREEN ──────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       <SEO
         title="Tests d'aptitude - FrancePrepAcademy"
         description="Testez vos connaissances sur la France, les démarches administratives et le raisonnement logique."
@@ -363,71 +451,114 @@ export default function AptitudeTests() {
         noindex={true}
       />
 
-      <div className="bg-gradient-to-r from-indigo-900 to-blue-800 text-white py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">Tests d'aptitude</h1>
-          <p className="text-blue-200 text-lg max-w-2xl mx-auto">
-            Évaluez vos connaissances et préparez-vous pour votre vie en France
+      {/* Hero */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 text-white">
+        <div className="absolute inset-0 opacity-10">
+          {["🏆","🧠","📋","🔢","🎯","⚡","🌟"].map((emoji, i) => (
+            <span key={i} className="absolute text-4xl select-none"
+              style={{ top: `${10 + (i * 13) % 75}%`, left: `${5 + (i * 17) % 90}%`, opacity: 0.6 }}>
+              {emoji}
+            </span>
+          ))}
+        </div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm">
+            <Trophy className="w-4 h-4 text-amber-400" />
+            <span>4 catégories · 40 questions · Corrections détaillées</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+            Tests d'aptitude
+          </h1>
+          <p className="text-indigo-200 text-lg md:text-xl max-w-2xl mx-auto">
+            Évaluez vos connaissances et préparez-vous pour votre vie en France avec des exercices ciblés.
           </p>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid md:grid-cols-2 gap-6">
-          {Object.entries(questionBank).map(([id, test]) => (
-            <Card key={id} className="hover:shadow-md transition-shadow cursor-pointer group" onClick={() => startTest(id)}>
-              <CardContent className="p-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        {/* Test cards grid */}
+        <div className="grid md:grid-cols-2 gap-5 mb-10">
+          {Object.entries(questionBank).map(([id, test], idx) => (
+            <motion.div
+              key={id}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.08 }}
+              onClick={() => startTest(id)}
+              className="group relative bg-white rounded-2xl border-2 border-gray-100 hover:border-transparent hover:shadow-2xl cursor-pointer transition-all duration-300 overflow-hidden"
+            >
+              {/* Gradient top strip */}
+              <div className={`h-2 w-full bg-gradient-to-r ${test.gradient}`} />
+
+              <div className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className={`p-3 rounded-xl ${test.color}`}>
-                    <test.icon className="w-6 h-6" />
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${test.gradient} flex items-center justify-center text-2xl flex-shrink-0 shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                    {test.emoji}
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
-                      {test.name}
-                    </h3>
-                    <p className="text-sm text-gray-600 mt-1 mb-3">{test.desc}</p>
-                    <div className="flex items-center gap-3">
-                      <Badge variant="outline" className="text-xs">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-base font-extrabold text-gray-900 group-hover:text-indigo-700 transition-colors">
+                        {test.name}
+                      </h3>
+                    </div>
+                    <p className="text-xs text-gray-500 mb-3 leading-relaxed">{test.desc}</p>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${test.diffColor}`}>
+                        <Star className="w-2.5 h-2.5" />
+                        {test.difficulty}
+                      </span>
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-gray-100 text-gray-600">
+                        <BookOpen className="w-2.5 h-2.5" />
                         {test.questions.length} questions
-                      </Badge>
-                      <span className="text-xs text-gray-500 flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
+                      </span>
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-gray-100 text-gray-600">
+                        <Clock className="w-2.5 h-2.5" />
                         {test.time} min
                       </span>
                     </div>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-indigo-600 transition-colors mt-1" />
                 </div>
-              </CardContent>
-            </Card>
+
+                {/* CTA */}
+                <div className={`mt-5 flex items-center justify-between pt-4 border-t border-gray-100`}>
+                  <span className="text-xs text-gray-400">Correction incluse à la fin</span>
+                  <div className={`flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r ${test.gradient} text-white text-xs font-bold shadow-sm group-hover:shadow-md transition-shadow`}>
+                    <Play className="w-3 h-3" />
+                    Commencer
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Info */}
-        <Card className="mt-8">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <Target className="w-5 h-5 text-indigo-600" />
-              Comment ça marche ?
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-600">
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-700 font-bold text-sm flex-shrink-0">1</div>
-                <p>Choisissez un test parmi les catégories disponibles. Chaque test contient 10 questions.</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-700 font-bold text-sm flex-shrink-0">2</div>
-                <p>Répondez aux questions dans le temps imparti. Vous pouvez naviguer entre les questions.</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-700 font-bold text-sm flex-shrink-0">3</div>
-                <p>Consultez vos résultats avec la correction détaillée pour apprendre de vos erreurs.</p>
-              </div>
+        {/* How it works */}
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <div className="flex items-center gap-2 mb-5">
+            <div className="w-8 h-8 bg-indigo-100 rounded-xl flex items-center justify-center">
+              <TrendingUp className="w-4 h-4 text-indigo-600" />
             </div>
-          </CardContent>
-        </Card>
+            <h2 className="text-base font-bold text-gray-900">Comment ça marche ?</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              { step: "1", icon: <Target className="w-5 h-5 text-indigo-600" />, title: "Choisissez un test", desc: "Sélectionnez la catégorie qui correspond à vos besoins. Chaque test contient 10 questions." },
+              { step: "2", icon: <Zap className="w-5 h-5 text-amber-600" />, title: "Répondez aux questions", desc: "Répondez à votre rythme ou contre la montre. Naviguez librement entre les questions." },
+              { step: "3", icon: <Award className="w-5 h-5 text-emerald-600" />, title: "Analysez vos résultats", desc: "Obtenez votre score et une correction détaillée pour chaque question avec explications." },
+            ].map((item, i) => (
+              <div key={i} className="flex gap-3">
+                <div className="w-8 h-8 bg-indigo-600 text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">
+                  {item.step}
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-gray-800 mb-1">{item.title}</h4>
+                  <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       <ChatBot />

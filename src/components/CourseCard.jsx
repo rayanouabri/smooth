@@ -1,45 +1,59 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Clock, BookOpen, ArrowRight } from "lucide-react";
+import { Clock, BookOpen, ArrowRight, Lock } from "lucide-react";
 import { createPageUrl } from "../utils";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+// Couleurs et icônes par catégorie
+const categoryConfig = {
+  logement:                  { color: "from-orange-500 to-amber-500",   bg: "bg-orange-50",   text: "text-orange-700",   icon: "🏠" },
+  budget_finances:           { color: "from-emerald-500 to-teal-500",   bg: "bg-emerald-50",  text: "text-emerald-700",  icon: "💶" },
+  sante:                     { color: "from-red-500 to-rose-500",        bg: "bg-red-50",      text: "text-red-700",      icon: "❤️" },
+  culture_codes_sociaux:     { color: "from-purple-500 to-violet-500",  bg: "bg-purple-50",   text: "text-purple-700",   icon: "🎭" },
+  insertion_professionnelle: { color: "from-blue-500 to-indigo-500",    bg: "bg-blue-50",     text: "text-blue-700",     icon: "💼" },
+  integration_administrative:{ color: "from-cyan-500 to-sky-500",       bg: "bg-cyan-50",     text: "text-cyan-700",     icon: "📋" },
+  administration:            { color: "from-slate-500 to-gray-600",     bg: "bg-slate-50",    text: "text-slate-700",    icon: "🏛️" },
+  transport:                 { color: "from-yellow-500 to-orange-400",  bg: "bg-yellow-50",   text: "text-yellow-700",   icon: "🚇" },
+  travail:                   { color: "from-green-500 to-emerald-600",  bg: "bg-green-50",    text: "text-green-700",    icon: "🔧" },
+  preparation_academique:    { color: "from-indigo-500 to-blue-600",    bg: "bg-indigo-50",   text: "text-indigo-700",   icon: "🎓" },
+  formations_professionnelles:{ color: "from-pink-500 to-rose-600",    bg: "bg-pink-50",     text: "text-pink-700",     icon: "📚" },
+};
+
+const levelConfig = {
+  debutant:     { label: "Débutant",      dot: "bg-emerald-400", text: "text-emerald-700", bg: "bg-emerald-50" },
+  intermediaire:{ label: "Intermédiaire", dot: "bg-amber-400",   text: "text-amber-700",   bg: "bg-amber-50"   },
+  avance:       { label: "Avancé",        dot: "bg-rose-400",    text: "text-rose-700",    bg: "bg-rose-50"    },
+};
+
 export default function CourseCard({ course }) {
   const { t } = useLanguage();
+  const cat = categoryConfig[course.category] || { color: "from-indigo-500 to-purple-500", bg: "bg-indigo-50", text: "text-indigo-700", icon: "📖" };
+  const lvl = levelConfig[course.level] || { label: course.level, dot: "bg-gray-400", text: "text-gray-700", bg: "bg-gray-50" };
 
   const categoryLabels = {
-    preparation_academique: t('courses.categories.preparation_academique'),
-    integration_administrative: t('courses.categories.integration_administrative'),
-    culture_codes_sociaux: t('courses.categories.culture_codes_sociaux'),
-    insertion_professionnelle: t('courses.categories.insertion_professionnelle'),
-    formations_professionnelles: t('courses.categories.formations_professionnelles'),
     logement: t('courses.categories.logement'),
     budget_finances: t('courses.categories.budget_finances'),
     sante: t('courses.categories.sante'),
+    culture_codes_sociaux: t('courses.categories.culture_codes_sociaux'),
+    insertion_professionnelle: t('courses.categories.insertion_professionnelle'),
+    integration_administrative: t('courses.categories.integration_administrative'),
     administration: t('courses.categories.administration'),
     transport: t('courses.categories.transport'),
-    travail: t('courses.categories.travail')
-  };
-
-  const levelLabels = {
-    debutant: t('courses.levels.debutant'),
-    intermediaire: t('courses.levels.intermediaire'),
-    avance: t('courses.levels.avance')
-  };
-
-  const levelStyles = {
-    debutant: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    intermediaire: "bg-amber-50 text-amber-700 border-amber-200",
-    avance: "bg-rose-50 text-rose-700 border-rose-200"
+    travail: t('courses.categories.travail'),
+    preparation_academique: t('courses.categories.preparation_academique'),
+    formations_professionnelles: t('courses.categories.formations_professionnelles'),
   };
 
   return (
-    <Link to={createPageUrl("CourseDetail") + `?id=${course.id}`} onClick={() => window.scrollTo(0, 0)} className="block group">
-      <Card className="h-full overflow-hidden border border-gray-200 bg-white rounded-xl transition-all duration-200 hover:shadow-lg hover:border-gray-300 hover:-translate-y-1">
-        {/* Image */}
-        <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
+    <Link
+      to={createPageUrl("CourseDetail") + `?id=${course.id}`}
+      onClick={() => window.scrollTo(0, 0)}
+      className="block group h-full"
+    >
+      <div className="relative h-full flex flex-col rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+
+        {/* ── Image zone ── */}
+        <div className="relative h-44 overflow-hidden flex-shrink-0">
           <img
             src={course.thumbnail_url || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"}
             alt={course.title}
@@ -47,64 +61,75 @@ export default function CourseCard({ course }) {
             decoding="async"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          {/* dark gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-          {/* Premium/Free badge */}
+          {/* Category pill — top left */}
+          <div className="absolute top-3 left-3">
+            <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gradient-to-r ${cat.color} text-white shadow-md`}>
+              <span>{cat.icon}</span>
+              {categoryLabels[course.category] || course.category}
+            </span>
+          </div>
+
+          {/* Premium / Gratuit badge — top right */}
           <div className="absolute top-3 right-3">
             {course.is_premium ? (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-sm">
-                Premium
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md">
+                <Lock className="w-2.5 h-2.5" /> Premium
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-emerald-500 text-white shadow-sm">
-                Gratuit
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md">
+                ✓ Gratuit
               </span>
             )}
           </div>
 
-          {/* Title overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-4">
-            <h3 className="text-white font-semibold text-sm leading-snug line-clamp-2 drop-shadow-md">
+          {/* Title over image */}
+          <div className="absolute bottom-0 inset-x-0 px-4 pb-3">
+            <h3 className="text-white font-bold text-sm leading-tight line-clamp-2 drop-shadow">
               {course.title}
             </h3>
           </div>
         </div>
 
-        {/* Content */}
-        <div className="p-4 space-y-3">
-          {/* Category + Level */}
-          <div className="flex items-center gap-2 flex-wrap">
-            {categoryLabels[course.category] && (
-              <span className="text-[11px] font-medium text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">
-                {categoryLabels[course.category]}
-              </span>
-            )}
-            <Badge variant="outline" className={`text-[10px] font-medium border px-1.5 py-0 h-5 ${levelStyles[course.level] || 'bg-gray-50 text-gray-600 border-gray-200'}`}>
-              {levelLabels[course.level]}
-            </Badge>
+        {/* ── Body ── */}
+        <div className="flex flex-col flex-1 p-4 gap-3">
+
+          {/* Level badge */}
+          <div className="flex items-center gap-2">
+            <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${lvl.bg} ${lvl.text}`}>
+              <span className={`w-1.5 h-1.5 rounded-full ${lvl.dot}`}></span>
+              {lvl.label}
+            </span>
           </div>
 
           {/* Description */}
-          <p className="text-xs text-gray-500 line-clamp-2 leading-relaxed min-h-[2rem]">
-            {course.short_description}
+          <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 flex-1">
+            {course.short_description || "Découvrez ce cours et améliorez vos compétences pour votre vie en France."}
           </p>
 
-          {/* Meta */}
+          {/* Divider + Meta */}
           <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-            <div className="flex items-center gap-3 text-xs text-gray-500">
+            <div className="flex items-center gap-3 text-[11px] text-gray-400 font-medium">
               <span className="flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5" />
+                <Clock className="w-3 h-3" />
                 {course.duration_hours}h
               </span>
               <span className="flex items-center gap-1">
-                <BookOpen className="w-3.5 h-3.5" />
-                {course.lessons_count || 0} {t('common.lessons')}
+                <BookOpen className="w-3 h-3" />
+                {course.lessons_count || 0} leçons
               </span>
             </div>
-            <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all" />
+            <div className="flex items-center justify-center w-7 h-7 rounded-full bg-indigo-50 group-hover:bg-indigo-600 transition-colors duration-200">
+              <ArrowRight className="w-3.5 h-3.5 text-indigo-400 group-hover:text-white transition-colors duration-200" />
+            </div>
           </div>
         </div>
-      </Card>
+
+        {/* ── Bottom accent bar ── */}
+        <div className={`h-1 w-full bg-gradient-to-r ${cat.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+      </div>
     </Link>
   );
 }

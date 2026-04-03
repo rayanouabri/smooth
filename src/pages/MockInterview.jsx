@@ -1,74 +1,97 @@
 import React, { useState } from "react";
 import SEO from "@/components/SEO";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
 import {
-  Users, Play, Clock, CheckCircle, Lightbulb, Target,
-  ArrowRight, RotateCcw, ChevronRight
+  Users, CheckCircle, Lightbulb, RotateCcw,
+  ChevronRight, Mic, ArrowLeft, Star, Clock, MessageSquare
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import ChatBot from "../components/ChatBot";
 
-const interviewData = {
+const interviewTypes = {
   entretien_campus_france: {
-    name: "Entretien Campus France",
+    name: "Campus France",
+    subtitle: "Entretien d'admission",
     icon: "🏫",
-    color: "bg-blue-100 text-blue-700",
-    desc: "Préparez votre entretien Campus France",
+    gradient: "from-blue-600 to-indigo-700",
+    lightBg: "bg-blue-50",
+    tag: "bg-blue-100 text-blue-700",
+    duration: "15-20 min",
+    difficulty: "Moyen",
     questions: [
-      { q: "Pourquoi avez-vous choisi la France pour vos études ?", tips: "Mentionnez la qualité de l'enseignement, les programmes spécifiques, les accords universitaires, la culture." },
-      { q: "Présentez votre parcours académique et vos résultats.", tips: "Soyez chronologique, mentionnez vos points forts, expliquez les éventuelles faiblesses." },
-      { q: "Quel est votre projet d'études en France ? Pourquoi cette formation ?", tips: "Montrez que vous connaissez le programme, reliez-le à votre parcours et vos objectifs." },
-      { q: "Quel est votre projet professionnel après vos études ?", tips: "Soyez précis, montrez le lien logique entre votre formation et votre projet de carrière." },
-      { q: "Comment allez-vous financer vos études et votre séjour en France ?", tips: "Soyez concret : bourse, aide familiale, épargne. Montrez que vous avez planifié votre budget." },
-      { q: "Avez-vous de la famille ou des connaissances en France ?", tips: "Répondez honnêtement. Si oui, mentionnez comment ils peuvent vous aider dans votre intégration." },
-      { q: "Que connaissez-vous de la ville où vous allez étudier ?", tips: "Montrez que vous vous êtes renseigné : climat, coût de la vie, transport, vie étudiante." }
+      { q: "Pourquoi avez-vous choisi la France pour vos études ?", tips: "Mentionnez la qualité de l'enseignement, les programmes spécifiques, les accords universitaires, la culture française." },
+      { q: "Présentez votre parcours académique et vos résultats.", tips: "Soyez chronologique, mentionnez vos points forts, expliquez les éventuelles difficultés de manière positive." },
+      { q: "Quel est votre projet d'études en France ? Pourquoi cette formation ?", tips: "Montrez que vous connaissez bien le programme, reliez-le à votre parcours et vos objectifs professionnels." },
+      { q: "Quel est votre projet professionnel après vos études ?", tips: "Soyez précis et cohérent. Montrez le lien logique entre votre formation en France et votre projet de carrière." },
+      { q: "Comment allez-vous financer vos études et votre séjour en France ?", tips: "Soyez concret : bourse, aide familiale, épargne personnelle. Montrez que vous avez bien planifié votre budget." },
+      { q: "Que connaissez-vous de la ville où vous allez étudier ?", tips: "Montrez que vous vous êtes renseigné : coût de la vie, transports, vie étudiante, logement étudiant." },
+      { q: "Avez-vous de la famille ou des connaissances en France ?", tips: "Répondez honnêtement. Si oui, mentionnez comment ils peuvent vous aider dans votre intégration." }
     ]
   },
   entretien_embauche: {
     name: "Entretien d'embauche",
+    subtitle: "Poste en CDI/CDD",
     icon: "💼",
-    color: "bg-green-100 text-green-700",
-    desc: "Préparez-vous pour un entretien professionnel",
+    gradient: "from-emerald-600 to-teal-700",
+    lightBg: "bg-emerald-50",
+    tag: "bg-emerald-100 text-emerald-700",
+    duration: "30-45 min",
+    difficulty: "Difficile",
     questions: [
-      { q: "Parlez-moi de vous.", tips: "Résumez votre parcours en 2 minutes : formation, expériences clés, ce qui vous motive pour ce poste." },
-      { q: "Pourquoi postulez-vous pour ce poste ?", tips: "Montrez votre connaissance de l'entreprise et du poste, et comment cela s'inscrit dans votre parcours." },
-      { q: "Quelles sont vos principales qualités et vos défauts ?", tips: "Choisissez des qualités en lien avec le poste. Pour les défauts, montrez que vous travaillez dessus." },
-      { q: "Décrivez une situation où vous avez dû résoudre un problème complexe.", tips: "Utilisez la méthode STAR : Situation, Tâche, Action, Résultat." },
-      { q: "Où vous voyez-vous dans 5 ans ?", tips: "Montrez de l'ambition réaliste, en lien avec l'entreprise et le secteur." },
-      { q: "Pourquoi devrions-nous vous choisir plutôt qu'un autre candidat ?", tips: "Mettez en avant votre valeur ajoutée unique : compétences, expériences, qualités personnelles." },
-      { q: "Avez-vous des questions à nous poser ?", tips: "Préparez toujours 2-3 questions sur l'équipe, les projets, les perspectives d'évolution." }
+      { q: "Parlez-moi de vous.", tips: "Résumez votre parcours en 2 minutes : formation, expériences clés, motivations. Adaptez-le au poste ciblé." },
+      { q: "Pourquoi postulez-vous pour ce poste ?", tips: "Montrez votre connaissance de l'entreprise et du poste. Expliquez en quoi c'est cohérent avec votre parcours." },
+      { q: "Quelles sont vos principales qualités et vos défauts ?", tips: "Choisissez des qualités directement liées au poste. Pour les défauts, montrez que vous travaillez activement dessus." },
+      { q: "Décrivez une situation où vous avez résolu un problème complexe.", tips: "Utilisez la méthode STAR : Situation, Tâche, Action, Résultat. Soyez précis et quantifiez les résultats." },
+      { q: "Où vous voyez-vous dans 5 ans ?", tips: "Montrez de l'ambition réaliste et cohérente avec l'entreprise. Évitez de dire 'à votre place' trop tôt." },
+      { q: "Pourquoi devrions-nous vous choisir plutôt qu'un autre candidat ?", tips: "Mettez en avant votre valeur ajoutée unique : compétences rares, expériences internationales, polyvalence." },
+      { q: "Avez-vous des questions à nous poser ?", tips: "Préparez toujours 2-3 questions pertinentes sur l'équipe, les projets en cours, les perspectives d'évolution." }
     ]
   },
   entretien_stage: {
     name: "Entretien de stage",
+    subtitle: "Stage ou alternance",
     icon: "📋",
-    color: "bg-purple-100 text-purple-700",
-    desc: "Préparez votre entretien de stage",
+    gradient: "from-purple-600 to-violet-700",
+    lightBg: "bg-purple-50",
+    tag: "bg-purple-100 text-purple-700",
+    duration: "20-30 min",
+    difficulty: "Accessible",
     questions: [
-      { q: "Qu'est-ce qui vous a motivé à postuler pour ce stage ?", tips: "Parlez de l'entreprise, du secteur, et de ce que vous espérez apprendre." },
-      { q: "Que savez-vous de notre entreprise ?", tips: "Faites des recherches préalables : activités, valeurs, actualités récentes de l'entreprise." },
-      { q: "Quelles compétences pouvez-vous apporter à notre équipe ?", tips: "Même sans expérience, parlez de vos projets académiques, compétences techniques, soft skills." },
-      { q: "Comment gérez-vous le stress et les deadlines ?", tips: "Donnez un exemple concret de situation stressante que vous avez bien gérée." },
-      { q: "Qu'attendez-vous de ce stage ?", tips: "Montrez que vous voulez apprendre tout en contribuant. Mentionnez des compétences spécifiques à acquérir." },
-      { q: "Parlez-nous d'un projet académique dont vous êtes fier.", tips: "Décrivez le contexte, votre rôle, les défis rencontrés et les résultats obtenus." }
+      { q: "Qu'est-ce qui vous a motivé à postuler pour ce stage ?", tips: "Parlez de l'entreprise, du secteur, et ce que vous espérez concretement apprendre durant ce stage." },
+      { q: "Que savez-vous de notre entreprise ?", tips: "Faites des recherches : activités, valeurs, actualités récentes, concurrents. Montrez votre intérêt sincère." },
+      { q: "Quelles compétences pouvez-vous apporter à notre équipe ?", tips: "Sans expérience, parlez de vos projets académiques, compétences techniques (outils, logiciels), et soft skills." },
+      { q: "Comment gérez-vous le stress et les deadlines ?", tips: "Donnez un exemple concret et positif de situation stressante que vous avez bien gérée à l'université." },
+      { q: "Qu'attendez-vous de ce stage ?", tips: "Montrez que vous voulez apprendre tout en contribuant. Citez des compétences spécifiques à acquérir." },
+      { q: "Parlez-nous d'un projet académique dont vous êtes fier.", tips: "Décrivez le contexte, votre rôle, les défis rencontrés et les résultats concrets obtenus." }
     ]
   },
   entretien_logement: {
     name: "Visite de logement",
+    subtitle: "Propriétaire / Agence",
     icon: "🏠",
-    color: "bg-orange-100 text-orange-700",
-    desc: "Préparez votre visite d'appartement",
+    gradient: "from-orange-500 to-amber-600",
+    lightBg: "bg-orange-50",
+    tag: "bg-orange-100 text-orange-700",
+    duration: "10-15 min",
+    difficulty: "Facile",
     questions: [
-      { q: "Pouvez-vous vous présenter ? Que faites-vous comme activité ?", tips: "Présentez-vous brièvement : étudiant, salarié. Montrez que vous êtes sérieux et stable." },
-      { q: "Quel est votre budget mensuel pour le loyer ?", tips: "Soyez réaliste. Mentionnez les APL si vous y avez droit. Ne dépassez pas 1/3 de vos revenus." },
-      { q: "Avez-vous un garant ?", tips: "Si oui, précisez qui. Sinon, mentionnez des alternatives comme Visale ou les garanties bancaires." },
-      { q: "Pour combien de temps cherchez-vous un logement ?", tips: "Soyez précis : durée de votre formation, date d'arrivée et de départ prévues." },
-      { q: "Vivez-vous seul ou en colocation ?", tips: "Répondez honnêtement. Si en colocation, présentez vos colocataires." },
-      { q: "Avez-vous des animaux ?", tips: "Répondez honnêtement. Certains bailleurs les refusent." }
+      { q: "Pouvez-vous vous présenter ? Quelle est votre activité ?", tips: "Présentez-vous clairement : étudiant, salarié, situation stable. Montrez que vous êtes sérieux et responsable." },
+      { q: "Quel est votre budget mensuel pour le loyer ?", tips: "Soyez réaliste. Mentionnez les APL si vous y avez droit. Le loyer idéal = maximum 1/3 de vos revenus." },
+      { q: "Avez-vous un garant ?", tips: "Si oui, précisez (parents, employeur). Si non, parlez des alternatives : Visale (gratuit), garantie bancaire." },
+      { q: "Pour combien de temps cherchez-vous ce logement ?", tips: "Soyez précis : durée de votre formation, dates d'arrivée et de départ estimées. Les bailleurs aiment la clarté." },
+      { q: "Vivez-vous seul ou envisagez-vous une colocation ?", tips: "Répondez honnêtement. Si colocation, présentez les potentiels colocataires si possible." },
+      { q: "Quand seriez-vous disponible pour emménager ?", tips: "Donnez une date précise ou une fourchette courte. Montrez de la flexibilité si possible." }
     ]
   }
+};
+
+const difficultyColor = {
+  "Facile": "bg-emerald-100 text-emerald-700",
+  "Accessible": "bg-blue-100 text-blue-700",
+  "Moyen": "bg-amber-100 text-amber-700",
+  "Difficile": "bg-rose-100 text-rose-700",
 };
 
 export default function MockInterview() {
@@ -78,6 +101,8 @@ export default function MockInterview() {
   const [answers, setAnswers] = useState([]);
   const [showTips, setShowTips] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+
+  const interview = selectedType ? interviewTypes[selectedType] : null;
 
   const startInterview = (typeId) => {
     setSelectedType(typeId);
@@ -90,7 +115,6 @@ export default function MockInterview() {
 
   const submitAnswer = () => {
     if (!userAnswer.trim()) return;
-    const interview = interviewData[selectedType];
     const newAnswers = [...answers, {
       question: interview.questions[currentIdx].q,
       answer: userAnswer,
@@ -99,7 +123,6 @@ export default function MockInterview() {
     setAnswers(newAnswers);
     setUserAnswer("");
     setShowTips(false);
-
     if (currentIdx < interview.questions.length - 1) {
       setCurrentIdx(currentIdx + 1);
     } else {
@@ -107,7 +130,7 @@ export default function MockInterview() {
     }
   };
 
-  const resetInterview = () => {
+  const reset = () => {
     setSelectedType(null);
     setCurrentIdx(0);
     setUserAnswer("");
@@ -116,43 +139,54 @@ export default function MockInterview() {
     setIsFinished(false);
   };
 
-  // Finished screen
-  if (isFinished && selectedType) {
-    const interview = interviewData[selectedType];
+  // ── Results Screen ──
+  if (isFinished && interview) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <SEO title="Entretien terminé - FrancePrepAcademy" noindex={true} />
-        <div className="bg-gradient-to-r from-green-800 to-emerald-700 text-white py-10">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="text-5xl mb-4">🎉</div>
-            <h1 className="text-3xl font-bold mb-2">Entretien terminé !</h1>
-            <p className="text-green-200">Vous avez répondu à {answers.length} questions. Voici le récapitulatif.</p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50">
+        <SEO title="Résultats entretien - FrancePrepAcademy" noindex={true} />
+        <div className={`bg-gradient-to-r ${interview.gradient} text-white py-14`}>
+          <div className="max-w-3xl mx-auto px-4 text-center">
+            <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="w-10 h-10 text-white" />
+            </div>
+            <h1 className="text-3xl font-extrabold mb-2">Entretien terminé !</h1>
+            <p className="text-white/80 text-lg">Vous avez répondu à {answers.length} questions. Lisez les conseils pour vous améliorer.</p>
           </div>
         </div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+        <div className="max-w-3xl mx-auto px-4 py-10 space-y-5">
           {answers.map((a, idx) => (
-            <Card key={idx}>
-              <CardContent className="p-6">
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.08 }}
+              className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
+            >
+              <div className="p-5">
                 <div className="flex items-start gap-3 mb-3">
-                  <Badge className="bg-indigo-100 text-indigo-700">Q{idx + 1}</Badge>
-                  <h3 className="font-semibold text-gray-900">{a.question}</h3>
+                  <span className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold bg-gradient-to-r ${interview.gradient} text-white`}>
+                    {idx + 1}
+                  </span>
+                  <p className="font-semibold text-gray-900 text-sm leading-snug">{a.question}</p>
                 </div>
-                <div className="ml-10 mb-3">
-                  <p className="text-sm text-gray-600 bg-gray-50 rounded-lg p-3">{a.answer}</p>
+                <div className="ml-10 mb-3 bg-gray-50 rounded-xl p-3 border border-gray-100">
+                  <p className="text-sm text-gray-600 leading-relaxed">{a.answer}</p>
                 </div>
-                <div className="ml-10 bg-amber-50 border border-amber-200 rounded-lg p-3">
-                  <p className="text-sm font-medium text-amber-800 flex items-center gap-1 mb-1">
-                    <Lightbulb className="w-4 h-4" /> Conseils
+                <div className="ml-10 bg-amber-50 border border-amber-200 rounded-xl p-3">
+                  <p className="text-xs font-semibold text-amber-700 flex items-center gap-1.5 mb-1">
+                    <Lightbulb className="w-3.5 h-3.5" /> Conseil du coach
                   </p>
-                  <p className="text-sm text-amber-700">{a.tips}</p>
+                  <p className="text-xs text-amber-700 leading-relaxed">{a.tips}</p>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </motion.div>
           ))}
-          <div className="text-center pt-4">
-            <Button onClick={resetInterview} size="lg">
-              <RotateCcw className="w-4 h-4 mr-2" />
-              Recommencer un entretien
+          <div className="text-center pt-4 flex flex-col sm:flex-row gap-3 justify-center">
+            <Button onClick={reset} size="lg" className={`bg-gradient-to-r ${interview.gradient} text-white rounded-xl px-8`}>
+              <RotateCcw className="w-4 h-4 mr-2" /> Recommencer
+            </Button>
+            <Button onClick={() => setSelectedType(null)} variant="outline" size="lg" className="rounded-xl px-8">
+              <ArrowLeft className="w-4 h-4 mr-2" /> Choisir un autre entretien
             </Button>
           </div>
         </div>
@@ -161,176 +195,216 @@ export default function MockInterview() {
     );
   }
 
-  // Active interview
-  if (selectedType) {
-    const interview = interviewData[selectedType];
+  // ── Active Interview ──
+  if (selectedType && interview) {
     const currentQ = interview.questions[currentIdx];
-    const progress = ((currentIdx) / interview.questions.length) * 100;
+    const progress = (currentIdx / interview.questions.length) * 100;
 
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50">
         <SEO title={`${interview.name} - FrancePrepAcademy`} noindex={true} />
-        <div className="bg-gradient-to-r from-indigo-900 to-blue-800 text-white py-8">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-2xl font-bold">{interview.name}</h1>
-                <p className="text-blue-200">Question {currentIdx + 1} sur {interview.questions.length}</p>
+
+        {/* Header */}
+        <div className={`bg-gradient-to-r ${interview.gradient} text-white`}>
+          <div className="max-w-3xl mx-auto px-4 py-5">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <button onClick={reset} className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                  <ArrowLeft className="w-4 h-4" />
+                </button>
+                <div>
+                  <h1 className="font-bold text-lg">{interview.name}</h1>
+                  <p className="text-white/70 text-xs">Question {currentIdx + 1} / {interview.questions.length}</p>
+                </div>
               </div>
-              <Button variant="outline" onClick={resetInterview} className="border-white/40 text-white hover:bg-white/10">
-                Quitter
-              </Button>
+              <span className="text-2xl">{interview.icon}</span>
             </div>
-            <div className="mt-4 w-full bg-white/20 rounded-full h-2">
-              <div className="bg-white h-2 rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
+            {/* Progress bar */}
+            <div className="w-full bg-white/20 rounded-full h-1.5">
+              <div
+                className="bg-white h-1.5 rounded-full transition-all duration-700 ease-out"
+                style={{ width: `${progress}%` }}
+              />
             </div>
           </div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-          {/* Question */}
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
-                  <Users className="w-5 h-5 text-indigo-600" />
+        <div className="max-w-3xl mx-auto px-4 py-8 space-y-5">
+          {/* Question card */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIdx}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6"
+            >
+              <div className="flex items-start gap-4">
+                <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-r ${interview.gradient}`}>
+                  <Users className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 mb-1">Recruteur</p>
-                  <p className="text-lg text-gray-900 leading-relaxed">{currentQ.q}</p>
+                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Le recruteur vous demande…</p>
+                  <p className="text-gray-900 font-semibold text-lg leading-relaxed">{currentQ.q}</p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </motion.div>
+          </AnimatePresence>
 
           {/* Tip toggle */}
           <button
             onClick={() => setShowTips(!showTips)}
-            className="text-sm text-indigo-600 hover:text-indigo-800 flex items-center gap-1"
+            className={`w-full flex items-center gap-2 px-4 py-3 rounded-xl border-2 transition-all duration-200 text-sm font-medium ${showTips ? 'bg-amber-50 border-amber-300 text-amber-700' : 'bg-white border-gray-200 text-gray-500 hover:border-amber-200 hover:text-amber-600'}`}
           >
-            <Lightbulb className="w-4 h-4" />
-            {showTips ? "Masquer les conseils" : "Afficher les conseils"}
+            <Lightbulb className="w-4 h-4 flex-shrink-0" />
+            {showTips ? "Masquer les conseils du coach" : "Voir les conseils du coach"}
           </button>
 
-          {showTips && (
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-              <p className="text-sm text-amber-800">{currentQ.tips}</p>
-            </div>
-          )}
+          <AnimatePresence>
+            {showTips && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="bg-amber-50 border border-amber-200 rounded-xl p-4"
+              >
+                <p className="text-sm text-amber-800 leading-relaxed">{currentQ.tips}</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          {/* Answer input */}
-          <Card>
-            <CardContent className="p-6 space-y-4">
-              <Textarea
-                placeholder="Tapez votre réponse ici... Prenez le temps de bien structurer votre pensée."
-                value={userAnswer}
-                onChange={e => setUserAnswer(e.target.value)}
-                rows={6}
-                className="resize-none"
-              />
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-gray-400">{userAnswer.length} caractères</span>
-                <Button
-                  onClick={submitAnswer}
-                  disabled={!userAnswer.trim()}
-                  className="bg-indigo-600 hover:bg-indigo-700"
-                >
-                  {currentIdx < interview.questions.length - 1 ? (
-                    <>Soumettre et suivante <ChevronRight className="w-4 h-4 ml-1" /></>
-                  ) : (
-                    <>Terminer l'entretien <CheckCircle className="w-4 h-4 ml-1" /></>
-                  )}
-                </Button>
+          {/* Answer box */}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center">
+                <Mic className="w-4 h-4 text-indigo-600" />
               </div>
-            </CardContent>
-          </Card>
+              <p className="text-sm font-semibold text-gray-700">Votre réponse</p>
+            </div>
+            <Textarea
+              placeholder="Rédigez votre réponse ici. Prenez le temps de structurer votre pensée avant d'écrire."
+              value={userAnswer}
+              onChange={e => setUserAnswer(e.target.value)}
+              rows={6}
+              className="resize-none text-sm border-gray-200 focus:border-indigo-400 rounded-xl"
+            />
+            <div className="flex items-center justify-between mt-4">
+              <span className="text-xs text-gray-400">{userAnswer.length} caractères</span>
+              <Button
+                onClick={submitAnswer}
+                disabled={!userAnswer.trim()}
+                className={`bg-gradient-to-r ${interview.gradient} text-white rounded-xl px-6`}
+              >
+                {currentIdx < interview.questions.length - 1 ? (
+                  <>Question suivante <ChevronRight className="w-4 h-4 ml-1" /></>
+                ) : (
+                  <>Terminer <CheckCircle className="w-4 h-4 ml-1" /></>
+                )}
+              </Button>
+            </div>
+          </div>
         </div>
         <ChatBot />
       </div>
     );
   }
 
-  // Selection screen
+  // ── Selection Screen ──
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50">
       <SEO
-        title="Entretien simulé - FrancePrepAcademy"
-        description="Préparez vos entretiens Campus France, d'embauche et de stage avec notre simulateur."
+        title="Simulation d'entretien - FrancePrepAcademy"
+        description="Préparez vos entretiens Campus France, d'embauche, de stage et de logement avec notre simulateur interactif."
         canonical="/mockinterview"
-        noindex={true}
       />
 
-      <div className="bg-gradient-to-r from-indigo-900 to-blue-800 text-white py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">Entretien simulé</h1>
-          <p className="text-blue-200 text-lg max-w-2xl mx-auto">
-            Entraînez-vous avec des questions réelles et obtenez des conseils pour réussir vos entretiens
+      {/* Hero */}
+      <div className="bg-gradient-to-r from-indigo-700 via-blue-700 to-indigo-800 text-white py-16 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl" />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 text-center relative">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-1.5 rounded-full text-sm mb-5 border border-white/20">
+            <Mic className="w-4 h-4" />
+            Simulateur d'entretien interactif
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Entraînez-vous aux entretiens</h1>
+          <p className="text-blue-100 text-lg max-w-2xl mx-auto">
+            Préparez-vous aux situations réelles : Campus France, recrutement, stage et visite de logement.
           </p>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid md:grid-cols-2 gap-6 mb-10">
-          {Object.entries(interviewData).map(([id, interview]) => (
-            <Card key={id} className="hover:shadow-md transition-shadow cursor-pointer group" onClick={() => startInterview(id)}>
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="text-4xl">{interview.icon}</div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
-                      {interview.name}
-                    </h3>
-                    <p className="text-sm text-gray-600 mt-1 mb-3">{interview.desc}</p>
-                    <div className="flex items-center gap-3">
-                      <Badge variant="outline" className="text-xs">
-                        {interview.questions.length} questions
-                      </Badge>
-                      <span className="text-xs text-gray-500 flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        ~{interview.questions.length * 3} min
+      {/* Cards grid */}
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <h2 className="text-xl font-bold text-gray-900 mb-6 text-center">Choisissez votre entretien</h2>
+        <div className="grid sm:grid-cols-2 gap-5">
+          {Object.entries(interviewTypes).map(([id, type]) => (
+            <motion.div
+              key={id}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.2 }}
+              className="group cursor-pointer"
+              onClick={() => startInterview(id)}
+            >
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-shadow overflow-hidden">
+                {/* Top gradient strip */}
+                <div className={`h-1.5 bg-gradient-to-r ${type.gradient}`} />
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-r ${type.gradient} flex items-center justify-center text-2xl shadow-md`}>
+                      {type.icon}
+                    </div>
+                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${difficultyColor[type.difficulty]}`}>
+                      {type.difficulty}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">{type.name}</h3>
+                  <p className="text-sm text-gray-500 mb-4">{type.subtitle}</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3 text-xs text-gray-400">
+                      <span className="flex items-center gap-1">
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        {type.questions.length} questions
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5" />
+                        {type.duration}
                       </span>
                     </div>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-r ${type.gradient} opacity-0 group-hover:opacity-100 transition-opacity`}>
+                      <ChevronRight className="w-4 h-4 text-white" />
+                    </div>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-indigo-600 transition-colors" />
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Tips section */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <Lightbulb className="w-5 h-5 text-amber-500" />
-              Conseils pour réussir
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Avant l'entretien</h4>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" /> Renseignez-vous sur l'organisme/entreprise</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" /> Préparez des exemples concrets</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" /> Entraînez-vous à répondre à voix haute</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" /> Préparez des questions à poser</li>
-                </ul>
+        <div className="mt-10 bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <Star className="w-5 h-5 text-amber-500" />
+            Conseils pour réussir vos entretiens
+          </h3>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              { icon: "📝", title: "Préparez vos réponses", text: "Entraînez-vous à l'oral et à l'écrit. Plus vous pratiquez, plus vous serez à l'aise le jour J." },
+              { icon: "🔍", title: "Renseignez-vous", text: "Avant chaque entretien, documentez-vous sur l'entreprise, le programme ou le quartier concerné." },
+              { icon: "💡", title: "Utilisez les conseils", text: "Activez les conseils du coach pendant les exercices pour améliorer vos réponses en temps réel." },
+            ].map((tip, i) => (
+              <div key={i} className="bg-slate-50 rounded-xl p-4">
+                <div className="text-2xl mb-2">{tip.icon}</div>
+                <h4 className="font-semibold text-sm text-gray-900 mb-1">{tip.title}</h4>
+                <p className="text-xs text-gray-500 leading-relaxed">{tip.text}</p>
               </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Pendant l'entretien</h4>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-start gap-2"><Target className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" /> Écoutez bien la question avant de répondre</li>
-                  <li className="flex items-start gap-2"><Target className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" /> Structurez vos réponses (méthode STAR)</li>
-                  <li className="flex items-start gap-2"><Target className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" /> Montrez votre motivation et votre enthousiasme</li>
-                  <li className="flex items-start gap-2"><Target className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" /> Soyez honnête et authentique</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            ))}
+          </div>
+        </div>
       </div>
-
       <ChatBot />
     </div>
   );
