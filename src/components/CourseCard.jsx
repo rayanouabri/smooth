@@ -4,6 +4,22 @@ import { Clock, BookOpen, ArrowRight, Lock } from "lucide-react";
 import { createPageUrl } from "../utils";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+// Fallback images par catégorie (Unsplash thématiques)
+const categoryFallbacks = {
+  logement:                   "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
+  budget_finances:            "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+  sante:                      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&q=80",
+  culture_codes_sociaux:      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80",
+  insertion_professionnelle:  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80",
+  integration_administrative: "https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=800&q=80",
+  administration:             "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
+  transport:                  "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80",
+  travail:                    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+  preparation_academique:     "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80",
+  formations_professionnelles:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
+  default:                    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80",
+};
+
 // Couleurs et icônes par catégorie
 const categoryConfig = {
   logement:                  { color: "from-orange-500 to-amber-500",   bg: "bg-orange-50",   text: "text-orange-700",   icon: "🏠" },
@@ -55,8 +71,9 @@ export default function CourseCard({ course }) {
         {/* ── Image zone ── */}
         <div className="relative h-44 overflow-hidden flex-shrink-0">
           <img
-            src={course.thumbnail_url || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"}
+            src={course.thumbnail_url || categoryFallbacks[course.category] || categoryFallbacks.default}
             alt={course.title}
+            onError={(e) => { e.target.src = categoryFallbacks[course.category] || categoryFallbacks.default; }}
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
