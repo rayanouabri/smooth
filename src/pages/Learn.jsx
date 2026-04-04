@@ -44,131 +44,318 @@ function toYouTubeEmbed(url) {
   return url;
 }
 
-// ---- Content renderer: splits text and iframes so videos render properly ----
-function LessonContentRenderer({ content }) {
-  const iframeRegex = /<iframe[\s\S]*?<\/iframe>/gi;
-  const parts = [];
-  let lastIndex = 0;
-  let match;
+// ---- Extract links from an HTML string (href + text) ----
+function extractLinks(html) {
+  const links = [];
+  const re = /<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    const text = m[2].replace(/<[^>]+>/g, '').trim();
+    if (text) links.push({ href: m[1], text });
+  }
+  return links;
+}
 
-  while ((match = iframeRegex.exec(content)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push({ type: "text", value: content.slice(lastIndex, match.index) });
-    }
-    const srcMatch = match[0].match(/src=["']([^"']+)["']/);
-    const titleMatch = match[0].match(/title=["']([^"']+)["']/);
-    if (srcMatch) {
-      parts.push({ type: "video", src: toYouTubeEmbed(srcMatch[1]), title: titleMatch?.[1] || "Vidéo" });
-    }
-    lastIndex = match.index + match[0].length;
-  }
-  if (lastIndex < content.length) {
-    parts.push({ type: "text", value: content.slice(lastIndex) });
-  }
-  if (parts.length === 0) {
-    parts.push({ type: "text", value: content });
-  }
+// ---- Ressources essentielles card (replaces the purple gradient HTML div) ----
+function ResourcesCard({ html }) {
+  const titleMatch = html.match(/Ressources essentielles[^<]*/);
+  const title = titleMatch ? titleMatch[0].replace(/^🔗\s*/, '').trim() : 'Ressources essentielles';
+  const links = extractLinks(html);
+  if (!links.length) return null;
+  return (
+    <div className="rounded-2xl overflow-hidden shadow-md border border-purple-100 mb-2">
+      <div className="bg-gradient-to-r from-violet-600 to-purple-700 px-5 py-4 flex items-center gap-3">
+        <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center flex-shrink-0">
+          <Zap className="w-4 h-4 text-yellow-300" />
+        </div>
+        <div>
+          <p className="text-[10px] text-purple-200 font-semibold uppercase tracking-widest">Ressources</p>
+          <p className="text-white font-bold text-sm leading-snug line-clamp-1">{title.replace('Ressources essentielles - ', '')}</p>
+        </div>
+      </div>
+      <div className="bg-white px-5 py-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {links.map((l, i) => (
+          <a key={i} href={l.href} target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-purple-50/70 hover:bg-purple-100 border border-purple-100 transition-all group">
+            <span className="w-6 h-6 rounded-md bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+              <Target className="w-3 h-3 text-white" />
+            </span>
+            <span className="text-[13px] font-medium text-purple-800 group-hover:text-purple-900 truncate">{l.text}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ---- "Pour aller plus loin" card (replaces the light purple HTML div) ----
+function FurtherReadingCard({ html }) {
+  const links = extractLinks(html);
+  if (!links.length) return null;
+  // Extract description spans
+  const descRe = /<span[^>]*font-size[^>]*>([\s\S]*?)<\/span>/gi;
+  const descs = [];
+  let dm;
+  while ((dm = descRe.exec(html)) !== null) descs.push(dm[1].trim());
 
   return (
-    <div className="space-y-8">
-      {parts.map((part, i) => {
-        if (part.type === "video") {
-          return (
-            <div key={i} className="my-8">
-              <div className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5 bg-black">
-                <div className="aspect-video relative">
-                  <iframe
-                    src={part.src}
-                    title={part.title}
-                    className="absolute inset-0 w-full h-full"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    allowFullScreen
-                    loading="lazy"
-                  />
-                </div>
+    <div className="rounded-2xl border border-indigo-100 bg-gradient-to-br from-indigo-50/60 to-purple-50/40 overflow-hidden mb-2">
+      <div className="px-5 py-3.5 border-b border-indigo-100 flex items-center gap-2.5">
+        <div className="w-7 h-7 rounded-lg bg-indigo-100 flex items-center justify-center flex-shrink-0">
+          <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+        </div>
+        <p className="font-bold text-indigo-800 text-sm">📚 Pour aller plus loin</p>
+      </div>
+      <div className="px-5 py-4 space-y-2.5">
+        {links.map((l, i) => (
+          <a key={i} href={l.href} target="_blank" rel="noopener noreferrer"
+            className="flex items-start gap-3 group">
+            <span className="w-5 h-5 rounded-full bg-indigo-200 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-indigo-300 transition-colors">
+              <ChevronRight className="w-3 h-3 text-indigo-700" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-[13px] font-semibold text-indigo-700 group-hover:text-indigo-900 group-hover:underline truncate">{l.text}</p>
+              {descs[i] && <p className="text-[11px] text-gray-500 mt-0.5 leading-snug">{descs[i]}</p>}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ---- "Liens utiles personnalisés" card (replaces the blue-left-border HTML div) ----
+function UsefulLinksCard({ html }) {
+  const links = extractLinks(html);
+  if (!links.length) return null;
+  return (
+    <div className="rounded-2xl border border-blue-100 bg-blue-50/50 overflow-hidden mb-2">
+      <div className="px-5 py-3.5 border-b border-blue-100 flex items-center gap-2.5">
+        <div className="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+          <Target className="w-3.5 h-3.5 text-blue-600" />
+        </div>
+        <p className="font-bold text-blue-800 text-sm">📌 Liens utiles</p>
+      </div>
+      <div className="px-5 py-4 flex flex-wrap gap-2">
+        {links.map((l, i) => (
+          <a key={i} href={l.href} target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-blue-200 text-blue-700 text-[12px] font-semibold hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
+            {l.text}
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ---- Detect which type of block an HTML div is ----
+function classifyHtmlBlock(html) {
+  if (/linear-gradient.*667eea/.test(html) || /Ressources essentielles/i.test(html)) return 'resources';
+  if (/Pour aller plus loin/i.test(html) || /f8f5ff/.test(html)) return 'further';
+  if (/Liens utiles/i.test(html) || /f0f4ff/.test(html) || /border-left.*4px/.test(html)) return 'links';
+  return 'raw';
+}
+
+// ---- Split content into segments: html blocks, iframes, and markdown text ----
+function segmentContent(content) {
+  const segments = [];
+  // Regex to match top-level <div>...</div> blocks and <iframe>...</iframe>
+  const blockRe = /(<div[\s\S]*?<\/div\s*>(?:\s*<\/div\s*>)*|<iframe[\s\S]*?<\/iframe>)/gi;
+  let cursor = 0;
+
+  // We need a smarter div splitter that handles nesting
+  let i = 0;
+  while (i < content.length) {
+    // Check for iframe
+    if (content.slice(i, i + 7).toLowerCase() === '<iframe') {
+      const end = content.indexOf('</iframe>', i);
+      if (end !== -1) {
+        if (i > cursor) segments.push({ type: 'markdown', value: content.slice(cursor, i) });
+        const block = content.slice(i, end + 9);
+        const srcMatch = block.match(/src=["']([^"']+)["']/);
+        const titleMatch = block.match(/title=["']([^"']+)["']/);
+        if (srcMatch) segments.push({ type: 'video', src: toYouTubeEmbed(srcMatch[1]), title: titleMatch?.[1] || 'Vidéo' });
+        cursor = end + 9;
+        i = cursor;
+        continue;
+      }
+    }
+    // Check for <div
+    if (content.slice(i, i + 4).toLowerCase() === '<div') {
+      // Find matching closing </div> accounting for nesting
+      let depth = 0;
+      let j = i;
+      while (j < content.length) {
+        if (content.slice(j, j + 4).toLowerCase() === '<div') { depth++; j += 4; }
+        else if (content.slice(j, j + 6).toLowerCase() === '</div') {
+          depth--;
+          j += 6;
+          // skip trailing >
+          while (j < content.length && content[j] !== '>') j++;
+          j++;
+          if (depth === 0) break;
+        } else { j++; }
+      }
+      if (i > cursor) segments.push({ type: 'markdown', value: content.slice(cursor, i) });
+      const block = content.slice(i, j);
+      const kind = classifyHtmlBlock(block);
+      segments.push({ type: kind === 'raw' ? 'html' : kind, value: block });
+      cursor = j;
+      i = j;
+      continue;
+    }
+    i++;
+  }
+  if (cursor < content.length) segments.push({ type: 'markdown', value: content.slice(cursor) });
+  return segments;
+}
+
+// ---- Markdown article component ----
+function MarkdownArticle({ text }) {
+  const trimmed = text.trim();
+  if (!trimmed) return null;
+  return (
+    <article className="prose prose-gray prose-lg max-w-none
+      prose-headings:text-gray-900 prose-headings:font-extrabold
+      prose-h1:text-3xl prose-h1:mb-6 prose-h1:pb-4 prose-h1:border-b prose-h1:border-gray-100
+      prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
+      prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+      prose-p:text-gray-600 prose-p:leading-[1.85] prose-p:text-[15.5px] prose-p:mb-5
+      prose-li:text-gray-600 prose-li:leading-relaxed
+      prose-strong:text-gray-900
+      prose-a:text-purple-600 prose-a:no-underline hover:prose-a:underline
+      prose-blockquote:border-l-purple-400 prose-blockquote:bg-purple-50/50 prose-blockquote:rounded-r-xl prose-blockquote:py-1
+      prose-code:text-purple-700 prose-code:bg-purple-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm
+      prose-img:rounded-xl prose-img:shadow-md
+      prose-table:border-collapse
+      prose-th:bg-purple-50 prose-th:text-purple-900 prose-th:font-bold prose-th:text-sm prose-th:px-4 prose-th:py-3 prose-th:border prose-th:border-purple-200
+      prose-td:text-sm prose-td:px-4 prose-td:py-2.5 prose-td:border prose-td:border-gray-200
+    ">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
+        components={{
+          h1: ({node, children, ...props}) => (
+            <h1 {...props} className="text-3xl font-extrabold text-gray-900 mb-6 pb-4 border-b border-gray-100">{children}</h1>
+          ),
+          h2: ({node, children, ...props}) => (
+            <h2 {...props} className="flex items-center gap-3 text-2xl mt-10 mb-4 font-extrabold text-gray-900">
+              <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-100 to-violet-100 inline-flex items-center justify-center flex-shrink-0 shadow-sm">
+                <BookOpen className="w-4 h-4 text-purple-600" />
+              </span>
+              {children}
+            </h2>
+          ),
+          h3: ({node, children, ...props}) => (
+            <h3 {...props} className="text-xl mt-8 mb-3 font-extrabold text-gray-800 flex items-center gap-2">
+              <span className="w-1.5 h-6 rounded-full bg-gradient-to-b from-purple-400 to-violet-500 flex-shrink-0" />
+              {children}
+            </h3>
+          ),
+          h4: ({node, children, ...props}) => (
+            <h4 {...props} className="text-base mt-6 mb-2 font-bold text-gray-800">{children}</h4>
+          ),
+          ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 space-y-2.5 marker:text-purple-500 marker:font-bold" {...props} />,
+          ul: ({node, ...props}) => <ul className="list-none pl-0 mb-6 space-y-2" {...props} />,
+          li: ({node, children, ordered, ...props}) => {
+            if (!ordered) {
+              return (
+                <li className="flex items-start gap-3 text-gray-600 leading-relaxed" {...props}>
+                  <span className="w-2 h-2 rounded-full bg-gradient-to-br from-purple-400 to-violet-500 mt-[0.55rem] flex-shrink-0" />
+                  <span className="flex-1">{children}</span>
+                </li>
+              );
+            }
+            return <li className="text-gray-600 leading-relaxed pl-1" {...props}>{children}</li>;
+          },
+          a: ({node, children, href, ...props}) => (
+            <a href={href} target="_blank" rel="noopener noreferrer"
+              className="text-purple-600 hover:text-purple-800 hover:underline font-medium inline-flex items-center gap-0.5" {...props}>
+              {children}
+            </a>
+          ),
+          blockquote: ({node, children, ...props}) => (
+            <blockquote {...props} className="border-l-4 border-purple-400 bg-gradient-to-r from-purple-50/70 to-transparent rounded-r-2xl py-4 px-5 my-6 not-italic">
+              <div className="flex items-start gap-3">
+                <Lightbulb className="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0" />
+                <div className="text-gray-700 text-[15px] leading-relaxed">{children}</div>
               </div>
-              {part.title && part.title !== "Vidéo" && (
-                <p className="text-center text-sm text-gray-400 mt-3 flex items-center justify-center gap-1.5">
-                  <Play className="w-3.5 h-3.5" /> {part.title}
+            </blockquote>
+          ),
+          table: ({node, children, ...props}) => (
+            <div className="overflow-x-auto my-6 rounded-2xl border border-purple-100 shadow-sm">
+              <table className="w-full" {...props}>{children}</table>
+            </div>
+          ),
+          thead: ({node, children, ...props}) => (
+            <thead className="bg-gradient-to-r from-purple-50 to-violet-50" {...props}>{children}</thead>
+          ),
+          th: ({node, children, ...props}) => (
+            <th className="text-purple-900 font-bold text-sm px-4 py-3 border-b border-purple-200 text-left" {...props}>{children}</th>
+          ),
+          td: ({node, children, ...props}) => (
+            <td className="text-gray-600 text-sm px-4 py-3 border-b border-gray-100" {...props}>{children}</td>
+          ),
+          tr: ({node, children, ...props}) => (
+            <tr className="hover:bg-purple-50/30 transition-colors" {...props}>{children}</tr>
+          ),
+          strong: ({node, children, ...props}) => (
+            <strong className="font-bold text-gray-900" {...props}>{children}</strong>
+          ),
+          em: ({node, children, ...props}) => (
+            <em className="text-purple-700 not-italic font-medium" {...props}>{children}</em>
+          ),
+          hr: ({node, ...props}) => (
+            <hr className="border-0 border-t border-gray-100 my-8" {...props} />
+          ),
+          code: ({node, inline, children, ...props}) => inline
+            ? <code className="bg-purple-50 text-purple-700 px-1.5 py-0.5 rounded-md text-[0.88em] font-mono" {...props}>{children}</code>
+            : <pre className="bg-gray-900 rounded-2xl p-5 overflow-x-auto my-6 text-sm"><code className="text-green-300 font-mono" {...props}>{children}</code></pre>,
+        }}
+      >
+        {trimmed}
+      </ReactMarkdown>
+    </article>
+  );
+}
+
+// ---- Content renderer: segments content and renders each block with proper design ----
+function LessonContentRenderer({ content }) {
+  const segments = segmentContent(content);
+
+  return (
+    <div className="space-y-6">
+      {segments.map((seg, i) => {
+        if (seg.type === 'video') {
+          return (
+            <div key={i} className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5 bg-black">
+              <div className="aspect-video relative">
+                <iframe
+                  src={seg.src}
+                  title={seg.title}
+                  className="absolute inset-0 w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+              {seg.title && seg.title !== 'Vidéo' && (
+                <p className="text-center text-xs text-gray-400 py-2 flex items-center justify-center gap-1.5 bg-black">
+                  <Play className="w-3 h-3" /> {seg.title}
                 </p>
               )}
             </div>
           );
         }
-        const trimmed = part.value.trim();
-        if (!trimmed) return null;
-        return (
-          <article key={i} className="prose prose-gray prose-lg max-w-none
-            prose-headings:text-gray-900 prose-headings:font-extrabold
-            prose-h1:text-3xl prose-h1:mb-6 prose-h1:pb-4 prose-h1:border-b prose-h1:border-gray-100
-            prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-            prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-            prose-p:text-gray-600 prose-p:leading-[1.85] prose-p:text-[15.5px] prose-p:mb-5
-            prose-li:text-gray-600 prose-li:leading-relaxed
-            prose-strong:text-gray-900
-            prose-a:text-purple-600 prose-a:no-underline hover:prose-a:underline
-            prose-blockquote:border-l-purple-400 prose-blockquote:bg-purple-50/50 prose-blockquote:rounded-r-xl prose-blockquote:py-1
-            prose-code:text-purple-700 prose-code:bg-purple-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm
-            prose-img:rounded-xl prose-img:shadow-md
-            prose-table:border-collapse prose-th:bg-purple-50 prose-th:text-purple-900 prose-th:font-bold prose-th:text-sm prose-th:px-4 prose-th:py-3 prose-th:border prose-th:border-purple-200
-            prose-td:text-sm prose-td:px-4 prose-td:py-2.5 prose-td:border prose-td:border-gray-200
-          ">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw]}
-              components={{
-                h2: ({node, children, ...props}) => (
-                  <h2 {...props} className="flex items-center gap-3 text-2xl mt-10 mb-4 font-extrabold text-gray-900">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-100 to-violet-100 inline-flex items-center justify-center flex-shrink-0">
-                      <BookOpen className="w-4.5 h-4.5 text-purple-600" />
-                    </span>
-                    {children}
-                  </h2>
-                ),
-                h3: ({node, children, ...props}) => (
-                  <h3 {...props} className="text-xl mt-8 mb-3 font-extrabold text-gray-800 flex items-center gap-2">
-                    <span className="w-1 h-6 rounded-full bg-purple-400 flex-shrink-0" />
-                    {children}
-                  </h3>
-                ),
-                ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 space-y-3 marker:text-purple-500 marker:font-bold" {...props} />,
-                ul: ({node, ...props}) => <ul className="list-none pl-0 mb-6 space-y-2.5" {...props} />,
-                li: ({node, children, ordered, ...props}) => {
-                  const isUnordered = !ordered;
-                  if (isUnordered) {
-                    return (
-                      <li className="flex items-start gap-3 text-gray-600 leading-relaxed" {...props}>
-                        <span className="w-2 h-2 rounded-full bg-gradient-to-br from-purple-400 to-violet-500 mt-2 flex-shrink-0" />
-                        <span>{children}</span>
-                      </li>
-                    );
-                  }
-                  return <li className="text-gray-600 leading-relaxed pl-2" {...props}>{children}</li>;
-                },
-                a: ({node, children, href, ...props}) => (
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 hover:underline font-medium" {...props}>{children}</a>
-                ),
-                blockquote: ({node, children, ...props}) => (
-                  <blockquote {...props} className="border-l-4 border-purple-400 bg-purple-50/60 rounded-r-xl py-3 px-5 my-6 not-italic">
-                    <div className="flex items-start gap-2">
-                      <Lightbulb className="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0" />
-                      <div className="text-gray-700 text-[15px] leading-relaxed">{children}</div>
-                    </div>
-                  </blockquote>
-                ),
-                table: ({node, children, ...props}) => (
-                  <div className="overflow-x-auto my-6 rounded-xl border border-gray-200 shadow-sm">
-                    <table className="w-full" {...props}>{children}</table>
-                  </div>
-                ),
-              }}
-            >
-              {trimmed}
-            </ReactMarkdown>
-          </article>
-        );
+        if (seg.type === 'resources') return <ResourcesCard key={i} html={seg.value} />;
+        if (seg.type === 'further')   return <FurtherReadingCard key={i} html={seg.value} />;
+        if (seg.type === 'links')     return <UsefulLinksCard key={i} html={seg.value} />;
+        if (seg.type === 'markdown')  return <MarkdownArticle key={i} text={seg.value} />;
+        // Fallback: raw HTML rendered via dangerouslySetInnerHTML (safe, it's our own content)
+        return <div key={i} className="rounded-2xl bg-gray-50 border border-gray-100 p-4 text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: seg.value }} />;
       })}
     </div>
   );
