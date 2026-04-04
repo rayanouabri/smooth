@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   GraduationCap, BarChart3, Users, BookOpen, TrendingUp, Award,
-  Mail, Phone, Building2, ChevronRight, Star, CheckCircle2,
+  Mail, Phone, Building2, ChevronRight, CheckCircle2,
   ArrowRight, Shield, Clock, Globe, Zap, MessageSquare, Send,
-  FileText, Download, Eye, Lock, Sparkles, Target, Brain
+  FileText, Lock, Sparkles, Target, Brain, Star, Eye,
+  LayoutDashboard, Settings, ChevronDown, Play
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -12,110 +13,297 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 
-// Données simulées pour le dashboard de démonstration
-const DEMO_STATS = {
-  studentsReferred: 247,
-  avgCompletionRate: 73,
-  topSubjects: ["Mathématiques", "Économie", "Culture Générale", "Management"],
-  weeklyActiveUsers: 89,
-  avgSessionMinutes: 42,
-  lessonsCompleted: 3812,
-};
-
-const PARTNER_SCHOOLS = [
-  { name: "HEC Paris", logo: "H", color: "from-red-500 to-rose-600", students: 84, completion: 78 },
-  { name: "ESSEC", logo: "E", color: "from-blue-500 to-indigo-600", students: 61, completion: 71 },
-  { name: "ESCP Europe", logo: "ES", color: "from-purple-500 to-violet-600", students: 52, completion: 69 },
-  { name: "EM Lyon", logo: "EM", color: "from-emerald-500 to-green-600", students: 50, completion: 74 },
-];
-
+// ─── Feature cards ────────────────────────────────────────────────────────────
 const FEATURES = [
   {
     icon: BarChart3,
     title: "Tableau de bord analytics",
     desc: "Suivez en temps réel l'activité de vos étudiants : taux de complétion, matières préférées, progression par semaine.",
     color: "from-violet-500 to-purple-600",
+    badge: "Temps réel",
   },
   {
     icon: Users,
     title: "Gestion des étudiants",
-    desc: "Accédez à la liste des étudiants orientés via votre école, avec leur progression individuelle anonymisée.",
+    desc: "Accédez à la progression de vos étudiants via un code d'accès partenaire, avec données anonymisées par défaut.",
     color: "from-blue-500 to-indigo-600",
+    badge: "RGPD",
   },
   {
     icon: BookOpen,
-    title: "Contenu co-brandé",
-    desc: "Proposez des parcours personnalisés aux couleurs de votre établissement, avec vos recommandations pédagogiques.",
+    title: "Contenu structuré",
+    desc: "759+ leçons organisées en cours thématiques : maths, éco, management, culture générale, anglais…",
     color: "from-emerald-500 to-teal-600",
+    badge: "759+ leçons",
   },
   {
-    icon: Award,
-    title: "Certificats reconnus",
-    desc: "Vos étudiants reçoivent des attestations co-signées par FrancePrepAcademy et votre établissement.",
-    color: "from-amber-500 to-orange-600",
+    icon: Brain,
+    title: "Quiz adaptatifs par IA",
+    desc: "Chaque leçon génère automatiquement un quiz de 5 questions basé sur le contenu exact du cours.",
+    color: "from-orange-500 to-amber-600",
+    badge: "IA",
+  },
+  {
+    icon: Target,
+    title: "Suivi de progression",
+    desc: "Visualisez l'avancement de chaque étudiant : leçons complétées, scores aux quiz, temps d'étude.",
+    color: "from-rose-500 to-pink-600",
+    badge: "Individuel",
   },
   {
     icon: Shield,
-    title: "Conformité RGPD",
-    desc: "Toutes les données sont anonymisées et hébergées en Europe. Aucune donnée personnelle partagée sans consentement.",
+    title: "Accès sécurisé",
+    desc: "Authentification par email, données hébergées en Europe, conformité RGPD totale.",
     color: "from-slate-500 to-gray-600",
-  },
-  {
-    icon: Globe,
-    title: "Intégration ENT",
-    desc: "API disponible pour intégrer directement FrancePrepAcademy dans votre Espace Numérique de Travail.",
-    color: "from-rose-500 to-pink-600",
+    badge: "100% sécurisé",
   },
 ];
 
-const TESTIMONIALS = [
-  {
-    name: "Dr. Émilie Rousseau",
-    role: "Directrice pédagogique",
-    school: "Prépa HEC Paris",
-    text: "FrancePrepAcademy a clairement amélioré l'assiduité de nos étudiants entre les cours. Les données de progression nous permettent d'adapter notre programme en temps réel.",
-    rating: 5,
-  },
-  {
-    name: "Prof. Marc Lefèvre",
-    role: "Responsable filière ECG",
-    school: "Prépa ESSEC",
-    text: "Un outil complémentaire indispensable. Nos étudiants apprécient pouvoir réviser les notions clés à leur rythme, avec un contenu aligné sur notre programme.",
-    rating: 5,
-  },
+const KEY_NUMBERS = [
+  { value: "759+", label: "Leçons disponibles", icon: BookOpen },
+  { value: "5", label: "Quiz par leçon (IA)", icon: Brain },
+  { value: "24/7", label: "Accès illimité", icon: Clock },
+  { value: "100%", label: "Conformité RGPD", icon: Shield },
 ];
 
-function StatCard({ icon: Icon, value, label, color }) {
+// ─── FeatureCard ──────────────────────────────────────────────────────────────
+function FeatureCard({ icon: Icon, title, desc, color, badge }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`rounded-2xl bg-gradient-to-br ${color} p-5 text-white shadow-lg`}
+      whileHover={{ y: -4 }}
+      className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition-shadow"
     >
-      <div className="flex items-center justify-between mb-3">
-        <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
-          <Icon className="w-5 h-5" />
+      <div className="flex items-start gap-4">
+        <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center flex-shrink-0`}>
+          <Icon className="w-5 h-5 text-white" />
         </div>
-        <TrendingUp className="w-4 h-4 opacity-60" />
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1.5">
+            <h3 className="font-semibold text-gray-900 text-sm">{title}</h3>
+            {badge && (
+              <span className="text-[10px] font-medium px-1.5 py-0.5 bg-violet-50 text-violet-600 rounded-full border border-violet-100 whitespace-nowrap">
+                {badge}
+              </span>
+            )}
+          </div>
+          <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
+        </div>
       </div>
-      <p className="text-3xl font-extrabold tabular-nums">{value}</p>
-      <p className="text-sm text-white/80 mt-1">{label}</p>
     </motion.div>
   );
 }
 
-// Formulaire de demande de partenariat
-function PartnershipForm() {
-  const [form, setForm] = useState({ school: '', name: '', role: '', email: '', phone: '', message: '' });
+// ─── Dashboard Demo ───────────────────────────────────────────────────────────
+const DEMO_VIEWS = [
+  { id: "overview", label: "Vue d'ensemble", icon: LayoutDashboard },
+  { id: "progression", label: "Progression", icon: TrendingUp },
+  { id: "contenu", label: "Contenu", icon: BookOpen },
+];
+
+const DEMO_STUDENTS = [
+  { initials: "ML", name: "Marie L.", progress: 78, lessons: 61, quizAvg: 82, active: true },
+  { initials: "TM", name: "Thomas M.", progress: 54, lessons: 43, quizAvg: 71, active: true },
+  { initials: "CA", name: "Camille A.", progress: 91, lessons: 72, quizAvg: 88, active: false },
+  { initials: "JD", name: "Julien D.", progress: 33, lessons: 26, quizAvg: 64, active: false },
+  { initials: "SB", name: "Sofia B.", progress: 67, lessons: 53, quizAvg: 76, active: true },
+];
+
+const DEMO_COURSES = [
+  { name: "Mathématiques — Algèbre", progress: 72, lessons: 28, color: "bg-violet-500" },
+  { name: "Économie générale", progress: 58, lessons: 21, color: "bg-blue-500" },
+  { name: "Culture Générale", progress: 84, lessons: 19, color: "bg-emerald-500" },
+  { name: "Management", progress: 41, lessons: 14, color: "bg-orange-500" },
+  { name: "Anglais", progress: 63, lessons: 16, color: "bg-rose-500" },
+];
+
+function ProgressBar({ value, color = "bg-violet-500" }) {
+  return (
+    <div className="w-full bg-gray-100 rounded-full h-1.5">
+      <div className={`h-1.5 rounded-full ${color}`} style={{ width: `${value}%` }} />
+    </div>
+  );
+}
+
+function DashboardDemo() {
+  const [activeView, setActiveView] = useState("overview");
+
+  return (
+    <div className="bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden shadow-inner">
+      {/* Demo label */}
+      <div className="bg-amber-50 border-b border-amber-100 px-4 py-2 flex items-center gap-2">
+        <Eye className="w-3.5 h-3.5 text-amber-500" />
+        <p className="text-xs text-amber-700 font-medium">Aperçu illustratif — données fictives à des fins de démonstration</p>
+      </div>
+
+      {/* Fake browser bar */}
+      <div className="bg-white border-b border-gray-200 px-4 py-2.5 flex items-center gap-3">
+        <div className="flex gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+          <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+          <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+        </div>
+        <div className="flex-1 bg-gray-100 rounded-md px-3 py-1 text-[11px] text-gray-400">
+          franceprepacademy.fr/portail/dashboard
+        </div>
+      </div>
+
+      {/* App layout */}
+      <div className="flex h-80">
+        {/* Sidebar */}
+        <div className="w-44 bg-white border-r border-gray-200 flex flex-col p-3 gap-1">
+          <div className="flex items-center gap-2 px-2 py-1.5 mb-2">
+            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
+              <GraduationCap className="w-3.5 h-3.5 text-white" />
+            </div>
+            <span className="text-xs font-bold text-gray-800">Portail École</span>
+          </div>
+          {DEMO_VIEWS.map(view => (
+            <button
+              key={view.id}
+              onClick={() => setActiveView(view.id)}
+              className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-colors ${
+                activeView === view.id
+                  ? "bg-violet-100 text-violet-700 font-medium"
+                  : "text-gray-500 hover:bg-gray-50"
+              }`}
+            >
+              <view.icon className="w-3.5 h-3.5" />
+              {view.label}
+            </button>
+          ))}
+          <div className="mt-auto pt-2 border-t border-gray-100">
+            <div className="px-2 py-1.5 text-[10px] text-gray-400">Connecté en tant que</div>
+            <div className="px-2 py-1 flex items-center gap-1.5">
+              <div className="w-5 h-5 rounded-full bg-violet-100 flex items-center justify-center text-[9px] font-bold text-violet-700">A</div>
+              <span className="text-[11px] text-gray-600 font-medium">Accès Pilote</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Main content */}
+        <div className="flex-1 p-4 overflow-auto">
+          <AnimatePresence mode="wait">
+            {activeView === "overview" && (
+              <motion.div key="overview" initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -8 }} transition={{ duration: 0.15 }}>
+                <p className="text-xs font-semibold text-gray-700 mb-3">Vue d'ensemble — promotion fictive</p>
+                <div className="grid grid-cols-3 gap-2 mb-4">
+                  {[
+                    { label: "Étudiants actifs", value: "5", sub: "dans cette démo", icon: Users, color: "text-violet-600 bg-violet-50" },
+                    { label: "Leçons complétées", value: "255", sub: "total simulation", icon: BookOpen, color: "text-blue-600 bg-blue-50" },
+                    { label: "Score quiz moyen", value: "76%", sub: "simulation", icon: Award, color: "text-emerald-600 bg-emerald-50" },
+                  ].map((stat, i) => (
+                    <div key={i} className="bg-white rounded-xl border border-gray-100 p-3">
+                      <div className={`w-7 h-7 rounded-lg ${stat.color} flex items-center justify-center mb-2`}>
+                        <stat.icon className="w-3.5 h-3.5" />
+                      </div>
+                      <p className="text-lg font-bold text-gray-800">{stat.value}</p>
+                      <p className="text-[10px] text-gray-500">{stat.label}</p>
+                      <p className="text-[9px] text-gray-400 italic">{stat.sub}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-white rounded-xl border border-gray-100 p-3">
+                  <p className="text-[11px] font-semibold text-gray-700 mb-2">Activité récente (simulation)</p>
+                  <div className="space-y-1.5">
+                    {["Marie L. a complété Économie — Chapitre 4", "Thomas M. a obtenu 80% au quiz Maths", "Camille A. a démarré Culture Générale"].map((item, i) => (
+                      <div key={i} className="flex items-center gap-2 text-[10px] text-gray-500">
+                        <div className="w-1 h-1 rounded-full bg-violet-400 flex-shrink-0" />
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {activeView === "progression" && (
+              <motion.div key="progression" initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -8 }} transition={{ duration: 0.15 }}>
+                <p className="text-xs font-semibold text-gray-700 mb-3">Progression des étudiants — données fictives</p>
+                <div className="space-y-2">
+                  {DEMO_STUDENTS.map((s, i) => (
+                    <div key={i} className="bg-white rounded-xl border border-gray-100 p-2.5 flex items-center gap-3">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0">
+                        {s.initials}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[11px] font-medium text-gray-700">{s.name}</span>
+                          <span className="text-[10px] text-gray-500">{s.progress}%</span>
+                        </div>
+                        <ProgressBar value={s.progress} color="bg-violet-500" />
+                      </div>
+                      <div className="text-[10px] text-gray-400 text-right flex-shrink-0">
+                        <div>{s.lessons} leçons</div>
+                        <div>Quiz: {s.quizAvg}%</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {activeView === "contenu" && (
+              <motion.div key="contenu" initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -8 }} transition={{ duration: 0.15 }}>
+                <p className="text-xs font-semibold text-gray-700 mb-3">Cours les plus utilisés — simulation</p>
+                <div className="space-y-2.5">
+                  {DEMO_COURSES.map((c, i) => (
+                    <div key={i} className="bg-white rounded-xl border border-gray-100 p-3">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-[11px] font-medium text-gray-700">{c.name}</span>
+                        <span className="text-[10px] text-gray-500">{c.lessons} leçons</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <ProgressBar value={c.progress} color={c.color} />
+                        <span className="text-[10px] text-gray-500 flex-shrink-0">{c.progress}%</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Contact Form ─────────────────────────────────────────────────────────────
+function ContactForm() {
+  const [formData, setFormData] = useState({
+    school: "",
+    name: "",
+    role: "",
+    email: "",
+    phone: "",
+    students: "",
+    message: "",
+  });
   const [submitted, setSubmitted] = useState(false);
-  const [sending, setSending] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSending(true);
-    // Simule l'envoi (appel API contact possible ici)
-    await new Promise(r => setTimeout(r, 1500));
-    setSending(false);
+    if (!formData.email || !formData.name || !formData.school) return;
+    setLoading(true);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          requestType: "conciergerie",
+          formData: {
+            ...formData,
+            type: "Demande partenariat établissement",
+          },
+        }),
+      });
+    } catch (e) { /* silently ignore */ }
+    setLoading(false);
     setSubmitted(true);
   };
 
@@ -126,11 +314,13 @@ function PartnershipForm() {
         animate={{ opacity: 1, scale: 1 }}
         className="text-center py-12"
       >
-        <div className="w-16 h-16 rounded-2xl bg-emerald-100 flex items-center justify-center mx-auto mb-4">
+        <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
           <CheckCircle2 className="w-8 h-8 text-emerald-600" />
         </div>
         <h3 className="text-xl font-bold text-gray-900 mb-2">Demande envoyée !</h3>
-        <p className="text-gray-500">Notre équipe partenariats vous contactera sous 48h ouvrées.</p>
+        <p className="text-gray-500 max-w-sm mx-auto">
+          Nous reviendrons vers vous dans les 24–48h pour vous présenter la plateforme et discuter d'un accès pilote gratuit.
+        </p>
       </motion.div>
     );
   }
@@ -139,297 +329,266 @@ function PartnershipForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 block">École / Établissement *</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Établissement *</label>
           <input
-            required value={form.school}
-            onChange={e => setForm(p => ({ ...p, school: e.target.value }))}
-            placeholder="HEC Paris, ESSEC, EM Lyon…"
-            className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm"
+            type="text"
+            name="school"
+            required
+            value={formData.school}
+            onChange={handleChange}
+            placeholder="Nom de votre école / université"
+            className="w-full border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent"
           />
         </div>
         <div>
-          <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 block">Votre nom *</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Votre nom *</label>
           <input
-            required value={form.name}
-            onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
+            type="text"
+            name="name"
+            required
+            value={formData.name}
+            onChange={handleChange}
             placeholder="Prénom Nom"
-            className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm"
-          />
-        </div>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 block">Fonction *</label>
-          <input
-            required value={form.role}
-            onChange={e => setForm(p => ({ ...p, role: e.target.value }))}
-            placeholder="Directeur pédagogique, Responsable…"
-            className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm"
+            className="w-full border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent"
           />
         </div>
         <div>
-          <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 block">Email professionnel *</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Fonction</label>
           <input
-            required type="email" value={form.email}
-            onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
-            placeholder="vous@ecole.fr"
-            className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm"
+            type="text"
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            placeholder="Directeur, Professeur, Responsable pédagogique…"
+            className="w-full border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent"
           />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Email professionnel *</label>
+          <input
+            type="email"
+            name="email"
+            required
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="vous@votre-ecole.fr"
+            className="w-full border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="+33 6 …"
+            className="w-full border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Nombre d'étudiants estimé</label>
+          <select
+            name="students"
+            value={formData.students}
+            onChange={handleChange}
+            className="w-full border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent bg-white"
+          >
+            <option value="">Sélectionner…</option>
+            <option value="< 50">Moins de 50</option>
+            <option value="50-200">50 à 200</option>
+            <option value="200-500">200 à 500</option>
+            <option value="> 500">Plus de 500</option>
+          </select>
         </div>
       </div>
       <div>
-        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 block">Message (optionnel)</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Message (optionnel)</label>
         <textarea
-          value={form.message}
-          onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
-          placeholder="Décrivez votre besoin, vos effectifs, vos attentes…"
-          rows={4}
-          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 outline-none text-sm resize-none"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          rows={3}
+          placeholder="Décrivez votre besoin, vos attentes, ou posez vos questions…"
+          className="w-full border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent resize-none"
         />
       </div>
-      <button
+      <Button
         type="submit"
-        disabled={sending}
-        className="w-full flex items-center justify-center gap-2.5 bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-700 hover:to-purple-800 text-white font-bold py-3.5 rounded-xl text-sm transition-all shadow-lg shadow-violet-500/25 disabled:opacity-60"
+        disabled={loading || !formData.email || !formData.name || !formData.school}
+        className="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white font-semibold py-3 rounded-xl transition-all"
       >
-        {sending
-          ? <><div className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" /> Envoi en cours…</>
-          : <><Send className="w-4 h-4" /> Soumettre ma demande de partenariat</>
-        }
-      </button>
-      <p className="text-center text-xs text-gray-400">Réponse garantie sous 48h ouvrées · Vos données ne sont jamais revendues</p>
+        {loading ? (
+          <span className="flex items-center gap-2 justify-center"><span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" /> Envoi en cours…</span>
+        ) : (
+          <span className="flex items-center gap-2 justify-center"><Send className="w-4 h-4" /> Demander un accès pilote gratuit</span>
+        )}
+      </Button>
+      <p className="text-[11px] text-gray-400 text-center">Aucun engagement. Réponse sous 24–48h. Données conformes RGPD.</p>
     </form>
   );
 }
 
+// ─── Main Page ────────────────────────────────────────────────────────────────
+const TABS = [
+  { id: "platform", label: "La plateforme", icon: Globe },
+  { id: "features", label: "Fonctionnalités", icon: Zap },
+  { id: "demo", label: "Aperçu dashboard", icon: Eye },
+  { id: "contact", label: "Nous contacter", icon: MessageSquare },
+];
+
 export default function SchoolPortal() {
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState("platform");
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* ── HERO ── */}
-      <div className="bg-gradient-to-br from-violet-700 via-purple-700 to-indigo-800 text-white relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-violet-50/30 to-purple-50/20">
+
+      {/* ── Hero ── */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-violet-900 via-purple-900 to-indigo-900 text-white">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full -translate-y-1/3 translate-x-1/4 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-300/20 rounded-full translate-y-1/3 -translate-x-1/4 blur-2xl" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-400 rounded-full filter blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400 rounded-full filter blur-3xl" />
         </div>
-        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24 relative">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="flex-1 text-center lg:text-left">
-              <Badge className="bg-white/15 text-white border-0 text-xs font-semibold px-3 py-1 mb-6 backdrop-blur-sm inline-flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5" /> Portail Établissements Partenaires
-              </Badge>
-              <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-6">
-                Préparez vos étudiants<br />
-                <span className="text-yellow-300">aux grandes écoles</span><br />
-                ensemble.
-              </h1>
-              <p className="text-lg text-purple-200 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                FrancePrepAcademy s'associe aux meilleures prépas et grandes écoles de commerce pour offrir à leurs étudiants un accès 24/7 à 759+ leçons, des QCM interactifs et un suivi de progression en temps réel.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                <a href="#demande" className="inline-flex items-center justify-center gap-2 bg-white text-violet-700 font-bold py-3.5 px-7 rounded-xl hover:bg-purple-50 transition-colors shadow-lg">
-                  <GraduationCap className="w-5 h-5" /> Devenir partenaire
-                </a>
-                <button onClick={() => setActiveTab('demo')} className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-3.5 px-7 rounded-xl border border-white/20 transition-colors backdrop-blur-sm">
-                  <Eye className="w-5 h-5" /> Voir la démo
-                </button>
-              </div>
-            </div>
-            {/* Stats mini */}
-            <div className="grid grid-cols-2 gap-3 w-full max-w-xs">
-              {[
-                { v: '759+', l: 'leçons disponibles', icon: BookOpen },
-                { v: '247', l: 'étudiants actifs', icon: Users },
-                { v: '73%', l: 'taux de complétion', icon: TrendingUp },
-                { v: '42 min', l: 'par session', icon: Clock },
-              ].map(({ v, l, icon: Icon }) => (
-                <div key={l} className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 text-center border border-white/10">
-                  <Icon className="w-5 h-5 text-purple-300 mx-auto mb-1.5" />
-                  <p className="text-2xl font-extrabold">{v}</p>
-                  <p className="text-[11px] text-purple-300 leading-snug mt-0.5">{l}</p>
-                </div>
-              ))}
-            </div>
+        <div className="relative max-w-5xl mx-auto px-4 py-16 md:py-20 text-center">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm text-violet-200 mb-6">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Accès pilote gratuit disponible</span>
+          </div>
+          <h1 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+            La plateforme de prépa<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 to-pink-300">
+              conçue pour réussir
+            </span>
+          </h1>
+          <p className="text-lg text-violet-200 max-w-2xl mx-auto mb-8">
+            Offrez à vos étudiants un accès structuré à 759+ leçons, des quiz adaptatifs par IA
+            et un suivi de progression — testable dès aujourd'hui, sans engagement.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <button
+              onClick={() => setActiveTab("contact")}
+              className="inline-flex items-center gap-2 bg-white text-violet-700 font-semibold px-6 py-3 rounded-xl hover:bg-violet-50 transition-colors"
+            >
+              <Play className="w-4 h-4" />
+              Tester gratuitement
+            </button>
+            <button
+              onClick={() => setActiveTab("demo")}
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/20 transition-colors"
+            >
+              <Eye className="w-4 h-4" />
+              Voir l'aperçu
+            </button>
           </div>
         </div>
       </div>
 
-      {/* ── TABS ── */}
-      <div className="sticky top-0 z-10 bg-white border-b border-gray-100 shadow-sm">
-        <div className="max-w-6xl mx-auto px-5 sm:px-8">
-          <div className="flex gap-0 overflow-x-auto scrollbar-none">
-            {[
-              { id: 'overview', label: 'Vue d\'ensemble', icon: Sparkles },
-              { id: 'features', label: 'Fonctionnalités', icon: Zap },
-              { id: 'demo', label: 'Dashboard démo', icon: BarChart3 },
-              { id: 'testimonials', label: 'Témoignages', icon: MessageSquare },
-            ].map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-1.5 px-4 py-4 text-sm font-semibold whitespace-nowrap border-b-2 transition-all flex-shrink-0 ${
-                  activeTab === tab.id
-                    ? 'border-violet-600 text-violet-700'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
-                }`}
-              >
-                <tab.icon className="w-4 h-4" />
-                {tab.label}
-              </button>
-            ))}
-          </div>
+      {/* ── Chiffres clés ── */}
+      <div className="max-w-5xl mx-auto px-4 -mt-6 mb-10 grid grid-cols-2 md:grid-cols-4 gap-3">
+        {KEY_NUMBERS.map(({ value, label, icon: Icon }, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.07 }}
+            className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 text-center"
+          >
+            <div className="w-9 h-9 rounded-xl bg-violet-100 flex items-center justify-center mx-auto mb-2">
+              <Icon className="w-4.5 h-4.5 text-violet-600" />
+            </div>
+            <p className="text-2xl font-extrabold text-gray-900">{value}</p>
+            <p className="text-xs text-gray-500 mt-0.5">{label}</p>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* ── Tabs ── */}
+      <div className="max-w-5xl mx-auto px-4 mb-8">
+        <div className="flex gap-1 bg-white border border-gray-100 rounded-2xl p-1 shadow-sm overflow-x-auto">
+          {TABS.map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap flex-1 justify-center ${
+                activeTab === tab.id
+                  ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-sm"
+                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+              }`}
+            >
+              <tab.icon className="w-3.5 h-3.5" />
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12">
+      {/* ── Tab Content ── */}
+      <div className="max-w-5xl mx-auto px-4 pb-16">
         <AnimatePresence mode="wait">
 
-          {/* ── VUE D'ENSEMBLE ── */}
-          {activeTab === 'overview' && (
-            <motion.div key="overview" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-              {/* Pourquoi partenarier */}
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-extrabold text-gray-900 mb-4">Pourquoi devenir partenaire ?</h2>
-                <p className="text-gray-500 max-w-2xl mx-auto leading-relaxed">
-                  FrancePrepAcademy complète votre enseignement, ne le remplace pas. Vos étudiants révisent, progressent et vous avez les données pour adapter votre pédagogie.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-                {[
-                  { icon: Target, title: "Pour vos étudiants", items: ["Accès 24/7 à 759+ leçons", "QCM interactifs après chaque leçon", "Suivi de progression visuel", "Assistant IA pédagogique", "Certificats de complétion co-brandés"], color: "violet" },
-                  { icon: BarChart3, title: "Pour votre établissement", items: ["Dashboard analytics en temps réel", "Données agrégées anonymisées", "Identification des lacunes collectives", "Rapport mensuel d'utilisation", "Support prioritaire"], color: "blue" },
-                  { icon: Building2, title: "Pour le partenariat", items: ["Co-branding sur la plateforme", "Visibilité dans nos communications", "Parcours personnalisés à votre image", "Accès API pour intégration ENT", "Accord de principe en 5 jours"], color: "emerald" },
-                ].map(({ icon: Icon, title, items, color }) => (
-                  <Card key={title} className="border-0 shadow-lg rounded-2xl overflow-hidden">
-                    <div className={`h-1.5 bg-${color}-500`} />
-                    <CardContent className="p-6">
-                      <div className={`w-10 h-10 rounded-xl bg-${color}-100 flex items-center justify-center mb-4`}>
-                        <Icon className={`w-5 h-5 text-${color}-600`} />
-                      </div>
-                      <h3 className="font-bold text-gray-900 mb-4">{title}</h3>
-                      <ul className="space-y-2.5">
-                        {items.map(item => (
-                          <li key={item} className="flex items-start gap-2.5 text-sm text-gray-600">
-                            <CheckCircle2 className={`w-4 h-4 text-${color}-500 mt-0.5 flex-shrink-0`} />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-              {/* Process */}
-              <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 mb-16">
-                <h3 className="text-xl font-extrabold text-gray-900 mb-8 text-center">Comment ça fonctionne ?</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
-                  {[
-                    { step: 1, title: "Prise de contact", desc: "Remplissez le formulaire ou envoyez-nous un email. Réponse sous 48h.", icon: Mail },
-                    { step: 2, title: "Réunion de présentation", desc: "Démo live de la plateforme et discussion sur vos besoins spécifiques.", icon: Eye },
-                    { step: 3, title: "Pilote 3 mois", desc: "Accès gratuit pour un groupe restreint. Mesure des résultats ensemble.", icon: Zap },
-                    { step: 4, title: "Partenariat complet", desc: "Accord formel, co-branding, accès API et suivi mensuel.", icon: Award },
-                  ].map(({ step, title, desc, icon: Icon }) => (
-                    <div key={step} className="text-center relative">
-                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-600 to-purple-700 flex items-center justify-center mx-auto mb-3 shadow-md shadow-violet-500/20 relative">
-                        <Icon className="w-6 h-6 text-white" />
-                        <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-white border-2 border-violet-200 text-[10px] font-extrabold text-violet-700 flex items-center justify-center">{step}</span>
-                      </div>
-                      <h4 className="font-bold text-gray-800 text-sm mb-1.5">{title}</h4>
-                      <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
-                    </div>
-                  ))}
+          {/* Platform tab */}
+          {activeTab === "platform" && (
+            <motion.div key="platform" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+                  <h2 className="text-xl font-bold text-gray-900 mb-3">Pourquoi FrancePrepAcademy ?</h2>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                    FrancePrepAcademy est une plateforme d'entraînement pour les étudiants qui préparent les concours des grandes écoles. Elle propose un catalogue structuré de cours, des leçons illustrées, et un système de quiz généré par intelligence artificielle pour ancrer les connaissances.
+                  </p>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Nous proposons aux établissements un <strong>accès pilote gratuit</strong> pour permettre à leurs équipes pédagogiques d'évaluer la plateforme avec un groupe d'étudiants, avant toute décision de partenariat.
+                  </p>
                 </div>
-              </div>
-
-              {/* CTA */}
-              <div id="demande" className="bg-gradient-to-br from-violet-600 to-purple-700 rounded-3xl p-8 sm:p-12 text-white">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-                  <div>
-                    <h3 className="text-2xl font-extrabold mb-3">Prêt à commencer ?</h3>
-                    <p className="text-purple-200 leading-relaxed mb-6">
-                      Remplissez ce formulaire et notre équipe partenariats reviendra vers vous sous 48h ouvrées pour organiser une démo et discuter des modalités.
-                    </p>
-                    <div className="space-y-3">
-                      {[
-                        { icon: CheckCircle2, text: "Aucun engagement — pilote 3 mois gratuit" },
-                        { icon: Shield, text: "Données hébergées en Europe — conformité RGPD" },
-                        { icon: Clock, text: "Mise en place en moins d'une semaine" },
-                      ].map(({ icon: Icon, text }) => (
-                        <div key={text} className="flex items-center gap-2.5 text-sm text-purple-100">
-                          <Icon className="w-4 h-4 text-green-300 flex-shrink-0" />
-                          {text}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-xl">
-                    <PartnershipForm />
-                  </div>
+                <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl border border-violet-100 p-6">
+                  <h2 className="text-xl font-bold text-violet-900 mb-4">Ce que vous obtenez</h2>
+                  <ul className="space-y-3">
+                    {[
+                      "Accès à l'intégralité du catalogue (759+ leçons)",
+                      "Tableau de bord de suivi de votre groupe pilote",
+                      "Quiz IA générés automatiquement sur chaque leçon",
+                      "Support dédié pendant la période pilote",
+                      "Rapport d'utilisation à l'issue du pilote",
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-violet-800">
+                        <CheckCircle2 className="w-4 h-4 text-violet-500 flex-shrink-0 mt-0.5" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
-            </motion.div>
-          )}
-
-          {/* ── FONCTIONNALITÉS ── */}
-          {activeTab === 'features' && (
-            <motion.div key="features" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-extrabold text-gray-900 mb-4">Ce que vous obtenez</h2>
-                <p className="text-gray-500 max-w-xl mx-auto">Un écosystème complet pour accompagner vos étudiants et piloter leur progression.</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {FEATURES.map(({ icon: Icon, title, desc, color }) => (
-                  <motion.div
-                    key={title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-xl transition-shadow group"
-                  >
-                    <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform`}>
-                      <Icon className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
-                    <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
-                  </motion.div>
-                ))}
               </div>
 
               {/* Comparison table */}
-              <div className="mt-12 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                <div className="px-6 py-5 border-b border-gray-100">
-                  <h3 className="font-extrabold text-gray-900">Comparatif des offres partenaires</h3>
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div className="px-6 py-4 border-b border-gray-100">
+                  <h2 className="text-lg font-bold text-gray-900">Comparaison des accès</h2>
+                  <p className="text-sm text-gray-500">L'accès Pilote est entièrement gratuit et sans engagement</p>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="bg-violet-50">
-                        <th className="text-left px-6 py-3 text-gray-700 font-semibold w-1/3">Fonctionnalité</th>
-                        <th className="text-center px-4 py-3 text-gray-600 font-semibold">Pilote</th>
-                        <th className="text-center px-4 py-3 text-violet-700 font-bold bg-violet-100">Partenariat</th>
-                        <th className="text-center px-4 py-3 text-gray-600 font-semibold">Premium+</th>
+                      <tr className="bg-gray-50">
+                        <th className="px-6 py-3 text-left font-semibold text-gray-700">Fonctionnalité</th>
+                        <th className="px-6 py-3 text-center font-semibold text-gray-500">Étudiant seul</th>
+                        <th className="px-6 py-3 text-center font-semibold text-violet-700 bg-violet-50">Pilote (gratuit)</th>
+                        <th className="px-6 py-3 text-center font-semibold text-gray-700">Partenariat</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="divide-y divide-gray-50">
                       {[
-                        ["Accès étudiant à la plateforme", "✓", "✓", "✓"],
-                        ["Dashboard analytics école", "Basique", "Complet", "Complet"],
-                        ["Co-branding de la plateforme", "✗", "✓", "✓"],
-                        ["Parcours personnalisés", "✗", "✓", "✓"],
-                        ["Certificats co-signés", "✗", "✓", "✓"],
-                        ["Intégration API / ENT", "✗", "✗", "✓"],
-                        ["Support dédié", "Email", "Email + Visio", "Account Manager"],
-                        ["Tarif", "Gratuit (3 mois)", "Sur devis", "Sur devis"],
-                      ].map(([feat, ...vals]) => (
-                        <tr key={feat} className="border-t border-gray-50 hover:bg-gray-50/50 transition-colors">
-                          <td className="px-6 py-3 text-gray-700 font-medium">{feat}</td>
-                          {vals.map((v, i) => (
-                            <td key={i} className={`text-center px-4 py-3 ${i === 1 ? 'bg-violet-50/50 text-violet-700 font-semibold' : 'text-gray-500'}`}>
-                              {v === '✓' ? <CheckCircle2 className="w-4 h-4 text-emerald-500 mx-auto" /> : v === '✗' ? <span className="text-gray-300">—</span> : v}
-                            </td>
-                          ))}
+                        ["Accès aux leçons", "✓", "✓", "✓"],
+                        ["Quiz IA par leçon", "✓", "✓", "✓"],
+                        ["Dashboard établissement", "—", "✓ limité", "✓ complet"],
+                        ["Suivi de groupe", "—", "✓", "✓"],
+                        ["Support dédié", "—", "✓", "✓ prioritaire"],
+                        ["Contenu co-brandé", "—", "—", "✓"],
+                        ["Rapport d'usage mensuel", "—", "—", "✓"],
+                      ].map(([feature, student, pilot, partner], i) => (
+                        <tr key={i} className="hover:bg-gray-50/50">
+                          <td className="px-6 py-3 text-gray-700 font-medium">{feature}</td>
+                          <td className="px-6 py-3 text-center text-gray-400">{student}</td>
+                          <td className="px-6 py-3 text-center text-violet-700 font-medium bg-violet-50/50">{pilot}</td>
+                          <td className="px-6 py-3 text-center text-gray-700">{partner}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -439,159 +598,85 @@ export default function SchoolPortal() {
             </motion.div>
           )}
 
-          {/* ── DÉMO DASHBOARD ── */}
-          {activeTab === 'demo' && (
-            <motion.div key="demo" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-              <div className="flex items-center gap-3 mb-6 p-4 bg-amber-50 border border-amber-200 rounded-2xl">
-                <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center flex-shrink-0">
-                  <Eye className="w-4 h-4 text-amber-600" />
-                </div>
-                <p className="text-sm text-amber-800">
-                  <strong>Mode démonstration</strong> — Ces données sont fictives et illustrent à quoi ressemble le dashboard d'un établissement partenaire.
-                </p>
+          {/* Features tab */}
+          {activeTab === "features" && (
+            <motion.div key="features" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-1">Fonctionnalités clés</h2>
+                <p className="text-gray-500">Tout ce dont vos étudiants ont besoin pour réussir leur prépa.</p>
               </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                <StatCard icon={Users} value={DEMO_STATS.studentsReferred} label="Étudiants actifs" color="from-violet-500 to-purple-600" />
-                <StatCard icon={TrendingUp} value={`${DEMO_STATS.avgCompletionRate}%`} label="Taux de complétion" color="from-emerald-500 to-teal-600" />
-                <StatCard icon={Clock} value={`${DEMO_STATS.avgSessionMinutes} min`} label="Durée moyenne/session" color="from-blue-500 to-indigo-600" />
-                <StatCard icon={BookOpen} value={DEMO_STATS.lessonsCompleted.toLocaleString()} label="Leçons complétées" color="from-amber-500 to-orange-600" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {FEATURES.map((feat, i) => (
+                  <FeatureCard key={i} {...feat} />
+                ))}
               </div>
+            </motion.div>
+          )}
 
-              {/* Schools table */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                <div className="lg:col-span-2 bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
-                  <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-                    <h3 className="font-bold text-gray-900">Écoles partenaires actives</h3>
-                    <Badge className="bg-violet-100 text-violet-700 border-0 text-xs">4 établissements</Badge>
-                  </div>
-                  <div className="divide-y divide-gray-50">
-                    {PARTNER_SCHOOLS.map(school => (
-                      <div key={school.name} className="px-6 py-4 flex items-center gap-4">
-                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${school.color} flex items-center justify-center text-white font-extrabold text-sm flex-shrink-0 shadow-md`}>
-                          {school.logo}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="font-semibold text-gray-800 text-sm">{school.name}</p>
-                          <p className="text-xs text-gray-400">{school.students} étudiants actifs</p>
-                        </div>
-                        <div className="flex flex-col items-end gap-1.5">
-                          <span className="text-sm font-bold text-gray-700">{school.completion}%</span>
-                          <div className="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-gradient-to-r from-violet-500 to-purple-600 rounded-full"
-                              style={{ width: `${school.completion}%` }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
-                  <div className="px-6 py-4 border-b border-gray-100">
-                    <h3 className="font-bold text-gray-900">Matières populaires</h3>
-                  </div>
-                  <div className="p-6 space-y-4">
-                    {[
-                      { name: "Mathématiques", pct: 89, color: "from-violet-500 to-purple-600" },
-                      { name: "Économie", pct: 76, color: "from-blue-500 to-indigo-500" },
-                      { name: "Culture Générale", pct: 68, color: "from-emerald-500 to-teal-500" },
-                      { name: "Management", pct: 54, color: "from-amber-500 to-orange-500" },
-                      { name: "Langues", pct: 41, color: "from-rose-500 to-pink-500" },
-                    ].map(({ name, pct, color }) => (
-                      <div key={name}>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium text-gray-700">{name}</span>
-                          <span className="text-xs font-bold text-gray-500">{pct}%</span>
-                        </div>
-                        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: `${pct}%` }}
-                            transition={{ duration: 0.8, delay: 0.1 }}
-                            className={`h-full bg-gradient-to-r ${color} rounded-full`}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+          {/* Demo tab */}
+          {activeTab === "demo" && (
+            <motion.div key="demo" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-1">Aperçu du tableau de bord</h2>
+                <p className="text-gray-500">Simulation interactive du portail établissement — toutes les données sont fictives.</p>
+              </div>
+              <DashboardDemo />
+              <div className="mt-6 bg-blue-50 rounded-2xl border border-blue-100 p-5 flex items-start gap-3">
+                <Shield className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-semibold text-blue-800 mb-1">Cet aperçu est purement illustratif</p>
+                  <p className="text-sm text-blue-600">
+                    Les noms, statistiques et données affichées ici sont entièrement fictifs et ont pour seul but de vous donner une idée de l'interface réelle. Le vrai dashboard, accessible après votre accès pilote, affichera les données réelles de vos étudiants.
+                  </p>
                 </div>
               </div>
-
-              <div className="text-center">
-                <p className="text-gray-500 text-sm mb-4">Intéressé par ce tableau de bord pour votre établissement ?</p>
-                <button onClick={() => setActiveTab('overview')} className="inline-flex items-center gap-2 bg-gradient-to-r from-violet-600 to-purple-700 text-white font-bold py-3 px-8 rounded-xl hover:from-violet-700 hover:to-purple-800 transition-all shadow-lg shadow-violet-500/20">
-                  <GraduationCap className="w-5 h-5" /> Demander un partenariat
+              <div className="mt-4 text-center">
+                <button
+                  onClick={() => setActiveTab("contact")}
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-semibold px-6 py-3 rounded-xl hover:from-violet-700 hover:to-purple-700 transition-all shadow-lg shadow-violet-200"
+                >
+                  <ArrowRight className="w-4 h-4" />
+                  Demander un accès pilote
                 </button>
               </div>
             </motion.div>
           )}
 
-          {/* ── TÉMOIGNAGES ── */}
-          {activeTab === 'testimonials' && (
-            <motion.div key="testimonials" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-extrabold text-gray-900 mb-4">Ce que disent nos partenaires</h2>
-                <p className="text-gray-500 max-w-xl mx-auto">Des responsables pédagogiques qui utilisent FrancePrepAcademy au quotidien avec leurs étudiants.</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                {TESTIMONIALS.map((t, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="bg-white rounded-2xl p-7 shadow-lg border border-gray-100"
-                  >
-                    <div className="flex gap-0.5 mb-4">
-                      {Array.from({ length: t.rating }).map((_, j) => (
-                        <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
-                    <p className="text-gray-700 leading-relaxed mb-5 text-[15px] italic">"{t.text}"</p>
-                    <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
-                        {t.name.split(' ').map(w => w[0]).join('')}
+          {/* Contact tab */}
+          {activeTab === "contact" && (
+            <motion.div key="contact" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+              <div className="grid md:grid-cols-5 gap-6">
+                <div className="md:col-span-2 space-y-4">
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-1">Démarrer un pilote</h2>
+                    <p className="text-gray-500 text-sm">Remplissez ce formulaire et nous reviendrons vers vous dans les 48h pour organiser un échange.</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl border border-violet-100 p-4 space-y-3">
+                    {[
+                      { icon: CheckCircle2, text: "Accès pilote 100% gratuit" },
+                      { icon: Clock, text: "Mise en place en moins de 48h" },
+                      { icon: Shield, text: "Sans engagement, sans contrat" },
+                      { icon: Users, text: "Accompagnement personnalisé" },
+                    ].map(({ icon: Icon, text }, i) => (
+                      <div key={i} className="flex items-center gap-2.5 text-sm text-violet-800">
+                        <Icon className="w-4 h-4 text-violet-500 flex-shrink-0" />
+                        {text}
                       </div>
-                      <div>
-                        <p className="font-bold text-gray-900 text-sm">{t.name}</p>
-                        <p className="text-xs text-gray-500">{t.role} · {t.school}</p>
-                      </div>
+                    ))}
+                  </div>
+                  <div className="bg-white rounded-2xl border border-gray-100 p-4">
+                    <p className="text-sm font-semibold text-gray-700 mb-2">Contact direct</p>
+                    <div className="space-y-2">
+                      <a href="mailto:contact@franceprepacademy.fr" className="flex items-center gap-2 text-sm text-gray-600 hover:text-violet-600 transition-colors">
+                        <Mail className="w-4 h-4 text-gray-400" />
+                        contact@franceprepacademy.fr
+                      </a>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* FAQ */}
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                <div className="px-6 py-5 border-b border-gray-100">
-                  <h3 className="font-extrabold text-gray-900">Questions fréquentes</h3>
+                  </div>
                 </div>
-                <div className="divide-y divide-gray-50">
-                  {[
-                    { q: "Combien coûte le partenariat ?", a: "Le pilote de 3 mois est entièrement gratuit. Le partenariat complet est établi sur devis selon vos effectifs et les fonctionnalités souhaitées. Nous adaptons notre offre à chaque établissement." },
-                    { q: "Les données de nos étudiants sont-elles sécurisées ?", a: "Oui. Toutes les données sont hébergées en Europe (conformité RGPD). Le dashboard partenaire ne donne accès qu'à des données agrégées et anonymisées. Aucune donnée personnelle ne peut être consultée sans le consentement explicite de l'étudiant." },
-                    { q: "Combien de temps faut-il pour mettre en place le partenariat ?", a: "Après signature de l'accord, le portail école est actif en moins d'une semaine. L'intégration API ENT peut nécessiter 2 à 4 semaines selon votre infrastructure." },
-                    { q: "Nos étudiants peuvent-ils utiliser FrancePrepAcademy sans payer ?", a: "Dans le cadre d'un partenariat, les étudiants référencés par votre établissement bénéficient d'un accès à tarif préférentiel ou inclus selon les termes de votre accord." },
-                  ].map(({ q, a }, i) => (
-                    <details key={i} className="group">
-                      <summary className="px-6 py-4 font-semibold text-gray-800 text-sm cursor-pointer list-none flex items-center justify-between hover:bg-gray-50 transition-colors">
-                        {q}
-                        <ChevronRight className="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform" />
-                      </summary>
-                      <div className="px-6 pb-4 text-sm text-gray-500 leading-relaxed">{a}</div>
-                    </details>
-                  ))}
+                <div className="md:col-span-3 bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+                  <ContactForm />
                 </div>
-              </div>
-
-              <div className="mt-8 text-center">
-                <button onClick={() => setActiveTab('overview')} className="inline-flex items-center gap-2 bg-gradient-to-r from-violet-600 to-purple-700 text-white font-bold py-3 px-8 rounded-xl hover:from-violet-700 hover:to-purple-800 transition-all shadow-lg shadow-violet-500/20">
-                  Rejoindre nos partenaires <ArrowRight className="w-4 h-4" />
-                </button>
               </div>
             </motion.div>
           )}
