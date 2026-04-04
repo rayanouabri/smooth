@@ -50,7 +50,7 @@ export default function Profile() {
   const activeTab = searchParams.get('tab') || 'profile';
 
   const { user, profile, isLoading: isLoadingProfile, refetch: refetchProfile } = useUserProfile();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ goals: [], photo_url: "", country_origin: "", city_destination: "", arrival_date: "", study_field: "", french_level: "A1", bio: "", phone: "" });
   const [goalInput, setGoalInput] = useState("");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
@@ -344,8 +344,8 @@ export default function Profile() {
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="profile">Mon Profil</TabsTrigger>
             <TabsTrigger value="security">Sécurité</TabsTrigger>
-            <TabsTrigger value="subscription" disabled={!profile?.is_premium}>
-              Abonnement {profile?.is_premium && <Crown className="w-3 h-3 ml-1" />}
+            <TabsTrigger value="subscription">
+              Abonnement {profile?.is_premium && <Crown className="w-3 h-3 ml-1 text-amber-500" />}
             </TabsTrigger>
             <TabsTrigger value="settings">Paramètres</TabsTrigger>
           </TabsList>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Check, ChevronDown, Globe } from 'lucide-react';
 import {
   DropdownMenu,
@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 
-// Use real flag images since emoji flags DON'T RENDER on Windows
 const languages = [
   { code: 'fr', name: 'Français', short: 'FR', flag: 'https://flagcdn.com/w40/fr.png' },
   { code: 'en', name: 'English', short: 'EN', flag: 'https://flagcdn.com/w40/gb.png' },
@@ -36,26 +35,77 @@ function FlagImg({ src, alt, className = "" }) {
   );
 }
 
-export default function LanguageSelector() {
-  const [currentLang, setCurrentLang] = useState('fr');
-  const [isOpen, setIsOpen] = useState(false);
+function getInitialLang() {
+  try {
+    // 1. localStorage first (fastest, most reliable)
+    const saved = localStorage.getItem('fpa_lang');
+    if (saved && languages.find(l => l.code === saved)) return saved;
+    // 2. fallback: googtrans cookie
+    const cookie = document.cookie.split('; ').find(r => r.startsWith('googtrans='));
+    if (cookie) {
+      const lang = cookie.split('/').pop();
+      if (lang && lang !== 'fr' && languages.find(l => l.code === lang)) return lang;
+    }
+  } catch {}
+  return 'fr';
+}
 
-  useEffect(() => {
-    const getCookie = (name) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-      return null;
-    };
-
-    const googtrans = getCookie('googtrans');
-    if (googtrans) {
-      const lang = googtrans.split('/').pop();
-      if (lang && lang !== 'fr') {
-        setCurrentLang(lang);
+function triggerGoogleTranslate(langCode) {
+  // Method 1: set cookie then trigger via select element
+  const setGoogCookie = (lang) => {
+    const domains = ['', '.franceprepacademy.fr', window.location.hostname];
+    domains.forEach(domain => {
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;${domain ? ' domain=' + domain + ';' : ''}`;
+    });
+    if (lang !== 'fr') {
+      document.cookie = `googtrans=/fr/${lang}; path=/`;
+      if (window.location.hostname.includes('franceprepacademy')) {
+        document.cookie = `googtrans=/fr/${lang}; path=/; domain=.franceprepacademy.fr`;
       }
     }
+  };
 
+  setGoogCookie(langCode);
+  localStorage.setItem('fpa_lang', langCode);
+
+  if (langCode === 'fr') {
+    window.location.reload();
+    return;
+  }
+
+  // Try to trigger via Google Translate select element (most reliable)
+  const trySelect = () => {
+    const select = document.querySelector('.goog-te-combo');
+    if (select) {
+      select.value = langCode;
+      select.dispatchEvent(new Event('change'));
+      return true;
+    }
+    return false;
+  };
+
+  if (!trySelect()) {
+    // Google Translate not ready yet, wait and retry
+    let attempts = 0;
+    const interval = setInterval(() => {
+      attempts++;
+      if (trySelect() || attempts > 20) {
+        clearInterval(interval);
+        if (attempts > 20) {
+          // Fallback: reload with cookie set
+          window.location.reload();
+        }
+      }
+    }, 200);
+  }
+}
+
+export default function LanguageSelector() {
+  const [currentLang, setCurrentLang] = useState(getInitialLang);
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Suppress Google Translate UI
+  useEffect(() => {
     const hideGoogleUI = () => {
       const elements = document.querySelectorAll('.goog-te-banner-frame, .skiptranslate, #goog-gt-tt, .goog-te-balloon-frame');
       elements.forEach(el => {
@@ -63,35 +113,38 @@ export default function LanguageSelector() {
       });
       document.body.style.top = '0';
     };
-
     hideGoogleUI();
     const interval = setInterval(hideGoogleUI, 500);
-    setTimeout(() => clearInterval(interval), 5000);
-
+    setTimeout(() => clearInterval(interval), 8000);
     return () => clearInterval(interval);
   }, []);
 
-  const changeLanguage = (langCode) => {
+  // On mount: if a language was saved, apply it after GT loads
+  useEffect(() => {
+    const saved = localStorage.getItem('fpa_lang');
+    if (saved && saved !== 'fr') {
+      // GT may not be ready — wait for it then apply
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        const select = document.querySelector('.goog-te-combo');
+        if (select && select.value !== saved) {
+          select.value = saved;
+          select.dispatchEvent(new Event('change'));
+          clearInterval(interval);
+        } else if (attempts > 30 || (select && select.value === saved)) {
+          clearInterval(interval);
+        }
+      }, 300);
+      return () => clearInterval(interval);
+    }
+  }, []);
+
+  const changeLanguage = useCallback((langCode) => {
     setCurrentLang(langCode);
     setIsOpen(false);
-
-    const domains = ['', '.franceprepacademy.fr', window.location.hostname];
-    domains.forEach(domain => {
-      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;${domain ? ' domain=' + domain + ';' : ''}`;
-    });
-
-    if (langCode === 'fr') {
-      window.location.reload();
-      return;
-    }
-
-    document.cookie = `googtrans=/fr/${langCode}; path=/`;
-    if (window.location.hostname.includes('franceprepacademy')) {
-      document.cookie = `googtrans=/fr/${langCode}; path=/; domain=.franceprepacademy.fr`;
-    }
-
-    window.location.reload();
-  };
+    triggerGoogleTranslate(langCode);
+  }, []);
 
   const currentLanguage = languages.find(l => l.code === currentLang) || languages[0];
 

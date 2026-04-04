@@ -285,6 +285,117 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section : Deux parcours - Design moderne */}
+      <section className="py-12 md:py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <Badge className="mb-4 inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 border-0 text-sm font-medium px-5 py-2">
+              <Target className="w-4 h-4" />
+              Commencez ici
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+              Par où commencer ?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light">
+              Choisissez votre situation et découvrez comment nous pouvons vous aider
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <Card className="h-full border-2 border-gray-100 hover:border-indigo-300 hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-indigo-50/30">
+                <CardContent className="p-10">
+                  <div className="inline-flex p-5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Plane className="w-12 h-12 text-white" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-4">Je prépare mon départ</h3>
+                  <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+                    Vous êtes encore dans votre pays et vous préparez votre arrivée en France.
+                  </p>
+                  <ul className="space-y-4 mb-8">
+                    {["Demande de visa étudiant", "Recherche de logement", "Inscription Campus France", "Préparation administrative"].map((item, i) => (
+                      <li key={i} className="flex items-center gap-3">
+                        <div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                        </div>
+                        <span className="text-gray-700 font-medium">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
+                    onClick={() => {
+                      if (!isAuthenticated) {
+                        redirectToLogin(window.location.href);
+                      } else {
+                        navigate(createPageUrl("Dashboard"));
+                      }
+                    }}
+                  >
+                    Commencer ma préparation
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <Card className="h-full border-2 border-gray-100 hover:border-rose-300 hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-rose-50/30">
+                <CardContent className="p-10">
+                  <div className="inline-flex p-5 bg-gradient-to-br from-rose-500 to-pink-600 rounded-3xl mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <MapPin className="w-12 h-12 text-white" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-4">Je suis déjà en France</h3>
+                  <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+                    Vous êtes arrivé en France et vous avez besoin d'aide pour vos démarches.
+                  </p>
+                  <ul className="space-y-4 mb-8">
+                    {["Demande CAF (APL)", "Titre de séjour / Préfecture", "Recherche d'emploi", "Comprendre les codes sociaux"].map((item, i) => (
+                      <li key={i} className="flex items-center gap-3">
+                        <div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                        </div>
+                        <span className="text-gray-700 font-medium">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-semibold py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
+                    onClick={() => {
+                      if (!isAuthenticated) {
+                        redirectToLogin(window.location.href);
+                      } else {
+                        navigate(createPageUrl("Dashboard"));
+                      }
+                    }}
+                  >
+                    Accéder aux tutoriels
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 md:py-20 bg-gradient-to-br from-purple-50 via-indigo-50 to-pink-50 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-indigo-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
@@ -460,117 +571,6 @@ export default function Home() {
               ))}
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Section : Deux parcours - Design moderne */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-10"
-          >
-            <Badge className="mb-4 inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 border-0 text-sm font-medium px-5 py-2">
-              <Target className="w-4 h-4" />
-              Commencez ici
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-              Par où commencer ?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light">
-              Choisissez votre situation et découvrez comment nous pouvons vous aider
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <Card className="h-full border-2 border-gray-100 hover:border-indigo-300 hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-indigo-50/30">
-                <CardContent className="p-10">
-                  <div className="inline-flex p-5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <Plane className="w-12 h-12 text-white" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">Je prépare mon départ</h3>
-                  <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                    Vous êtes encore dans votre pays et vous préparez votre arrivée en France.
-                  </p>
-                  <ul className="space-y-4 mb-8">
-                    {["Demande de visa étudiant", "Recherche de logement", "Inscription Campus France", "Préparation administrative"].map((item, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                          <CheckCircle className="w-4 h-4 text-green-600" />
-                        </div>
-                        <span className="text-gray-700 font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button 
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
-                    onClick={() => {
-                      if (!isAuthenticated) {
-                        redirectToLogin(window.location.href);
-                      } else {
-                        navigate(createPageUrl("Dashboard"));
-                      }
-                    }}
-                  >
-                    Commencer ma préparation
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <Card className="h-full border-2 border-gray-100 hover:border-rose-300 hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white to-rose-50/30">
-                <CardContent className="p-10">
-                  <div className="inline-flex p-5 bg-gradient-to-br from-rose-500 to-pink-600 rounded-3xl mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <MapPin className="w-12 h-12 text-white" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">Je suis déjà en France</h3>
-                  <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                    Vous êtes arrivé en France et vous avez besoin d'aide pour vos démarches.
-                  </p>
-                  <ul className="space-y-4 mb-8">
-                    {["Demande CAF (APL)", "Titre de séjour / Préfecture", "Recherche d'emploi", "Comprendre les codes sociaux"].map((item, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                          <CheckCircle className="w-4 h-4 text-green-600" />
-                        </div>
-                        <span className="text-gray-700 font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button 
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-semibold py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
-                    onClick={() => {
-                      if (!isAuthenticated) {
-                        redirectToLogin(window.location.href);
-                      } else {
-                        navigate(createPageUrl("Dashboard"));
-                      }
-                    }}
-                  >
-                    Accéder aux tutoriels
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
         </div>
       </section>
 
