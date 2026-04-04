@@ -3,8 +3,7 @@ export default async function handler(req, res) {
   const allowedOrigins = [
     'https://www.franceprepacademy.fr',
     'https://franceprepacademy.fr',
-    'http://localhost:5173',
-    'http://localhost:3000',
+    ...(process.env.NODE_ENV !== 'production' ? ['http://localhost:5173', 'http://localhost:3000'] : []),
   ];
   const origin = req.headers.origin;
   if (origin && allowedOrigins.includes(origin)) {

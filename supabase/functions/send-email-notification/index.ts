@@ -5,7 +5,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 // Avec le domaine de test, on ne peut envoyer qu'à l'adresse email du compte Resend
 // Changez ADMIN_EMAIL dans les secrets pour utiliser votre adresse email Resend
-const ADMIN_EMAIL = Deno.env.get("ADMIN_EMAIL") || "rayan.ouabri1@gmail.com";
+const ADMIN_EMAIL = Deno.env.get("ADMIN_EMAIL") || "contact@franceprepacademy.fr";
 // Utiliser le domaine de test de Resend (toujours fonctionnel, même sans domaine vérifié)
 // Si vous avez configuré FROM_EMAIL dans les secrets avec un domaine non vérifié, 
 // supprimez cette variable pour utiliser le domaine de test par défaut
