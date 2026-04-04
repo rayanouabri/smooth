@@ -64,8 +64,17 @@ function UsefulLinksCard({ html }) { return null; }
 
 // ---- Banque de liens par thème — entièrement statique, zéro appel API ----
 const LINK_DB = [
-  // Logement
-  { keys: ['logement','loyer','bail','location','locataire','appartement','chambre','colocation','résidence','cité u'], links: [
+  // Copropriété / syndic / charges / assemblée — PRIORITÉ HAUTE
+  { keys: ['copropriété','syndic','charges','assemblée générale','règlement','parties communes','lot','tantièmes','conseil syndical','gestionnaire'], links: [
+    { text: 'Copropriété — Service-Public', href: 'https://www.service-public.fr/particuliers/vosdroits/N31338', desc: 'Fonctionnement, règlement et droits dans une copropriété.' },
+    { text: 'ANIL — Copropriété : droits et obligations', href: 'https://www.anil.org/votre-projet/vous-etes-proprietaire/vivre-en-copropriete/', desc: 'Conseils pratiques sur la vie en copropriété, charges et assemblée générale.' },
+    { text: 'Loi du 10 juillet 1965 — Légifrance', href: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000508247/', desc: 'Loi fixant le statut de la copropriété des immeubles bâtis.' },
+    { text: 'FNAIM — Gestion de copropriété', href: 'https://www.fnaim.fr/guide/actualite-immobiliere/copropriete', desc: 'Guides pratiques sur le syndic, les charges et l\'assemblée générale.' },
+    { text: 'ARC — Association des responsables de copropriété', href: 'https://www.unarc.asso.fr', desc: 'Association qui défend les copropriétaires face aux syndics professionnels.' },
+    { text: 'Charges récupérables — Légifrance', href: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000697603/', desc: 'Décret listant les charges récupérables sur le locataire (gardiennage, entretien).' },
+  ]},
+  // Logement / location / bail
+  { keys: ['logement','loyer','bail','location','locataire','appartement','chambre','colocation','résidence','cité u','propriétaire','dépôt de garantie'], links: [
     { text: 'Vos droits — Location (Service-Public)', href: 'https://www.service-public.fr/particuliers/vosdroits/N319', desc: 'Toutes les règles sur la location privée : dépôt de garantie, bail, charges.' },
     { text: 'ANIL — Agence Nationale pour l\'Habitat', href: 'https://www.anil.org', desc: 'Conseils gratuits sur le logement, vos droits de locataire, les aides.' },
     { text: 'DossierFacile — Dossier de location certifié', href: 'https://www.dossierfacile.logement.gouv.fr', desc: 'Préparez votre dossier locatif certifié par l\'État pour rassurer les propriétaires.' },
@@ -73,14 +82,14 @@ const LINK_DB = [
     { text: 'Visale — Caution gratuite de l\'État', href: 'https://www.visale.fr', desc: 'Garantie locative gratuite pour les moins de 30 ans et les salariés précaires.' },
     { text: 'CROUS — Logements étudiants', href: 'https://www.messervices.etudiant.gouv.fr/envoi/sso/login.aspx', desc: 'Demandez un logement en résidence universitaire via le portail national.' },
   ]},
-  // Sécurité / immeuble / digicode
-  { keys: ['sécurité','digicode','code','interphone','immeuble','copropriété','syndic','gardien','hall','accès'], links: [
-    { text: 'Copropriété — Service-Public', href: 'https://www.service-public.fr/particuliers/vosdroits/N31338', desc: 'Fonctionnement, règlement et droits dans une copropriété.' },
+  // Sécurité / digicode / interphone / accès immeuble
+  { keys: ['sécurité','digicode','interphone','code d\'accès','badge','vigik','hall','gardien','concierge','alarme','incendie'], links: [
     { text: 'ADIL — Conseils juridiques gratuits', href: 'https://www.anil.org/lanil-et-les-adil/votre-adil/', desc: 'Trouvez votre ADIL locale pour des conseils gratuits sur votre immeuble.' },
-    { text: 'Règlement de copropriété — Légifrance', href: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074096/LEGISCTA000006159308/', desc: 'Texte de loi sur les règles de la copropriété en France.' },
-    { text: 'Wikipedia — Digicode', href: 'https://fr.wikipedia.org/wiki/Serrure_%C3%A0_combinaison', desc: 'Explication du fonctionnement des serrures à combinaison.' },
-    { text: 'Charges récupérables — Légifrance', href: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000697603/', desc: 'Décret listant les charges récupérables sur le locataire (gardiennage, etc.).' },
-    { text: 'Mon syndic en ligne — FNAIM', href: 'https://www.fnaim.fr', desc: 'Ressources pratiques sur la gestion d\'immeuble et la vie en copropriété.' },
+    { text: 'Wikipedia — Digicode / serrure à combinaison', href: 'https://fr.wikipedia.org/wiki/Serrure_%C3%A0_combinaison', desc: 'Explication du fonctionnement des serrures à combinaison et digicodes.' },
+    { text: 'Sécurité incendie — Service-Public', href: 'https://www.service-public.fr/particuliers/vosdroits/F31040', desc: 'Obligations de sécurité incendie dans les immeubles d\'habitation.' },
+    { text: 'VIGIK — Système d\'accès sécurisé', href: 'https://fr.wikipedia.org/wiki/Vigik', desc: 'Fonctionnement du système Vigik pour l\'accès aux immeubles en France.' },
+    { text: 'Règlement de copropriété — Légifrance', href: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074096/LEGISCTA000006159308/', desc: 'Texte de loi sur les règles de la copropriété et l\'accès aux parties communes.' },
+    { text: 'Service-Public — Troubles de voisinage', href: 'https://www.service-public.fr/particuliers/vosdroits/F612', desc: 'Vos droits en cas de nuisances ou troubles dans votre immeuble.' },
   ]},
   // Santé / CPAM / sécu
   { keys: ['santé','cpam','sécu','sécurité sociale','assurance maladie','médecin','mutuelle','carte vitale','remboursement','ameli'], links: [
@@ -194,12 +203,15 @@ const FALLBACK_LINKS = [
 ];
 
 function pickLinks(lesson, courseTitle) {
-  const searchText = [lesson?.title || '', courseTitle || '', (lesson?.content || '').replace(/<[^>]*>/g, ' ').substring(0, 500)].join(' ').toLowerCase();
+  // Le titre et le cours pèsent 3x plus que le contenu
+  const titleText = [lesson?.title || '', courseTitle || ''].join(' ').toLowerCase();
+  const contentText = (lesson?.content || '').replace(/<[^>]*>/g, ' ').substring(0, 800).toLowerCase();
 
-  // Score chaque thème
+  // Score chaque thème : 3 points par mot clé dans le titre, 1 point dans le contenu
   const scored = LINK_DB.map(theme => {
-    const score = theme.keys.reduce((acc, k) => acc + (searchText.includes(k) ? 1 : 0), 0);
-    return { score, links: theme.links };
+    const titleScore = theme.keys.reduce((acc, k) => acc + (titleText.includes(k) ? 3 : 0), 0);
+    const contentScore = theme.keys.reduce((acc, k) => acc + (contentText.includes(k) ? 1 : 0), 0);
+    return { score: titleScore + contentScore, links: theme.links };
   }).filter(t => t.score > 0).sort((a, b) => b.score - a.score);
 
   let selected = [];
