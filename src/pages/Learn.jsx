@@ -57,355 +57,210 @@ function extractLinks(html) {
   return links;
 }
 
-// ---- Ressources essentielles card (replaces the purple gradient HTML div) ----
-function ResourcesCard({ html }) {
-  const titleMatch = html.match(/Ressources essentielles[^<]*/);
-  const title = titleMatch ? titleMatch[0].replace(/^🔗\s*/, '').trim() : 'Ressources essentielles';
-  const links = extractLinks(html);
-  if (!links.length) return null;
-  return (
-    <div className="rounded-2xl overflow-hidden shadow-md border border-purple-100 mb-2">
-      <div className="bg-gradient-to-r from-violet-600 to-purple-700 px-5 py-4 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center flex-shrink-0">
-          <Zap className="w-4 h-4 text-yellow-300" />
-        </div>
-        <div>
-          <p className="text-[10px] text-purple-200 font-semibold uppercase tracking-widest">Ressources</p>
-          <p className="text-white font-bold text-sm leading-snug line-clamp-1">{title.replace('Ressources essentielles - ', '')}</p>
-        </div>
-      </div>
-      <div className="bg-white px-5 py-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
-        {links.map((l, i) => (
-          <a key={i} href={l.href} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-purple-50/70 hover:bg-purple-100 border border-purple-100 transition-all group">
-            <span className="w-6 h-6 rounded-md bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center flex-shrink-0 shadow-sm">
-              <Target className="w-3 h-3 text-white" />
-            </span>
-            <span className="text-[13px] font-medium text-purple-800 group-hover:text-purple-900 truncate">{l.text}</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-}
+// ---- Tous les blocs HTML de liens de la DB sont supprimés du rendu ----
+// ResourcesCard, FurtherReadingCard, UsefulLinksCard : retournent null
+// Les liens sont remplacés par SmartLinksCard (IA, basé sur le contenu réel)
+function ResourcesCard({ html }) { return null; }
+function FurtherReadingCard({ html }) { return null; }
+function UsefulLinksCard({ html }) { return null; }
 
-// ---- "Pour aller plus loin" card (replaces the light purple HTML div) ----
-function FurtherReadingCard({ html }) {
-  const links = extractLinks(html);
-  if (!links.length) return null;
-  // Extract description spans
-  const descRe = /<span[^>]*font-size[^>]*>([\s\S]*?)<\/span>/gi;
-  const descs = [];
-  let dm;
-  while ((dm = descRe.exec(html)) !== null) descs.push(dm[1].trim());
+// ---- Liens contextuels générés par IA à partir du contenu réel ----
+// Cache pour éviter de régénérer à chaque render
+const linksCache = new Map();
+
+function SmartLinksCard({ lesson, courseTitle }) {
+  const [links, setLinks] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const cacheKey = lesson?.id || lesson?.title;
+
+  useEffect(() => {
+    if (!lesson?.title || !lesson?.content) return;
+    if (linksCache.has(cacheKey)) {
+      setLinks(linksCache.get(cacheKey));
+      return;
+    }
+    setLoading(true);
+    const snippet = (lesson.content || '').replace(/<[^>]*>/g, ' ').substring(0, 3000);
+    InvokeLLM({
+      prompt: `Tu es un expert en ressources pédagogiques pour étudiants en prépa grandes écoles.
+
+Leçon : "${lesson.title}"
+Cours : "${courseTitle || ''}"
+Extrait du contenu :
+${snippet}
+
+Génère exactement 6 liens de ressources externes RÉELS, VÉRIFIABLES et DIRECTEMENT EN RAPPORT avec le contenu précis de cette leçon (pas génériques).
+
+Règles ABSOLUES :
+- Les URLs doivent être réelles et fonctionnelles (sites officiels, Wikipedia, Khan Academy, Vie-publique.fr, INSEE, ANIL, Service-Public, documents académiques, etc.)
+- Chaque lien doit correspondre à un concept SPÉCIFIQUE mentionné dans le contenu (ex: si la leçon parle de "digicodes", donne un lien sur les digicodes, pas sur le logement en général)
+- Varie les types de sources : officiel, encyclopédique, pratique, vidéo, académique
+- Pas de liens génériques ou fourre-tout
+- Format court et descriptif pour les labels (max 50 caractères)
+
+Réponds UNIQUEMENT avec ce JSON (aucun texte avant/après) :
+{"links":[{"text":"Label court et précis","href":"https://url-reelle.com","desc":"En quoi ce lien aide pour cette leçon (1 phrase)"}]}`,
+      add_context_from_internet: false
+    }).then(response => {
+      try {
+        const m = response.match(/\{[\s\S]*\}/);
+        if (m) {
+          const parsed = JSON.parse(m[0]);
+          if (parsed.links?.length) {
+            linksCache.set(cacheKey, parsed.links);
+            setLinks(parsed.links);
+          }
+        }
+      } catch(e) { console.error('Links parse error', e); }
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, [cacheKey]);
+
+  if (loading) {
+    return (
+      <div className="rounded-2xl border border-blue-100 bg-blue-50/40 p-5 flex items-center gap-3">
+        <Loader2 className="w-4 h-4 text-blue-400 animate-spin flex-shrink-0" />
+        <span className="text-sm text-blue-500">Génération des ressources en cours…</span>
+      </div>
+    );
+  }
+  if (!links?.length) return null;
+
+  // Sépare en 2 groupes : 3 liens essentiels + 3 liens pour aller plus loin
+  const essential = links.slice(0, 3);
+  const further = links.slice(3);
 
   return (
-    <div className="rounded-2xl border border-indigo-100 bg-gradient-to-br from-indigo-50/60 to-purple-50/40 overflow-hidden mb-2">
-      <div className="px-5 py-3.5 border-b border-indigo-100 flex items-center gap-2.5">
-        <div className="w-7 h-7 rounded-lg bg-indigo-100 flex items-center justify-center flex-shrink-0">
-          <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+    <div className="space-y-4">
+      {/* Liens essentiels */}
+      <div className="rounded-2xl border border-violet-200 bg-gradient-to-br from-violet-50 to-purple-50/40 overflow-hidden">
+        <div className="px-5 py-3.5 border-b border-violet-100 flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded-lg bg-violet-100 flex items-center justify-center flex-shrink-0">
+            <Zap className="w-3.5 h-3.5 text-violet-600" />
+          </div>
+          <div>
+            <p className="font-bold text-violet-900 text-sm">📌 Ressources clés pour cette leçon</p>
+            <p className="text-[11px] text-violet-400 mt-0.5">Sélectionnées selon le contenu exact</p>
+          </div>
         </div>
-        <p className="font-bold text-indigo-800 text-sm">📚 Pour aller plus loin</p>
+        <div className="p-4 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          {essential.map((l, i) => (
+            <a key={i} href={l.href} target="_blank" rel="noopener noreferrer"
+              className="flex flex-col gap-1.5 px-3.5 py-3 rounded-xl bg-white border border-violet-100 hover:border-violet-400 hover:shadow-md transition-all group">
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded-md bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform">
+                  <ExternalLink className="w-2.5 h-2.5 text-white" />
+                </span>
+                <span className="text-[12px] font-bold text-violet-800 group-hover:text-violet-900 leading-tight line-clamp-2">{l.text}</span>
+              </div>
+              {l.desc && <p className="text-[11px] text-gray-400 leading-snug line-clamp-2">{l.desc}</p>}
+            </a>
+          ))}
+        </div>
       </div>
-      <div className="px-5 py-4 space-y-2.5">
-        {links.map((l, i) => (
-          <a key={i} href={l.href} target="_blank" rel="noopener noreferrer"
-            className="flex items-start gap-3 group">
-            <span className="w-5 h-5 rounded-full bg-indigo-200 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-indigo-300 transition-colors">
-              <ChevronRight className="w-3 h-3 text-indigo-700" />
-            </span>
-            <div className="min-w-0">
-              <p className="text-[13px] font-semibold text-indigo-700 group-hover:text-indigo-900 group-hover:underline truncate">{l.text}</p>
-              {descs[i] && <p className="text-[11px] text-gray-500 mt-0.5 leading-snug">{descs[i]}</p>}
+
+      {/* Pour aller plus loin */}
+      {further.length > 0 && (
+        <div className="rounded-2xl border border-indigo-100 bg-gradient-to-br from-indigo-50/60 to-blue-50/30 overflow-hidden">
+          <div className="px-5 py-3.5 border-b border-indigo-100 flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-indigo-100 flex items-center justify-center flex-shrink-0">
+              <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
             </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ---- "Liens utiles" card — supprimée (remplacée par SmartLinksCard contextuel) ----
-// Les liens génériques du HTML de la DB sont ignorés : on affiche SmartLinksCard à la place
-function UsefulLinksCard({ html }) {
-  // Volontairement vide : les liens génériques du contenu sont remplacés par SmartLinksCard
-  return null;
-}
-
-// ---- Moteur de liens contextuels : génère des vrais liens pertinents selon le sujet ----
-const SUBJECT_LINKS = {
-  // ── MATHÉMATIQUES ──
-  analyse: [
-    { text: "Khan Academy — Limites et continuité", href: "https://fr.khanacademy.org/math/calculus-1" },
-    { text: "Exo7 — Cours d'analyse (PDF)", href: "http://exo7.emath.fr/cours.html" },
-    { text: "Bibmath — Suites numériques", href: "https://www.bibmath.net/dico/index.php?action=affiche&quoi=./s/suite.html" },
-    { text: "BetterExplained — Intuition du calcul", href: "https://betterexplained.com/articles/calculus/" },
-  ],
-  suites: [
-    { text: "Exo7 — Suites numériques (PDF)", href: "http://exo7.emath.fr/cours/ch_suites.pdf" },
-    { text: "Bibmath — Suites : définition et convergence", href: "https://www.bibmath.net/dico/index.php?action=affiche&quoi=./s/suite.html" },
-    { text: "Khan Academy — Suites et séries", href: "https://fr.khanacademy.org/math/ap-calculus-bc/bc-series-new" },
-    { text: "Mathweb — Exercices sur les suites", href: "https://www.mathweb.fr/euclide/cours/terminale_s/les_suites.pdf" },
-  ],
-  intégrale: [
-    { text: "Exo7 — Intégration (PDF)", href: "http://exo7.emath.fr/cours/ch_integration.pdf" },
-    { text: "Khan Academy — Intégrales", href: "https://fr.khanacademy.org/math/integral-calculus" },
-    { text: "Bibmath — Intégrales de Riemann", href: "https://www.bibmath.net/dico/index.php?action=affiche&quoi=./i/intriemann.html" },
-    { text: "Mathway — Calculateur d'intégrales", href: "https://www.mathway.com/Calculus" },
-  ],
-  probabilité: [
-    { text: "Exo7 — Probabilités (PDF)", href: "http://exo7.emath.fr/cours/ch_probas.pdf" },
-    { text: "Khan Academy — Probabilités", href: "https://fr.khanacademy.org/math/statistics-probability/probability-library" },
-    { text: "Bibmath — Dénombrement et probabilités", href: "https://www.bibmath.net/dico/index.php?action=affiche&quoi=./p/proba.html" },
-    { text: "Seeing Theory — Visualiser les probas", href: "https://seeing-theory.brown.edu/fr.html" },
-  ],
-  statistique: [
-    { text: "Khan Academy — Statistiques et probabilités", href: "https://fr.khanacademy.org/math/statistics-probability" },
-    { text: "Seeing Theory — Statistiques visuelles", href: "https://seeing-theory.brown.edu/fr.html" },
-    { text: "StatQuest (YouTube) — Statistiques expliquées", href: "https://www.youtube.com/@statquest" },
-    { text: "Exo7 — Statistiques descriptives", href: "http://exo7.emath.fr/cours/ch_stat.pdf" },
-  ],
-  algèbre: [
-    { text: "Exo7 — Algèbre linéaire (PDF)", href: "http://exo7.emath.fr/cours/ch_algebrelineaire.pdf" },
-    { text: "3Blue1Brown — Essence of Linear Algebra", href: "https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" },
-    { text: "Bibmath — Espaces vectoriels", href: "https://www.bibmath.net/dico/index.php?action=affiche&quoi=./e/espacevectoriel.html" },
-    { text: "Khan Academy — Algèbre linéaire", href: "https://fr.khanacademy.org/math/linear-algebra" },
-  ],
-  matrice: [
-    { text: "Exo7 — Matrices et systèmes (PDF)", href: "http://exo7.emath.fr/cours/ch_matrices.pdf" },
-    { text: "3Blue1Brown — Matrices comme transformations", href: "https://youtu.be/kYB8IZa5AuE" },
-    { text: "Bibmath — Calcul matriciel", href: "https://www.bibmath.net/dico/index.php?action=affiche&quoi=./m/matricielle.html" },
-    { text: "WolframAlpha — Calculateur de matrices", href: "https://www.wolframalpha.com/input?i=matrix+calculator" },
-  ],
-  // ── ÉCONOMIE ──
-  économie: [
-    { text: "France Stratégie — Rapports économiques", href: "https://www.strategie.gouv.fr/publications" },
-    { text: "INSEE — Indicateurs clés de l'économie française", href: "https://www.insee.fr/fr/statistiques" },
-    { text: "Alternatives Économiques — Fiches thématiques", href: "https://www.alternatives-economiques.fr" },
-    { text: "Khan Academy — Microéconomie", href: "https://fr.khanacademy.org/economics-finance-domain/microeconomics" },
-  ],
-  macroéconomie: [
-    { text: "Khan Academy — Macroéconomie", href: "https://fr.khanacademy.org/economics-finance-domain/macroeconomics" },
-    { text: "OCDE — Perspectives économiques mondiales", href: "https://www.oecd.org/fr/economie/perspectives-economiques-de-locde.htm" },
-    { text: "Banque de France — Données et analyses", href: "https://www.banque-france.fr/fr/publications-et-statistiques" },
-    { text: "FMI — World Economic Outlook", href: "https://www.imf.org/en/Publications/WEO" },
-  ],
-  microéconomie: [
-    { text: "Khan Academy — Microéconomie", href: "https://fr.khanacademy.org/economics-finance-domain/microeconomics" },
-    { text: "Cours-Gratuit — Microéconomie terminale", href: "https://www.cours-gratuit.com/cours-microeconomie" },
-    { text: "MIT OpenCourseWare — Principles of Microeconomics", href: "https://ocw.mit.edu/courses/14-01-principles-of-microeconomics-fall-2018/" },
-    { text: "Economie pour tous — Fiches micro", href: "https://www.economie.gouv.fr/facileco" },
-  ],
-  monnaie: [
-    { text: "Banque de France — Comprendre la monnaie", href: "https://www.banque-france.fr/fr/education-economique-et-financiere" },
-    { text: "BCE — Qu'est-ce que l'euro ?", href: "https://www.ecb.europa.eu/euro/html/index.fr.html" },
-    { text: "Khan Academy — Monnaie et banques", href: "https://fr.khanacademy.org/economics-finance-domain/core-finance/money-and-banking" },
-    { text: "Alternatives Éco — Le rôle des banques centrales", href: "https://www.alternatives-economiques.fr/banques-centrales" },
-  ],
-  commerce: [
-    { text: "OMC — Commerce international : données", href: "https://www.wto.org/french/res_f/statis_f/statis_f.htm" },
-    { text: "CEPII — Analyses du commerce mondial", href: "http://www.cepii.fr" },
-    { text: "Douanes françaises — Statistiques export/import", href: "https://www.douane.gouv.fr/service-en-ligne/statistiques-du-commerce-exterieur" },
-    { text: "Khan Academy — Commerce international", href: "https://fr.khanacademy.org/economics-finance-domain/macroeconomics/international-trade-topic" },
-  ],
-  // ── CULTURE GÉNÉRALE / PHILOSOPHIE ──
-  philosophie: [
-    { text: "PhiloSophie — Cours et fiches bac", href: "https://www.philosophie.ac-versailles.fr" },
-    { text: "Encyclopédie de la philosophie (Stanford)", href: "https://plato.stanford.edu" },
-    { text: "France Culture — Podcasts philo", href: "https://www.radiofrance.fr/franceculture/podcasts/series-philosophiques" },
-    { text: "PhiloFacile — Fiches et dissertations", href: "https://www.philofacile.com" },
-  ],
-  histoire: [
-    { text: "Gallica (BnF) — Documents historiques", href: "https://gallica.bnf.fr" },
-    { text: "Herodote.net — Chronologie et fiches", href: "https://www.herodote.net" },
-    { text: "France Culture — Histoire et civilisations", href: "https://www.radiofrance.fr/franceculture/histoire" },
-    { text: "Lumni — Histoire de France en vidéo", href: "https://www.lumni.fr/primaire/histoire" },
-  ],
-  géopolitique: [
-    { text: "IRIS — Institut de relations internationales", href: "https://www.iris-france.org/publications" },
-    { text: "Le Monde Diplomatique — Archives thématiques", href: "https://www.monde-diplomatique.fr" },
-    { text: "Diploweb — Géopolitique et cartes", href: "https://www.diploweb.com" },
-    { text: "Courrier International — Géopolitique mondiale", href: "https://www.courrierinternational.com" },
-  ],
-  politique: [
-    { text: "Vie Publique — Institutions françaises", href: "https://www.vie-publique.fr" },
-    { text: "Conseil Constitutionnel — Droit et Constitution", href: "https://www.conseil-constitutionnel.fr" },
-    { text: "SciencesPo — Ressources politiques", href: "https://www.sciencespo.fr/ressources" },
-    { text: "IFOP — Sondages et opinion publique", href: "https://www.ifop.com/publications" },
-  ],
-  sociologie: [
-    { text: "Cairn.info — Articles de sociologie", href: "https://www.cairn.info/sociologie.htm" },
-    { text: "INSEE — Données sociales", href: "https://www.insee.fr/fr/statistiques/5763750" },
-    { text: "La Découverte — Repères sociologie", href: "https://www.editionsladecouverte.fr/sociologie" },
-    { text: "France Culture — Podcasts sociologie", href: "https://www.radiofrance.fr/franceculture/sciences-sociales" },
-  ],
-  culture: [
-    { text: "Gallica (BnF) — Patrimoine culturel numérisé", href: "https://gallica.bnf.fr" },
-    { text: "France Culture — Podcasts culturels", href: "https://www.radiofrance.fr/franceculture" },
-    { text: "Universalis — Encyclopédie en ligne", href: "https://www.universalis.fr" },
-    { text: "Le Monde — Dossiers culture", href: "https://www.lemonde.fr/culture" },
-  ],
-  // ── MANAGEMENT / GESTION ──
-  management: [
-    { text: "HBR France — Articles de management", href: "https://www.hbrfrance.fr" },
-    { text: "Pearltrees — Cours de management HEC", href: "https://www.pearltrees.com/t/management" },
-    { text: "Coursera — Management spécialisations", href: "https://www.coursera.org/browse/business/leadership-and-management" },
-    { text: "Harvard Business School — Case Studies", href: "https://www.hbs.edu/faculty/Pages/default.aspx" },
-  ],
-  stratégie: [
-    { text: "HBR — Strategic Management", href: "https://hbr.org/topic/subject/strategy" },
-    { text: "McKinsey Insights — Stratégie d'entreprise", href: "https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights" },
-    { text: "Stratégique.fr — Analyses sectorielles", href: "https://www.strategique.fr" },
-    { text: "Porter's Five Forces — Guide complet", href: "https://www.investopedia.com/terms/p/porter.asp" },
-  ],
-  marketing: [
-    { text: "HubSpot Academy — Marketing gratuit", href: "https://academy.hubspot.com/fr" },
-    { text: "Think with Google — Marketing insights", href: "https://www.thinkwithgoogle.com/intl/fr-fr" },
-    { text: "Journal du Net — Marketing digital", href: "https://www.journaldunet.com/ebusiness/le-net/marketing" },
-    { text: "Marketing Management (Kotler) — Résumé", href: "https://www.marketing-schools.org/types-of-marketing/kotler-s-five-product-levels.html" },
-  ],
-  comptabilité: [
-    { text: "Compta-Facile — Cours et fiches", href: "https://www.compta-facile.com" },
-    { text: "Fiches-auto-entrepreneur.fr — Comptabilité", href: "https://www.fiches-auto-entrepreneur.fr/comptabilite" },
-    { text: "Khan Academy — Finances personnelles", href: "https://fr.khanacademy.org/college-careers-more/personal-finance" },
-    { text: "Legalstart — Guide comptabilité d'entreprise", href: "https://www.legalstart.fr/fiches-pratiques/comptabilite" },
-  ],
-  finance: [
-    { text: "Investopedia — Finance glossary (EN)", href: "https://www.investopedia.com" },
-    { text: "AMF — Autorité des marchés financiers", href: "https://www.amf-france.org/fr/espace-epargnants" },
-    { text: "Banque de France — Éducation financière", href: "https://www.banque-france.fr/fr/education-economique-et-financiere" },
-    { text: "Vernimmen.net — Finance d'entreprise", href: "https://www.vernimmen.net" },
-  ],
-  // ── LANGUES ──
-  anglais: [
-    { text: "BBC Learning English — Cours gratuits", href: "https://www.bbc.co.uk/learningenglish" },
-    { text: "British Council — Ressources English", href: "https://learnenglish.britishcouncil.org" },
-    { text: "Cambridge Dictionary — En ligne", href: "https://dictionary.cambridge.org/fr" },
-    { text: "TED Talks — Écoute active en anglais", href: "https://www.ted.com/talks" },
-  ],
-  espagnol: [
-    { text: "BBC Languages — Espagnol", href: "https://www.bbc.co.uk/languages/spanish" },
-    { text: "Real Academia Española — Dictionnaire", href: "https://www.rae.es" },
-    { text: "Cervantes — Ressources espagnol", href: "https://www.cervantes.es/lengua_y_ensenanza/lengua_espanola.htm" },
-    { text: "WordReference — Espagnol-Français", href: "https://www.wordreference.com/esfr" },
-  ],
-  // ── LOGIQUE / RAISONNEMENT ──
-  logique: [
-    { text: "Brilliant.org — Logic puzzles", href: "https://brilliant.org/courses/logic" },
-    { text: "Stanford Encyclopedia — Logic", href: "https://plato.stanford.edu/entries/logic-classical" },
-    { text: "Annales ECS — Raisonnement logique", href: "https://www.annabac.com/annales-bac" },
-    { text: "GMAT Club — Raisonnement critique", href: "https://gmatclub.com/forum/verbal-section-critical-reasoning" },
-  ],
-  dissertation: [
-    { text: "Étudiant.fr — Méthodologie dissertation", href: "https://www.letudiant.fr/etudes/methodologie-de-la-dissertation.html" },
-    { text: "France Culture — Comprendre pour disserter", href: "https://www.radiofrance.fr/franceculture" },
-    { text: "Scribbr — Plan de dissertation (exemples)", href: "https://www.scribbr.fr/methodologie/plan-dissertation" },
-    { text: "Annales HEC — Dissertations type", href: "https://www.hec.fr/concours" },
-  ],
-};
-
-// Moteur de recherche contextuel : trouve les 3-4 liens les plus pertinents au titre de la leçon
-function getSmartLinks(lessonTitle, courseTitle) {
-  if (!lessonTitle) return [];
-  const text = `${lessonTitle} ${courseTitle || ''}`.toLowerCase()
-    // Normalise les accents pour matching
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
-  // Score chaque entrée de SUBJECT_LINKS selon les mots présents dans le titre
-  const scored = Object.entries(SUBJECT_LINKS).map(([key, links]) => {
-    const normalizedKey = key.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    // Score = nombre de mots du titre qui matchent la clé
-    let score = 0;
-    if (text.includes(normalizedKey)) score += 3;
-    // Mots partiels
-    normalizedKey.split(/\s+/).forEach(w => { if (w.length > 3 && text.includes(w)) score += 1; });
-    return { key, links, score };
-  }).filter(x => x.score > 0)
-    .sort((a, b) => b.score - a.score);
-
-  if (!scored.length) return [];
-  // Prend le meilleur match et 3-4 liens de ce sujet
-  return scored[0].links.slice(0, 4);
-}
-
-// ---- Card de liens contextuels (remplace UsefulLinksCard) ----
-function SmartLinksCard({ lessonTitle, courseTitle }) {
-  const links = getSmartLinks(lessonTitle, courseTitle);
-  if (!links.length) return null;
-  return (
-    <div className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50/80 to-indigo-50/40 overflow-hidden">
-      <div className="px-5 py-3.5 border-b border-blue-100/70 flex items-center gap-2.5">
-        <div className="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
-          <ExternalLink className="w-3.5 h-3.5 text-blue-600" />
+            <p className="font-bold text-indigo-800 text-sm">📚 Pour approfondir</p>
+          </div>
+          <div className="p-4 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            {further.map((l, i) => (
+              <a key={i} href={l.href} target="_blank" rel="noopener noreferrer"
+                className="flex flex-col gap-1.5 px-3.5 py-3 rounded-xl bg-white border border-indigo-100 hover:border-indigo-400 hover:shadow-md transition-all group">
+                <div className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-md bg-indigo-100 group-hover:bg-indigo-500 flex items-center justify-center flex-shrink-0 transition-colors">
+                    <ChevronRight className="w-3 h-3 text-indigo-500 group-hover:text-white transition-colors" />
+                  </span>
+                  <span className="text-[12px] font-bold text-indigo-700 group-hover:text-indigo-900 leading-tight line-clamp-2">{l.text}</span>
+                </div>
+                {l.desc && <p className="text-[11px] text-gray-400 leading-snug line-clamp-2">{l.desc}</p>}
+              </a>
+            ))}
+          </div>
         </div>
-        <p className="font-bold text-blue-800 text-sm">📌 Liens utiles pour cette leçon</p>
-      </div>
-      <div className="px-5 py-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
-        {links.map((l, i) => (
-          <a key={i} href={l.href} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white border border-blue-100 hover:border-blue-300 hover:shadow-sm transition-all group">
-            <span className="w-6 h-6 rounded-md bg-blue-100 group-hover:bg-blue-600 flex items-center justify-center flex-shrink-0 transition-colors">
-              <ExternalLink className="w-3 h-3 text-blue-600 group-hover:text-white transition-colors" />
-            </span>
-            <span className="text-[13px] font-medium text-blue-800 group-hover:text-blue-900 leading-snug">{l.text}</span>
-          </a>
-        ))}
-      </div>
+      )}
     </div>
   );
 }
 
-// ---- QCM généré par IA intégré dans la leçon ----
+// ---- QCM généré par IA — visible directement, large et ergonomique ----
+const quizCache = new Map();
+
 function LessonQuiz({ lesson, courseName }) {
   const [quiz, setQuiz] = useState(null);
   const [loading, setLoading] = useState(false);
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
-  const [expanded, setExpanded] = useState(false);
+  const [currentQ, setCurrentQ] = useState(0);
+  const cacheKey = lesson?.id || lesson?.title;
 
-  const generateQuiz = async () => {
-    if (quiz) { setExpanded(true); return; }
-    setLoading(true);
-    setExpanded(true);
-    try {
-      const content = (lesson.content || '').substring(0, 4000);
-      const response = await InvokeLLM({
-        prompt: `Tu es un professeur qui crée des QCM pour des étudiants en prépa grandes écoles.
-Cours : "${courseName}", Leçon : "${lesson.title}".
-Contenu : ${content}
-
-Génère exactement 4 questions QCM portant PRÉCISÉMENT sur le contenu de cette leçon.
-Chaque question doit avoir 4 options (A, B, C, D) dont UNE SEULE correcte.
-Les mauvaises réponses doivent être plausibles mais clairement incorrectes pour quelqu'un qui a bien compris.
-
-Réponds UNIQUEMENT avec un JSON valide dans ce format exact (aucun texte avant ou après) :
-{
-  "questions": [
-    {
-      "q": "Question ici ?",
-      "options": ["Option A", "Option B", "Option C", "Option D"],
-      "correct": 0,
-      "explanation": "Explication courte de la bonne réponse."
+  // Génère automatiquement le quiz au montage
+  useEffect(() => {
+    if (!lesson?.content || (lesson.content.trim().length < 200)) return;
+    if (quizCache.has(cacheKey)) {
+      setQuiz(quizCache.get(cacheKey));
+      return;
     }
-  ]
-}`,
-        add_context_from_internet: false
-      });
-      // Parse JSON — cherche le bloc JSON dans la réponse
-      const jsonMatch = response.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        const parsed = JSON.parse(jsonMatch[0]);
-        if (parsed.questions && parsed.questions.length) {
-          setQuiz(parsed.questions);
-          setAnswers({});
-          setSubmitted(false);
-          setScore(0);
+    setLoading(true);
+    const content = (lesson.content || '').replace(/<[^>]*>/g, ' ').substring(0, 4500);
+    InvokeLLM({
+      prompt: `Tu es un professeur expert qui crée des QCM pour des étudiants en prépa grandes écoles.
+Cours : "${courseName}", Leçon : "${lesson.title}".
+
+Contenu de la leçon :
+${content}
+
+INSTRUCTIONS STRICTES :
+- Génère exactement 5 questions QCM portant UNIQUEMENT sur des concepts précis de CETTE leçon
+- Chaque question doit tester la compréhension réelle (pas juste la mémorisation)
+- 4 options par question, UNE SEULE correcte
+- Les distracteurs (mauvaises réponses) doivent être plausibles et proches
+- L'explication doit clarifier POURQUOI la bonne réponse est correcte (2-3 phrases)
+- Questions en français, claires et sans ambiguïté
+
+Réponds UNIQUEMENT avec ce JSON (aucun texte avant ou après) :
+{"questions":[{"q":"Question ?","options":["A","B","C","D"],"correct":0,"explanation":"Explication détaillée."}]}`,
+      add_context_from_internet: false
+    }).then(response => {
+      try {
+        const m = response.match(/\{[\s\S]*\}/);
+        if (m) {
+          const parsed = JSON.parse(m[0]);
+          if (parsed.questions?.length) {
+            quizCache.set(cacheKey, parsed.questions);
+            setQuiz(parsed.questions);
+          }
         }
-      }
-    } catch (e) {
-      console.error('Quiz generation error:', e);
-    } finally { setLoading(false); }
+      } catch(e) { console.error('Quiz parse error', e); }
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, [cacheKey]);
+
+  // Reset quand la leçon change
+  useEffect(() => {
+    setAnswers({});
+    setSubmitted(false);
+    setScore(0);
+    setCurrentQ(0);
+  }, [cacheKey]);
+
+  const handleAnswer = (oi) => {
+    if (submitted) return;
+    setAnswers(prev => ({ ...prev, [currentQ]: oi }));
+  };
+
+  const handleNext = () => {
+    if (currentQ < (quiz?.length || 0) - 1) setCurrentQ(q => q + 1);
+  };
+
+  const handlePrev = () => {
+    if (currentQ > 0) setCurrentQ(q => q - 1);
   };
 
   const handleSubmit = () => {
@@ -414,151 +269,289 @@ Réponds UNIQUEMENT avec un JSON valide dans ce format exact (aucun texte avant 
     quiz.forEach((q, i) => { if (answers[i] === q.correct) s++; });
     setScore(s);
     setSubmitted(true);
+    setCurrentQ(0);
   };
 
   const handleReset = () => {
     setAnswers({});
     setSubmitted(false);
     setScore(0);
+    setCurrentQ(0);
+    quizCache.delete(cacheKey);
+    setQuiz(null);
+    setLoading(true);
+    const content = (lesson.content || '').replace(/<[^>]*>/g, ' ').substring(0, 4500);
+    InvokeLLM({
+      prompt: `Tu es un professeur expert qui crée des QCM pour des étudiants en prépa grandes écoles.
+Cours : "${courseName}", Leçon : "${lesson.title}".
+Contenu : ${content}
+Génère 5 nouvelles questions QCM DIFFÉRENTES des précédentes, portant sur cette leçon.
+Réponds UNIQUEMENT avec ce JSON : {"questions":[{"q":"Question ?","options":["A","B","C","D"],"correct":0,"explanation":"Explication."}]}`,
+      add_context_from_internet: false
+    }).then(response => {
+      try {
+        const m = response.match(/\{[\s\S]*\}/);
+        if (m) {
+          const parsed = JSON.parse(m[0]);
+          if (parsed.questions?.length) {
+            quizCache.set(cacheKey, parsed.questions);
+            setQuiz(parsed.questions);
+          }
+        }
+      } catch(e) {}
+      setLoading(false);
+    }).catch(() => setLoading(false));
   };
 
+  const answeredCount = Object.keys(answers).length;
+  const total = quiz?.length || 5;
   const allAnswered = quiz && quiz.every((_, i) => answers[i] !== undefined);
 
   return (
-    <div className="rounded-2xl border border-violet-200 bg-gradient-to-br from-violet-50/80 to-purple-50/40 overflow-hidden">
-      {/* Header — cliquable pour ouvrir */}
-      <button
-        className="w-full px-5 py-4 flex items-center justify-between gap-3 group"
-        onClick={quiz ? () => setExpanded(!expanded) : generateQuiz}
-      >
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-violet-100 group-hover:bg-violet-200 flex items-center justify-center flex-shrink-0 transition-colors">
-            <HelpCircle className="w-4 h-4 text-violet-600" />
+    <div className="rounded-2xl overflow-hidden border border-violet-200 shadow-lg">
+      {/* En-tête du quiz */}
+      <div className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-700 px-6 py-5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
+              <Brain className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p className="text-white font-extrabold text-base">🎯 Quiz de la leçon</p>
+              <p className="text-purple-200 text-xs mt-0.5">
+                {loading ? 'Génération des questions…' :
+                 submitted ? `Score : ${score}/${total}` :
+                 quiz ? `${answeredCount}/${total} réponses données` :
+                 'Questions générées par IA sur le contenu exact'}
+              </p>
+            </div>
           </div>
-          <div className="text-left">
-            <p className="font-bold text-violet-900 text-sm">🎯 Tester mes connaissances</p>
-            <p className="text-[11px] text-violet-500 mt-0.5">
-              {quiz ? `${quiz.length} questions sur cette leçon` : 'QCM généré par IA — basé sur le contenu de la leçon'}
-            </p>
-          </div>
-        </div>
-        <div className="flex items-center gap-2 flex-shrink-0">
           {submitted && (
-            <span className={`text-[12px] font-bold px-2.5 py-1 rounded-full ${
-              score === quiz.length ? 'bg-emerald-100 text-emerald-700' :
-              score >= quiz.length / 2 ? 'bg-amber-100 text-amber-700' :
-              'bg-red-100 text-red-600'
+            <div className={`px-4 py-2 rounded-xl font-extrabold text-base ${
+              score === total ? 'bg-emerald-400/30 text-emerald-100' :
+              score >= total / 2 ? 'bg-amber-400/30 text-amber-100' :
+              'bg-red-400/30 text-red-100'
             }`}>
-              {score}/{quiz.length}
-            </span>
+              {score}/{total} {score === total ? '🏆' : score >= total / 2 ? '👍' : '📖'}
+            </div>
           )}
-          {loading
-            ? <Loader2 className="w-4 h-4 text-violet-500 animate-spin" />
-            : <ChevronDown className={`w-4 h-4 text-violet-400 transition-transform ${expanded ? 'rotate-180' : ''}`} />
-          }
         </div>
-      </button>
 
-      {/* Body */}
-      <AnimatePresence>
-        {expanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="overflow-hidden"
-          >
-            {loading && (
-              <div className="px-5 pb-6 flex items-center justify-center gap-3 text-violet-500">
-                <Loader2 className="w-5 h-5 animate-spin" />
-                <span className="text-sm">Génération des questions en cours…</span>
+        {/* Barre de progression des réponses */}
+        {quiz && !submitted && (
+          <div className="mt-4">
+            <div className="flex gap-1.5">
+              {quiz.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentQ(i)}
+                  className={`flex-1 h-2 rounded-full transition-all ${
+                    i === currentQ ? 'bg-white' :
+                    answers[i] !== undefined ? 'bg-emerald-400' :
+                    'bg-white/25'
+                  }`}
+                />
+              ))}
+            </div>
+            <p className="text-[10px] text-purple-200 mt-1.5">Question {currentQ + 1} sur {total}</p>
+          </div>
+        )}
+      </div>
+
+      {/* Corps du quiz */}
+      <div className="bg-white">
+        {loading && (
+          <div className="px-6 py-12 flex flex-col items-center gap-4 text-center">
+            <div className="w-12 h-12 rounded-2xl bg-violet-100 flex items-center justify-center">
+              <Loader2 className="w-6 h-6 text-violet-500 animate-spin" />
+            </div>
+            <div>
+              <p className="font-bold text-gray-800">Génération du quiz…</p>
+              <p className="text-sm text-gray-400 mt-1">L'IA analyse le contenu de la leçon pour créer des questions pertinentes</p>
+            </div>
+          </div>
+        )}
+
+        {!loading && quiz && !submitted && (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentQ}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.2 }}
+              className="px-6 py-6"
+            >
+              {/* Question */}
+              <div className="flex items-start gap-3 mb-6">
+                <span className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 text-white text-sm font-extrabold flex items-center justify-center flex-shrink-0 shadow-md">
+                  {currentQ + 1}
+                </span>
+                <p className="text-gray-900 font-bold text-base leading-relaxed pt-0.5">{quiz[currentQ].q}</p>
               </div>
-            )}
 
-            {quiz && !loading && (
-              <div className="px-5 pb-6 space-y-5 border-t border-violet-100">
-                {quiz.map((q, qi) => (
-                  <div key={qi} className="pt-4">
-                    <p className="text-sm font-bold text-gray-800 mb-3">
-                      <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-violet-100 text-violet-700 text-[11px] font-extrabold mr-2 flex-shrink-0">{qi + 1}</span>
-                      {q.q}
-                    </p>
-                    <div className="space-y-2">
+              {/* Options */}
+              <div className="space-y-3">
+                {quiz[currentQ].options.map((opt, oi) => {
+                  const isSelected = answers[currentQ] === oi;
+                  return (
+                    <button
+                      key={oi}
+                      onClick={() => handleAnswer(oi)}
+                      className={`w-full text-left px-5 py-3.5 rounded-2xl border-2 text-sm font-medium transition-all flex items-center gap-4 ${
+                        isSelected
+                          ? 'border-violet-500 bg-violet-50 text-violet-900 shadow-md shadow-violet-100'
+                          : 'border-gray-150 bg-gray-50 hover:border-violet-300 hover:bg-violet-50/50 text-gray-700'
+                      }`}
+                    >
+                      <span className={`w-7 h-7 rounded-xl border-2 flex items-center justify-center flex-shrink-0 text-xs font-extrabold transition-all ${
+                        isSelected
+                          ? 'border-violet-500 bg-violet-500 text-white'
+                          : 'border-gray-300 text-gray-400'
+                      }`}>
+                        {['A','B','C','D'][oi]}
+                      </span>
+                      <span className="flex-1">{opt}</span>
+                      {isSelected && <Check className="w-4 h-4 text-violet-500 flex-shrink-0" />}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Navigation entre questions */}
+              <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
+                <button
+                  onClick={handlePrev}
+                  disabled={currentQ === 0}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 text-gray-600 text-sm font-semibold hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                >
+                  <ChevronLeft className="w-4 h-4" /> Précédent
+                </button>
+
+                <div className="flex gap-1.5">
+                  {quiz.map((_, i) => (
+                    <button key={i} onClick={() => setCurrentQ(i)}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        i === currentQ ? 'bg-violet-600 w-5' :
+                        answers[i] !== undefined ? 'bg-violet-300' : 'bg-gray-200'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                {currentQ < quiz.length - 1 ? (
+                  <button
+                    onClick={handleNext}
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-600 text-white text-sm font-semibold hover:bg-violet-700 transition-all"
+                  >
+                    Suivant <ChevronRight className="w-4 h-4" />
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleSubmit}
+                    disabled={!allAnswered}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white text-sm font-bold hover:from-violet-700 hover:to-purple-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md shadow-violet-500/20"
+                  >
+                    <Trophy className="w-4 h-4" /> Voir mes résultats
+                  </button>
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        )}
+
+        {/* Résultats détaillés */}
+        {!loading && quiz && submitted && (
+          <div className="px-6 py-6">
+            {/* Score global */}
+            <div className={`rounded-2xl p-5 mb-6 flex items-center gap-4 ${
+              score === total ? 'bg-emerald-50 border border-emerald-200' :
+              score >= total / 2 ? 'bg-amber-50 border border-amber-200' :
+              'bg-red-50 border border-red-200'
+            }`}>
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 ${
+                score === total ? 'bg-emerald-100' : score >= total / 2 ? 'bg-amber-100' : 'bg-red-100'
+              }`}>
+                {score === total ? '🏆' : score >= total / 2 ? '🎯' : '📚'}
+              </div>
+              <div>
+                <p className={`font-extrabold text-xl ${
+                  score === total ? 'text-emerald-700' : score >= total / 2 ? 'text-amber-700' : 'text-red-700'
+                }`}>
+                  {score}/{total} — {score === total ? 'Score parfait !' : score >= total / 2 ? 'Bonne maîtrise !' : 'À retravailler'}
+                </p>
+                <p className={`text-sm mt-0.5 ${
+                  score === total ? 'text-emerald-600' : score >= total / 2 ? 'text-amber-600' : 'text-red-600'
+                }`}>
+                  {score === total ? 'Tu as parfaitement assimilé cette leçon.' :
+                   score >= total / 2 ? 'Tu maîtrises l\'essentiel. Révise les points manqués.' :
+                   'Relis la leçon en te concentrant sur les explications ci-dessous.'}
+                </p>
+              </div>
+            </div>
+
+            {/* Détail question par question */}
+            <div className="space-y-4">
+              {quiz.map((q, qi) => {
+                const userAnswer = answers[qi];
+                const isRight = userAnswer === q.correct;
+                return (
+                  <div key={qi} className={`rounded-2xl border p-4 ${isRight ? 'border-emerald-200 bg-emerald-50/50' : 'border-red-200 bg-red-50/50'}`}>
+                    <div className="flex items-start gap-2.5 mb-3">
+                      <span className={`w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5 ${
+                        isRight ? 'bg-emerald-500 text-white' : 'bg-red-400 text-white'
+                      }`}>
+                        {isRight ? '✓' : '✗'}
+                      </span>
+                      <p className="text-sm font-bold text-gray-800 leading-snug">{q.q}</p>
+                    </div>
+
+                    <div className="space-y-1.5 mb-3">
                       {q.options.map((opt, oi) => {
-                        const isSelected = answers[qi] === oi;
                         const isCorrect = q.correct === oi;
-                        let style = 'bg-white border-gray-200 text-gray-700 hover:border-violet-300 hover:bg-violet-50/50';
-                        if (submitted) {
-                          if (isCorrect) style = 'bg-emerald-50 border-emerald-400 text-emerald-800 font-semibold';
-                          else if (isSelected && !isCorrect) style = 'bg-red-50 border-red-300 text-red-700';
-                          else style = 'bg-white border-gray-100 text-gray-400';
-                        } else if (isSelected) {
-                          style = 'bg-violet-100 border-violet-400 text-violet-800 font-semibold';
-                        }
+                        const isSelected = userAnswer === oi;
                         return (
-                          <button
-                            key={oi}
-                            onClick={() => !submitted && setAnswers(prev => ({ ...prev, [qi]: oi }))}
-                            disabled={submitted}
-                            className={`w-full text-left px-4 py-2.5 rounded-xl border text-[13px] transition-all flex items-center gap-3 ${style}`}
-                          >
-                            <span className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 text-[10px] font-bold ${
-                              submitted && isCorrect ? 'border-emerald-500 bg-emerald-500 text-white' :
-                              submitted && isSelected && !isCorrect ? 'border-red-400 bg-red-400 text-white' :
-                              isSelected ? 'border-violet-500 bg-violet-500 text-white' :
-                              'border-gray-300'
+                          <div key={oi} className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-[13px] ${
+                            isCorrect ? 'bg-emerald-100 text-emerald-800 font-semibold' :
+                            isSelected && !isCorrect ? 'bg-red-100 text-red-700 line-through' :
+                            'text-gray-400'
+                          }`}>
+                            <span className={`w-5 h-5 rounded-lg border flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${
+                              isCorrect ? 'border-emerald-500 bg-emerald-500 text-white' :
+                              isSelected ? 'border-red-400 bg-red-400 text-white' :
+                              'border-gray-200'
                             }`}>
-                              {submitted && isCorrect ? '✓' : submitted && isSelected && !isCorrect ? '✗' : ['A','B','C','D'][oi]}
+                              {['A','B','C','D'][oi]}
                             </span>
                             {opt}
-                          </button>
+                          </div>
                         );
                       })}
                     </div>
-                    {submitted && q.explanation && (
-                      <div className="mt-2.5 flex items-start gap-2 px-3 py-2.5 bg-blue-50 rounded-xl border border-blue-100">
+
+                    {q.explanation && (
+                      <div className="flex items-start gap-2 px-3 py-2.5 bg-blue-50 rounded-xl border border-blue-100">
                         <Lightbulb className="w-3.5 h-3.5 text-blue-500 mt-0.5 flex-shrink-0" />
                         <p className="text-[12px] text-blue-700 leading-relaxed">{q.explanation}</p>
                       </div>
                     )}
                   </div>
-                ))}
+                );
+              })}
+            </div>
 
-                {/* Actions */}
-                <div className="pt-2 flex items-center gap-3">
-                  {!submitted ? (
-                    <button
-                      onClick={handleSubmit}
-                      disabled={!allAnswered}
-                      className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-violet-600 to-purple-600 text-white text-sm font-bold rounded-xl disabled:opacity-40 disabled:cursor-not-allowed hover:from-violet-700 hover:to-purple-700 transition-all shadow-md shadow-violet-500/20"
-                    >
-                      <Check className="w-4 h-4" /> Valider mes réponses
-                    </button>
-                  ) : (
-                    <>
-                      <div className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold ${
-                        score === quiz.length ? 'bg-emerald-100 text-emerald-700' :
-                        score >= quiz.length / 2 ? 'bg-amber-100 text-amber-700' :
-                        'bg-red-100 text-red-700'
-                      }`}>
-                        <Trophy className="w-4 h-4" />
-                        {score === quiz.length ? 'Parfait !' : score >= quiz.length / 2 ? 'Bien joué !' : 'À revoir'} — {score}/{quiz.length}
-                      </div>
-                      <button
-                        onClick={handleReset}
-                        className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 text-gray-600 text-sm font-semibold rounded-xl hover:bg-gray-50 transition-all"
-                      >
-                        <RotateCcw className="w-3.5 h-3.5" /> Recommencer
-                      </button>
-                    </>
-                  )}
-                </div>
-              </div>
-            )}
-          </motion.div>
+            {/* Bouton recommencer */}
+            <div className="mt-6 flex justify-center">
+              <button
+                onClick={handleReset}
+                className="flex items-center gap-2.5 px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold rounded-xl hover:from-violet-700 hover:to-purple-700 transition-all shadow-lg shadow-violet-500/20"
+              >
+                <RotateCcw className="w-4 h-4" /> Générer un nouveau quiz
+              </button>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
+      </div>
     </div>
   );
 }
@@ -1403,11 +1396,11 @@ export default function Learn() {
             </Card>
           )}
 
-          {/* ===== LIENS UTILES CONTEXTUELS ===== */}
-          {(hasContent || hasVideo) && (
+          {/* ===== LIENS UTILES GÉNÉRÉS PAR IA ===== */}
+          {(hasContent || hasVideo) && currentLesson && (
             <div className="mb-6">
               <SmartLinksCard
-                lessonTitle={currentLesson?.title}
+                lesson={currentLesson}
                 courseTitle={course?.title}
               />
             </div>
