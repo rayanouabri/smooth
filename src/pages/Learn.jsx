@@ -157,19 +157,45 @@ function classifyHtmlBlock(html) {
   return 'raw';
 }
 
+// ---- Find matching closing </div> index, accounting for nesting ----
+function findClosingDiv(content, startIdx) {
+  let depth = 0;
+  let i = startIdx;
+  const lower = content.toLowerCase();
+  while (i < content.length) {
+    if (lower[i] === '<') {
+      if (lower.slice(i, i + 4) === '<div') {
+        depth++;
+        i += 4;
+      } else if (lower.slice(i, i + 5) === '</div') {
+        depth--;
+        // advance past the closing >
+        let k = i + 5;
+        while (k < content.length && content[k] !== '>') k++;
+        k++; // include the >
+        if (depth === 0) return k;
+        i = k;
+      } else {
+        i++;
+      }
+    } else {
+      i++;
+    }
+  }
+  return content.length;
+}
+
 // ---- Split content into segments: html blocks, iframes, and markdown text ----
 function segmentContent(content) {
   const segments = [];
-  // Regex to match top-level <div>...</div> blocks and <iframe>...</iframe>
-  const blockRe = /(<div[\s\S]*?<\/div\s*>(?:\s*<\/div\s*>)*|<iframe[\s\S]*?<\/iframe>)/gi;
   let cursor = 0;
+  const lower = content.toLowerCase();
 
-  // We need a smarter div splitter that handles nesting
   let i = 0;
   while (i < content.length) {
-    // Check for iframe
-    if (content.slice(i, i + 7).toLowerCase() === '<iframe') {
-      const end = content.indexOf('</iframe>', i);
+    // Check for <iframe
+    if (lower.slice(i, i + 7) === '<iframe') {
+      const end = lower.indexOf('</iframe>', i);
       if (end !== -1) {
         if (i > cursor) segments.push({ type: 'markdown', value: content.slice(cursor, i) });
         const block = content.slice(i, end + 9);
@@ -181,28 +207,15 @@ function segmentContent(content) {
         continue;
       }
     }
-    // Check for <div
-    if (content.slice(i, i + 4).toLowerCase() === '<div') {
-      // Find matching closing </div> accounting for nesting
-      let depth = 0;
-      let j = i;
-      while (j < content.length) {
-        if (content.slice(j, j + 4).toLowerCase() === '<div') { depth++; j += 4; }
-        else if (content.slice(j, j + 6).toLowerCase() === '</div') {
-          depth--;
-          j += 6;
-          // skip trailing >
-          while (j < content.length && content[j] !== '>') j++;
-          j++;
-          if (depth === 0) break;
-        } else { j++; }
-      }
+    // Check for <div (only at position where it actually starts)
+    if (lower.slice(i, i + 4) === '<div') {
+      const end = findClosingDiv(content, i);
       if (i > cursor) segments.push({ type: 'markdown', value: content.slice(cursor, i) });
-      const block = content.slice(i, j);
+      const block = content.slice(i, end);
       const kind = classifyHtmlBlock(block);
       segments.push({ type: kind === 'raw' ? 'html' : kind, value: block });
-      cursor = j;
-      i = j;
+      cursor = end;
+      i = end;
       continue;
     }
     i++;
