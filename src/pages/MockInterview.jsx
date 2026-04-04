@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SEO from "@/components/SEO";
+import DashboardSidebar from "../components/DashboardSidebar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -490,12 +491,15 @@ export default function MockInterview() {
 
   // ── Selection Screen ──
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50">
+    <div className="flex flex-col sm:flex-row min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50">
       <SEO
         title="Simulation d'entretien - FrancePrepAcademy"
         description="Préparez vos entretiens Campus France, d'embauche, de stage et de logement avec notre simulateur interactif avec analyse de vos réponses."
         canonical="/mockinterview"
       />
+      <DashboardSidebar currentPage="MockInterview" />
+
+      <div className="flex-1 min-w-0">
 
       <div className="bg-gradient-to-r from-indigo-700 via-blue-700 to-indigo-800 text-white py-16 relative overflow-hidden">
         <div className="absolute inset-0">
@@ -582,6 +586,7 @@ export default function MockInterview() {
         </div>
       </div>
       <ChatBot />
+      </div>
     </div>
   );
 }

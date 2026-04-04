@@ -87,12 +87,12 @@ export default function Layout({ children, currentPageName }) {
   const navLinks = [
     { name: "Accueil", page: "Home" },
     { name: "Cours", page: "Courses" },
-    { name: "Cours particuliers", page: "Teachers" },
+    { name: "Assistant IA", page: "AIAgent", icon: true },
     { name: "Dashboard", page: "Dashboard" },
+    { name: "Cours particuliers", page: "Teachers" },
     // Éviter les soucis d'encodage lors de certains déploiements (UTF-8 mal interprété)
     { name: "Communauté", page: "Community" },
     { name: "Tarifs", page: "Pricing" },
-    { name: "Assistant IA", page: "AIAgent", icon: true },
   ];
 
   // Dashboard auth guard — only prevents navigation when not authenticated
@@ -369,7 +369,7 @@ export default function Layout({ children, currentPageName }) {
             </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2026 FrancePrepAcademy. {"Tous droits réservés."}</p>
+            <p>&copy; 2025 FrancePrepAcademy. {"Tous droits réservés."}</p>
           </div>
         </div>
       </footer>

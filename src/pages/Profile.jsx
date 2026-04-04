@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { createBillingPortal } from "@/api/functions";
 import SEO from "@/components/SEO";
+import DashboardSidebar from "../components/DashboardSidebar";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { supabase } from "@/api/supabaseClient";
 import logger from "@/utils/logger";
@@ -304,13 +305,16 @@ export default function Profile() {
   const passwordStrength = getPasswordStrength(newPassword);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="flex flex-col sm:flex-row min-h-screen bg-gray-50">
       <SEO
         title="Mon profil"
         description="Gérez votre profil FrancePrepAcademy : informations personnelles, abonnement et préférences."
         canonical="/profile"
         noindex={true}
       />
+      <DashboardSidebar currentPage="Profile" />
+
+      <div className="flex-1 min-w-0">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1019,6 +1023,7 @@ export default function Profile() {
       </div>
 
       <ChatBot />
+      </div>
     </div>
   );
 }

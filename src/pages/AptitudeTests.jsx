@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import SEO from "@/components/SEO";
+import DashboardSidebar from "../components/DashboardSidebar";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import {
@@ -479,14 +480,16 @@ export default function AptitudeTests() {
 
   // ─── HOME SCREEN ──────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+    <div className="flex flex-col sm:flex-row min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       <SEO
         title="Tests d'aptitude - FrancePrepAcademy"
         description="Testez vos connaissances sur la France, les démarches administratives et le raisonnement logique."
         canonical="/aptitudetests"
         noindex={true}
       />
+      <DashboardSidebar currentPage="AptitudeTests" />
 
+      <div className="flex-1 min-w-0">
       {/* Hero */}
       <div className="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 text-white">
         <div className="absolute inset-0 opacity-10">
@@ -598,6 +601,7 @@ export default function AptitudeTests() {
       </div>
 
       <ChatBot />
+      </div>
     </div>
   );
 }

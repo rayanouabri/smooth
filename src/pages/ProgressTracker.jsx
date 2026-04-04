@@ -4,6 +4,7 @@ import { Enrollment, Course } from "@/api/entities";
 import { useQuery } from "@tanstack/react-query";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import SEO from "@/components/SEO";
+import DashboardSidebar from "../components/DashboardSidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress as ProgressBar } from "@/components/ui/progress";
@@ -77,14 +78,16 @@ export default function ProgressTracker() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="flex flex-col sm:flex-row min-h-screen bg-gray-50">
       <SEO
         title="Ma progression - FrancePrepAcademy"
         description="Suivez votre progression et vos statistiques d'apprentissage."
         canonical="/progresstracker"
         noindex={true}
       />
+      <DashboardSidebar currentPage="ProgressTracker" />
 
+      <div className="flex-1 min-w-0">
       {/* Header */}
       <div className="bg-gradient-to-r from-teal-900 to-emerald-800 text-white py-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -238,6 +241,7 @@ export default function ProgressTracker() {
       </div>
 
       <ChatBot />
+      </div>
     </div>
   );
 }

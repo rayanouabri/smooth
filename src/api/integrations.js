@@ -104,8 +104,7 @@ export const InvokeLLM = async ({ prompt, add_context_from_internet = false, mod
  * Option 2: Stocke la demande dans Supabase (solution sans service externe)
  */
 export const SendEmail = async ({ to, subject, html, text, requestType, formData }) => {
-  // Si requestType et formData sont fournis, utiliser directement le stockage Supabase (pas d'Edge Function)
-  // Cela évite les erreurs CORS et les problèmes de permissions
+  // Si requestType et formData sont fournis, sauvegarder dans Supabase ET envoyer par email
   if (requestType && formData) {
     const { data, error } = await supabase
       .from('contact_requests')
@@ -126,7 +125,6 @@ export const SendEmail = async ({ to, subject, html, text, requestType, formData
       .single();
 
     if (error) {
-      // Si la table n'existe pas, lancer une erreur explicite
       if (error.message.includes('relation "contact_requests" does not exist')) {
         throw new Error(
           'La table contact_requests n\'existe pas. Exécutez le script create_contact_requests_table.sql dans Supabase SQL Editor.'
@@ -135,14 +133,25 @@ export const SendEmail = async ({ to, subject, html, text, requestType, formData
       throw error;
     }
 
+    // Envoyer l'email via le proxy Vercel (fire-and-forget, ne bloque pas si ça échoue)
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ requestType, formData, subject, html, text }),
+      });
+    } catch (emailErr) {
+      // Ne pas échouer si l'email ne part pas — la demande est déjà en base
+      console.warn('[SendEmail] Email notification failed (non-critical):', emailErr.message);
+    }
+
     return {
       success: true,
-      message: 'Demande enregistrée avec succès dans la base de données',
+      message: 'Demande enregistrée avec succès',
       requestId: data.id,
     };
   }
 
-  // Si pas de requestType/formData, essayer quand même l'Edge Function
   throw new Error('Email service non configuré. Configurez Resend ou utilisez les formulaires de contact.');
 };
 

@@ -153,12 +153,13 @@ function RoadmapStep({ step, index, courses, isFirst }) {
           {/* Header - always visible */}
           <button onClick={() => setExpanded(!expanded)} className="w-full text-left">
             <div className="flex items-stretch">
-              <div className={`w-14 sm:w-16 flex-shrink-0 flex flex-col items-center justify-center ${
+              <div className={`w-14 sm:w-16 flex-shrink-0 flex flex-col items-center justify-center gap-1 ${
                 index === 0 ? 'bg-gradient-to-b from-violet-500 to-purple-600'
                 : index < 3 ? 'bg-gradient-to-b from-indigo-400 to-blue-500'
                 : 'bg-gradient-to-b from-blue-400 to-cyan-500'
               }`}>
-                <span className="text-xl font-extrabold text-white">{index + 1}</span>
+                {step.emoji && <span className="text-xl">{step.emoji}</span>}
+                <span className="text-sm font-extrabold text-white/80">{index + 1}</span>
               </div>
               <div className="flex-1 p-4 sm:p-5">
                 <div className="flex items-start justify-between gap-2">
@@ -173,6 +174,18 @@ function RoadmapStep({ step, index, courses, isFirst }) {
                     {expanded ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
                   </div>
                 </div>
+                {/* Estimated savings highlight */}
+                {step.estimatedSavings && (
+                  <div className="mt-2 inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-bold px-2.5 py-1 rounded-full border border-emerald-200">
+                    <Euro className="w-3 h-3" />{step.estimatedSavings}
+                  </div>
+                )}
+                {/* Official deadline warning */}
+                {step.officialDeadlineWarning && (
+                  <div className="mt-2 flex items-start gap-1.5 bg-red-50 text-red-600 text-xs font-medium px-2.5 py-1.5 rounded-lg border border-red-100">
+                    <AlertCircle className="w-3 h-3 mt-0.5 flex-shrink-0" />{step.officialDeadlineWarning}
+                  </div>
+                )}
                 {/* Mini info bar */}
                 <div className="flex flex-wrap items-center gap-3 mt-3 text-xs text-gray-400">
                   {step.duration && (
@@ -446,33 +459,49 @@ export default function AIAgent() {
         return (aPrio === -1 ? 99 : aPrio) - (bPrio === -1 ? 99 : bPrio);
       });
       const coursesList = sortedCourses.slice(0, 15).map(c => `- "${c.title}" (${c.is_premium ? 'Premium' : 'Gratuit'}, ${c.category || 'General'})`).join('\n');
+      const goalLabel = ua.goal === "studies" ? "Etudier à l'université" : ua.goal === "admin" ? "Démarches administratives" : ua.goal === "french" ? "Apprendre le français" : "Trouver un emploi / stage";
+      const levelLabel = ua.level === "beginner" ? "Débutant (A1-A2)" : ua.level === "intermediate" ? "Intermédiaire (B1-B2)" : ua.level === "advanced" ? "Avancé (C1-C2)" : "Ne parle pas français";
+      const timelineLabel = ua.timeline === "already_here" ? "Déjà en France" : ua.timeline === "soon" ? "Dans moins de 3 mois" : ua.timeline === "medium" ? "Dans 3 à 6 mois" : "Dans plus de 6 mois";
+      const challengeLabel = ua.challenge === "housing" ? "Trouver un logement" : ua.challenge === "visa" ? "Titre de séjour / Préfecture" : ua.challenge === "system" ? "Comprendre le système français" : "S'intégrer socialement";
+      const budgetLabel = ua.budget === "tight" ? "Moins de 600€/mois" : ua.budget === "moderate" ? "600-1000€/mois" : ua.budget === "comfortable" ? "1000-1500€/mois" : "Plus de 1500€/mois";
+
       const response = await InvokeLLM({
-        prompt: `Tu es un expert en integration des etudiants internationaux en France. Tu dois generer une roadmap TRES detaillee et actionnable.
+        prompt: `Tu es un expert senior en integration et accompagnement des etudiants internationaux en France, avec 15 ans d'experience. Tu aides des milliers d'etudiants chaque annee. Tu dois generer une roadmap ULTRA-COMPLETE, PERSONNALISEE et ACTIONNABLE.
 
-PROFIL :
-- Objectif : ${ua.goal}
-- Niveau francais : ${ua.level}
-- Chronologie : ${ua.timeline}
-- Difficulte : ${ua.challenge}
-- Budget : ${ua.budget}
+PROFIL COMPLET DE L'ETUDIANT :
+- Objectif principal : ${goalLabel}
+- Niveau de français : ${levelLabel}
+- Situation d'arrivee : ${timelineLabel}
+- Defi principal : ${challengeLabel}
+- Budget mensuel : ${budgetLabel}
 
-COURS DISPONIBLES :
+COURS DISPONIBLES SUR LA PLATEFORME :
 ${coursesList}
 
-GENERE un JSON array de 5-7 etapes. Chaque etape DOIT contenir :
-- title: titre court
-- description: explication en 2 phrases
-- duration: duree estimee
-- priority: "high", "medium" ou "low"
-- budget: cout estime si applicable (ex: "Gratuit", "50-200 euros", etc.)
-- deadline: delai a respecter si urgent (ex: "Dans les 2 premieres semaines", null si pas urgent)
-- why: pourquoi cette etape est importante (1 phrase motivante)
-- checklist: tableau de 3-5 actions concretes a faire
-- tips: tableau de 1-3 conseils pratiques insider
-- links: tableau d'objets {label, url} avec liens officiels utiles (ex: caf.fr, service-public.fr, etc.)
-- relatedCourses: noms des cours recommandes de la plateforme
+INSTRUCTIONS CRITIQUES :
+Tu dois generer un JSON array de 7 à 9 etapes DETAILLEES. Chaque etape doit etre SPECIFIQUE au profil (pas generique).
+La roadmap doit couvrir les 6 premiers mois en France et adapter les priorites au profil.
+Pour un etudiant avec un budget serre, priorise les aides gratuites (CAF, CROUS, bourses).
+Pour quelqu'un deja en France, commence par ce qui est URGENT maintenant.
+Pour l'emploi, inclus CV francais, LinkedIn, stages, pole emploi, etc.
 
-IMPORTANT : Reponds UNIQUEMENT avec le JSON array valide, rien d'autre. Les liens doivent etre de vrais sites officiels francais.`,
+Chaque etape DOIT contenir EXACTEMENT ces champs :
+- title: titre court et percutant (max 6 mots)
+- emoji: un emoji representatif de l'etape
+- description: explication detaillee en 3-4 phrases expliquant COMMENT faire, pas juste QUOI faire
+- duration: duree estimee precise (ex: "3-5 jours ouvrables", "2 à 4 semaines")
+- priority: "high", "medium" ou "low" (base sur l'urgence reelle)
+- budget: cout reel et precis (ex: "Gratuit", "30-80€ de frais de dossier", "Remboursé par la CAF ensuite")
+- deadline: delai URGENT si applicable (ex: "Dans les 3 premiers mois apres entree en France", null si flexible)
+- why: phrase MOTIVANTE expliquant l'impact concret (chiffres si possible, ex: "Peut te faire economiser jusqu'a 300€/mois")
+- checklist: tableau de 5 à 8 actions ULTRA-SPECIFIQUES et ordonnes chronologiquement (avec details comme "Reunir: passeport + visa + 3 derniers releves de compte + attestation de logement")
+- tips: tableau de 3 à 5 conseils INSIDER que seuls les experts connaissent (astuces peu connues, erreurs a eviter, hacks)
+- links: tableau de 3 à 5 objets {label, url} avec des VRAIS liens officiels francais (caf.fr, ameli.fr, service-public.fr, etudiant.gouv.fr, pole-emploi.fr, campus-france.org, etc.)
+- relatedCourses: 1 à 3 noms exacts de cours de la plateforme les plus pertinents pour cette etape
+- estimatedSavings: montant potentiel economise ou gain si applicable (ex: "Jusqu'a 300€/mois d'APL", "Reduction impots", null)
+- officialDeadlineWarning: avertissement si l'etape a une date limite officielle connue (ex: "La carte de sejour doit etre demandee dans les 3 mois suivant l'arrivee", null si aucune)
+
+IMPORTANT : Reponds UNIQUEMENT avec le JSON array valide, sans markdown, sans texte avant ou apres. Tous les textes en francais.`,
         response_json_schema: { type: "array" },
         add_context_from_internet: false
       });
