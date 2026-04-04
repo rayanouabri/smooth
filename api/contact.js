@@ -41,7 +41,11 @@ export default async function handler(req, res) {
   }
 
   // Domain franceprepacademy.fr is verified in Resend (eu-west-1)
-  const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_b8enZHgM_7WUKfPKHbtV8VP4zPeTyxsyT';
+  const RESEND_API_KEY = process.env.RESEND_API_KEY;
+  if (!RESEND_API_KEY) {
+    console.error('[contact] RESEND_API_KEY env var not set');
+    return res.status(200).json({ success: true, message: 'Demande enregistrée (email non configuré)' });
+  }
   const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'contact@franceprepacademy.fr';
   const FROM_EMAIL = process.env.FROM_EMAIL || 'FrancePrepAcademy <contact@franceprepacademy.fr>';
 
