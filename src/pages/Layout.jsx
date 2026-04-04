@@ -364,6 +364,9 @@ export default function Layout({ children, currentPageName }) {
                 <li><Link to={createPageUrl("CGV")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("CGV"))}>CGV</Link></li>
                 <li><Link to={createPageUrl("PrivacyPolicy")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("PrivacyPolicy"))}>{"Confidentialité"}</Link></li>
                 <li><Link to={createPageUrl("CGU")} className="hover:text-white" onClick={(e) => handleNavClick(e, createPageUrl("CGU"))}>CGU / Mentions légales</Link></li>
+                <li><Link to={createPageUrl("SchoolPortal")} className="hover:text-white flex items-center gap-1.5 mt-3 pt-3 border-t border-gray-700" onClick={(e) => handleNavClick(e, createPageUrl("SchoolPortal"))}>
+                  <span className="text-violet-400">🎓</span> Portail établissements
+                </Link></li>
               </ul>
             </div>
             </div>
