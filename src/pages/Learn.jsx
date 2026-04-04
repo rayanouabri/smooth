@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
 import {
   ChevronLeft, ChevronRight, CheckCircle, Play, FileText, BookOpen,
   Award, Clock, ArrowLeft, Download, Send, X, Sparkles, Bot,
@@ -115,6 +116,7 @@ function LessonContentRenderer({ content }) {
             prose-td:text-sm prose-td:px-4 prose-td:py-2.5 prose-td:border prose-td:border-gray-200
           ">
             <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw]}
               components={{
                 h2: ({node, children, ...props}) => (
