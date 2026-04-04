@@ -40,13 +40,10 @@ export default async function handler(req, res) {
     return res.status(429).json({ error: 'Trop de requêtes. Réessayez dans une heure.' });
   }
 
-  const RESEND_API_KEY = process.env.RESEND_API_KEY;
+  // Domain franceprepacademy.fr is verified in Resend (eu-west-1)
+  const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_b8enZHgM_7WUKfPKHbtV8VP4zPeTyxsyT';
   const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'contact@franceprepacademy.fr';
-  const FROM_EMAIL = process.env.FROM_EMAIL || 'onboarding@resend.dev';
-
-  if (!RESEND_API_KEY) {
-    return res.status(200).json({ success: true, message: 'Email non envoyé (clé Resend manquante)' });
-  }
+  const FROM_EMAIL = process.env.FROM_EMAIL || 'FrancePrepAcademy <contact@franceprepacademy.fr>';
 
   try {
     const { requestType, formData, subject, html, text } = req.body || {};

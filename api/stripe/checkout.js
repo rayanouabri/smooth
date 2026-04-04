@@ -1,5 +1,27 @@
+// Rate limiting (in-memory, resets on cold start)
+const RATE_LIMITS = {};
+function checkRateLimit(ip, max = 20, windowMs = 3600000) {
+  const now = Date.now();
+  if (!RATE_LIMITS[ip] || now > RATE_LIMITS[ip].reset) {
+    RATE_LIMITS[ip] = { count: 1, reset: now + windowMs };
+    return true;
+  }
+  RATE_LIMITS[ip].count++;
+  return RATE_LIMITS[ip].count <= max;
+}
+
+// Validate Stripe price ID format
+function isValidPriceId(id) {
+  return typeof id === 'string' && /^price_[a-zA-Z0-9]{16,}$/.test(id);
+}
+
+// Validate email format
+function isValidEmail(email) {
+  return typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254;
+}
+
 export default async function handler(req, res) {
-  // CORS restreint au domaine de production
+  // CORS — production only, dev in local env
   const allowedOrigins = [
     'https://www.franceprepacademy.fr',
     'https://franceprepacademy.fr',
@@ -12,16 +34,17 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  // Rate limiting: 20 checkout attempts per IP per hour
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
+  if (!checkRateLimit(ip, 20, 3600000)) {
+    return res.status(429).json({ error: 'Trop de requêtes. Réessayez dans une heure.' });
   }
 
   try {
-    // Vérification JWT — l'utilisateur doit être authentifié
+    // Auth check — JWT required
     const authHeader = req.headers['authorization'];
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return res.status(401).json({ error: 'Authentification requise' });
@@ -32,7 +55,6 @@ export default async function handler(req, res) {
     const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
     if (!supabaseUrl || !supabaseAnonKey) {
-      console.error('Supabase credentials not configured');
       return res.status(500).json({ error: 'Configuration serveur incomplète' });
     }
 
@@ -43,83 +65,59 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: 'Token invalide ou expiré' });
     }
 
-    const { priceId, userEmail, successUrl, cancelUrl } = req.body;
-
-    // Log minimal sans données sensibles
+    // Input validation
+    const { priceId, userEmail, successUrl, cancelUrl } = req.body || {};
 
     if (!priceId || !userEmail) {
-      return res.status(400).json({ error: 'Missing priceId or userEmail' });
+      return res.status(400).json({ error: 'priceId et userEmail sont requis' });
+    }
+    if (!isValidPriceId(priceId)) {
+      return res.status(400).json({ error: 'Format de priceId invalide' });
+    }
+    if (!isValidEmail(userEmail)) {
+      return res.status(400).json({ error: 'Adresse email invalide' });
+    }
+    // Ensure user can only create checkout for their own email
+    if (user.email && userEmail.toLowerCase() !== user.email.toLowerCase()) {
+      return res.status(403).json({ error: 'Email ne correspond pas au compte connecté' });
     }
 
-    // Try multiple possible env var names
-    const stripeKey = process.env.STRIPE_SECRET_KEY || 
-                      process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY ||
-                      process.env.VITE_STRIPE_SECRET_KEY;
-
+    const stripeKey = process.env.STRIPE_SECRET_KEY;
     if (!stripeKey) {
-      console.error('STRIPE_SECRET_KEY not found in any env vars');
-      return res.status(500).json({ 
-        error: 'STRIPE_SECRET_KEY not configured in Vercel',
-        debug: 'Configure it in Vercel Dashboard → Settings → Environment Variables'
-      });
+      return res.status(500).json({ error: 'STRIPE_SECRET_KEY non configuré' });
     }
 
-    // Clé Stripe configurée
-
-    // Build Stripe checkout session avec metadata
-    // Note: URLSearchParams ne supporte pas les objets, donc on utilise la syntaxe metadata[key]
     const body = new URLSearchParams({
       'payment_method_types[]': 'card',
       mode: 'subscription',
       customer_email: userEmail,
       'line_items[0][price]': priceId,
       'line_items[0][quantity]': '1',
-      success_url: (successUrl || 'https://www.franceprepacademy.fr/paymentsuccess') + '?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: cancelUrl || 'https://www.franceprepacademy.fr/pricing',
-      'metadata[price_id]': priceId, // Ajouter le Price ID dans les metadata pour le webhook
+      success_url: 'https://www.franceprepacademy.fr/paymentsuccess?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'https://www.franceprepacademy.fr/pricing',
+      'metadata[price_id]': priceId,
+      'metadata[user_id]': user.id,
       allow_promotion_codes: 'true',
       billing_address_collection: 'auto',
     });
-
-    // Appel Stripe
 
     const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${stripeKey}`,
         'Content-Type': 'application/x-www-form-urlencoded',
+        'Idempotency-Key': `checkout-${user.id}-${priceId}-${Math.floor(Date.now() / 60000)}`,
       },
       body: body.toString(),
     });
 
-    const contentType = response.headers.get('content-type');
-    let data;
-
-    if (contentType && contentType.includes('application/json')) {
-      data = await response.json();
-    } else {
-      const text = await response.text();
-      console.error('Non-JSON response:', text);
-      return res.status(500).json({ error: 'Invalid response from Stripe' });
-    }
-
+    const data = await response.json();
     if (!response.ok) {
-      console.error('Stripe error:', data);
-      return res.status(response.status).json({ 
-        error: data.error?.message || 'Failed to create Stripe session' 
-      });
+      return res.status(response.status).json({ error: data.error?.message || 'Erreur Stripe' });
     }
 
-    // Session créée avec succès
-
-    return res.status(200).json({ 
-      url: data.url, 
-      sessionId: data.id 
-    });
+    return res.status(200).json({ url: data.url, sessionId: data.id });
   } catch (error) {
-    console.error('API error:', error);
-    return res.status(500).json({ 
-      error: error.message || 'Internal server error' 
-    });
+    return res.status(500).json({ error: 'Erreur interne du serveur' });
   }
 }

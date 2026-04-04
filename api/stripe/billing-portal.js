@@ -1,5 +1,22 @@
+// Rate limiting (in-memory)
+const RATE_LIMITS = {};
+function checkRateLimit(ip, max = 10, windowMs = 3600000) {
+  const now = Date.now();
+  if (!RATE_LIMITS[ip] || now > RATE_LIMITS[ip].reset) {
+    RATE_LIMITS[ip] = { count: 1, reset: now + windowMs };
+    return true;
+  }
+  RATE_LIMITS[ip].count++;
+  return RATE_LIMITS[ip].count <= max;
+}
+
+// Validate Stripe customer ID format
+function isValidCustomerId(id) {
+  return typeof id === 'string' && /^cus_[a-zA-Z0-9]{14,}$/.test(id);
+}
+
 export default async function handler(req, res) {
-  // CORS - restrict to allowed origins only
+  // CORS — production only
   const allowedOrigins = [
     'https://www.franceprepacademy.fr',
     'https://franceprepacademy.fr',
@@ -12,19 +29,19 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  // Rate limiting: 10 portal accesses per IP per hour
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
+  if (!checkRateLimit(ip, 10, 3600000)) {
+    return res.status(429).json({ error: 'Trop de requêtes. Réessayez dans une heure.' });
   }
 
   try {
-    // Verify authentication
+    // Auth check — JWT required
     const authHeader = req.headers.authorization;
     const token = authHeader?.replace('Bearer ', '');
-
     if (!token) {
       return res.status(401).json({ error: 'Authentification requise' });
     }
@@ -32,40 +49,34 @@ export default async function handler(req, res) {
     const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
     const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
-    if (supabaseUrl && supabaseAnonKey) {
-      const { createClient } = await import('@supabase/supabase-js');
-      const supabaseAuth = createClient(supabaseUrl, supabaseAnonKey);
-      const { data: { user }, error: authError } = await supabaseAuth.auth.getUser(token);
-      if (authError || !user) {
-        return res.status(401).json({ error: 'Token invalide ou expiré' });
-      }
+    if (!supabaseUrl || !supabaseAnonKey) {
+      return res.status(500).json({ error: 'Configuration serveur incomplète' });
     }
 
-    const { customerId, returnUrl } = req.body;
+    const { createClient } = await import('@supabase/supabase-js');
+    const supabaseAuth = createClient(supabaseUrl, supabaseAnonKey);
+    const { data: { user }, error: authError } = await supabaseAuth.auth.getUser(token);
+    if (authError || !user) {
+      return res.status(401).json({ error: 'Token invalide ou expiré' });
+    }
 
+    // Input validation
+    const { customerId } = req.body || {};
     if (!customerId) {
-      return res.status(400).json({ error: 'Missing customerId' });
+      return res.status(400).json({ error: 'customerId est requis' });
+    }
+    if (!isValidCustomerId(customerId)) {
+      return res.status(400).json({ error: 'Format de customerId invalide' });
     }
 
-    // Try multiple possible env var names
-    const stripeKey = process.env.STRIPE_SECRET_KEY || 
-                      process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY ||
-                      process.env.VITE_STRIPE_SECRET_KEY;
-
+    const stripeKey = process.env.STRIPE_SECRET_KEY;
     if (!stripeKey) {
-      console.error('STRIPE_SECRET_KEY not found in any env vars');
-      return res.status(500).json({ 
-        error: 'STRIPE_SECRET_KEY not configured in Vercel',
-        debug: 'Configure it in Vercel Dashboard → Settings → Environment Variables'
-      });
+      return res.status(500).json({ error: 'STRIPE_SECRET_KEY non configuré' });
     }
 
-    console.log('Creating billing portal session for customer:', customerId);
-
-    // Build Stripe billing portal session
     const body = new URLSearchParams({
       customer: customerId,
-      return_url: returnUrl || 'https://www.franceprepacademy.fr/profile?tab=subscription',
+      return_url: 'https://www.franceprepacademy.fr/profile?tab=subscription',
     });
 
     const response = await fetch('https://api.stripe.com/v1/billing_portal/sessions', {
@@ -77,34 +88,13 @@ export default async function handler(req, res) {
       body: body.toString(),
     });
 
-    const contentType = response.headers.get('content-type');
-    let data;
-
-    if (contentType && contentType.includes('application/json')) {
-      data = await response.json();
-    } else {
-      const text = await response.text();
-      console.error('Non-JSON response:', text);
-      return res.status(500).json({ error: 'Invalid response from Stripe' });
-    }
-
+    const data = await response.json();
     if (!response.ok) {
-      console.error('Stripe error:', data);
-      return res.status(response.status).json({ 
-        error: data.error?.message || 'Failed to create billing portal session' 
-      });
+      return res.status(response.status).json({ error: data.error?.message || 'Erreur Stripe' });
     }
 
-    console.log('Billing portal session created:', data.id);
-
-    return res.status(200).json({ 
-      url: data.url 
-    });
+    return res.status(200).json({ url: data.url });
   } catch (error) {
-    console.error('API error:', error);
-    return res.status(500).json({ 
-      error: error.message || 'Internal server error' 
-    });
+    return res.status(500).json({ error: 'Erreur interne du serveur' });
   }
 }
-
