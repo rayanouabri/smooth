@@ -58,72 +58,183 @@ function extractLinks(html) {
 }
 
 // ---- Tous les blocs HTML de liens de la DB sont supprimés du rendu ----
-// ResourcesCard, FurtherReadingCard, UsefulLinksCard : retournent null
-// Les liens sont remplacés par SmartLinksCard (IA, basé sur le contenu réel)
 function ResourcesCard({ html }) { return null; }
 function FurtherReadingCard({ html }) { return null; }
 function UsefulLinksCard({ html }) { return null; }
 
-// ---- Liens contextuels générés par IA à partir du contenu réel ----
-// Cache pour éviter de régénérer à chaque render
+// ---- Banque de liens par thème — entièrement statique, zéro appel API ----
+const LINK_DB = [
+  // Logement
+  { keys: ['logement','loyer','bail','location','locataire','appartement','chambre','colocation','résidence','cité u'], links: [
+    { text: 'Vos droits — Location (Service-Public)', href: 'https://www.service-public.fr/particuliers/vosdroits/N319', desc: 'Toutes les règles sur la location privée : dépôt de garantie, bail, charges.' },
+    { text: 'ANIL — Agence Nationale pour l\'Habitat', href: 'https://www.anil.org', desc: 'Conseils gratuits sur le logement, vos droits de locataire, les aides.' },
+    { text: 'DossierFacile — Dossier de location certifié', href: 'https://www.dossierfacile.logement.gouv.fr', desc: 'Préparez votre dossier locatif certifié par l\'État pour rassurer les propriétaires.' },
+    { text: 'CAF — Aide au logement (APL, ALS, ALF)', href: 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement/les-aides-au-logement', desc: 'Simulez vos droits aux aides au logement de la CAF.' },
+    { text: 'Visale — Caution gratuite de l\'État', href: 'https://www.visale.fr', desc: 'Garantie locative gratuite pour les moins de 30 ans et les salariés précaires.' },
+    { text: 'CROUS — Logements étudiants', href: 'https://www.messervices.etudiant.gouv.fr/envoi/sso/login.aspx', desc: 'Demandez un logement en résidence universitaire via le portail national.' },
+  ]},
+  // Sécurité / immeuble / digicode
+  { keys: ['sécurité','digicode','code','interphone','immeuble','copropriété','syndic','gardien','hall','accès'], links: [
+    { text: 'Copropriété — Service-Public', href: 'https://www.service-public.fr/particuliers/vosdroits/N31338', desc: 'Fonctionnement, règlement et droits dans une copropriété.' },
+    { text: 'ADIL — Conseils juridiques gratuits', href: 'https://www.anil.org/lanil-et-les-adil/votre-adil/', desc: 'Trouvez votre ADIL locale pour des conseils gratuits sur votre immeuble.' },
+    { text: 'Règlement de copropriété — Légifrance', href: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074096/LEGISCTA000006159308/', desc: 'Texte de loi sur les règles de la copropriété en France.' },
+    { text: 'Wikipedia — Digicode', href: 'https://fr.wikipedia.org/wiki/Serrure_%C3%A0_combinaison', desc: 'Explication du fonctionnement des serrures à combinaison.' },
+    { text: 'Charges récupérables — Légifrance', href: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000697603/', desc: 'Décret listant les charges récupérables sur le locataire (gardiennage, etc.).' },
+    { text: 'Mon syndic en ligne — FNAIM', href: 'https://www.fnaim.fr', desc: 'Ressources pratiques sur la gestion d\'immeuble et la vie en copropriété.' },
+  ]},
+  // Santé / CPAM / sécu
+  { keys: ['santé','cpam','sécu','sécurité sociale','assurance maladie','médecin','mutuelle','carte vitale','remboursement','ameli'], links: [
+    { text: 'Ameli — Site officiel de l\'Assurance Maladie', href: 'https://www.ameli.fr', desc: 'Vos droits, remboursements, médecins et démarches de santé.' },
+    { text: 'Ameli — Étudiants étrangers en France', href: 'https://www.ameli.fr/assure/droits-demarches/etudes-emploi-retraite/etudiant', desc: 'Comment s\'immatriculer à la Sécurité sociale en tant qu\'étudiant.' },
+    { text: 'Mon espace santé', href: 'https://www.monespacesante.fr', desc: 'Votre dossier médical partagé numérique, accessible en ligne.' },
+    { text: 'Carte Vitale — demande et renouvellement', href: 'https://www.ameli.fr/assure/droits-demarches/situations-particulieres/carte-vitale', desc: 'Démarches pour obtenir ou renouveler votre carte Vitale.' },
+    { text: 'Wikipedia — Sécurité Sociale française', href: 'https://fr.wikipedia.org/wiki/S%C3%A9curit%C3%A9_sociale_en_France', desc: 'Histoire et fonctionnement du système de protection sociale français.' },
+    { text: 'Mutuelles étudiantes — comparatif', href: 'https://www.etudiant.gouv.fr/fr/votre-sante-539', desc: 'Les aides santé et complémentaires disponibles pour les étudiants.' },
+  ]},
+  // Budget / finances / banque
+  { keys: ['budget','finance','banque','compte','épargne','argent','crédit','emprunt','dette','revenu','dépense','virement','chèque'], links: [
+    { text: 'Mes questions d\'argent — Banque de France', href: 'https://www.mesquestionsdargent.fr', desc: 'Guides pratiques sur le budget, l\'épargne et la gestion financière.' },
+    { text: 'Simulateur budget étudiant — LMDE', href: 'https://www.lmde.com', desc: 'Estimez votre budget mensuel en tant qu\'étudiant en France.' },
+    { text: 'Bourses sur critères sociaux — Etudiant.gouv', href: 'https://www.etudiant.gouv.fr/fr/les-aides-financieres-1#bcs', desc: 'Comment demander une bourse d\'État selon vos revenus familiaux.' },
+    { text: 'Compte bancaire — Service-Public', href: 'https://www.service-public.fr/particuliers/vosdroits/N91', desc: 'Droits et démarches pour ouvrir un compte bancaire en France.' },
+    { text: 'Aide d\'urgence FNAU — CROUS', href: 'https://www.etudiant.gouv.fr/fr/aide-d-urgence-1088', desc: 'Dispositif d\'aide financière d\'urgence pour étudiants en difficulté.' },
+    { text: 'Comparateur livrets d\'épargne — BPCE', href: 'https://www.lafinancepourtous.com/pratique/placements-et-epargne/', desc: 'Comprendre les différents placements et produits d\'épargne.' },
+  ]},
+  // Transports
+  { keys: ['transport','sncf','ratp','bus','métro','train','tgv','carte','navigo','vélo','covoiturage','permis'], links: [
+    { text: 'RATP — Tarifs étudiants et Navigo', href: 'https://www.ratp.fr/titres-et-tarifs/la-carte-navigo', desc: 'Abonnements et tarifs réduits pour les transports en commun parisiens.' },
+    { text: 'SNCF — Carte Avantage jeune', href: 'https://www.sncf-connect.com/train/carte-avantage', desc: 'Carte de réduction train pour les 12-27 ans avec jusqu\'à 60% de remise.' },
+    { text: 'BlaBlaCar — Covoiturage longue distance', href: 'https://www.blablacar.fr', desc: 'Plateforme de covoiturage pour voyager moins cher entre villes.' },
+    { text: 'Ouibus / FlixBus — Bus longue distance', href: 'https://global.flixbus.com/bus-france', desc: 'Liaisons en bus pas chers entre les grandes villes françaises.' },
+    { text: 'Véligo / Vélo\'v — Vélos en libre-service', href: 'https://www.veligo-location.fr', desc: 'Location de vélos longue durée à tarif étudiant en Île-de-France.' },
+    { text: 'Permis à 1€/jour — ANTS', href: 'https://www.securite-routiere.gouv.fr/les-medias/nos-publications/le-permis-1-euro-par-jour', desc: 'Dispositif de financement du permis de conduire pour les jeunes.' },
+  ]},
+  // Emploi / travail / stage
+  { keys: ['emploi','travail','stage','alternance','apprentissage','cdi','cdd','contrat','salaire','cv','entretien','recrutement','linkedin'], links: [
+    { text: 'Pôle Emploi — Mon espace', href: 'https://www.francetravail.fr', desc: 'Recherche d\'emploi, offres et droits au chômage.' },
+    { text: 'LinkedIn — Conseils et offres', href: 'https://fr.linkedin.com', desc: 'Réseau professionnel, offres d\'emploi et conseils de carrière.' },
+    { text: 'APEC — Cadres et jeunes diplômés', href: 'https://www.apec.fr', desc: 'Ressources emploi pour les cadres et les nouveaux diplômés.' },
+    { text: 'Alternance — Service-Public', href: 'https://www.service-public.fr/particuliers/vosdroits/N19871', desc: 'Tout sur les contrats d\'apprentissage et de professionnalisation.' },
+    { text: 'Mon Master — Admissions', href: 'https://www.monmaster.gouv.fr', desc: 'Plateforme nationale d\'admission en master après la licence.' },
+    { text: 'CV et lettre de motivation — CIDJ', href: 'https://www.cidj.com/ressources/emploi-formation', desc: 'Guides pratiques pour rédiger un CV et une lettre de motivation efficaces.' },
+  ]},
+  // Administration / visa / titre de séjour
+  { keys: ['visa','titre de séjour','administration','préfecture','mairie','passeport','carte nationale','identité','naturalisation','immigration','étranger'], links: [
+    { text: 'ANEF — Portail de l\'immigration', href: 'https://administration-etrangers-en-france.interieur.gouv.fr', desc: 'Demandez votre titre de séjour ou visa directement en ligne.' },
+    { text: 'Campus France — Visas étudiants', href: 'https://www.campusfrance.org/fr/visa', desc: 'Procédure visa étudiant, DAP et démarches d\'entrée en France.' },
+    { text: 'Service-Public — Carte Nationale d\'Identité', href: 'https://www.service-public.fr/particuliers/vosdroits/N358', desc: 'Démarches pour obtenir ou renouveler votre CNI.' },
+    { text: 'France Visas — Demande en ligne', href: 'https://france-visas.gouv.fr', desc: 'Portail officiel de demande de visa pour entrer en France.' },
+    { text: 'Légifrance — CESEDA (droit des étrangers)', href: 'https://www.legifrance.gouv.fr/codes/id/LEGITEXT000006070158/', desc: 'Code de l\'entrée et du séjour des étrangers et du droit d\'asile.' },
+    { text: 'DIAIR — Accueil des étrangers', href: 'https://www.immigration.interieur.gouv.fr', desc: 'Informations officielles sur l\'immigration et l\'intégration en France.' },
+  ]},
+  // Culture générale / société / histoire
+  { keys: ['culture','histoire','société','politique','philosophie','art','littérature','civilisation','france','europe','monde'], links: [
+    { text: 'Vie-Publique.fr — Dossiers thématiques', href: 'https://www.vie-publique.fr', desc: 'Analyses claires sur les grandes questions politiques et sociales françaises.' },
+    { text: 'Wikipedia — Portail France', href: 'https://fr.wikipedia.org/wiki/France', desc: 'Encyclopédie collaborative sur l\'histoire et la culture française.' },
+    { text: 'INA — Archives audiovisuelles', href: 'https://www.ina.fr', desc: 'Archives historiques de la télévision et radio françaises.' },
+    { text: 'France Culture — Podcasts', href: 'https://www.radiofrance.fr/franceculture', desc: 'Émissions et documentaires sur la culture, la société et l\'histoire.' },
+    { text: 'Lumni — Ressources pédagogiques', href: 'https://www.lumni.fr', desc: 'Vidéos et contenus éducatifs validés par l\'Éducation nationale.' },
+    { text: 'Gallica — BnF numérique', href: 'https://gallica.bnf.fr', desc: 'Bibliothèque numérique gratuite de la Bibliothèque nationale de France.' },
+  ]},
+  // Mathématiques
+  { keys: ['mathématiques','maths','algèbre','analyse','géométrie','probabilité','statistique','fonction','équation','matrice','intégrale','dérivée'], links: [
+    { text: 'Khan Academy — Mathématiques', href: 'https://fr.khanacademy.org/math', desc: 'Cours vidéo et exercices interactifs gratuits en maths, de la base aux prépas.' },
+    { text: 'Les-Mathematiques.net', href: 'https://www.les-mathematiques.net', desc: 'Forum et cours de mathématiques pour lycée, prépa et université.' },
+    { text: 'Exo7 — Cours de maths prépa', href: 'http://exo7.emath.fr', desc: 'Cours et exercices de mathématiques niveau prépa et licence en libre accès.' },
+    { text: 'GeoGebra — Visualisation interactive', href: 'https://www.geogebra.org', desc: 'Outil de visualisation et d\'exploration mathématique en ligne gratuit.' },
+    { text: 'Wikipedia — Portail Mathématiques', href: 'https://fr.wikipedia.org/wiki/Portail:Math%C3%A9matiques', desc: 'Portail mathématiques de Wikipédia avec accès à tous les concepts.' },
+    { text: 'Bibm@th — Encyclopédie des maths', href: 'https://www.bibmath.net', desc: 'Définitions, théorèmes, exercices corrigés pour prépa et licence.' },
+  ]},
+  // Économie / management
+  { keys: ['économie','microéconomie','macroéconomie','management','entreprise','marché','concurrence','offre','demande','pib','inflation','croissance'], links: [
+    { text: 'INSEE — Statistiques économiques', href: 'https://www.insee.fr', desc: 'Données officielles sur l\'économie française : PIB, emploi, inflation.' },
+    { text: 'Vie-Publique — Dossier Économie', href: 'https://www.vie-publique.fr/rubrique/economie', desc: 'Analyses accessibles des grands enjeux économiques actuels.' },
+    { text: 'Banque de France — Éducation financière', href: 'https://www.banque-france.fr/statistiques', desc: 'Données économiques et ressources pédagogiques de la Banque de France.' },
+    { text: 'OCDE — Perspectives économiques', href: 'https://www.oecd.org/fr/economy/', desc: 'Rapports et analyses économiques de l\'OCDE sur les pays développés.' },
+    { text: 'Les Echos — Économie', href: 'https://www.lesechos.fr/economie-france', desc: 'Actualité et analyses économiques du quotidien de référence.' },
+    { text: 'Alternatives Économiques', href: 'https://www.alternatives-economiques.fr', desc: 'Décryptages économiques accessibles et pédagogiques.' },
+  ]},
+  // Environnement / développement durable
+  { keys: ['environnement','climat','écologie','développement durable','énergie','recyclage','biodiversité','carbone','transition'], links: [
+    { text: 'ADEME — Agence de l\'environnement', href: 'https://www.ademe.fr', desc: 'Ressources officielles sur la transition écologique et l\'énergie.' },
+    { text: 'IPCC / GIEC — Rapports climatiques', href: 'https://www.ipcc.ch', desc: 'Rapports scientifiques de référence sur le changement climatique mondial.' },
+    { text: 'Notre-Affaire-À-Tous', href: 'https://notreaffaireatous.org', desc: 'Ressources juridiques et associatives sur la justice climatique en France.' },
+    { text: 'Wikipedia — Développement durable', href: 'https://fr.wikipedia.org/wiki/D%C3%A9veloppement_durable', desc: 'Définition, enjeux et perspectives du développement durable.' },
+    { text: 'Climat en questions — CNRS', href: 'https://www.cnrs.fr/fr/le-cnrs-sengage/le-cnrs-et-le-climat/le-climat-en-questions', desc: 'Réponses scientifiques du CNRS aux questions sur le climat.' },
+    { text: 'Reporterre — Actualités écologie', href: 'https://reporterre.net', desc: 'Média indépendant spécialisé dans les actualités écologiques.' },
+  ]},
+  // Langues / anglais
+  { keys: ['anglais','english','langue','vocabulaire','grammaire','toeic','ielts','toefl','traduction','linguistique','expression'], links: [
+    { text: 'BBC Learning English', href: 'https://www.bbc.co.uk/learningenglish', desc: 'Cours, podcasts et exercices d\'anglais gratuits par la BBC.' },
+    { text: 'Cambridge Dictionary en ligne', href: 'https://dictionary.cambridge.org', desc: 'Dictionnaire anglais de référence avec exemples de phrases et prononciations.' },
+    { text: 'TED Talks — Conférences en anglais', href: 'https://www.ted.com', desc: 'Présentations en anglais sur tous les sujets, avec sous-titres.' },
+    { text: 'British Council — English Online', href: 'https://learnenglish.britishcouncil.org', desc: 'Ressources gratuites pour tous les niveaux d\'anglais.' },
+    { text: 'Linguee — Traducteur en contexte', href: 'https://www.linguee.fr', desc: 'Traducteur contextuel qui montre des exemples de phrases bilingues.' },
+    { text: 'Grammarly Blog — Conseils écriture', href: 'https://www.grammarly.com/blog/category/handbook', desc: 'Guides sur la grammaire et le style d\'écriture en anglais.' },
+  ]},
+  // Numérique / informatique
+  { keys: ['numérique','informatique','algorithme','code','programmation','données','cybersécurité','intelligence artificielle','internet','réseau'], links: [
+    { text: 'France Num — Transition numérique', href: 'https://www.francenum.gouv.fr', desc: 'Ressources officielles sur la transition et les usages numériques.' },
+    { text: 'CNIL — Données personnelles et RGPD', href: 'https://www.cnil.fr', desc: 'Comprendre le RGPD, la protection de vos données et vos droits numériques.' },
+    { text: 'OpenClassrooms — Informatique', href: 'https://openclassrooms.com/fr/courses', desc: 'Cours gratuits en ligne sur le code, la data et le numérique.' },
+    { text: 'Wikipedia — Intelligence Artificielle', href: 'https://fr.wikipedia.org/wiki/Intelligence_artificielle', desc: 'Vue d\'ensemble des concepts fondamentaux de l\'IA.' },
+    { text: 'MIT OpenCourseWare — CS', href: 'https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/', desc: 'Cours gratuits du MIT en informatique et ingénierie.' },
+    { text: 'Inria — Recherche numérique française', href: 'https://www.inria.fr', desc: 'Institut national de recherche en sciences du numérique.' },
+  ]},
+];
+
+// Liens de fallback toujours pertinents pour les étudiants en prépa
+const FALLBACK_LINKS = [
+  { text: 'Vie-Publique.fr — Dossiers thématiques', href: 'https://www.vie-publique.fr', desc: 'Analyses claires sur les grandes questions politiques et sociales.' },
+  { text: 'Khan Academy France', href: 'https://fr.khanacademy.org', desc: 'Cours et exercices gratuits dans toutes les matières.' },
+  { text: 'Wikipedia Portail France', href: 'https://fr.wikipedia.org/wiki/Portail:France', desc: 'Point d\'entrée encyclopédique sur la France.' },
+  { text: 'Lumni — Vidéos éducatives', href: 'https://www.lumni.fr', desc: 'Contenus pédagogiques validés par l\'Éducation nationale.' },
+  { text: 'France Culture Podcasts', href: 'https://www.radiofrance.fr/franceculture', desc: 'Émissions et documentaires culturels en replay.' },
+  { text: 'Gallica — BnF numérique', href: 'https://gallica.bnf.fr', desc: 'Bibliothèque numérique gratuite de la Bibliothèque nationale.' },
+];
+
+function pickLinks(lesson, courseTitle) {
+  const searchText = [lesson?.title || '', courseTitle || '', (lesson?.content || '').replace(/<[^>]*>/g, ' ').substring(0, 500)].join(' ').toLowerCase();
+
+  // Score chaque thème
+  const scored = LINK_DB.map(theme => {
+    const score = theme.keys.reduce((acc, k) => acc + (searchText.includes(k) ? 1 : 0), 0);
+    return { score, links: theme.links };
+  }).filter(t => t.score > 0).sort((a, b) => b.score - a.score);
+
+  let selected = [];
+  for (const t of scored) {
+    for (const l of t.links) {
+      if (!selected.find(s => s.href === l.href)) selected.push(l);
+      if (selected.length >= 6) break;
+    }
+    if (selected.length >= 6) break;
+  }
+
+  // Fallback si pas assez de liens trouvés
+  if (selected.length < 4) {
+    for (const l of FALLBACK_LINKS) {
+      if (!selected.find(s => s.href === l.href)) selected.push(l);
+      if (selected.length >= 6) break;
+    }
+  }
+
+  return selected.slice(0, 6);
+}
+
 const linksCache = new Map();
 
 function SmartLinksCard({ lesson, courseTitle }) {
-  const [links, setLinks] = useState(null);
-  const [loading, setLoading] = useState(false);
   const cacheKey = lesson?.id || lesson?.title;
 
-  useEffect(() => {
-    if (!lesson?.title || !lesson?.content) return;
-    if (linksCache.has(cacheKey)) {
-      setLinks(linksCache.get(cacheKey));
-      return;
-    }
-    setLoading(true);
-    const snippet = (lesson.content || '').replace(/<[^>]*>/g, ' ').substring(0, 3000);
-    InvokeLLM({
-      prompt: `Tu es un expert en ressources pédagogiques pour étudiants en prépa grandes écoles.
-
-Leçon : "${lesson.title}"
-Cours : "${courseTitle || ''}"
-Extrait du contenu :
-${snippet}
-
-Génère exactement 6 liens de ressources externes RÉELS, VÉRIFIABLES et DIRECTEMENT EN RAPPORT avec le contenu précis de cette leçon (pas génériques).
-
-Règles ABSOLUES :
-- Les URLs doivent être réelles et fonctionnelles (sites officiels, Wikipedia, Khan Academy, Vie-publique.fr, INSEE, ANIL, Service-Public, documents académiques, etc.)
-- Chaque lien doit correspondre à un concept SPÉCIFIQUE mentionné dans le contenu (ex: si la leçon parle de "digicodes", donne un lien sur les digicodes, pas sur le logement en général)
-- Varie les types de sources : officiel, encyclopédique, pratique, vidéo, académique
-- Pas de liens génériques ou fourre-tout
-- Format court et descriptif pour les labels (max 50 caractères)
-
-Réponds UNIQUEMENT avec ce JSON (aucun texte avant/après) :
-{"links":[{"text":"Label court et précis","href":"https://url-reelle.com","desc":"En quoi ce lien aide pour cette leçon (1 phrase)"}]}`,
-      add_context_from_internet: false
-    }).then(response => {
-      try {
-        const m = response.match(/\{[\s\S]*\}/);
-        if (m) {
-          const parsed = JSON.parse(m[0]);
-          if (parsed.links?.length) {
-            linksCache.set(cacheKey, parsed.links);
-            setLinks(parsed.links);
-          }
-        }
-      } catch(e) { console.error('Links parse error', e); }
-      setLoading(false);
-    }).catch(() => setLoading(false));
+  const links = useMemo(() => {
+    if (!lesson?.title) return null;
+    if (linksCache.has(cacheKey)) return linksCache.get(cacheKey);
+    const result = pickLinks(lesson, courseTitle);
+    linksCache.set(cacheKey, result);
+    return result;
   }, [cacheKey]);
 
-  if (loading) {
-    return (
-      <div className="rounded-2xl border border-blue-100 bg-blue-50/40 p-5 flex items-center gap-3">
-        <Loader2 className="w-4 h-4 text-blue-400 animate-spin flex-shrink-0" />
-        <span className="text-sm text-blue-500">Génération des ressources en cours…</span>
-      </div>
-    );
-  }
   if (!links?.length) return null;
 
   // Sépare en 2 groupes : 3 liens essentiels + 3 liens pour aller plus loin
@@ -188,58 +299,118 @@ Réponds UNIQUEMENT avec ce JSON (aucun texte avant/après) :
   );
 }
 
-// ---- QCM généré par IA — visible directement, large et ergonomique ----
+// ---- Génération de quiz locale (sans API) à partir du contenu de la leçon ----
 const quizCache = new Map();
 
+// Extrait des phrases clés du contenu HTML
+function extractSentences(html) {
+  const text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  // Découpe sur . ! ? avec au moins 40 caractères par phrase
+  return text.split(/(?<=[.!?])\s+/).filter(s => s.length >= 40 && s.length <= 300);
+}
+
+// Génère une question à partir d'une phrase en supprimant un mot clé (nom, chiffre, terme)
+function makeFillInQuestion(sentence) {
+  // Cible : nombres, acronymes, mots importants (>5 lettres, pas articles/prépositions)
+  const STOPWORDS = new Set(['cette','pour','dans','avec','plus','mais','aussi','bien','tout','très','lors','dont','dont','leur','leurs','chez','sans','sous','vers','être','avoir','faire','ainsi','entre','comme','après','avant','selon','toute','ces','des','une','les','par','sur','que','qui','est','son','ses','une','les','pas','même','soit','peut','doit','sont','dans']);
+  const words = sentence.split(/\s+/);
+  // Cherche d'abord un nombre ou acronyme
+  let targetIdx = words.findIndex(w => /^\d+/.test(w) || /^[A-Z]{2,}$/.test(w));
+  if (targetIdx === -1) {
+    // Sinon un mot de plus de 6 lettres pas dans les stopwords
+    targetIdx = words.findIndex((w, i) => {
+      const clean = w.replace(/[^a-zàâäéèêëïîôùûüœç]/gi, '').toLowerCase();
+      return clean.length > 6 && !STOPWORDS.has(clean) && i > 2;
+    });
+  }
+  if (targetIdx === -1) return null;
+
+  const answer = words[targetIdx].replace(/[.,;:!?]$/, '');
+  const question = words.map((w, i) => i === targetIdx ? '___' : w).join(' ').replace(/\s+([.,;:!?])/g, '$1');
+  return { question: `Complétez : "${question}"`, answer };
+}
+
+// Génère des distracteurs plausibles
+function makeDistractors(answer, allSentences) {
+  const distractors = new Set();
+  // Cherche d'autres mots similaires dans le texte (même longueur approximative)
+  const text = allSentences.join(' ');
+  const words = text.split(/\s+/).map(w => w.replace(/[^a-zàâäéèêëïîôùûüœç0-9]/gi, '')).filter(w => w.length >= answer.length - 2 && w.length <= answer.length + 4 && w.toLowerCase() !== answer.toLowerCase() && w.length > 3);
+  // Shuffle et prend 3 distracteurs
+  const shuffled = words.sort(() => Math.random() - 0.5);
+  for (const w of shuffled) {
+    if (distractors.size >= 3) break;
+    // Capitalise si l'answer est capitalisé
+    const d = /^[A-Z]/.test(answer) ? w.charAt(0).toUpperCase() + w.slice(1) : w;
+    if (d.toLowerCase() !== answer.toLowerCase()) distractors.add(d);
+  }
+  // Si pas assez, ajoute des variations numériques ou génériques
+  const fallbacks = ['Aucune de ces réponses', 'Non précisé', 'Différent', 'Variable'];
+  for (const f of fallbacks) {
+    if (distractors.size >= 3) break;
+    distractors.add(f);
+  }
+  return [...distractors].slice(0, 3);
+}
+
+// Génère un quiz de 5 questions depuis le contenu HTML
+function generateLocalQuiz(lesson) {
+  const sentences = extractSentences(lesson.content || '');
+  if (sentences.length < 5) return null;
+
+  const questions = [];
+  const usedIndices = new Set();
+
+  // Essaie de créer des questions sur des phrases variées du contenu
+  const step = Math.max(1, Math.floor(sentences.length / 7));
+  for (let i = 0; i < sentences.length && questions.length < 5; i += step) {
+    if (usedIndices.has(i)) continue;
+    const result = makeFillInQuestion(sentences[i]);
+    if (!result) continue;
+    const distractors = makeDistractors(result.answer, sentences);
+    if (distractors.length < 3) continue;
+
+    // Mélange les options
+    const allOptions = [result.answer, ...distractors].sort(() => Math.random() - 0.5);
+    const correctIdx = allOptions.indexOf(result.answer);
+
+    questions.push({
+      q: result.question,
+      options: allOptions,
+      correct: correctIdx,
+      explanation: `La bonne réponse est "${result.answer}". Cette information est présente dans le contenu de la leçon.`,
+    });
+    usedIndices.add(i);
+  }
+
+  return questions.length >= 3 ? questions : null;
+}
+
 function LessonQuiz({ lesson, courseName }) {
-  const [quiz, setQuiz] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const cacheKey = lesson?.id || lesson?.title;
+
+  const [quiz, setQuiz] = useState(() => {
+    if (quizCache.has(cacheKey)) return quizCache.get(cacheKey);
+    return null;
+  });
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
   const [currentQ, setCurrentQ] = useState(0);
-  const cacheKey = lesson?.id || lesson?.title;
+  const [open, setOpen] = useState(false);
 
-  // Génère automatiquement le quiz au montage
+  // Génère le quiz localement au montage (sans API)
   useEffect(() => {
-    if (!lesson?.content || (lesson.content.trim().length < 200)) return;
+    if (!lesson?.content || lesson.content.trim().length < 200) return;
     if (quizCache.has(cacheKey)) {
       setQuiz(quizCache.get(cacheKey));
       return;
     }
-    setLoading(true);
-    const content = (lesson.content || '').replace(/<[^>]*>/g, ' ').substring(0, 4500);
-    InvokeLLM({
-      prompt: `Tu es un professeur expert qui crée des QCM pour des étudiants en prépa grandes écoles.
-Cours : "${courseName}", Leçon : "${lesson.title}".
-
-Contenu de la leçon :
-${content}
-
-INSTRUCTIONS STRICTES :
-- Génère exactement 5 questions QCM portant UNIQUEMENT sur des concepts précis de CETTE leçon
-- Chaque question doit tester la compréhension réelle (pas juste la mémorisation)
-- 4 options par question, UNE SEULE correcte
-- Les distracteurs (mauvaises réponses) doivent être plausibles et proches
-- L'explication doit clarifier POURQUOI la bonne réponse est correcte (2-3 phrases)
-- Questions en français, claires et sans ambiguïté
-
-Réponds UNIQUEMENT avec ce JSON (aucun texte avant ou après) :
-{"questions":[{"q":"Question ?","options":["A","B","C","D"],"correct":0,"explanation":"Explication détaillée."}]}`,
-      add_context_from_internet: false
-    }).then(response => {
-      try {
-        const m = response.match(/\{[\s\S]*\}/);
-        if (m) {
-          const parsed = JSON.parse(m[0]);
-          if (parsed.questions?.length) {
-            quizCache.set(cacheKey, parsed.questions);
-            setQuiz(parsed.questions);
-          }
-        }
-      } catch(e) { console.error('Quiz parse error', e); }
-      setLoading(false);
-    }).catch(() => setLoading(false));
+    const generated = generateLocalQuiz(lesson);
+    if (generated) {
+      quizCache.set(cacheKey, generated);
+      setQuiz(generated);
+    }
   }, [cacheKey]);
 
   // Reset quand la leçon change
@@ -248,6 +419,9 @@ Réponds UNIQUEMENT avec ce JSON (aucun texte avant ou après) :
     setSubmitted(false);
     setScore(0);
     setCurrentQ(0);
+    setOpen(false);
+    if (quizCache.has(cacheKey)) setQuiz(quizCache.get(cacheKey));
+    else setQuiz(null);
   }, [cacheKey]);
 
   const handleAnswer = (oi) => {
@@ -273,78 +447,68 @@ Réponds UNIQUEMENT avec ce JSON (aucun texte avant ou après) :
   };
 
   const handleReset = () => {
+    quizCache.delete(cacheKey);
+    const generated = generateLocalQuiz(lesson);
+    if (generated) {
+      quizCache.set(cacheKey, generated);
+      setQuiz(generated);
+    }
     setAnswers({});
     setSubmitted(false);
     setScore(0);
     setCurrentQ(0);
-    quizCache.delete(cacheKey);
-    setQuiz(null);
-    setLoading(true);
-    const content = (lesson.content || '').replace(/<[^>]*>/g, ' ').substring(0, 4500);
-    InvokeLLM({
-      prompt: `Tu es un professeur expert qui crée des QCM pour des étudiants en prépa grandes écoles.
-Cours : "${courseName}", Leçon : "${lesson.title}".
-Contenu : ${content}
-Génère 5 nouvelles questions QCM DIFFÉRENTES des précédentes, portant sur cette leçon.
-Réponds UNIQUEMENT avec ce JSON : {"questions":[{"q":"Question ?","options":["A","B","C","D"],"correct":0,"explanation":"Explication."}]}`,
-      add_context_from_internet: false
-    }).then(response => {
-      try {
-        const m = response.match(/\{[\s\S]*\}/);
-        if (m) {
-          const parsed = JSON.parse(m[0]);
-          if (parsed.questions?.length) {
-            quizCache.set(cacheKey, parsed.questions);
-            setQuiz(parsed.questions);
-          }
-        }
-      } catch(e) {}
-      setLoading(false);
-    }).catch(() => setLoading(false));
   };
 
   const answeredCount = Object.keys(answers).length;
   const total = quiz?.length || 5;
   const allAnswered = quiz && quiz.every((_, i) => answers[i] !== undefined);
 
+  // Si pas de quiz générable, on n'affiche rien
+  if (!quiz && !lesson?.content) return null;
+
   return (
     <div className="rounded-2xl overflow-hidden border border-violet-200 shadow-lg">
-      {/* En-tête du quiz */}
-      <div className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-700 px-6 py-5">
+      {/* ── En-tête cliquable ── */}
+      <button
+        onClick={() => setOpen(o => !o)}
+        className="w-full bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-700 px-6 py-5 text-left"
+      >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
-              <Brain className="w-5 h-5 text-white" />
+              <ListChecks className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="text-white font-extrabold text-base">🎯 Quiz de la leçon</p>
+              <p className="text-white font-extrabold text-base">🎯 Testez vos connaissances</p>
               <p className="text-purple-200 text-xs mt-0.5">
-                {loading ? 'Génération des questions…' :
-                 submitted ? `Score : ${score}/${total}` :
-                 quiz ? `${answeredCount}/${total} réponses données` :
-                 'Questions générées par IA sur le contenu exact'}
+                {submitted ? `Score : ${score}/${total}` :
+                 quiz && open ? `${answeredCount}/${total} réponses données` :
+                 quiz ? `${total} questions sur le contenu de la leçon` :
+                 'Cliquez pour tester vos connaissances'}
               </p>
             </div>
           </div>
-          {submitted && (
-            <div className={`px-4 py-2 rounded-xl font-extrabold text-base ${
-              score === total ? 'bg-emerald-400/30 text-emerald-100' :
-              score >= total / 2 ? 'bg-amber-400/30 text-amber-100' :
-              'bg-red-400/30 text-red-100'
-            }`}>
-              {score}/{total} {score === total ? '🏆' : score >= total / 2 ? '👍' : '📖'}
-            </div>
-          )}
+          <div className="flex items-center gap-2">
+            {submitted && (
+              <span className={`px-3 py-1.5 rounded-xl font-extrabold text-sm ${
+                score === total ? 'bg-emerald-400/30 text-emerald-100' :
+                score >= total / 2 ? 'bg-amber-400/30 text-amber-100' :
+                'bg-red-400/30 text-red-100'
+              }`}>
+                {score}/{total} {score === total ? '🏆' : score >= total / 2 ? '👍' : '📖'}
+              </span>
+            )}
+            <ChevronDown className={`w-5 h-5 text-white/70 transition-transform ${open ? 'rotate-180' : ''}`} />
+          </div>
         </div>
 
-        {/* Barre de progression des réponses */}
-        {quiz && !submitted && (
+        {/* Barre de progression — visible dans le header quand ouvert */}
+        {quiz && open && !submitted && (
           <div className="mt-4">
             <div className="flex gap-1.5">
               {quiz.map((_, i) => (
-                <button
+                <div
                   key={i}
-                  onClick={() => setCurrentQ(i)}
                   className={`flex-1 h-2 rounded-full transition-all ${
                     i === currentQ ? 'bg-white' :
                     answers[i] !== undefined ? 'bg-emerald-400' :
@@ -356,202 +520,192 @@ Réponds UNIQUEMENT avec ce JSON : {"questions":[{"q":"Question ?","options":["A
             <p className="text-[10px] text-purple-200 mt-1.5">Question {currentQ + 1} sur {total}</p>
           </div>
         )}
-      </div>
+      </button>
 
-      {/* Corps du quiz */}
-      <div className="bg-white">
-        {loading && (
-          <div className="px-6 py-12 flex flex-col items-center gap-4 text-center">
-            <div className="w-12 h-12 rounded-2xl bg-violet-100 flex items-center justify-center">
-              <Loader2 className="w-6 h-6 text-violet-500 animate-spin" />
-            </div>
-            <div>
-              <p className="font-bold text-gray-800">Génération du quiz…</p>
-              <p className="text-sm text-gray-400 mt-1">L'IA analyse le contenu de la leçon pour créer des questions pertinentes</p>
-            </div>
-          </div>
-        )}
-
-        {!loading && quiz && !submitted && (
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentQ}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.2 }}
-              className="px-6 py-6"
-            >
-              {/* Question */}
-              <div className="flex items-start gap-3 mb-6">
-                <span className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 text-white text-sm font-extrabold flex items-center justify-center flex-shrink-0 shadow-md">
-                  {currentQ + 1}
-                </span>
-                <p className="text-gray-900 font-bold text-base leading-relaxed pt-0.5">{quiz[currentQ].q}</p>
-              </div>
-
-              {/* Options */}
-              <div className="space-y-3">
-                {quiz[currentQ].options.map((opt, oi) => {
-                  const isSelected = answers[currentQ] === oi;
-                  return (
-                    <button
-                      key={oi}
-                      onClick={() => handleAnswer(oi)}
-                      className={`w-full text-left px-5 py-3.5 rounded-2xl border-2 text-sm font-medium transition-all flex items-center gap-4 ${
-                        isSelected
-                          ? 'border-violet-500 bg-violet-50 text-violet-900 shadow-md shadow-violet-100'
-                          : 'border-gray-150 bg-gray-50 hover:border-violet-300 hover:bg-violet-50/50 text-gray-700'
-                      }`}
-                    >
-                      <span className={`w-7 h-7 rounded-xl border-2 flex items-center justify-center flex-shrink-0 text-xs font-extrabold transition-all ${
-                        isSelected
-                          ? 'border-violet-500 bg-violet-500 text-white'
-                          : 'border-gray-300 text-gray-400'
-                      }`}>
-                        {['A','B','C','D'][oi]}
-                      </span>
-                      <span className="flex-1">{opt}</span>
-                      {isSelected && <Check className="w-4 h-4 text-violet-500 flex-shrink-0" />}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Navigation entre questions */}
-              <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
-                <button
-                  onClick={handlePrev}
-                  disabled={currentQ === 0}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 text-gray-600 text-sm font-semibold hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+      {/* ── Corps (conditionnel) ── */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden bg-white"
+          >
+            {/* Quiz question par question */}
+            {quiz && !submitted && (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentQ}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.2 }}
+                  className="px-6 py-6"
                 >
-                  <ChevronLeft className="w-4 h-4" /> Précédent
-                </button>
+                  {/* Question */}
+                  <div className="flex items-start gap-3 mb-6">
+                    <span className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 text-white text-sm font-extrabold flex items-center justify-center flex-shrink-0 shadow-md">
+                      {currentQ + 1}
+                    </span>
+                    <p className="text-gray-900 font-bold text-base leading-relaxed pt-0.5">{quiz[currentQ].q}</p>
+                  </div>
 
-                <div className="flex gap-1.5">
-                  {quiz.map((_, i) => (
-                    <button key={i} onClick={() => setCurrentQ(i)}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        i === currentQ ? 'bg-violet-600 w-5' :
-                        answers[i] !== undefined ? 'bg-violet-300' : 'bg-gray-200'
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                {currentQ < quiz.length - 1 ? (
-                  <button
-                    onClick={handleNext}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-600 text-white text-sm font-semibold hover:bg-violet-700 transition-all"
-                  >
-                    Suivant <ChevronRight className="w-4 h-4" />
-                  </button>
-                ) : (
-                  <button
-                    onClick={handleSubmit}
-                    disabled={!allAnswered}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white text-sm font-bold hover:from-violet-700 hover:to-purple-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md shadow-violet-500/20"
-                  >
-                    <Trophy className="w-4 h-4" /> Voir mes résultats
-                  </button>
-                )}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        )}
-
-        {/* Résultats détaillés */}
-        {!loading && quiz && submitted && (
-          <div className="px-6 py-6">
-            {/* Score global */}
-            <div className={`rounded-2xl p-5 mb-6 flex items-center gap-4 ${
-              score === total ? 'bg-emerald-50 border border-emerald-200' :
-              score >= total / 2 ? 'bg-amber-50 border border-amber-200' :
-              'bg-red-50 border border-red-200'
-            }`}>
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 ${
-                score === total ? 'bg-emerald-100' : score >= total / 2 ? 'bg-amber-100' : 'bg-red-100'
-              }`}>
-                {score === total ? '🏆' : score >= total / 2 ? '🎯' : '📚'}
-              </div>
-              <div>
-                <p className={`font-extrabold text-xl ${
-                  score === total ? 'text-emerald-700' : score >= total / 2 ? 'text-amber-700' : 'text-red-700'
-                }`}>
-                  {score}/{total} — {score === total ? 'Score parfait !' : score >= total / 2 ? 'Bonne maîtrise !' : 'À retravailler'}
-                </p>
-                <p className={`text-sm mt-0.5 ${
-                  score === total ? 'text-emerald-600' : score >= total / 2 ? 'text-amber-600' : 'text-red-600'
-                }`}>
-                  {score === total ? 'Tu as parfaitement assimilé cette leçon.' :
-                   score >= total / 2 ? 'Tu maîtrises l\'essentiel. Révise les points manqués.' :
-                   'Relis la leçon en te concentrant sur les explications ci-dessous.'}
-                </p>
-              </div>
-            </div>
-
-            {/* Détail question par question */}
-            <div className="space-y-4">
-              {quiz.map((q, qi) => {
-                const userAnswer = answers[qi];
-                const isRight = userAnswer === q.correct;
-                return (
-                  <div key={qi} className={`rounded-2xl border p-4 ${isRight ? 'border-emerald-200 bg-emerald-50/50' : 'border-red-200 bg-red-50/50'}`}>
-                    <div className="flex items-start gap-2.5 mb-3">
-                      <span className={`w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5 ${
-                        isRight ? 'bg-emerald-500 text-white' : 'bg-red-400 text-white'
-                      }`}>
-                        {isRight ? '✓' : '✗'}
-                      </span>
-                      <p className="text-sm font-bold text-gray-800 leading-snug">{q.q}</p>
-                    </div>
-
-                    <div className="space-y-1.5 mb-3">
-                      {q.options.map((opt, oi) => {
-                        const isCorrect = q.correct === oi;
-                        const isSelected = userAnswer === oi;
-                        return (
-                          <div key={oi} className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-[13px] ${
-                            isCorrect ? 'bg-emerald-100 text-emerald-800 font-semibold' :
-                            isSelected && !isCorrect ? 'bg-red-100 text-red-700 line-through' :
-                            'text-gray-400'
+                  {/* Options */}
+                  <div className="space-y-3">
+                    {quiz[currentQ].options.map((opt, oi) => {
+                      const isSelected = answers[currentQ] === oi;
+                      return (
+                        <button
+                          key={oi}
+                          onClick={() => handleAnswer(oi)}
+                          className={`w-full text-left px-5 py-3.5 rounded-2xl border-2 text-sm font-medium transition-all flex items-center gap-4 ${
+                            isSelected
+                              ? 'border-violet-500 bg-violet-50 text-violet-900 shadow-md shadow-violet-100'
+                              : 'border-gray-200 bg-gray-50 hover:border-violet-300 hover:bg-violet-50/50 text-gray-700'
+                          }`}
+                        >
+                          <span className={`w-7 h-7 rounded-xl border-2 flex items-center justify-center flex-shrink-0 text-xs font-extrabold transition-all ${
+                            isSelected
+                              ? 'border-violet-500 bg-violet-500 text-white'
+                              : 'border-gray-300 text-gray-400'
                           }`}>
-                            <span className={`w-5 h-5 rounded-lg border flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${
-                              isCorrect ? 'border-emerald-500 bg-emerald-500 text-white' :
-                              isSelected ? 'border-red-400 bg-red-400 text-white' :
-                              'border-gray-200'
-                            }`}>
-                              {['A','B','C','D'][oi]}
-                            </span>
-                            {opt}
-                          </div>
-                        );
-                      })}
+                            {['A','B','C','D'][oi]}
+                          </span>
+                          <span className="flex-1">{opt}</span>
+                          {isSelected && <Check className="w-4 h-4 text-violet-500 flex-shrink-0" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Navigation */}
+                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
+                    <button
+                      onClick={handlePrev}
+                      disabled={currentQ === 0}
+                      className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 text-gray-600 text-sm font-semibold hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                    >
+                      <ChevronLeft className="w-4 h-4" /> Précédent
+                    </button>
+
+                    <div className="flex gap-1.5">
+                      {quiz.map((_, i) => (
+                        <button key={i} onClick={() => setCurrentQ(i)}
+                          className={`h-2 rounded-full transition-all ${
+                            i === currentQ ? 'bg-violet-600 w-5' :
+                            answers[i] !== undefined ? 'bg-violet-300 w-2' : 'bg-gray-200 w-2'
+                          }`}
+                        />
+                      ))}
                     </div>
 
-                    {q.explanation && (
-                      <div className="flex items-start gap-2 px-3 py-2.5 bg-blue-50 rounded-xl border border-blue-100">
-                        <Lightbulb className="w-3.5 h-3.5 text-blue-500 mt-0.5 flex-shrink-0" />
-                        <p className="text-[12px] text-blue-700 leading-relaxed">{q.explanation}</p>
-                      </div>
+                    {currentQ < quiz.length - 1 ? (
+                      <button
+                        onClick={handleNext}
+                        className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-600 text-white text-sm font-semibold hover:bg-violet-700 transition-all"
+                      >
+                        Suivant <ChevronRight className="w-4 h-4" />
+                      </button>
+                    ) : (
+                      <button
+                        onClick={handleSubmit}
+                        disabled={!allAnswered}
+                        className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white text-sm font-bold hover:from-violet-700 hover:to-purple-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md shadow-violet-500/20"
+                      >
+                        <Trophy className="w-4 h-4" /> Voir mes résultats
+                      </button>
                     )}
                   </div>
-                );
-              })}
-            </div>
+                </motion.div>
+              </AnimatePresence>
+            )}
 
-            {/* Bouton recommencer */}
-            <div className="mt-6 flex justify-center">
-              <button
-                onClick={handleReset}
-                className="flex items-center gap-2.5 px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold rounded-xl hover:from-violet-700 hover:to-purple-700 transition-all shadow-lg shadow-violet-500/20"
-              >
-                <RotateCcw className="w-4 h-4" /> Générer un nouveau quiz
-              </button>
-            </div>
-          </div>
+            {/* Résultats */}
+            {quiz && submitted && (
+              <div className="px-6 py-6">
+                <div className={`rounded-2xl p-5 mb-6 flex items-center gap-4 ${
+                  score === total ? 'bg-emerald-50 border border-emerald-200' :
+                  score >= total / 2 ? 'bg-amber-50 border border-amber-200' :
+                  'bg-red-50 border border-red-200'
+                }`}>
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 ${
+                    score === total ? 'bg-emerald-100' : score >= total / 2 ? 'bg-amber-100' : 'bg-red-100'
+                  }`}>
+                    {score === total ? '🏆' : score >= total / 2 ? '🎯' : '📚'}
+                  </div>
+                  <div>
+                    <p className={`font-extrabold text-xl ${
+                      score === total ? 'text-emerald-700' : score >= total / 2 ? 'text-amber-700' : 'text-red-700'
+                    }`}>
+                      {score}/{total} — {score === total ? 'Score parfait !' : score >= total / 2 ? 'Bonne maîtrise !' : 'À retravailler'}
+                    </p>
+                    <p className={`text-sm mt-0.5 ${
+                      score === total ? 'text-emerald-600' : score >= total / 2 ? 'text-amber-600' : 'text-red-600'
+                    }`}>
+                      {score === total ? 'Tu as parfaitement assimilé cette leçon.' :
+                       score >= total / 2 ? 'Tu maîtrises l\'essentiel. Révise les points manqués.' :
+                       'Relis la leçon en te concentrant sur les explications ci-dessous.'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {quiz.map((q, qi) => {
+                    const userAnswer = answers[qi];
+                    const isRight = userAnswer === q.correct;
+                    return (
+                      <div key={qi} className={`rounded-2xl border p-4 ${isRight ? 'border-emerald-200 bg-emerald-50/50' : 'border-red-200 bg-red-50/50'}`}>
+                        <div className="flex items-start gap-2.5 mb-3">
+                          <span className={`w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5 ${
+                            isRight ? 'bg-emerald-500 text-white' : 'bg-red-400 text-white'
+                          }`}>{isRight ? '✓' : '✗'}</span>
+                          <p className="text-sm font-bold text-gray-800 leading-snug">{q.q}</p>
+                        </div>
+                        <div className="space-y-1.5 mb-3">
+                          {q.options.map((opt, oi) => {
+                            const isCorrect = q.correct === oi;
+                            const isSelected = userAnswer === oi;
+                            return (
+                              <div key={oi} className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-[13px] ${
+                                isCorrect ? 'bg-emerald-100 text-emerald-800 font-semibold' :
+                                isSelected && !isCorrect ? 'bg-red-100 text-red-700 line-through' :
+                                'text-gray-400'
+                              }`}>
+                                <span className={`w-5 h-5 rounded-lg border flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${
+                                  isCorrect ? 'border-emerald-500 bg-emerald-500 text-white' :
+                                  isSelected ? 'border-red-400 bg-red-400 text-white' :
+                                  'border-gray-200'
+                                }`}>{['A','B','C','D'][oi]}</span>
+                                {opt}
+                              </div>
+                            );
+                          })}
+                        </div>
+                        {q.explanation && (
+                          <div className="flex items-start gap-2 px-3 py-2.5 bg-blue-50 rounded-xl border border-blue-100">
+                            <Lightbulb className="w-3.5 h-3.5 text-blue-500 mt-0.5 flex-shrink-0" />
+                            <p className="text-[12px] text-blue-700 leading-relaxed">{q.explanation}</p>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-6 flex justify-center">
+                  <button
+                    onClick={handleReset}
+                    className="flex items-center gap-2.5 px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold rounded-xl hover:from-violet-700 hover:to-purple-700 transition-all shadow-lg shadow-violet-500/20"
+                  >
+                    <RotateCcw className="w-4 h-4" /> Nouveau quiz
+                  </button>
+                </div>
+              </div>
+            )}
+          </motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </div>
   );
 }
