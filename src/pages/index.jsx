@@ -39,6 +39,7 @@ const PaymentSuccess = lazy(() => import("./PaymentSuccess"));
 const AdminCourses = lazy(() => import("./AdminCourses"));
 const Contact = lazy(() => import("./Contact"));
 const AIAgent = lazy(() => import("./AIAgent"));
+const SchoolPortal = lazy(() => import("./SchoolPortal"));
 
 // Skeleton loader pour les pages en chargement
 const PageSkeleton = () => (
@@ -104,6 +105,8 @@ const PAGES = {
     AdminCourses: AdminCourses,
 
     AIAgent: AIAgent,
+
+    SchoolPortal: SchoolPortal,
 
     Contact: Contact,
 
@@ -232,6 +235,7 @@ function PagesContent() {
                     <Route path="/admincourses" element={<AdminCourses />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/aiagent" element={<AIAgent />} />
+                    <Route path="/schoolportal" element={<SchoolPortal />} />
                     <Route path="/conciergerievip" element={<ConciergerieVIP />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/resetpassword" element={<ResetPassword />} />
