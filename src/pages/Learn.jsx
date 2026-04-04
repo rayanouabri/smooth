@@ -100,8 +100,17 @@ const LINK_DB = [
     { text: 'Wikipedia — Sécurité Sociale française', href: 'https://fr.wikipedia.org/wiki/S%C3%A9curit%C3%A9_sociale_en_France', desc: 'Histoire et fonctionnement du système de protection sociale français.' },
     { text: 'Mutuelles étudiantes — comparatif', href: 'https://www.etudiant.gouv.fr/fr/votre-sante-539', desc: 'Les aides santé et complémentaires disponibles pour les étudiants.' },
   ]},
+  // Aides sociales / CAF / APL / allocations / protection sociale
+  { keys: ['caf','apl','allocation','aide sociale','rsa','cmu','css','revenu','prestation','solidarité','protection sociale','assurance chômage','pole emploi','france travail','bourse','aide financière'], links: [
+    { text: 'CAF — Toutes les aides', href: 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides', desc: 'Toutes les prestations de la CAF : APL, allocations familiales, RSA, etc.' },
+    { text: 'APL — Simulation en ligne', href: 'https://www.caf.fr/aides-et-services/s-informer-sur-les-aides/logement/les-aides-au-logement', desc: 'Simulez votre droit à l\'Aide Personnalisée au Logement (APL).' },
+    { text: 'Service-Public — Aides sociales', href: 'https://www.service-public.fr/particuliers/vosdroits/N238', desc: 'Toutes les aides et prestations sociales disponibles en France.' },
+    { text: 'Mes droits sociaux — gouv.fr', href: 'https://www.mesdroitssociaux.gouv.fr', desc: 'Simulateur officiel de droits sociaux (RSA, APL, allocations chômage…).' },
+    { text: 'France Travail (Pôle Emploi)', href: 'https://www.francetravail.fr', desc: 'Recherche d\'emploi, allocations chômage et accompagnement professionnel.' },
+    { text: 'Vie-Publique — Protection sociale', href: 'https://www.vie-publique.fr/eclairage/19591-quest-ce-que-la-protection-sociale', desc: 'Fonctionnement du système de protection sociale français.' },
+  ]},
   // Budget / finances / banque
-  { keys: ['budget','finance','banque','compte','épargne','argent','crédit','emprunt','dette','revenu','dépense','virement','chèque'], links: [
+  { keys: ['budget','finance','banque','compte','épargne','argent','crédit','emprunt','dette','dépense','virement','chèque','fiscalité','impôt'], links: [
     { text: 'Mes questions d\'argent — Banque de France', href: 'https://www.mesquestionsdargent.fr', desc: 'Guides pratiques sur le budget, l\'épargne et la gestion financière.' },
     { text: 'Simulateur budget étudiant — LMDE', href: 'https://www.lmde.com', desc: 'Estimez votre budget mensuel en tant qu\'étudiant en France.' },
     { text: 'Bourses sur critères sociaux — Etudiant.gouv', href: 'https://www.etudiant.gouv.fr/fr/les-aides-financieres-1#bcs', desc: 'Comment demander une bourse d\'État selon vos revenus familiaux.' },
@@ -311,8 +320,30 @@ function SmartLinksCard({ lesson, courseTitle }) {
   );
 }
 
-// ---- Génération de quiz locale (sans API) à partir du contenu de la leçon ----
+// ---- Quiz généré par InvokeLLM avec prompt ultra-court (< 1500 chars total) ----
 const quizCache = new Map();
+
+async function fetchQuizFromAI(lesson, courseName) {
+  // Extrait 600 chars de texte brut max pour rester sous la limite
+  const snippet = (lesson.content || '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .substring(0, 600);
+
+  const prompt = `Leçon: "${lesson.title}" (cours: "${courseName}")
+Contenu résumé: ${snippet}
+
+Génère 5 questions QCM en français sur cette leçon. 4 options par question, 1 seule bonne réponse.
+JSON uniquement:
+{"questions":[{"q":"Question?","options":["A","B","C","D"],"correct":0,"explanation":"Explication courte."}]}`;
+
+  const response = await InvokeLLM({ prompt, add_context_from_internet: false });
+  const m = response.match(/\{[\s\S]*\}/);
+  if (!m) return null;
+  const parsed = JSON.parse(m[0]);
+  return parsed.questions?.length >= 3 ? parsed.questions : null;
+}
 
 // Extrait des phrases clés du contenu HTML
 function extractSentences(html) {
@@ -405,24 +436,27 @@ function LessonQuiz({ lesson, courseName }) {
     if (quizCache.has(cacheKey)) return quizCache.get(cacheKey);
     return null;
   });
+  const [loading, setLoading] = useState(false);
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
   const [currentQ, setCurrentQ] = useState(0);
   const [open, setOpen] = useState(false);
 
-  // Génère le quiz localement au montage (sans API)
+  // Génère le quiz via IA au montage
   useEffect(() => {
     if (!lesson?.content || lesson.content.trim().length < 200) return;
     if (quizCache.has(cacheKey)) {
       setQuiz(quizCache.get(cacheKey));
       return;
     }
-    const generated = generateLocalQuiz(lesson);
-    if (generated) {
-      quizCache.set(cacheKey, generated);
-      setQuiz(generated);
-    }
+    setLoading(true);
+    fetchQuizFromAI(lesson, courseName)
+      .then(questions => {
+        if (questions) { quizCache.set(cacheKey, questions); setQuiz(questions); }
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, [cacheKey]);
 
   // Reset quand la leçon change
@@ -432,8 +466,9 @@ function LessonQuiz({ lesson, courseName }) {
     setScore(0);
     setCurrentQ(0);
     setOpen(false);
-    if (quizCache.has(cacheKey)) setQuiz(quizCache.get(cacheKey));
-    else setQuiz(null);
+    setLoading(false);
+    if (quizCache.has(cacheKey)) { setQuiz(quizCache.get(cacheKey)); }
+    else { setQuiz(null); }
   }, [cacheKey]);
 
   const handleAnswer = (oi) => {
@@ -460,15 +495,18 @@ function LessonQuiz({ lesson, courseName }) {
 
   const handleReset = () => {
     quizCache.delete(cacheKey);
-    const generated = generateLocalQuiz(lesson);
-    if (generated) {
-      quizCache.set(cacheKey, generated);
-      setQuiz(generated);
-    }
+    setQuiz(null);
     setAnswers({});
     setSubmitted(false);
     setScore(0);
     setCurrentQ(0);
+    setLoading(true);
+    fetchQuizFromAI(lesson, courseName)
+      .then(questions => {
+        if (questions) { quizCache.set(cacheKey, questions); setQuiz(questions); }
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   };
 
   const answeredCount = Object.keys(answers).length;
@@ -493,7 +531,8 @@ function LessonQuiz({ lesson, courseName }) {
             <div>
               <p className="text-white font-extrabold text-base">🎯 Testez vos connaissances</p>
               <p className="text-purple-200 text-xs mt-0.5">
-                {submitted ? `Score : ${score}/${total}` :
+                {loading ? 'Génération des questions en cours…' :
+                 submitted ? `Score : ${score}/${total}` :
                  quiz && open ? `${answeredCount}/${total} réponses données` :
                  quiz ? `${total} questions sur le contenu de la leçon` :
                  'Cliquez pour tester vos connaissances'}
@@ -544,6 +583,17 @@ function LessonQuiz({ lesson, courseName }) {
             transition={{ duration: 0.25 }}
             className="overflow-hidden bg-white"
           >
+            {/* Chargement */}
+            {loading && !quiz && (
+              <div className="px-6 py-10 flex flex-col items-center gap-3 text-center">
+                <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center">
+                  <Loader2 className="w-5 h-5 text-violet-500 animate-spin" />
+                </div>
+                <p className="font-semibold text-gray-700 text-sm">Génération des questions…</p>
+                <p className="text-xs text-gray-400">Quelques secondes</p>
+              </div>
+            )}
+
             {/* Quiz question par question */}
             {quiz && !submitted && (
               <AnimatePresence mode="wait">
@@ -1551,6 +1601,13 @@ export default function Learn() {
             </div>
           )}
 
+          {/* ===== RESSOURCES EN HAUT ===== */}
+          {(hasContent || hasVideo) && currentLesson && (
+            <div className="mb-6">
+              <SmartLinksCard lesson={currentLesson} courseTitle={course?.title} />
+            </div>
+          )}
+
           {/* ===== LESSON CONTENT ===== */}
           {hasContent && (
             <Card className="border-0 shadow-xl bg-white rounded-2xl overflow-hidden mb-6">
@@ -1560,16 +1617,6 @@ export default function Learn() {
                 </div>
               </CardContent>
             </Card>
-          )}
-
-          {/* ===== LIENS UTILES GÉNÉRÉS PAR IA ===== */}
-          {(hasContent || hasVideo) && currentLesson && (
-            <div className="mb-6">
-              <SmartLinksCard
-                lesson={currentLesson}
-                courseTitle={course?.title}
-              />
-            </div>
           )}
 
           {/* ===== QCM INTÉGRÉ ===== */}
