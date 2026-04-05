@@ -1,6 +1,6 @@
 /**
- * Proxy LLM — utilise Vertex AI (Gemini via Google Cloud) avec service account OAuth2
- * La clé privée est stockée dans les variables d'environnement Vercel (VERTEX_PRIVATE_KEY, etc.)
+ * Proxy LLM — utilise Gemini API directement (gemini-2.0-flash-lite pour économiser les crédits)
+ * La clé est stockée dans la variable d'environnement GEMINI_API_KEY
  */
 
 const RATE_LIMITS = {};
@@ -15,65 +15,6 @@ function checkRateLimit(ip) {
   }
   RATE_LIMITS[ip].count++;
   return RATE_LIMITS[ip].count <= RATE_LIMIT_MAX;
-}
-
-// Crée un JWT signé avec la clé privée RSA du service account
-async function createJWT(clientEmail, privateKeyPem) {
-  const now = Math.floor(Date.now() / 1000);
-  const header = { alg: 'RS256', typ: 'JWT' };
-  const payload = {
-    iss: clientEmail,
-    scope: 'https://www.googleapis.com/auth/cloud-platform',
-    aud: 'https://oauth2.googleapis.com/token',
-    exp: now + 3600,
-    iat: now,
-  };
-
-  const enc = (obj) => Buffer.from(JSON.stringify(obj)).toString('base64url');
-  const signingInput = `${enc(header)}.${enc(payload)}`;
-
-  // Importe la clé privée PEM
-  const pemBody = privateKeyPem
-    .replace(/-----BEGIN PRIVATE KEY-----/, '')
-    .replace(/-----END PRIVATE KEY-----/, '')
-    .replace(/\s+/g, '');
-  const keyBuffer = Buffer.from(pemBody, 'base64');
-
-  const cryptoKey = await crypto.subtle.importKey(
-    'pkcs8',
-    keyBuffer,
-    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
-    false,
-    ['sign']
-  );
-
-  const signature = await crypto.subtle.sign(
-    'RSASSA-PKCS1-v1_5',
-    cryptoKey,
-    Buffer.from(signingInput)
-  );
-
-  const sig = Buffer.from(signature).toString('base64url');
-  return `${signingInput}.${sig}`;
-}
-
-// Obtient un access token OAuth2 via le service account
-async function getAccessToken(clientEmail, privateKeyPem) {
-  const jwt = await createJWT(clientEmail, privateKeyPem);
-  const response = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-      assertion: jwt,
-    }),
-  });
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`OAuth2 error: ${response.status} ${text}`);
-  }
-  const data = await response.json();
-  return data.access_token;
 }
 
 export default async function handler(req, res) {
@@ -108,22 +49,18 @@ export default async function handler(req, res) {
       return res.status(429).json({ error: 'Trop de requêtes. Réessayez dans une minute.' });
     }
 
-    // Récupère les credentials depuis les variables d'environnement
-    const clientEmail = process.env.VERTEX_CLIENT_EMAIL;
-    const privateKey = process.env.VERTEX_PRIVATE_KEY?.replace(/\\n/g, '\n');
-    const projectId = process.env.VERTEX_PROJECT_ID || 'gen-lang-client-0331965398';
-
-    if (!clientEmail || !privateKey) {
-      return res.status(500).json({ error: 'Vertex AI credentials non configurés (VERTEX_CLIENT_EMAIL / VERTEX_PRIVATE_KEY)' });
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ error: 'GEMINI_API_KEY non configurée' });
     }
 
-    // Obtenir le token OAuth2
-    const accessToken = await getAccessToken(clientEmail, privateKey);
+    // Choisir le modèle selon la longueur du prompt pour optimiser les coûts
+    // - gemini-2.0-flash-lite : ultra rapide, très économique → pour chatbot, résumés courts
+    // - gemini-2.0-flash : rapide, équilibré → pour quiz, assistant IA
+    const useHeavyModel = prompt.length > 2000 || prompt.includes('génère') || prompt.includes('analyse');
+    const model = useHeavyModel ? 'gemini-2.0-flash' : 'gemini-2.0-flash-lite';
 
-    // Appeler Vertex AI — gemini-1.5-flash (disponible sur ce projet)
-    const model = 'gemini-1.5-flash';
-    const location = 'us-central1';
-    const url = `https://${location}-aiplatform.googleapis.com/v1/projects/${projectId}/locations/${location}/publishers/google/models/${model}:generateContent`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
     const payload = {
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
@@ -133,39 +70,42 @@ export default async function handler(req, res) {
         topP: 0.95,
         maxOutputTokens: 2048,
       },
+      safetySettings: [
+        { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
+        { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
+        { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE' },
+        { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_NONE' },
+      ],
     };
 
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`,
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
 
     const responseText = await response.text();
     let json;
     try { json = JSON.parse(responseText); } catch {
-      console.error('[Vertex] Parse error, status:', response.status);
-      return res.status(500).json({ error: 'Réponse invalide de Vertex AI' });
+      console.error('[Gemini] Parse error, status:', response.status, responseText.slice(0, 200));
+      return res.status(500).json({ error: 'Réponse invalide de Gemini API' });
     }
 
     if (!response.ok) {
-      const errorMsg = json.error?.message || `Vertex AI error ${response.status}`;
-      console.error('[Vertex] API error:', response.status, errorMsg);
+      const errorMsg = json.error?.message || `Gemini API error ${response.status}`;
+      console.error('[Gemini] API error:', response.status, errorMsg);
       return res.status(500).json({ error: errorMsg });
     }
 
     const content = json.candidates?.[0]?.content?.parts?.[0]?.text;
     if (!content) {
-      return res.status(500).json({ error: 'Réponse vide de Vertex AI' });
+      return res.status(500).json({ error: 'Réponse vide de Gemini' });
     }
 
     return res.status(200).json({ content });
 
   } catch (err) {
-    console.error('[Vertex] Error:', err.message);
+    console.error('[Gemini] Error:', err.message);
     return res.status(500).json({ error: 'Erreur serveur: ' + err.message });
   }
 }
