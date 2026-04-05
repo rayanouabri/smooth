@@ -23,68 +23,64 @@ import { isPremium as checkPremium } from "@/utils/premium";
 // ─── ONBOARDING QUESTIONS ────────────────────────────────────────────────────
 const ONBOARDING_QUESTIONS = [
   {
-    id: "goal",
-    question: "Quel est ton objectif principal en France ?",
-    subtitle: "Pour personnaliser ta roadmap, dis-moi ce qui t'amène ici",
-    icon: Target,
+    id: "situation",
+    type: "text",
+    question: "Décris ta situation en quelques mots",
+    subtitle: "Plus tu es précis, plus ta roadmap sera personnalisée. Ex: \"Je viens d'arriver à Lyon pour un master, je cherche un logement et je dois valider mon VLS-TS\"",
+    icon: MessageSquare,
     color: "from-violet-500 to-purple-600",
+    placeholder: "Ex: J'arrive à Paris en septembre pour une licence, j'ai un visa étudiant, mon budget est serré et je cherche une chambre CROUS...",
+  },
+  {
+    id: "status",
+    question: "Quel est ton statut en France ?",
+    subtitle: "Ton statut détermine quelles démarches sont prioritaires",
+    icon: ShieldCheck,
+    color: "from-indigo-500 to-blue-600",
     options: [
-      { label: "Étudier à l'université", value: "studies", icon: "🎓", desc: "Inscription, CROUS, vie campus" },
-      { label: "Démarches administratives", value: "admin", icon: "📋", desc: "Titre de séjour, CAF, sécu" },
-      { label: "Apprendre le français", value: "french", icon: "🇫🇷", desc: "DELF, DALF, cours, pratique" },
-      { label: "Trouver un emploi / stage", value: "work", icon: "💼", desc: "CV, alternance, LinkedIn" },
+      { label: "Étudiant en université / école", value: "student", icon: "🎓", desc: "Licence, Master, Doctorat, Grande École" },
+      { label: "Étudiant en alternance", value: "apprentice", icon: "🔄", desc: "Contrat d'apprentissage ou pro" },
+      { label: "Salarié / En recherche d'emploi", value: "worker", icon: "💼", desc: "CDI, CDD, stage, demandeur d'emploi" },
+      { label: "Je prépare mon arrivée", value: "preparing", icon: "✈️", desc: "Je n'suis pas encore en France" },
     ],
   },
   {
-    id: "level",
-    question: "Quel est ton niveau de français ?",
-    subtitle: "Sois honnête, c'est pour mieux t'aider !",
-    icon: BarChart3,
-    color: "from-blue-500 to-indigo-600",
+    id: "urgency",
+    question: "Qu'est-ce qui est le plus URGENT pour toi ?",
+    subtitle: "Je vais prioriser les étapes les plus critiques de ta roadmap",
+    icon: AlertCircle,
+    color: "from-red-500 to-rose-600",
     options: [
-      { label: "Débutant (A1-A2)", value: "beginner", icon: "🌱", desc: "Je comprends peu de choses" },
-      { label: "Intermédiaire (B1-B2)", value: "intermediate", icon: "📈", desc: "Je me débrouille" },
-      { label: "Avancé (C1-C2)", value: "advanced", icon: "🚀", desc: "Je maîtrise bien le français" },
-      { label: "Je ne parle pas français", value: "none", icon: "🆕", desc: "Tout est en anglais pour moi" },
+      { label: "Valider mon VLS-TS / Titre de séjour", value: "visa", icon: "📄", desc: "ANEF, préfecture, récépissé" },
+      { label: "Trouver un logement", value: "housing", icon: "🏠", desc: "CROUS, Studapart, VISALE, APL" },
+      { label: "Ouvrir un compte bancaire + CAF", value: "admin_finance", icon: "🏦", desc: "Compte bancaire, APL, sécu sociale" },
+      { label: "Trouver un emploi / stage / alternance", value: "work", icon: "💼", desc: "CV français, LinkedIn, offres" },
     ],
   },
   {
-    id: "timeline",
-    question: "Quand arrives-tu (ou es-tu arrivé) en France ?",
-    subtitle: "Pour savoir quelles démarches sont urgentes",
-    icon: Clock,
+    id: "french_level",
+    question: "Ton niveau de français ?",
+    subtitle: "Pour adapter le langage et les ressources de ta roadmap",
+    icon: Globe,
     color: "from-emerald-500 to-teal-600",
     options: [
-      { label: "Je suis déjà en France", value: "already_here", icon: "🏠", desc: "J'ai besoin d'aide maintenant" },
-      { label: "Dans moins de 3 mois", value: "soon", icon: "⏳", desc: "Bientôt, urgence modérée" },
-      { label: "Dans 3 à 6 mois", value: "medium", icon: "📅", desc: "J'ai le temps de préparer" },
-      { label: "Dans plus de 6 mois", value: "later", icon: "🔮", desc: "Je commence à planifier" },
-    ],
-  },
-  {
-    id: "challenge",
-    question: "Quelle est ta plus grande difficulté ?",
-    subtitle: "Je vais prioriser les solutions à ton problème principal",
-    icon: Lightbulb,
-    color: "from-amber-500 to-orange-600",
-    options: [
-      { label: "Trouver un logement", value: "housing", icon: "🏠", desc: "Dossier, VISALE, CROUS..." },
-      { label: "Titre de séjour / Préfecture", value: "visa", icon: "📄", desc: "ANEF, préfecture, délais..." },
-      { label: "Comprendre le système français", value: "system", icon: "🏛️", desc: "CAF, sécu, impôts..." },
-      { label: "S'intégrer socialement", value: "social", icon: "🤝", desc: "Amis, réseau, culture..." },
+      { label: "Débutant (A1-A2)", value: "beginner", icon: "🌱", desc: "Je comprends peu, besoin de bases" },
+      { label: "Intermédiaire (B1-B2)", value: "intermediate", icon: "📈", desc: "Je me débrouille au quotidien" },
+      { label: "Avancé (C1-C2)", value: "advanced", icon: "🚀", desc: "Je maîtrise bien le français" },
+      { label: "Je ne parle pas encore français", value: "none", icon: "🆕", desc: "J'ai besoin de ressources en anglais" },
     ],
   },
   {
     id: "budget",
-    question: "Quel est ton budget mensuel approximatif ?",
-    subtitle: "Pour adapter les aides et solutions à tes ressources",
+    question: "Quel est ton budget mensuel ?",
+    subtitle: "Pour cibler les aides disponibles et adapter les recommandations",
     icon: Euro,
-    color: "from-rose-500 to-pink-600",
+    color: "from-amber-500 to-orange-600",
     options: [
-      { label: "Moins de 600€/mois", value: "tight", icon: "💰", desc: "J'ai besoin des aides max" },
-      { label: "600€ - 1000€/mois", value: "moderate", icon: "💳", desc: "Budget serré mais gérable" },
-      { label: "1000€ - 1500€/mois", value: "comfortable", icon: "💵", desc: "Confortable pour étudiant" },
-      { label: "Plus de 1500€/mois", value: "high", icon: "💎", desc: "Budget large" },
+      { label: "Moins de 700€/mois", value: "tight", icon: "💰", desc: "APL, bourses CROUS, aides d'urgence" },
+      { label: "700€ - 1 200€/mois", value: "moderate", icon: "💳", desc: "Budget étudiant standard" },
+      { label: "1 200€ - 2 000€/mois", value: "comfortable", icon: "💵", desc: "Confortable, quelques économies" },
+      { label: "Plus de 2 000€/mois", value: "high", icon: "💎", desc: "Pas de contraintes majeures" },
     ],
   },
 ];
@@ -127,6 +123,19 @@ async function callGemini(prompt) {
 // ─── ONBOARDING STEP COMPONENT ───────────────────────────────────────────────
 function OnboardingStep({ question, onAnswer, stepIndex, totalSteps, onBack }) {
   const Icon = question.icon;
+  const [textValue, setTextValue] = useState("");
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    if (question.type === "text") setTimeout(() => textRef.current?.focus(), 200);
+  }, [question.type]);
+
+  const submitText = () => {
+    const val = textValue.trim();
+    if (val.length < 10) return;
+    onAnswer(question.id, val);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 40 }}
@@ -162,31 +171,81 @@ function OnboardingStep({ question, onAnswer, stepIndex, totalSteps, onBack }) {
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight mb-2">
           {question.question}
         </h2>
-        <p className="text-gray-500 text-sm">{question.subtitle}</p>
+        <p className="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">{question.subtitle}</p>
       </div>
 
-      {/* Options */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {question.options.map((option) => (
-          <motion.button
-            key={option.value}
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => onAnswer(question.id, option.value)}
-            className="bg-white border-2 border-gray-100 hover:border-purple-300 hover:shadow-xl hover:shadow-purple-500/10 rounded-2xl p-5 text-left transition-all group relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-50/0 to-purple-50/0 group-hover:from-purple-50/40 group-hover:to-transparent transition-all duration-300" />
-            <div className="relative flex items-start gap-4">
-              <span className="text-3xl leading-none mt-0.5">{option.icon}</span>
-              <div>
-                <p className="text-base font-bold text-gray-800 group-hover:text-purple-800 transition-colors">{option.label}</p>
-                <p className="text-xs text-gray-400 mt-0.5">{option.desc}</p>
-              </div>
+      {/* TEXT INPUT TYPE */}
+      {question.type === "text" ? (
+        <div className="space-y-4">
+          <div className="relative">
+            <textarea
+              ref={textRef}
+              value={textValue}
+              onChange={e => setTextValue(e.target.value)}
+              onKeyDown={e => { if (e.key === "Enter" && e.ctrlKey) submitText(); }}
+              placeholder={question.placeholder}
+              rows={4}
+              className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-purple-400 focus:ring-4 focus:ring-purple-100 outline-none text-sm text-gray-800 resize-none leading-relaxed placeholder:text-gray-400 bg-white shadow-sm transition-all"
+            />
+            <div className="absolute bottom-3 right-3 text-xs text-gray-300 font-mono">
+              {textValue.length} car.
             </div>
-            <ArrowRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-200 group-hover:text-purple-400 group-hover:translate-x-0.5 transition-all" />
+          </div>
+
+          {/* Example chips */}
+          <div className="flex flex-wrap gap-2">
+            <p className="text-xs font-semibold text-gray-400 w-full">Exemples rapides :</p>
+            {[
+              "Étudiant master, arrivée en septembre, cherche logement",
+              "En alternance, titre de séjour à renouveler",
+              "Déjà en France, besoin de CAF et sécu sociale",
+              "Je prépare mon arrivée dans 3 mois, visa obtenu",
+            ].map((ex, i) => (
+              <button
+                key={i}
+                onClick={() => setTextValue(ex)}
+                className="text-xs px-3 py-1.5 bg-purple-50 text-purple-700 border border-purple-200 rounded-lg hover:bg-purple-100 transition-colors font-medium"
+              >
+                {ex}
+              </button>
+            ))}
+          </div>
+
+          <motion.button
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={submitText}
+            disabled={textValue.trim().length < 10}
+            className="w-full bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed shadow-xl shadow-purple-500/20 transition-all hover:shadow-purple-500/30"
+          >
+            <ArrowRight className="w-5 h-5" />
+            Continuer
           </motion.button>
-        ))}
-      </div>
+        </div>
+      ) : (
+        /* OPTIONS TYPE */
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {question.options.map((option) => (
+            <motion.button
+              key={option.value}
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => onAnswer(question.id, option.value)}
+              className="bg-white border-2 border-gray-100 hover:border-purple-300 hover:shadow-xl hover:shadow-purple-500/10 rounded-2xl p-5 text-left transition-all group relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-50/0 to-purple-50/0 group-hover:from-purple-50/40 group-hover:to-transparent transition-all duration-300" />
+              <div className="relative flex items-start gap-4">
+                <span className="text-3xl leading-none mt-0.5">{option.icon}</span>
+                <div>
+                  <p className="text-base font-bold text-gray-800 group-hover:text-purple-800 transition-colors">{option.label}</p>
+                  <p className="text-xs text-gray-400 mt-0.5">{option.desc}</p>
+                </div>
+              </div>
+              <ArrowRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-200 group-hover:text-purple-400 group-hover:translate-x-0.5 transition-all" />
+            </motion.button>
+          ))}
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -913,12 +972,14 @@ export default function AIAgent() {
   const generateRoadmap = async (ua) => {
     setIsGenerating(true);
     try {
-      const goalKeywords = (ua.goal || "").toLowerCase();
-      const priorityCategories = goalKeywords.includes("trava") || goalKeywords.includes("emploi") || goalKeywords.includes("stage")
+      const urgencyVal = (ua.urgency || "");
+      const statusVal = (ua.status || "");
+      const situationText = (ua.situation || "").toLowerCase();
+      const priorityCategories = (urgencyVal === "work" || statusVal === "worker" || situationText.includes("emploi") || situationText.includes("stage") || situationText.includes("alternance"))
         ? ["insertion_professionnelle", "administration", "budget_finances"]
-        : goalKeywords.includes("étude") || goalKeywords.includes("univer")
+        : (statusVal === "student" || statusVal === "apprentice" || situationText.includes("master") || situationText.includes("licence") || situationText.includes("étud"))
         ? ["preparation_academique", "administration", "integration_administrative"]
-        : goalKeywords.includes("logement")
+        : (urgencyVal === "housing" || situationText.includes("logement"))
         ? ["logement", "budget_finances", "integration_administrative"]
         : ["integration_administrative", "administration", "budget_finances"];
 
@@ -932,20 +993,20 @@ export default function AIAgent() {
         `- "${c.title}" (${c.is_premium ? 'Premium' : 'Gratuit'}, ${c.category || 'Général'})`
       ).join('\n');
 
-      const goalLabel = { studies: "Étudier à l'université", admin: "Démarches administratives", french: "Apprendre le français", work: "Trouver un emploi / stage" }[ua.goal] || ua.goal;
-      const levelLabel = { beginner: "Débutant (A1-A2)", intermediate: "Intermédiaire (B1-B2)", advanced: "Avancé (C1-C2)", none: "Ne parle pas français" }[ua.level] || ua.level;
-      const timelineLabel = { already_here: "Déjà en France", soon: "Dans moins de 3 mois", medium: "Dans 3 à 6 mois", later: "Dans plus de 6 mois" }[ua.timeline] || ua.timeline;
-      const challengeLabel = { housing: "Trouver un logement", visa: "Titre de séjour / Préfecture", system: "Comprendre le système français", social: "S'intégrer socialement" }[ua.challenge] || ua.challenge;
-      const budgetLabel = { tight: "Moins de 600€/mois", moderate: "600-1000€/mois", comfortable: "1000-1500€/mois", high: "Plus de 1500€/mois" }[ua.budget] || ua.budget;
+      const statusLabel = { student: "Étudiant en université/école", apprentice: "Étudiant en alternance", worker: "Salarié / En recherche d'emploi", preparing: "Prépare son arrivée en France" }[ua.status] || ua.status;
+      const urgencyLabel = { visa: "Valider VLS-TS / Titre de séjour", housing: "Trouver un logement", admin_finance: "Ouvrir compte bancaire + CAF + Sécu", work: "Trouver emploi / stage / alternance" }[ua.urgency] || ua.urgency;
+      const levelLabel = { beginner: "Débutant (A1-A2)", intermediate: "Intermédiaire (B1-B2)", advanced: "Avancé (C1-C2)", none: "Ne parle pas encore français" }[ua.french_level] || ua.french_level;
+      const budgetLabel = { tight: "Moins de 700€/mois (aides prioritaires)", moderate: "700-1200€/mois (budget étudiant)", comfortable: "1200-2000€/mois", high: "Plus de 2000€/mois" }[ua.budget] || ua.budget;
+      const situationDesc = ua.situation || "Étudiant international en France";
 
       const prompt = `Tu es un expert senior en integration des etudiants internationaux en France, avec 15 ans d'experience. Genere une roadmap ULTRA-PERSONNALISEE pour cet etudiant.
 
-PROFIL :
-- Objectif : ${goalLabel}
-- Français : ${levelLabel}
-- Arrivee : ${timelineLabel}
-- Defi : ${challengeLabel}
-- Budget : ${budgetLabel}
+PROFIL DÉTAILLÉ :
+- Situation décrite : "${situationDesc}"
+- Statut : ${statusLabel}
+- Urgence principale : ${urgencyLabel}
+- Niveau de français : ${levelLabel}
+- Budget mensuel : ${budgetLabel}
 
 COURS DISPONIBLES :
 ${coursesList}
