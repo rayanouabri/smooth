@@ -23,65 +23,104 @@ import { isPremium as checkPremium } from "@/utils/premium";
 // ─── ONBOARDING QUESTIONS ────────────────────────────────────────────────────
 const ONBOARDING_QUESTIONS = [
   {
-    id: "situation",
-    type: "text",
-    question: "Décris ta situation en quelques mots",
-    subtitle: "Plus tu es précis, plus ta roadmap sera personnalisée. Ex: \"Je viens d'arriver à Lyon pour un master, je cherche un logement et je dois valider mon VLS-TS\"",
-    icon: MessageSquare,
-    color: "from-violet-500 to-purple-600",
-    placeholder: "Ex: J'arrive à Paris en septembre pour une licence, j'ai un visa étudiant, mon budget est serré et je cherche une chambre CROUS...",
-  },
-  {
     id: "status",
     question: "Quel est ton statut en France ?",
-    subtitle: "Ton statut détermine quelles démarches sont prioritaires",
+    subtitle: "Tout part de là — ton statut détermine toutes tes démarches prioritaires",
     icon: ShieldCheck,
-    color: "from-indigo-500 to-blue-600",
+    color: "from-violet-500 to-purple-600",
     options: [
       { label: "Étudiant en université / école", value: "student", icon: "🎓", desc: "Licence, Master, Doctorat, Grande École" },
-      { label: "Étudiant en alternance", value: "apprentice", icon: "🔄", desc: "Contrat d'apprentissage ou pro" },
-      { label: "Salarié / En recherche d'emploi", value: "worker", icon: "💼", desc: "CDI, CDD, stage, demandeur d'emploi" },
-      { label: "Je prépare mon arrivée", value: "preparing", icon: "✈️", desc: "Je n'suis pas encore en France" },
+      { label: "Étudiant en alternance", value: "apprentice", icon: "🔄", desc: "Contrat d'apprentissage ou professionnalisation" },
+      { label: "Salarié / En recherche d'emploi", value: "worker", icon: "💼", desc: "CDI, CDD, stage, chercheur d'emploi" },
+      { label: "Je prépare mon arrivée", value: "preparing", icon: "✈️", desc: "Je ne suis pas encore en France" },
+    ],
+  },
+  {
+    id: "timeline",
+    question: "Où en es-tu dans ton parcours ?",
+    subtitle: "Pour calibrer l'urgence de chaque étape et éviter les délais manqués",
+    icon: Clock,
+    color: "from-indigo-500 to-blue-600",
+    options: [
+      { label: "Je suis arrivé(e) depuis < 3 mois", value: "just_arrived", icon: "🏃", desc: "VLS-TS à valider, démarches urgentes" },
+      { label: "Je suis en France depuis 3-12 mois", value: "settled", icon: "🏠", desc: "Installation en cours, optimisation" },
+      { label: "J'arrive dans moins de 3 mois", value: "soon", icon: "⏳", desc: "Préparation avant départ" },
+      { label: "J'arrive dans plus de 3 mois", value: "later", icon: "📅", desc: "Planification en avance" },
     ],
   },
   {
     id: "urgency",
-    question: "Qu'est-ce qui est le plus URGENT pour toi ?",
-    subtitle: "Je vais prioriser les étapes les plus critiques de ta roadmap",
+    question: "Quel est ton besoin le plus urgent ?",
+    subtitle: "Ta roadmap sera construite autour de cette priorité absolue",
     icon: AlertCircle,
     color: "from-red-500 to-rose-600",
     options: [
-      { label: "Valider mon VLS-TS / Titre de séjour", value: "visa", icon: "📄", desc: "ANEF, préfecture, récépissé" },
-      { label: "Trouver un logement", value: "housing", icon: "🏠", desc: "CROUS, Studapart, VISALE, APL" },
-      { label: "Ouvrir un compte bancaire + CAF", value: "admin_finance", icon: "🏦", desc: "Compte bancaire, APL, sécu sociale" },
-      { label: "Trouver un emploi / stage / alternance", value: "work", icon: "💼", desc: "CV français, LinkedIn, offres" },
+      { label: "Titre de séjour / VLS-TS", value: "visa", icon: "📄", desc: "Validation ANEF, renouvellement, récépissé" },
+      { label: "Logement", value: "housing", icon: "🏠", desc: "CROUS, colocation, VISALE, APL" },
+      { label: "Compte bancaire + CAF + Sécu", value: "admin_finance", icon: "🏦", desc: "Les 3 démarches fondamentales à l'arrivée" },
+      { label: "Emploi / Stage / Alternance", value: "work", icon: "💼", desc: "CV français, LinkedIn, offres, permis travail" },
+    ],
+  },
+  {
+    id: "challenges",
+    question: "Quelles sont tes difficultés actuelles ?",
+    subtitle: "Sélectionne ce qui te pose le plus problème — je prioriserai les solutions",
+    icon: Lightbulb,
+    color: "from-amber-500 to-orange-600",
+    options: [
+      { label: "Comprendre les administrations", value: "admin_complexity", icon: "🏛️", desc: "CAF, Préfecture, Sécu, impôts... c'est opaque" },
+      { label: "Gérer mon budget / trouver des aides", value: "money", icon: "💰", desc: "APL, bourses, aides CROUS, frais cachés" },
+      { label: "Trouver ma place socialement", value: "social", icon: "🤝", desc: "Amis, réseau, culture française, codes sociaux" },
+      { label: "Maîtriser le français professionnel", value: "language", icon: "🗣️", desc: "CV, entretiens, mails formels, diplômes" },
     ],
   },
   {
     id: "french_level",
-    question: "Ton niveau de français ?",
-    subtitle: "Pour adapter le langage et les ressources de ta roadmap",
+    question: "Ton niveau de français actuel ?",
+    subtitle: "Pour adapter les ressources et le ton de ta roadmap",
     icon: Globe,
     color: "from-emerald-500 to-teal-600",
     options: [
-      { label: "Débutant (A1-A2)", value: "beginner", icon: "🌱", desc: "Je comprends peu, besoin de bases" },
+      { label: "Débutant (A1-A2)", value: "beginner", icon: "🌱", desc: "Je comprends peu, je démarre de zéro" },
       { label: "Intermédiaire (B1-B2)", value: "intermediate", icon: "📈", desc: "Je me débrouille au quotidien" },
-      { label: "Avancé (C1-C2)", value: "advanced", icon: "🚀", desc: "Je maîtrise bien le français" },
-      { label: "Je ne parle pas encore français", value: "none", icon: "🆕", desc: "J'ai besoin de ressources en anglais" },
+      { label: "Avancé (C1-C2)", value: "advanced", icon: "🚀", desc: "Je maîtrise bien, je veux affiner" },
+      { label: "Pas encore de français", value: "none", icon: "🆕", desc: "J'ai besoin d'un plan pour commencer" },
     ],
   },
   {
     id: "budget",
     question: "Quel est ton budget mensuel ?",
-    subtitle: "Pour cibler les aides disponibles et adapter les recommandations",
+    subtitle: "Pour cibler exactement les aides auxquelles tu as droit",
     icon: Euro,
-    color: "from-amber-500 to-orange-600",
+    color: "from-teal-500 to-cyan-600",
     options: [
-      { label: "Moins de 700€/mois", value: "tight", icon: "💰", desc: "APL, bourses CROUS, aides d'urgence" },
-      { label: "700€ - 1 200€/mois", value: "moderate", icon: "💳", desc: "Budget étudiant standard" },
-      { label: "1 200€ - 2 000€/mois", value: "comfortable", icon: "💵", desc: "Confortable, quelques économies" },
+      { label: "Moins de 700€/mois", value: "tight", icon: "💰", desc: "APL, aides d'urgence, bourse CROUS max" },
+      { label: "700€ - 1 200€/mois", value: "moderate", icon: "💳", desc: "Budget étudiant, quelques aides possibles" },
+      { label: "1 200€ - 2 000€/mois", value: "comfortable", icon: "💵", desc: "Budget confortable, optimisation possible" },
       { label: "Plus de 2 000€/mois", value: "high", icon: "💎", desc: "Pas de contraintes majeures" },
     ],
+  },
+  {
+    id: "goal_horizon",
+    question: "Quel est ton projet à long terme en France ?",
+    subtitle: "Pour orienter la roadmap vers ton objectif final",
+    icon: Target,
+    color: "from-rose-500 to-pink-600",
+    options: [
+      { label: "M'installer durablement", value: "settle", icon: "🏡", desc: "Résidence longue durée, naturalisation" },
+      { label: "Finir mes études et rentrer", value: "study_return", icon: "📚", desc: "Diplôme en poche puis retour au pays" },
+      { label: "Lancer une carrière en France", value: "career", icon: "🚀", desc: "CDI, ascension pro, réseau solide" },
+      { label: "Explorer avant de décider", value: "explore", icon: "🔭", desc: "Je verrai selon les opportunités" },
+    ],
+  },
+  {
+    id: "situation",
+    type: "text",
+    question: "Décris ta situation en détail",
+    subtitle: "C'est la question la plus importante — plus tu es précis, plus ta roadmap sera personnalisée et actionnable",
+    icon: MessageSquare,
+    color: "from-violet-600 to-indigo-700",
+    placeholder: "Ex: J'arrive à Paris fin août pour un Master 1 en informatique à Paris-Saclay. J'ai un visa étudiant VLS-TS, j'ai besoin de trouver un logement (j'ai demandé une chambre CROUS mais pas encore de réponse), je dois valider mon VLS-TS et ouvrir un compte bancaire. Mon budget est d'environ 900€/mois avec l'aide de mes parents...",
   },
 ];
 
@@ -975,7 +1014,8 @@ export default function AIAgent() {
       const urgencyVal = (ua.urgency || "");
       const statusVal = (ua.status || "");
       const situationText = (ua.situation || "").toLowerCase();
-      const priorityCategories = (urgencyVal === "work" || statusVal === "worker" || situationText.includes("emploi") || situationText.includes("stage") || situationText.includes("alternance"))
+      const goalVal = (ua.goal_horizon || "");
+      const priorityCategories = (urgencyVal === "work" || statusVal === "worker" || goalVal === "career" || situationText.includes("emploi") || situationText.includes("stage") || situationText.includes("alternance"))
         ? ["insertion_professionnelle", "administration", "budget_finances"]
         : (statusVal === "student" || statusVal === "apprentice" || situationText.includes("master") || situationText.includes("licence") || situationText.includes("étud"))
         ? ["preparation_academique", "administration", "integration_administrative"]
@@ -993,20 +1033,26 @@ export default function AIAgent() {
         `- "${c.title}" (${c.is_premium ? 'Premium' : 'Gratuit'}, ${c.category || 'Général'})`
       ).join('\n');
 
-      const statusLabel = { student: "Étudiant en université/école", apprentice: "Étudiant en alternance", worker: "Salarié / En recherche d'emploi", preparing: "Prépare son arrivée en France" }[ua.status] || ua.status;
-      const urgencyLabel = { visa: "Valider VLS-TS / Titre de séjour", housing: "Trouver un logement", admin_finance: "Ouvrir compte bancaire + CAF + Sécu", work: "Trouver emploi / stage / alternance" }[ua.urgency] || ua.urgency;
-      const levelLabel = { beginner: "Débutant (A1-A2)", intermediate: "Intermédiaire (B1-B2)", advanced: "Avancé (C1-C2)", none: "Ne parle pas encore français" }[ua.french_level] || ua.french_level;
-      const budgetLabel = { tight: "Moins de 700€/mois (aides prioritaires)", moderate: "700-1200€/mois (budget étudiant)", comfortable: "1200-2000€/mois", high: "Plus de 2000€/mois" }[ua.budget] || ua.budget;
-      const situationDesc = ua.situation || "Étudiant international en France";
+      const statusLabel = { student: "Étudiant en université/école", apprentice: "Étudiant en alternance", worker: "Salarié/recherche emploi", preparing: "Prépare son arrivée" }[ua.status] || ua.status || "Étudiant";
+      const timelineLabel = { just_arrived: "Arrivé depuis moins de 3 mois (URGENT)", settled: "En France depuis 3-12 mois", soon: "Arrive dans moins de 3 mois", later: "Arrive dans plus de 3 mois" }[ua.timeline] || ua.timeline || "Non précisé";
+      const urgencyLabel = { visa: "Titre de séjour / VLS-TS", housing: "Logement", admin_finance: "Compte bancaire + CAF + Sécurité sociale", work: "Emploi / Stage / Alternance" }[ua.urgency] || ua.urgency || "Démarches administratives";
+      const challengesLabel = { admin_complexity: "Comprendre les administrations", money: "Budget et aides financières", social: "Intégration sociale et réseau", language: "Français professionnel" }[ua.challenges] || ua.challenges || "Général";
+      const levelLabel = { beginner: "Débutant A1-A2", intermediate: "Intermédiaire B1-B2", advanced: "Avancé C1-C2", none: "Pas encore de français" }[ua.french_level] || ua.french_level || "Intermédiaire";
+      const budgetLabel = { tight: "< 700€/mois", moderate: "700-1200€/mois", comfortable: "1200-2000€/mois", high: "> 2000€/mois" }[ua.budget] || ua.budget || "Non précisé";
+      const goalLabel = { settle: "S'installer durablement", study_return: "Études puis retour pays", career: "Carrière en France", explore: "Explorer, décider ensuite" }[ua.goal_horizon] || ua.goal_horizon || "Non précisé";
+      const situationDesc = ua.situation || "Étudiant international souhaitant s'intégrer en France";
 
       const prompt = `Tu es un expert senior en integration des etudiants internationaux en France, avec 15 ans d'experience. Genere une roadmap ULTRA-PERSONNALISEE pour cet etudiant.
 
-PROFIL DÉTAILLÉ :
-- Situation décrite : "${situationDesc}"
+PROFIL COMPLET :
+- Situation personnelle : "${situationDesc}"
 - Statut : ${statusLabel}
-- Urgence principale : ${urgencyLabel}
-- Niveau de français : ${levelLabel}
-- Budget mensuel : ${budgetLabel}
+- Timing : ${timelineLabel}
+- Besoin urgent : ${urgencyLabel}
+- Difficulté principale : ${challengesLabel}
+- Niveau français : ${levelLabel}
+- Budget : ${budgetLabel}
+- Objectif long terme : ${goalLabel}
 
 COURS DISPONIBLES :
 ${coursesList}
