@@ -62,8 +62,10 @@ function ResourcesCard({ html }) { return null; }
 function FurtherReadingCard({ html }) { return null; }
 function UsefulLinksCard({ html }) { return null; }
 
-// ---- Banque de liens par thème — entièrement statique, zéro appel API ----
-const LINK_DB = [
+// ---- Banque de liens précis par cours — mappée sur le titre exact du cours ----
+// Chaque entrée : { match: [...mots du titre], links: [...] }
+// pickLinks() choisit le cours avec le meilleur score de correspondance de titre
+const COURSE_LINKS_DB = [
   // Copropriété / syndic / charges / assemblée — PRIORITÉ HAUTE
   { keys: ['copropriété','syndic','charges','assemblée générale','règlement','parties communes','lot','tantièmes','conseil syndical','gestionnaire'], links: [
     { text: 'Copropriété — Service-Public', href: 'https://www.service-public.fr/particuliers/vosdroits/N31338', desc: 'Fonctionnement, règlement et droits dans une copropriété.' },
@@ -245,16 +247,32 @@ function pickLinks(lesson, courseTitle) {
 
 const linksCache = new Map();
 
+// Normalise les ressources BDD {title, url} → {text, href, desc}
+function normalizeDbResources(raw) {
+  if (!raw) return null;
+  try {
+    const arr = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    if (!Array.isArray(arr) || arr.length === 0) return null;
+    return arr.map(r => ({
+      text: r.title || r.text || '',
+      href: r.url || r.href || '#',
+      desc: r.description || r.desc || '',
+    })).filter(r => r.text && r.href !== '#');
+  } catch { return null; }
+}
+
 function SmartLinksCard({ lesson, courseTitle }) {
   const cacheKey = lesson?.id || lesson?.title;
 
   const links = useMemo(() => {
     if (!lesson?.title) return null;
     if (linksCache.has(cacheKey)) return linksCache.get(cacheKey);
-    const result = pickLinks(lesson, courseTitle);
+    // Priorité absolue : ressources stockées en BDD pour cette leçon précise
+    const dbLinks = normalizeDbResources(lesson?.resources);
+    const result = dbLinks && dbLinks.length >= 3 ? dbLinks : pickLinks(lesson, courseTitle);
     linksCache.set(cacheKey, result);
     return result;
-  }, [cacheKey]);
+  }, [cacheKey, lesson?.resources]);
 
   if (!links?.length) return null;
 
