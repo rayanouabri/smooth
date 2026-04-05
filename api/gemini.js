@@ -120,8 +120,8 @@ export default async function handler(req, res) {
     // Obtenir le token OAuth2
     const accessToken = await getAccessToken(clientEmail, privateKey);
 
-    // Appeler Vertex AI — gemini-2.0-flash (rapide et économique)
-    const model = 'gemini-2.0-flash';
+    // Appeler Vertex AI — gemini-1.5-flash (disponible sur ce projet)
+    const model = 'gemini-1.5-flash';
     const location = 'us-central1';
     const url = `https://${location}-aiplatform.googleapis.com/v1/projects/${projectId}/locations/${location}/publishers/google/models/${model}:generateContent`;
 
